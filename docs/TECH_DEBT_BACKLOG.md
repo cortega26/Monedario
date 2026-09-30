@@ -37,20 +37,20 @@ Fecha de corte: 2026-09-25
 
 ### Total de items por urgencia (abiertos)
 
-_Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pendiente`, `ABIERTO*`, `En curso`)._
+_Actualizado 2026-09-30 desde las entradas `## TD-` (abierto = `Backlog*`, `Pendiente`, `ABIERTO*`, `En curso`)._
 
 - **P0:** 0
 - **P1:** 0
-- **P2:** 1 — `TD-0108` (en curso)
+- **P2:** 0
 - **P3:** 0
 - **Sin urgencia declarada:** 0
-- **Total abiertos:** 1 de 112 entradas (`TD-0001`..`TD-0112`)
-- **Cerrados/completados:** 111
+- **Total abiertos:** 0 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Cerrados/completados:** 112
 
 ### Estado de avance (2026-09-30)
 
-- **Completados/cerrados:** 111 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096`/`TD-0103` (2026-09-30).
-- **Abiertos:** `TD-0108` (en curso).
+- **Completados/cerrados:** 112 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096`/`TD-0103`/`TD-0108` (2026-09-30).
+- **Abiertos:** ninguno.
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2421,9 +2421,10 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   independiente de los 7 borradores (sesión fresca; prompt en
   `docs/backlog/prompt-td-0108-auditoria-articlelead.md`) y verificación
   primaria de los 3 restantes.
+- **Actualización 2026-09-30 (re-verificación adversarial, firmada por Carlos Ortega — owner, autorización explícita en sesión):** verificado `c4920bce` (contenido idéntico en `68bb27f2`) contra fuente primaria y cuerpo — `como-cambiarse-de-afp` PASS (plazo SP-9915 textual, etiquetas 9915/9585 200, fechas 2026-09-30 alineadas; nota baja: detalle canje día 1/15 sin fuente en 9915), `fraude-tarjeta` PASS (CMF-48790 + SERNAC-791 200 y rótulos exactos), `ahorro-…-2026` PASS (CMF-988 = Fondos Mutuos), `fondos-mutuos` PASS (SII-1428 añadido, 200); invariantes PASS (`missingValidAsOf=3`, `stale=0`, `drift=0`, 7/7 `nextStepHref`, 3 evergreen sin cambios). Veredicto global: **PASS** (0 altos/medios abiertos).
+- **Resolución (2026-09-30, firma Carlos Ortega — owner, autorización explícita en sesión):** TD-0108 cerrada con veredicto PASS; los 3 sin `validAsOf` quedan como cola explícita reportada por el gate (`missingValidAsOf=3`), no como deuda silenciosa.
 - **Owner:** Carlos Ortega (editorial)
-- **Estado:** En curso — autoría completa; falta auditoría independiente de los
-  7 borradores y verificación primaria de los 3 sin `validAsOf`
+- **Estado:** Cerrado — re-verificación PASS firmada por el owner el 2026-09-30.
 - **Fecha de creación:** 2026-09-20
 - **Última actualización:** 2026-09-30
 
