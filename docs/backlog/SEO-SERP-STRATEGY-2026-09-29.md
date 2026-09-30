@@ -110,7 +110,7 @@ pipeline editorial completo.
 | ID | Candidato | Prioridad | Esfuerzo | Depende de | Gate de activación |
 |---|---|---|---|---|---|
 | N1 | **Cadencia de decisión** sobre la matriz y los audits existentes del repo (`audit:striking-distance` / `audit:cannibalization`, ya corridos en plan 128 §8): bandas 8–20, CTR-gap, canibalización, cruce con ventanas activas | P1 | S | — | **Cadencia definida 2026-09-30** (plan 136): anexo N1 en `docs/operations/runbooks/weekly-search-performance-ritual.md`; mensual, owner = operador del ritual |
-| N2 | **Auditoría del glosario** (54 entradas): señal GSC (§8) + enlaces internos, fuentes y cobertura; salida = recomendación por URL | P1 | M | datos §8 | **Ejecutada 2026-09-30** (plan 135): `docs/reports/AUDIT-GLOSSARY-2026-09-30.md` — 45 mantener / 8 enriquecer / 1 consolidar (`sbif`) / 0 noindex; cambios solo post-W40 y bajo plan 120 + ADR + firma |
+| N2 | **Auditoría del glosario** (54 entradas): señal GSC (§8) + enlaces internos, fuentes y cobertura; salida = recomendación por URL | P1 | M | datos §8 | **Ejecutada 2026-09-30** (plan 135): `docs/reports/AUDIT-GLOSSARY-2026-09-30.md` — 45 mantener / 8 enriquecer / 1 consolidar (`sbif`) / 0 noindex. **Ejecución planificada** en plan 137 (post-W40, sesión distinta a la auditora); indexabilidad solo bajo plan 120 + ADR + firma |
 | N3 | **Cohortes de alarma de defensa** en el scorecard semanal para páginas en posiciones 1–3 (caída de posición/CTR) y 4–10 (potencial), con umbrales pre-declarados | P1 | S–M | N1 | Post-W40 |
 | N4 | **Registro de experimentos** en `UTILITY_LED_EXPERIMENT_REGISTRY.md`; priorizar por datos §8: CTR de conversores UTM en banda 8–20, intención «simular» en seguro de cesantía (pos 8,6–10,8), «conviene prepagar» (pos 14,8), tabla 2026 en impuesto 2ª (pos 9–10); sueldo/APV quedan fuera hasta resolver posición | P1/P2 | S registro / M–L implementación | registry + freeze | **Registrado 2026-09-30** (plan 136): 4 experimentos con umbrales y `n_min`; ejecución post-2026-10-14 y post panel F4 |
 | N5 | **Primer dataset citable** (AFP/tributario) con metadata, CSV/JSON, documentación y `Dataset` schema, conectado a una calculadora que ya funciona | P2 | M | FOCO + `EEAT-STRATEGY` #4 | Post-2026-11-02 o excepción aprobada |
@@ -232,3 +232,6 @@ exports actuales (dimensiones query/page/country/device); W39 está completa
   registry, cadencia mensual N1 fijada en el ritual, briefing de `/archives/`
   (`docs/backlog/DECISION-archives-indexabilidad-2026-09-30.md`) y verificación
   N7 documentada. Nada tocó `src/`, contenido ni indexabilidad.
+- 2026-09-30 — Plan 137 creado (ejecución post-W40 de las 8 recomendaciones
+  `ENRIQUECER` + backfill de fuentes), con gate temporal y separación de
+  funciones respecto de la sesión auditora. No ejecutado.

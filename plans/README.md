@@ -66,6 +66,21 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
+## SEO/SERP 2026-09-30 — plan 137 (ejecución del glosario, post-W40)
+
+Ejecuta las recomendaciones `ENRIQUECER` de la auditoría N2 (plan 135) y el
+backfill de fuentes del glosario. Gate temporal: no iniciar antes de
+2026-10-05 (post-W40) y en sesión distinta a la auditora
+(`INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`). No toca indexabilidad, rutas ni
+esquema; `sbif` (consolidación) queda fuera: requiere contrato 120 + ADR +
+decisión del owner.
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 137 | [glosario post-W40: enriquecimiento y fuentes](137-glosario-post-w40-enriquecimiento-fuentes-2026-09-30.md) | P1 | M–L | plan 135 + gate temporal | TODO — gate: post-W40 (2026-10-05); sesión de ejecución ≠ auditora |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría de resiliencia y performance 2026-09-29 — plan 122
 
 Informe: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`. Resultado: sin P0/P1;
