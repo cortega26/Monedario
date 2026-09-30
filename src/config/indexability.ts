@@ -61,6 +61,11 @@ const RULES: Rule[] = [
     value: noindexFollow("utilitaria de búsqueda interna"),
   },
   {
+    test: pathname =>
+      pathname === "/privado/" || pathname.startsWith("/privado/"),
+    value: noindexFollow("herramienta financiera experimental local-first"),
+  },
+  {
     test: pathname => pathname.startsWith("/dev/"),
     value: noindexFollow("herramientas de desarrollo"),
   },
