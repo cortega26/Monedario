@@ -1,6 +1,6 @@
 # Plan 134 — Aplicación de la decisión evergreen + dataset IMM (TD-0095/0096)
 
-- **Status**: IN PROGRESS
+- **Status**: DONE
 - **Fecha**: 2026-09-30
 - **Owner**: Carlos Ortega (decisión confirmada) / agente (implementación)
 - **Scope in**: `src/config/editorial-timeliness-policy.json`,
@@ -26,11 +26,18 @@
 
 ## Criterios de cierre
 
-- [ ] `check:editorial-timeliness` verde con los 19 evergreen y el dataset IMM.
-- [ ] `editorial:volatile-data:refresh` puebla `economic.imm.value` sin error.
-- [ ] Suite completa, `check:ci` y build verdes.
-- [ ] TD-0095/0096 cerrados con la decisión registrada.
+- [x] `check:editorial-timeliness` verde con los 19 evergreen y el dataset IMM.
+- [x] `editorial:volatile-data:refresh` puebla `economic.imm.value` (553.553,
+      reviewTriggerDate 2026-05-01) sin error.
+- [x] Suite completa (189 files, 1811 passed / 1 skipped), `check:ci` y build
+      (24 checks / 332 páginas) verdes en worktree limpio.
+- [x] TD-0095/0096 cerrados con la decisión registrada.
 
 ## Evidencia
 
-- Pendiente al cierre.
+- `node scripts/refresh-editorial-volatile-data.mjs` → snapshot con
+  `economic.imm.value` (9 datasets).
+- `check:editorial-timeliness` → OK (19 evergreen sin `dueDate`, 4 artículos
+  con `sync: strict` sobre IMM).
+- `check:ci` exit 0; `pnpm run build` 24 checks; tests 22/22 en los contratos
+  tocados.
