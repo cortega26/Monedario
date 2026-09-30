@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
@@ -37,5 +38,19 @@ describe("taxonomía año comercial / año tributario", () => {
     const content = readFileSync(BOLETA_HONORARIOS, "utf8");
     expect(content).not.toMatch(/15,25[^.]{0,120}año tributario 2026/i);
     expect(content).toMatch(/15,25[^.]{0,160}año comercial 2026/i);
+  });
+
+  it("el glosario no hardcodea umbrales de impuesto en CLP aproximado (D24)", () => {
+    const dir = "src/data/glossary";
+    for (const file of readdirSync(dir).filter(name => name.endsWith(".md"))) {
+      const content = readFileSync(path.join(dir, file), "utf8");
+      for (const [index, line] of content.split("\n").entries()) {
+        if (/~\$\d/.test(line) && /impuesto|tramo exento/i.test(line)) {
+          expect.fail(
+            `${file}:${index + 1}: usa UTM (p. ej. [[utm * 13.5 | clp]]) en vez de CLP aproximado: ${line.trim()}`
+          );
+        }
+      }
+    }
   });
 });

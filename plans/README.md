@@ -58,6 +58,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 | 127 | [surfaces-sweep-d14-d15-2026-09-29.md](127-surfaces-sweep-d14-d15-2026-09-29.md) | P1 (YMYL) | M | re-auditoría pass3 (D14/D15) | DONE (superficies DAP y tasa de honorarios por año + 2 guardas + matriz de superficies + prompt v2; revisión editorial humana pendiente) |
 | 129 | [TD-0107/0108: veracidad explícita y gate de timeliness](129-td-0107-0108-veracidad-timeliness-2026-09-29.md) | P1 | M | — | DONE (semántica `stale=0` ≠ verificación + hardFacts con owner + gate con warning explícito + cola de 13; TD-0107 cerrado, TD-0108 en curso) |
 | 130 | [Remediación pass4 (D17–D21)](130-remediation-pass4-d17-d21-2026-09-29.md) | P1 (YMYL) | M | — | DONE (D17–D21 corregidos + 2 guardas nuevas/extendidas; verificación final = re-auditoría pass5 + firma humana) |
+| 131 | [Remediación pass5 (D23–D24)](131-remediation-pass5-d23-d24-2026-09-29.md) | P1 (YMYL) | S | — | DONE (DAP en guías + umbral IUSC del glosario + guardas extendidas; verificación final = re-auditoría pass6) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

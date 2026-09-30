@@ -2,6 +2,7 @@
 term: "Sueldo Bruto"
 shortDefinition: "El total acordado en el contrato antes de cualquier descuento. No es lo que depositan en tu cuenta — es la base sobre la que se calculan AFP, salud e impuestos."
 relatedTerms: ["renta-imponible", "afp", "ipc"]
+reviewedDate: 2026-09-29
 ---
 
 El **sueldo bruto** es el monto total que figura en tu contrato de trabajo, antes de que se aplique cualquier descuento legal. Es lo que acordaste recibir, pero **no es lo que depositan en tu cuenta** — eso es el sueldo líquido.
@@ -24,7 +25,9 @@ Del sueldo bruto se restan:
 | AFP                   | 10% + comisión (10,46%–11,45%) | Imponible        |
 | Salud                 | 7% (Fonasa) o más (Isapre)     | Imponible        |
 | Seguro de cesantía    | 0,6% (contrato indefinido)     | Imponible        |
-| Impuesto 2ª categoría | Progresivo desde ~$943.000     | Renta tributable |
+| Impuesto 2ª categoría | Progresivo desde 13,5 UTM      | Renta tributable |
+
+El primer tramo exento del impuesto de segunda categoría equivale a ≈ [[utm * 13.5 | clp]] con la UTM vigente (la UTM cambia cada mes).
 
 ## Por qué importa entenderlo
 
