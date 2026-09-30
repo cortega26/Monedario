@@ -35,6 +35,8 @@ articleLead:
       href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-504.html"
     - label: "SII — Rentas de capitales mobiliarios"
       href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm"
+    - label: "SII — Fondos mutuos no rescatados"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1428.htm"
   covers:
     - "Qué comisiones cobra un fondo mutuo y dónde verlas."
     - "Cómo funcionan los plazos de rescate."

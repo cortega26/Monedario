@@ -31,14 +31,16 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.como-cambiarse-de-afp
   computedAt: "2026-09-20"
-updatedDate: 2026-09-20T00:00:00Z
+updatedDate: 2026-09-30T00:00:00Z
 articleLead:
-  answer: "Puedes cambiarte de AFP presentando la solicitud en tu nueva administradora (online o presencial); el traspaso se hace efectivo el primer día del mes siguiente. Antes de decidir, compara comisiones y rentabilidad por tipo de fondo en la Superintendencia de Pensiones y revisa qué cambia con la Reforma de Pensiones (Ley 21.735)."
+  answer: "Puedes cambiarte de AFP presentando la Orden de Traspaso en tu nueva administradora (online o presencial): la afiliación en la nueva AFP se produce el primer día del mes siguiente a la suscripción. Antes de decidir, compara comisiones y rentabilidad por tipo de fondo en la Superintendencia de Pensiones y revisa qué cambia con la Reforma de Pensiones (Ley 21.735)."
   nextStepHref: "/calculadoras/comisiones-afp/"
   nextStepLabel: "Compara comisiones de AFP"
-  validAsOf: 2026-09-20
+  validAsOf: 2026-09-30
   officialSources:
-    - label: "Superintendencia de Pensiones — Cambio de AFP"
+    - label: "Superintendencia de Pensiones — Traspaso a otra AFP"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html"
+    - label: "Superintendencia de Pensiones — Rentabilidad"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9585.html"
   covers:
     - "Cómo se hace el trámite de cambio de AFP y cuánto tarda."
@@ -52,6 +54,7 @@ articleLead:
 Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.
 
 > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN.
+> **Actualización 2026-09-30:** plazo de traspaso verificado contra la Superintendencia de Pensiones («Traspaso a otra AFP»); se alineó el bloque de respuesta del artículo.
 
 Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: [¿qué fondo A–E conviene según tu perfil?](/posts/fondos-afp-a-b-c-d-e/) — [¿qué es la Cuenta 2?](/posts/que-es-la-cuenta-2-afp/) — [¿cómo leer tu cartola AFP?](/posts/como-leer-cartola-afp-chile/)
 
@@ -79,7 +82,7 @@ Los pasos son los siguientes:
 
 **3. Firma la Declaración Jurada.** Es un documento donde confirmas que no recibiste incentivos económicos por el cambio. Es parte del proceso online.
 
-**4. Espera la confirmación.** Recibirás un comprobante por email. El traspaso efectivo de tus fondos toma hasta **30 días hábiles**.
+**4. Espera la confirmación.** Recibirás un comprobante por email. La afiliación en tu nueva AFP se produce el **primer día del mes siguiente** a la suscripción de la Orden de Traspaso; el traspaso de los saldos se materializa en el canje de traspasos (día 1 o día 15 del mes, según la fecha de la solicitud).
 
 Durante el período de traspaso, tus fondos siguen invertidos en tu AFP actual y continúan generando (o perdiendo) rentabilidad hasta el momento exacto en que se transfieren.
 
