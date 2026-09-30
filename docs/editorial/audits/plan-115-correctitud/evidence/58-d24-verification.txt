@@ -1,0 +1,30 @@
+=== 58 — D24: umbral IUSC en glosario sueldo-bruto (worktree 02b878a7) ===
+--- 58.1 fuente: frontmatter + celda + párrafo ---
+---
+term: "Sueldo Bruto"
+shortDefinition: "El total acordado en el contrato antes de cualquier descuento. No es lo que depositan en tu cuenta — es la base sobre la que se calculan AFP, salud e impuestos."
+relatedTerms: ["renta-imponible", "afp", "ipc"]
+reviewedDate: 2026-09-29
+---
+28:| Impuesto 2ª categoría | Progresivo desde 13,5 UTM      | Renta tributable |
+30:El primer tramo exento del impuesto de segunda categoría equivale a ≈ [[utm * 13.5 | clp]] con la UTM vigente (la UTM cambia cada mes).
+old-clp rc=1 (1 = 0 ocurrencias)
+--- 58.2 motor de interpolación ---
+15:const EXPR_RE = /\[\[([^\]|]+?)\|([^\]]+?)\]\]/g;
+29:      utm: Number(data.utm),
+114:  return text.replace(EXPR_RE, (_match, exprRaw: string, fmtRaw: string) => {
+3:  "utm": 71721,
+18:    "utm": "2026-09-01",
+--- 58.3 recálculo independiente (R1) ---
+snapshot utm = 71721
+13.5 x utm = 968233.5 -> redondeo CLP: 968234
+SII sep-2026 (45-sources-pass5.md S3): 968.233,50; oct-2026: 974.038,50
+--- 58.4 render dist ---
+'onible</td></tr><tr><td>Seguro de cesantía</td><td>0,6% (contrato indefinido)</td><td>Imponible</td></tr><tr><td>Impuesto 2ª categoría</td><td>Progresivo desde 13,5 UTM</td><td>Renta tributable</td></tr></tbody></table>\n<p>El primer tramo exento del impuesto de segunda categoría equivale a ≈ $968.234 con la UTM vigente (la UTM cambia cada mes).</p>\n<h2 id="por-qué-importa-entenderlo">Por qué importa entenderlo</h2>\n<'
+raw [[utm en page: 0 | raw [[ total: 0
+--- 58.5 guarda ---
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  21:26:52
+   Duration  208ms (transform 27ms, setup 0ms, import 41ms, tests 7ms, environment 0ms)
+

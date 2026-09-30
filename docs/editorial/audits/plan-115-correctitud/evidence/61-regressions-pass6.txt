@@ -1,0 +1,26 @@
+=== 61 — Regresiones pass6 (worktree 02b878a7) ===
+--- 61.1 pnpm run test ---
+      Tests  1798 passed | 1 skipped (1799)
+   Start at  21:23:56
+   Duration  18.58s (transform 76.50s, setup 0ms, import 114.01s, tests 44.50s, environment 3.80s)
+
+--- 61.2 pnpm run check:ci ---
+183:- 0 errors
+202:[check-small-details] mode=warn-only calculator_pages=22 errors=0 warnings=2 blocking=0
+204:[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+CHECK_CI_EXIT=0 (verificado)
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+--- 61.3 small-details enforce (D16 no vuelve) ---
+1:[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+--- 61.4 build + postbuild ---
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=7254 internal_broken=0 external_failures=0
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.
+--- 61.5 guardas mandatadas ---
+ Test Files  4 passed (4)
+      Tests  15 passed (15)
+   Start at  21:27:31
+   Duration  303ms (transform 188ms, setup 0ms, import 298ms, tests 46ms, environment 1ms)
+

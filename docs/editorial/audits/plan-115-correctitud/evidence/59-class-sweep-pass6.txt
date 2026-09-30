@@ -1,0 +1,109 @@
+=== 59 — Barrido de clase A+B pass6 (worktree 02b878a7, build dist presente) ===
+--- 59.1 clase A: sweep proximidad DAP<->retencion src ---
+FLAG pages/calculadoras/deposito-a-plazo.astro:~56 [retención] Cómo se calcula el interés de un depósito a plazo?",     answer:       "El interés bruto se calcula como: Monto × (TIR% / 100) × (días / 365). Por ejemplo, $5.000.000 al 5% TIR por 180 días genera un interés bruto de $123.288.",   },   {     question: "¿Los de
+FLAG pages/calculadoras/deposito-a-plazo.astro:~177 [retención]  justify-between">               <span class="text-secondary">Interés pagado al vencimiento</span>               <span class="font-medium text-foreground/80">$123.288</span>             </div>           </div>           <p class="mt-4 text-xs text-muted">     
+FLAG utils/llmsTxt.ts:~29 [retención] deudores, ahorrantes e inversores principiantes. El contenido no aplica fuera del sistema tributario y previsional chileno.`; }  /** Sección de cobertura temática y límites de alcance. */ export function buildLlmsScope(): string {   return `## Cobertura temáti
+[sweep] archivos=410 ret*junto_a_DAP=14 aclaradas=11 sin_aclarar=3
+SRC_RC=1
+--- 59.2 clase A: sweep dist ---
+FLAG archives/index.html:~211 [retencion] !-- Descripción --><p class="text-sm leading-relaxed text-secondary" data-astro-cid-yk4hkwyg>Cómo elegir entre ETF, DAP y fondos mutuos en Chile: criterios de plazo, riesgo y costo total para tomar la decisión correcta según tu objetivo.</p></li><li class="car
+FLAG calculadoras/deposito-a-plazo/index.html:~55 [retención] ,"acceptedAnswer":{"@type":"Answer","text":"El interés bruto se calcula como: Monto × (TIR% / 100) × (días / 365). Por ejemplo, $5.000.000 al 5% TIR por 180 días genera un interés bruto de $123.288."}},{"@type":"Question","name":"¿Los depósitos a plazo pagan i
+FLAG calculadoras/deposito-a-plazo/index.html:~55 [retención] epósito a plazo (DAP) es un instrumento de ahorro en el que depositas dinero por un período fijo y el banco te paga un interés al vencimiento. El rendimiento se expresa como TIR anual y el interés se calcula proporcionalmente al plazo en días.</p><p><strong>Fó
+FLAG llms-full.txt:~17 [retención] omplemento de `/llms.txt` (el índice de navegación). Última actualización del contenido: 2026-09-29. Las cifras con fecha de vigencia pueden haber cambiado desde entonces: cada artículo enlaza su URL original, que es siempre la fuente vigente.  ## Cobertura te
+FLAG llms.txt:~76 [retención] s://monedario.cl/accessibilidad/) - [Política de privacidad](https://monedario.cl/privacidad/) - [Contenido completo en markdown](https://monedario.cl/llms-full.txt) — texto íntegro de todos los artículos publicados, para ingestión por modelos  ## Cobertura te
+[sweep] archivos=342 ret*junto_a_DAP=13 aclaradas=8 sin_aclarar=5
+DIST_RC=1
+--- 59.3 clase A: superficies mandatadas (retenc junto a DAP, ventana +-800) ---
+.... src/data/blog/impuesto-global-complementario-chile.md (retenc sin DAP proximo)
+FLAG src/data/blog/que-es-el-apv.mdx
+.... src/data/blog/como-invertir-en-etfs-desde-chile.md (retenc sin DAP proximo)
+.... src/data/blog/boleta-honorarios-2026-retencion-cobertura.md (retenc sin DAP proximo)
+.... src/data/blog/rentas-mixtas-sueldo-honorarios.md (retenc sin DAP proximo)
+.... src/data/blog/primer-empleo-chile-guia-completa.md (retenc sin DAP proximo)
+.... src/data/blog/operacion-renta-centro.md (retenc sin DAP proximo)
+OK   src/data/blog/fondo-emergencia-chile.md
+.... src/data/blog/devolucion-impuestos-fechas-compensaciones.md (retenc sin DAP proximo)
+.... src/data/blog/reforma-previsional-2025-que-cambia-y-como-te-afecta.md (retenc sin DAP proximo)
+.... src/data/blog/cotizacion-voluntaria-afp-independiente.md (retenc sin DAP proximo)
+.... src/data/blog/licencia-medica-desde-que-dia-pagan.md (retenc sin DAP proximo)
+.... src/data/blog/utm-chile-que-es-como-funciona.md (retenc sin DAP proximo)
+.... src/data/blog/operacion-renta-f22-checklist.md (retenc sin DAP proximo)
+.... src/data/glossary/boleta-honorarios.md (retenc sin DAP proximo)
+.... src/data/glossary/afc.md (retenc sin DAP proximo)
+.... src/data/glossary/global-complementario.md (retenc sin DAP proximo)
+.... src/pages/guias/impuestos-personas/index.astro (retenc sin DAP proximo)
+.... src/pages/guias/impuestos-personas/operacion-renta/index.astro (retenc sin DAP proximo)
+.... src/pages/calculadoras/impuesto-segunda-categoria.astro (retenc sin DAP proximo)
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+OK   src/pages/calculadoras/deposito-a-plazo.astro
+.... src/pages/calculadoras/operacion-renta.astro (retenc sin DAP proximo)
+.... src/pages/calculadoras/boleta-honorarios-liquido.astro (retenc sin DAP proximo)
+.... src/config/calculatorPortfolio.ts (retenc sin DAP proximo)
+.... src/config/editorial-topic-policy.mjs (retenc sin DAP proximo)
+OK   src/config/editorial-timeliness-policy.json
+OK   src/config/editorial-timeliness-policy.json
+OK   src/config/editorial-timeliness-policy.json
+OK   src/config/editorial-timeliness-policy.json
+OK   src/config/editorial-timeliness-policy.json
+--- 59.4 clase B: montos CLP de tramos ---
+src/data/blog/como-calcular-sueldo-liquido.md:70:Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.
+src/data/blog/como-calcular-sueldo-liquido.md:158:Se calcula aplicando una tabla progresiva sobre tu **renta tributable mensual**. El SII actualiza los valores cada mes. Como referencia, en **abril de 2026** el primer tramo exento llega hasta **$943.501,50**. Sobre ese monto empiezan a correr los tramos y la rebaja correspondiente.
+src/data/blog/como-calcular-sueldo-liquido.md:171:Si tu renta tributable pasó de $2.000.000 a $2.150.000, la parte que cruza los **$2.096.670** (referencia marzo 2026) ya entra al tramo siguiente. El impuesto aumenta más rápido que antes, y en algunos casos el alza efectiva del líquido se siente menor a lo esperado.
+src/data/blog/como-calcular-sueldo-liquido.md:233:No, en el escenario habitual. Como referencia, en marzo de 2026 el primer tramo exento llega hasta $943.501,50 de renta tributable mensual. Si quedas bajo ese nivel, no pagas impuesto único ese mes.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:55:    a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, $11.265.804 anuales), no pagas impuesto adicional. Pero igual debes declarar."
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:73:**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario ($11.265.804 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**.
+src/data/blog/primer-empleo-chile-guia-completa.md:227:Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:78:- Última remuneración mensual: $900.000
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:79:- Cálculo: $900.000 × 5 = **$4.500.000**
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:89:- Remuneración mensual: $900.000
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:90:- Despido sin aviso previo: **+$900.000 adicionales**
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:92:En ese escenario, el total de indemnizaciones sería $4.500.000 + $900.000 = **$5.400.000**.
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:122:- Valor diario (remuneración mensual ÷ 30): $900.000 ÷ 30 = $30.000
+src/data/blog/descuentos-de-sueldo.md:84:**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En abril de 2026 ese tramo llega hasta $943.501,50. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
+src/data/blog/descuentos-de-sueldo.md:113:Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
+src/data/blog/operacion-renta-centro.md:66:Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133 (para boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA de diciembre de 2025 (la que rige el año tributario 2026).
+src/data/blog/operacion-renta-centro.md:74:Si arrendaste una propiedad en 2025 y los ingresos superaron los límites de exención vigentes, debes declarar. El umbral general de obligación de declarar es $11.265.804 anuales, que aplica al total de rentas incluyendo arriendos. Para bienes raíces no agrícolas con contrato vigente que tributan según avalúo fiscal, pueden aplicar reglas especiales del Art. 20 N°1 LIR. Verifica tu situación específica en sii.cl o con un asesor tributario.
+src/data/blog/operacion-renta-centro.md:102:Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2026 (rentas de 2025) es de **$11.265.804 anuales** (13,5 UTA, con la UTA de diciembre de 2025: $834.504). Por debajo de este monto, el impuesto global complementario es cero.
+src/data/blog/operacion-renta-centro.md:215:> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804, usando la UTA de diciembre de 2025: $834.504); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:107:| Última remuneración mensual | $950.000                        |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:111:| Cálculo                     | $950.000 × 7 = **$6.650.000**   |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:118:| Cálculo                             | $950.000 × 8 = **$7.600.000** |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:120:La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de sueldo. Vale la pena revisar la fecha de ingreso exacta.
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:130:Cuando la remuneración tiene componentes variables relevantes — comisiones, bonos por metas — la base es el promedio de lo percibido en los últimos tres meses calendario (art. 172). Por ejemplo, comisiones de $600.000, $900.000 y $750.000 en los últimos tres meses dan una base de $750.000. Antes de firmar el finiquito conviene pedir la fórmula exacta que usó el empleador para determinar la "última remuneración mensual".
+src/data/blog/licencia-medica-desde-que-dia-pagan.md:70:- Mes 3: $900.000 imponible
+src/data/blog/licencia-medica-desde-que-dia-pagan.md:71:- Promedio: ($800.000 + $850.000 + $900.000) ÷ 3 = $850.000
+src/data/blog/utm-chile-que-es-como-funciona.md:135:- UTA anual vigente (año tributario 2026): $834.504 (= 12 × $69.542, con la UTM de diciembre de 2025). La columna "UTA" mensual de la tabla SII (UTM del mes × 12) es solo referencial y no sirve para el IGC.
+src/data/blog/utm-chile-que-es-como-funciona.md:183:El umbral de exención es de **13,5 UTM mensuales**. Para septiembre 2026 (UTM = $71.721), el umbral de exención equivale a **$968.233 bruto/mes aproximado**.
+src/data/blog/utm-chile-que-es-como-funciona.md:187:| Hasta $968.233 (13,5 UTM)                    | Exento        |
+src/data/blog/utm-chile-que-es-como-funciona.md:188:| $968.234 – $2.151.630                        | 4%            |
+src/data/blog/utm-chile-que-es-como-funciona.md:189:| $2.151.631 – $3.586.050                      | 8%            |
+src/data/blog/utm-chile-que-es-como-funciona.md:202:El IGC usa la UTA para definir los tramos anuales. El umbral estándar de exención es **13,5 UTA anuales** (13,5 UTA de diciembre del año anterior: **$11.265.804** para el año tributario 2026). Los tramos exactos y tasas vigentes para el año tributario 2026 están publicados en [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html). Para calcular tu posible devolución o pago, usa la [calculadora de Operación Renta](/calculadoras/operacion-renta/).
+src/data/blog/fonasa-vs-isapre-comparativa.md:99:- Sueldo imponible: $900.000
+src/pages/calculadoras/finiquito-indemnizacion.astro:39:      "El valor diario equivale a la última remuneración mensual dividida por 30. Ese valor se multiplica por los días proporcionales. Ejemplo: sueldo $900.000, 10 días proporcionales → $900.000 ÷ 30 × 10 = $300.000.",
+src/pages/calculadoras/finiquito-indemnizacion.astro:302:              <span class="font-medium text-foreground/80">$900.000</span>
+src/pages/calculadoras/finiquito-indemnizacion.astro:310:            Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin
+src/pages/calculadoras/sueldo-liquido.astro:128:    answer: `Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $${GRATI_CAP_SERVER.toLocaleString("es-CL")} (equivalente a 4,75 IMM ÷ 12, con IMM = $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}). Ejemplo: con bruto de $900.000 el máximo legal es $${GRATI_CAP_SERVER.toLocaleString("es-CL")}; con bruto de $600.000 sería $${Math.round(600_000 * 0.25).toLocaleString("es-CL")}. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.`,
+src/pages/calculadoras/sueldo-liquido.astro:1027:            }). Ejemplo: con bruto de $900.000 el máximo legal es ${
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:227:        montos, umbrales (13,5 UTA / $11.265.804) y ejemplos están desarrollados
+--- 59.5 clase B: aritmetica independiente ---
+abr-2026 UTM=943501.5/13.5 = 69889.0
+sep 13.5x71721 = 968233.5
+sep 30x = 2151630
+sep 50x = 3586050
+sep 70x = 5020470
+sep 90x = 6454890
+sep 120x = 8606520
+sep 310x = 22233510
+mar 30x->UTM = 69889
+AT2026 13.5x834504 = 11265804.0
+AT2026 12x69542 = 834504
+AT2026 310x834504 = 258696240
+--- 59.6 raw [[ en HTML (esperado 0/332) ---
+html: 332 con [[ : 0 []

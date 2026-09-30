@@ -1,0 +1,66 @@
+=== 54 — Barrido de superficies y residuales nuevos (worktree c1701ad5) ===
+
+--- 54.1 archivos con DAP y "reten" (cualquier distancia) ---
+src/config/editorial-topic-policy.mjs
+src/config/calculatorPortfolio.ts
+src/pages/terminos.astro
+src/config/editorial-timeliness-policy.json
+src/pages/calculadoras/deposito-a-plazo.astro
+src/pages/guias/ahorro-e-inversion/index.astro
+src/data/blog/fondo-emergencia-chile.md
+src/data/blog/que-es-el-apv.mdx
+src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx
+
+--- 54.2 "año tributario 20xx" en src/data + src/pages ---
+      2 src/data/blog/utm-chile-que-es-como-funciona.md:202:año tributario 2026
+      1 src/pages/calculadoras/operacion-renta.astro:78:año tributario 2026
+      1 src/data/blog/utm-chile-que-es-como-funciona.md:135:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:98:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:70:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:66:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:50:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:215:año tributario 2026
+      1 src/data/blog/operacion-renta-centro.md:102:año tributario 2026
+      1 src/data/blog/impuesto-global-complementario-chile.md:99:año tributario 2026
+      1 src/data/blog/impuesto-global-complementario-chile.md:126:año tributario 2026
+      1 src/data/blog/cotizacion-voluntaria-afp-independiente.md:171:año tributario 2026
+      1 src/data/blog/cotizacion-voluntaria-afp-independiente.md:138:año tributario 2026
+
+--- 54.3 umbrales IUSC CLP sueltos (>= 900.000) ---
+src/data/glossary/sueldo-bruto.md:27:| Impuesto 2ª categoría | Progresivo desde ~$943.000     | Renta tributable |
+src/data/blog/descuentos-de-sueldo.md:84:**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En abril de 20
+src/data/blog/como-calcular-sueldo-liquido.md:70:Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: pa
+src/data/blog/como-calcular-sueldo-liquido.md:158:Se calcula aplicando una tabla progresiva sobre tu **renta tributable mensual**. El SII actualiza los valores cada mes. Como referencia, en 
+src/data/blog/como-calcular-sueldo-liquido.md:233:No, en el escenario habitual. Como referencia, en marzo de 2026 el primer tramo exento llega hasta $943.501,50 de renta tributable mensual. 
+src/data/blog/licencia-medica-desde-que-dia-pagan.md:70:- Mes 3: $900.000 imponible
+src/data/blog/licencia-medica-desde-que-dia-pagan.md:71:- Promedio: ($800.000 + $850.000 + $900.000) ÷ 3 = $850.000
+src/data/blog/utm-chile-que-es-como-funciona.md:183:El umbral de exención es de **13,5 UTM mensuales**. Para septiembre 2026 (UTM = $71.721), el umbral de exención equivale a **$968.233 brut
+src/data/blog/utm-chile-que-es-como-funciona.md:187:| Hasta $968.233 (13,5 UTM)                    | Exento        |
+src/data/blog/utm-chile-que-es-como-funciona.md:188:| $968.234 – $2.151.630                        | 4%            |
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:78:- Última remuneración mensual: $900.000
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:79:- Cálculo: $900.000 × 5 = **$4.500.000**
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:89:- Remuneración mensual: $900.000
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:90:- Despido sin aviso previo: **+$900.000 adicionales**
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:92:En ese escenario, el total de indemnizaciones sería $4.500.000 + $900.000 = **$5.400.000**.
+src/data/blog/finiquito-e-indemnizaciones-en-chile.md:122:- Valor diario (remuneración mensual ÷ 30): $900.000 ÷ 30 = $30.000
+src/data/blog/fonasa-vs-isapre-comparativa.md:99:- Sueldo imponible: $900.000
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:107:| Última remuneración mensual | $950.000                        |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:111:| Cálculo                     | $950.000 × 7 = **$6.650.000**   |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:118:| Cálculo                             | $950.000 × 8 = **$7.600.000** |
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:120:La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de sueldo. Vale la pena revisar la fecha de ingreso exacta.
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:130:Cuando la remuneración tiene componentes variables relevantes — comisiones, bonos por metas — la base es el promedio de lo percibido
+src/data/blog/primer-empleo-chile-guia-completa.md:227:Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto
+
+--- 54.4 D23: guía ahorro describe la calculadora DAP con "retención" ---
+src: 208:            "Estima interés bruto, retención e interés neto con tu monto y plazo.",
+dist: Estima interés bruto, retención e interés neto con tu monto y plazo.
+llms.txt/full: 0 / 0
+
+--- 54.5 D24: glosario sueldo-bruto con umbral IUSC CLP sin mes ---
+src: 27:| Impuesto 2ª categoría | Progresivo desde ~$943.000     | Renta tributable |
+frontmatter: (sin fecha)
+dist:  0,6% (contrato indefinido) Imponible Impuesto 2ª categoría Progresivo desde ~$943.000 Renta tributable Por qué importa entenderlo
+snapshot: 13,5 × UTM sep-2026 = 968233.5 (SII: 968.233,50; oct: 974.038,50)
+
+--- 54.6 ejemplo fechado (observación, no defecto): como-calcular-sueldo-liquido ---
+src/data/blog/como-calcular-sueldo-liquido.md:233:en marzo de 2026 el primer tramo exento llega hasta $943

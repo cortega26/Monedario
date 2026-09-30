@@ -1,0 +1,52 @@
+=== 48 — D19: isPeriodId / resolveEffectiveValue fail-closed (worktree c1701ad5) ===
+
+--- 48.1 patrón en fuente ---
+30:const PERIOD_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
+33:  return PERIOD_PATTERN.test(value);
+58:  if (!isPeriodId(periodId)) return undefined;
+
+--- 48.2 ejecución directa (node 24 type-stripping) ---
+$ node --input-type=module -e "<import src ...>
+"2025-12" => true
+"2025-01" => true
+"2025-13" => false
+"2025-00" => false
+"2025-1" => false
+"2025-12-01" => false
+"" => false
+"2025-012" => false
+"2026-12" => true
+"9999-12" => true
+"0000-01" => true
+"2025-13 " => false
+"2025-1٣" => false
+"２０２５-12" => false
+"2025/12" => false
+"2025-12T00:00" => false
+resolve(2025-13)= undefined
+resolve(2025-00)= undefined
+resolve(2025-12)= {"indicator":"uf","periodId":"2025-12","value":39727.96,"effectiveFrom":"2025-12-01","effectiveTo":"2026-01-01","source":"x"}
+
+--- 48.3 test actualizado (ya no afirma lo contrario) ---
+describe("isPeriodId", () => {
+  it("accepts YYYY-MM and rejects other shapes or impossible months", () => {
+    expect(isPeriodId("2025-12")).toBe(true);
+    expect(isPeriodId("2025-01")).toBe(true);
+    expect(isPeriodId("2025-13")).toBe(false);
+    expect(isPeriodId("2025-00")).toBe(false);
+    expect(isPeriodId("2025-1")).toBe(false);
+    expect(isPeriodId("2025-12-01")).toBe(false);
+    expect(isPeriodId("")).toBe(false);
+  });
+});
+
+--- 48.4 test del dominio ---
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  20:37:55
+   Duration  386ms (transform 74ms, setup 0ms, import 106ms, tests 15ms, environment 0ms)
+
+
+--- 48.5 llamadores fuera del módulo (ninguno en src) ---
+(sin llamadores en src; solo tests)

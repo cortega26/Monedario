@@ -1,0 +1,21 @@
+=== 49 — D20: rótulo de la tasa 15,25% (worktree c1701ad5) ===
+
+--- 49.1 fuente ---
+117:          hint="Para boletas emitidas en 2026 la tasa es 15,25%. Solo cámbiala si estás revisando otro año comercial."
+155:              <span class="text-secondary">Retención (15,25%)</span>
+162:            Ejemplo: boleta de $500.000 con retención de 15,25%. Retención
+231:      notes="La retención del 15,25% sobre el bruto es la tasa transitoria del año comercial 2026 (boletas emitidas en 2026, que se declaran en el AT2027) y sube gradualmente hasta el 17% en 2028. El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
+234:          name: "SII — Tasas de retención boleta de honorarios (transitoria 15,25%)",
+
+--- 49.2 guarda (incluye D20) ---
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  20:37:56
+   Duration  309ms (transform 40ms, setup 0ms, import 63ms, tests 7ms, environment 0ms)
+
+
+--- 49.3 render en dist ---
+notes: La retención del 15,25% sobre el bruto es la tasa transitoria del año comercial 2026 (boletas emitidas en 2026, que se declaran en el AT2027) y sube gradualmente hasta el 17% en 2028. El líquido a recibir = bruto − retención. Para emisión o
+"año tributario 2026" en la página: 0
+hint: Para boletas emitidas en 2026 la tasa es 15,25%. Solo cámbiala si estás revisando otro año comercial. Calcular líquido → Resultado

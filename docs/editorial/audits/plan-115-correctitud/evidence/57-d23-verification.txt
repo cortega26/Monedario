@@ -1,0 +1,24 @@
+=== 57 — D23: ficha DAP en guía de ahorro (worktree 02b878a7) ===
+--- 57.1 fuente ---
+206:          title: "Calculadora depósito a plazo",
+207-          description:
+208-            "Estima el interés bruto y el monto neto al vencimiento con tu monto y plazo.",
+209-          href: "/calculadoras/deposito-a-plazo/",
+--- 57.2 frase vieja (esperado 0) ---
+rc=1 (1 = 0 ocurrencias en ambos)
+--- 57.3 outputs reales de la calculadora ---
+161:              Monto al vencimiento (Ejemplo ilustrativo)
+171:              <span class="text-secondary">Interés pagado al vencimiento</span>
+177:            en tu declaración anual de renta; el banco no aplica retención.
+200:          >no practica retención</strong
+334:      notes="Esta calculadora aplica interés simple proporcional al plazo: Interés = Monto × (TIR/100) × (días/365) y el monto al vencimiento = monto + interés. Para personas naturales residentes el banco no aplica retención: los intereses tributan en el Impuesto Global Complementario anual (tramo exento general de 13,5 UTA; exención de hasta 20 UTM si solo hay rentas de sueldo o de pequeño contribuyente). La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR es Impuesto Adicional para personas sin domicilio ni residencia en Chile. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
+441:    headlineLabel.textContent = "Monto al vencimiento";
+--- 57.4 render dist (ficha paso 5) ---
+'Calculadora depósito a plazo</a><p class="mt-1 text-sm text-secondary">Estima el interés bruto y el monto neto al vencimiento con tu monto y plazo.</p></div></li><li class="flex gap-4 rounded-xl border border-border bg-surface-muted p-5"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-acc'
+occurrences retenc in page: 0
+--- 57.5 guarda ---
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  21:26:45
+   Duration  255ms (transform 30ms, setup 0ms, import 48ms, tests 13ms, environment 0ms)
+

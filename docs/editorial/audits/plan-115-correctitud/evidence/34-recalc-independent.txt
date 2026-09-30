@@ -1,0 +1,103 @@
+========================================================================
+PASS4 — RECÁLCULO INDEPENDIENTE (Decimal 50 dígitos, sin imports del repo)
+========================================================================
+
+[0] Cierre tabla IGC publicada vs factores × UTA dic-2025 834.504
+      30 UTA -> tope        25035120 (publicado     25035120.00) | 0.54 x UTA =       450632.16 | publicado       450632.16 | OK
+      50 UTA -> tope        41725200 (publicado     41725200.00) | 1.74 x UTA =      1452036.96 | publicado      1452036.96 | OK
+      70 UTA -> tope        58415280 (publicado     58415280.00) | 4.49 x UTA =      3746922.96 | publicado      3746922.96 | OK
+      90 UTA -> tope        75105360 (publicado     75105360.00) | 11.14 x UTA =      9296374.56 | publicado      9296374.56 | OK
+     120 UTA -> tope       100140480 (publicado    100140480.00) | 17.80 x UTA =     14854171.20 | publicado     14854171.20 | OK
+     310 UTA -> tope       258696240 (publicado    258696240.00) | 23.32 x UTA =     19460633.28 | publicado     19460633.28 | OK
+    310 x UTA = 258696240 (tope 35% general)
+    38,82 x UTA = 32395445.28 (rebaja 40%)
+    (la rebaja publicada es acumulativa: 0,54/1,74/4,49/11,14/17,80/23,32/38,82 × UTA)
+
+[V1] $18.000.000 renta neta ⇒ IGC AT2026
+    independiente = 269367.84
+    formula        = 18.000.000 x 0,04 - 0,54 x 834.504 = 269367.84
+    variante bug UTM sep-2026x12=860.652 => 255247.92 (debe NO coincidir)
+
+[V1-bordes] fronteras UTA-IGC (exacto y +$1)
+     13.5 UTA =      11265804.0 | IGC exacto                0 | +$0,01           0.0004
+       30 UTA =        25035120 | IGC exacto        550772.64 | +$0,01      550772.6408
+       50 UTA =        41725200 | IGC exacto       1885979.04 | +$0,01    1885979.04135
+       70 UTA =        58415280 | IGC exacto      4139139.840 | +$0,01     4139139.8423
+       90 UTA =        75105360 | IGC exacto       7977858.24 | +$0,01    7977858.24304
+      120 UTA =       100140480 | IGC exacto     15588534.720 | +$0,01    15588534.7235
+      310 UTA =       258696240 | IGC exacto      71083050.72 | +$0,01    71083050.7240
+      320 UTA =       267041280 | IGC exacto      74421066.72 | +$0,01    74421066.7240
+      400 UTA =       333801600 | IGC exacto     101125194.72 | +$0,01   101125194.7240
+    contraste 52 bis 150 UTA en 320 UTA: general 74421066.72 vs 52bis 67745034.72 dif 6676032.00
+
+[V2] bruto $1.200.000 (AFP 11,27%, Fonasa 7%, AFC 0,6% indefinido)
+    AFP 135240.0000 | salud 84000.00 | AFC 7200.000
+    base imponible = 973560.0000
+    IUSC = 213.060000 -> display 213
+    líquido = 973346.940000 -> display 973347
+
+[V2-topes] bruto $6.000.000 con UF snapshot 41.049,01 (90/135,2 UF)
+    pensionAndHealthBase = 3694410.90
+    unemploymentBase     = 5549826.152
+    base imponible       = 5291732.171658
+    IUSC                 = 418126.45948134
+    (referencia oficial previred sep-2026: 90 UF $3.695.148 / 135,2 UF $5.550.933;
+     el motor usa UF del snapshot, diferencia ~0,02% — simplificación declarada)
+
+[V3] DAP $5.000.000 / 180 días / 5% TIR — persona natural residente
+    interés bruto (sin retención) = 123287.67123287671232876712328767123287671232876712
+    monto al vencimiento          = 5123287.6712328767123287671232876712328767123287671
+    variante 4% (descartada legalmente) = 118356.16438356164383561643835616438356164383561644
+
+[V3-bordes] plazos 1/90/365/366 días y rechazos
+      1 días => interés 684.93150684931506849315068493150684931506849315068
+     90 días => interés 61643.835616438356164383561643835616438356164383562
+    365 días => interés 250000.00
+    366 días => interés 250684.93150684931506849315068493150684931506849315
+    entradas inválidas: amount<=0, termDays no entero/<=0, rate<=0 => throw (motor)
+
+[V4] APV art. 42 bis N°3: (ΔIGC / retiro) × 1,1 + 3 pp
+    base 0 / retiro 1.000.000 (<13,5 UTA)      ΔIGC                0 rate 0.03
+    base 0 / retiro 1 UTA                      ΔIGC                0 rate 0.03
+    base 13,5 UTA / retiro 1 UTA               ΔIGC        33380.160 rate 0.0740
+    base 0 / retiro 14 UTA (cruza exención)    ΔIGC         16690.08 rate 0.031571428571428571428571428571428571428571428571428
+    base 90 UTA / retiro 50 UTA                ΔIGC      13452204.48 rate 0.38464
+    base 200 UTA / retiro 10 UTA               ΔIGC       2920764.00 rate 0.415
+    base 310 UTA / retiro 200 UTA              ΔIGC      66760320.00 rate 0.470
+    base 400 UTA / retiro 100 UTA              ΔIGC      33380160.00 rate 0.470
+
+[V5] SuperIR — 2 deudas $1.800.000/120d + $2.200.000/150d, UF 39.300
+    total deuda CLP = 4000000 | UF = 101.78117048346055979643765903307888040712468193384
+    qualifiedDebtUf = 101.78117048346055979643765903307888040712468193384
+    cuota 48m 1,2%  = 110110.20773611868589790002009758533594241788438791
+    total pagado    = 5285289.9713336969230992009646840961252360584506197
+    carga ingreso   = 9.1758506446765571581583350081321113285348236989925%
+
+[V5-bordes] umbral >80 UF estricto, >90 días estricto, mismo acreedor
+    80 UF exactas  qualifiedDebtUf=80 > 80 => False
+    80 UF + $1     qualifiedDebtUf=80.000025445292620865139949109414758269720101781170 > 80 => True
+    90 días  => califica False (se exige >90 => >=91)
+    91 días  => califica True
+    mismo acreedor con 2 obligaciones => califica True ('obligaciones diversas')
+    deuda amount=0 => no califica; acreedor vacío/no-string => throw
+
+[V6] serie IPC 2026 publicada por SII (variación mensual INE)
+    2026-01:  0.4% -> factor 1.004
+    2026-02:    0% -> factor 1.004
+    2026-03:  1.0% -> factor 1.01404
+    2026-04:  1.3% -> factor 1.02722252
+    2026-05:  0.2% -> factor 1.02927696504
+    2026-06:    0% -> factor 1.02927696504
+    2026-07:  0.1% -> factor 1.03030624200504
+    2026-08:  0.6% -> factor 1.03648807945707024
+    acumulado encadenado = 3.64880794570702400% (SII publica 3,6)
+    $1.000.000 dic-2025 -> ago-2026 = 1036488.07945707024000000
+
+[V6-parámetros]
+    UTA dic-2025 = 12 x 69.542 = 834504
+    UF 31-12-2025 = 317.823.680 / 8.000 = 39727.96
+    600 UF (AT2026, 31-dic) = 23836776.00
+    8 UTA = 6676032 | 15 UTA = 12517560
+    IMM Ley 21.830 = 553.553 desde 2026-05-01 (texto legal)
+
+FIN PASS4

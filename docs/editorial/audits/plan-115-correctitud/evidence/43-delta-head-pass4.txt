@@ -1,0 +1,123 @@
+=== 43 — Delta re-verificación en HEAD 30d6e39a (#598 post pass4-inicial 72d14e66) ===
+fecha_utc=2026-09-29T22:46:53Z
+worktree2_HEAD=30d6e39ad44d7102f730f8b0f6aed866e2c0fc51
+worktree2_status=[?? docs/editorial/audits/plan-115-correctitud/evidence/pass4.independent.audit.test.ts;?? docs/editorial/audits/plan-115-correctitud/evidence/vitest.pass4.config.ts;]
+
+--- 43.1 SMALL_DETAILS_ENFORCE=1 (¿D16 resuelto?) ---
+[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+EXIT=0
+
+--- 43.2 suite completa vitest ---
+ Test Files  186 passed (186)
+      Tests  1792 passed | 1 skipped (1793)
+   Start at  19:46:53
+   Duration  16.35s (transform 66.98s, setup 0ms, import 98.62s, tests 38.71s, environment 3.70s)
+
+
+--- 43.3 guardas obligatorias (3 vitest + Playwright aparte) ---
+ Test Files  3 passed (3)
+      Tests  9 passed (9)
+   Start at  19:47:10
+   Duration  364ms (transform 162ms, setup 0ms, import 269ms, tests 38ms, environment 0ms)
+
+
+--- 43.4 harness independiente V1–V6 ---
+      Tests  13 passed (13)
+   Start at  19:47:11
+   Duration  493ms (transform 185ms, setup 0ms, import 238ms, tests 33ms, environment 0ms)
+
+
+--- 43.5 gates ---
+freshness EXIT=0
+[check-audit-artifacts] 1 artefacto(s) válidos.
+[check-reader-facing-copy] OK. No blocking issues found.
+
+--- 43.6 build completo ---
+BUILD_EXIT=0
+[check-urls] OK. scanned=7254 internal_broken=0 external_failures=0
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.
+
+--- 43.7 D16 en dist (¿glue eliminado?) ---
+'2025 es <strong>14,5%</strong> (Ley 21.133); desde el 1 de enero de 2026 sube a <strong'
+espacio presente: True
+
+--- 43.8 D17 residual en dist/llms-full ---
+6011:Los intereses generados en instrumentos como el DAP están sujetos al impuesto a los intereses (retención para personas naturales en Chile, con ajuste en Operación Renta si corresponde). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+
+--- 43.9 D18 taxonomía año tributario 2025 en src HEAD2 ---
+5
+0
+
+--- 43.10 D19 isPeriodId en HEAD2 ---
+isPeriodId(2025-13)= true | resolve= {"indicator":"uf","periodId":"2025-12","value":39727.96,"effectiveFrom":"2025-12-01","effectiveTo":"2026-01-01","source":"x"}
+
+--- 43.11 D20 etiqueta año tributario 2026 en boleta-honorarios ---
+231:      notes="La retención del 15,25% sobre el bruto es la tasa transitoria vigente para el año tributario 2026 (cambia gradualmente hasta llegar al 17%). El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
+
+--- 43.12 D21 glosario IUSC ---
+12:Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es aproximadamente **$943.501 mensuales**. Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
+23:| Hasta ~$2.094.000        | 4%            |
+
+--- 43.13 diff 72d14e66..30d6e39a en archivos D17–D21 (¿tocados?) ---
+src/data/blog/fondo-emergencia-chile.md: 
+src/data/blog/impuesto-global-complementario-chile.md: 
+src/domain/economic/EffectiveDatedParameters.ts: 
+src/pages/calculadoras/boleta-honorarios-liquido.astro: 
+src/data/glossary/impuesto-unico.md: 
+
+--- 43.14 D18b UTA 'diciembre del año tributario' en HEAD2 ---
+99:El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario. La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
+
+--- 43.15 Playwright (puerto aislado 4400) ---
+Error: Process from config.webServer exited early.
+
+
+Running 42 tests using 2 workers
+
+  ✓   1 tests/accessibility/calculator-iusc-highlight.test.ts:7:1 › resalta el tramo correcto según la tabla general de IUSC (1.5s)
+  ✓   2 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › sueldo-liquido: invalid attempt replaces the example with a corrective state (1.6s)
+  ✓   3 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › reajuste-arriendo: invalid attempt replaces the example with a corrective state (1.1s)
+  ✓   4 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › deposito-a-plazo: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓   5 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › boleta-honorarios-liquido: invalid attempt replaces the example with a corrective state (1.1s)
+  ✓   6 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › dividendo-hipotecario: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓   7 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › operacion-renta: invalid attempt replaces the example with a corrective state (1.1s)
+  ✓   8 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › simulador-renegociacion: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓   9 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › seguro-cesantia: invalid attempt replaces the example with a corrective state (1.1s)
+  ✓  10 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › impuesto-segunda-categoria: invalid attempt replaces the example with a corrective state (1.0s)
+  ✓  11 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › credito-consumo: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓  12 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › simulador-jubilacion: invalid attempt replaces the example with a corrective state (1.1s)
+  ✓  13 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › iva: invalid attempt replaces the example with a corrective state (1.0s)
+  ✓  14 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › tarjeta-credito: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓  15 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › interes-compuesto: invalid attempt replaces the example with a corrective state (1.0s)
+  ✓  16 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › apv: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓  17 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › prepago-credito: invalid attempt replaces the example with a corrective state (1.3s)
+  ✓  18 tests/accessibility/calculator-states.test.ts:159:5 › Calculator result states (Plan 114) › finiquito-indemnizacion: invalid attempt replaces the example with a corrective state (1.2s)
+  ✓  19 tests/accessibility/calculator-states.test.ts:179:3 › Calculator result states (Plan 114) › sueldo-liquido: el ejemplo ilustrativo coincide con el cálculo real (1.2s)
+  ✓  20 tests/accessibility/calculator-states.test.ts:209:3 › Calculator result states (Plan 114) › operacion-renta: la estimación desde sueldo bruto marca la base como estimada (1.3s)
+  ✓  21 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › sueldo-liquido: result states the estimate is referential (1.1s)
+  ✓  22 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › reajuste-arriendo: result states the estimate is referential (935ms)
+  ✓  23 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › deposito-a-plazo: result states the estimate is referential (896ms)
+  ✓  24 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › boleta-honorarios-liquido: result states the estimate is referential (689ms)
+  ✓  25 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › dividendo-hipotecario: result states the estimate is referential (1.1s)
+  ✓  26 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › operacion-renta: result states the estimate is referential (992ms)
+  ✓  27 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › simulador-renegociacion: result states the estimate is referential (1.0s)
+  ✓  28 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › seguro-cesantia: result states the estimate is referential (980ms)
+  ✓  29 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › impuesto-segunda-categoria: result states the estimate is referential (1.0s)
+  ✓  30 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › credito-consumo: result states the estimate is referential (1.1s)
+  ✓  31 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › simulador-jubilacion: result states the estimate is referential (1.1s)
+  ✓  32 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › iva: result states the estimate is referential (1.2s)
+  ✓  33 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › tarjeta-credito: result states the estimate is referential (1.1s)
+  ✓  34 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › interes-compuesto: result states the estimate is referential (897ms)
+  ✓  35 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › apv: result states the estimate is referential (938ms)
+  ✓  36 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › prepago-credito: result states the estimate is referential (1.1s)
+  ✓  37 tests/accessibility/calculator-states.test.ts:230:7 › Calculator result states (Plan 114) › result trust block (F-08) › finiquito-indemnizacion: result states the estimate is referential (1.1s)
+  ✓  38 tests/accessibility/calculator-states.test.ts:249:7 › Calculator result states (Plan 114) › sueldo-liquido boundary inputs › invalid input "" does not keep the example (1.3s)
+  ✓  39 tests/accessibility/calculator-states.test.ts:249:7 › Calculator result states (Plan 114) › sueldo-liquido boundary inputs › invalid input "0" does not keep the example (1.3s)
+  ✓  40 tests/accessibility/calculator-states.test.ts:249:7 › Calculator result states (Plan 114) › sueldo-liquido boundary inputs › invalid input "-1" does not keep the example (1.2s)
+  ✓  41 tests/accessibility/calculator-states.test.ts:263:5 › Calculator result states (Plan 114) › sueldo-liquido boundary inputs › a decimal amount renders a real result and clears the example flag (1.3s)
+  ✓  42 tests/accessibility/calculator-states.test.ts:275:5 › Calculator result states (Plan 114) › sueldo-liquido boundary inputs › a very high amount renders a real result (1.3s)
+
+  42 passed (48.2s)

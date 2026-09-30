@@ -1,0 +1,14 @@
+=== 56 — Entorno pass6 (worktree limpio de 02b878a7) ===
+fecha_utc=2026-09-30T00:26:44Z
+--- git ---
+02b878a7ccdc70c2a7b9edd9fc4463613a60d154
+?? public/images/og/cotizacion-voluntaria-afp-independiente.jpg
+?? public/images/og/cotizacion-voluntaria-afp-independiente@mobile.jpg
+?? public/images/og/cotizacion-voluntaria-afp-independiente@tablet.jpg
+(worktree limpio: sin salida arriba)
+--- toolchain ---
+v24.19.0
+11.7.0
+Python 3.13.12
+--- install ---
+pnpm install --frozen-lockfile (exit 0, 2026-09-30)

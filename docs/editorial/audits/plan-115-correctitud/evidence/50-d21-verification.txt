@@ -1,0 +1,111 @@
+=== 50 — D21: glosario IUSC en UTM + UTM del snapshot (worktree c1701ad5) ===
+
+--- 50.1 comparación motor vs tabla SII descargada vs glosario ---
+$ node pass5.d21-compare.mjs <sources-dir>
+=== A. Motor: buildSecondCategoryTaxBrackets(utm) normalizado a UTM ===
+-- utm=71721 --
+  [0] upper=13.500000 rate=0 dedUTM=0.000000 dedCLP=0.00 upperCLP=968233.50
+  [1] upper=30.000000 rate=0.04 dedUTM=0.540000 dedCLP=38729.34 upperCLP=2151630.00
+  [2] upper=50.000000 rate=0.08 dedUTM=1.740000 dedCLP=124794.54 upperCLP=3586050.00
+  [3] upper=70.000000 rate=0.135 dedUTM=4.490000 dedCLP=322027.29 upperCLP=5020470.00
+  [4] upper=90.000000 rate=0.23 dedUTM=11.140000 dedCLP=798971.94 upperCLP=6454890.00
+  [5] upper=120.000000 rate=0.304 dedUTM=17.800000 dedCLP=1276633.80 upperCLP=8606520.00
+  [6] upper=310.000000 rate=0.35 dedUTM=23.320000 dedCLP=1672533.72 upperCLP=22233510.00
+  [7] upper=inf rate=0.4 dedUTM=38.820000 dedCLP=2784209.22
+  expectativa (13.5/30/50/70/90/120/310/inf; 0/4/8/13.5/23/30.4/35/40%; ded 0/.54/1.74/4.49/11.14/17.8/23.32/38.82 UTM) => MATCH
+-- utm=72151 --
+  [0] upper=13.500000 rate=0 dedUTM=0.000000 dedCLP=0.00 upperCLP=974038.50
+  [1] upper=30.000000 rate=0.04 dedUTM=0.540000 dedCLP=38961.54 upperCLP=2164530.00
+  [2] upper=50.000000 rate=0.08 dedUTM=1.740000 dedCLP=125542.74 upperCLP=3607550.00
+  [3] upper=70.000000 rate=0.135 dedUTM=4.490000 dedCLP=323957.99 upperCLP=5050570.00
+  [4] upper=90.000000 rate=0.23 dedUTM=11.140000 dedCLP=803762.14 upperCLP=6493590.00
+  [5] upper=120.000000 rate=0.304 dedUTM=17.800000 dedCLP=1284287.80 upperCLP=8658120.00
+  [6] upper=310.000000 rate=0.35 dedUTM=23.320000 dedCLP=1682561.32 upperCLP=22366810.00
+  [7] upper=inf rate=0.4 dedUTM=38.820000 dedCLP=2800901.82
+  expectativa (13.5/30/50/70/90/120/310/inf; 0/4/8/13.5/23/30.4/35/40%; ded 0/.54/1.74/4.49/11.14/17.8/23.32/38.82 UTM) => MATCH
+
+=== B. Tabla SII mensual (HTML descargado) vs motor ===
+-- Octubre 2026 (utm=72151); filas=6 + exento + última=1 --
+  exento SII=974038.50 motor=974038.50 => MATCH
+  [0] desde=974.038,51 hasta=2.164.530,00 factor=0,04 rebaja=38.961,54 | motorUpper=2164530.00 motorRebaja=38961.54 => MATCH
+  [1] desde=2.164.530,01 hasta=3.607.550,00 factor=0,08 rebaja=125.542,74 | motorUpper=3607550.00 motorRebaja=125542.74 => MATCH
+  [2] desde=3.607.550,01 hasta=5.050.570,00 factor=0,135 rebaja=323.957,99 | motorUpper=5050570.00 motorRebaja=323957.99 => MATCH
+  [3] desde=5.050.570,01 hasta=6.493.590,00 factor=0,23 rebaja=803.762,14 | motorUpper=6493590.00 motorRebaja=803762.14 => MATCH
+  [4] desde=6.493.590,01 hasta=8.658.120,00 factor=0,304 rebaja=1.284.287,80 | motorUpper=8658120.00 motorRebaja=1284287.80 => MATCH
+  [5] desde=8.658.120,01 hasta=22.366.810,00 factor=0,35 rebaja=1.682.561,32 | motorUpper=22366810.00 motorRebaja=1682561.32 => MATCH
+  [last] 22.366.810,01 Y MÁS factor=0,4 rebaja=2.800.901,82 | motor upper=inf rate=0.4 rebaja=2800901.82 => MATCH
+-- Septiembre 2026 (utm=71721); filas=6 + exento + última=1 --
+  exento SII=968233.50 motor=968233.50 => MATCH
+  [0] desde=968.233,51 hasta=2.151.630,00 factor=0,04 rebaja=38.729,34 | motorUpper=2151630.00 motorRebaja=38729.34 => MATCH
+  [1] desde=2.151.630,01 hasta=3.586.050,00 factor=0,08 rebaja=124.794,54 | motorUpper=3586050.00 motorRebaja=124794.54 => MATCH
+  [2] desde=3.586.050,01 hasta=5.020.470,00 factor=0,135 rebaja=322.027,29 | motorUpper=5020470.00 motorRebaja=322027.29 => MATCH
+  [3] desde=5.020.470,01 hasta=6.454.890,00 factor=0,23 rebaja=798.971,94 | motorUpper=6454890.00 motorRebaja=798971.94 => MATCH
+  [4] desde=6.454.890,01 hasta=8.606.520,00 factor=0,304 rebaja=1.276.633,80 | motorUpper=8606520.00 motorRebaja=1276633.80 => MATCH
+  [5] desde=8.606.520,01 hasta=22.233.510,00 factor=0,35 rebaja=1.672.533,72 | motorUpper=22233510.00 motorRebaja=1672533.72 => MATCH
+  [last] 22.233.510,01 Y MÁS factor=0,4 rebaja=2.784.209,22 | motor upper=inf rate=0.4 rebaja=2784209.22 => MATCH
+
+=== C. Glosario impuesto-unico.md: tabla vs motor ===
+filas parseadas=8
+  [0] Hasta 13,5 UTM => 0% | motor upper=13.5 rate=0 => MATCH
+  [1] Hasta 30 UTM => 4% | motor upper=30 rate=0.04 => MATCH
+  [2] Hasta 50 UTM => 8% | motor upper=50 rate=0.08 => MATCH
+  [3] Hasta 70 UTM => 13,5% | motor upper=70 rate=0.135 => MATCH
+  [4] Hasta 90 UTM => 23% | motor upper=90 rate=0.23 => MATCH
+  [5] Hasta 120 UTM => 30,4% | motor upper=120 rate=0.304 => MATCH
+  [6] Hasta 310 UTM => 35% | motor upper=310 rate=0.35 => MATCH
+  [7] Sobre 310 UTM => 40% | motor upper=Infinity rate=0.4 => MATCH
+
+=== D. Glosario: hardcodes CLP antiguos / revisado / interpolación ===
+  943.501: 0 ocurrencia(s)
+  2.094.000: 0 ocurrencia(s)
+  3.490.000: 0 ocurrencia(s)
+  4.886.000: 0 ocurrencia(s)
+  ~$943: 0 ocurrencia(s)
+  ~$2.094: 0 ocurrencia(s)
+  ~$3.490: 0 ocurrencia(s)
+  ~$4.886: 0 ocurrencia(s)
+  reviewedDate presente: sí (reviewedDate: 2026-09-29)
+  interpolar [[utm * 13.5 | clp]]: true
+  snapshot utm=71721; 13.5*utm=968233.5 => formatClp=968.234
+
+--- 50.2 fuente del glosario (frontmatter + tabla + interpolación) ---
+---
+term: "Impuesto Único de Segunda Categoría"
+shortDefinition: "Impuesto mensual progresivo para trabajadores dependientes en Chile. Aplica cuando el sueldo supera el primer tramo exento y se descuenta en la liquidación."
+relatedTerms:
+  ["renta-imponible", "sueldo-bruto", "global-complementario", "sii", "utm"]
+reviewedDate: 2026-09-29
+---
+
+El **impuesto único de segunda categoría** es el impuesto a la renta que pagan los trabajadores dependientes (con contrato) en Chile. Se llama "único" porque, si solo tienes un empleador, este impuesto reemplaza completamente la obligación anual del Global Complementario.
+
+## ¿Cuándo aplica?
+
+Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es de 13,5 UTM (≈ [[utm * 13.5 | clp]] con la UTM vigente; la UTM cambia cada mes). Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
+
+## ¿Cómo se calcula?
+
+Es un impuesto **progresivo**: solo la parte del sueldo que supera cada tramo paga la tasa de ese tramo — no todo el sueldo.
+
+La tabla tiene varios tramos y se expresa en UTM (el SII publica los valores en pesos de cada mes). Tramos vigentes 2026 (tabla general del art. 43 N°1):
+
+| Renta tributable mensual | Tasa marginal |
+| ------------------------ | ------------- |
+| Hasta 13,5 UTM           | 0% (exento)   |
+| Hasta 30 UTM             | 4%            |
+| Hasta 50 UTM             | 8%            |
+| Hasta 70 UTM             | 13,5%         |
+| Hasta 90 UTM             | 23%           |
+| Hasta 120 UTM            | 30,4%         |
+| Hasta 310 UTM            | 35%           |
+| Sobre 310 UTM            | 40%           |
+
+
+--- 50.3 hardcodes/CLP viejos y reviewedDate en el glosario ---
+6:reviewedDate: 2026-09-29
+13:Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es de 13,5 UTM (≈ [[utm * 13.5 | clp]] con la UTM vigente; la UTM cambia cada mes). Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
+
+--- 50.4 render en dist (glosario) ---
+ibutable mensual supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es de 13,5 UTM (≈ $968.234 con la UTM vigente; la UTM cambia cada mes). Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu l
+Hasta 13,5 UTM 0% (exento) Hasta 30 UTM 4% Hasta 50 UTM 8% Hasta 70 UTM 13,5% Hasta 90 UTM 23% Hasta 120 UTM 30,4% Hasta 310 UTM 35% Sobre 310 UTM 40% ¿Qué es la renta tributable? 
+"943.501" en render: 0

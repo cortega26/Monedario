@@ -1,0 +1,82 @@
+=== 42 — Evidencia de hallazgos nuevos (pass4, HEAD 72d14e66) ===
+fecha_utc=2026-09-29T22:45:51Z
+
+########## D16 — bold-glue introducido por #596 en la guía operacion-renta ##########
+--- 42.1 fuente HEAD (líneas 448-451) ---
+        <p class="text-sm text-secondary">
+          La retención de honorarios para boletas emitidas en 2025 es{" "}
+          <strong>14,5%</strong> (Ley 21.133); desde el 1 de enero de 2026 sube a{
+            " "
+--- 42.2 HTML construido (worktree, dist) ---
+'en 2025 es<strong>14,5%</strong> (Ley 21.133); desde el 1 de enero de 2026 sube a<strong>15,'
+--- 42.3 SMALL_DETAILS_ENFORCE=1 en HEAD (worktree) ---
+[check-small-details] mode=enforce calculator_pages=22 errors=2 warnings=2 blocking=2
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] ERROR src/pages/guias/impuestos-personas/operacion-renta/index.astro:449 ASD-004/bold-glue - Bold text is glued to adjacent text; add a space on the same line as the tag boundary.
+  remediation: Put the space between text and <strong> on the same line (Astro drops whitespace across line breaks).
+[check-small-details] ERROR src/pages/guias/impuestos-personas/operacion-renta/index.astro:450 ASD-004/bold-glue - Bold text is glued to adjacent text; add a space on the same line as the tag boundary.
+  remediation: Put the space between text and <strong> on the same line (Astro drops whitespace across line breaks).
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+EXIT=0
+--- 42.4 SMALL_DETAILS_ENFORCE=1 en 9e195743 (pre-#596) ---
+[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+--- 42.5 git log del archivo (introducción en 299c6547 #596) ---
+30d6e39a chore(editorial): veracidad explícita en timeliness y gate de validAsOf (TD-0107/0108) (#598)
+299c6547 fix(reauditoría-115): barrido de superficies D14/D15, guardas y prompt v2 (plan 127) (#596)
+
+########## D17 — retención DAP en contenido relacionado ##########
+**¿El fondo de emergencia paga impuestos?**
+Los intereses generados en instrumentos como el DAP están sujetos al impuesto a los intereses (retención para personas naturales en Chile, con ajuste en Operación Renta si corresponde). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+
+--- llms-full.txt construido (worktree) ---
+6011:Los intereses generados en instrumentos como el DAP están sujetos al impuesto a los intereses (retención para personas naturales en Chile, con ajuste en Operación Renta si corresponde). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+
+########## D18 — taxonomía año comercial/año tributario ##########
+50:> **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año.
+66:Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133 (para boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
+70:Cualquier ingreso recibido desde fuera de Chile —sueldos, honorarios, dividendos, arriendos— está sujeto a impuesto en Chile y obliga a declarar, sin importar el monto. Esta regla se mantiene vigente para el año tributario 2025 conforme al artículo 3° de la Ley de Impuesto a la Renta (DL 824); no hubo modificaciones a la obligación de declarar rentas del exterior en la Ley 21.210 ni en reformas posteriores.
+98:Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsional, y la entidad pagadora realizó las retenciones correspondientes sin otros ingresos adicionales, generalmente no necesitas declarar. Esta condición se mantiene para el año tributario 2025: pensionados con una sola fuente de pensión y retenciones efectuadas por la AFP o entidad pagadora no están obligados a declarar, conforme al Art. 43 N°1 LIR (impuesto de segunda categoría ya retenido en la fuente). Debes declarar si tuviste ingresos adicionales a la pensión (arriendo, honorarios, segunda pensión).
+102:Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2025 es de **$11.265.804 anuales** (equivalente a 13,5 UTA, usando la UTA de diciembre de 2025: $834.504). Por debajo de este monto, el impuesto global complementario es cero.
+--- contradicción interna (misma página, línea 215) ---
+> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicad
+--- UTA definida sobre año tributario (impreciso) ---
+99:El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario. La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
+
+########## D19 — isPeriodId acepta meses imposibles ##########
+isPeriodId("2025-13") = true
+resolveEffectiveValue(uf, "2025-13") = {"indicator":"uf","periodId":"2025-12","value":39727.96,"effectiveFrom":"2025-12-01","effectiveTo":"2026-01-01","source":"x"}
+isPeriodId("2025-1") = false
+
+########## D20 — etiqueta de período de la tasa 15,25% ##########
+231:      notes="La retención del 15,25% sobre el bruto es la tasa transitoria vigente para el año tributario 2026 (cambia gradualmente hasta llegar al 17%). El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
+117:          hint="En 2026 la referencia vigente es 15,25%. Solo cámbiala si estás revisando otro año."
+--- SII: la tasa se fija por año comercial (S6) ---
+72:Las tasas de retenciones de honorarios, de acuerdo con cada año comercial, son las siguientes: % AÑO COMERCIAL 10,75% 2020 11,50% 2021 12,25% 2022 13,00% 2023 13,75% 2024 14,50% 2025 15,25% 2026 16,00% 2027 17,00% 2028 Ver más
+
+########## D21 — glosario IUSC desactualizado ##########
+Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es aproximadamente **$943.501 mensuales**. Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
+| Renta tributable mensual | Tasa marginal |
+| ------------------------ | ------------- |
+| Hasta ~$943.000          | 0% (exento)   |
+| Hasta ~$2.094.000        | 4%            |
+| Hasta ~$3.490.000        | 8%            |
+| Hasta ~$4.886.000        | 13,5%         |
+| Tramos superiores        | Hasta 40%     |
+--- verificación: 13,5 UTM por mes 2026 ---
+ene: 13.5x69751 = 941.638.50
+feb: 13.5x69611 = 939.748.50
+mar: 13.5x69889 = 943.501.50
+abr: 13.5x69889 = 943.501.50
+may: 13.5x70588 = 952.938.00
+jun: 13.5x71506 = 965.331.00
+jul: 13.5x71649 = 967.261.50
+ago: 13.5x71649 = 967.261.50
+sep: 13.5x71721 = 968.233.50
+oct: 13.5x72151 = 974.038.50
+
+########## Observación tipográfica ##########
+382:        práctica, el plazo varía: algunos acredores realizan la actualización

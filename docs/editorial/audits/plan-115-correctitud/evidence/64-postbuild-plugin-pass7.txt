@@ -1,0 +1,45 @@
+Pass7 — check postbuild nuevo + contrato del refactor (worktree bdf26fe7)
+
+§64.1 El check existe y pasa sobre el dist real (24 checks en total)
+  $ rg -n 'llms-full-no-raw-interpolation' scripts/check-postbuild.mjs
+  760:    id: "llms-full-no-raw-interpolation",
+  767:          "dist/llms-full.txt:llms-full-no-raw-interpolation missing llms-full.txt",
+  771:        raw => `dist/llms-full.txt:llms-full-no-raw-interpolation raw ${raw}`
+  Detector: findRawEconomicInterpolations = /\\[\\[[^\\]\\n|]+\\|[^\\]\\n]+\\]\\]/g
+  $ node scripts/check-postbuild.mjs dist 2>&1 | tail -1; echo "POSTBUILD_EXIT=$?"
+  [check-postbuild] OK. 24 checks passed over 332 HTML pages.
+  POSTBUILD_EXIT=0
+
+§64.2 El check falla sobre un llms-full.txt sintético con [[utm * 13.5 | clp]]
+  (tests/scripts/check-postbuild.test.ts:665-676 "fails when llms-full.txt exposes raw interpolation syntax")
+  $ ./node_modules/.bin/vitest run tests/scripts/check-postbuild.test.ts 2>&1 | tail -4
+   Test Files  1 passed (1)
+        Tests  49 passed (49)
+  Incluye además "detects raw interpolation templates and ignores resolved text"
+  (findRawEconomicInterpolations unit, líneas 556-565) y el runner mini-dist válido → status 0 / "OK".
+
+§64.3 El refactor no cambió el contrato del plugin
+  src/remark-economic-variables.ts (49 líneas) delega en src/utils/economicInterpolation.ts y conserva:
+  SKIP_TYPES = code/inlineCode/html, aviso de snapshot ausente (una sola vez),
+  canal file.message con prefijo [remarkEconomicVariables].
+  $ ./node_modules/.bin/vitest run tests/unit/remarkEconomicVariables.test.ts tests/unit/economicInterpolation.test.ts 2>&1 | tail -4
+   Test Files  2 passed (2)
+        Tests  7 passed (7)
+  - remarkEconomicVariables (3): snapshot ausente (mensaje exacto, una sola vez),
+    bogus format (mensaje exacto "Could not resolve [[utm|bogus]]: Unknown format: bogus"),
+    trailing garbage ("Unexpected trailing characters").
+  - economicInterpolation (4): CLP "$968.234"/"$9.271", raw/paréntesis/múltiples,
+    irresolubles intactas + mensaje, snapshot real vía interpolateEconomicText.
+  Diferencia adversarial revisada: ECONOMIC_EXPR_RE (util compartido) exige [^\\]|]+? a ambos
+  lados del |, igual que el regex del check postbuild; expresiones con formato desconocido
+  o basura se dejan intactas (fail-visible) para que el check de artefacto las detecte.
+
+§64.4 Barrido total del dist: cero plantillas crudas en ninguna superficie
+  $ rg -l '\[\[[^\]\n|]+\|[^\]\n]+\]\]' dist/; echo "DIST_SWEEP_EXIT=$? (1 = cero ocurrencias)"
+  DIST_SWEEP_EXIT=1 (1 = cero ocurrencias)
+  $ rg -n '\[\[' dist/llms.txt; echo "llms.txt exit=$? (1 = limpio)"
+  llms.txt exit=1 (1 = limpio)
+  $ rg -n '\[\[' dist/rss.xml dist/sitemap*.xml; echo "XML_EXIT=$? (1 = limpio)"
+  XML_EXIT=1 (1 = limpio)
+  $ rg -l '\[\[' dist/ --glob '*.html' | head; echo "SWEEP_DONE"
+  SWEEP_DONE (sin archivos listados: 0/332 HTML con [[)

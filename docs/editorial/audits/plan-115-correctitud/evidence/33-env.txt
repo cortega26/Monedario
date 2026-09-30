@@ -1,0 +1,30 @@
+=== 33-env — pass4 (MathAuditAgent) ===
+date_utc=2026-09-29T22:16:35Z
+main_checkout_HEAD=72d14e66d4dd51d0a20e4d2c748e263c9b3d0780
+main_branch=main
+main_status_porcelain:
+   M .gitignore
+   M docs/backlog/README.md
+   M plans/README.md
+   M scripts/hero-images/build-prompts.mjs
+   M scripts/hero-images/config.mjs
+   M scripts/hero-images/prompt-plan.mjs
+   M scripts/hero-images/scan-articles.mjs
+   M src/tools/hero-images/HeroPromptWorkspace.jsx
+  ?? docs/backlog/PLAN-renovacion-visual-editorial-2026-09-29.md
+  ?? docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md
+  ?? docs/editorial/audits/plan-115-correctitud/evidence/33-env.txt
+  ?? plans/128-seo-serp-report-validation-2026-09-29.md
+  ?? scripts/hero-images/build-delivery.mjs
+  ?? scripts/hero-images/delivery.mjs
+  ?? src/generated/
+  ?? src/utils/editorialImages.ts
+  ?? todo.md
+worktree=/tmp/opencode/plan115-pass4/wt-head
+worktree_HEAD=72d14e66d4dd51d0a20e4d2c748e263c9b3d0780
+worktree_status=[]
+node=v24.19.0
+pnpm=11.7.0
+python=Python 3.13.12
+os=Linux 7.0.0-34-generic x86_64 GNU/Linux
+vitest=vitest/4.1.11 linux-x64 node-v24.19.0
