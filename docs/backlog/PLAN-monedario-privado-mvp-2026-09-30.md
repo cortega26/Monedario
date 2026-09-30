@@ -1,7 +1,7 @@
 # PLAN — Monedario Privado MVP
 
 Date: 2026-09-30
-Status: READY FOR PR
+Status: READY FOR MERGE REVIEW
 Owner: Carlos Ortega
 Branch: `feat/monedario-privado-mvp`
 
@@ -48,7 +48,9 @@ This is a product-validation surface, not a new SEO landing page.
    - separate debit/credit columns;
    - optional movement-type column for positive unsigned amounts;
    - local heuristic expense categories;
-   - totals for income, expenses, balance and category mix.
+   - totals for income, expenses, balance and category mix;
+   - a reader-facing roadmap that distinguishes available, planned and
+     evaluating capabilities without promising delivery dates.
 4. File size is capped at 10 MiB and parsed in-memory.
 5. No input or result is stored in localStorage/sessionStorage/IndexedDB.
 6. `Layout privacyMode` omits analytics and service-worker registration.
@@ -130,10 +132,13 @@ financial-data processing.
 
 8. Regression risk
 - Risk: medium.
-- Main vectors: unusual CSV formats, incorrect amount-sign inference, accidental
-  analytics/network reintroduction, route/indexability drift.
+- Main vectors: unusual CSV formats, duplicate/contradictory financial columns,
+  malformed monetary values, incorrect amount-sign inference, accidental
+  analytics/network reintroduction, route/indexability drift and roadmap copy
+  overstating unfinished features.
 - Mitigation: fail-closed schema detection, explicit errors, route CSP,
-  privacy-mode layout, no persistence, focused tests.
+  privacy-mode layout, no persistence, status-labelled roadmap copy and focused
+  tests.
 
 ## Competitive Adaptation Appendix
 
@@ -153,24 +158,32 @@ financial-data processing.
 
 ## Verification evidence
 
-- Focused domain + static contract tests: 13/13 PASS.
+- Focused domain + static contract tests: 20/20 PASS.
 - `pnpm run check:ci`: PASS (full repository gate).
 - `pnpm run build`: PASS; 333 pages built and 24 post-build checks passed.
 - `pnpm run check:no-postid-urls`: PASS.
 - `pnpm run check:routes`: PASS; no unapproved public/indexable route delta.
 - `pnpm run check:rss`: PASS.
 - `pnpm run check:boundaries`: PASS.
-- Privacy Playwright suite on an isolated preview port: 10/10 PASS.
+- Privacy Playwright suite on an isolated preview port: 12/12 PASS, including
+  financial canaries, malicious DOM payloads and roadmap-state assertions.
+- WCAG 2.2 AA automated audit for the new surface: 4/4 PASS across light,
+  dark, mobile and populated-result states.
+- Python CI local equivalent: Ruff lint PASS, Ruff format PASS, pytest 46/46
+  PASS. Two pre-existing Ruff formatting drifts were normalized because this
+  PR's `tests/**` changes activate the Python workflow.
 - Canary import: the unique test amount appeared in no request URL/body, page
   URL, cookie or web storage; request count did not change after analysis.
 - Production-CSP smoke: Chromium executed the demo successfully with the exact
-  built `/privado/*` CSP injected; zero CSP violations.
+  built `/privado/*` CSP injected; zero CSP violations before the deliberate
+  network probe. A test `fetch()` was blocked by `connect-src 'none'` before
+  any network request was created.
 - Built page: `noindex,follow`; absent from sitemap.
 
 The first local privacy-suite attempt reused an unrelated development server
 already listening on port 4321 (the Playwright config permits existing-server
 reuse), so it returned 404 for `/privado/`. Re-running against this worktree on
-an isolated port passed all ten privacy tests; no application regression was
+an isolated port passed all twelve privacy tests; no application regression was
 involved.
 
 ## Progress
@@ -180,8 +193,21 @@ involved.
 - 2026-09-30: implemented CSV analysis, privacy-mode layout, route-scoped CSP,
   direct-access UI, unit/static/privacy tests and ADR.
 - 2026-09-30: adversarial review changed ambiguous positive-only amount handling,
-  unknown movement types and malformed quoted CSV to fail closed instead of
-  silently inventing financial meaning.
+  unknown movement types, duplicate semantic columns, simultaneous debit/credit,
+  malformed money and malformed quoted CSV to fail closed instead of silently
+  inventing financial meaning.
+- 2026-09-30: added an explicit Available / Planned / Evaluating roadmap so the
+  MVP exposes the intended functional architecture without presenting unfinished
+  features or dates as commitments.
 - 2026-09-30: tightened reader-facing privacy copy to distinguish financial-data
   persistence/analytics from ordinary page assets and theme preferences.
-- 2026-09-30: all required gates and production-CSP smoke passed; ready for PR.
+- 2026-09-30: removed the unused wasm-eval CSP capability; an adversarial browser
+  probe confirms connect-src 'none' blocks fetch before a request is created.
+- 2026-09-30: added malicious-DOM payload tests and WCAG scans. A real dark-mode
+  contrast defect on the demo button was found and fixed; light/dark/mobile/result
+  states now pass the focused WCAG 2.2 AA scan.
+- 2026-09-30: normalized pre-existing Ruff formatting drift in the operations
+  reminder Python files because this PR activates the repository Python CI via
+  tests/**; Ruff and all 46 Python tests then passed.
+- 2026-09-30: all required local gates, production build, privacy, accessibility,
+  Python CI equivalent and production-CSP smoke passed; ready for merge review.

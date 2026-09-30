@@ -13,6 +13,7 @@ const TEST_PAGES = [
   { name: "Glossary entry", url: "/glosario/cae/" },
   { name: "Law page", url: "/leyes/ley-18010-credito-dinero/" },
   { name: "Metodología", url: "/metodologia/" },
+  { name: "Monedario Privado", url: "/privado/" },
   { name: "Accessibility statement", url: "/accessibilidad/" },
   { name: "Tag page", url: "/tags/afp/" },
   { name: "Guides hub", url: "/guias/" },
@@ -165,5 +166,22 @@ test.describe("Accessibility element presence", () => {
 
     const backToTop = page.locator('[data-button="back-to-top"]');
     await expect(backToTop).toHaveAttribute("aria-label", "Volver arriba");
+  });
+});
+
+test.describe("Monedario Privado — result-state accessibility", () => {
+  test("demo results have no critical or serious WCAG violations", async ({
+    page,
+  }) => {
+    await page.goto("/privado/");
+    await page.locator("#private-demo").click();
+    await expect(page.locator("#private-results")).toBeVisible();
+
+    const { violations } = await runAxe(page);
+    const criticalAndSerious = violations.filter(
+      v => v.impact === "critical" || v.impact === "serious"
+    );
+    reportViolations("Monedario Privado (results)", criticalAndSerious);
+    expect(criticalAndSerious).toEqual([]);
   });
 });

@@ -212,48 +212,101 @@ export function parseMoney(rawValue: string): number | null {
   const explicitNegative = cleaned.startsWith("-");
   cleaned = cleaned.replace(/^[+-]/, "");
 
-  if (!/^[0-9.,]+$/.test(cleaned)) return null;
+  if (!/^[0-9.,]+$/.test(cleaned) || !/\d/.test(cleaned)) return null;
 
+  const commaCount = (cleaned.match(/,/g) ?? []).length;
+  const dotCount = (cleaned.match(/\./g) ?? []).length;
   const lastComma = cleaned.lastIndexOf(",");
   const lastDot = cleaned.lastIndexOf(".");
-  let decimalSeparator: "," | "." | null = null;
-
-  if (lastComma >= 0 && lastDot >= 0) {
-    decimalSeparator = lastComma > lastDot ? "," : ".";
-  } else {
-    const separator = lastComma >= 0 ? "," : lastDot >= 0 ? "." : null;
-    if (separator) {
-      const index = cleaned.lastIndexOf(separator);
-      const decimals = cleaned.length - index - 1;
-      if (decimals > 0 && decimals <= 2) decimalSeparator = separator;
-    }
-  }
 
   let normalized: string;
-  if (decimalSeparator) {
+
+  if (commaCount > 0 && dotCount > 0) {
+    const decimalSeparator = lastComma > lastDot ? "," : ".";
+    const thousandsSeparator = decimalSeparator === "," ? "." : ",";
+    const decimalCount = decimalSeparator === "," ? commaCount : dotCount;
+
+    if (decimalCount !== 1) return null;
+
     const decimalIndex = cleaned.lastIndexOf(decimalSeparator);
-    const integerPart = cleaned.slice(0, decimalIndex).replace(/[.,]/g, "");
-    const decimalPart = cleaned.slice(decimalIndex + 1).replace(/[.,]/g, "");
-    normalized = `${integerPart}.${decimalPart}`;
+    const integerRaw = cleaned.slice(0, decimalIndex);
+    const decimalPart = cleaned.slice(decimalIndex + 1);
+
+    if (!/^\d{1,2}$/.test(decimalPart)) return null;
+
+    const integerGroups = integerRaw.split(thousandsSeparator);
+    if (
+      integerGroups.length > 1 &&
+      (!/^\d{1,3}$/.test(integerGroups[0]) ||
+        integerGroups.slice(1).some(group => !/^\d{3}$/.test(group)))
+    ) {
+      return null;
+    }
+
+    if (integerGroups.length === 1 && !/^\d+$/.test(integerGroups[0] ?? "")) {
+      return null;
+    }
+
+    normalized = `${integerGroups.join("")}.${decimalPart}`;
+  } else if (commaCount > 0 || dotCount > 0) {
+    const separator = commaCount > 0 ? "," : ".";
+    const groups = cleaned.split(separator);
+
+    if (groups.some(group => !/^\d+$/.test(group))) return null;
+
+    if (groups.length === 2 && /^\d{1,2}$/.test(groups[1] ?? "")) {
+      normalized = `${groups[0]}.${groups[1]}`;
+    } else {
+      if (
+        !/^\d{1,3}$/.test(groups[0] ?? "") ||
+        groups.slice(1).some(group => !/^\d{3}$/.test(group))
+      ) {
+        return null;
+      }
+      normalized = groups.join("");
+    }
   } else {
-    normalized = cleaned.replace(/[.,]/g, "");
+    normalized = cleaned;
   }
 
   const parsed = Number(normalized);
-  if (!Number.isFinite(parsed)) return null;
+  if (!Number.isFinite(parsed) || parsed > Number.MAX_SAFE_INTEGER) return null;
 
   return parenthesesNegative || explicitNegative ? -parsed : parsed;
 }
 
 function findColumn(
   headers: string[],
-  aliases: readonly string[]
+  aliases: readonly string[],
+  label: string
 ): number | null {
   const normalizedAliases = new Set(aliases.map(normalizeText));
-  const index = headers.findIndex(header =>
-    normalizedAliases.has(normalizeText(header))
-  );
-  return index >= 0 ? index : null;
+  const matches = headers
+    .map((header, index) => ({ header, index }))
+    .filter(({ header }) => normalizedAliases.has(normalizeText(header)));
+
+  if (matches.length > 1) {
+    throw new Error(
+      `Detecté más de una columna compatible con ${label}: ${matches
+        .map(({ header }) => `"${header}"`)
+        .join(", ")}. Elimina la ambigüedad antes de analizar el archivo.`
+    );
+  }
+
+  return matches[0]?.index ?? null;
+}
+
+function parseMoneyField(rawValue: string, label: string): number | null {
+  if (!rawValue.trim()) return null;
+
+  const parsed = parseMoney(rawValue);
+  if (parsed === null) {
+    throw new Error(
+      `No pude interpretar el valor "${rawValue}" en la columna ${label}.`
+    );
+  }
+
+  return parsed;
 }
 
 function movementDirection(value: string): TransactionDirection | null {
@@ -290,12 +343,24 @@ export function analyzeFinancialCsv(csv: string): PrivateFinanceSummary {
   }
 
   const headers = rows[0];
-  const dateIndex = findColumn(headers, HEADER_ALIASES.date);
-  const descriptionIndex = findColumn(headers, HEADER_ALIASES.description);
-  const amountIndex = findColumn(headers, HEADER_ALIASES.amount);
-  const debitIndex = findColumn(headers, HEADER_ALIASES.debit);
-  const creditIndex = findColumn(headers, HEADER_ALIASES.credit);
-  const movementTypeIndex = findColumn(headers, HEADER_ALIASES.movementType);
+  const dateIndex = findColumn(headers, HEADER_ALIASES.date, "fecha");
+  const descriptionIndex = findColumn(
+    headers,
+    HEADER_ALIASES.description,
+    "descripción"
+  );
+  const amountIndex = findColumn(headers, HEADER_ALIASES.amount, "monto");
+  const debitIndex = findColumn(headers, HEADER_ALIASES.debit, "cargo/débito");
+  const creditIndex = findColumn(
+    headers,
+    HEADER_ALIASES.credit,
+    "abono/crédito"
+  );
+  const movementTypeIndex = findColumn(
+    headers,
+    HEADER_ALIASES.movementType,
+    "tipo de movimiento"
+  );
 
   if (amountIndex === null && debitIndex === null && creditIndex === null) {
     throw new Error(
@@ -304,16 +369,20 @@ export function analyzeFinancialCsv(csv: string): PrivateFinanceSummary {
   }
 
   const hasDebitCreditColumns = debitIndex !== null || creditIndex !== null;
-  if (
-    amountIndex !== null &&
-    !hasDebitCreditColumns &&
-    movementTypeIndex === null
-  ) {
+  let positiveOnlyAmountColumn = false;
+
+  if (amountIndex !== null && !hasDebitCreditColumns) {
     const amounts = rows
       .slice(1)
-      .map(row => parseMoney(cell(row, amountIndex)))
+      .map(row =>
+        parseMoneyField(cell(row, amountIndex), headers[amountIndex] ?? "Monto")
+      )
       .filter((amount): amount is number => amount !== null && amount !== 0);
-    if (amounts.length > 0 && amounts.every(amount => amount > 0)) {
+
+    positiveOnlyAmountColumn =
+      amounts.length > 0 && amounts.every(amount => amount > 0);
+
+    if (positiveOnlyAmountColumn && movementTypeIndex === null) {
       throw new Error(
         "La columna de monto no indica qué movimientos son cargos. Usa montos con signo o incluye una columna Tipo, Cargo/Débito o Abono/Crédito."
       );
@@ -326,8 +395,20 @@ export function analyzeFinancialCsv(csv: string): PrivateFinanceSummary {
   for (const row of rows.slice(1)) {
     let signedAmount: number | null = null;
 
-    const debit = parseMoney(cell(row, debitIndex));
-    const credit = parseMoney(cell(row, creditIndex));
+    const debit = parseMoneyField(
+      cell(row, debitIndex),
+      debitIndex === null ? "Cargo/Débito" : headers[debitIndex]
+    );
+    const credit = parseMoneyField(
+      cell(row, creditIndex),
+      creditIndex === null ? "Abono/Crédito" : headers[creditIndex]
+    );
+
+    if (debit !== null && debit !== 0 && credit !== null && credit !== 0) {
+      throw new Error(
+        "Encontré una fila con cargo y abono simultáneos. Corrige esa fila antes de analizar el archivo."
+      );
+    }
 
     if (debitIndex !== null || creditIndex !== null) {
       if (credit !== null && credit !== 0) signedAmount = Math.abs(credit);
@@ -335,27 +416,42 @@ export function analyzeFinancialCsv(csv: string): PrivateFinanceSummary {
     }
 
     if (signedAmount === null && amountIndex !== null) {
-      const amount = parseMoney(cell(row, amountIndex));
+      const amount = parseMoneyField(
+        cell(row, amountIndex),
+        headers[amountIndex] ?? "Monto"
+      );
+
       if (amount !== null && amount !== 0) {
-        if (amount < 0) {
-          signedAmount = amount;
-        } else {
-          const explicitDirection = movementDirection(
-            cell(row, movementTypeIndex)
+        const rawMovementType = cell(row, movementTypeIndex).trim();
+        const explicitDirection =
+          rawMovementType.length > 0
+            ? movementDirection(rawMovementType)
+            : null;
+
+        if (rawMovementType && !explicitDirection) {
+          throw new Error(
+            `No pude interpretar el tipo de movimiento "${rawMovementType}". Revisa esa fila o usa cargos y abonos separados.`
           );
-          if (explicitDirection) {
-            signedAmount =
-              explicitDirection === "expense"
-                ? -Math.abs(amount)
-                : Math.abs(amount);
-          } else if (movementTypeIndex !== null) {
-            const rawMovementType = cell(row, movementTypeIndex).trim();
-            throw new Error(
-              `No pude interpretar el tipo de movimiento "${rawMovementType || "(vacío)"}". Revisa esa fila o usa cargos y abonos separados.`
-            );
-          } else {
-            signedAmount = amount;
-          }
+        }
+
+        if (positiveOnlyAmountColumn && !explicitDirection) {
+          throw new Error(
+            "La columna de monto usa sólo valores positivos y encontré una fila sin tipo de movimiento. Completa el tipo o usa cargos y abonos separados."
+          );
+        }
+
+        if (amount < 0 && explicitDirection === "income") {
+          throw new Error(
+            "Encontré un monto negativo marcado como ingreso/abono. Corrige la contradicción antes de analizar el archivo."
+          );
+        }
+
+        if (explicitDirection === "expense") {
+          signedAmount = -Math.abs(amount);
+        } else if (explicitDirection === "income") {
+          signedAmount = Math.abs(amount);
+        } else {
+          signedAmount = amount;
         }
       }
     }

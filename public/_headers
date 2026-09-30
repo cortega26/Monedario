@@ -35,7 +35,7 @@
 # and its self-hosted assets still load normally, but runtime connection APIs
 # (fetch/XHR/WebSocket/EventSource/beacon) are denied at the browser boundary.
 /privado/*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'self'
   Referrer-Policy: no-referrer
   Cache-Control: public, max-age=300
 

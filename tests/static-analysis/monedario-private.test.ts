@@ -38,6 +38,18 @@ describe("Monedario Privado contracts", () => {
     );
   });
 
+  it("labels future capabilities without presenting them as available", () => {
+    const page = readFileSync(
+      path.join(root, "src/pages/privado/index.astro"),
+      "utf8"
+    );
+
+    expect(page).toContain('data-roadmap-status="available"');
+    expect(page).toContain('data-roadmap-status="planned"');
+    expect(page).toContain('data-roadmap-status="evaluating"');
+    expect(page).toContain("funciones disponibles hoy ni fechas comprometidas");
+  });
+
   it("denies runtime network connections at the route boundary", () => {
     const headers = readFileSync(path.join(root, "public/_headers"), "utf8");
     const block = headers.match(
@@ -48,5 +60,6 @@ describe("Monedario Privado contracts", () => {
     expect(block).toContain("connect-src 'none'");
     expect(block).toContain("form-action 'none'");
     expect(block).toContain("Referrer-Policy: no-referrer");
+    expect(block).not.toContain("wasm-unsafe-eval");
   });
 });

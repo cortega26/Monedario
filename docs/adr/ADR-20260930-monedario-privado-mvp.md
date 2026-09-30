@@ -34,6 +34,29 @@ a backend or heavy dependency before demand is established.
    processed locally and are not sent to Monedario or third parties. Do not
    claim that loading the webpage itself creates zero network traffic.
 
+## Forward architecture
+
+The MVP keeps one intentionally small implementation seam today, but future
+capabilities are expected to evolve through four explicit stages rather than
+growing ad hoc inside the page:
+
+1. **Ingestion adapters** normalize generic CSV and, later, bank-specific
+   CSV/XLSX/OFX/PDF exports into the same transaction shape.
+2. **Validation and enrichment** resolve direction, categories, recurring
+   movements and internal-transfer semantics with deterministic rules first.
+3. **User review** exposes classifications and lets the user correct or persist
+   local rules before totals are treated as trusted.
+4. **Private history** may add opt-in encrypted local persistence and
+   multi-period trends without making cloud sync the default.
+
+A local assistant or other heavier compute remains optional and downstream of
+those boundaries. It must not become a prerequisite for deterministic parsing
+or weaken the no-financial-egress invariant.
+
+The MVP page exposes this roadmap with explicit Available / Planned / Evaluating
+states so future intent is visible without representing unfinished capability as
+already shipped.
+
 ## Alternatives rejected
 
 - **Use the normal analytics-enabled layout:** rejected because it weakens the

@@ -12,6 +12,10 @@ describe("private finance CSV analysis", () => {
     expect(parseMoney("-82.500")).toBe(-82500);
     expect(parseMoney("(15.990)")).toBe(-15990);
     expect(parseMoney("")).toBeNull();
+    expect(parseMoney(".")).toBeNull();
+    expect(parseMoney("1.234.56")).toBeNull();
+    expect(parseMoney("12,34,567")).toBeNull();
+    expect(parseMoney("999999999999999999999")).toBeNull();
   });
 
   it("parses quoted delimiters and escaped quotes", () => {
@@ -21,6 +25,28 @@ describe("private finance CSV analysis", () => {
       ["Fecha", "Descripción", "Cargo"],
       ["01-09-2026", 'Café; "Centro"', "12.500"],
     ]);
+  });
+
+  it("handles BOM, CRLF and tab-separated exports", () => {
+    const csv = [
+      "\uFEFFFecha\tDescripción\tCargo\tAbono",
+      "2026-09-01\tSUELDO\t\t1500000",
+      "2026-09-02\tUNIMARC\t55000\t",
+    ].join("\r\n");
+
+    const summary = analyzeFinancialCsv(csv);
+
+    expect(summary.transactionCount).toBe(2);
+    expect(summary.income).toBe(1500000);
+    expect(summary.expenses).toBe(55000);
+  });
+
+  it("keeps quoted embedded newlines inside a field", () => {
+    const rows = parseCsvRows(
+      'Fecha;Descripción;Cargo\n2026-09-01;"Compra\nlocal";12.500'
+    );
+
+    expect(rows[1]).toEqual(["2026-09-01", "Compra\nlocal", "12.500"]);
   });
 
   it("summarizes separate debit and credit columns", () => {
@@ -87,6 +113,50 @@ describe("private finance CSV analysis", () => {
         ].join("\n")
       )
     ).toThrow(/no pude interpretar el tipo de movimiento/i);
+  });
+
+  it("fails closed when cargo and abono are both populated", () => {
+    expect(() =>
+      analyzeFinancialCsv(
+        [
+          "Fecha;Descripción;Cargo;Abono",
+          "2026-09-01;Fila imposible;10000;20000",
+        ].join("\n")
+      )
+    ).toThrow(/cargo y abono simultáneos/i);
+  });
+
+  it("fails closed on a non-empty unparseable financial value", () => {
+    expect(() =>
+      analyzeFinancialCsv(
+        [
+          "Fecha;Descripción;Cargo;Abono",
+          "2026-09-01;Dato corrupto;NO_ES_MONTO;",
+        ].join("\n")
+      )
+    ).toThrow(/no pude interpretar el valor/i);
+  });
+
+  it("fails closed when a negative amount contradicts an explicit income type", () => {
+    expect(() =>
+      analyzeFinancialCsv(
+        [
+          "Fecha;Descripción;Monto;Tipo",
+          "2026-09-01;Contradicción;-50000;Abono",
+        ].join("\n")
+      )
+    ).toThrow(/monto negativo marcado como ingreso/i);
+  });
+
+  it("fails closed on duplicate semantic amount columns", () => {
+    expect(() =>
+      analyzeFinancialCsv(
+        [
+          "Fecha;Descripción;Monto;Importe",
+          "2026-09-01;Ambiguo;-1000;-1000",
+        ].join("\n")
+      )
+    ).toThrow(/más de una columna compatible con monto/i);
   });
 
   it("fails closed when a positive-only amount column has no direction", () => {
