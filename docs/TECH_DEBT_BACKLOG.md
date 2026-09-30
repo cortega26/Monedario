@@ -42,15 +42,15 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - **P0:** 0
 - **P1:** 0
 - **P2:** 1 — `TD-0108` (en curso)
-- **P3:** 1 — `TD-0103`
+- **P3:** 0
 - **Sin urgencia declarada:** 0
-- **Total abiertos:** 2 de 112 entradas (`TD-0001`..`TD-0112`)
-- **Cerrados/completados:** 110
+- **Total abiertos:** 1 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Cerrados/completados:** 111
 
 ### Estado de avance (2026-09-30)
 
-- **Completados/cerrados:** 110 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096` (2026-09-30).
-- **Abiertos:** `TD-0103`, `TD-0108` (en curso).
+- **Completados/cerrados:** 111 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096`/`TD-0103` (2026-09-30).
+- **Abiertos:** `TD-0108` (en curso).
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2267,9 +2267,11 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Urgencia:** P3
 - **Esfuerzo estimado:** M (capturar con `--reporter=verbose` + loop hasta reproducir, o `--retry` con logs)
 - **Sospechosos a descartar/primeros:** tests que usan `new Date()` sin fake timers (fronteras de calendario); tests con `spawnSync` de scripts que tocan red; paralelismo de workers vitest bajo carga (transform 50-80 s).
-- **Estado:** ABIERTO
+- **Resolución (2026-09-30, caza acotada):** no se reprodujo el fallo en 6 corridas (4 limpias + 2 con 6/16 cores ocupados), pero se identificó el **mecanismo**: tests pesados que superan el timeout default de vitest (5 s) bajo carga. Medición bajo carga: `verify-analytics-worker-deployment.test.ts > escenarios completos > falla el smoke sin EXPORT_SECRET` llegó a **4.763 ms** (vs 3-3.4 s en corrida limpia y 3 ms sus hermanos) y `eslint-global-ignores.e2e.test.ts` (caso `.claude/worktrees`) a **3.700 ms**; ambos a un salto de carga del límite de 5 s — consistente con el histórico (1 test fallido, sin nombre capturado, solo en cadenas con carga). **Mitigación aplicada:** timeout explícito de 15 s en esos 2 tests (headroom 3×); el resto de la suite quedó <2 s bajo la misma carga.
+- **Estado:** Cerrado (2026-09-30) — mecanismo identificado y mitigado; sin reproducción directa
 - **Owner:** Carlos
 - **Fecha:** 2026-08-10
+- **Última actualización:** 2026-09-30
 
 ## TD-0104 — Guard CI para excepciones de maduración muertas en pnpm-workspace.yaml
 - **ID:** TD-0104
