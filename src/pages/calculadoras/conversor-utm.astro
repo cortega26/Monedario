@@ -67,8 +67,8 @@ const utmDisplay = economicParameters.utm.toLocaleString("es-CL", {
 });
 const utmDateDisplay = formatEconomicDate(utmLastUpdated);
 
-const conversorUtmTitle = `Valor UTM hoy: $${utmDisplay} (${utmDateDisplay}, SII) | Monedario`;
-const conversorUtmDescription = `Valor UTM hoy: $${utmDisplay} vigente al ${utmDateDisplay} según el SII. Convierte UTM a pesos chilenos y de pesos a UTM.`;
+const conversorUtmTitle = `UTM hoy: $${utmDisplay} — Convierte UTM a pesos | Monedario`;
+const conversorUtmDescription = `Valor de la UTM hoy: $${utmDisplay}. Convierte cualquier cantidad de UTM a pesos chilenos y consulta valores históricos actualizados.`;
 
 const utaDisplay = economicParameters.uta
   ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
@@ -134,8 +134,8 @@ const conversorUtmFaqs = [
 
 <Layout title={conversorUtmTitle} description={conversorUtmDescription}>
   <CalculatorJsonLd
-    name={conversorUtmTitle}
-    description={conversorUtmDescription}
+    name="Conversor UTM a Pesos Chilenos"
+    description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
     faqs={conversorUtmFaqs}
     dateModified={utmLastUpdated}
   />
@@ -151,8 +151,8 @@ const conversorUtmFaqs = [
     data-analytics-calculator-name="Conversor UTM a Pesos"
   >
     <CalculatorHero
-      title={`Valor UTM hoy: $${utmDisplay}`}
-      description={`La UTM hoy vale $${utmDisplay}, vigente al ${utmDateDisplay} según el SII. Convierte UTM a pesos chilenos y de pesos a UTM.`}
+      title="Conversor UTM a Pesos Chilenos"
+      description="Convierte Unidades Tributarias Mensuales al valor oficial del SII actualizado cada mes. Sin registro, sin publicidad."
       descriptionClass="max-w-xl text-secondary"
     />
 
