@@ -9,7 +9,10 @@ name: Deploy Analytics Collector
 #   - Permisos mínimos: `contents: read`. No se despliega en PRs ni se pasan
 #     secretos en URLs.
 #   - Acciones pinnadas a SHAs inmutables; instalación congelada
-#     (frozen-lockfile) vía la action compartida bootstrap-pnpm.
+#     (frozen-lockfile) vía la action compartida bootstrap-pnpm. Wrangler queda
+#     pineado de forma exacta en package.json: 4.131.0 falló contra la API de
+#     Cloudflare el 2026-10-01; 4.138.0 quedó verificado contra la API real y
+#     el dry-run del worker, respetando la política minimumReleaseAge del repo.
 #   - Tests enfocados + `wrangler deploy --dry-run` ANTES de desplegar.
 #   - Concurrency: un solo deploy a la vez (serializado).
 #   - Post-deploy: verifier de paridad (versión activa, cron exacto
