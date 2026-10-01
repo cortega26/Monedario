@@ -25,6 +25,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260529-repo-self-healing-maintenance.md` | Accepted | Mantenimiento auto-reparable: gate diario en main, auto-PR de drift mecanico, deteccion de codigo muerto | CI, governance |
 | `ADR-20260716-temporary-self-hosted-actions-bridge.md` | Accepted | Puente temporal de runner self-hosted ante agotamiento de minutos | CI, operations |
 | `ADR-20260929-effective-dated-economic-parameters.md` | Accepted | Parámetros fiscales congelados por año tributario y modelo effective-dated | domain, data, tax |
+| `ADR-20261001-utm-month-boundary-freshness.md` | Accepted | Frescura UTM en cambio de mes y gracia de 7 días | domain, data, YMYL |
 | `ADR-20260929-calculator-field-migration.md` | Accepted | Migración de inputs de calculadoras a `CalculatorField` por lotes | components, UX, maintenance |
 | `ADR-20260929-ai-independent-audit-protocol.md` | Accepted | Auditorías independientes por IA con protocolo anti-alucinación como pre-gate YMYL | editorial, governance, YMYL |
 
