@@ -458,7 +458,8 @@ describe("tokenize y tokensFromQueries", () => {
       "hoy",
       "sueldo",
     ]);
-    expect(tokenize("guía de trámites")).toEqual(["tramites"]);
+    expect(tokenize("guía de trámites")).toEqual(["tramite"]);
+    expect(tokenize("deudas vencidas")).toEqual(["deuda", "vencida"]);
   });
 
   it("construye vocabulario desde las queries con más impresiones", () => {
@@ -673,6 +674,35 @@ describe("applyFeedback", () => {
     expect(suppressed).toHaveLength(0);
   });
 
+  it("suprime también por patrón sobre la query", () => {
+    const { candidates: kept } = applyFeedback(
+      [
+        {
+          id: "cross_engine_query:bing|sii uf",
+          type: "cross_engine_query",
+          query: "uf sii",
+        },
+        {
+          id: "cross_engine_query:bing|cesantia seguro",
+          type: "cross_engine_query",
+          query: "seguro de cesantía",
+        },
+      ],
+      {
+        dismissedPatterns: [
+          {
+            domain: null,
+            pathPattern: "\\bsii\\b",
+            reason: "cubierto por páginas propias",
+          },
+        ],
+      }
+    );
+    expect(kept.map(candidate => candidate.id)).toEqual([
+      "cross_engine_query:bing|cesantia seguro",
+    ]);
+  });
+
   it("el reporte cuenta las supresiones", () => {
     const report = buildOpportunityReport({
       week: "2026-W39",
@@ -866,6 +896,27 @@ describe("crossEngineQueryCandidates", () => {
     );
     expect(candidates).toHaveLength(1);
     expect(candidates[0].score).toBe(100);
+  });
+
+  it("considera cubierta una query que mapea a una página propia", () => {
+    const candidates = crossEngineQueryCandidates(
+      {
+        engineQueries: [
+          {
+            engine: "bing",
+            query: "calculadora iva",
+            impressions: 172,
+            clicks: 0,
+            ctr: 0,
+            position: 6,
+          },
+        ],
+      },
+      [],
+      config,
+      ["/calculadoras/iva/"]
+    );
+    expect(candidates).toHaveLength(0);
   });
 
   it("sin engineQueries no emite candidatos", () => {

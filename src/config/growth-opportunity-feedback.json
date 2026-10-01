@@ -1,8 +1,19 @@
 {
   "schemaVersion": 1,
   "updated": "2026-10-01",
-  "note": "Memoria de calibración del Growth Engine (Fase 0). Editable por el owner vía PR; la automatización solo la lee. `dismissed` suprime IDs exactos ya revisados; `dismissedPatterns` suprime por dominio/ruta (pathPattern es una regex sobre el path del candidato; domain null aplica a todos); `promoted` registra candidatos convertidos en experimento.",
+  "note": "Memoria de calibración del Growth Engine (Fase 0). Editable por el owner vía PR; la automatización solo la lee. `dismissed` suprime IDs exactos ya revisados; `dismissedPatterns` suprime por dominio + regex sobre el path o la query del candidato (domain null aplica a todos); `promoted` registra candidatos convertidos en experimento.",
   "dismissed": [],
-  "dismissedPatterns": [],
+  "dismissedPatterns": [
+    {
+      "domain": "patrimore.com",
+      "pathPattern": "^/blog/fernando-",
+      "reason": "PR corporativo, no contenido evergreen"
+    },
+    {
+      "domain": "uf-hoy.com",
+      "pathPattern": "^/(analisis-|la-florida|alzas-)",
+      "reason": "noticia de mercado inmobiliario, no gap de contenido"
+    }
+  ],
   "promoted": []
 }
