@@ -96,17 +96,30 @@ competidores obtenida de sitemaps públicos:
   "freeSources": ["competitor-sitemaps"],
   "competitorPages": [
     { "domain": "valor-utm.cl", "url": "https://valor-utm.cl/valor-utm-hoy" }
+  ],
+  "engineQueries": [
+    {
+      "engine": "bing",
+      "query": "reajuste anual uf",
+      "clicks": 1,
+      "impressions": 1,
+      "ctr": 1.0,
+      "position": 5
+    }
   ]
 }
 ```
 
-- `volume`/`difficulty` pueden ser `null` o estar ausentes en modo libre; el
-  detector `competitor_sitemap_gap` no los requiere.
+- `engineQueries`: estadísticas de queries del sitio en otro motor (Bing
+  Webmaster Tools, `pnpm run growth:collect:bing`). Sirven para detectar
+  demanda visible en Bing/Copilot que GSC no muestra.
+- `volume`/`difficulty` pueden ser `null` o estar ausentes en modo libre; los
+  detectores `competitor_sitemap_gap` y `cross_engine_query` no los requieren.
 - Los competidores se configuran en `src/config/competitors.json` (editable
   por el owner). Solo se leen sitemaps públicos (`<loc>`), sin scraping de
   páginas.
-- Si conviven proveedor y fuente libre, se preservan las listas del proveedor
-  y se agrega `freeSources: ["competitor-sitemaps"]`.
+- Si conviven proveedor y fuentes libres, se preservan las listas del
+  proveedor y `freeSources` acumula las fuentes usadas.
 
 ## 4. Solicitud concreta al control-plane
 
@@ -154,5 +167,6 @@ competidores obtenida de sitemaps públicos:
 | `competitor_gap_query` | `competitorGaps` | A3 |
 | `serp_feature_risk` | `serpFeatures` | A0 (observación) |
 | `competitor_sitemap_gap` | `competitorPages` (fuente libre) | A0 (observación) |
+| `cross_engine_query` | `engineQueries` (Bing Webmaster, fuente libre) | A0 (observación) |
 
 Umbrales en `src/config/growth-opportunity-registry.json`.

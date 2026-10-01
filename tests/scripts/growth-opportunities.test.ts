@@ -8,6 +8,7 @@ import {
   competitorGapCandidates,
   competitorSitemapGapCandidates,
   contentGapCandidates,
+  crossEngineQueryCandidates,
   ctrGapCandidates,
   decayCandidates,
   expectedCtrForPosition,
@@ -21,9 +22,14 @@ import {
 import {
   buildCompetitorPages,
   isSitemapIndex,
-  mergeExternalIntelligence,
   resolveSitemapUrl,
 } from "../../scripts/collect-competitor-sitemaps.mjs";
+import { mergeExternalIntelligence } from "../../scripts/lib/external-intelligence.mjs";
+import {
+  normalizeBingQueryRows,
+  parseEnvFile,
+  pickSite,
+} from "../../scripts/collect-bing-queries.mjs";
 
 const BANDS = [
   [3, 0.08],
@@ -591,12 +597,29 @@ describe("collect-competitor-sitemaps helpers", () => {
         source: "free",
         week: "2026-W39",
         competitorPages: [{ domain: "x.cl", url: "https://x.cl/a" }],
+        freeSources: ["competitor-sitemaps"],
       }
     );
     expect(merged.source).toBe("semrush");
     expect(merged.keywordGaps).toEqual([{ query: "x" }]);
     expect(merged.freeSources).toContain("competitor-sitemaps");
     expect(merged.competitorPages).toHaveLength(1);
+  });
+
+  it("acumula freeSources de ambas fuentes libres", () => {
+    const merged = mergeExternalIntelligence(
+      { source: "free", freeSources: ["competitor-sitemaps"] },
+      {
+        source: "free",
+        engineQueries: [{ engine: "bing", query: "x" }],
+        freeSources: ["bing-webmaster"],
+      }
+    );
+    expect(merged.freeSources.sort()).toEqual([
+      "bing-webmaster",
+      "competitor-sitemaps",
+    ]);
+    expect(merged.engineQueries).toHaveLength(1);
   });
 });
 
@@ -677,5 +700,175 @@ describe("applyFeedback", () => {
     });
     expect(report.feedback.suppressed).toBe(1);
     expect(report.byType.ctr_gap_page).toBeUndefined();
+  });
+});
+
+describe("Bing collector helpers", () => {
+  it("parsea .env sin exigir dependencias", () => {
+    const env = parseEnvFile(
+      '# comentario\nBING_WEBMASTER_API_KEY="abc123"\nOTRA=sin-comillas\n'
+    );
+    expect(env.BING_WEBMASTER_API_KEY).toBe("abc123");
+    expect(env.OTRA).toBe("sin-comillas");
+  });
+
+  it("elige el sitio verificado por hostname, ignorando www", () => {
+    const sites = [
+      { Url: "https://otro.cl/", IsVerified: true },
+      { Url: "https://monedario.cl/", IsVerified: true },
+      { Url: "https://no-verificado.cl/", IsVerified: false },
+    ];
+    expect(pickSite(sites, "https://monedario.cl/")).toBe(
+      "https://monedario.cl/"
+    );
+    expect(pickSite(sites, "https://www.monedario.cl/")).toBe(
+      "https://monedario.cl/"
+    );
+    expect(pickSite([])).toBeNull();
+  });
+
+  it("normaliza filas de Bing y descarta impresiones cero", () => {
+    const rows = normalizeBingQueryRows({
+      d: [
+        {
+          Query: "utm hoy",
+          Clicks: 2,
+          Impressions: 10,
+          AvgImpressionPosition: 5,
+          AvgClickPosition: -1,
+        },
+        {
+          Query: "sin datos",
+          Clicks: 0,
+          Impressions: 0,
+          AvgImpressionPosition: 3,
+          AvgClickPosition: -1,
+        },
+        {
+          Query: "pos click",
+          Clicks: 1,
+          Impressions: 2,
+          AvgImpressionPosition: -1,
+          AvgClickPosition: 7,
+        },
+      ],
+    });
+    expect(rows).toHaveLength(2);
+    expect(rows[0]).toMatchObject({
+      query: "utm hoy",
+      impressions: 10,
+      ctr: 0.2,
+      position: 5,
+    });
+    expect(rows[1]).toMatchObject({ query: "pos click", position: 7 });
+  });
+});
+
+describe("crossEngineQueryCandidates", () => {
+  const config = {
+    tier: "A0",
+    minImpressions: 10,
+    maxPosition: 15,
+    decisionP: 0.05,
+    windowDays: 28,
+  };
+  const external = {
+    engineQueries: [
+      {
+        engine: "bing",
+        query: "consulta nueva",
+        impressions: 40,
+        clicks: 0,
+        ctr: 0,
+        position: 6,
+      },
+      {
+        engine: "bing",
+        query: "ya en gsc",
+        impressions: 50,
+        clicks: 1,
+        ctr: 0.02,
+        position: 4,
+      },
+      {
+        engine: "bing",
+        query: "poca muestra",
+        impressions: 3,
+        clicks: 0,
+        ctr: 0,
+        position: 2,
+      },
+      {
+        engine: "bing",
+        query: "muy abajo",
+        impressions: 30,
+        clicks: 0,
+        ctr: 0,
+        position: 40,
+      },
+    ],
+  };
+  const gsc = [
+    { query: "Ya en GSC", impressions: 100, clicks: 5, position: 3 },
+  ];
+
+  it("detecta demanda de Bing ausente en GSC", () => {
+    const candidates = crossEngineQueryCandidates(external, gsc, config);
+    expect(candidates).toHaveLength(1);
+    expect(candidates[0].query).toBe("consulta nueva");
+    expect(candidates[0].tier).toBe("A0");
+  });
+
+  it("considera cubierta una variante con tildes/stopwords", () => {
+    const candidates = crossEngineQueryCandidates(
+      {
+        engineQueries: [
+          {
+            engine: "bing",
+            query: "seguro de cesantía",
+            impressions: 100,
+            clicks: 0,
+            ctr: 0,
+            position: 5,
+          },
+        ],
+      },
+      [{ query: "seguro de cesantia requisitos", impressions: 200 }],
+      config
+    );
+    expect(candidates).toHaveLength(0);
+  });
+
+  it("deduplica variantes por firma de tokens", () => {
+    const candidates = crossEngineQueryCandidates(
+      {
+        engineQueries: [
+          {
+            engine: "bing",
+            query: "seguro de cesantía",
+            impressions: 100,
+            clicks: 0,
+            ctr: 0,
+            position: 5,
+          },
+          {
+            engine: "bing",
+            query: "seguro de cesantia",
+            impressions: 80,
+            clicks: 0,
+            ctr: 0,
+            position: 6,
+          },
+        ],
+      },
+      [],
+      config
+    );
+    expect(candidates).toHaveLength(1);
+    expect(candidates[0].score).toBe(100);
+  });
+
+  it("sin engineQueries no emite candidatos", () => {
+    expect(crossEngineQueryCandidates({}, gsc, config)).toHaveLength(0);
   });
 });

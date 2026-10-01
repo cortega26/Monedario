@@ -616,6 +616,87 @@ export function serpFeatureRiskCandidates(external, config) {
     .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
 }
 
+function normalizeQueryText(query) {
+  return String(query ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+/**
+ * Demanda visible en otro motor (Bing/Copilot) que no aparece en GSC: señal
+ * free de cobertura/intención. Sin volumen propio, es lista de revisión.
+ */
+export function crossEngineQueryCandidates(external, gscQueries, config) {
+  const rows = (external?.engineQueries ?? []).filter(
+    row => row?.engine === "bing"
+  );
+  if (rows.length === 0) return [];
+
+  // Cobertura por tokens (no match exacto): una query de Bing se considera
+  // cubierta si todas sus palabras significativas aparecen juntas en alguna
+  // query de GSC, ignorando tildes/stopwords/variantes.
+  const gscTokenSets = [...(gscQueries ?? [])]
+    .filter(row => typeof row.query === "string")
+    .sort((a, b) => (b.impressions ?? 0) - (a.impressions ?? 0))
+    .slice(0, config.maxGscQueries ?? 3000)
+    .map(row => new Set(tokenize(row.query)));
+
+  const seen = new Map();
+  for (const row of rows) {
+    const query = normalizeQueryText(row.query);
+    if (!query) continue;
+    if ((row.impressions ?? 0) < config.minImpressions) continue;
+    if (
+      typeof row.position !== "number" ||
+      row.position <= 0 ||
+      row.position > config.maxPosition
+    ) {
+      continue;
+    }
+    const tokens = new Set(tokenize(query));
+    if (tokens.size === 0) continue;
+    const covered = gscTokenSets.some(set => {
+      for (const token of tokens) {
+        if (!set.has(token)) return false;
+      }
+      return true;
+    });
+    if (covered) continue;
+
+    const signature = [...tokens].sort().join(" ");
+    const previous = seen.get(signature);
+    if (previous && previous.score >= row.impressions) continue;
+
+    seen.set(signature, {
+      id: `cross_engine_query:bing|${signature}`,
+      type: "cross_engine_query",
+      tier: config.tier,
+      query,
+      metrics: {
+        engine: "bing",
+        impressions: row.impressions,
+        clicks: row.clicks ?? 0,
+        ctr: round(row.ctr ?? 0, 4),
+        position: round(row.position, 1),
+      },
+      expectedGainClicks: 0,
+      score: row.impressions,
+      hypothesis: `«${query}» recibe impresiones en Bing (posición ${round(row.position, 1)}) y no aparece en GSC; posible demanda no cubierta o diferencia de indexación/motor.`,
+      experiment: {
+        metric: "impressions_query_bing",
+        threshold: "observacional: validar intención y cobertura",
+        nMin: nMinFor(config.decisionP),
+        windowDays: config.windowDays,
+        rollback: "no aplica (observación)",
+      },
+    });
+  }
+  return [...seen.values()].sort(
+    (a, b) => b.score - a.score || a.id.localeCompare(b.id)
+  );
+}
+
 export function applyFeedback(candidates, feedback) {
   const dismissed = new Set(feedback?.dismissed ?? []);
   const patterns = (feedback?.dismissedPatterns ?? [])
@@ -726,12 +807,27 @@ export function buildOpportunityReport({
         reason: "no_own_tokens",
       });
     }
+
+    if (
+      Array.isArray(external?.engineQueries) &&
+      external.engineQueries.length > 0
+    ) {
+      run("cross_engine_query", config =>
+        crossEngineQueryCandidates(external, queries ?? [], config)
+      );
+    } else if (detectors.cross_engine_query?.enabled) {
+      skipped.push({
+        detector: "cross_engine_query",
+        reason: "engine_data_unavailable",
+      });
+    }
   } else {
     for (const key of [
       "content_gap_query",
       "competitor_gap_query",
       "serp_feature_risk",
       "competitor_sitemap_gap",
+      "cross_engine_query",
     ]) {
       if (detectors[key]?.enabled) {
         skipped.push({ detector: key, reason: "external_data_unavailable" });

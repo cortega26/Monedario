@@ -89,6 +89,14 @@
       "minDistinctiveTokens": 2,
       "decisionP": 0.05,
       "windowDays": 28
+    },
+    "cross_engine_query": {
+      "enabled": true,
+      "tier": "A0",
+      "minImpressions": 10,
+      "maxPosition": 15,
+      "decisionP": 0.05,
+      "windowDays": 28
     }
   },
   "externalData": {

@@ -27,6 +27,7 @@ import {
   extractSitemapLocs,
   previousCompleteISOWeek,
 } from "./data-signals/gsc-utils.mjs";
+import { mergeExternalIntelligence } from "./lib/external-intelligence.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,24 +62,6 @@ export function buildCompetitorPages(locs, domain, maxPages = 500) {
 
 export function isSitemapIndex(xml) {
   return typeof xml === "string" && /<sitemapindex[\s>]/i.test(xml);
-}
-
-export function mergeExternalIntelligence(existing, incoming) {
-  const base = existing && typeof existing === "object" ? existing : {};
-  const merged = { ...base, ...incoming };
-  for (const key of ["keywordGaps", "competitorGaps", "serpFeatures"]) {
-    if (Array.isArray(base[key])) merged[key] = base[key];
-  }
-  if (base.source && base.source !== "free") {
-    merged.source = base.source;
-    merged.freeSources = Array.from(
-      new Set([...(base.freeSources ?? []), "competitor-sitemaps"])
-    );
-  } else {
-    merged.source = "free";
-    merged.freeSources = ["competitor-sitemaps"];
-  }
-  return merged;
 }
 
 function parseArgs(argv) {
@@ -198,6 +181,7 @@ async function main() {
       difficulty: "not_available_free_source",
     },
     competitorPages,
+    freeSources: ["competitor-sitemaps"],
   };
   const existing = existsSync(outFile)
     ? JSON.parse(readFileSync(outFile, "utf8"))
