@@ -1,8 +1,10 @@
 # F5 — Lectura primaria UTM/UF (2026-09-30)
 
 **Plan:** `docs/backlog/PLAN-growth-utm-ctr-2026-09-16.md` (fase F5)
-**Estado:** BORRADOR con datos W39 (2026-09-29) — decisión y firma pendientes del owner. Llenar el 2026-09-30 (día 14) y
-confirmar a 28 días (2026-10-14) con los confounders anotados.
+**Estado:** DECIDIDO — **Revert** (owner, 2026-10-01). Ejecución técnica en
+PR #627; el snippet F1 (`5d47594d`) queda revertido. Tras el revert, W40–W41
+se leen como periodo post-revert (recuperación de CTR), no como confirmación
+de la mejora.
 **Baseline firmado:** `docs/reports/CTR-BASELINE-W36-2026-09-16.md`
 (W36 = 2026-08-31 → 2026-09-06).
 **Día 0 del deploy:** `cfaaf738` (2026-09-16).
@@ -144,30 +146,30 @@ usarlo como ancla.
       señales mixtas → no tocar nada y leer W40–W41 con confounder #1.
 - [ ] **Extender a segunda query (F2 UF)** — solo si el resultado de UTM
       es limpio; nunca en paralelo con una lectura en curso.
-- [ ] **Revert** — posición `utm hoy` cae >2 puestos (peor que 8,66),
+- [x] **Revert** — posición `utm hoy` cae >2 puestos (peor que 8,66),
       LCP p75 >1.700 ms, o CTR < baseline W36 en ambas queries →
       revertir el snippet (`git revert` del commit de F1) y registrar.
+      **Aplicada el 2026-10-01: se cumple «CTR < baseline W36 en ambas
+      queries».**
 - [ ] **No decidir** — semana incompleta, export truncado o confounder
       nuevo no reconciliado.
 
 Resultado y razonamiento (2–5 líneas):
 
-> **Recomendación del borrador (no es decisión): Revert.** Se cumple la
-> regla pre-declarada «CTR < baseline W36 en ambas queries» (`utm` 0,21%
-> vs 1,78%; `utm hoy` 0,09% vs 0,95%), con posición estable (≈7) e
-> impresiones de la URL en 133.037: la caída es de CTR, no de ranking, y
-> rompe el rango pre-deploy (W35–W37: 0,47–0,87%) → W38 parcial 0,40% →
-> W39 0,09%. RUM
-> sano, así que el snippet es el único candidato. F2 UF **no** debe
-> extenderse. Antes de firmar, conviene mirar la SERP de «utm hoy» para
-> descartar una feature de Google (respuesta directa) que también
-> explicaría el zero-click; si existe, revertir igual no cuesta nada.
+> **Decisión (owner, 2026-10-01): Revert.** Se cumple la regla pre-declarada
+> «CTR < baseline W36 en ambas queries» (`utm` 0,21% vs 1,78%; `utm hoy`
+> 0,09% vs 0,95%), con posición estable (≈7) e impresiones de la URL en
+> 133.037: la caída es de CTR, no de ranking, y rompe el rango pre-deploy
+> (W35–W37: 0,47–0,87%) → W38 parcial 0,40% → W39 0,09%. RUM sano, así que
+> el snippet es el único candidato. La hipótesis zero-click no cambia la
+> decisión: el anexo #401 no registra AI Overview y el revert es de costo
+> cero. F2 UF **no** se extiende. Ejecución técnica: PR #627.
 
 ## 8. Firma
 
 | Rol | Nombre | Fecha | Firma |
 |---|---|---|---|
-| Owner | Carlos Ortega | | |
+| Owner | Carlos Ortega | 2026-10-01 | Aprobado — decisión Revert registrada en sesión de arquitectura |
 | Verificación adversarial | | | |
 
 ## 9. Anexo #401 — SERP check manual (2026-09-25, previo a F5)
