@@ -8,18 +8,20 @@ import { SITE } from "@/config";
 ---
 
 <Layout
-  title={`Proceso editorial | ${SITE.title}`}
-  description="Controles editoriales de Monedario: fuentes oficiales, pruebas y protocolo de siete etapas aplicable a contenido YMYL nuevo o actualizado sustantivamente desde el 25 de abril de 2026."
+  title={`Metodología y verificación editorial | ${SITE.title}`}
+  description="Cómo Monedario elabora y verifica su información: jerarquía de fuentes, verificación por afirmación, vigencia, pruebas de calculadoras, uso de IA y política de correcciones."
 >
   <Header />
   <Breadcrumb />
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-10">
-      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
-        Proceso editorial
+      <p
+        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Metodología y verificación
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
-        Cómo se elabora el contenido de Monedario
+        Cómo elaboramos y verificamos la información
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
         Este documento distingue los controles verificables de todo el sitio y
@@ -29,10 +31,14 @@ import { SITE } from "@/config";
         <a
           href={getPath("/acerca-de/")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
-        >
-          Acerca de
-        </a>
-        .
+          >Acerca de</a
+        >; si te interesa de dónde salen los indicadores y qué pasa entre la
+        fuente y el número publicado, revisa
+        <a
+          href={getPath("/como-usamos-los-datos/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Cómo usamos los datos</a
+        >.
       </p>
     </section>
 
@@ -41,9 +47,9 @@ import { SITE } from "@/config";
       <h2 class="mb-4 text-2xl font-bold">Cómo verificarnos</h2>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
         La pregunta razonable cuando alguien escribe sobre tu plata es:
-        <em class="text-foreground">¿por qué debería creerte?</em> La respuesta
-        de Monedario es que no te pedimos que confíes en quien escribe — te
-        damos cómo auditarlo.
+        <em class="text-foreground">¿por qué debería creerte?</em> La respuesta de
+        Monedario es que no te pedimos que confíes en quien escribe — te damos cómo
+        auditarlo.
       </p>
 
       <div class="mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
@@ -86,19 +92,21 @@ import { SITE } from "@/config";
             <a
               href={getPath("/autor/#reportar-error")}
               class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              página del autor
-            </a>
-            . Reportar es la prueba más concreta de que el método funciona.
+              >página del autor</a
+            >. Reportar es la prueba más concreta de que el método funciona.
           </p>
         </div>
       </div>
 
-      <div class="mt-6 max-w-2xl rounded-xl border border-border bg-surface-muted/30 p-5">
+      <div
+        class="mt-6 max-w-2xl rounded-xl border border-border bg-surface-muted/30 p-5"
+      >
         <p class="mb-2 text-sm font-semibold text-foreground">
           Verificación automatizada y auditorías
         </p>
-        <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary">
+        <ul
+          class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
+        >
           <li>
             Los cálculos y las páginas tienen pruebas automáticas que corren en
             cada cambio: unitarias, de accesibilidad y de contratos de datos.
@@ -144,10 +152,8 @@ import { SITE } from "@/config";
         <a
           href={getPath("/autor/")}
           class="text-accent not-italic underline underline-offset-4 hover:opacity-80"
-        >
-          ver perfil del autor
-        </a>
-        .
+          >ver perfil del autor</a
+        >.
       </p>
     </section>
 
@@ -163,22 +169,24 @@ import { SITE } from "@/config";
         artificial; abajo está el alcance y qué decisiones siguen siendo
         humanas.
       </p>
-      <aside class="mb-8 max-w-2xl border-l-4 border-accent pl-4 text-sm leading-relaxed text-secondary">
-        <strong class="text-foreground">Alcance de esta promesa:</strong> la
-        cadena formal de siete registros aplica prospectivamente a contenido
-        YMYL nuevo y a actualizaciones sustantivas desde el 25 de abril de 2026.
-        El corpus histórico fue creado mientras estos controles evolucionaban y
-        no posee evidencia uniforme de las siete etapas; por eso Monedario no
-        afirma que esa cadena exista retroactivamente. Las piezas históricas
-        siguen sujetas a fuentes, vigencia, estructura, pruebas y retroauditoría
-        por riesgo.
+      <aside
+        class="mb-8 max-w-2xl border-l-4 border-accent pl-4 text-sm leading-relaxed text-secondary"
+      >
+        <strong class="text-foreground">Alcance de esta promesa:</strong> la cadena
+        formal de siete registros aplica prospectivamente a contenido YMYL nuevo y
+        a actualizaciones sustantivas desde el 25 de abril de 2026. El corpus histórico
+        fue creado mientras estos controles evolucionaban y no posee evidencia uniforme
+        de las siete etapas; por eso Monedario no afirma que esa cadena exista retroactivamente.
+        Las piezas históricas siguen sujetas a fuentes, vigencia, estructura, pruebas
+        y retroauditoría por riesgo.
       </aside>
 
       <ol class="max-w-2xl space-y-5">
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            1
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >1</span
+          >
           <div>
             <p class="font-semibold text-foreground">Brief</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -189,9 +197,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            2
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >2</span
+          >
           <div>
             <p class="font-semibold text-foreground">Dossier de fuentes</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -203,9 +212,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            3
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >3</span
+          >
           <div>
             <p class="font-semibold text-foreground">Esquema</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -216,9 +226,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            4
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >4</span
+          >
           <div>
             <p class="font-semibold text-foreground">Borrador</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -228,9 +239,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            5
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >5</span
+          >
           <div>
             <p class="font-semibold text-foreground">Auditoría de cálculos</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -241,9 +253,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            6
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >6</span
+          >
           <div>
             <p class="font-semibold text-foreground">Revisión regulatoria</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -255,9 +268,10 @@ import { SITE } from "@/config";
           </div>
         </li>
         <li class="flex gap-4">
-          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent">
-            7
-          </span>
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >7</span
+          >
           <div>
             <p class="font-semibold text-foreground">Cierre con firma</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
@@ -283,10 +297,8 @@ import { SITE } from "@/config";
             <a
               href={getPath("/autor/")}
               class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              {SITE.authorFullName}
-            </a>
-            , editor responsable. Esa firma no es decorativa: es un control
+              >{SITE.authorFullName}</a
+            >, editor responsable. Esa firma no es decorativa: es un control
             explícito del proceso de publicación. Si el artículo no está
             firmado, no se publica. Si durante la auditoría aparece un problema,
             el artículo vuelve a etapa de borrador hasta que se resuelva.
@@ -304,7 +316,9 @@ import { SITE } from "@/config";
             qué se publica ni firma los artículos. Las restricciones son
             explícitas:
           </p>
-          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary">
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
             <li>
               Toda cifra se traza a una fuente oficial verificable antes de
               entrar al borrador.
@@ -380,7 +394,9 @@ import { SITE } from "@/config";
           <p class="text-sm leading-relaxed text-secondary">
             Cuatro reglas que aplicamos sin excepción:
           </p>
-          <ul class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary">
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
             <li>
               El protocolo vigente no admite cifras sin traza a una fuente
               oficial. Si no se encuentra la fuente, no entra al borrador.
@@ -408,7 +424,9 @@ import { SITE } from "@/config";
           </p>
           <div class="grid gap-3 sm:grid-cols-2">
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Impuestos y tributación
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -418,9 +436,8 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >SII — Servicio de Impuestos Internos</a
                   >
-                    SII — Servicio de Impuestos Internos
-                  </a>
                 </li>
                 <li>
                   <a
@@ -428,14 +445,15 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >Ley Chile (Biblioteca del Congreso Nacional)</a
                   >
-                    Ley Chile (Biblioteca del Congreso Nacional)
-                  </a>
                 </li>
               </ul>
             </div>
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Pensiones y AFP
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -445,14 +463,15 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >Superintendencia de Pensiones</a
                   >
-                    Superintendencia de Pensiones
-                  </a>
                 </li>
               </ul>
             </div>
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Crédito, deuda e inversiones
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -462,24 +481,23 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >CMF — Comisión para el Mercado Financiero</a
                   >
-                    CMF — Comisión para el Mercado Financiero
-                  </a>
                 </li>
                 <li>
                   <a
                     href="https://www.sernac.cl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-accent hover:underline"
+                    class="hover:text-accent hover:underline">SERNAC</a
                   >
-                    SERNAC
-                  </a>
                 </li>
               </ul>
             </div>
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Indicadores económicos
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -489,9 +507,8 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >Banco Central de Chile</a
                   >
-                    Banco Central de Chile
-                  </a>
                 </li>
                 <li>
                   <a
@@ -499,14 +516,15 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >INE — Instituto Nacional de Estadísticas</a
                   >
-                    INE — Instituto Nacional de Estadísticas
-                  </a>
                 </li>
               </ul>
             </div>
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Empleo y salud laboral
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -516,34 +534,31 @@ import { SITE } from "@/config";
                     target="_blank"
                     rel="noopener noreferrer"
                     class="hover:text-accent hover:underline"
+                    >Dirección del Trabajo</a
                   >
-                    Dirección del Trabajo
-                  </a>
                 </li>
                 <li>
                   <a
                     href="https://www.suseso.gob.cl/601/w3-channel.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-accent hover:underline"
+                    class="hover:text-accent hover:underline">SUSESO</a
                   >
-                    SUSESO
-                  </a>
                 </li>
                 <li>
                   <a
                     href="https://www.afc.cl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-accent hover:underline"
+                    class="hover:text-accent hover:underline">AFC Chile</a
                   >
-                    AFC Chile
-                  </a>
                 </li>
               </ul>
             </div>
             <div class="rounded-lg border border-border p-4">
-              <p class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+              <p
+                class="mb-1.5 text-xs font-semibold tracking-wide text-accent uppercase"
+              >
                 Trámites del Estado
               </p>
               <ul class="space-y-1 text-sm text-secondary">
@@ -552,10 +567,8 @@ import { SITE } from "@/config";
                     href="https://www.chileatiende.gob.cl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hover:text-accent hover:underline"
+                    class="hover:text-accent hover:underline">ChileAtiende</a
                   >
-                    ChileAtiende
-                  </a>
                 </li>
               </ul>
             </div>
@@ -569,11 +582,181 @@ import { SITE } from "@/config";
         <a
           href={getPath("/autor/#reportar-error")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
-        >
-          repórtalo
-        </a>{" "}
-        usando el formulario de la página del autor.
+          >repórtalo</a
+        > usando el formulario de la página del autor.
       </p>
+    </section>
+
+    <!-- ESTÁNDARES DE VERIFICACIÓN -->
+    <section id="estandares" class="border-b border-border py-10">
+      <h2 class="mb-2 text-2xl font-bold">Estándares de verificación</h2>
+      <p class="mb-8 max-w-2xl text-sm leading-relaxed text-secondary">
+        Estos criterios aplican a todo el sitio, con una exigencia proporcional
+        al riesgo: cuanto más puede cambiar una afirmación la decisión económica
+        de una persona, más evidencia pedimos para sostenerla.
+      </p>
+      <div class="max-w-2xl space-y-8">
+        <div id="jerarquia-de-fuentes">
+          <h3 class="mb-2 text-lg font-semibold">Jerarquía de fuentes</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cuando dos fuentes pueden sostener una misma afirmación, preferimos
+            la de mayor rango, en este orden:
+          </p>
+          <ol
+            class="mt-3 list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>Legislación oficial vigente (Ley Chile, Diario Oficial).</li>
+            <li>
+              Organismos públicos competentes en la materia (SII,
+              Superintendencia de Pensiones, CMF, Dirección del Trabajo, Banco
+              Central, INE, entre otros).
+            </li>
+            <li>
+              Normativa administrativa: circulares, resoluciones y oficios.
+            </li>
+            <li>
+              Datos y estadísticas oficiales publicados por esos organismos.
+            </li>
+            <li>
+              Documentación institucional (guías, preguntas frecuentes,
+              simuladores oficiales).
+            </li>
+            <li>Literatura académica.</li>
+            <li>
+              Fuentes secundarias especializadas, solo cuando no existe una
+              primaria o para contexto.
+            </li>
+          </ol>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            Citar una fuente no basta: la fuente enlazada tiene que sostener
+            realmente la afirmación concreta, en el periodo al que se refiere.
+          </p>
+        </div>
+
+        <div id="integridad-factual">
+          <h3 class="mb-2 text-lg font-semibold">Integridad factual</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            La unidad de verificación es la afirmación, no solo la página. Al
+            revisar un contenido buscamos afirmaciones que sean:
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>falsas o desactualizadas;</li>
+            <li>incompletas o engañosas por omisión;</li>
+            <li>insuficientemente sustentadas o imposibles de auditar;</li>
+            <li>
+              inconsistentes en el tiempo o contradictorias con otras páginas
+              del sitio;
+            </li>
+            <li>
+              más categóricas de lo que la evidencia permite, o debatibles
+              presentadas como hechos.
+            </li>
+          </ul>
+        </div>
+
+        <div id="completitud-material">
+          <h3 class="mb-2 text-lg font-semibold">Completitud material</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Una afirmación puede ser literalmente correcta y aun así resultar
+            engañosa si omite una condición o excepción capaz de cambiar la
+            decisión de quien la lee. No prometemos cubrir todas las excepciones
+            posibles; sí incluir las que, por su frecuencia o su impacto, pueden
+            cambiar materialmente el resultado.
+          </p>
+        </div>
+
+        <div id="vigencia">
+          <h3 class="mb-2 text-lg font-semibold">Vigencia y fechas</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las reglas financieras cambian: tramos, topes, tasas y plazos tienen
+            periodos de aplicación. Por eso distinguimos entre la fecha de
+            publicación, la fecha de la última modificación sustantiva y el
+            periodo para el cual la información fue verificada. Los parámetros
+            con vigencia temporal se registran junto a su periodo de aplicación
+            y su fuente.
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            No actualizamos fechas para aparentar frescura: la fecha de
+            modificación cambia cuando cambia el contenido, no cuando se
+            republica la página.
+          </p>
+        </div>
+
+        <div id="revision-especializada">
+          <h3 class="mb-2 text-lg font-semibold">Revisión especializada</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Algunos temas —tributarios, previsionales, laborales, legales, de
+            inversión o estadísticos— pueden justificar la revisión de una
+            persona con experiencia específica. Aplicamos ese criterio en
+            proporción al riesgo, no a todo el sitio. Hoy no contamos con un
+            revisor experto externo; cuando una pieza tenga revisión
+            especializada, lo indicaremos en la propia pieza con nombre y
+            credencial. Nunca indicamos una revisión que no ocurrió.
+          </p>
+        </div>
+
+        <div id="correcciones">
+          <h3 class="mb-2 text-lg font-semibold">Correcciones</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cualquier persona puede reportar un error con el
+            <a
+              href={getPath("/autor/#reportar-error")}
+              class="text-accent underline underline-offset-4 hover:opacity-80"
+              >formulario de reporte</a
+            >, indicando la página, la afirmación cuestionada y, si la tiene,
+            una fuente alternativa. Cada reporte se contrasta con la fuente
+            primaria correspondiente.
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>
+              Si el error es material —cambia un número, un plazo, un requisito
+              o una conclusión—, se corrige y la fecha de modificación de la
+              pieza se actualiza.
+            </li>
+            <li>
+              Además de corregir la pieza, buscamos la causa: si el mismo dato
+              aparece en otras páginas, o si un control automático podría
+              haberlo detectado, se corrige también el sistema para que el error
+              sea más difícil de repetir.
+            </li>
+            <li>
+              Las erratas y los cambios de estilo sin impacto factual se
+              corrigen sin registro especial.
+            </li>
+          </ul>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            No prometemos no equivocarnos. Prometemos buscar los errores,
+            corregirlos y mejorar el proceso que permitió que ocurrieran.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EEAT / YMYL -->
+    <section id="por-que-este-estandar" class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Por qué aplicamos este estándar</h2>
+      <div class="max-w-2xl space-y-3 text-sm leading-relaxed text-secondary">
+        <p>
+          Monedario publica información que puede influir en decisiones
+          económicas reales. Google usa el término E-E-A-T —experiencia,
+          conocimiento experto, autoridad y confianza— para describir
+          características asociadas al contenido confiable, con especial
+          exigencia en los temas que llama YMYL (<em>Your Money or Your Life</em
+          >), como los que afectan la estabilidad financiera de una persona.
+        </p>
+        <p>
+          Para Monedario, E-E-A-T no es una puntuación que intentemos optimizar.
+          Es uno de varios marcos útiles para revisar principios que
+          consideramos necesarios con o sin buscadores: identificar quién
+          publica, usar buenas fuentes, mostrar cómo se obtienen los datos,
+          distinguir hechos de interpretaciones, mantener la información vigente
+          y corregir los errores cuando aparecen.
+        </p>
+      </div>
     </section>
 
     <!-- AVISO LEGAL -->
@@ -581,20 +764,18 @@ import { SITE } from "@/config";
       <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
         <h2 class="mb-3 text-lg font-bold">⚠️ Aviso importante</h2>
         <p class="text-sm leading-relaxed text-secondary">
-          La información publicada en Monedario tiene{" "}
-          <strong class="text-foreground">
-            carácter exclusivamente educativo
-          </strong>{" "}
-          y no constituye asesoría financiera, tributaria ni legal. Siempre
-          consulta con un profesional calificado antes de tomar decisiones
-          importantes sobre tu dinero.
+          La información publicada en Monedario tiene <strong
+            class="text-foreground">carácter exclusivamente educativo</strong
+          > y no constituye asesoría financiera, tributaria ni legal. Siempre consulta
+          con un profesional calificado antes de tomar decisiones importantes sobre
+          tu dinero.
         </p>
         <p class="mt-3 text-sm text-secondary">
           El contenido se elabora a partir de normativa oficial y fuentes
-          periódicamente. El sitio mantiene{" "}
-          <strong class="text-foreground">independencia editorial</strong>: no
-          está condicionado por comisiones, publicidad financiera ni acuerdos
-          con instituciones.
+          periódicamente. El sitio mantiene <strong class="text-foreground"
+            >independencia editorial</strong
+          >: no está condicionado por comisiones, publicidad financiera ni
+          acuerdos con instituciones.
         </p>
         <p class="mt-3 text-sm text-secondary">
           Para información oficial consulta la
@@ -602,26 +783,19 @@ import { SITE } from "@/config";
             href="https://www.spensiones.cl"
             target="_blank"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Superintendencia de Pensiones
-          </a>
-          , la{" "}
-          <a
+            >Superintendencia de Pensiones</a
+          >, la <a
             href="https://www.cmfchile.cl/portal/principal/613/w3-channel.html"
             target="_blank"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            CMF
-          </a>{" "}
-          y el
+            >CMF</a
+          > y el
           <a
             href="https://www.sii.cl"
             target="_blank"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            SII
-          </a>
-          .
+            >SII</a
+          >.
         </p>
       </div>
       <p class="mt-6 text-sm text-muted">
@@ -631,22 +805,14 @@ import { SITE } from "@/config";
           href="mailto:contacto@monedario.cl"
           aria-label="Correo electrónico: contacto arroba monedario punto cl"
           class="text-accent underline underline-offset-4 hover:opacity-80"
-        >
-          <span
+          ><span
             style="unicode-bidi: bidi-override; direction: ltr;"
-            aria-hidden="true"
-          >
-            contacto
-          </span>
-          <span aria-hidden="true">[at]</span>
-          <span
+            aria-hidden="true">contacto</span
+          ><span aria-hidden="true">[at]</span><span
             style="unicode-bidi: bidi-override; direction: ltr;"
-            aria-hidden="true"
-          >
-            monedario.cl
-          </span>
-        </a>
-        .
+            aria-hidden="true">monedario.cl</span
+          ></a
+        >.
       </p>
     </section>
   </main>
