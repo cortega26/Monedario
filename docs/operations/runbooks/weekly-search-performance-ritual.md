@@ -335,18 +335,16 @@ El tooling ya existe (plan 128); lo que faltaba era la cadencia. Regla:
 - **Referencia:** plan 128 §8 y `docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md`
   §4 (N1/N3).
 
-### Vista Generative AI de GSC (N7 — verificación pendiente)
+### Vista Generative AI de GSC (N7 — disponible; captura mensual)
 
-Estado inicial (2026-09-30): disponibilidad **no verificada** en la cuenta.
+Disponibilidad **verificada por el owner (2026-09-30): la vista existe** en la
+propiedad. No hay soporte en `gsc-fetch`; la captura es manual.
 
-- **Cómo verificar (owner):** Search Console → Performance → Search results →
-  filtro de tipo de búsqueda; el desglose de IA (AI Overviews/AI Mode) aparece
-  solo si Google lo habilitó para la propiedad. No se infiere presencia en AIO
-  por búsquedas manuales.
-- **Si existe:** exportar la vista con la misma convención semanal
-  (`output/operations/data-signals/gsc/<semana>-generative.json`) y fijar
-  lectura mensual junto al scorecard.
-- **Si no existe:** registrar «no disponible» en la lectura mensual y
-  re-verificar cada trimestre.
-- Sin automatización ni identificadores nuevos; verificación y registro
-  manuales.
+- **Captura:** Search Console → Performance → Search results → filtro de tipo
+  de búsqueda → Generative AI; guardar el export en el bundle semanal como
+  `output/operations/weekly-search-performance/<semana>/gsc-generative-ai.csv`.
+- **Cadencia:** mensual, en la primera corrida del mes (junto a la revisión N1).
+  Anotar fecha y estado en la nota de indexación/cobertura.
+- **Lectura:** impresiones, clics, CTR y posición de las queries con presencia
+  IA; sin inferir AIO por búsquedas manuales y sin declarar causalidad.
+- Sin automatización ni identificadores nuevos.
