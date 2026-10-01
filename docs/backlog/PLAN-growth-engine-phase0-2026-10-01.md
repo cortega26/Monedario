@@ -72,3 +72,13 @@ docs. No toca contenido ni rutas.
 - Resultado de prueba W39: 31 candidatos (10 sitemap gaps, 2 decay, 8 CTR
   gap, 10 striking, 1 funnel); sitemaps: 5/7 dominios OK (2 fallos HTTP
   reportados sin romper).
+
+## Fase 0.2 — calibración y memoria (2026-10-01)
+
+- `src/config/growth-opportunity-feedback.json` (owner vía PR):
+  `dismissed` (IDs exactos), `dismissedPatterns` (dominio + regex de path) y
+  `promoted` (traza de experimentos).
+- `applyFeedback` filtra antes de los topes por tipo; el reporte indica
+  cuántos candidatos se suprimieron sin borrar la evidencia semanal.
+- Documentado en `GROWTH-ENGINE.md` §2c; el reporte semanal deja de repetir
+  ruido ya revisado.
