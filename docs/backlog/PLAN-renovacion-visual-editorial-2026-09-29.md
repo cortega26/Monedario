@@ -1,7 +1,7 @@
 # Renovación visual-editorial de Monedario
 
 Fecha: 2026-09-29
-Estado: En ejecución
+Estado: Cierre técnico completado; integración y despliegue pendientes.
 Autorización: plan aprobado explícitamente por el usuario; generación y curación delegadas.
 
 ## Objetivo y alcance

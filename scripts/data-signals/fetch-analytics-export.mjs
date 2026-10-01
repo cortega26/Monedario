@@ -34,6 +34,8 @@ const BUCKET_NAME = "monedario-analytics-exports";
 
 const ALLOWED_EVENTS = new Set([
   // Current schema (v2).
+  "editorial_image_impression",
+  "editorial_image_click",
   "calculator_view",
   "calculator_start",
   "calculator_complete",
