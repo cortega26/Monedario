@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  undici@>=8 <9: 8.11.2
+  undici: '>=7.28.0'
   tmp: '>=0.2.6'
   yaml: '>=2.8.3'
   qs: '>=6.16.0'
@@ -3846,7 +3846,7 @@ packages:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
       '@smithy/hash-node': '>=4.3.0 <5'
       '@smithy/signature-v4': '>=5.4.0 <6'
-      undici: 8.11.2
+      undici: '>=7.28.0'
       ws: ^8.21.0
       zod: ^3.25 || ^4.0
     peerDependenciesMeta:
