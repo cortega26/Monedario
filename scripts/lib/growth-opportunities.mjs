@@ -616,45 +616,6 @@ export function serpFeatureRiskCandidates(external, config) {
     .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
 }
 
-export function applyFeedback(candidates, feedback) {
-  const dismissed = new Set(feedback?.dismissed ?? []);
-  const patterns = (feedback?.dismissedPatterns ?? [])
-    .map(entry => {
-      try {
-        return {
-          re: new RegExp(entry.pathPattern),
-          domain: entry.domain ?? null,
-          reason: entry.reason ?? null,
-        };
-      } catch {
-        return null;
-      }
-    })
-    .filter(Boolean);
-
-  const kept = [];
-  const suppressed = [];
-  for (const candidate of candidates) {
-    if (dismissed.has(candidate.id)) {
-      suppressed.push({ id: candidate.id, reason: "dismissed" });
-      continue;
-    }
-    const url = candidate.url ?? "";
-    const domain = candidate.metrics?.domain ?? null;
-    const hit = patterns.find(
-      pattern =>
-        (pattern.domain === null || pattern.domain === domain) &&
-        pattern.re.test(url)
-    );
-    if (hit) {
-      suppressed.push({ id: candidate.id, reason: `pattern:${hit.re.source}` });
-      continue;
-    }
-    kept.push(candidate);
-  }
-  return { candidates: kept, suppressed };
-}
-
 export function buildOpportunityReport({
   week,
   window,
@@ -668,7 +629,6 @@ export function buildOpportunityReport({
   external,
   externalAvailable,
   ourRoutes,
-  feedback,
   registry,
 }) {
   const bands = registry.expectedCtrBands;
@@ -739,14 +699,9 @@ export function buildOpportunityReport({
     }
   }
 
-  const { candidates: filteredCandidates, suppressed } = applyFeedback(
-    candidates,
-    feedback
-  );
-
   const perTypeMax = registry.maxCandidatesPerType ?? 10;
   const byTypeSorted = new Map();
-  for (const candidate of filteredCandidates.sort(
+  for (const candidate of candidates.sort(
     (a, b) => b.score - a.score || a.id.localeCompare(b.id)
   )) {
     const list = byTypeSorted.get(candidate.type) ?? [];
@@ -777,10 +732,6 @@ export function buildOpportunityReport({
     candidates: sorted,
     byType,
     skipped,
-    feedback: {
-      suppressed: suppressed.length,
-      suppressedIds: suppressed.map(item => item.id),
-    },
   };
 }
 
@@ -800,11 +751,6 @@ export function renderOpportunityMarkdown(report) {
   if (report.skipped?.length) {
     lines.push(
       `- Omitidos: ${report.skipped.map(item => `${item.detector} (${item.reason})`).join(", ")}`
-    );
-  }
-  if (report.feedback?.suppressed) {
-    lines.push(
-      `- Suprimidos por feedback: ${report.feedback.suppressed} (ya revisados; ver src/config/growth-opportunity-feedback.json)`
     );
   }
   lines.push("");
