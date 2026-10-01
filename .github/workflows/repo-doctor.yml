@@ -1,0 +1,131 @@
+name: Repo doctor (report-only)
+
+# Fase 0 del Growth Engine: corre un subconjunto rápido de gates y clasifica
+# cada fallo por categoría de acción (mechanical/data/editorial/contract).
+# No corrige nada: publica/actualiza un issue con la clasificación.
+# Contrato: docs/operations/GROWTH-ENGINE.md
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Martes 09:00 UTC, entre weekly-search-ops (lunes) y self-heal (miércoles)
+    - cron: "0 9 * * 2"
+
+concurrency:
+  group: repo-doctor-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  doctor:
+    name: Diagnosticar gates (report-only)
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 15
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "🩺 Doctor"
+        run: pnpm run doctor
+
+      - name: "📤 Upload doctor report"
+        if: always()
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: repo-doctor-report
+          retention-days: 30
+          if-no-files-found: warn
+          path: output/validation/doctor/
+
+      - name: "📝 Publicar issue del doctor"
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const reportPath = "output/validation/doctor/report.json";
+            const title = "🩺 Repo doctor (report-only)";
+            const { owner, repo } = context.repo;
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+
+            if (!fs.existsSync(reportPath)) {
+              core.info("No hay reporte del doctor");
+              return;
+            }
+            const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+            const failed = report.checks.filter((check) => check.status === "fail");
+
+            if (failed.length === 0) {
+              if (existing) {
+                await github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: existing.number,
+                  state: "closed",
+                });
+                core.info(`Issue cerrado: #${existing.number}`);
+              } else {
+                core.info("Doctor sin fallos");
+              }
+              return;
+            }
+
+            const actions = {
+              mechanical: "regenerar con herramienta (A1)",
+              data: "regenerar snapshot/worker o abrir issue",
+              editorial: "agente/humano con auditoría separada",
+              contract: "revisión humana (arquitectura)",
+              unknown: "revisión humana; añadir regla",
+            };
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const lines = [
+              "Gates fallando y clasificación de acción:",
+              "",
+              ...failed.map(
+                (check) =>
+                  `- **${check.name}**: ${check.findings
+                    .map(
+                      (finding) =>
+                        `\`${finding.rule}\` → ${finding.category} (${actions[finding.category] ?? "revisar"})`
+                    )
+                    .join(", ")}`
+              ),
+              "",
+              `Run: ${runUrl}`,
+              "",
+              "_Reporte automático Fase 0: el doctor no corrige nada._",
+            ].join("\n");
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: lines,
+              });
+              core.info(`Issue actualizado: #${existing.number}`);
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body: lines,
+                labels: ["automation", "maintenance"],
+              });
+              core.info("Issue del doctor creado");
+            }

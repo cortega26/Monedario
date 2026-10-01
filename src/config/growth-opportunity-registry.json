@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "policy": "docs/operations/GROWTH-ENGINE.md",
+  "phase": "report-only",
+  "updated": "2026-10-01",
+  "maxCandidates": 20,
+  "expectedCtrBands": [
+    [3, 0.08],
+    [5, 0.05],
+    [10, 0.025],
+    [15, 0.012]
+  ],
+  "detectors": {
+    "striking_distance_query": {
+      "enabled": true,
+      "tier": "A2",
+      "minPosition": 5,
+      "maxPosition": 15,
+      "minImpressions": 100,
+      "minCtrDeltaPp": 0.3,
+      "decisionP": 0.025,
+      "windowDays": 28
+    },
+    "ctr_gap_page": {
+      "enabled": true,
+      "tier": "A2",
+      "maxPosition": 10,
+      "minImpressions": 500,
+      "ctrFactor": 0.5,
+      "decisionP": 0.025,
+      "windowDays": 28
+    },
+    "decay_page": {
+      "enabled": true,
+      "tier": "A2",
+      "minImpressions": 200,
+      "maxClicksDrop": 0.25,
+      "maxImpressionsDelta": 0.15,
+      "decisionP": 0.2,
+      "windowDays": 14
+    },
+    "cannibalization_query": {
+      "enabled": true,
+      "tier": "A3",
+      "minImpressionsPerPage": 50,
+      "minPages": 2,
+      "decisionP": 0.05,
+      "windowDays": 28
+    },
+    "calculator_funnel": {
+      "enabled": true,
+      "tier": "A3",
+      "minViews": 100,
+      "minStartRate": 0.5,
+      "minCompleteRate": 0.9,
+      "decisionP": 0.05,
+      "windowDays": 14
+    },
+    "content_gap_query": {
+      "enabled": true,
+      "tier": "A3",
+      "minVolume": 300,
+      "maxDifficulty": 60,
+      "decisionP": 0.05,
+      "windowDays": 28
+    },
+    "competitor_gap_query": {
+      "enabled": true,
+      "tier": "A3",
+      "minVolume": 200,
+      "maxDifficulty": 65,
+      "maxOurPosition": 8,
+      "maxCompetitorPosition": 3,
+      "decisionP": 0.05,
+      "windowDays": 28
+    },
+    "serp_feature_risk": {
+      "enabled": true,
+      "tier": "A0",
+      "minVolume": 200,
+      "maxCtr": 0.02,
+      "decisionP": 0.05,
+      "windowDays": 28
+    }
+  },
+  "externalData": {
+    "path": "output/external-intelligence/<week>.json",
+    "contract": "docs/operations/EXTERNAL-INTELLIGENCE-CONTRACT.md",
+    "sources": ["semrush", "ahrefs", "control-plane"],
+    "license": "internal-only",
+    "note": "Datos de proveedor externo agregados; el path está gitignoreado y nunca se commitea crudo. Sin archivo, los detectores externos se omiten."
+  },
+  "experiments": []
+}

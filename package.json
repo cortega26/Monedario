@@ -124,7 +124,9 @@
     "images:build-delivery": "node scripts/hero-images/build-delivery.mjs",
     "check:image-delivery": "node scripts/hero-images/build-delivery.mjs --check",
     "check:image-curation": "node scripts/check-image-curation.mjs",
-    "check:risk-tiers": "node scripts/check-risk-tiers.mjs"
+    "check:risk-tiers": "node scripts/check-risk-tiers.mjs",
+    "growth:detect": "node scripts/detect-seo-opportunities.mjs",
+    "doctor": "node scripts/doctor.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",

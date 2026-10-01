@@ -1,0 +1,99 @@
+name: Growth opportunities (report-only)
+
+# Fase 0 del Growth Engine: detecta oportunidades desde los data-signals ya
+# commiteados (GSC + analytics first-party) y publica un issue de reporte.
+# No modifica contenido, no abre PRs y no toca rutas.
+# Contrato: docs/operations/GROWTH-ENGINE.md
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Lunes 09:40 UTC, después de data-signals (06:00) y weekly-search-ops (08:15)
+    - cron: "40 9 * * 1"
+
+concurrency:
+  group: growth-opportunities-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  detect:
+    name: Detectar oportunidades (report-only)
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 10
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "🟢 Setup Node.js"
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: "🌱 Detectar oportunidades"
+        run: node scripts/detect-seo-opportunities.mjs
+
+      - name: "📤 Upload opportunity report"
+        if: always()
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: growth-opportunities-report
+          retention-days: 30
+          if-no-files-found: warn
+          path: output/validation/growth-opportunities/
+
+      - name: "📝 Publicar issue de oportunidades"
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const dir = "output/validation/growth-opportunities";
+            if (!fs.existsSync(dir)) {
+              core.info("No hay reporte de oportunidades");
+              return;
+            }
+            const files = fs
+              .readdirSync(dir)
+              .filter((file) => file.endsWith(".md"))
+              .sort();
+            if (files.length === 0) {
+              core.info("No hay markdown de oportunidades");
+              return;
+            }
+            const latest = files[files.length - 1];
+            const body = fs.readFileSync(`${dir}/${latest}`, "utf8");
+            const title = "🌱 Growth opportunities (report-only)";
+            const { owner, repo } = context.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const footer = `\n\n---\n_Reporte automático Fase 0 (sin acciones). Run: ${runUrl}_`;
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner,
+                repo,
+                issue_number: existing.number,
+                body: body + footer,
+              });
+              core.info(`Issue actualizado: #${existing.number}`);
+            } else {
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title,
+                body: body + footer,
+                labels: ["automation", "search"],
+              });
+              core.info("Issue de oportunidades creado");
+            }
