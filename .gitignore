@@ -18,6 +18,8 @@ output/playwright/
 test-results/
 output/security/
 output/validation/
+# Inteligencia externa licenciada (Semrush/Ahrefs/control-plane); no redistribuir
+output/external-intelligence/
 # Derived GSC rollup (regenerable via data-signals:gsc:aggregate); weekly exports stay tracked
 output/operations/data-signals/gsc/aggregate-query-page.json
 
