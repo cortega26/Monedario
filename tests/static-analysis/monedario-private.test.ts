@@ -30,11 +30,11 @@ describe("Monedario Privado contracts", () => {
       path.join(root, "src/layouts/Layout.astro"),
       "utf8"
     );
-    expect(layout).toContain(
-      '!privacyMode && <script src="../scripts/analytics.ts" />'
+    expect(layout).toMatch(
+      /!privacyMode\s*&&\s*<script\s+src="\.\.\/scripts\/analytics\.ts"\s*(?:\/>|><\/script>)/
     );
-    expect(layout).toContain(
-      '!privacyMode && <script is:inline src="/sw-register.js" defer />'
+    expect(layout).toMatch(
+      /!privacyMode\s*&&\s*<script\s+is:inline\s+src="\/sw-register\.js"\s+defer\s*(?:\/>|><\/script>)/
     );
   });
 
