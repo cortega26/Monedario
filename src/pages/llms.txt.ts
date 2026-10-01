@@ -49,6 +49,8 @@ ${calcs}
 
 - [Metodología editorial](${base}/metodologia/) — proceso editorial de 7 etapas, fuentes utilizadas y cómo auditar cada cifra
 - [Autor: ${SITE.authorFullName}](${base}/autor/)
+- [Cómo usamos los datos](${base}/como-usamos-los-datos/) — fuentes, snapshot, fallbacks y vigencia de los indicadores económicos
+- [Correcciones](${base}/correcciones/) — registro público de correcciones materiales y controles de recurrencia
 - [Accesibilidad](${base}/accessibilidad/)
 - [Política de privacidad](${base}/privacidad/)
 - [Contenido completo en markdown](${base}/llms-full.txt) — texto íntegro de todos los artículos publicados, para ingestión por modelos
