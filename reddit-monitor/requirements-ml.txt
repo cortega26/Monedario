@@ -28,7 +28,7 @@
 # fuente adicional, asi el resto de los paquetes se instalan normal.
 --extra-index-url https://download.pytorch.org/whl/cpu
 torch==2.13.0+cpu
-sentence-transformers==5.1.0
+sentence-transformers==5.6.0
 spacy==3.8.7
 # nltk 3.10.3 (ultima publicada) tiene GHSA-8mgp-746c-j5xp sin parche:
 # bypass de sandbox en APIs de artefactos de modelo (TransitionParser,
