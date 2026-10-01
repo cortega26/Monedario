@@ -192,17 +192,26 @@ test.describe("Calculator result states (Plan 114)", () => {
       .locator("#resultado-contenido")
       .innerText();
 
-    // Mismos montos que el motor real (auditoría F08).
-    for (const amount of [
-      "$973.347",
-      "$1.200.000",
-      "$135.240",
-      "$84.000",
-      "$7.200",
-      "$213",
-    ]) {
+    // Montos independientes de los parámetros mensuales (auditoría F08).
+    for (const amount of ["$1.200.000", "$135.240", "$84.000", "$7.200"]) {
       expect(exampleText).toContain(amount);
       expect(resultText).toContain(amount);
+    }
+
+    // El impuesto de 2ª categoría y el líquido dependen de la UTM/UF vigente
+    // (el tramo exento se cruza con el refresh económico mensual; ver #631),
+    // así que el invariante es que todo monto del ejemplo provenga del mismo
+    // motor que el cálculo real, no un valor congelado que queda obsoleto con
+    // cada refresh. El resultado agrega montos auxiliares propios.
+    const amountsIn = (text: string) =>
+      new Set(text.match(/\$[\d.]+/g) ?? []);
+    const exampleAmounts = amountsIn(exampleText);
+    const resultAmounts = amountsIn(resultText);
+    expect(exampleAmounts.size).toBeGreaterThan(0);
+    for (const amount of exampleAmounts) {
+      expect(resultAmounts.has(amount), `falta ${amount} en el resultado`).toBe(
+        true
+      );
     }
   });
 
