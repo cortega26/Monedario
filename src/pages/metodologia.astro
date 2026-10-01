@@ -8,8 +8,8 @@ import { SITE } from "@/config";
 ---
 
 <Layout
-  title={`Proceso editorial | ${SITE.title}`}
-  description="Controles editoriales de Monedario: fuentes oficiales, pruebas y protocolo de siete etapas aplicable a contenido YMYL nuevo o actualizado sustantivamente desde el 25 de abril de 2026."
+  title={`Metodología y verificación editorial | ${SITE.title}`}
+  description="Cómo Monedario elabora y verifica su información: jerarquía de fuentes, verificación por afirmación, vigencia, pruebas de calculadoras, uso de IA y política de correcciones."
 >
   <Header />
   <Breadcrumb />
@@ -18,10 +18,10 @@ import { SITE } from "@/config";
       <p
         class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
       >
-        Proceso editorial
+        Metodología y verificación
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
-        Cómo se elabora el contenido de Monedario
+        Cómo elaboramos y verificamos la información
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
         Este documento distingue los controles verificables de todo el sitio y
@@ -32,6 +32,12 @@ import { SITE } from "@/config";
           href={getPath("/acerca-de/")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
           >Acerca de</a
+        >; si te interesa de dónde salen los indicadores y qué pasa entre la
+        fuente y el número publicado, revisa
+        <a
+          href={getPath("/como-usamos-los-datos/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Cómo usamos los datos</a
         >.
       </p>
     </section>
@@ -579,6 +585,178 @@ import { SITE } from "@/config";
           >repórtalo</a
         > usando el formulario de la página del autor.
       </p>
+    </section>
+
+    <!-- ESTÁNDARES DE VERIFICACIÓN -->
+    <section id="estandares" class="border-b border-border py-10">
+      <h2 class="mb-2 text-2xl font-bold">Estándares de verificación</h2>
+      <p class="mb-8 max-w-2xl text-sm leading-relaxed text-secondary">
+        Estos criterios aplican a todo el sitio, con una exigencia proporcional
+        al riesgo: cuanto más puede cambiar una afirmación la decisión económica
+        de una persona, más evidencia pedimos para sostenerla.
+      </p>
+      <div class="max-w-2xl space-y-8">
+        <div id="jerarquia-de-fuentes">
+          <h3 class="mb-2 text-lg font-semibold">Jerarquía de fuentes</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cuando dos fuentes pueden sostener una misma afirmación, preferimos
+            la de mayor rango, en este orden:
+          </p>
+          <ol
+            class="mt-3 list-decimal space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>Legislación oficial vigente (Ley Chile, Diario Oficial).</li>
+            <li>
+              Organismos públicos competentes en la materia (SII,
+              Superintendencia de Pensiones, CMF, Dirección del Trabajo, Banco
+              Central, INE, entre otros).
+            </li>
+            <li>
+              Normativa administrativa: circulares, resoluciones y oficios.
+            </li>
+            <li>
+              Datos y estadísticas oficiales publicados por esos organismos.
+            </li>
+            <li>
+              Documentación institucional (guías, preguntas frecuentes,
+              simuladores oficiales).
+            </li>
+            <li>Literatura académica.</li>
+            <li>
+              Fuentes secundarias especializadas, solo cuando no existe una
+              primaria o para contexto.
+            </li>
+          </ol>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            Citar una fuente no basta: la fuente enlazada tiene que sostener
+            realmente la afirmación concreta, en el periodo al que se refiere.
+          </p>
+        </div>
+
+        <div id="integridad-factual">
+          <h3 class="mb-2 text-lg font-semibold">Integridad factual</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            La unidad de verificación es la afirmación, no solo la página. Al
+            revisar un contenido buscamos afirmaciones que sean:
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>falsas o desactualizadas;</li>
+            <li>incompletas o engañosas por omisión;</li>
+            <li>insuficientemente sustentadas o imposibles de auditar;</li>
+            <li>
+              inconsistentes en el tiempo o contradictorias con otras páginas
+              del sitio;
+            </li>
+            <li>
+              más categóricas de lo que la evidencia permite, o debatibles
+              presentadas como hechos.
+            </li>
+          </ul>
+        </div>
+
+        <div id="completitud-material">
+          <h3 class="mb-2 text-lg font-semibold">Completitud material</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Una afirmación puede ser literalmente correcta y aun así resultar
+            engañosa si omite una condición o excepción capaz de cambiar la
+            decisión de quien la lee. No prometemos cubrir todas las excepciones
+            posibles; sí incluir las que, por su frecuencia o su impacto, pueden
+            cambiar materialmente el resultado.
+          </p>
+        </div>
+
+        <div id="vigencia">
+          <h3 class="mb-2 text-lg font-semibold">Vigencia y fechas</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las reglas financieras cambian: tramos, topes, tasas y plazos tienen
+            periodos de aplicación. Por eso distinguimos entre la fecha de
+            publicación, la fecha de la última modificación sustantiva y el
+            periodo para el cual la información fue verificada. Los parámetros
+            con vigencia temporal se registran junto a su periodo de aplicación
+            y su fuente.
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            No actualizamos fechas para aparentar frescura: la fecha de
+            modificación cambia cuando cambia el contenido, no cuando se
+            republica la página.
+          </p>
+        </div>
+
+        <div id="revision-especializada">
+          <h3 class="mb-2 text-lg font-semibold">Revisión especializada</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Algunos temas —tributarios, previsionales, laborales, legales, de
+            inversión o estadísticos— pueden justificar la revisión de una
+            persona con experiencia específica. Aplicamos ese criterio en
+            proporción al riesgo, no a todo el sitio. Hoy no contamos con un
+            revisor experto externo; cuando una pieza tenga revisión
+            especializada, lo indicaremos en la propia pieza con nombre y
+            credencial. Nunca indicamos una revisión que no ocurrió.
+          </p>
+        </div>
+
+        <div id="correcciones">
+          <h3 class="mb-2 text-lg font-semibold">Correcciones</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cualquier persona puede reportar un error con el
+            <a
+              href={getPath("/autor/#reportar-error")}
+              class="text-accent underline underline-offset-4 hover:opacity-80"
+              >formulario de reporte</a
+            >, indicando la página, la afirmación cuestionada y, si la tiene,
+            una fuente alternativa. Cada reporte se contrasta con la fuente
+            primaria correspondiente.
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>
+              Si el error es material —cambia un número, un plazo, un requisito
+              o una conclusión—, se corrige y la fecha de modificación de la
+              pieza se actualiza.
+            </li>
+            <li>
+              Además de corregir la pieza, buscamos la causa: si el mismo dato
+              aparece en otras páginas, o si un control automático podría
+              haberlo detectado, se corrige también el sistema para que el error
+              sea más difícil de repetir.
+            </li>
+            <li>
+              Las erratas y los cambios de estilo sin impacto factual se
+              corrigen sin registro especial.
+            </li>
+          </ul>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            No prometemos no equivocarnos. Prometemos buscar los errores,
+            corregirlos y mejorar el proceso que permitió que ocurrieran.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EEAT / YMYL -->
+    <section id="por-que-este-estandar" class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Por qué aplicamos este estándar</h2>
+      <div class="max-w-2xl space-y-3 text-sm leading-relaxed text-secondary">
+        <p>
+          Monedario publica información que puede influir en decisiones
+          económicas reales. Google usa el término E-E-A-T —experiencia,
+          conocimiento experto, autoridad y confianza— para describir
+          características asociadas al contenido confiable, con especial
+          exigencia en los temas que llama YMYL (<em>Your Money or Your Life</em
+          >), como los que afectan la estabilidad financiera de una persona.
+        </p>
+        <p>
+          Para Monedario, E-E-A-T no es una puntuación que intentemos optimizar.
+          Es uno de varios marcos útiles para revisar principios que
+          consideramos necesarios con o sin buscadores: identificar quién
+          publica, usar buenas fuentes, mostrar cómo se obtienen los datos,
+          distinguir hechos de interpretaciones, mantener la información vigente
+          y corregir los errores cuando aparecen.
+        </p>
+      </div>
     </section>
 
     <!-- AVISO LEGAL -->
