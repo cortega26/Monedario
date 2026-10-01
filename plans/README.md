@@ -66,20 +66,22 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
-## SEO/SERP 2026-09-30 — planes 137–138 (ejecución del glosario y alarmas N3, post-W40)
+## SEO/SERP 2026-09-30 — planes 137–139 (glosario, alarmas N3 y `/archives/`, post-W40)
 
 El 137 ejecuta las recomendaciones `ENRIQUECER` de la auditoría N2 (plan 135) y
 el backfill de fuentes del glosario; el 138 añade cohortes de alarma de defensa
-(1–3) y oportunidad (4–10) al scorecard semanal (N3). Ambos con gate temporal:
-no iniciar antes de 2026-10-05 (post-W40). El 137 exige sesión distinta a la
-auditora (`INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`). No tocan indexabilidad,
-rutas ni esquema; `sbif` (consolidación) queda fuera y requiere contrato 120 +
-ADR + decisión del owner.
+(1–3) y oportunidad (4–10) al scorecard semanal (N3); el 139 aplica la decisión
+del owner sobre `/archives/` (opción B: `noindex,follow` vía contrato 120 +
+ADR). Todos con gate temporal: no iniciar antes de 2026-10-05 (post-W40). El 137
+exige sesión distinta a la auditora
+(`INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`). No crean URLs ni tocan contenido
+editorial; `sbif` (consolidación) queda fuera y requiere decisión adicional.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 137 | [glosario post-W40: enriquecimiento y fuentes](137-glosario-post-w40-enriquecimiento-fuentes-2026-09-30.md) | P1 | M–L | plan 135 + gate temporal | TODO — gate: post-W40 (2026-10-05); sesión de ejecución ≠ auditora |
 | 138 | [alarmas de defensa en el scorecard (N3)](138-alarmas-defensa-scorecard-n3-2026-09-30.md) | P1 | S–M | N1 + gate temporal | TODO — gate: post-W40 (2026-10-05) |
+| 139 | [`/archives/` a `noindex,follow` vía contrato](139-archives-noindex-contrato-2026-10-01.md) | P2 | S | decisión del owner (B) + gate temporal | TODO — gate: post-W40 (2026-10-05) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

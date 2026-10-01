@@ -76,7 +76,7 @@ decisión; el informe original no se reemplaza, se referencia.
 | 5 | APV: promesa A vs B sin incentivo comercial | **Title ya posiciona A/B**; validación §8: `simulador apv` pos 45,5 y `simulador apv habitat` pos 23,1 → snippet no mueve posición | N4 re-scoped; coordinar con plan 086 y `DIAGNOSTICO-apv-completion-2026-09-04.md` | Post-freeze; depende de distribución |
 | 6 | Prepago: escenarios cuota vs. plazo / prepagar vs. invertir | Superficie completa (spike `DECISION-PATHS-AFC-PREPAGO-CREDITO-2026-08-02.md`); validación §8: `conviene prepagar` 97i/0c pos 14,8 | N4 (candidato de producto, requiere registro) | Post panel F4 |
 | 7 | Auditar glosario antes de expandirlo | **Validado con datos** (§8): 37/54 sin impresiones, 15 de 17 visibles con 0 clics, 55/55 indexadas, canibalización mínima; gap audit 2026-05-25 y plan 119 como antecedentes | N2 | Auditoría ahora; cambios después |
-| 8 | `/archives/` fuera del índice | **Evidencia recibida** y briefing listo: `docs/backlog/DECISION-archives-indexabilidad-2026-09-30.md` (opciones A–D; recomendación operativa: diferir). Sin ejecutar | Decisión del owner vía contrato plan 120 + ADR si aplica | Post-W40 (no urgente) |
+| 8 | `/archives/` fuera del índice | **Decisión del owner (2026-09-30): opción B** — `noindex,follow` vía contrato 120; plan 139 creado (post-W40). Briefing: `docs/backlog/DECISION-archives-indexabilidad-2026-09-30.md` | Contrato plan 120 + ADR (plan 139) | Post-W40 (no urgente) |
 | 9 | Retirar `priority`/`changefreq` del sitemap | **Siguen emitiéndose** (`astro.config.ts:185-245`); Google los ignora | N6 | Higiene P3, oportunista |
 | 10 | Dataset citable (AFP/tributario) + `Dataset` schema | Alineado con `EEAT-STRATEGY-2026-09-28.md` #4; URLs nuevas bloqueadas por FOCO | N5 | Post-2026-11-02 o excepción |
 | 11 | Link earning por activos, no outreach vacío | **Parcial**: planes de distribución vigentes (citación F5, community seeding, zero-cost); sin datos de backlinks | Ejecutar esos planes, no uno nuevo | Continuo |
@@ -207,7 +207,7 @@ grupos fuertes, todos UTM calculadora vs. post). Detalle y comandos en
 | Prepago: 557i/45c; `conviene prepagar un credito de consumo` 97i/0c pos 14,8 | Confirma la intención de decisión | N4 (escenarios) |
 | Renegociación: página 31–73i/semana | Demanda pequeña | Expectativas acotadas |
 | Glosario: 55/55 indexadas; 37/54 sin impresiones; 15 de 17 visibles con 0 clics | Sin canibalización; demanda inexistente | N2 con alcance definido |
-| `/archives/`: 0i/0c; «Crawled - currently not indexed» | Evidencia para revisar plan 116 SEO-03 | Decisión del owner vía plan 120 |
+| `/archives/`: 0i/0c; «Crawled - currently not indexed» | Evidencia para revisar plan 116 SEO-03 | Decisión del owner tomada: opción B (`noindex,follow`), plan 139 (post-W40) |
 | Chile 98,7% de impresiones; móvil 65% con CTR 0,12% vs 0,22% escritorio | Brecha móvil no tratada por el informe | Candidato de snippet/UX post-ventana |
 | Canibalización real: 3 grupos, todos UTM | El glosario NO canibaliza | Reduce urgencia de consolidación por esa causa |
 
@@ -239,3 +239,5 @@ exports actuales (dimensiones query/page/country/device); W39 está completa
   en el scorecard, post-W40). N7: disponibilidad de la vista Generative AI
   **confirmada por el owner**; captura mensual manual documentada en el ritual.
   Commits SEO/SERP empujados a `origin/main` (`b28c473b`).
+- 2026-10-01 — Owner acepta la opción B para `/archives/`: plan 139 creado
+  (`noindex,follow` vía contrato 120 + ADR, post-W40). No ejecutado.
