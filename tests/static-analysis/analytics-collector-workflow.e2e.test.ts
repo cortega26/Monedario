@@ -21,6 +21,10 @@ const WORKFLOW_PATH = path.join(
   "deploy-analytics-collector.yml",
 );
 const source = fs.readFileSync(WORKFLOW_PATH, "utf8");
+const packageJson = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
+) as { devDependencies?: Record<string, string> };
+const pnpmLock = fs.readFileSync(path.join(process.cwd(), "pnpm-lock.yaml"), "utf8");
 const workflow = load(source, { schema: JSON_SCHEMA }) as {
   on: Record<string, unknown>;
   permissions: Record<string, string>;
@@ -88,6 +92,14 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
         `la action "${uses}" debe usar un SHA inmutable de 40 caracteres`,
       ).not.toBeNull();
     }
+  });
+
+  it("pinea Wrangler a una versión exacta que pasó la API real", () => {
+    const version = packageJson.devDependencies?.wrangler ?? "";
+    expect(version).toBe("4.138.0");
+
+    expect(pnpmLock).toContain(`specifier: ${version}`);
+    expect(pnpmLock).toContain(`version: ${version}(`);
   });
 
   it("usa la config explícita del worker en dry-run y deploy", () => {
