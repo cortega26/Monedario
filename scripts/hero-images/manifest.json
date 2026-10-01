@@ -6,6 +6,7 @@
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "sourceContentHash": "28f745478810cd032cf0376dd09f1a61121740a5f3d2abccb62b413c9896d66d",
       "title": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)",
       "tags": [
         "ahorro",
@@ -39,6 +40,7 @@
     },
     {
       "slug": "bancos-y-fintech-chile",
+      "sourceContentHash": "7facd33d00a82476113c2c6a2386236470b5daff633df281ac923d392377bfe7",
       "title": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
       "tags": [
         "bancos",
@@ -73,6 +75,7 @@
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",
+      "sourceContentHash": "430530ab0b673a255c10d42d2b72189d1671ea8fccf23fd0ad8ce307fe880d10",
       "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
       "tags": [
         "boletas",
@@ -105,6 +108,7 @@
     },
     {
       "slug": "cae-costo-real-credito-chile",
+      "sourceContentHash": "d5d09b822f486f1d68c7734ed43b300a77f0466daebc8705dbe5e724a7f986f8",
       "title": "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña",
       "tags": [
         "credito",
@@ -139,6 +143,7 @@
     },
     {
       "slug": "como-calcular-sueldo-liquido",
+      "sourceContentHash": "40f4979bf3b81491f19163c04552cd49681580b44b095df1ac340be78707bd3b",
       "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
       "tags": [
         "sueldo",
@@ -173,6 +178,7 @@
     },
     {
       "slug": "como-cambiarse-de-afp",
+      "sourceContentHash": "cc92251408e5f240b8bdb5736f820ff9d58e95753999e48bd7c224c1c2354020",
       "title": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026",
       "tags": [
         "afp",
@@ -187,7 +193,7 @@
       "summary": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones apro...",
       "leadParagraphs": [
         "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.",
-        "> **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN.",
+        "> **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN. > **Actualización 2026-09-30:** plazo de traspaso verificado contra la Superintendencia de Pensiones («Traspaso a otra AFP»); se alineó el bloque de respuesta del artículo.",
         "Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: [¿qué fondo A–E conviene según tu perfil?](/posts/fondos-afp-a-b-c-d-e/) — [¿qué es la Cuenta 2?](/posts/que-es-la-cuenta-2-afp/) — [¿cómo leer tu cartola AFP?](/posts/como-leer-cartola-afp-chile/)"
       ],
       "headings": [
@@ -200,12 +206,13 @@
         "Rentabilidad",
         "Calidad de servicio y herramientas digitales"
       ],
-      "bodyExcerpt": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN. Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: — — ## Tabla de contenidos ## ¿Puedo cambiarme de AFP? Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido. Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes permanecer obligatoriamente 24 meses en AFP Uno, que es la AFP adjudicataria de la licitación de nuevos afiliados para el período 2025–2027. Sin embargo, si durante ese período A",
-      "wordCount": 1227,
+      "bodyExcerpt": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN. > **Actualización 2026-09-30:** plazo de traspaso verificado contra la Superintendencia de Pensiones («Traspaso a otra AFP»); se alineó el bloque de respuesta del artículo. Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: — — ## Tabla de contenidos ## ¿Puedo cambiarme de AFP? Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido. Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes perma",
+      "wordCount": 1287,
       "sourceFile": "como-cambiarse-de-afp.md"
     },
     {
       "slug": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "sourceContentHash": "bd288dc1b917154a2b91e9f6a9dbed6e01b1f4142bbd03e642369c28e31e847b",
       "title": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos",
       "tags": [
         "inversiones",
@@ -240,6 +247,7 @@
     },
     {
       "slug": "como-hacer-presupuesto-mensual-chile",
+      "sourceContentHash": "59ca4525c883578f70737611351e6e1f5d1241ad9413a3d0bfb84e5a9969b6a3",
       "title": "Presupuesto mensual en Chile: método práctico sin plantilla mágica",
       "tags": [
         "presupuesto",
@@ -269,11 +277,12 @@
         "Paso 5: El método 50/30/20 y por qué no siempre aplica en Chile"
       ],
       "bodyExcerpt": "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas. Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica. Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la . Si es tu primer empleo, la te explica además contrato, AFP y Fonasa antes de llegar al presupuesto. > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento g",
-      "wordCount": 1346,
+      "wordCount": 1370,
       "sourceFile": "como-hacer-presupuesto-mensual-chile.md"
     },
     {
       "slug": "como-invertir-en-etfs-desde-chile",
+      "sourceContentHash": "982f0c2fe23d766f8383e6e9fdc771b8cbfee3cd6c4e30db5d4039771eadc0a3",
       "title": "¿Cómo comprar ETF en Chile? Corredoras, costos y más",
       "tags": [
         "etf",
@@ -307,6 +316,7 @@
     },
     {
       "slug": "como-leer-cartola-afp-chile",
+      "sourceContentHash": "94422cdabe1e4c772272e09e342d6401adb45c810a2a8b08b784848f520b0f4e",
       "title": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores",
       "tags": [
         "afp",
@@ -340,6 +350,7 @@
     },
     {
       "slug": "como-salir-boletin-comercial-chile",
+      "sourceContentHash": "e062d3df5e3e969ed46961bcdaea64277eb2308efe88afabe05828e52a06e8d3",
       "title": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error",
       "tags": [
         "boletin-comercial",
@@ -373,6 +384,7 @@
     },
     {
       "slug": "contribuciones-bienes-raices-chile",
+      "sourceContentHash": "65cc2ac8fb831c101ad4856baf05b5a495dc4c7d9a39034799c28f80becc288c",
       "title": "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones",
       "tags": [
         "contribuciones",
@@ -407,6 +419,7 @@
     },
     {
       "slug": "cotizacion-voluntaria-afp-independiente",
+      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
       "title": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias",
       "tags": [
         "afiliacion-voluntaria",
@@ -442,6 +455,7 @@
     },
     {
       "slug": "credito-hipotecario-chile-guia-completa",
+      "sourceContentHash": "7b8539c8b293e5525521b36471cd8e746ba0a5bee435956e157b7dc046c3e755",
       "title": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026",
       "tags": [
         "credito-hipotecario",
@@ -476,6 +490,7 @@
     },
     {
       "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",
+      "sourceContentHash": "f6c7dfc5e77f8bb9d8535c2b2704fab56da855c8e751477fcedef02fbdf04e14",
       "title": "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo",
       "tags": [
         "afp",
@@ -509,6 +524,7 @@
     },
     {
       "slug": "deposito-a-plazo-uf-vs-pesos",
+      "sourceContentHash": "189334731309ee96558e62996f2bb9886f7af4779089377bc3e55490bbae72e3",
       "title": "Depósito a plazo: UF vs pesos — qué conviene y cuándo",
       "tags": [
         "deposito-a-plazo",
@@ -542,6 +558,7 @@
     },
     {
       "slug": "descuentos-de-sueldo",
+      "sourceContentHash": "acf43262a5316a3a3ed6d4466bce66c291ea9298b8d9b7e1b4d1d91f2e0acecf",
       "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
       "tags": [
         "sueldo",
@@ -570,11 +587,12 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu , no sobre el sueldo bruto total — por eso conviene saber primero qué entra en esa base. Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la explica contrato, AFP y Fonasa desde cero. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre ",
-      "wordCount": 1156,
+      "wordCount": 1162,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
       "slug": "devolucion-impuestos-fechas-compensaciones",
+      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
       "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
       "tags": [
         "impuestos",
@@ -607,6 +625,7 @@
     },
     {
       "slug": "donde-ver-si-estoy-en-dicom-gratis",
+      "sourceContentHash": "2b1c7bb17d81d770966f0ecfc3877ba845e0e1d700838fbac4c85317e96496cb",
       "title": "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero",
       "tags": [
         "dicom",
@@ -641,6 +660,7 @@
     },
     {
       "slug": "el-poder-del-interes-compuesto",
+      "sourceContentHash": "7672e2d496a17ba9fd5df3f856afcd4fc790d7457b6959a5cfc436f74f0084d6",
       "title": "El poder del interés compuesto: 10% del sueldo mínimo a $118 millones",
       "tags": [
         "ahorro",
@@ -676,6 +696,7 @@
     },
     {
       "slug": "estafas-financieras-chile-vishing-smishing-marketplace",
+      "sourceContentHash": "d9c8a486248047d3dc2d7b2c79cf44f44cf8fa60266918e15abd6eafcada799f",
       "title": "Estafas financieras en Chile: señales por canal y checklist de 24 horas",
       "tags": [
         "seguridad-financiera",
@@ -710,6 +731,7 @@
     },
     {
       "slug": "finanzas-para-migrantes-chile",
+      "sourceContentHash": "9b0dfa1e23c770e8299dd69eb37f4410a911cf107a1dd1b329cb8cc9dabec51f",
       "title": "Cómo ordenar tus finanzas en Chile siendo migrante",
       "tags": [
         "migrantes",
@@ -744,6 +766,7 @@
     },
     {
       "slug": "finiquito-e-indemnizaciones-en-chile",
+      "sourceContentHash": "09ddee2f4fb73209dd4d2d9ef1010c9a634dd7d8e37aacedf3e6b0cd19eb4984",
       "title": "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
       "tags": [
         "empleo-ingresos",
@@ -778,6 +801,7 @@
     },
     {
       "slug": "fonasa-vs-isapre-comparativa",
+      "sourceContentHash": "6cc0624f8012f978fe7801e2140bb3c434571af4869b0514b44eccfc4fd8324a",
       "title": "Fonasa o Isapre: cuál conviene según tu caso (2026)",
       "tags": [
         "seguridad-financiera",
@@ -812,6 +836,7 @@
     },
     {
       "slug": "fondo-emergencia-chile",
+      "sourceContentHash": "97588c95ac193945c4b94ddb4b5827df6627668845655246da58adfd6a420d62",
       "title": "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo",
       "tags": [
         "fondo-emergencia",
@@ -839,11 +864,12 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-05-03.** Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo. Antes de pensar en invertir, antes de revisar fondos mutuos o APV, hay un paso que la mayoría salta: tener un colchón que te permita absorber un golpe inesperado sin destruir el plan financiero que estás construyendo. Un despido repentino. Un gasto de salud no cubierto. Una falla del auto. Una reparación urgente en el arriendo. Todas estas situaciones tienen algo en común: llegan sin aviso y exigen plata disponible hoy, no en 90 días. Si ya tienes un , el fondo de emergencia es el siguiente paso natural. Es el puente entre el control de gastos del día a día y la decisión de empezar a invertir. ## ¿Qué es un fondo de emergencia y para qué sirve? Un fondo de emergencia es una reserva de dinero destinada exclusivamente a cubrir gastos urgentes e imprevistos. No es ahorro para vacaciones. No es el enganche de una cuenta de ahorro a largo plazo. No es capital de inversión. Su propósito es uno: darte tiempo para tomar decisiones con calma cuando algo sale mal, sin tener que end",
-      "wordCount": 1335,
+      "wordCount": 1366,
       "sourceFile": "fondo-emergencia-chile.md"
     },
     {
       "slug": "fondos-afp-a-b-c-d-e",
+      "sourceContentHash": "6ce203d08e60b01d7bd416453e95b0bbe6826a85d16815dff5be2dfa090d3e83",
       "title": "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
       "tags": [
         "afp",
@@ -877,6 +903,7 @@
     },
     {
       "slug": "fondos-mutuos-comisiones-rescate-impuestos",
+      "sourceContentHash": "dbd5dfb80884655a66abf90a19fec7d710868b303080610024d8770e3f1cbf09",
       "title": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
       "tags": [
         "fondos-mutuos",
@@ -910,6 +937,7 @@
     },
     {
       "slug": "fraude-tarjeta-que-hacer",
+      "sourceContentHash": "3b86d5940328e2700b41f6e0f15e21b4ab73b0f9140de6374ce705d8849fbcd4",
       "title": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)",
       "tags": [
         "fraude",
@@ -944,6 +972,7 @@
     },
     {
       "slug": "gratificacion-legal-chile",
+      "sourceContentHash": "c5056c90d0e06e360d83acb9f69cc9421cc20b93ce860cb1d86ec8d5dca7a6a5",
       "title": "Gratificación legal en Chile: cómo calcularla y cuál es el tope",
       "tags": [
         "gratificacion",
@@ -973,11 +1002,12 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-08-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo. Revisas tu liquidación y hay una línea que dice \"gratificación\". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es \"eso lo decide la empresa\". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene. ## ¿Qué es la gratificación legal y a quiénes aplica? La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas. **Quiénes tienen derecho:** Todo trabajador que preste servicios en un establecimiento",
-      "wordCount": 1041,
+      "wordCount": 1060,
       "sourceFile": "gratificacion-legal-chile.md"
     },
     {
       "slug": "impuesto-global-complementario-chile",
+      "sourceContentHash": "f795fdb1d09a56368c49721cbaee995366d67dc0806a66f351f797516a1fb437",
       "title": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga",
       "tags": [
         "igc",
@@ -1006,11 +1036,12 @@
         "¿Resultado: pago adicional o devolución?"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22. ## ¿Qué es el Impuesto Global Complementario? El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la . El nombre lo explica: \"global\" porque suma todas las fuentes de renta; \"complementario\" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia. ## ¿Quiénes deben pagarlo? No todos los contribuyentes liquidan I",
-      "wordCount": 1203,
+      "wordCount": 1223,
       "sourceFile": "impuesto-global-complementario-chile.md"
     },
     {
       "slug": "indemnizacion-anos-de-servicio-chile",
+      "sourceContentHash": "d1de96c33a88b3c1f7a478eac959d5c3245f65b72f354d507401dc85b31fe92b",
       "title": "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla",
       "tags": [
         "finiquito",
@@ -1043,6 +1074,7 @@
     },
     {
       "slug": "informe-deudas-cmf-vs-dicom",
+      "sourceContentHash": "55f091bfb37f8384e0720f3dc4c3c1833a8b239bae943879bf8cc2f045e82a3a",
       "title": "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM",
       "tags": [
         "deudas",
@@ -1077,6 +1109,7 @@
     },
     {
       "slug": "interes-compuesto-nota-metodologica",
+      "sourceContentHash": "b23e21cccb48f77324a5947439d18b53eddb7b0deaddc342e25f751eb1e57ccd",
       "title": "Nota metodológica: simulación de interés compuesto 1990-2025",
       "tags": [
         "ahorro",
@@ -1109,6 +1142,7 @@
     },
     {
       "slug": "licencia-medica-desde-que-dia-pagan",
+      "sourceContentHash": "d5870e7a93a5e423ad26b777cd2041274ac636933f02599e54f8254205e1896d",
       "title": "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
       "tags": [
         "empleo-ingresos",
@@ -1143,6 +1177,7 @@
     },
     {
       "slug": "liquidacion-de-sueldo",
+      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
       "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
       "tags": [
         "sueldo",
@@ -1176,6 +1211,7 @@
     },
     {
       "slug": "operacion-renta-centro",
+      "sourceContentHash": "bf3caf19c7e856f15e8133b1113a95a67ea0991dcf77de4d35b353d4e577353e",
       "title": "Operación Renta 2026: orientación inicial y preguntas frecuentes",
       "tags": [
         "impuestos",
@@ -1191,7 +1227,7 @@
       "summary": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . Respuesta rápida: ¿debo declarar la renta en 2026? Regla general: Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, e...",
       "leadParagraphs": [
         "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).",
-        "> **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).",
+        "> **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025). El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).",
         "---"
       ],
       "headings": [
@@ -1204,12 +1240,13 @@
         "Ganancias de capital",
         "¿Quién NO necesita declarar?"
       ],
-      "bodyExcerpt": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . ## Respuesta rápida: ¿debo declarar la renta en 2026? > **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl). --- ## ¿Quién DEBE declarar el Formulario 22? La obligaci",
-      "wordCount": 2726,
+      "bodyExcerpt": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . ## Respuesta rápida: ¿debo declarar la renta en 2026? > **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025). El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl). --- ## ¿Quién DEBE declarar el Formulario 22? L",
+      "wordCount": 2755,
       "sourceFile": "operacion-renta-centro.md"
     },
     {
       "slug": "operacion-renta-f22-checklist",
+      "sourceContentHash": "84bd3ce429fe51c5cccfb05b5a2225f66b7dff9c1262a0e92e263e45f70620f5",
       "title": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores",
       "tags": [
         "impuestos",
@@ -1243,6 +1280,7 @@
     },
     {
       "slug": "pgu-pension-garantizada-universal",
+      "sourceContentHash": "8a24e08e7202214e6322289a4a3b4794e3058d4df1fa3651655974b9490c7f91",
       "title": "PGU en Chile: requisitos, monto vigente y cómo tramitarla",
       "tags": [
         "pgu",
@@ -1276,6 +1314,7 @@
     },
     {
       "slug": "prepago-credito-cuando-conviene-chile",
+      "sourceContentHash": "cea2b484dcfd10c0c28714b72652bbd0774c4f43972cded40aa6d4b1f1118b89",
       "title": "¿Cuándo conviene hacer un prepago de crédito en Chile?",
       "tags": [
         "prepago",
@@ -1307,6 +1346,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
+      "sourceContentHash": "54a05c77220afe7d63cd334c8a3caa507c8d1657c2aac9a482a20e8b058a0ef9",
       "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "tags": [
         "primer-empleo",
@@ -1341,6 +1381,7 @@
     },
     {
       "slug": "que-es-el-apv",
+      "sourceContentHash": "de71cead33afffcf7bc0b962d0eb3b71be43bf3bb9e7cbe0ce44fead30f23051",
       "title": "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene",
       "tags": [
         "apv",
@@ -1374,6 +1415,7 @@
     },
     {
       "slug": "que-es-el-ipc-chile-como-se-calcula",
+      "sourceContentHash": "583cf4dbdf680ff226c0a46185e05567acac1f7bfd0b947038d981381cba1104",
       "title": "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
       "tags": [
         "ipc",
@@ -1403,11 +1445,12 @@
         "Deudas y obligaciones en UF"
       ],
       "bodyExcerpt": "Cuando sale el dato del IPC cada mes, los medios hablan de \"inflación\" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida? > **Información vigente al 2026-08-03.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Esta guía lo explica desde cero, con ejemplos concretos y sin economía de facultad. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . Si lo que te interesa es el efecto específico sobre la UF, complementa con . Si lo que necesitas es saber cuánto puede subir tu arriendo según el contrato, ve a . ## Qué es el IPC El **Índice de Precios al Consumidor (IPC)** es el indicador que mide cuánto cambia, en promedio, el precio de una canasta representativa de bienes y servicios que compran los hogares chilenos. No mide el precio de todo lo que existe — mide la variación de lo que compra una familia \"tipo\" chilena: alimentos, transporte, vivienda, salud, educación, vestuario, comunicaciones y ocio. Lo calcula y publica e",
-      "wordCount": 1070,
+      "wordCount": 1086,
       "sourceFile": "que-es-el-ipc-chile-como-se-calcula.md"
     },
     {
       "slug": "que-es-la-cuenta-2-afp",
+      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
       "title": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos",
       "tags": [
         "afp",
@@ -1441,6 +1484,7 @@
     },
     {
       "slug": "que-es-la-uf",
+      "sourceContentHash": "a80cd2b26af64445148f62fb5488b93dfd24cca04e269b65b2ffb65e2deab4fe",
       "title": "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
       "tags": [
         "uf",
@@ -1475,6 +1519,7 @@
     },
     {
       "slug": "reajuste-arriendo-uf-ipc-chile",
+      "sourceContentHash": "8ff4710a2efb1e18ba79daa22dd5f4b6b21b24ed86045d1ebfe1910d7bc53924",
       "title": "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC",
       "tags": [
         "arriendos",
@@ -1509,6 +1554,7 @@
     },
     {
       "slug": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "sourceContentHash": "f277ee680f2b5096770dbb0660ef89bec1e995a0ef7ff046551158d25b37e47b",
       "title": "Reforma previsional 2025: qué cambia y cómo te afecta",
       "tags": [
         "reforma-previsional",
@@ -1543,6 +1589,7 @@
     },
     {
       "slug": "renegociacion-superir",
+      "sourceContentHash": "c362cc9e7e138afce5e7fbc5e0a42b49e163555ee3dc1d4d11939828151c5887",
       "title": "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado",
       "tags": [
         "deudas",
@@ -1572,11 +1619,12 @@
         "Los documentos: la parte que más rechazos genera"
       ],
       "bodyExcerpt": "Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos. Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por un diagnóstico de acreedores o por una comparación seria del costo real del crédito. El resto de las salidas relacionadas aparece más abajo. ## Tabla de contenidos ## Mora no es lo mismo que sobreendeudamiento Antes de seguir, conviene separar tres escenarios: - **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal. Parte por la o la . - **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Primero ordena acreedores y montos antes de intentar una salida formal. - **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante. Si q",
-      "wordCount": 1910,
+      "wordCount": 1923,
       "sourceFile": "renegociacion-superir.md"
     },
     {
       "slug": "rentas-mixtas-sueldo-honorarios",
+      "sourceContentHash": "336098fe06bb7ab61fe25817702dadc7cd776ff63d78809b206ff2c3be1f4e41",
       "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
       "tags": [
         "impuestos",
@@ -1606,11 +1654,12 @@
         "Lo que necesitas antes de entrar al SII"
       ],
       "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revi",
-      "wordCount": 2057,
+      "wordCount": 2060,
       "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
       "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
       "tags": [
         "cesantia",
@@ -1643,6 +1692,7 @@
     },
     {
       "slug": "seguro-de-cesantia",
+      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
       "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
       "tags": [
         "cesantia",
@@ -1677,6 +1727,7 @@
     },
     {
       "slug": "sueldo-imponible-chile",
+      "sourceContentHash": "714e68e726c73f7ce55233141d3dc2e71e6949a64a18519b2a84cf9374465757",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1710,6 +1761,7 @@
     },
     {
       "slug": "suplantacion-identidad-creditos-no-reconocidos",
+      "sourceContentHash": "a5e1bd5cbde148afd61181c1c6ed921a0fae1f2357ce5d01575bf75b48084c38",
       "title": "¿Suplantaron tu identidad? Cómo detectarlo y frenarlo",
       "tags": [
         "seguridad-financiera",
@@ -1744,6 +1796,7 @@
     },
     {
       "slug": "tarjeta-credito-costo-real-chile",
+      "sourceContentHash": "c1aee41e68b9688284c09c14d77659eb853f40f5d23a2cedb0215f2e07bf34c8",
       "title": "Cómo calcular el costo real de una tarjeta de crédito en Chile",
       "tags": [
         "tarjeta-credito",
@@ -1775,6 +1828,7 @@
     },
     {
       "slug": "utm-chile-que-es-como-funciona",
+      "sourceContentHash": "fc5f109cf3cfe150f8f49c217aa900d8258d224993f2cc07b35c1bea4caa8321",
       "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
       "tags": [
         "utm",

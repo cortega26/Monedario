@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
+import { resolveEditorialImage } from "@/utils/editorialImages";
 import Datetime from "./Datetime.astro";
 import ArticlePlaceholder from "./ArticlePlaceholder.astro";
 
@@ -45,10 +46,7 @@ const relatedPosts = relatedSlugs
 
       <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {relatedPosts.map(({ post, article }) => {
-          const imageSrc =
-            typeof post.data.ogImage === "string"
-              ? post.data.ogImage
-              : post.data.ogImage?.src;
+          const image = resolveEditorialImage(article.slug, post.data.ogImage);
 
           return (
             <li class="rounded-xl border border-border p-3">
@@ -58,15 +56,20 @@ const relatedPosts = relatedSlugs
                 data-analytics-cta="related-post"
                 data-analytics-label={article.title}
                 data-analytics-location="related_posts"
+                data-image-version={image?.version}
+                data-image-article={image ? article.slug : undefined}
+                data-image-surface={image ? "related_posts" : undefined}
               >
                 <div class="mb-3 overflow-hidden rounded-lg">
-                  {imageSrc ? (
+                  {image ? (
                     <img
-                      src={imageSrc}
-                      alt={`Portada de ${post.data.title}`}
+                      src={image.src}
+                      srcset={image.srcset}
+                      sizes="auto, (min-width: 1024px) 340px, (min-width: 640px) 45vw, calc(100vw - 4rem)"
+                      alt=""
                       width="1200"
-                      height="675"
-                      class="aspect-video w-full object-cover"
+                      height="630"
+                      class="aspect-[40/21] w-full object-cover"
                       loading="lazy"
                       decoding="async"
                     />

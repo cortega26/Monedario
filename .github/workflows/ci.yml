@@ -144,6 +144,12 @@ jobs:
       - name: "🧭 Check semantic hero prompt contract"
         run: node scripts/check-hero-prompts.mjs
 
+      - name: "🧾 Check curated image provenance"
+        run: pnpm run check:image-curation
+
+      - name: "🖼️ Check hashed image delivery"
+        run: pnpm run check:image-delivery
+
       - name: "🔄 Convert PNG hero images to AVIF"
         run: node scripts/png-to-avif.mjs --dir public/images/hero
 

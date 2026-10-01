@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 1,
+  "styleVersion": "monedario-editorial-v5",
+  "entries": [
+    {
+      "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "readerNeed": "Elegir entre DAP, fondos mutuos y ETF según propósito, plazo, costos y liquidez.",
+      "editorialPromise": "Comparar instrumentos después de separar la reserva de emergencia y definir un objetivo.",
+      "visualMessage": "La elección parte de la meta propia y de condiciones comparables, no del retorno más llamativo.",
+      "scene": "Overhead hands-only comparison on a clear warm-paper surface. A pair of adult hands arranges three distinct unlettered investment folders around a personal goal card bearing a simple house silhouette. A separate closed reserve envelope stays outside the comparison. The folders have equal visual weight; one hand considers them without declaring a winner. No visible face or avatar, coffee cups or plants.",
+      "requiredElements": [
+        "Tres alternativas comparables",
+        "Meta concreta",
+        "Reserva separada"
+      ],
+      "avoidInterpretations": [
+        "Un instrumento gana para todos",
+        "Rentabilidades futuras aseguradas"
+      ],
+      "alt": "",
+      "sourceContentHash": "28f745478810cd032cf0376dd09f1a61121740a5f3d2abccb62b413c9896d66d",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "bancos-y-fintech-chile",
+      "readerNeed": "Elegir dónde recibir ingresos y operar el dinero cotidiano.",
+      "editorialPromise": "Distinguir cuentas, costos, acceso y regulación antes de contratar un banco o fintech.",
+      "visualMessage": "Comparar servicios cotidianos exige revisar condiciones, no dejarse guiar por la app.",
+      "scene": "A relaxed adult at a kitchen counter compares a plain debit card in one hand with a smartphone resting upright in the other. A small unlettered fee leaflet lies between them. Their gaze is curious and practical, with equal emphasis on card and phone; no job-loss cues, closed laptop or distressed posture.",
+      "requiredElements": [
+        "Tarjeta de débito neutra",
+        "Teléfono sin interfaz falsa",
+        "Folleto de condiciones"
+      ],
+      "avoidInterpretations": [
+        "Es un artículo de cesantía por mencionar sueldo",
+        "Toda fintech ofrece la misma protección",
+        "Una app sustituye automáticamente a un banco"
+      ],
+      "alt": "",
+      "sourceContentHash": "7facd33d00a82476113c2c6a2386236470b5daff633df281ac923d392377bfe7",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "boleta-honorarios-2026-retencion-cobertura",
+      "readerNeed": "Distinguir lo recibido por una boleta de su retención y de la cobertura anual.",
+      "editorialPromise": "Explicar bruto, líquido y retención sin confundir el pago mensual con la regularización previsional anual.",
+      "visualMessage": "Emitir una boleta tiene un resultado inmediato y una revisión anual distinta.",
+      "scene": "Close view of a freelancer's hands placing a freshly prepared invoice beside a modest payment envelope. A smaller detached paper slip remains with the invoice, while an unnumbered annual calendar is secondary in the background. A work pencil and open notebook give context without a glowing screen.",
+      "requiredElements": [
+        "Boleta sin cifras",
+        "Pago separado de comprobante retenido",
+        "Referencia anual secundaria"
+      ],
+      "avoidInterpretations": [
+        "Retención y cotización anual son lo mismo",
+        "Una boleta garantiza cobertura",
+        "Porcentaje fijo válido para cualquier año"
+      ],
+      "alt": "",
+      "sourceContentHash": "430530ab0b673a255c10d42d2b72189d1671ea8fccf23fd0ad8ce307fe880d10",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "cae-costo-real-credito-chile",
+      "readerNeed": "Comparar el costo completo de créditos con condiciones equivalentes.",
+      "editorialPromise": "Separar tasa, cuota, CAE y costo total al evaluar ofertas.",
+      "visualMessage": "Mirar debajo de la cuota revela costos que también importan.",
+      "scene": "Two comparable loan offer sheets lie side by side. A natural hand lifts a folded lower flap on one sheet, revealing additional unlettered cost bands beneath the main band. A simple calculator is secondary and has no readable display. Both documents are equally sized; no graduation cap or education icon.",
+      "requiredElements": [
+        "Dos ofertas equivalentes",
+        "Costos adicionales visibles",
+        "Mano que revisa el detalle"
+      ],
+      "avoidInterpretations": [
+        "CAE significa crédito estudiantil",
+        "Cuota menor implica costo menor",
+        "La CAE por sí sola determina legalidad"
+      ],
+      "alt": "",
+      "sourceContentHash": "d5d09b822f486f1d68c7734ed43b300a77f0466daebc8705dbe5e724a7f986f8",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "como-calcular-sueldo-liquido",
+      "readerNeed": "Reconstruir cuánto llega al bolsillo desde la remuneración y sus descuentos.",
+      "editorialPromise": "Guiar el cálculo completo del sueldo líquido distinguiendo bases y componentes.",
+      "visualMessage": "El depósito se entiende siguiendo la liquidación y sus descuentos.",
+      "scene": "An adult leans slightly over a home desk and follows a payslip from its top earnings section through several unlettered deduction bands to a final teal band. A plain bank card at the edge of the desk suggests the eventual deposit. The payslip is dominant and remains clearly present; the person uses a small calculator without a readable display.",
+      "requiredElements": [
+        "Liquidación dominante",
+        "Persona siguiendo descuentos",
+        "Indicio de depósito secundario"
+      ],
+      "avoidInterpretations": [
+        "Eliminar el documento y reemplazarlo por diagrama",
+        "Todas las deducciones usan la misma base",
+        "El bruto es el líquido"
+      ],
+      "alt": "",
+      "sourceContentHash": "40f4979bf3b81491f19163c04552cd49681580b44b095df1ac340be78707bd3b",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "como-cambiarse-de-afp",
+      "readerNeed": "Revisar condiciones para cambiar de administradora previsional.",
+      "editorialPromise": "Explicar criterios, trámite y límites del traspaso sin prometer mejor rentabilidad.",
+      "visualMessage": "Cambiar de administradora es una decisión comparada y un trámite, no un premio.",
+      "scene": "Natural hands move one closed retirement account folder from a navy document tray toward an equally sized teal tray. A separate comparison note stays open in front, and the hand pauses before completing the move. There is no money spill, promotional gift or rising chart.",
+      "requiredElements": [
+        "Dos bandejas de igual jerarquía",
+        "Carpeta que se traspasa",
+        "Nota de comparación"
+      ],
+      "avoidInterpretations": [
+        "Cambiar garantiza mayor pensión",
+        "La rentabilidad del último mes basta para decidir"
+      ],
+      "alt": "",
+      "sourceContentHash": "cc92251408e5f240b8bdb5736f820ff9d58e95753999e48bd7c224c1c2354020",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "readerNeed": "Definir horizonte, liquidez y tolerancia a pérdidas antes de elegir inversión.",
+      "editorialPromise": "Ordenar las preguntas previas a comparar instrumentos sin recomendar una cartera universal.",
+      "visualMessage": "La decisión empieza por conocer las necesidades propias.",
+      "scene": "A thoughtful adult sits beside a wide open planning notebook. Three unlettered cards on the table show a calendar, an accessible reserve envelope and a gently uneven path. Their hand places a simple personal goal marker among those considerations, with no product logos or winning investment.",
+      "requiredElements": [
+        "Plan personal",
+        "Plazo y reserva",
+        "Señal de variación no ascendente"
+      ],
+      "avoidInterpretations": [
+        "Una cartera sirve para todos",
+        "El horizonte elimina el riesgo"
+      ],
+      "alt": "",
+      "sourceContentHash": "bd288dc1b917154a2b91e9f6a9dbed6e01b1f4142bbd03e642369c28e31e847b",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "como-hacer-presupuesto-mensual-chile",
+      "readerNeed": "Ordenar ingresos reales, gastos fijos, variables e irregulares sin perder espacio para una reserva.",
+      "editorialPromise": "Construir un presupuesto mensual adaptado a la vida del lector y revisarlo cuando cambien sus ingresos.",
+      "visualMessage": "Una organización sencilla hace visibles las decisiones del mes, sin exigir una distribución universal.",
+      "scene": "An oblique view of a lived-in home table: an adult in a comfortable navy shirt calmly groups receipts next to an open notebook with three unlettered section tabs. One hand moves a receipt toward the notebook, while a separate teal envelope holds a modest reserve. A single terracotta pencil and the warm edge of the table complete the intimate scene.",
+      "requiredElements": [
+        "Persona que organiza comprobantes",
+        "Cuaderno de tres secciones sin texto",
+        "Sobre de reserva separado"
+      ],
+      "avoidInterpretations": [
+        "La regla 50/30/20 es obligatoria",
+        "El presupuesto elimina todas las dificultades de ingreso",
+        "Ahorrar equivale a ganancias de inversión"
+      ],
+      "alt": "",
+      "sourceContentHash": "59ca4525c883578f70737611351e6e1f5d1241ad9413a3d0bfb84e5a9969b6a3",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-29",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+      }
+    },
+    {
+      "slug": "como-invertir-en-etfs-desde-chile",
+      "readerNeed": "Entender intermediación, costos, custodia y registro al invertir en ETF.",
+      "editorialPromise": "Guiar la preparación operativa antes de comprar valores desde Chile.",
+      "visualMessage": "Acceder a inversiones exige mirar las condiciones y guardar respaldo.",
+      "scene": "A careful hand places an unlettered transaction receipt inside a tidy personal investment folder. Behind it, a laptop displays a simple abstract world outline with no trading chart or app interface. A small stack of cost slips remains visible beside the folder, giving custody and records greater weight than the screen.",
+      "requiredElements": [
+        "Respaldo de operaciones",
+        "Carpeta de inversión",
+        "Contexto internacional secundario"
+      ],
+      "avoidInterpretations": [
+        "Invertir es un clic sin costos",
+        "Todo intermediario extranjero está supervisado en Chile",
+        "Ganancia garantizada"
+      ],
+      "alt": "",
+      "sourceContentHash": "982f0c2fe23d766f8383e6e9fdc771b8cbfee3cd6c4e30db5d4039771eadc0a3",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "como-leer-cartola-afp-chile",
+      "readerNeed": "Comprobar saldo, movimientos y cotizaciones en la cartola previsional.",
+      "editorialPromise": "Ayudar a localizar inconsistencias y respaldarlas antes de reclamar.",
+      "visualMessage": "Cruzar documentos permite detectar lo que falta.",
+      "scene": "Overhead close-up of hands aligning a quarterly account statement with a smaller payslip. One finger points to a single gap in a row of unlettered monthly marks, while the other document is held steady. The statement is the dominant object, with no floating chart or celebratory check badge.",
+      "requiredElements": [
+        "Cartola dominante",
+        "Liquidación para contraste",
+        "Vacío que requiere revisión"
+      ],
+      "avoidInterpretations": [
+        "Un espacio vacío prueba por sí solo incumplimiento",
+        "Toda variación del saldo es un error"
+      ],
+      "alt": "",
+      "sourceContentHash": "94422cdabe1e4c772272e09e342d6401adb45c810a2a8b08b784848f520b0f4e",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "como-salir-boletin-comercial-chile",
+      "readerNeed": "Corregir o aclarar una anotación comercial y conservar sus antecedentes.",
+      "editorialPromise": "Separar pago, solicitud de corrección y verificación del registro.",
+      "visualMessage": "El respaldo y el seguimiento importan más que borrar simbólicamente la deuda.",
+      "scene": "A hand clips a payment receipt to a commercial record sheet with a discreet highlighted row. A second hand places the joined papers in an open follow-up folder. A small calendar sits behind the folder; the record is still visible, neither shredded nor stamped approved.",
+      "requiredElements": [
+        "Registro con fila destacada",
+        "Comprobante adjunto",
+        "Carpeta de seguimiento"
+      ],
+      "avoidInterpretations": [
+        "Pagar borra al instante cualquier registro",
+        "Prescripción equivale a desaparición automática",
+        "Existe un sello oficial de aprobación"
+      ],
+      "alt": "",
+      "sourceContentHash": "e062d3df5e3e969ed46961bcdaea64277eb2308efe88afabe05828e52a06e8d3",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "contribuciones-bienes-raices-chile",
+      "readerNeed": "Entender el impuesto territorial y consultar el pago aplicable a una propiedad.",
+      "editorialPromise": "Distinguir avalúo fiscal, cuotas y posibles exenciones.",
+      "visualMessage": "La vivienda y su obligación tributaria se revisan con documentos y calendario.",
+      "scene": "A small paper house rests on a neutral property assessment sheet. Beside it, four simple unnumbered calendar tabs sit in a neat fan and one payment notice lies open. Warm light separates the home silhouette from the tax document without warning colors dominating.",
+      "requiredElements": [
+        "Vivienda",
+        "Documento de avalúo",
+        "Cuotas en calendario"
+      ],
+      "avoidInterpretations": [
+        "El impuesto se calcula siempre sobre precio de venta",
+        "Toda vivienda paga lo mismo",
+        "Todas las exenciones son automáticas"
+      ],
+      "alt": "",
+      "sourceContentHash": "65cc2ac8fb831c101ad4856baf05b5a495dc4c7d9a39034799c28f80becc288c",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "cotizacion-voluntaria-afp-independiente",
+      "readerNeed": "Explorar aportes previsionales cuando no existe cotización obligatoria.",
+      "editorialPromise": "Explicar afiliación voluntaria, costo y cobertura sin confundirlos con APV, salud o PGU.",
+      "visualMessage": "Una persona puede revisar cómo sostener su ahorro previsional por decisión propia.",
+      "scene": "A middle-aged man at a small workbench with a simple tool roll places a personal contribution slip into an open retirement folder. A separate health document stays clearly outside the folder. The gesture is deliberate, small and practical, with a plain unnumbered calendar in the background; no employer payroll or promised state benefit. No plants or coffee cups.",
+      "requiredElements": [
+        "Aporte elegido por la persona",
+        "Carpeta previsional",
+        "Salud separada"
+      ],
+      "avoidInterpretations": [
+        "Es APV de un trabajador dependiente",
+        "Incluye salud automáticamente",
+        "Genera derecho garantizado a PGU"
+      ],
+      "alt": "",
+      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "credito-hipotecario-chile-guia-completa",
+      "readerNeed": "Prepararse para financiar una vivienda sin omitir pie, costos y trámites.",
+      "editorialPromise": "Ordenar la evaluación y el proceso hipotecario hasta la escritura.",
+      "visualMessage": "Comprar una vivienda requiere revisar compromisos además de imaginar las llaves.",
+      "scene": "A couple sits at a modest table comparing a mortgage document and a household budget. A small house model sits behind the papers, while a key rests beyond their hands rather than being handed over. The main gesture is checking the documents together, with one separate envelope for upfront expenses.",
+      "requiredElements": [
+        "Vivienda reconocible",
+        "Comparación de contrato y presupuesto",
+        "Costos iniciales separados"
+      ],
+      "avoidInterpretations": [
+        "Crédito aprobado o llaves garantizadas",
+        "El pie es el único costo",
+        "La cuota es estable en pesos por definición"
+      ],
+      "alt": "",
+      "sourceContentHash": "7b8539c8b293e5525521b36471cd8e746ba0a5bee435956e157b7dc046c3e755",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",
+      "readerNeed": "Distinguir el aporte previsional y la comisión AFP que aparecen descontados en una liquidación.",
+      "editorialPromise": "Explicar los componentes del descuento AFP sin confundirlos con otros descuentos o aportes del empleador.",
+      "visualMessage": "Un mismo descuento contiene conceptos diferentes que conviene revisar por separado.",
+      "scene": "Close-up of two natural hands studying a single payslip on a warm paper desk. A finger follows one dominant horizontal payroll band divided into two adjacent sections, a larger teal contribution section and a small ochre administration section, without scale labels or numbers. The other hand steadies the paper. The rest of the payslip contains only a few faint unlettered lines; the document remains the focal point.",
+      "requiredElements": [
+        "Una liquidación dominante",
+        "Dos secciones adyacentes de aporte y comisión",
+        "Manos revisando la misma línea"
+      ],
+      "avoidInterpretations": [
+        "El descuento AFP es todo el descuento del sueldo",
+        "La comisión entra al ahorro individual",
+        "Las proporciones ilustradas representan una tasa exacta"
+      ],
+      "alt": "",
+      "sourceContentHash": "f6c7dfc5e77f8bb9d8535c2b2704fab56da855c8e751477fcedef02fbdf04e14",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-29",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+      }
+    },
+    {
+      "slug": "deposito-a-plazo-uf-vs-pesos",
+      "readerNeed": "Comparar depósitos en UF y pesos para el mismo plazo y necesidad de dinero.",
+      "editorialPromise": "Relacionar inflación, tasa, liquidez y vencimiento sin declarar un ganador universal.",
+      "visualMessage": "Dos alternativas solo se comparan sobre el mismo horizonte.",
+      "scene": "Two equally sized deposit certificates sit side by side on a warm tabletop, both aligned with a single shared unnumbered calendar strip. One certificate has a fixed quiet navy band, the other a teal band gently adjusted by a small set of varying counters. Neither is higher, greener, awarded or selected as a winner.",
+      "requiredElements": [
+        "Dos certificados equivalentes",
+        "Mismo horizonte",
+        "Distinción fijo y reajustable"
+      ],
+      "avoidInterpretations": [
+        "UF siempre gana",
+        "Más tasa nominal implica más retorno real",
+        "Retiro inmediato sin condiciones"
+      ],
+      "alt": "",
+      "sourceContentHash": "189334731309ee96558e62996f2bb9886f7af4779089377bc3e55490bbae72e3",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "descuentos-de-sueldo",
+      "readerNeed": "Entender el origen y respaldo de una línea descontada del sueldo.",
+      "editorialPromise": "Clasificar descuentos legales, autorizados y cuestionables antes de impugnarlos.",
+      "visualMessage": "Cada descuento necesita una razón verificable.",
+      "scene": "A worker's hands compare one highlighted line in a payslip with a small written-authorization sheet and a neutral rules folder. The finger pauses on the line in question. The scene is investigative and calm, with no judge, red punishment stamp or arithmetic flowchart.",
+      "requiredElements": [
+        "Línea de descuento en revisión",
+        "Respaldo de autorización",
+        "Documento de reglas"
+      ],
+      "avoidInterpretations": [
+        "Todo descuento es ilegal",
+        "Toda línea de descuento está validada",
+        "Clasificar equivale a recalcular líquido"
+      ],
+      "alt": "",
+      "sourceContentHash": "acf43262a5316a3a3ed6d4466bce66c291ea9298b8d9b7e1b4d1d91f2e0acecf",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "devolucion-impuestos-fechas-compensaciones",
+      "readerNeed": "Saber por qué una devolución no llegó y qué estado revisar.",
+      "editorialPromise": "Separar revisión de declaración, autorización, pago y compensaciones sin prometer una fecha futura.",
+      "visualMessage": "Una devolución pendiente requiere seguimiento, no una expectativa de dinero automático.",
+      "scene": "An adult man with short dark hair at a side table checks a neutral phone beside a tax filing receipt and a small closed payment envelope. His index finger points to a pending unlettered status mark on the paper, while an unnumbered calendar is a quiet secondary object. The envelope remains closed and money is not flowing into the scene.",
+      "requiredElements": [
+        "Declaración presentada",
+        "Consulta de estado",
+        "Pago todavía pendiente"
+      ],
+      "avoidInterpretations": [
+        "Declaración aceptada significa depósito inmediato",
+        "El calendario2026 sigue abierto",
+        "Siempre llega devolución completa"
+      ],
+      "alt": "",
+      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "donde-ver-si-estoy-en-dicom-gratis",
+      "readerNeed": "Elegir el reporte adecuado antes de pagar por información de deuda.",
+      "editorialPromise": "Distinguir CMF, Boletín Comercial y reportes privados por el problema que se intenta resolver.",
+      "visualMessage": "No todos los informes responden la misma pregunta.",
+      "scene": "A person examines three clearly different unlettered report covers spread across a table: a bank-account sheet, a protested-document folder and a broader commercial report. Their hand reaches for one according to a small personal question note. No government seals or brand logos; equal dignity and no implied clean bill of health.",
+      "requiredElements": [
+        "Tres fuentes distintas",
+        "Elección de reporte",
+        "Pregunta personal como punto de partida"
+      ],
+      "avoidInterpretations": [
+        "Existe un único DICOM estatal",
+        "Un informe limpio descarta toda deuda",
+        "Todos los informes son gratuitos"
+      ],
+      "alt": "",
+      "sourceContentHash": "2b1c7bb17d81d770966f0ecfc3877ba845e0e1d700838fbac4c85317e96496cb",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "el-poder-del-interes-compuesto",
+      "readerNeed": "Comprender la combinación de aportes periódicos, tiempo y variación de mercado.",
+      "editorialPromise": "Ilustrar el mecanismo del interés compuesto con un ejercicio histórico y límites explícitos.",
+      "visualMessage": "La constancia ocurre a lo largo del tiempo y atraviesa interrupciones; no promete un resultado.",
+      "scene": "Side view of a quietly hopeful young adult with natural proportions and a deliberate hand gesture adding one modest paper savings token to a personal folder. Behind the folder an unnumbered accordion calendar stretches across the table, with a few empty slots and varied folded heights suggesting interruptions and changing conditions, not an ascending investment chart. Keep attention on the repeated contribution and elapsed time; no decorative plants or coffee cups.",
+      "requiredElements": [
+        "Aporte periódico modesto",
+        "Tiempo prolongado",
+        "Interrupciones visibles"
+      ],
+      "avoidInterpretations": [
+        "El resultado histórico se repetirá",
+        "Todo ahorro crece sin caídas",
+        "Una cifra de riqueza está garantizada"
+      ],
+      "alt": "",
+      "sourceContentHash": "7672e2d496a17ba9fd5df3f856afcd4fc790d7457b6959a5cfc436f74f0084d6",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "estafas-financieras-chile-vishing-smishing-marketplace",
+      "readerNeed": "Reconocer presión y contactos sospechosos antes de entregar claves o dinero.",
+      "editorialPromise": "Enseñar señales de engaño y acciones de contención por canal.",
+      "visualMessage": "Pausar y verificar corta la urgencia que usa el estafador.",
+      "scene": "A person holds a phone slightly away from their face while raising their free hand in a calm stop gesture. A second, smaller message bubble shape on the screen is entirely unlettered. Their expression is alert and composed, and a closed wallet stays safely on the table. No hooded hacker or shaming caricature.",
+      "requiredElements": [
+        "Contacto telefónico o mensaje",
+        "Gesto de pausa",
+        "Dinero todavía resguardado"
+      ],
+      "avoidInterpretations": [
+        "La víctima tiene la culpa",
+        "Toda llamada es fraude",
+        "Se garantiza recuperar cualquier monto"
+      ],
+      "alt": "",
+      "sourceContentHash": "d9c8a486248047d3dc2d7b2c79cf44f44cf8fa60266918e15abd6eafcada799f",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "finanzas-para-migrantes-chile",
+      "readerNeed": "Organizar identidad, acceso bancario y vivienda al llegar a Chile.",
+      "editorialPromise": "Orientar trámites y requisitos según la situación migratoria sin prometer acceso universal.",
+      "visualMessage": "Ordenar documentos facilita avanzar hacia la vida cotidiana.",
+      "scene": "An adult in a bright but modest new home arranges an identity document, a neutral bank card and a house key on a small table, with a partly unpacked bag nearby. Their posture is capable and focused. No flags, nationality stereotypes, border checkpoints or institutional logos.",
+      "requiredElements": [
+        "Identidad",
+        "Cuenta bancaria",
+        "Vivienda cotidiana"
+      ],
+      "avoidInterpretations": [
+        "Toda persona necesita un nuevo RUT",
+        "Una cuenta o arriendo está garantizado",
+        "Migración equivale a precariedad"
+      ],
+      "alt": "",
+      "sourceContentHash": "9b0dfa1e23c770e8299dd69eb37f4410a911cf107a1dd1b329cb8cc9dabec51f",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "finiquito-e-indemnizaciones-en-chile",
+      "readerNeed": "Revisar partidas y causal del término de contrato antes de firmar.",
+      "editorialPromise": "Separar pagos pendientes y posibles indemnizaciones para pedir aclaraciones con respaldo.",
+      "visualMessage": "La revisión debe ocurrir antes de la firma.",
+      "scene": "A worker sits at a quiet table reading a termination settlement document while comparing it with an older employment contract. A pen rests untouched beside the paper rather than crossing a signature line. The person's posture is upright and deliberate, without pressure from an employer figure.",
+      "requiredElements": [
+        "Finiquito en revisión",
+        "Contrato como respaldo",
+        "Bolígrafo sin firmar"
+      ],
+      "avoidInterpretations": [
+        "Firmar rápido es la acción recomendada",
+        "Toda terminación genera indemnización",
+        "El total está validado"
+      ],
+      "alt": "",
+      "sourceContentHash": "09ddee2f4fb73209dd4d2d9ef1010c9a634dd7d8e37aacedf3e6b0cd19eb4984",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "fonasa-vs-isapre-comparativa",
+      "readerNeed": "Comparar cobertura de salud, costos y condiciones para la situación familiar.",
+      "editorialPromise": "Distinguir sistemas y redes sin sustituir la revisión de un plan concreto.",
+      "visualMessage": "La cobertura debe mirarse desde las necesidades de la persona.",
+      "scene": "Two adults at a kitchen table compare two neutral health-plan cards, one navy and one teal, beside a family calendar. A small medical cross appears only on the cards as a context cue. Neither plan is elevated or awarded; the people look at the conditions together, with natural proportions and calm faces.",
+      "requiredElements": [
+        "Dos alternativas de salud",
+        "Necesidad familiar",
+        "Comparación de condiciones"
+      ],
+      "avoidInterpretations": [
+        "Un sistema es ideal para todos",
+        "Toda prestación está cubierta",
+        "La ilustración ofrece diagnóstico médico"
+      ],
+      "alt": "",
+      "sourceContentHash": "6cc0624f8012f978fe7801e2140bb3c434571af4869b0514b44eccfc4fd8324a",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "fondo-emergencia-chile",
+      "readerNeed": "Separar una reserva accesible para gastos urgentes inesperados.",
+      "editorialPromise": "Construir y reponer un colchón acorde a los gastos esenciales y a la liquidez necesaria.",
+      "visualMessage": "Una reserva da margen para responder con calma a un imprevisto.",
+      "scene": "A person at home opens a modest emergency envelope while holding a repair estimate for a leaking household tap. The envelope is separate from their everyday wallet and a long-term folder remains closed farther away. The gesture is measured and reassuring, with no overflowing money or disaster scene.",
+      "requiredElements": [
+        "Imprevisto doméstico",
+        "Reserva separada accesible",
+        "Decisión calmada"
+      ],
+      "avoidInterpretations": [
+        "Reserva equivale a inversión rentable",
+        "Un monto fijo sirve para todos",
+        "La emergencia queda resuelta sin costos"
+      ],
+      "alt": "",
+      "sourceContentHash": "97588c95ac193945c4b94ddb4b5827df6627668845655246da58adfd6a420d62",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "fondos-afp-a-b-c-d-e",
+      "readerNeed": "Entender diferencias de riesgo entre multifondos todavía vigentes.",
+      "editorialPromise": "Relacionar elección de fondo con horizonte y tolerancia sin adelantar la transición generacional.",
+      "visualMessage": "Las alternativas cambian en exposición al riesgo, no forman un podio de ganancias.",
+      "scene": "Five equal-sized pension portfolio cards fan across a warm-paper surface. Their abstract internal paths vary from visibly uneven to calmer, without axes, labels or upward-only arrows. A small unnumbered personal calendar sits beside them. No card is larger, crowned or glowing; each belongs to the same restrained visual family.",
+      "requiredElements": [
+        "Cinco alternativas iguales",
+        "Variación de riesgo",
+        "Horizonte personal"
+      ],
+      "avoidInterpretations": [
+        "Mayor riesgo garantiza retorno mayor",
+        "A-E ya desaparecieron",
+        "El fondo conservador nunca pierde"
+      ],
+      "alt": "",
+      "sourceContentHash": "6ce203d08e60b01d7bd416453e95b0bbe6826a85d16815dff5be2dfa090d3e83",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "fondos-mutuos-comisiones-rescate-impuestos",
+      "readerNeed": "Revisar costos y condiciones de rescate antes de invertir o retirar.",
+      "editorialPromise": "Separar valor de la inversión, comisiones y dinero disponible tras el rescate.",
+      "visualMessage": "Salir de un fondo implica leer condiciones y esperar el plazo aplicable.",
+      "scene": "A close-up hand withdraws one unlettered redemption request from an investment folder. A narrow attached cost slip and a small calendar remain connected to the request. The folder stays partly closed, suggesting that requesting a withdrawal is a process rather than instant cash appearing.",
+      "requiredElements": [
+        "Solicitud de rescate",
+        "Costos adjuntos",
+        "Plazo de pago"
+      ],
+      "avoidInterpretations": [
+        "El rescate siempre es inmediato",
+        "El valor bruto es el dinero neto",
+        "Rentabilidad garantizada"
+      ],
+      "alt": "",
+      "sourceContentHash": "dbd5dfb80884655a66abf90a19fec7d710868b303080610024d8770e3f1cbf09",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "fraude-tarjeta-que-hacer",
+      "readerNeed": "Contener un cargo no reconocido y conservar evidencia.",
+      "editorialPromise": "Separar aviso y bloqueo, reclamo formal y denuncia en el proceso de fraude.",
+      "visualMessage": "La primera acción es recuperar control y documentar lo ocurrido.",
+      "scene": "A person at a small table makes a focused phone call while setting a plain payment card face down beside a notebook. Their other hand records a short unlettered mark as evidence of the call. The gesture is urgent but composed; the scene shows action rather than fear, with no money being magically returned.",
+      "requiredElements": [
+        "Llamada de contención",
+        "Tarjeta apartada",
+        "Registro de evidencia"
+      ],
+      "avoidInterpretations": [
+        "Bloquear completa todo el reclamo",
+        "Devolución automática garantizada",
+        "Culpa o vergüenza de la víctima"
+      ],
+      "alt": "",
+      "sourceContentHash": "3b86d5940328e2700b41f6e0f15e21b4ab73b0f9140de6374ce705d8849fbcd4",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "gratificacion-legal-chile",
+      "readerNeed": "Identificar la gratificación en la remuneración y entender su modalidad.",
+      "editorialPromise": "Explicar cálculo y topes según la modalidad aplicable sin presentarla como regalo.",
+      "visualMessage": "Una línea de ingreso tiene reglas y respaldo.",
+      "scene": "An open payslip shows one additional unlettered teal earnings band. A natural hand aligns it with a small employment conditions note, while a subtle horizontal boundary mark suggests a limit without numerical precision. Keep the earnings document dominant; no gift box, bonus confetti or employer generosity imagery.",
+      "requiredElements": [
+        "Línea de haberes",
+        "Condiciones laborales",
+        "Referencia a límite sin cifras"
+      ],
+      "avoidInterpretations": [
+        "Es regalo discrecional del empleador",
+        "La modalidad la elige siempre el trabajador",
+        "Monto universal"
+      ],
+      "alt": "",
+      "sourceContentHash": "c5056c90d0e06e360d83acb9f69cc9421cc20b93ce860cb1d86ec8d5dca7a6a5",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "impuesto-global-complementario-chile",
+      "readerNeed": "Entender cómo se reúnen rentas y créditos al cierre anual.",
+      "editorialPromise": "Explicar el IGC y su relación con retenciones sin simular reglas especiales fuera del alcance.",
+      "visualMessage": "Fuentes distintas se revisan juntas en la declaración anual.",
+      "scene": "Several distinct unlettered income slips converge toward one open annual tax folder. A separate row of smaller credit slips sits alongside the folder rather than disappearing into it. The layout is calm and architectural, with a single broad calendar page in the background and no equation, percentage or guaranteed refund arrow.",
+      "requiredElements": [
+        "Varias rentas",
+        "Carpeta anual",
+        "Créditos separados"
+      ],
+      "avoidInterpretations": [
+        "Todos pagan la misma tasa",
+        "Retenciones siempre cubren el impuesto final",
+        "Cubre cada régimen especial de ganancias"
+      ],
+      "alt": "",
+      "sourceContentHash": "f795fdb1d09a56368c49721cbaee995366d67dc0806a66f351f797516a1fb437",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "indemnizacion-anos-de-servicio-chile",
+      "readerNeed": "Revisar una partida de indemnización según causal, base y antigüedad.",
+      "editorialPromise": "Aislar años de servicio del resto del finiquito y reconocer condiciones y topes.",
+      "visualMessage": "Una cifra final se verifica contra la trayectoria laboral y sus documentos.",
+      "scene": "A natural hand aligns an old employment contract with the latest payslip over a small unnumbered accordion calendar. One specific band in a settlement sheet is highlighted, with all other bands secondary. A resting pen indicates review before signature; no cash stacks or celebratory payout.",
+      "requiredElements": [
+        "Antigüedad documentada",
+        "Base remuneracional",
+        "Una partida del finiquito"
+      ],
+      "avoidInterpretations": [
+        "Toda salida genera indemnización",
+        "Cualquier fracción de año suma automáticamente",
+        "Se garantiza un monto"
+      ],
+      "alt": "",
+      "sourceContentHash": "d1de96c33a88b3c1f7a478eac959d5c3245f65b72f354d507401dc85b31fe92b",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "informe-deudas-cmf-vs-dicom",
+      "readerNeed": "Revisar deudas financieras vigentes y reconocer lo que el informe no cubre.",
+      "editorialPromise": "Orientar descarga, lectura y contraste del informe CMF frente a otros registros.",
+      "visualMessage": "El reporte es una herramienta para identificar obligaciones, no un certificado de solvencia total.",
+      "scene": "A reader's hands open a bank debt report with several distinct unlettered rows, one row subtly highlighted for verification. Two other closed report folders sit behind it as secondary context. A neutral document-download symbol may appear small and unbranded; no official approval seal or clean-record trophy.",
+      "requiredElements": [
+        "Informe principal en lectura",
+        "Obligación por verificar",
+        "Otros registros secundarios"
+      ],
+      "avoidInterpretations": [
+        "CMF y DICOM son lo mismo",
+        "No aparecer descarta cualquier deuda",
+        "Un informe es aprobación de crédito"
+      ],
+      "alt": "",
+      "sourceContentHash": "55f091bfb37f8384e0720f3dc4c3c1833a8b239bae943879bf8cc2f045e82a3a",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "interes-compuesto-nota-metodologica",
+      "readerNeed": "Inspeccionar supuestos y datos del ejercicio histórico de interés compuesto.",
+      "editorialPromise": "Exponer una simulación reproducible con fuentes, período y limitaciones.",
+      "visualMessage": "Los resultados se explican desde datos verificables y sus supuestos.",
+      "scene": "Production note only: render this methodological cover with the reproducible data-chart script, not an image generator. Use the verified simulation series, clear axes, a date of data cutoff and separate contribution and portfolio series. Labels and values must come directly from the same dataset used for the accessible table.",
+      "requiredElements": [
+        "Serie y aportes desde datos",
+        "Fecha de corte",
+        "Descripción y tabla accesibles"
+      ],
+      "avoidInterpretations": [
+        "Una imagen generativa es evidencia numérica",
+        "Resultados proyectados como promesa",
+        "Cambiar una etiqueta sin reconciliar la serie"
+      ],
+      "alt": "",
+      "sourceContentHash": "b23e21cccb48f77324a5947439d18b53eddb7b0deaddc342e25f751eb1e57ccd",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "data-render",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "licencia-medica-desde-que-dia-pagan",
+      "readerNeed": "Entender inicio, monto y estado del subsidio durante una licencia.",
+      "editorialPromise": "Separar duración autorizada, cobertura y entidad pagadora para revisar el caso.",
+      "visualMessage": "El descanso y el seguimiento administrativo conviven sin prometer un pago universal.",
+      "scene": "A person recovering at home sits comfortably with a light blanket, reviewing a medical leave document next to an unnumbered calendar. Their posture is restful, not helpless. A small health mark on the document supplies context, while one hand follows the calendar sequence without highlighted exact dates.",
+      "requiredElements": [
+        "Reposo doméstico",
+        "Licencia autorizada por revisar",
+        "Calendario sin fechas"
+      ],
+      "avoidInterpretations": [
+        "Toda licencia paga desde el primer día",
+        "El subsidio equivale siempre al sueldo completo",
+        "La ilustración diagnostica una enfermedad"
+      ],
+      "alt": "",
+      "sourceContentHash": "d5870e7a93a5e423ad26b777cd2041274ac636933f02599e54f8254205e1896d",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "liquidacion-de-sueldo",
+      "readerNeed": "Auditar un comprobante de sueldo y solicitar el respaldo de sus líneas.",
+      "editorialPromise": "Explicar qué debe mostrar la liquidación para reconstruir el monto depositado.",
+      "visualMessage": "Mirar línea por línea permite formular preguntas concretas.",
+      "scene": "A large payslip fills an angled tabletop view. One natural hand traces a line across clearly separated but unlettered earnings and deduction sections, while a second small document peeks from beneath as supporting evidence. A teal final-payment band is visible but secondary; no detached infographic replaces the actual sheet.",
+      "requiredElements": [
+        "Liquidación completa dominante",
+        "Lectura línea por línea",
+        "Respaldo secundario"
+      ],
+      "avoidInterpretations": [
+        "El documento ya está validado",
+        "Es solo una calculadora de sueldo",
+        "Un sello prueba exactitud"
+      ],
+      "alt": "",
+      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "operacion-renta-centro",
+      "readerNeed": "Ubicar qué parte de la declaración anual corresponde a su situación.",
+      "editorialPromise": "Ofrecer un mapa de obligación, preparación, resultado y seguimiento de Operación Renta.",
+      "visualMessage": "La declaración se aborda como una secuencia de decisiones y documentos.",
+      "scene": "An adult woman seen in side profile begins organizing an annual tax folder, with an elevated oblique camera showing the documents from above. Three staggered unlettered dividers separate income records, a draft declaration and follow-up papers, with a neutral laptop kept secondary. She is at the beginning of a review, not clicking a giant submission button. No dates or refund celebration.",
+      "requiredElements": [
+        "Carpeta anual",
+        "Etapas diferenciadas",
+        "Persona preparando revisión"
+      ],
+      "avoidInterpretations": [
+        "Todos deben declarar de la misma forma",
+        "La campaña2026 está abierta ahora",
+        "La devolución está garantizada"
+      ],
+      "alt": "",
+      "sourceContentHash": "bf3caf19c7e856f15e8133b1113a95a67ea0991dcf77de4d35b353d4e577353e",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "operacion-renta-f22-checklist",
+      "readerNeed": "Revisar una declaración propuesta y corregir observaciones con respaldo.",
+      "editorialPromise": "Separar revisión, envío y rectificación sin asumir que la propuesta automática es correcta.",
+      "visualMessage": "La comprobación ocurre antes de aceptar y continúa después del envío.",
+      "scene": "A close-up hand checks an unlettered tax declaration against two supporting income slips. A short checklist has some completed boxes and one still open, with a pencil hovering over that final item. Keep the papers tangible and legible as shapes, without fabricated official form text, seals or exact dates.",
+      "requiredElements": [
+        "Declaración contrastada",
+        "Respaldos de ingreso",
+        "Checklist aún abierto"
+      ],
+      "avoidInterpretations": [
+        "Propuesta automática equivale a verificación",
+        "Enviar concluye siempre el proceso",
+        "Calendario anterior válido para todo año"
+      ],
+      "alt": "",
+      "sourceContentHash": "84bd3ce429fe51c5cccfb05b5a2225f66b7dff9c1262a0e92e263e45f70620f5",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "pgu-pension-garantizada-universal",
+      "readerNeed": "Entender si corresponde solicitar PGU y qué revisar antes de hacerlo.",
+      "editorialPromise": "Orientar sobre requisitos, solicitud y compatibilidades de la PGU sin prometer elegibilidad.",
+      "visualMessage": "Una persona mayor puede informarse y preparar su solicitud con autonomía.",
+      "scene": "An older adult with silver hair sits upright at their own small home table, calmly reviewing an application document beside a neutral payment card. One hand follows the document and the other rests naturally on the table. A small, unnumbered calendar is a secondary cue in the background. Warm domestic light, dignified expression and natural proportions; focus on the person preparing a request, not a celebratory approval.",
+      "requiredElements": [
+        "Persona mayor autónoma",
+        "Documento de solicitud sin sello",
+        "Medio de pago neutro"
+      ],
+      "avoidInterpretations": [
+        "Toda persona mayor califica automáticamente",
+        "La solicitud está aprobada",
+        "Es un descuento AFP o liquidación salarial"
+      ],
+      "alt": "",
+      "sourceContentHash": "8a24e08e7202214e6322289a4a3b4794e3058d4df1fa3651655974b9490c7f91",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-29",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+      }
+    },
+    {
+      "slug": "prepago-credito-cuando-conviene-chile",
+      "readerNeed": "Evaluar un abono extraordinario sin desproteger necesidades de liquidez.",
+      "editorialPromise": "Comparar deuda restante, ahorro potencial y costo de oportunidad con condiciones del contrato.",
+      "visualMessage": "Acortar una deuda exige decidir cuánto margen conservar.",
+      "scene": "A loan payment schedule is represented by a folded unnumbered strip on a table. A hand places a modest extra-payment envelope beside the strip, while a separate emergency envelope remains untouched. The strip is partly folded shorter rather than cut triumphantly; no claim of zero fees or fixed savings.",
+      "requiredElements": [
+        "Plan de pagos",
+        "Abono adicional",
+        "Reserva preservada"
+      ],
+      "avoidInterpretations": [
+        "Todo prepago carece de costos",
+        "Prepagar siempre es mejor",
+        "Hay ahorro exacto universal"
+      ],
+      "alt": "",
+      "sourceContentHash": "cea2b484dcfd10c0c28714b72652bbd0774c4f43972cded40aa6d4b1f1118b89",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "primer-empleo-chile-guia-completa",
+      "readerNeed": "Entender contrato, primer comprobante y organización del primer sueldo.",
+      "editorialPromise": "Orientar los pasos financieros iniciales de un empleo formal.",
+      "visualMessage": "Una persona da el primer paso hacia el trabajo formal con autonomía.",
+      "scene": "Edit the supplied original illustration: remove only the black side bars by extending the existing flat teal background edge-to-edge. Preserve the original person, doorway, briefcase, composition, proportions and flat palette. Do not restyle, add faces, objects or text.",
+      "requiredElements": [
+        "Persona, puerta y maletín originales",
+        "Composición, proporciones y paleta plana originales",
+        "Fondo teal continuo hasta los bordes"
+      ],
+      "avoidInterpretations": [
+        "Una edición de encuadre autoriza redibujar a la persona",
+        "La portada explica descuentos exactos",
+        "Empleo equivale a riqueza inmediata"
+      ],
+      "alt": "",
+      "sourceContentHash": "54a05c77220afe7d63cd334c8a3caa507c8d1657c2aac9a482a20e8b058a0ef9",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "image-edit",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Scoped preservation edit authorized for the existing illustration: extend background only; original reference retained with its content hash. No financial claim change."
+      },
+      "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
+      "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc"
+    },
+    {
+      "slug": "que-es-el-apv",
+      "readerNeed": "Comparar alternativas de ahorro previsional voluntario y sus beneficios tributarios condicionados.",
+      "editorialPromise": "Ayudar a entender los regímenes A y B, sus límites y las consecuencias de retirar fondos.",
+      "visualMessage": "Ahorrar para la jubilación requiere elegir condiciones, no perseguir un premio universal.",
+      "scene": "Three-quarter home-table view of a thoughtful adult comparing two equally sized, equally dignified folders, one teal and one navy, both open toward them. A neutral savings envelope sits between the folders in the foreground, linking both choices to the same retirement goal. A hand pauses between the folders rather than selecting a winner. Natural posture, warm daylight and understated facial features.",
+      "requiredElements": [
+        "Dos alternativas de igual jerarquía",
+        "Sobre de ahorro compartido",
+        "Gesto de comparación pausada"
+      ],
+      "avoidInterpretations": [
+        "Un régimen es siempre superior",
+        "El ahorro se retira sin condiciones",
+        "El APV garantiza crecimiento"
+      ],
+      "alt": "",
+      "sourceContentHash": "de71cead33afffcf7bc0b962d0eb3b71be43bf3bb9e7cbe0ce44fead30f23051",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-29",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+      }
+    },
+    {
+      "slug": "que-es-el-ipc-chile-como-se-calcula",
+      "readerNeed": "Entender un índice de precios y por qué difiere de la experiencia personal.",
+      "editorialPromise": "Explicar canasta, variaciones y promedios sin convertir el IPC en un precio individual.",
+      "visualMessage": "Los gastos cotidianos cambian de manera distinta dentro de una canasta.",
+      "scene": "An editorial still life of a grocery basket with bread, vegetables and a plain household bottle. Beside it are small transport and home-service cards, with understated unlettered price tags tilted at different heights. No upward arrow dominates; the variety of everyday costs, not a precise graph, is the central idea.",
+      "requiredElements": [
+        "Canasta cotidiana",
+        "Bienes y servicios",
+        "Variaciones distintas"
+      ],
+      "avoidInterpretations": [
+        "Todos los precios suben igual",
+        "El IPC mide la inflación personal exacta",
+        "El índice siempre aumenta"
+      ],
+      "alt": "",
+      "sourceContentHash": "583cf4dbdf680ff226c0a46185e05567acac1f7bfd0b947038d981381cba1104",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "que-es-la-cuenta-2-afp",
+      "readerNeed": "Entender ahorro voluntario flexible separado de la cotización obligatoria.",
+      "editorialPromise": "Explicar Cuenta2, retiros, costos y diferencias con APV.",
+      "visualMessage": "Dos bolsillos previsionales pueden cumplir propósitos diferentes.",
+      "scene": "A hand opens a modest teal savings folder beside a closed navy retirement folder. A small withdrawal request card is partly pulled from the open folder, with a calendar tab attached. The two folders remain clearly separate and equally dignified, with no instant cash, tax gift or guaranteed growth symbol.",
+      "requiredElements": [
+        "Ahorro voluntario separado",
+        "Solicitud de retiro",
+        "Referencia a plazo"
+      ],
+      "avoidInterpretations": [
+        "Es la cuenta obligatoria",
+        "Todo retiro es inmediato o exento",
+        "Cuenta2 y APV son intercambiables"
+      ],
+      "alt": "",
+      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "que-es-la-uf",
+      "readerNeed": "Comprender por qué un compromiso expresado en UF puede cambiar en pesos con el tiempo.",
+      "editorialPromise": "Explicar la UF como unidad reajustable y su relación con la inflación sin tratarla como moneda o inversión.",
+      "visualMessage": "El contrato puede ser el mismo mientras cambia su equivalencia en pesos.",
+      "scene": "A restrained editorial still life: one large stable navy contract sheet folded at its top into a subtle house-roof silhouette rests beside three unnumbered calendar leaves. Beneath each leaf sits ONE flat paper rectangle: first modestly wide, second narrower, third intermediate in width. These three single-layer rectangular paper swatches vary in width, never height, and represent changing peso equivalents while the contract remains unchanged. No coins, no counters, no stacks, no money piles, no circular tokens, no signatures and no seals. The contract has only a few abstract lines and no signature area. Generous warm-paper space and soft overlapping shadows.",
+      "requiredElements": [
+        "Contrato estable sin firma ni sello",
+        "Tres hojas de calendario sin fechas",
+        "Tres rectángulos planos de papel de anchos variables, una capa cada uno"
+      ],
+      "avoidInterpretations": [
+        "La UF es una moneda que se guarda",
+        "La UF siempre sube",
+        "Todos los arriendos se pactan en UF",
+        "Fichas apiladas o monedas sugieren inversión o riqueza",
+        "Una firma o sello aparenta validación oficial"
+      ],
+      "alt": "",
+      "sourceContentHash": "a80cd2b26af64445148f62fb5488b93dfd24cca04e269b65b2ffb65e2deab4fe",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; initial generated candidate rejected for seal/signature and coin-stack ambiguity; scene revised by agent/source-review. Not YMYL compliance. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "reajuste-arriendo-uf-ipc-chile",
+      "readerNeed": "Verificar si el reajuste del arriendo coincide con lo pactado.",
+      "editorialPromise": "Separar UF, IPC y pesos fijos revisando cláusula y período.",
+      "visualMessage": "El contrato determina qué cálculo corresponde.",
+      "scene": "A renter's hand holds a home key while the other follows one highlighted clause on a lease. An unnumbered calendar and a prior payment slip lie beside the contract, allowing the reader to recognize a date-and-clause comparison. No rising staircase inside a house and no landlord demanding cash.",
+      "requiredElements": [
+        "Cláusula de contrato",
+        "Período de calendario",
+        "Pago anterior para comparar"
+      ],
+      "avoidInterpretations": [
+        "Todos los arriendos suben automáticamente",
+        "UF e IPC son el mismo mecanismo",
+        "El arrendador puede reajustar cuando quiera"
+      ],
+      "alt": "",
+      "sourceContentHash": "8ff4710a2efb1e18ba79daa22dd5f4b6b21b24ed86045d1ebfe1910d7bc53924",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+      }
+    },
+    {
+      "slug": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "readerNeed": "Separar cambios previsionales ya operativos de los futuros.",
+      "editorialPromise": "Distinguir aporte patronal, componentes colectivos y transición generacional.",
+      "visualMessage": "Una reforma se implementa por etapas, no de una sola vez.",
+      "scene": "An objects-only editorial still life on warm paper: a short row of three unnumbered calendar folios represents implementation in stages. The first folio is fully open with a plain teal monthly grid; the middle folio is visibly half open; the last folio is completely shut, showing only its plain navy back cover and folded edge. The open and closed states are the entire focal message. Use soft shadows and ample empty space. No people, hands, skyline, folders, account containers, money, arrows, connectors, branching lines, coins, plant-growth symbols or financial-flow diagram. Do not imply how pension contributions are allocated.",
+      "requiredElements": [
+        "Etapas distintas mediante folios abiertos y cerrados",
+        "Un folio actual abierto y uno futuro totalmente cerrado",
+        "Composición de objetos centrada en implementación gradual"
+      ],
+      "avoidInterpretations": [
+        "Todo ya rige simultáneamente",
+        "Los fondos individuales se traspasan a un fondo colectivo",
+        "La portada explica flujos o proporciones de aportes",
+        "Un folio cerrado equivale a un beneficio denegado"
+      ],
+      "alt": "",
+      "sourceContentHash": "f277ee680f2b5096770dbb0660ef89bec1e995a0ef7ff046551158d25b37e47b",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-10-01",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Visual revision after rejected raster inspection: simplified the authorized visual message to remove misleading symbols; editorial source and promise preserved. This remains illustration curation, not financial compliance or human publication signoff."
+      }
+    },
+    {
+      "slug": "renegociacion-superir",
+      "readerNeed": "Ordenar deudas y comprender la renegociación administrativa antes de iniciar el trámite.",
+      "editorialPromise": "Explicar requisitos, etapas y límites de la vía Superir sin asegurar un resultado.",
+      "visualMessage": "Documentos dispersos se convierten en una propuesta que todavía debe revisarse.",
+      "scene": "Overhead editorial close-up of a negotiation table. Two pairs of natural hands enter from opposite sides: one pair gathers several separate debt statements, the other points toward one central open proposal sheet. The proposal is still being discussed, with unlettered revision marks and a resting pencil, no signatures. Distinct teal and navy sleeves suggest the parties without institutional logos. Calm, constructive tension.",
+      "requiredElements": [
+        "Estados de deuda separados",
+        "Propuesta central en revisión",
+        "Manos de dos lados de la mesa"
+      ],
+      "avoidInterpretations": [
+        "La deuda desaparece automáticamente",
+        "Existe acuerdo o condonación garantizada",
+        "Es una escena de juicio o castigo"
+      ],
+      "alt": "",
+      "sourceContentHash": "c362cc9e7e138afce5e7fbc5e0a42b49e163555ee3dc1d4d11939828151c5887",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-29",
+        "reviewedBy": "agent/source-review",
+        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+      }
+    },
+    {
+      "slug": "rentas-mixtas-sueldo-honorarios",
+      "readerNeed": "Reunir sueldo y honorarios para revisar el resultado tributario anual.",
+      "editorialPromise": "Distinguir rentas y retenciones que se consolidan en la declaración.",
+      "visualMessage": "Dos fuentes separadas durante el año deben mirarse juntas al declarar.",
+      "scene": "Two natural hands align a payslip and a freelance invoice side by side over one annual tax folder. Small detached retention slips remain visible with each source. The sheets meet at the folder without merging into an illegible pile; a quiet blank calendar page anchors the annual context.",
+      "requiredElements": [
+        "Sueldo y boleta distintos",
+        "Carpeta anual común",
+        "Retenciones identificables"
+      ],
+      "avoidInterpretations": [
+        "Dos retenciones cierran siempre el impuesto",
+        "Rentas mixtas garantizan devolución",
+        "Se usa cualquier tasa sin mirar el año"
+      ],
+      "alt": "",
+      "sourceContentHash": "336098fe06bb7ab61fe25817702dadc7cd776ff63d78809b206ff2c3be1f4e41",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "readerNeed": "Distinguir saldo individual de acceso condicionado al fondo colectivo.",
+      "editorialPromise": "Explicar el orden CIC primero y evaluación del complemento solidario.",
+      "visualMessage": "Una reserva propia y una ayuda común tienen acceso diferente.",
+      "scene": "Two clearly distinct folders sit on a table: a personal account folder in the foreground and a shared-support folder behind it. A small document gate stands before the shared folder, suggesting eligibility review. A simple open hand points first to the personal folder. There is no automatic pipe connecting the two and no promise of equal balances.",
+      "requiredElements": [
+        "Cuenta individual primero",
+        "Fondo colectivo separado",
+        "Condición de acceso"
+      ],
+      "avoidInterpretations": [
+        "Ambos fondos son saldo propio",
+        "El complemento es automático",
+        "Las reglas son idénticas"
+      ],
+      "alt": "",
+      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "seguro-de-cesantia",
+      "readerNeed": "Consultar y tramitar apoyo de cesantía según saldo, cotizaciones y causal.",
+      "editorialPromise": "Orientar la revisión de cuenta y documentos antes de solicitar cobro.",
+      "visualMessage": "Perder un empleo abre una revisión concreta de recursos y requisitos.",
+      "scene": "An adult man with close-cropped hair at a modest workspace calmly checks a neutral laptop while placing a termination document beside an account statement. A work bag rests on a nearby chair. His posture is active and focused on the next step, without drooping shoulders, empty pockets or an oversized protective shield.",
+      "requiredElements": [
+        "Consulta de cuenta",
+        "Documento de término laboral",
+        "Persona actuando con autonomía"
+      ],
+      "avoidInterpretations": [
+        "Toda persona cesante cobra lo mismo",
+        "Existe cobertura sin requisitos",
+        "La persona está indefensa"
+      ],
+      "alt": "",
+      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "sueldo-imponible-chile",
+      "readerNeed": "Distinguir la base imponible de otras partes de la remuneración.",
+      "editorialPromise": "Identificar componentes que forman la base sin confundirla con bruto o líquido.",
+      "visualMessage": "Separar conceptos permite entender sobre qué se calcula.",
+      "scene": "A payslip lies open with two clearly separated groups of unlettered earnings bands. A hand moves a small meal-and-transport allowance slip slightly aside while pointing to the main navy calculation base. The composition is a close editorial detail, not a numeric formula or a final deposit illustration.",
+      "requiredElements": [
+        "Base principal diferenciada",
+        "Asignaciones separadas",
+        "Mano que clasifica"
+      ],
+      "avoidInterpretations": [
+        "Bruto e imponible son iguales",
+        "Imponible equivale al depósito final",
+        "Todos los descuentos comparten idéntica base"
+      ],
+      "alt": "",
+      "sourceContentHash": "714e68e726c73f7ce55233141d3dc2e71e6949a64a18519b2a84cf9374465757",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "B",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "suplantacion-identidad-creditos-no-reconocidos",
+      "readerNeed": "Actuar ante un crédito o producto financiero que no solicitó.",
+      "editorialPromise": "Ordenar bloqueo, reclamo y evidencia cuando otra persona usa sus datos.",
+      "visualMessage": "Un documento inesperado exige verificar el origen y dejar registro.",
+      "scene": "A person holds their own neutral identity card while studying an unexpected loan notice on the table. A faint offset duplicate-card silhouette behind the notice suggests misuse of identity without a villain caricature. Their free hand collects the notice into an evidence folder. No readable personal data, official seals or debt-payment gesture.",
+      "requiredElements": [
+        "Identidad propia",
+        "Crédito inesperado",
+        "Carpeta de evidencia"
+      ],
+      "avoidInterpretations": [
+        "Corresponde pagar para regularizar",
+        "La víctima causó el fraude",
+        "Reclamar borra todo de inmediato"
+      ],
+      "alt": "",
+      "sourceContentHash": "a5e1bd5cbde148afd61181c1c6ed921a0fae1f2357ce5d01575bf75b48084c38",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "A",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "tarjeta-credito-costo-real-chile",
+      "readerNeed": "Comprender cómo el pago mensual modifica costo y duración de la deuda de tarjeta.",
+      "editorialPromise": "Mostrar por qué el mínimo puede prolongar la deuda y comparar escenarios propios.",
+      "visualMessage": "Un pago pequeño no necesariamente termina pronto el compromiso.",
+      "scene": "A plain credit card rests beside an accordion billing statement that stretches across a warm-paper table. A small payment envelope sits near the first fold, while the remaining folds continue into the background. A hand considers a second, modest envelope without celebratory cutting, numbers or limitless spending imagery.",
+      "requiredElements": [
+        "Tarjeta reconocible",
+        "Estado de cuenta que se prolonga",
+        "Decisión de pago"
+      ],
+      "avoidInterpretations": [
+        "La tarjeta es ingreso extra",
+        "El mínimo siempre reduce rápido la deuda",
+        "Un resultado idéntico para toda tasa"
+      ],
+      "alt": "",
+      "sourceContentHash": "c1aee41e68b9688284c09c14d77659eb853f40f5d23a2cedb0215f2e07bf34c8",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+      }
+    },
+    {
+      "slug": "utm-chile-que-es-como-funciona",
+      "readerNeed": "Convertir referencias tributarias a pesos usando el período correcto.",
+      "editorialPromise": "Distinguir unidad mensual, valor vigente y usos tributarios frente a UF y UTA.",
+      "visualMessage": "El mes importa al interpretar una obligación expresada en una unidad reajustable.",
+      "scene": "An objects-only editorial still life with exactly one large unnumbered monthly calendar leaf and one neutral rectangular payment notice on a warm paper surface. The monthly calendar is shown as one complete period: use a faint uniform grid without highlighting any individual day. The notice contains only a few plain horizontal strokes and one solid terracotta rectangle as an abstract placeholder for the variable amount. The full calendar leaf has a matching terracotta edge, quietly pairing the period with the amount placeholder. The amount placeholder is flat and rectangular, not a token or stack. No people, hands, money, coins, cylinders, discs, stacks, arrows, currency marks, bank-building symbols, tax badges, seals, emblems, shields, approval checks, signatures, logos or institutional decoration. Keep the notice and entire monthly leaf equally legible.",
+      "requiredElements": [
+        "Una sola hoja mensual completa sin día destacado",
+        "Aviso de obligación rectangular completamente neutro",
+        "Un único rectángulo plano de color como importe variable sin cifras"
+      ],
+      "avoidInterpretations": [
+        "La UTM es una moneda",
+        "UTM y UF se actualizan igual",
+        "El valor sirve para todos los meses",
+        "El importe depende de un día marcado",
+        "El aviso muestra aprobación o respaldo institucional"
+      ],
+      "alt": "",
+      "sourceContentHash": "fc5f109cf3cfe150f8f49c217aa900d8258d224993f2cc07b35c1bea4caa8321",
+      "styleVersion": "monedario-editorial-v5",
+      "promptTrack": "C",
+      "generationMethod": "imagegen",
+      "review": {
+        "status": "reviewed",
+        "reviewedAt": "2026-10-01",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Visual revision after rejected raster inspection: simplified the authorized visual message to remove misleading symbols; editorial source and promise preserved. This remains illustration curation, not financial compliance or human publication signoff."
+      }
+    }
+  ]
+}

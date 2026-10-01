@@ -1,68 +1,28 @@
 #!/usr/bin/env node
-import {
-  MANIFEST_PATH,
-  PROMPTS_PATH,
-  heroPublicPath,
-  readJson,
-  sha256Hex,
-  toRepoRelative,
-  writeJson,
-} from "./lib.mjs";
-import { PROMPT_TRACK_LABELS, buildPromptFromPlan, selectPromptPlan } from "./prompt-plan.mjs";
+import path from "node:path";
+import { MANIFEST_PATH, PROMPTS_PATH, readJson, readArticleFile, splitFrontmatter, parseFrontmatter, toRepoRelative, writeJson } from "./lib.mjs";
+import { articleContentHash, buildPromptEntry, validateEditReference } from "./prompt-plan.mjs";
+import { EDITORIAL_STYLE_VERSION } from "./config.mjs";
 
 async function main() {
   const manifest = await readJson(MANIFEST_PATH);
-  const articles = Array.isArray(manifest.articles) ? manifest.articles : [];
-
-  const entries = articles.map(article => {
-    const plan = selectPromptPlan(article);
-    const prompt = buildPromptFromPlan(plan);
-
-    return {
-      slug: article.slug,
-      sourcePath: article.sourcePath,
-      targetImagePath: heroPublicPath(article.slug, ".avif"),
-      template: plan.template,
-      promptTrack: plan.promptTrack,
-      promptTrackLabel: PROMPT_TRACK_LABELS[plan.promptTrack] ?? PROMPT_TRACK_LABELS.A,
-      approvedModelId: plan.approvedModelId,
-      sceneId: plan.sceneId,
-      readerSituation: plan.semantic.readerSituation,
-      primaryIntent: plan.semantic.primaryIntent,
-      toneClass: plan.semantic.toneClass,
-      visualEvidence: plan.semantic.visualEvidence,
-      palette: {
-        category: plan.colorKey,
-        hex: plan.hex,
-      },
-      modelPlan: { ...plan.modelPlan },
-      prompt,
-      promptHash: sha256Hex(prompt),
-      selectors: {
-        ruleId: plan.ruleId,
-        category: article.category,
-        cluster: article.cluster,
-        matchedKeywords: plan.matchedKeywords,
-      },
-    };
-  });
-
+  const briefs = await readJson(path.join(path.dirname(MANIFEST_PATH), "briefs.json"));
+  const briefBySlug = new Map(briefs.entries.map(brief => [brief.slug, brief]));
+  if (briefBySlug.size !== briefs.entries.length) throw new Error("Duplicate brief slug.");
+  const entries = [];
+  for (const article of manifest.articles) {
+    const source = await readArticleFile(article.sourcePath);
+    const { frontmatterRaw, body } = splitFrontmatter(source);
+    const sourceContentHash = articleContentHash(parseFrontmatter(frontmatterRaw, article.sourcePath), body);
+    const brief = briefBySlug.get(article.slug);
+    const entry = buildPromptEntry({ ...article, sourceContentHash }, brief);
+    const referenceErrors = await validateEditReference(brief);
+    if (referenceErrors.length) throw new Error(`[${article.slug}] ${referenceErrors.join(" ")}`);
+    entries.push(entry);
+  }
   entries.sort((a, b) => a.slug.localeCompare(b.slug));
-
-  const prompts = {
-    schemaVersion: 1,
-    sourceManifest: toRepoRelative(MANIFEST_PATH),
-    count: entries.length,
-    entries,
-  };
-
-  await writeJson(PROMPTS_PATH, prompts);
-
-  console.log(`[build-prompts] Entries: ${entries.length}`);
+  await writeJson(PROMPTS_PATH, { schemaVersion: 2, styleVersion: EDITORIAL_STYLE_VERSION, sourceManifest: toRepoRelative(MANIFEST_PATH), sourceBriefs: "scripts/hero-images/briefs.json", count: entries.length, entries });
+  console.log(`[build-prompts] Reviewed entries: ${entries.length}`);
   console.log(`[build-prompts] Output: ${toRepoRelative(PROMPTS_PATH)}`);
 }
-
-main().catch(error => {
-  console.error(error);
-  process.exit(1);
-});
+main().catch(error => { console.error(error); process.exitCode = 1; });

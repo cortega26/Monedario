@@ -1,167 +1,104 @@
+import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
-  buildArticleSceneId,
-  buildPromptFromPlan,
+  articleContentHash,
+  buildPromptEntry,
   selectPromptPlan,
+  validateBrief,
+  validateEditReference,
 } from "../../scripts/hero-images/prompt-plan.mjs";
+import { EDITORIAL_STYLE_VERSION } from "../../scripts/hero-images/config.mjs";
 
-describe("hero-images deterministic selector", () => {
-  it("routes fraud-like content to Template A with severe palette", () => {
-    const plan = selectPromptPlan({
-      slug: "estafas-financieras-chile",
-      title: "Estafas financieras en Chile",
-      tags: ["fraude", "seguridad-financiera"],
-      category: "seguridad-financiera",
-      cluster: "seguridad-financiera",
-      summary: "como detectar estafas y evitar fraude",
-      headings: ["Que hacer si recibes una llamada sospechosa"],
-      leadParagraphs: ["Si te llaman para pedir claves o codigos, debes cortar de inmediato."],
-      bodyExcerpt: "El articulo explica como detectar contactos sospechosos y bloquear fraude.",
-    });
+const catalog = JSON.parse(fs.readFileSync("scripts/hero-images/briefs.json", "utf8"));
+const manifest = JSON.parse(fs.readFileSync("scripts/hero-images/manifest.json", "utf8"));
+function fixture(slug = "bancos-y-fintech-chile") {
+  return {
+    article: manifest.articles.find((item: { slug: string }) => item.slug === slug),
+    brief: catalog.entries.find((item: { slug: string }) => item.slug === slug),
+  };
+}
 
-    expect(plan.template).toBe("A");
-    expect(plan.colorKey).toBe("Fraude / Perdida grave");
-    expect(plan.approvedModelId).toBe("fraude-estafa");
-    expect(plan.sceneId).toBe(
-      buildArticleSceneId("A", "fraude-estafa", "estafas-financieras-chile")
-    );
-    if (!("sceneChoice" in plan)) {
-      throw new Error("Expected Template A plan.");
-    }
-    expect(plan.sceneChoice).toBe("Fraude / Estafa");
-    expect(plan.semantic.primaryIntent).toBe("alertar");
-    expect(plan.semantic.visualEvidence.length).toBeGreaterThan(0);
+describe("reviewed editorial briefs", () => {
+  it("does not classify banking as unemployment merely because its body mentions sueldo", () => {
+    const { article, brief } = fixture();
+    const entry = buildPromptEntry(article, brief);
+    expect(entry.readerSituation).toContain("ingresos");
+    expect(entry.prompt).toContain("debit card");
+    expect(entry.prompt).toContain("smartphone");
+    expect(entry.selectors.ruleId).toBe("explicit-reviewed-brief");
+    expect(entry.selectors.matchedKeywords).toEqual([]);
   });
 
-  it("routes UF/IPC content to Template C", () => {
-    const plan = selectPromptPlan({
-      slug: "que-es-la-uf",
-      title: "UF en simple",
-      tags: ["uf", "ipc"],
-      category: "deuda-credito",
-      cluster: "deuda-credito",
-      summary: "como cambia la uf segun ipc",
-      headings: ["Que es la UF", "Por que la UF sube todos los dias"],
-      leadParagraphs: ["Tu arriendo y dividendo pueden cambiar por la UF aunque el contrato no cambie."],
-      bodyExcerpt: "La UF refleja la inflacion y afecta pagos cotidianos como arriendo y creditos.",
-    });
-
-    expect(plan.template).toBe("C");
-    expect(plan.colorKey).toBe("Educativo / Conceptos / Guias");
-    expect(plan.approvedModelId).toBe("uf-indicadores");
-    expect(plan.sceneId).toBe(buildArticleSceneId("C", "uf-indicadores", "que-es-la-uf"));
-    if (!("iconChoice" in plan)) {
-      throw new Error("Expected Template C plan.");
-    }
-    expect(plan.iconChoice).toBe("UF / Indicadores");
-    expect(plan.semantic.primaryIntent).toBe("explicar");
-    expect(plan.semantic.readerSituation).toContain("indicador");
+  it("keeps the payslip dominant in the salary calculation prompt", () => {
+    const { article, brief } = fixture("como-calcular-sueldo-liquido");
+    const entry = buildPromptEntry(article, brief);
+    expect(entry.prompt).toContain("The payslip is dominant and remains clearly present");
+    expect(entry.prompt).not.toContain("NEXT REVISION GOAL");
+    expect(entry.prompt).not.toContain("WITHOUT document");
   });
 
-  it("keeps deterministic output for same input", () => {
-    const article = {
-      slug: "fondos-afp-a-b-c-d-e",
-      title: "Fondos AFP",
-      tags: ["afp", "pensiones"],
-      category: "prevision",
-      cluster: "pensiones-afp",
-      summary: "diferencias entre fondos afp",
-      headings: ["Diferencias entre fondos", "Cual te conviene"],
-      leadParagraphs: ["Elegir mal el fondo puede afectar tu pension futura."],
-      bodyExcerpt: "El articulo compara riesgo, horizonte y conveniencia de cada fondo.",
-    };
-
-    const a = selectPromptPlan(article);
-    const b = selectPromptPlan(article);
-
-    expect(a).toEqual(b);
-    expect(buildPromptFromPlan(a)).toBe(buildPromptFromPlan(b));
+  it("requires explicit review for both drafts and published articles", () => {
+    const { article, brief } = fixture();
+    expect(() => selectPromptPlan(article)).toThrow("Missing reviewed brief");
+    expect(() => selectPromptPlan({ ...article, draft: true })).toThrow("Missing reviewed brief");
+    expect(() => selectPromptPlan(article, { ...brief, review: { status: "proposed" } })).toThrow("unreviewed");
   });
 
-  it("prefers article text signals over coarse category fallback", () => {
-    const plan = selectPromptPlan({
-      slug: "explicacion-uf",
-      title: "Explicacion de la UF",
-      tags: [],
-      category: "deuda-credito",
-      cluster: "deuda-credito",
-      summary: "guia para entender la uf",
-      headings: ["Que es la UF"],
-      leadParagraphs: ["La UF afecta pagos cotidianos como arriendo y dividendos."],
-      bodyExcerpt: "Este texto explica la UF y el IPC, no una deuda puntual ni una cobranza.",
-    });
-
-    expect(plan.ruleId).toBe("uf");
-    expect(plan.template).toBe("C");
-    expect(plan.approvedModelId).toBe("uf-indicadores");
-    expect(plan.matchedKeywords).toContain("uf");
+  it("blocks stale briefs instead of silently accepting changed article content", () => {
+    const { article, brief } = fixture();
+    expect(validateBrief({ ...article, sourceContentHash: "changed" }, brief).join(" ")).toContain("stale");
+    expect(() => buildPromptEntry({ ...article, sourceContentHash: "changed" }, brief)).toThrow("stale");
   });
 
-  it("uses article-specific slug overrides for budgeting content", () => {
-    const plan = selectPromptPlan({
-      slug: "como-hacer-presupuesto-mensual-chile",
-      title: "Como hacer presupuesto mensual",
-      tags: ["presupuesto"],
-      category: "general",
-      cluster: "empleo-ingresos",
-      summary: "guia para ordenar gastos y ahorro",
-      headings: ["Paso 1", "Paso 2"],
-      leadParagraphs: ["Necesitas ordenar tus gastos."],
-      bodyExcerpt: "La guia explica como separar gastos fijos, variables y ahorro.",
-    });
-
-    expect(plan.ruleId).toBe("ahorro");
-    expect(plan.approvedModelId).toBe("ahorro");
-    expect(plan.promptTrack).toBe("A");
-    expect(plan.sceneId).toBe(
-      buildArticleSceneId("A", "ahorro", "como-hacer-presupuesto-mensual-chile")
-    );
-    const prompt = buildPromptFromPlan(plan);
-    expect(prompt).toContain("organizing a monthly budget at a home table");
-    expect(prompt).toContain("The scene should feel lived-in and hopeful");
+  it("hashes body and editorial promise while ignoring hero and review metadata", () => {
+    const fm = { title: "Título", description: "Descripción", articleLead: { answer: "Respuesta" }, heroImage: "old.avif", updatedDate: "2026-01-01" };
+    const initial = articleContentHash(fm, "Texto.\r\n");
+    expect(articleContentHash({ ...fm, heroImage: "new.avif", heroImageAlt: "", updatedDate: "2026-09-30" }, "Texto.\n")).toBe(initial);
+    expect(articleContentHash(fm, "Texto distinto.")).not.toBe(initial);
+    expect(articleContentHash({ ...fm, articleLead: { answer: "Otra promesa" } }, "Texto.")).not.toBe(initial);
+    expect(articleContentHash({ ...fm, title: "Otro título" }, "Texto.")).not.toBe(initial);
   });
 
-  it("uses a financial onboarding scene for the migrant guide", () => {
-    const plan = selectPromptPlan({
-      slug: "finanzas-para-migrantes-chile",
-      title: "Como ordenar tus finanzas en Chile siendo migrante",
-      tags: ["migrantes", "rut", "cuentarut", "arriendo"],
-      category: "general",
-      cluster: "finanzas-migrantes",
-      summary: "Pasos para obtener RUT, abrir CuentaRUT y arrendar una vivienda.",
-      headings: ["El RUT", "Abrir una cuenta", "Arrendar"],
-      leadParagraphs: ["La guia remite al SII para verificar los requisitos vigentes."],
-      bodyExcerpt: "El SII es una fuente oficial, pero esta no es una guia de Operacion Renta.",
-    });
-
-    expect(plan.ruleId).toBe("finanzas-migrantes");
-    expect(plan.approvedModelId).toBe("ahorro");
-    expect(plan.promptTrack).toBe("A");
-    expect(plan.sceneId).toBe(
-      buildArticleSceneId("A", "ahorro", "finanzas-para-migrantes-chile")
-    );
-    const prompt = buildPromptFromPlan(plan);
-    expect(prompt).toContain("clear three-step path toward a stable home");
-    expect(prompt).toContain("identity document, a bank card, and a house key");
+  it("produces identical final prompts and hashes from the same reviewed source", () => {
+    const { article, brief } = fixture();
+    expect(buildPromptEntry(article, brief)).toEqual(buildPromptEntry(article, brief));
+    expect(buildPromptEntry(article, brief).styleVersion).toBe(EDITORIAL_STYLE_VERSION);
   });
 
-  it("humanizes stale mechanism overrides for hybrid payroll/document topics", () => {
-    const plan = selectPromptPlan({
-      slug: "como-leer-cartola-afp-chile",
-      title: "Como leer cartola AFP Chile",
-      tags: ["afp", "cartola"],
-      category: "prevision",
-      cluster: "pensiones-afp",
-      summary: "guia para entender tu cartola afp",
-      headings: ["Cotizaciones", "Rentabilidad"],
-      leadParagraphs: ["Necesitas revisar si tus cotizaciones aparecen bien en la cartola."],
-      bodyExcerpt: "La cartola se entiende mejor si distingues aportes, saldo y movimientos clave.",
-    });
+  it("routes numerical methodology to a reproducible render without contradictory imagegen instructions", () => {
+    const { article, brief } = fixture("interes-compuesto-nota-metodologica");
+    const entry = buildPromptEntry(article, brief);
+    expect(entry.generationMethod).toBe("data-render");
+    expect(entry.prompt).toContain("not an image generator");
+    expect(entry.prompt).not.toContain("Do not render text");
+  });
 
-    expect(plan.ruleId).toBe("prevision");
-    expect(plan.promptTrack).toBe("B");
-    const prompt = buildPromptFromPlan(plan);
-    expect(prompt).toContain("a simplified person, partial figure, or visible hands are actively interacting");
-    expect(prompt).toContain("Keep the supporting mechanism limited to the statement sheet");
+  it("keeps a preservation edit separate from the v5 restyling prompt", () => {
+    const { article, brief } = fixture("primer-empleo-chile-guia-completa");
+    const entry = buildPromptEntry(article, brief);
+    expect(entry.generationMethod).toBe("image-edit");
+    expect(entry.prompt).toContain("remove only the black side bars");
+    expect(entry.prompt).toContain("Preserve the original person, doorway, briefcase");
+    expect(entry.prompt).not.toContain("Create an original editorial illustration");
+    expect(entry.prompt).not.toContain("soft shadows");
+    expect(entry.referenceImagePath).toBe(brief.referenceImagePath);
+    expect(validateBrief(article, { ...brief, referenceImagePath: undefined }).join(" ")).toContain("referenceImagePath");
+    expect(validateBrief(article, { ...brief, referenceImageHash: undefined }).join(" ")).toContain("referenceImageHash");
+  });
+
+  it("requires the preserved reference bytes for edits and detects missing or changed originals", async () => {
+    const { brief } = fixture("primer-empleo-chile-guia-completa");
+    expect(await validateEditReference(brief)).toEqual([]);
+    expect(await validateEditReference({ ...brief, referenceImageHash: "0".repeat(64) })).toEqual([expect.stringContaining("bytes changed")]);
+    expect(await validateEditReference({ ...brief, referenceImagePath: "scripts/hero-images/references/missing.avif" })).toEqual([expect.stringContaining("Cannot read")]);
+    expect(await validateEditReference({ ...brief, referenceImagePath: "scripts/hero-images/references/../../secret.avif" })).toEqual([expect.stringContaining("Invalid")]);
+    expect(await validateEditReference(fixture().brief)).toEqual([]);
+  });
+
+  it("requires all brief semantics and a deliberate decorative or informative alt", () => {
+    const { article, brief } = fixture();
+    expect(validateBrief(article, { ...brief, alt: undefined }).join(" ")).toContain("brief.alt");
+    expect(validateBrief(article, { ...brief, requiredElements: [] }).join(" ")).toContain("requiredElements");
+    expect(validateBrief(article, { ...brief, styleVersion: "old" }).join(" ")).toContain("outdated");
   });
 });

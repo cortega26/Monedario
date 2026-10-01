@@ -452,21 +452,36 @@ function escapeDimensionPart(value: string): string {
 function durableCounterFromEvent(
   event: string,
   params: Record<string, string | number | boolean>,
-  timeZone: string,
+  timeZone: string
 ): IncrementPayload {
-  const slug = String(params.calculator_id ?? params.page_type ?? "unknown");
-  const entries = Object.entries(params)
-    .filter(([key]) => key !== "calculator_id" && key !== "page_type")
-    .sort(([a], [b]) => a.localeCompare(b));
-  const needsEscapedFormat = entries.some(([, value]) =>
-    /[:;\\=]/.test(String(value)),
+  // Visual events use public article identity in the existing counter identity
+  // column (exported as calculator_id for schema-v2 compatibility). Named
+  // dimensions preserve surface, image version, viewport class and page type.
+  const visualEvent =
+    event === "editorial_image_impression" ||
+    event === "editorial_image_click" ||
+    (event === "article_scroll_depth" &&
+      typeof params.image_version === "string");
+  const slug = String(
+    visualEvent
+      ? params.article_slug
+      : (params.calculator_id ?? params.page_type ?? "unknown")
   );
+  const entries = Object.entries(params)
+    .filter(([key]) =>
+      visualEvent
+        ? key !== "article_slug" && key !== "calculator_id"
+        : key !== "calculator_id" && key !== "page_type"
+    )
+    .sort(([a], [b]) => a.localeCompare(b));
+  const needsEscapedFormat =
+    visualEvent || entries.some(([, value]) => /[:;\\=]/.test(String(value)));
   const dimensions = needsEscapedFormat
     ? DIMENSIONS_VERSION_PREFIX +
       entries
         .map(
           ([key, value]) =>
-            `${escapeDimensionPart(key)}=${escapeDimensionPart(String(value))}`,
+            `${escapeDimensionPart(key)}=${escapeDimensionPart(String(value))}`
         )
         .join(":")
     : entries.map(([, value]) => String(value)).join(":");

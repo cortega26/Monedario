@@ -214,31 +214,62 @@ Change log:
 
 ### `CONTRACT.EDITORIAL.HERO_IMAGE_PIPELINE`
 
-- Scope: Deterministic hero-image prompt derivation, manual image creation workflow, and publication-time asset validation for `src/data/blog/**/*.md(x)`.
+- Scope: Article-backed briefs, final prompts, explicitly curated raster assets,
+  deterministic delivery and publication-time validation for blog images.
 - Source of truth:
-  - Pipeline scripts: `scripts/hero-images/*`
-  - Guard gate: `scripts/check-hero-images.mjs`
-  - Policy/spec: `context/EDITORIAL_IMAGE_SYSTEM.md`
+  - Policy: `context/EDITORIAL_IMAGE_SYSTEM.md` (v5).
+  - Decision: `docs/adr/ADR-20260930-editorial-image-delivery.md`.
+  - Brief/prompt pipeline: `scripts/hero-images/*`.
+  - Asset selection/provenance: `scripts/hero-images/asset-reviews.json`.
+  - Delivery map: `src/generated/editorial-images.json`.
 - Baseline expectations:
-  - Publishable criterion: `draft !== true`.
-  - Every publishable article must expose a resolvable `heroImage` value.
-  - Canonical public hero asset must exist by slug at `public/images/hero/<slug>.avif|.webp`.
-  - Prompt derivation is deterministic from manifest input (stable sort + stable heuristics + `promptHash`).
-  - Image selection is mandatory from article reading, not metadata-only matching.
-  - Each prompt entry must preserve a situation-level mapping between article text and selected template/scene/icon.
-  - The final visual choice must remain inside the controlled scene system defined by `context/EDITORIAL_IMAGE_SYSTEM.md`.
-  - Final hero assets are manually created/curated; automated image API generation is out of policy.
-  - CI and scheduled workflows must not require API secrets for hero image generation.
+  - Publishable criterion remains `draft !== true`; every publishable article
+    has a resolvable `heroImage` and canonical asset by public slug.
+  - New selections use AVIF 1200×630, at most 81,920 bytes; legacy path/WebP
+    compatibility remains subject to the existing hero-image gate.
+  - A reviewed brief derives from the complete article or full-body structured
+    extraction. Missing, unreviewed or stale briefs block prompt generation.
+  - `sourceContentHash` covers title, description, `articleLead` and body;
+    `briefHash`, `promptHash` and `styleVersion` preserve the next transitions.
+  - The displayed, copied and validated prompt is byte-identical. Operational
+    notes are not appended. Legacy scene catalogs do not route v5 articles.
+  - `generationMethod: image-edit` requires `referenceImagePath` under
+    `scripts/hero-images/references/` and its SHA-256 `referenceImageHash`.
+    Its prompt preserves the referenced illustration within an explicit edit
+    scope, without injecting the new-illustration style. `modelPlan` is planned
+    intent; provenance must record the actual tool and transformation, including
+    authorized deterministic corrections, without inventing model execution.
+  - Generation/curation is explicit and may be delegated by the user to an agent;
+    no generative service calls or generation secrets in build/CI/scheduled jobs.
+  - The selected source, its hash, final prompt, editorial source hash, style,
+    canonical asset hash, review and rejected-candidate history are recorded.
+  - An accepted asset review selects a lossless WebP source at 1200×630. Delivery
+    validates source and canonical hashes, then renders hero/tablet/mobile/OG
+    from that source. Retained assets without an accepted source use the existing
+    canonical AVIF; a mismatched accepted source fails instead of falling back.
+  - Delivery manifest `sourceHash` identifies actual raster source bytes, distinct
+    from editorial `sourceContentHash`. Assets carry SHA-256, dimensions and size.
+  - Served URLs include each asset's byte hash. Replacing content yields a new
+    immutable URL; mtime does not establish freshness. Retain prior hashed assets.
+  - Responsive variants are 800×420 and 600×315; one 1200×630 JPEG OG per article.
+    Resolve actual manifest variants, never fabricate URLs by extension replacement.
+  - Optional `heroImageAlt` describes informative hero content; redundant images
+    inside titled card links use empty alt. Charts require accessible data/text.
+  - Quantitative charts use traceable data and reproducible rendering; YMYL audit
+    independence and human sign-off remain required before their publication.
 - Backward-compat expectations:
-  - Legacy `heroImage` path styles may coexist during migration, provided canonical public assets exist.
-  - Hardening to public-only path mode requires explicit policy update.
-  - Semantic selection may start from metadata heuristics, but publication requires text-backed confirmation.
+  - Canonical `heroImage` paths, article slugs, canonical URLs and RSS stay stable.
+  - Legacy assets may remain without invented prompt/source provenance.
+  - Fallbacks preserve an existing image without inventing missing derivatives.
 - Enforcement:
   - `node scripts/hero-images/scan-articles.mjs`
   - `node scripts/hero-images/build-prompts.mjs`
   - `node scripts/check-hero-prompts.mjs`
+  - `node scripts/check-image-curation.mjs`
+  - `node scripts/hero-images/build-delivery.mjs --check`
   - `node scripts/check-hero-images.mjs`
-  - Manual review for final text-to-scene quality and visual fidelity
+  - Recorded visual/semantic review by the authorized curator; independent YMYL
+    audit where applicable. Technical success is not semantic approval.
 
 ### `CONTRACT.EDITORIAL.INLINE_IMAGE_FORMAT`
 

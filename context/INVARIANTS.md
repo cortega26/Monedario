@@ -584,20 +584,32 @@ Change log:
 
 ### `INVARIANT.EDITORIAL.HERO_IMAGE_TEXT_MATCH_REQUIRED`
 
-- Statement: Every new or refreshed hero image must be chosen from a reading of the article text and must match the reader situation described by the article, not only its metadata.
-- Canonical source: `context/EDITORIAL_IMAGE_SYSTEM.md` (v3.3, Section 13.4).
+- Statement: Every new or refreshed hero image must follow a reviewed reading of
+  the complete article and match its reader need, editorial promise and intended
+  message; metadata or keyword matching alone cannot approve a selection.
+- Canonical source: `context/EDITORIAL_IMAGE_SYSTEM.md` (v5, §§3–5).
 - Rationale:
-  - Improves editorial relevance beyond topic-level tagging.
-  - Prevents generic or misleading finance imagery.
-  - Preserves visual consistency through a controlled scene system instead of freeform image intuition.
-- Enforcement: `node scripts/check-hero-prompts.mjs` (text-backed evidence presence) + human review for final scene quality.
+  - Prevents generic finance imagery and materially misleading interpretations.
+  - Makes article→brief→prompt→selected-image decisions traceable.
+  - Allows distinct scenes within a coherent visual identity without forcing a
+    decorative person or a closed legacy scene catalog.
+- Enforcement: `node scripts/check-hero-prompts.mjs` checks reviewed briefs,
+  source/brief/prompt hashes and prompt integrity; `check:image-curation` checks
+  the recorded selection against current prompt/source/asset bytes. Recorded
+  visual review by the authorized curator checks the final scene. These controls
+  do not replace YMYL auditing.
 - Detection:
-  - Required evidence must identify `readerSituation`, `primaryIntent`, `templateChoice`, and chosen scene/icon.
-  - Metadata-only selection (`slug`, `tags`, `category`, `cluster`) without article-text justification is non-compliant and blocking.
-  - Review should reject image choices that do not reflect the main situation described in the body.
+  - Evidence identifies `readerNeed`, `editorialPromise`, `visualMessage`,
+    `scene`, `requiredElements`, `avoidInterpretations` and review metadata.
+  - Missing/unreviewed briefs or drift in the full editorial input block prompts.
+  - The copied prompt must equal the validated prompt; hidden additions fail.
+  - Reject a final image that misstates the article, is interchangeable with a
+    different topic, or carries fabricated financial data or institutional cues.
 - Examples:
-  - Compliant: fraud article mapped to alert posture + phone-based scene because the body centers on suspicious contact and immediate defensive action.
-  - Violation: debt article assigned a generic bank icon only because the `category` is `deuda-credito`, without body-level match.
+  - Compliant: a payroll article uses a reviewed payslip scene because its body
+    teaches how deductions connect to the deposit; review confirms that message.
+  - Violation: a banking comparison receives a cesantía scene merely because its
+    text mentions sueldo, even if the image is visually polished.
 
 ### `INVARIANT.EDITORIAL.DIALECT_ES_CL`
 

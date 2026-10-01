@@ -39,6 +39,8 @@ describe("analytics v2 contract", () => {
         "calculator_copy_link",
         "calculator_copy_result",
         "article_scroll_depth",
+        "editorial_image_impression",
+        "editorial_image_click",
         "cta_click",
         "calculator_trust_link_click",
         "hub_route_click",
@@ -76,6 +78,9 @@ describe("analytics v2 contract", () => {
         "mode",
         "article_slug",
         "scroll_depth_percent",
+        "image_version",
+        "image_surface",
+        "device_class",
         // Pre-contrato de monetización (ADR-20260921).
         "affiliate_slot",
         "lead_type",
@@ -747,5 +752,34 @@ describe("plan 100: Tier-B deferred events stay non-transmissible", () => {
     expect(
       sanitizeAnalyticsPayload(eventName, { anything: "x" })
     ).toBeNull();
+  });
+});
+
+
+describe("editorial image analytics privacy contract", () => {
+  const params = {
+    article_slug: "que-es-la-uf",
+    image_version: "img-1234-5678-abcd-efab",
+    image_surface: "article_card",
+    device_class: "mobile",
+    page_type: "home",
+  };
+
+  it.each(["editorial_image_impression", "editorial_image_click"])("%s preserves bounded visual dimensions through both boundaries", event => {
+    const client = sanitizeAnalyticsEvent(event, params);
+    expect(client?.params).toEqual(params);
+    expect(validateEventPayload(client)).toMatchObject({ valid: true, params });
+  });
+
+  it("requires every visual dimension and rejects unknown values or PII", () => {
+    for (const key of ["article_slug", "image_version", "image_surface", "device_class"]) {
+      const missing: Record<string, string> = { ...params };
+      delete missing[key];
+      expect(validateEventPayload({ event: "editorial_image_impression", params: missing }).valid).toBe(false);
+    }
+    for (const invalid of [{ image_version: "1234567890123456" }, { image_surface: "email" }, { device_class: "iphone-abc" }, { email: "alice@example.com" }]) {
+      expect(validateEventPayload({ event: "editorial_image_impression", params: { ...params, ...invalid } }).valid).toBe(false);
+    }
+    expect(validateEventPayload({ event: "editorial_image_click", params: { ...params, image_surface: "article_hero" } }).valid).toBe(false);
   });
 });

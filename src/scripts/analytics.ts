@@ -1,6 +1,7 @@
 import {
   cleanAnalyticsParams,
   getAnalyticsEventNameForCta,
+  getEditorialImageAnalyticsParams,
   getReachedScrollMilestones,
   isOfficialSourceUrl,
   isTransmissibleEvent,
@@ -9,7 +10,9 @@ import {
 } from "@/utils/analytics";
 
 type Cleanup = () => void;
-type IdleHandle = number | ReturnType<typeof globalThis.setTimeout>;
+type IdleHandle =
+  | { kind: "idle"; id: number }
+  | { kind: "timeout"; id: ReturnType<typeof globalThis.setTimeout> };
 
 const CLICK_HANDLER_FLAG = "data-analytics-click-handler-attached";
 const CALCULATOR_VIEW_FLAG = "data-analytics-calculator-view-tracked";
@@ -27,10 +30,13 @@ function resetOncePerViewDedup() {
 
 function scheduleIdle(callback: () => void): IdleHandle {
   if ("requestIdleCallback" in window) {
-    return window.requestIdleCallback(callback, { timeout: 1200 });
+    return {
+      kind: "idle",
+      id: window.requestIdleCallback(callback, { timeout: 1200 }),
+    };
   }
 
-  return globalThis.setTimeout(callback, 120);
+  return { kind: "timeout", id: globalThis.setTimeout(callback, 120) };
 }
 
 function track(eventName: string, params: AnalyticsEventParams = {}) {
@@ -189,6 +195,131 @@ function installGlobalClickTracking() {
   });
 }
 
+/** One exposure and click per public image/surface in the current page DOM.
+ * Observe the image itself, excluding the card title from visible area.
+ * A fast click qualifies as exposure only if at least half the image is visible.
+ */
+function initEditorialImageTracking(): Cleanup {
+  if (!("IntersectionObserver" in window)) return () => {};
+  const viewportWidth = window.innerWidth;
+  const seen = new Set<string>();
+  const clicked = new Set<string>();
+  const timers = new Map<HTMLImageElement, ReturnType<typeof setTimeout>>();
+  const candidates = new Map<
+    HTMLImageElement,
+    { key: string; params: Record<string, string> }
+  >();
+  const cleanups: Cleanup[] = [];
+
+  function visible(image: HTMLImageElement) {
+    if (
+      document.visibilityState === "hidden" ||
+      !image.isConnected ||
+      !image.complete ||
+      image.naturalWidth === 0
+    )
+      return false;
+    const rect = image.getBoundingClientRect();
+    const area = rect.width * rect.height;
+    const width = Math.max(
+      0,
+      Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0)
+    );
+    const height = Math.max(
+      0,
+      Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
+    );
+    return area > 0 && (width * height) / area >= 0.5;
+  }
+
+  function cancel(image: HTMLImageElement) {
+    clearTimeout(timers.get(image));
+    timers.delete(image);
+  }
+
+  function expose(image: HTMLImageElement) {
+    const candidate = candidates.get(image);
+    if (!candidate || seen.has(candidate.key)) return;
+    seen.add(candidate.key);
+    cancel(image);
+    track("editorial_image_impression", candidate.params);
+  }
+
+  function consider(image: HTMLImageElement) {
+    const candidate = candidates.get(image);
+    if (!candidate || seen.has(candidate.key)) return;
+    if (!visible(image)) {
+      cancel(image);
+      return;
+    }
+    if (timers.has(image)) return;
+    timers.set(
+      image,
+      setTimeout(() => {
+        timers.delete(image);
+        if (visible(image)) expose(image);
+      }, 1000)
+    );
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      for (const entry of entries) {
+        const image = entry.target as HTMLImageElement;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5)
+          consider(image);
+        else cancel(image);
+      }
+    },
+    { threshold: [0, 0.5] }
+  );
+
+  for (const wrapper of document.querySelectorAll<HTMLElement>(
+    "[data-image-version][data-image-article][data-image-surface]"
+  )) {
+    const image = wrapper.querySelector("img");
+    const params = getEditorialImageAnalyticsParams(
+      wrapper.dataset,
+      viewportWidth
+    );
+    if (!image || !params) continue;
+    const key = `${params.article_slug}:${params.image_surface}:${params.image_version}`;
+    candidates.set(image, { key, params });
+    observer.observe(image);
+    const handleLoad = () => consider(image);
+    image.addEventListener("load", handleLoad);
+    cleanups.push(() => image.removeEventListener("load", handleLoad));
+    if (wrapper instanceof HTMLAnchorElement) {
+      const handleClick = (event: MouseEvent) => {
+        if (event.type === "auxclick" && event.button !== 1) return;
+        if (document.visibilityState === "hidden" || clicked.has(key)) return;
+        if (!seen.has(key)) {
+          if (!visible(image)) return;
+          expose(image);
+        }
+        clicked.add(key);
+        track("editorial_image_click", params);
+      };
+      wrapper.addEventListener("click", handleClick);
+      wrapper.addEventListener("auxclick", handleClick);
+      cleanups.push(() => {
+        wrapper.removeEventListener("click", handleClick);
+        wrapper.removeEventListener("auxclick", handleClick);
+      });
+    }
+  }
+  const handleVisibility = () => {
+    for (const image of candidates.keys()) consider(image);
+  };
+  document.addEventListener("visibilitychange", handleVisibility);
+  return () => {
+    observer.disconnect();
+    for (const image of timers.keys()) cancel(image);
+    for (const cleanup of cleanups) cleanup();
+    document.removeEventListener("visibilitychange", handleVisibility);
+  };
+}
+
 function initArticleScrollTracking(): Cleanup {
   const article = document.querySelector<HTMLElement>(
     "[data-analytics-article]"
@@ -198,6 +329,12 @@ function initArticleScrollTracking(): Cleanup {
   const firedMilestones = new Set<number>();
   const articleSlug = article.dataset.analyticsArticle;
   const articleTitle = article.dataset.analyticsArticleTitle;
+  const hero = document.querySelector<HTMLElement>(
+    '[data-image-surface="article_hero"]'
+  );
+  const imageParams = hero
+    ? getEditorialImageAnalyticsParams(hero.dataset, window.innerWidth)
+    : null;
 
   const handleScroll = () => {
     const maxScrollableHeight =
@@ -210,6 +347,7 @@ function initArticleScrollTracking(): Cleanup {
       if (firedMilestones.has(milestone)) continue;
       firedMilestones.add(milestone);
       track("article_scroll_depth", {
+        ...imageParams,
         article_slug: articleSlug,
         article_title: articleTitle,
         // Stringificado: el contrato solo acepta strings acotados (enum
@@ -285,9 +423,16 @@ function initCalculatorStartTracking(): Cleanup {
   };
 }
 
+let trackedBody: HTMLElement | null = null;
 function initPageTracking() {
+  if (trackedBody === document.body) return;
   pageCleanup?.();
-  const cleanups = [initArticleScrollTracking(), initCalculatorStartTracking()];
+  trackedBody = document.body;
+  const cleanups = [
+    initArticleScrollTracking(),
+    initCalculatorStartTracking(),
+    initEditorialImageTracking(),
+  ];
   pageCleanup = () => {
     for (const cleanup of cleanups) {
       cleanup();
@@ -322,4 +467,19 @@ document.addEventListener("astro:page-load", () => {
 document.addEventListener("astro:after-swap", () => {
   resetOncePerViewDedup();
   scheduleAnalyticsInit();
+});
+
+// End observation before Astro removes the old DOM, including pending idle work.
+document.addEventListener("astro:before-swap", () => {
+  pageCleanup?.();
+  pageCleanup = null;
+  trackedBody = null;
+  if (pendingAnalyticsInit !== null) {
+    if (pendingAnalyticsInit.kind === "idle") {
+      window.cancelIdleCallback?.(pendingAnalyticsInit.id);
+    } else {
+      globalThis.clearTimeout(pendingAnalyticsInit.id);
+    }
+    pendingAnalyticsInit = null;
+  }
 });

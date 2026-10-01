@@ -79,6 +79,9 @@ const blog = defineCollection({
           )
           .optional(),
         heroImage: z.string().or(image()).optional(),
+        // Empty text marks decorative illustrations; informative images need
+        // a concise description reviewed together with the editorial brief.
+        heroImageAlt: z.string().trim().max(500).optional(),
         articleAdvisory: z
           .string()
           .trim()

@@ -1,0 +1,881 @@
+{
+  "schemaVersion": 1,
+  "entries": {
+    "como-hacer-presupuesto-mensual-chile": {
+      "slug": "como-hacer-presupuesto-mensual-chile",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "59ca4525c883578f70737611351e6e1f5d1241ad9413a3d0bfb84e5a9969b6a3",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Ordenar ingresos reales, gastos fijos, variables e irregulares sin perder espacio para una reserva.\nEditorial promise: Construir un presupuesto mensual adaptado a la vida del lector y revisarlo cuando cambien sus ingresos.\nVisual message: Una organización sencilla hace visibles las decisiones del mes, sin exigir una distribución universal.\nScene: An oblique view of a lived-in home table: an adult in a comfortable navy shirt calmly groups receipts next to an open notebook with three unlettered section tabs. One hand moves a receipt toward the notebook, while a separate teal envelope holds a modest reserve. A single terracotta pencil and the warm edge of the table complete the intimate scene.\nEssential elements: Persona que organiza comprobantes; Cuaderno de tres secciones sin texto; Sobre de reserva separado.\nAvoid these interpretations: La regla 50/30/20 es obligatoria; El presupuesto elimina todas las dificultades de ingreso; Ahorrar equivale a ganancias de inversión.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "32ae9f9b3bb43ba490471b27442c46dcee7b346b804b087196918c763f81fa38",
+      "source": {
+        "path": "scripts/hero-images/sources/como-hacer-presupuesto-mensual-chile.webp",
+        "hash": "d3b95b64a226197e97f9c160fe0e0b8686db459dda8e39285c4180731cbb2269"
+      },
+      "asset": {
+        "path": "public/images/hero/como-hacer-presupuesto-mensual-chile.avif",
+        "hash": "9cfeefaa6168fda3f79273b729cf5642b46c468c548ce45a20880b87855dee7d"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/como-hacer-presupuesto-mensual-chile-b972b60cdc8d72cf.png",
+        "hash": "b972b60cdc8d72cf8e11a72912b0d6d4c2caf99e4e6a696de0d820b66ebfc881"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Situación, gesto y elementos esenciales concordantes con brief; sin texto numérico ni promesas de aprobación/rendimiento. Aceptada inspección ampliada; pendiente galería a 300 px."
+      }
+    },
+    "cuanto-descuenta-la-afp-de-tu-sueldo": {
+      "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "f6c7dfc5e77f8bb9d8535c2b2704fab56da855c8e751477fcedef02fbdf04e14",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Distinguir el aporte previsional y la comisión AFP que aparecen descontados en una liquidación.\nEditorial promise: Explicar los componentes del descuento AFP sin confundirlos con otros descuentos o aportes del empleador.\nVisual message: Un mismo descuento contiene conceptos diferentes que conviene revisar por separado.\nScene: Close-up of two natural hands studying a single payslip on a warm paper desk. A finger follows one dominant horizontal payroll band divided into two adjacent sections, a larger teal contribution section and a small ochre administration section, without scale labels or numbers. The other hand steadies the paper. The rest of the payslip contains only a few faint unlettered lines; the document remains the focal point.\nEssential elements: Una liquidación dominante; Dos secciones adyacentes de aporte y comisión; Manos revisando la misma línea.\nAvoid these interpretations: El descuento AFP es todo el descuento del sueldo; La comisión entra al ahorro individual; Las proporciones ilustradas representan una tasa exacta.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "bac704cd13a2fa5aec1d71c8c2becce5987889475bfccb456881643c3344bdc7",
+      "source": {
+        "path": "scripts/hero-images/sources/cuanto-descuenta-la-afp-de-tu-sueldo.webp",
+        "hash": "65a2e07f4533edcc0020bd9d41f491f40a55475a4306a06cb70d7a3cec294d86"
+      },
+      "asset": {
+        "path": "public/images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif",
+        "hash": "990730f23d0838a0a5a2b5be1b5528bf22d6dcbbe76163a6a5d1f5a417fc8be8"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/cuanto-descuenta-la-afp-de-tu-sueldo-8e0493f7b75e50ab.png",
+        "hash": "8e0493f7b75e50ab0fe38cc3024b23f67763639f207069c57d7c52d46d9c3eb6"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Situación, gesto y elementos esenciales concordantes con brief; sin texto numérico ni promesas de aprobación/rendimiento. Aceptada inspección ampliada; pendiente galería a 300 px."
+      }
+    },
+    "que-es-el-apv": {
+      "slug": "que-es-el-apv",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "de71cead33afffcf7bc0b962d0eb3b71be43bf3bb9e7cbe0ce44fead30f23051",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comparar alternativas de ahorro previsional voluntario y sus beneficios tributarios condicionados.\nEditorial promise: Ayudar a entender los regímenes A y B, sus límites y las consecuencias de retirar fondos.\nVisual message: Ahorrar para la jubilación requiere elegir condiciones, no perseguir un premio universal.\nScene: Three-quarter home-table view of a thoughtful adult comparing two equally sized, equally dignified folders, one teal and one navy, both open toward them. A neutral savings envelope sits between the folders in the foreground, linking both choices to the same retirement goal. A hand pauses between the folders rather than selecting a winner. Natural posture, warm daylight and understated facial features.\nEssential elements: Dos alternativas de igual jerarquía; Sobre de ahorro compartido; Gesto de comparación pausada.\nAvoid these interpretations: Un régimen es siempre superior; El ahorro se retira sin condiciones; El APV garantiza crecimiento.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "80e925959dc5190e3a52d9ac899e4c9b0cdb6c71e36461b1f4a302514838175e",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-el-apv.webp",
+        "hash": "c646b23133f1a44293b2767fdc5c35b0c35e1a25fe83b07db133ef1f63ae47b8"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-el-apv.avif",
+        "hash": "183ffb3fc7dfaf8589a18688dd13bb60ef630b73d12468e09b289cccfefe8a2c"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-el-apv-6426f4db509b0b6b.png",
+        "hash": "6426f4db509b0b6b50817a3dbb8169787b75edc117db676a72bddd62904a58ab"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Situación, gesto y elementos esenciales concordantes con brief; sin texto numérico ni promesas de aprobación/rendimiento. Aceptada inspección ampliada; pendiente galería a 300 px."
+      }
+    },
+    "pgu-pension-garantizada-universal": {
+      "slug": "pgu-pension-garantizada-universal",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "8a24e08e7202214e6322289a4a3b4794e3058d4df1fa3651655974b9490c7f91",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender si corresponde solicitar PGU y qué revisar antes de hacerlo.\nEditorial promise: Orientar sobre requisitos, solicitud y compatibilidades de la PGU sin prometer elegibilidad.\nVisual message: Una persona mayor puede informarse y preparar su solicitud con autonomía.\nScene: An older adult with silver hair sits upright at their own small home table, calmly reviewing an application document beside a neutral payment card. One hand follows the document and the other rests naturally on the table. A small, unnumbered calendar is a secondary cue in the background. Warm domestic light, dignified expression and natural proportions; focus on the person preparing a request, not a celebratory approval.\nEssential elements: Persona mayor autónoma; Documento de solicitud sin sello; Medio de pago neutro.\nAvoid these interpretations: Toda persona mayor califica automáticamente; La solicitud está aprobada; Es un descuento AFP o liquidación salarial.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "46e66e290f679537b19849dd490d35af21623f7285a318fce7b45355c4833dfa",
+      "source": {
+        "path": "scripts/hero-images/sources/pgu-pension-garantizada-universal.webp",
+        "hash": "24e776fb874904b8f0f54cb0176a35e89fa52d98a42031c06786a35f459d832b"
+      },
+      "asset": {
+        "path": "public/images/hero/pgu-pension-garantizada-universal.avif",
+        "hash": "a583f3cb17f6a39e65d8277f9c60da773e2bfdbbdab619cb68a4ba936cc8d4be"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/pgu-pension-garantizada-universal-fbc9be3ed8b0254f.png",
+        "hash": "fbc9be3ed8b0254f141cf7fb48c319b235ddb307eaa0851532a0dd1d843a7e67"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Situación, gesto y elementos esenciales concordantes con brief; sin texto numérico ni promesas de aprobación/rendimiento. Aceptada inspección ampliada; pendiente galería a 300 px."
+      }
+    },
+    "renegociacion-superir": {
+      "slug": "renegociacion-superir",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "c362cc9e7e138afce5e7fbc5e0a42b49e163555ee3dc1d4d11939828151c5887",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Ordenar deudas y comprender la renegociación administrativa antes de iniciar el trámite.\nEditorial promise: Explicar requisitos, etapas y límites de la vía Superir sin asegurar un resultado.\nVisual message: Documentos dispersos se convierten en una propuesta que todavía debe revisarse.\nScene: Overhead editorial close-up of a negotiation table. Two pairs of natural hands enter from opposite sides: one pair gathers several separate debt statements, the other points toward one central open proposal sheet. The proposal is still being discussed, with unlettered revision marks and a resting pencil, no signatures. Distinct teal and navy sleeves suggest the parties without institutional logos. Calm, constructive tension.\nEssential elements: Estados de deuda separados; Propuesta central en revisión; Manos de dos lados de la mesa.\nAvoid these interpretations: La deuda desaparece automáticamente; Existe acuerdo o condonación garantizada; Es una escena de juicio o castigo.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "4df981b9fe222b65bdee89c7a80b822b1c423ce020e3c960dcb0a287c7d28c1e",
+      "source": {
+        "path": "scripts/hero-images/sources/renegociacion-superir.webp",
+        "hash": "a152400699ecd4aaebf6542737aafe61da54a76a4eb77eff0e67dd7be9b84e47"
+      },
+      "asset": {
+        "path": "public/images/hero/renegociacion-superir.avif",
+        "hash": "3158d5e0649128b6ddf7f2de4a92dc02f88fabfbedf04d5abb9818c14d8d0427"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/renegociacion-superir-db88594151d1e73c.png",
+        "hash": "db88594151d1e73c9fce5c439a79f1933ef9470b9defb45f08830cb11edd69cc"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Situación, gesto y elementos esenciales concordantes con brief; sin texto numérico ni promesas de aprobación/rendimiento. Aceptada inspección ampliada; pendiente galería a 300 px."
+      }
+    },
+    "que-es-la-uf": {
+      "slug": "que-es-la-uf",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "a80cd2b26af64445148f62fb5488b93dfd24cca04e269b65b2ffb65e2deab4fe",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comprender por qué un compromiso expresado en UF puede cambiar en pesos con el tiempo.\nEditorial promise: Explicar la UF como unidad reajustable y su relación con la inflación sin tratarla como moneda o inversión.\nVisual message: El contrato puede ser el mismo mientras cambia su equivalencia en pesos.\nScene: A restrained editorial still life: one large stable navy contract sheet folded at its top into a subtle house-roof silhouette rests beside three unnumbered calendar leaves. Beneath each leaf sits ONE flat paper rectangle: first modestly wide, second narrower, third intermediate in width. These three single-layer rectangular paper swatches vary in width, never height, and represent changing peso equivalents while the contract remains unchanged. No coins, no counters, no stacks, no money piles, no circular tokens, no signatures and no seals. The contract has only a few abstract lines and no signature area. Generous warm-paper space and soft overlapping shadows.\nEssential elements: Contrato estable sin firma ni sello; Tres hojas de calendario sin fechas; Tres rectángulos planos de papel de anchos variables, una capa cada uno.\nAvoid these interpretations: La UF es una moneda que se guarda; La UF siempre sube; Todos los arriendos se pactan en UF; Fichas apiladas o monedas sugieren inversión o riqueza; Una firma o sello aparenta validación oficial.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "b5315c6eefe18b2427d54a100db9623463c6be47bf92b4ddfa78d89caa7c4c2b",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-la-uf.webp",
+        "hash": "2ca3b2a8facb576de71f4716e494cfc19b56fe25a7d366b073cd3e4ab3ecaa27"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-la-uf.avif",
+        "hash": "dd245073f2bbcff0db1148aa7fcfd07a4515705ebdb23e64c4c8b9cda53f13d5"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-la-uf-93a08216bc9791ff.png",
+        "hash": "93a08216bc9791ffdfc84b43c0bd5682c98eb4796fd2dd039be259beb6f91f65"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Revisada: equivalencia variable sin pilas, monedas, firma ni sello. Contrato estable y tiempo distinguibles. Revisión de cambio editorial: la situación visual sigue vigente; imagen conservada.",
+        "sourceRereview": "Reviewed commits34ce40a6 and c4920bce: added articleLead and corrected AFP transfer timing. No new visual claim or change in scene meaning."
+      }
+    },
+    "que-es-el-ipc-chile-como-se-calcula": {
+      "slug": "que-es-el-ipc-chile-como-se-calcula",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "583cf4dbdf680ff226c0a46185e05567acac1f7bfd0b947038d981381cba1104",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender un índice de precios y por qué difiere de la experiencia personal.\nEditorial promise: Explicar canasta, variaciones y promedios sin convertir el IPC en un precio individual.\nVisual message: Los gastos cotidianos cambian de manera distinta dentro de una canasta.\nScene: An editorial still life of a grocery basket with bread, vegetables and a plain household bottle. Beside it are small transport and home-service cards, with understated unlettered price tags tilted at different heights. No upward arrow dominates; the variety of everyday costs, not a precise graph, is the central idea.\nEssential elements: Canasta cotidiana; Bienes y servicios; Variaciones distintas.\nAvoid these interpretations: Todos los precios suben igual; El IPC mide la inflación personal exacta; El índice siempre aumenta.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "73e83b49343ded719cc1ca13c15e323934195ca9a2a9aacff977a68ca03651ab",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-el-ipc-chile-como-se-calcula.webp",
+        "hash": "e9424d300bb4ffe6229e342fc6133935ba9eb25fa4d5f9b82cddcc46231fc89a"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-el-ipc-chile-como-se-calcula.avif",
+        "hash": "dcaa9f0926fc3a34c7aa70cf1cf7fe6b73043af59b417b51e221e499db449113"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-el-ipc-chile-como-se-calcula-856a6c6204c8082c.png",
+        "hash": "856a6c6204c8082c1de5d85bfb0e3b090315daf2de1429e01c835820d5121853"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección de original: situación pertinente; sin montos, sellos, aprobaciones ni rendimientos garantizados. Revisión final del conjunto pendiente. Revisión de cambio editorial: la situación visual sigue vigente; imagen conservada.",
+        "sourceRereview": "Reviewed commits34ce40a6 and c4920bce: added articleLead and corrected AFP transfer timing. No new visual claim or change in scene meaning."
+      }
+    },
+    "fondos-afp-a-b-c-d-e": {
+      "slug": "fondos-afp-a-b-c-d-e",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "6ce203d08e60b01d7bd416453e95b0bbe6826a85d16815dff5be2dfa090d3e83",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender diferencias de riesgo entre multifondos todavía vigentes.\nEditorial promise: Relacionar elección de fondo con horizonte y tolerancia sin adelantar la transición generacional.\nVisual message: Las alternativas cambian en exposición al riesgo, no forman un podio de ganancias.\nScene: Five equal-sized pension portfolio cards fan across a warm-paper surface. Their abstract internal paths vary from visibly uneven to calmer, without axes, labels or upward-only arrows. A small unnumbered personal calendar sits beside them. No card is larger, crowned or glowing; each belongs to the same restrained visual family.\nEssential elements: Cinco alternativas iguales; Variación de riesgo; Horizonte personal.\nAvoid these interpretations: Mayor riesgo garantiza retorno mayor; A-E ya desaparecieron; El fondo conservador nunca pierde.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "f5a7d0d16b3f196a84310f8e72926ae54aff99f50e6fa7e70c4cbe9d68be5b5f",
+      "source": {
+        "path": "scripts/hero-images/sources/fondos-afp-a-b-c-d-e.webp",
+        "hash": "18ce6aa4b6c5e00709d5da4e6438851a92083fd52d57ffe6e61e9cf344a7ea3b"
+      },
+      "asset": {
+        "path": "public/images/hero/fondos-afp-a-b-c-d-e.avif",
+        "hash": "159934b13ac78cbd8e70b6a65f67323f2349c02e2942f6113bd35aada8c22c7d"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/fondos-afp-a-b-c-d-e-faf97852bdaf9667.png",
+        "hash": "faf97852bdaf96674bb5fc8b1a3525eba7f71fa8d575219a20323ce875f2ce16"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección de original: situación pertinente; sin montos, sellos, aprobaciones ni rendimientos garantizados. Revisión final del conjunto pendiente."
+      }
+    },
+    "credito-hipotecario-chile-guia-completa": {
+      "slug": "credito-hipotecario-chile-guia-completa",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "7b8539c8b293e5525521b36471cd8e746ba0a5bee435956e157b7dc046c3e755",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Prepararse para financiar una vivienda sin omitir pie, costos y trámites.\nEditorial promise: Ordenar la evaluación y el proceso hipotecario hasta la escritura.\nVisual message: Comprar una vivienda requiere revisar compromisos además de imaginar las llaves.\nScene: A couple sits at a modest table comparing a mortgage document and a household budget. A small house model sits behind the papers, while a key rests beyond their hands rather than being handed over. The main gesture is checking the documents together, with one separate envelope for upfront expenses.\nEssential elements: Vivienda reconocible; Comparación de contrato y presupuesto; Costos iniciales separados.\nAvoid these interpretations: Crédito aprobado o llaves garantizadas; El pie es el único costo; La cuota es estable en pesos por definición.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "3740d6bde3fa887c6ebf8bb2bab87225e011e887d4244dc8ef3dd2ef2a9aa641",
+      "source": {
+        "path": "scripts/hero-images/sources/credito-hipotecario-chile-guia-completa.webp",
+        "hash": "874a91364886ab144949d0073872f8bc716577514e27ddcd46d44d20cd6f5f02"
+      },
+      "asset": {
+        "path": "public/images/hero/credito-hipotecario-chile-guia-completa.avif",
+        "hash": "816d1425a480471bc6956d580d127fd6043a9f691269e9f7a3dd47106bbbf833"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/credito-hipotecario-chile-guia-completa-04d45c9c9311cb01.png",
+        "hash": "04d45c9c9311cb0179593dbb7e6fa21c41c1c83005ca88a67fbe8d076d0bf4a9"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección de original: situación pertinente; sin montos, sellos, aprobaciones ni rendimientos garantizados. Revisión final del conjunto pendiente."
+      }
+    },
+    "cotizacion-voluntaria-afp-independiente": {
+      "slug": "cotizacion-voluntaria-afp-independiente",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Explorar aportes previsionales cuando no existe cotización obligatoria.\nEditorial promise: Explicar afiliación voluntaria, costo y cobertura sin confundirlos con APV, salud o PGU.\nVisual message: Una persona puede revisar cómo sostener su ahorro previsional por decisión propia.\nScene: A middle-aged man at a small workbench with a simple tool roll places a personal contribution slip into an open retirement folder. A separate health document stays clearly outside the folder. The gesture is deliberate, small and practical, with a plain unnumbered calendar in the background; no employer payroll or promised state benefit. No plants or coffee cups.\nEssential elements: Aporte elegido por la persona; Carpeta previsional; Salud separada.\nAvoid these interpretations: Es APV de un trabajador dependiente; Incluye salud automáticamente; Genera derecho garantizado a PGU.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "c392d5f477285bd0397a3f75e6468540e92310b3ac9116e49a3c89cbc0c38f86",
+      "source": {
+        "path": "scripts/hero-images/sources/cotizacion-voluntaria-afp-independiente.webp",
+        "hash": "9f415747f22cb5ac3ad76e8e863d13dea478f9065043820f80a73444d9fcd599"
+      },
+      "asset": {
+        "path": "public/images/hero/cotizacion-voluntaria-afp-independiente.avif",
+        "hash": "59206d2cbbb1ebb31d94da3640dee462cd92426dad711589719f1a1ad13ad6a1"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/cotizacion-voluntaria-afp-independiente-bb876808caa2dcf0.png",
+        "hash": "bb876808caa2dcf019cbe188b32bfa7404a6001897fe58508820dfb1edf9fae4"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "deposito-a-plazo-uf-vs-pesos": {
+      "slug": "deposito-a-plazo-uf-vs-pesos",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "189334731309ee96558e62996f2bb9886f7af4779089377bc3e55490bbae72e3",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comparar depósitos en UF y pesos para el mismo plazo y necesidad de dinero.\nEditorial promise: Relacionar inflación, tasa, liquidez y vencimiento sin declarar un ganador universal.\nVisual message: Dos alternativas solo se comparan sobre el mismo horizonte.\nScene: Two equally sized deposit certificates sit side by side on a warm tabletop, both aligned with a single shared unnumbered calendar strip. One certificate has a fixed quiet navy band, the other a teal band gently adjusted by a small set of varying counters. Neither is higher, greener, awarded or selected as a winner.\nEssential elements: Dos certificados equivalentes; Mismo horizonte; Distinción fijo y reajustable.\nAvoid these interpretations: UF siempre gana; Más tasa nominal implica más retorno real; Retiro inmediato sin condiciones.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "b8afe6255bde4b16a870ea66c795f4b0baf250857ef9605378bbcbe89f9a98e9",
+      "source": {
+        "path": "scripts/hero-images/sources/deposito-a-plazo-uf-vs-pesos.webp",
+        "hash": "b93b48902c70478843d94dde6a0929a6b57ad21fe276785dd576dd8b491b00d7"
+      },
+      "asset": {
+        "path": "public/images/hero/deposito-a-plazo-uf-vs-pesos.avif",
+        "hash": "6477f85add272b719d1f8df3c57b1c0d8df267a09cc205b0d4979ca707eadef7"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/deposito-a-plazo-uf-vs-pesos-7b7e903cdc79790c.png",
+        "hash": "7b7e903cdc79790c756d97b34fb83e160ba34f5f2fbd1ae197b542f52b51dc7b"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "devolucion-impuestos-fechas-compensaciones": {
+      "slug": "devolucion-impuestos-fechas-compensaciones",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Saber por qué una devolución no llegó y qué estado revisar.\nEditorial promise: Separar revisión de declaración, autorización, pago y compensaciones sin prometer una fecha futura.\nVisual message: Una devolución pendiente requiere seguimiento, no una expectativa de dinero automático.\nScene: An adult man with short dark hair at a side table checks a neutral phone beside a tax filing receipt and a small closed payment envelope. His index finger points to a pending unlettered status mark on the paper, while an unnumbered calendar is a quiet secondary object. The envelope remains closed and money is not flowing into the scene.\nEssential elements: Declaración presentada; Consulta de estado; Pago todavía pendiente.\nAvoid these interpretations: Declaración aceptada significa depósito inmediato; El calendario2026 sigue abierto; Siempre llega devolución completa.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "4a861005c1b7f60fd1f68d4cf46f6bc69e0921d24011cbf37535d85ed471a623",
+      "source": {
+        "path": "scripts/hero-images/sources/devolucion-impuestos-fechas-compensaciones.webp",
+        "hash": "6145caf4107d32622bbbc5a088efb3cd0490c89f6a10cc75d1a1f9d20cd9be1f"
+      },
+      "asset": {
+        "path": "public/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
+        "hash": "8c5861e4f294615da7808c81ba0acf3046cac5436c75352054ae092f9f284bb9"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/devolucion-impuestos-fechas-compensaciones-e4c29c9df893fe13.png",
+        "hash": "e4c29c9df893fe13fa8039e7e04473a8da6a518aecee5a857e326a73f05e2795"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "liquidacion-de-sueldo": {
+      "slug": "liquidacion-de-sueldo",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Auditar un comprobante de sueldo y solicitar el respaldo de sus líneas.\nEditorial promise: Explicar qué debe mostrar la liquidación para reconstruir el monto depositado.\nVisual message: Mirar línea por línea permite formular preguntas concretas.\nScene: A large payslip fills an angled tabletop view. One natural hand traces a line across clearly separated but unlettered earnings and deduction sections, while a second small document peeks from beneath as supporting evidence. A teal final-payment band is visible but secondary; no detached infographic replaces the actual sheet.\nEssential elements: Liquidación completa dominante; Lectura línea por línea; Respaldo secundario.\nAvoid these interpretations: El documento ya está validado; Es solo una calculadora de sueldo; Un sello prueba exactitud.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "651ea2eba66276e37bece35b999c6395e6f082d4159e1bcda94f549c2f0e6704",
+      "source": {
+        "path": "scripts/hero-images/sources/liquidacion-de-sueldo.webp",
+        "hash": "0cddc6b04b18d45843100a6b70b3f14759b8aa0084b0fb6859e8ff28303c0e47"
+      },
+      "asset": {
+        "path": "public/images/hero/liquidacion-de-sueldo.avif",
+        "hash": "63a66227816ace5a8a86d1a7d4da34ad0d71f08db8d2582f004d613a35e99269"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/liquidacion-de-sueldo-5fec679de216051c.png",
+        "hash": "5fec679de216051c410397b60ce3f505994cddce3730f19a94d5a65a28663a14"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "que-es-la-cuenta-2-afp": {
+      "slug": "que-es-la-cuenta-2-afp",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender ahorro voluntario flexible separado de la cotización obligatoria.\nEditorial promise: Explicar Cuenta2, retiros, costos y diferencias con APV.\nVisual message: Dos bolsillos previsionales pueden cumplir propósitos diferentes.\nScene: A hand opens a modest teal savings folder beside a closed navy retirement folder. A small withdrawal request card is partly pulled from the open folder, with a calendar tab attached. The two folders remain clearly separate and equally dignified, with no instant cash, tax gift or guaranteed growth symbol.\nEssential elements: Ahorro voluntario separado; Solicitud de retiro; Referencia a plazo.\nAvoid these interpretations: Es la cuenta obligatoria; Todo retiro es inmediato o exento; Cuenta2 y APV son intercambiables.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "7fcd6ee95e7db3319532b8df28068af2830628f26481fa2abecc98c4a1d2965f",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-la-cuenta-2-afp.webp",
+        "hash": "5d9b169f9048ec8537102b1510005e791d8d49e5852f113cab5ebd362cdcd98b"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-la-cuenta-2-afp.avif",
+        "hash": "8007a708c0002be1775d566fced1c782ab696501b6d76f4d3a1ffbace2b1d5d4"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-la-cuenta-2-afp-3e4a577a05ee4d1e.png",
+        "hash": "3e4a577a05ee4d1eb4d477a52550602ec9684420c1bf8661bf6d6ab05e6ff65e"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "seguro-de-cesantia": {
+      "slug": "seguro-de-cesantia",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Consultar y tramitar apoyo de cesantía según saldo, cotizaciones y causal.\nEditorial promise: Orientar la revisión de cuenta y documentos antes de solicitar cobro.\nVisual message: Perder un empleo abre una revisión concreta de recursos y requisitos.\nScene: An adult man with close-cropped hair at a modest workspace calmly checks a neutral laptop while placing a termination document beside an account statement. A work bag rests on a nearby chair. His posture is active and focused on the next step, without drooping shoulders, empty pockets or an oversized protective shield.\nEssential elements: Consulta de cuenta; Documento de término laboral; Persona actuando con autonomía.\nAvoid these interpretations: Toda persona cesante cobra lo mismo; Existe cobertura sin requisitos; La persona está indefensa.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "107b41d5a81501cf015dce420600c3a02637d480fbaaba7836d610bf4f4e910d",
+      "source": {
+        "path": "scripts/hero-images/sources/seguro-de-cesantia.webp",
+        "hash": "4278c65320a1a3fb941d9782637a3a0f1eb9ad513fe57979792f68eb2e522db2"
+      },
+      "asset": {
+        "path": "public/images/hero/seguro-de-cesantia.avif",
+        "hash": "1645e05212b3b342ba92911d44ad2fc0d76b61d68c57ff4c7e8d414b5c59cd0f"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/seguro-de-cesantia-5b9075c4d5de8697.png",
+        "hash": "5b9075c4d5de869755d097497a5d73c1676b646556685cf72d70c5118bb4668a"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
+      "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "28f745478810cd032cf0376dd09f1a61121740a5f3d2abccb62b413c9896d66d",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Elegir entre DAP, fondos mutuos y ETF según propósito, plazo, costos y liquidez.\nEditorial promise: Comparar instrumentos después de separar la reserva de emergencia y definir un objetivo.\nVisual message: La elección parte de la meta propia y de condiciones comparables, no del retorno más llamativo.\nScene: Overhead hands-only comparison on a clear warm-paper surface. A pair of adult hands arranges three distinct unlettered investment folders around a personal goal card bearing a simple house silhouette. A separate closed reserve envelope stays outside the comparison. The folders have equal visual weight; one hand considers them without declaring a winner. No visible face or avatar, coffee cups or plants.\nEssential elements: Tres alternativas comparables; Meta concreta; Reserva separada.\nAvoid these interpretations: Un instrumento gana para todos; Rentabilidades futuras aseguradas.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "226b3e6002676481ea150d5d5cc0037013414f71f2de536854a6e6168263b2dd",
+      "source": {
+        "path": "scripts/hero-images/sources/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.webp",
+        "hash": "6b1421038326c6caca322d45559934bf0af05cb8a73d0a8c436d26f320059685"
+      },
+      "asset": {
+        "path": "public/images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif",
+        "hash": "dab2ec8ef5eea47311387625a4d185703e075455ea312f9378583dd8e9cc8ec5"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026-f2cfc99fb717d933.png",
+        "hash": "f2cfc99fb717d933ff23ace32a65c8f3c564cd81c1079833f02e2f4cf16e737e"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Aceptada tras inspección ampliada: Comparación de tres opciones de igual jerarquía según objetivo. Los pictogramas no presentan una serie, tasa ni ganador; la reserva queda aparte. Manos naturales y foco legible."
+      }
+    },
+    "el-poder-del-interes-compuesto": {
+      "slug": "el-poder-del-interes-compuesto",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "7672e2d496a17ba9fd5df3f856afcd4fc790d7457b6959a5cfc436f74f0084d6",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comprender la combinación de aportes periódicos, tiempo y variación de mercado.\nEditorial promise: Ilustrar el mecanismo del interés compuesto con un ejercicio histórico y límites explícitos.\nVisual message: La constancia ocurre a lo largo del tiempo y atraviesa interrupciones; no promete un resultado.\nScene: Side view of a quietly hopeful young adult with natural proportions and a deliberate hand gesture adding one modest paper savings token to a personal folder. Behind the folder an unnumbered accordion calendar stretches across the table, with a few empty slots and varied folded heights suggesting interruptions and changing conditions, not an ascending investment chart. Keep attention on the repeated contribution and elapsed time; no decorative plants or coffee cups.\nEssential elements: Aporte periódico modesto; Tiempo prolongado; Interrupciones visibles.\nAvoid these interpretations: El resultado histórico se repetirá; Todo ahorro crece sin caídas; Una cifra de riqueza está garantizada.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "5fc9fcdebe46161303b5d3f412e992cf24e650fcafc7d28abffce1138006f5b7",
+      "source": {
+        "path": "scripts/hero-images/sources/el-poder-del-interes-compuesto.webp",
+        "hash": "5bb74476d45a2a24967dc61eec513576a6765cd0a90dd3923fe2cbe4a6d7c2d8"
+      },
+      "asset": {
+        "path": "public/images/hero/el-poder-del-interes-compuesto.avif",
+        "hash": "7b088abd900e4b61ca133537cb05f1b9f11d5c38528f32fc5904f8c2a7b7e2e6"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/el-poder-del-interes-compuesto-3bdc275641ef28c6.png",
+        "hash": "3bdc275641ef28c6cd392311ba7cf11da895064c90174e856a4a7e051531c16a"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Aceptada tras inspección ampliada: Aportes a lo largo del tiempo con períodos variables; calendario sin datos ni curva ascendente. Gesto natural, sin cifra de riqueza garantizada ni simulación numérica."
+      }
+    },
+    "operacion-renta-centro": {
+      "slug": "operacion-renta-centro",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "bf3caf19c7e856f15e8133b1113a95a67ea0991dcf77de4d35b353d4e577353e",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Ubicar qué parte de la declaración anual corresponde a su situación.\nEditorial promise: Ofrecer un mapa de obligación, preparación, resultado y seguimiento de Operación Renta.\nVisual message: La declaración se aborda como una secuencia de decisiones y documentos.\nScene: An adult woman seen in side profile begins organizing an annual tax folder, with an elevated oblique camera showing the documents from above. Three staggered unlettered dividers separate income records, a draft declaration and follow-up papers, with a neutral laptop kept secondary. She is at the beginning of a review, not clicking a giant submission button. No dates or refund celebration.\nEssential elements: Carpeta anual; Etapas diferenciadas; Persona preparando revisión.\nAvoid these interpretations: Todos deben declarar de la misma forma; La campaña2026 está abierta ahora; La devolución está garantizada.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "4b15207d410921bfc32b4dc680ccfbba6341282734b84798cb09dbcc5e3424e8",
+      "source": {
+        "path": "scripts/hero-images/sources/operacion-renta-centro.webp",
+        "hash": "2d22593a5d3304fe9f0cf2636d53211f4311b6df91fe7075138c9e2daaf0ac01"
+      },
+      "asset": {
+        "path": "public/images/hero/operacion-renta-centro.avif",
+        "hash": "b94011c00136f76a4aa58f998358ef24db86172eb542c8df3751a3e8b97971c7"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/operacion-renta-centro-21899b67dc22c20b.png",
+        "hash": "21899b67dc22c20b8d9e96ea7aa2e0d30549a540f50a5ae73b32c120602730a0"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Aceptada tras inspección ampliada: Organización de antecedentes en tres divisiones antes de declarar; encuadre oblicuo distingue el centro de orientación. Sin devolución ni declaración aprobada."
+      }
+    },
+    "como-salir-boletin-comercial-chile": {
+      "slug": "como-salir-boletin-comercial-chile",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "e062d3df5e3e969ed46961bcdaea64277eb2308efe88afabe05828e52a06e8d3",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Corregir o aclarar una anotación comercial y conservar sus antecedentes.\nEditorial promise: Separar pago, solicitud de corrección y verificación del registro.\nVisual message: El respaldo y el seguimiento importan más que borrar simbólicamente la deuda.\nScene: A hand clips a payment receipt to a commercial record sheet with a discreet highlighted row. A second hand places the joined papers in an open follow-up folder. A small calendar sits behind the folder; the record is still visible, neither shredded nor stamped approved.\nEssential elements: Registro con fila destacada; Comprobante adjunto; Carpeta de seguimiento.\nAvoid these interpretations: Pagar borra al instante cualquier registro; Prescripción equivale a desaparición automática; Existe un sello oficial de aprobación.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "b6d26c490564b06cf467e38947d05c1635e98930a2b06a94f67f5ed7ddce6e24",
+      "source": {
+        "path": "scripts/hero-images/sources/como-salir-boletin-comercial-chile.webp",
+        "hash": "7bf4bf378de860993e709ce834652410b7a7dc9e418db6eb1ca317b06cf6bc6e"
+      },
+      "asset": {
+        "path": "public/images/hero/como-salir-boletin-comercial-chile.avif",
+        "hash": "4097a724fe73e4ac7bf78b00c3c407681b1f4ae995793d8995a7bd6e3f002017"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/como-salir-boletin-comercial-chile-48f827f1fefc9a17.png",
+        "hash": "48f827f1fefc9a1760ebaf6951acc86b2e294d5d95a17116f1b45d662b931721"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Aceptada tras inspección ampliada: Comprobante unido al registro que sigue visible, carpeta de seguimiento y tiempo. Sin borrado automático, firma ni sello de aprobación."
+      }
+    },
+    "indemnizacion-anos-de-servicio-chile": {
+      "slug": "indemnizacion-anos-de-servicio-chile",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "d1de96c33a88b3c1f7a478eac959d5c3245f65b72f354d507401dc85b31fe92b",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Revisar una partida de indemnización según causal, base y antigüedad.\nEditorial promise: Aislar años de servicio del resto del finiquito y reconocer condiciones y topes.\nVisual message: Una cifra final se verifica contra la trayectoria laboral y sus documentos.\nScene: A natural hand aligns an old employment contract with the latest payslip over a small unnumbered accordion calendar. One specific band in a settlement sheet is highlighted, with all other bands secondary. A resting pen indicates review before signature; no cash stacks or celebratory payout.\nEssential elements: Antigüedad documentada; Base remuneracional; Una partida del finiquito.\nAvoid these interpretations: Toda salida genera indemnización; Cualquier fracción de año suma automáticamente; Se garantiza un monto.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "73785c9293b3d3ccdcda63f97e7b7992bf1ea6e837e9bba7d4df51da8aaf2136",
+      "source": {
+        "path": "scripts/hero-images/sources/indemnizacion-anos-de-servicio-chile.webp",
+        "hash": "6071a2c03465efd06e11088babb747b31fda63dc271e1a77addd298579032f4d"
+      },
+      "asset": {
+        "path": "public/images/hero/indemnizacion-anos-de-servicio-chile.avif",
+        "hash": "ebf8a33c61fd5080b6f7aef0e378fbc2e98c618a78603ce0d11397dd21be9a9e"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/indemnizacion-anos-de-servicio-chile-eb2b747e65fa062c.png",
+        "hash": "eb2b747e65fa062c132cac5878316017e5a0694e6c5ce511da581df5bfc34491"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "ACEPTABLE para selección de arte. Generada con entry.prompt exacto, sin enriquecimiento. Inspección ampliada: dos manos naturales comparan contrato y liquidación; una partida del documento de finiquito destaca en terracota, y el calendario sin numeración aporta antigüedad. Las marcas son trazos abstractos sin texto legible, cifras, marcas oficiales ni sello; los pictogramas laborales son genéricos. El lápiz descansa, no representa firma ni pago garantizado. A 300 px permanece clara la acción de cotejar documentos y la partida destacada, con buen contraste y sin depender de detalles del formulario. Diferencia frente a cesantía: aquí manda la comprobación documental, no el acceso a fondos. La imagen acompaña al título; no pretende explicar causales o topes por sí sola. Revisión de ilustración, no auditoría financiera ni firma humana."
+      }
+    },
+    "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
+      "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Distinguir saldo individual de acceso condicionado al fondo colectivo.\nEditorial promise: Explicar el orden CIC primero y evaluación del complemento solidario.\nVisual message: Una reserva propia y una ayuda común tienen acceso diferente.\nScene: Two clearly distinct folders sit on a table: a personal account folder in the foreground and a shared-support folder behind it. A small document gate stands before the shared folder, suggesting eligibility review. A simple open hand points first to the personal folder. There is no automatic pipe connecting the two and no promise of equal balances.\nEssential elements: Cuenta individual primero; Fondo colectivo separado; Condición de acceso.\nAvoid these interpretations: Ambos fondos son saldo propio; El complemento es automático; Las reglas son idénticas.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "79822b5b23748a4031d9769f4a8d139cdb8c49f4935d72525e82ee622d93c05c",
+      "source": {
+        "path": "scripts/hero-images/sources/seguro-cesantia-cuenta-individual-vs-fondo-solidario.webp",
+        "hash": "30839afe1862c7c4a47a7fe09c62e4ea2af487a5a2b22451f0c4c449625295fe"
+      },
+      "asset": {
+        "path": "public/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
+        "hash": "7c0ff6261d096bfc7c56f30790d0a64bea5fc48fbedb79a6a8e47134c6c155ad"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/seguro-cesantia-cuenta-individual-vs-fondo-solidario-e6565a6d0d678c05.png",
+        "hash": "e6565a6d0d678c052b8dec60eb2ed4a9d670aef089de4b9450ef5b2faf5dfc81"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "ACEPTABLE para selección de arte. Generada con entry.prompt exacto, sin enriquecimiento. Inspección ampliada: la carpeta individual se presenta primero en primer plano; la colectiva queda separada detrás de una barrera cerrada y un documento de revisión. Mano extendida coherente; sin cifras, texto legible ni emblemas oficiales. El check de la tablilla es un pictograma genérico de requisito; acompañado de la barrera cerrada comunica control de acceso, no transferencia automática. No hay tubería, flecha entre saldos, montos ni promesa de igualdad. A 300 px siguen distinguiéndose persona individual, grupo y barrera; el empleado del fondo es secundario. La persona añadida en la escena apoya el gesto de elegir primero la cuenta personal. Comparada con indemnización, conserva un mecanismo visual claramente distinto. Revisión de ilustración, no auditoría financiera ni firma humana."
+      }
+    },
+    "primer-empleo-chile-guia-completa": {
+      "slug": "primer-empleo-chile-guia-completa",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "54a05c77220afe7d63cd334c8a3caa507c8d1657c2aac9a482a20e8b058a0ef9",
+      "prompt": "Edit the supplied original illustration: remove only the black side bars by extending the existing flat teal background edge-to-edge. Preserve the original person, doorway, briefcase, composition, proportions and flat palette. Do not restyle, add faces, objects or text.\nCanvas: 1200x630 pixels, landscape. Keep the existing subject size and position; fill only the side-bar areas with the original background. Preserve the original flat illustration style.",
+      "promptHash": "1d7b5948d6f3e4522933d3d7e787fda8ef96f553d2cdd844046e7215ff3441aa",
+      "source": {
+        "path": "scripts/hero-images/sources/primer-empleo-chile-guia-completa.webp",
+        "hash": "cb8f4896f3e61d6eca57c473962e69a0c85d03b9355b073ac518752296133e12"
+      },
+      "asset": {
+        "path": "public/images/hero/primer-empleo-chile-guia-completa.avif",
+        "hash": "bdbc81e492f89451c892ff7d2599a3ba8f35483a4f78dcb93ca603704f1dc63a"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/primer-empleo-chile-guia-completa-9179e35913421f4e.png",
+        "hash": "9179e35913421f4e66d64243232de0387799c75af2ca645bcb3222a31ebaad62"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-10-01",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Local sharp preservation edit; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Aceptada reparación reproducible de127/128px laterales con el color del fondo original. El área central conserva exactamente sus píxeles decodificados antes de la compresión de entrega. Procedimiento local autorizado al continuar tras la propuesta; imagegen no podía leer la referencia por el fallo del sandbox. No se generó una ilustración nueva."
+      },
+      "generation": {
+        "method": "deterministic-reframe",
+        "tool": "sharp",
+        "reference": "scripts/hero-images/references/primer-empleo-original.avif",
+        "referenceHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc",
+        "left": 127,
+        "right": 128,
+        "background": {
+          "r": 3,
+          "g": 141,
+          "b": 150
+        },
+        "centralPixelsUnchanged": true
+      }
+    },
+    "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
+      "slug": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "f277ee680f2b5096770dbb0660ef89bec1e995a0ef7ff046551158d25b37e47b",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Separar cambios previsionales ya operativos de los futuros.\nEditorial promise: Distinguir aporte patronal, componentes colectivos y transición generacional.\nVisual message: Una reforma se implementa por etapas, no de una sola vez.\nScene: An objects-only editorial still life on warm paper: a short row of three unnumbered calendar folios represents implementation in stages. The first folio is fully open with a plain teal monthly grid; the middle folio is visibly half open; the last folio is completely shut, showing only its plain navy back cover and folded edge. The open and closed states are the entire focal message. Use soft shadows and ample empty space. No people, hands, skyline, folders, account containers, money, arrows, connectors, branching lines, coins, plant-growth symbols or financial-flow diagram. Do not imply how pension contributions are allocated.\nEssential elements: Etapas distintas mediante folios abiertos y cerrados; Un folio actual abierto y uno futuro totalmente cerrado; Composición de objetos centrada en implementación gradual.\nAvoid these interpretations: Todo ya rige simultáneamente; Los fondos individuales se traspasan a un fondo colectivo; La portada explica flujos o proporciones de aportes; Un folio cerrado equivale a un beneficio denegado.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "2fd5f704676b7735caa21cadb4e5539ad731aa8589d17e6b5e04902a884403d6",
+      "source": {
+        "path": "scripts/hero-images/sources/reforma-previsional-2025-que-cambia-y-como-te-afecta.webp",
+        "hash": "8d15b60a2aa7af073b6fdacb0b4a52cc2e663dcb4fef989eacb5cf60b777cfe2"
+      },
+      "asset": {
+        "path": "public/images/hero/reforma-previsional-2025-que-cambia-y-como-te-afecta.avif",
+        "hash": "da6151db17407e4866231b2adc1940220b4e98dd690a81814db05ea5c92a95df"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/reforma-previsional-2025-que-cambia-y-como-te-afecta-ee813b8b72db293a.png",
+        "hash": "ee813b8b72db293a157086cc839b8d84550322802b059e295d13987d0e313775"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-10-01",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "ACEPTABLE para selección de arte tras corregir el brief. Generación built-in con entry.prompt exacto y hash conservado. Inspección ampliada: tres calendarios sin cifras ni letras muestran una hoja abierta, otra levantada y una cubierta cerrada. La última representa fase pendiente; no hay señal de denegación ni obligación. Se eliminaron personas, carpetas, dinero, flechas y todo flujo entre cuentas que motivó el rechazo anterior. No hay logos, sellos o datos financieros inventados. En miniatura real de 300 px sigue clara la secuencia abierta/intermedia/cerrada y su contraste, sin depender de detalles. La imagen representa sólo implementación por etapas y necesita el título para identificar la reforma; no pretende representar destinos o proporciones de aportes. El candidato anterior permanece en candidates/rejected con su promptHash. Revisión de ilustración, no auditoría financiera ni firma humana."
+      }
+    },
+    "utm-chile-que-es-como-funciona": {
+      "slug": "utm-chile-que-es-como-funciona",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "fc5f109cf3cfe150f8f49c217aa900d8258d224993f2cc07b35c1bea4caa8321",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Convertir referencias tributarias a pesos usando el período correcto.\nEditorial promise: Distinguir unidad mensual, valor vigente y usos tributarios frente a UF y UTA.\nVisual message: El mes importa al interpretar una obligación expresada en una unidad reajustable.\nScene: An objects-only editorial still life with exactly one large unnumbered monthly calendar leaf and one neutral rectangular payment notice on a warm paper surface. The monthly calendar is shown as one complete period: use a faint uniform grid without highlighting any individual day. The notice contains only a few plain horizontal strokes and one solid terracotta rectangle as an abstract placeholder for the variable amount. The full calendar leaf has a matching terracotta edge, quietly pairing the period with the amount placeholder. The amount placeholder is flat and rectangular, not a token or stack. No people, hands, money, coins, cylinders, discs, stacks, arrows, currency marks, bank-building symbols, tax badges, seals, emblems, shields, approval checks, signatures, logos or institutional decoration. Keep the notice and entire monthly leaf equally legible.\nEssential elements: Una sola hoja mensual completa sin día destacado; Aviso de obligación rectangular completamente neutro; Un único rectángulo plano de color como importe variable sin cifras.\nAvoid these interpretations: La UTM es una moneda; UTM y UF se actualizan igual; El valor sirve para todos los meses; El importe depende de un día marcado; El aviso muestra aprobación o respaldo institucional.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "83ce5c94ec4769a50a472495e77f190104358b7ce335429beaa01b61feb6dd39",
+      "source": {
+        "path": "scripts/hero-images/sources/utm-chile-que-es-como-funciona.webp",
+        "hash": "ee11cc67f7417fb52c880a19e868b9e3c3aada1669d55bd651e748471ef51110"
+      },
+      "asset": {
+        "path": "public/images/hero/utm-chile-que-es-como-funciona.avif",
+        "hash": "db6394cafcd43e829bd5144969742f455157a0ee76d2c6f524cbaa44ae180f96"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/utm-chile-que-es-como-funciona-514f827deaa9f44c.png",
+        "hash": "514f827deaa9f44c2e12101f061721e19f924a796a05f088ec6e99318a56dbe7"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-10-01",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "ACEPTABLE para selección de arte tras corregir el brief. Generación built-in con entry.prompt exacto y hash conservado. Inspección ampliada: un calendario mensual sin día destacado y un aviso rectangular neutro; el borde terracota del mes corresponde al rectángulo plano del importe. No hay monedas, emblemas institucionales, sellos, aprobación, cifras o letras. No representa una moneda ni un valor exacto; el importe queda asociado al periodo de referencia. La taza, planta y cuaderno son secundarios y no alteran el mensaje. A 300 px se distinguen el mes completo y el aviso con importe, con una escena diferente de los tres calendarios de reforma. El candidato anterior permanece en candidates/rejected con su promptHash. Revisión de ilustración, no auditoría financiera ni firma humana."
+      }
+    }
+  },
+  "history": [
+    {
+      "slug": "que-es-el-ipc-chile-como-se-calcula",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "b25ee78483a7f0a7130240cc922c3cf1fc6947c8f67f04ee07e8e0088744bdc7",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender un índice de precios y por qué difiere de la experiencia personal.\nEditorial promise: Explicar canasta, variaciones y promedios sin convertir el IPC en un precio individual.\nVisual message: Los gastos cotidianos cambian de manera distinta dentro de una canasta.\nScene: An editorial still life of a grocery basket with bread, vegetables and a plain household bottle. Beside it are small transport and home-service cards, with understated unlettered price tags tilted at different heights. No upward arrow dominates; the variety of everyday costs, not a precise graph, is the central idea.\nEssential elements: Canasta cotidiana; Bienes y servicios; Variaciones distintas.\nAvoid these interpretations: Todos los precios suben igual; El IPC mide la inflación personal exacta; El índice siempre aumenta.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "73e83b49343ded719cc1ca13c15e323934195ca9a2a9aacff977a68ca03651ab",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-el-ipc-chile-como-se-calcula.webp",
+        "hash": "e9424d300bb4ffe6229e342fc6133935ba9eb25fa4d5f9b82cddcc46231fc89a"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-el-ipc-chile-como-se-calcula.avif",
+        "hash": "dcaa9f0926fc3a34c7aa70cf1cf7fe6b73043af59b417b51e221e499db449113"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-el-ipc-chile-como-se-calcula-856a6c6204c8082c.png",
+        "hash": "856a6c6204c8082c1de5d85bfb0e3b090315daf2de1429e01c835820d5121853"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección de original: situación pertinente; sin montos, sellos, aprobaciones ni rendimientos garantizados. Revisión final del conjunto pendiente."
+      }
+    },
+    {
+      "slug": "que-es-la-uf",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "d01b0e1602457745cb2e25c6d680e6e837c673d5f9a671a8383797a94f3325c3",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comprender por qué un compromiso expresado en UF puede cambiar en pesos con el tiempo.\nEditorial promise: Explicar la UF como unidad reajustable y su relación con la inflación sin tratarla como moneda o inversión.\nVisual message: El contrato puede ser el mismo mientras cambia su equivalencia en pesos.\nScene: A restrained editorial still life: one large stable navy contract sheet folded at its top into a subtle house-roof silhouette rests beside three unnumbered calendar leaves. Beneath each leaf sits ONE flat paper rectangle: first modestly wide, second narrower, third intermediate in width. These three single-layer rectangular paper swatches vary in width, never height, and represent changing peso equivalents while the contract remains unchanged. No coins, no counters, no stacks, no money piles, no circular tokens, no signatures and no seals. The contract has only a few abstract lines and no signature area. Generous warm-paper space and soft overlapping shadows.\nEssential elements: Contrato estable sin firma ni sello; Tres hojas de calendario sin fechas; Tres rectángulos planos de papel de anchos variables, una capa cada uno.\nAvoid these interpretations: La UF es una moneda que se guarda; La UF siempre sube; Todos los arriendos se pactan en UF; Fichas apiladas o monedas sugieren inversión o riqueza; Una firma o sello aparenta validación oficial.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "b5315c6eefe18b2427d54a100db9623463c6be47bf92b4ddfa78d89caa7c4c2b",
+      "source": {
+        "path": "scripts/hero-images/sources/que-es-la-uf.webp",
+        "hash": "2ca3b2a8facb576de71f4716e494cfc19b56fe25a7d366b073cd3e4ab3ecaa27"
+      },
+      "asset": {
+        "path": "public/images/hero/que-es-la-uf.avif",
+        "hash": "dd245073f2bbcff0db1148aa7fcfd07a4515705ebdb23e64c4c8b9cda53f13d5"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/que-es-la-uf-93a08216bc9791ff.png",
+        "hash": "93a08216bc9791ffdfc84b43c0bd5682c98eb4796fd2dd039be259beb6f91f65"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Revisada: equivalencia variable sin pilas, monedas, firma ni sello. Contrato estable y tiempo distinguibles."
+      }
+    }
+  ]
+}

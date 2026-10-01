@@ -1133,3 +1133,37 @@ describe("plan 100: AnalyticsCounters edges via direct instantiation", () => {
     expect(await response.text()).toBe("not_found");
   });
 });
+
+describe("editorial image dimensions survive ingestion and weekly export", () => {
+  it("preserves article identity, viewport, surface and grouped asset version without PII false positives", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-09-30T12:00:00Z"));
+    try {
+      const counters = new MockCounterStub();
+      const env = makeEnv({ counters });
+      for (const event of ["editorial_image_impression", "editorial_image_click"]) {
+        const response = await analyticsWorker.fetch(new Request("https://monedario.cl/api/analytics/event", {
+          method: "POST",
+          headers: { Origin: "https://monedario.cl", "Content-Type": "application/json" },
+          body: JSON.stringify({ event, params: {
+            article_slug: "que-es-la-uf", page_type: "home", image_surface: "article_card",
+            device_class: "mobile", image_version: "img-1234-5678-abcd-efab",
+          } }),
+        }), env);
+        expect(response.status).toBe(202);
+      }
+      expect([...counters.counters.values()]).toEqual(expect.arrayContaining([
+        expect.objectContaining({ slug: "que-es-la-uf", dimensions: "v2:device_class=mobile:image_surface=article_card:image_version=img-1234-5678-abcd-efab:page_type=home" }),
+      ]));
+      await runExportV2(env, "2026-W40");
+      const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+      const artifact = JSON.parse(r2.objects.get("analytics-exports/2026-W40.json") ?? "{}");
+      expect(artifact.data).toHaveLength(2);
+      for (const row of artifact.data) {
+        expect(row.calculator_id).toBe("que-es-la-uf");
+        expect(row.dimensions).toContain("image_version=img-1234-5678-abcd-efab");
+        expect(row.dimensions).not.toMatch(/\d{6,}/);
+      }
+    } finally { vi.useRealTimers(); }
+  });
+});

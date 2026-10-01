@@ -14,6 +14,8 @@ output/operations/modmail-drafts-*.md
 output/operations/b2b-*.md
 output/performance/
 output/playwright/
+# Playwright test artifacts (regenerated per run)
+test-results/
 output/security/
 output/validation/
 # Derived GSC rollup (regenerable via data-signals:gsc:aggregate); weekly exports stay tracked

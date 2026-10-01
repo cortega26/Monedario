@@ -2,6 +2,18 @@
 import HeroPromptWorkspace from "@/tools/hero-images/HeroPromptWorkspace.jsx";
 import promptsData from "../../scripts/hero-images/prompts.json";
 import manifestData from "../../scripts/hero-images/manifest.json";
+import briefsData from "../../scripts/hero-images/briefs.json";
+import {
+  articleContentHash,
+  buildPromptEntry,
+  validateBrief,
+  validateEditReference,
+} from "../../scripts/hero-images/prompt-plan.mjs";
+import {
+  readArticleFile,
+  splitFrontmatter,
+  parseFrontmatter,
+} from "../../scripts/hero-images/lib.mjs";
 import {
   HERO_P0_METADATA,
   HERO_P0_ORDER,
@@ -19,44 +31,95 @@ const manifestEntries: LooseRecord[] = Array.isArray(manifestData.articles)
 const manifestBySlug = new Map(
   manifestEntries.map(entry => [entry.slug, entry])
 );
+const briefBySlug = new Map(
+  briefsData.entries.map(brief => [brief.slug, brief])
+);
+const currentHashBySlug = new Map(
+  await Promise.all(
+    manifestEntries.map(async article => {
+      const { frontmatterRaw, body } = splitFrontmatter(
+        await readArticleFile(article.sourcePath)
+      );
+      return [
+        article.slug,
+        articleContentHash(parseFrontmatter(frontmatterRaw), body),
+      ] as const;
+    })
+  )
+);
 const p0Index = new Map(HERO_P0_ORDER.map((slug, index) => [slug, index]));
 const p0MetadataBySlug: LooseRecord = HERO_P0_METADATA;
 
-const entries = promptEntries
-  .map(entry => {
-    const manifest = (manifestBySlug.get(entry.slug) ?? {}) as LooseRecord;
-    const batch = p0MetadataBySlug[entry.slug] ?? null;
-    return {
-      slug: entry.slug,
-      title: manifest.title ?? entry.slug,
-      category: manifest.category ?? entry.selectors?.category ?? "general",
-      cluster: manifest.cluster ?? entry.selectors?.cluster ?? "general",
-      summary: manifest.summary ?? "",
-      template: entry.template,
-      approvedModelId: entry.approvedModelId,
-      sceneId: entry.sceneId,
-      toneClass: entry.toneClass,
-      readerSituation: entry.readerSituation,
-      visualEvidence: entry.visualEvidence,
-      prompt: entry.prompt,
-      targetImagePath: entry.targetImagePath,
-      palette: entry.palette,
-      inP0Batch: Boolean(batch),
-      batchPriority: batch?.priority ?? null,
-      batchSubgroup: batch?.subgroup ?? null,
-      batchWhyFirst: batch?.whyFirst ?? manifest.summary ?? "",
-      batchConcept: batch?.concept ?? "",
-      batchPassCue: batch?.passCue ?? "",
-      batchObservedFailures: batch?.observedFailures ?? [],
-      batchRevisionGoal: batch?.revisionGoal ?? "",
-      sortIndex: p0Index.get(entry.slug) ?? Number.MAX_SAFE_INTEGER,
-    };
-  })
-  .sort((a, b) => {
-    const p0Order = a.sortIndex - b.sortIndex;
-    if (p0Order !== 0) return p0Order;
-    return a.title.localeCompare(b.title);
-  });
+const entries = (
+  await Promise.all(
+    promptEntries.map(async entry => {
+      const manifest = (manifestBySlug.get(entry.slug) ?? {}) as LooseRecord;
+      const batch = p0MetadataBySlug[entry.slug] ?? null;
+      const brief = briefBySlug.get(entry.slug);
+      const currentArticle = {
+        ...manifest,
+        sourceContentHash: currentHashBySlug.get(entry.slug),
+      };
+      const briefErrors = [
+        ...validateBrief(currentArticle, brief),
+        ...(await validateEditReference(brief)),
+      ];
+      if (briefErrors.length === 0) {
+        const expected = buildPromptEntry(currentArticle, brief);
+        if (
+          entry.prompt !== expected.prompt ||
+          entry.promptHash !== expected.promptHash ||
+          entry.generationMethod !== expected.generationMethod ||
+          entry.briefHash !== expected.briefHash ||
+          entry.referenceImagePath !== expected.referenceImagePath ||
+          entry.referenceImageHash !== expected.referenceImageHash
+        ) {
+          briefErrors.push(
+            "El prompt no corresponde al brief revisado; ejecuta build-prompts.mjs."
+          );
+        }
+      }
+      return {
+        slug: entry.slug,
+        title: manifest.title ?? entry.slug,
+        category: manifest.category ?? entry.selectors?.category ?? "general",
+        cluster: manifest.cluster ?? entry.selectors?.cluster ?? "general",
+        summary: manifest.summary ?? "",
+        template: entry.template,
+        approvedModelId: entry.approvedModelId,
+        sceneId: entry.sceneId,
+        toneClass: entry.toneClass,
+        readerSituation: entry.readerSituation,
+        visualEvidence: entry.visualEvidence,
+        prompt: entry.prompt,
+        promptHash: entry.promptHash,
+        styleVersion: entry.styleVersion,
+        generationMethod: entry.generationMethod,
+        referenceImagePath: entry.referenceImagePath,
+        referenceImageHash: entry.referenceImageHash,
+        briefErrors,
+        canCopyPrompt:
+          briefErrors.length === 0 &&
+          ["imagegen", "image-edit"].includes(entry.generationMethod),
+        targetImagePath: entry.targetImagePath,
+        palette: entry.palette,
+        inP0Batch: Boolean(batch),
+        batchPriority: batch?.priority ?? null,
+        batchSubgroup: batch?.subgroup ?? null,
+        batchWhyFirst: brief?.readerNeed ?? manifest.summary ?? "",
+        batchConcept: brief?.scene ?? "",
+        batchPassCue: brief?.visualMessage ?? "",
+        batchObservedFailures: brief?.avoidInterpretations ?? [],
+        batchRevisionGoal: "",
+        sortIndex: p0Index.get(entry.slug) ?? Number.MAX_SAFE_INTEGER,
+      };
+    })
+  )
+).sort((a, b) => {
+  const p0Order = a.sortIndex - b.sortIndex;
+  if (p0Order !== 0) return p0Order;
+  return a.title.localeCompare(b.title);
+});
 ---
 
 <!doctype html>
