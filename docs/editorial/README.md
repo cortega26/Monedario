@@ -3,6 +3,7 @@
 Editorial policy, publication gates, and SEO/content governance.
 
 - YMYL norm: `docs/editorial/NORMA_YMYL.md`
+- Risk tiers & provenance: `docs/editorial/RISK_TIERS.md`
 - Publication checklist: `docs/editorial/PUBLISH_CHECKLIST.md`
 - Frontmatter schema: `docs/editorial/FRONTMATTER_SCHEMA.md`
 - SEO architecture: `docs/editorial/SEO_ARCHITECTURE.md`

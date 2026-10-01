@@ -45,6 +45,7 @@ Change log:
 - 2026-09-29: added indexability contract invariant (`INVARIANT.SEO.INDEXABILITY.CONTRACT`) with build guards; see ADR-20260929-declarative-indexability-contract.
 - 2026-09-29: added privacy invariant (`INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS`) with `test:privacy` suite; see `docs/reports/AUDIT-PRIVACY-2026-09-29.md`.
 - 2026-09-29: added resilience invariants (`INVARIANT.RESILIENCE.*`) with `test:resilience` suite; see `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`.
+- 2026-10-01: added risk-tier policy, registry and coverage/provenance gate (`INVARIANT.EDITORIAL.RISK_TIERS`); see `docs/editorial/RISK_TIERS.md`.
 
 ## 2. Invariant Index
 
@@ -64,6 +65,7 @@ Change log:
 | `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` | Drafting cannot be audited/compliance-reviewed by the same agent role | Active | Manual review + publish packet role check |
 | `INVARIANT.EDITORIAL.MATH_AUDIT_REQUIRED_WHEN_CALC` | Calculation-heavy content requires math audit before publish | Active | Manual review + `requires_calculation` gate in publish packet |
 | `INVARIANT.EDITORIAL.COMPLIANCE_REVIEW_REQUIRED_WHEN_HIGH_RISK` | High regulatory sensitivity requires compliance report and human sign-off | Active | Manual review + `regulatory_sensitivity=alta` gate |
+| `INVARIANT.EDITORIAL.RISK_TIERS` | Published articles and calculators declare R1–R4; R4 requires primary-source provenance and cut-off date | Active | `pnpm run check:risk-tiers` |
 | `INVARIANT.EDITORIAL.NO_EMPTY_SECTIONS` | H2 sections cannot be empty | Active | `pnpm run check:editorial-structure` |
 | `INVARIANT.EDITORIAL.META_DESCRIPTION_REQUIRED` | Description metadata is mandatory | Active | `pnpm run check:editorial-structure` |
 | `INVARIANT.EDITORIAL.META_DESCRIPTION_LENGTH` | Description length stays in SEO range | Active | `pnpm run check:editorial-structure` |
