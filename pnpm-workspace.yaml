@@ -3,6 +3,10 @@ allowBuilds:
   sharp: true
   workerd: true
 overrides:
+  # Mantener separadas las líneas mayores de undici: Miniflare/Wrangler usa
+  # 7.x; los consumidores 8.x se fijan después de la regresión HTTP/2 de
+  # 8.11.0 (nodejs/undici#5858; workers-sdk#15811).
+  'undici@>=8 <9': 8.11.2
   tmp: '>=0.2.6'
   yaml: '>=2.8.3'
   qs: '>=6.16.0'

@@ -24,6 +24,10 @@ const source = fs.readFileSync(WORKFLOW_PATH, "utf8");
 const packageJson = JSON.parse(
   fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
 ) as { devDependencies?: Record<string, string> };
+const workspaceConfig = load(
+  fs.readFileSync(path.join(process.cwd(), "pnpm-workspace.yaml"), "utf8"),
+  { schema: JSON_SCHEMA },
+) as { overrides?: Record<string, string> };
 const pnpmLock = fs.readFileSync(path.join(process.cwd(), "pnpm-lock.yaml"), "utf8");
 const workflow = load(source, { schema: JSON_SCHEMA }) as {
   on: Record<string, unknown>;
@@ -100,6 +104,15 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
 
     expect(pnpmLock).toContain(`specifier: ${version}`);
     expect(pnpmLock).toContain(`version: ${version}(`);
+  });
+
+  it("mantiene undici 7.x aislado para Miniflare y evita el 8.11.0 regresivo", () => {
+    expect(workspaceConfig.overrides?.undici).toBeUndefined();
+    expect(workspaceConfig.overrides?.["undici@>=8 <9"]).toBe("8.11.2");
+
+    expect(pnpmLock).toContain("undici@7.29.0:");
+    expect(pnpmLock).toContain("undici@8.11.2:");
+    expect(pnpmLock).not.toContain("undici@8.11.0:");
   });
 
   it("usa la config explícita del worker en dry-run y deploy", () => {
