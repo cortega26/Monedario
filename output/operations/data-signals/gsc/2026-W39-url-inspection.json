@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-29T11:57:21Z",
+  "fetchedAt": "2026-10-01T12:45:18Z",
   "schemaVersion": 1,
   "source": "gsc-url-inspection",
   "week": "2026-W39",
@@ -16,7 +16,7 @@
     "byCoverage": {
       "Submitted and indexed": 173,
       "Crawled - currently not indexed": 11,
-      "URL is unknown to Google": 1
+      "Discovered - currently not indexed": 1
     }
   },
   "errors": 0,
@@ -24,7 +24,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-29",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/",
       "verdict": "PASS"
@@ -80,7 +80,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-24",
+      "lastCrawl": "2026-10-01",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/actualizador-inflacion/",
       "verdict": "PASS"
@@ -112,7 +112,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-29",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "verdict": "PASS"
@@ -120,7 +120,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-29",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-utm/",
       "verdict": "PASS"
@@ -136,7 +136,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-19",
+      "lastCrawl": "2026-09-29",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/deposito-a-plazo/",
       "verdict": "PASS"
@@ -200,7 +200,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-26",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/prepago-credito/",
       "verdict": "PASS"
@@ -704,7 +704,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-10",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/utm/",
       "verdict": "PASS"
@@ -720,7 +720,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-06",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/",
       "verdict": "PASS"
@@ -776,7 +776,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-09",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/impuestos-personas/",
       "verdict": "PASS"
@@ -824,7 +824,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-10",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/sueldo-remuneraciones/",
       "verdict": "PASS"
@@ -1008,7 +1008,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-19",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/leyes/ley-21561-reduccion-jornada/",
       "verdict": "PASS"
@@ -1152,7 +1152,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-18",
+      "lastCrawl": "2026-09-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/",
       "verdict": "PASS"
@@ -1264,7 +1264,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-17",
+      "lastCrawl": "2026-09-30",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
       "verdict": "PASS"
@@ -1288,7 +1288,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-11",
+      "lastCrawl": "2026-10-01",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/impuesto-global-complementario-chile/",
       "verdict": "PASS"
@@ -1430,7 +1430,7 @@
       "verdict": "NEUTRAL"
     },
     {
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
       "lastCrawl": null,
       "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",

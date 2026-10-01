@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-29T11:35:02Z",
+  "fetchedAt": "2026-10-01T12:23:10Z",
   "schemaVersion": 1,
   "source": "gsc",
   "week": "2026-W39",
@@ -9,25 +9,25 @@
   },
   "data": [
     {
-      "clicks": 180,
-      "ctr": 0.0022,
-      "impressions": 82531,
-      "key": "DESKTOP",
-      "position": 8.58
+      "clicks": 201,
+      "ctr": 0.0012,
+      "impressions": 173562,
+      "key": "MOBILE",
+      "position": 8.15
     },
     {
-      "clicks": 179,
-      "ctr": 0.0012,
-      "impressions": 155065,
-      "key": "MOBILE",
-      "position": 8.12
+      "clicks": 188,
+      "ctr": 0.0022,
+      "impressions": 86897,
+      "key": "DESKTOP",
+      "position": 8.6
     },
     {
       "clicks": 2,
-      "ctr": 0.0034,
-      "impressions": 581,
+      "ctr": 0.003,
+      "impressions": 672,
       "key": "TABLET",
-      "position": 7.61
+      "position": 7.7
     }
   ]
 }
