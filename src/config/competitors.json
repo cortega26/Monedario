@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-01",
+  "note": "Competidores ES-CL para el diff de cobertura (Growth Engine Fase 0.1, fuente libre). Editable por el owner. Si sitemapUrl es null se intenta https://<domain>/sitemap.xml. Solo se leen sitemaps públicos (sin scraping de páginas). Los dominios iniciales provienen del anexo SERP de F5 (docs/reports/F5-UTM-READING-2026-09-30.md).",
+  "competitors": [
+    {
+      "domain": "valor-utm.cl",
+      "cluster": "uf-costo-de-vida",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "contable.app",
+      "cluster": "impuestos-personas",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "utmapp.cl",
+      "cluster": "uf-costo-de-vida",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "uf-hoy.com",
+      "cluster": "uf-costo-de-vida",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "gomaxxa.com",
+      "cluster": "uf-costo-de-vida",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "patrimore.com",
+      "cluster": "ahorro-e-inversion",
+      "sitemapUrl": null
+    },
+    {
+      "domain": "valor-uf.cl",
+      "cluster": "uf-costo-de-vida",
+      "sitemapUrl": null
+    }
+  ]
+}

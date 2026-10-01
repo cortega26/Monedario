@@ -97,6 +97,10 @@ function main() {
   const externalDoc = readJson(
     path.join(root, "output", "external-intelligence", `${week}.json`)
   );
+  const pageLastmodIndex = readJson(
+    path.join(root, "context", "page-lastmod-index.json")
+  );
+  const ourRoutes = Object.keys(pageLastmodIndex?.pages ?? {});
 
   const missing = [
     !pagesDoc && "gsc/pages",
@@ -144,16 +148,19 @@ function main() {
       external: externalDoc
         ? (externalDoc.keywordGaps?.length ?? 0) +
           (externalDoc.competitorGaps?.length ?? 0) +
-          (externalDoc.serpFeatures?.length ?? 0)
+          (externalDoc.serpFeatures?.length ?? 0) +
+          (externalDoc.competitorPages?.length ?? 0)
         : 0,
     },
     pages: pagesDoc.data ?? [],
+    queries: queriesDoc.data ?? [],
     queryPage: queryPageDoc.data ?? [],
     analytics: analyticsDoc?.data ?? [],
     previousPages: previousPagesDoc?.data ?? [],
     previousWeekAvailable: Boolean(previousPagesDoc),
     external: externalDoc ?? null,
     externalAvailable: Boolean(externalDoc),
+    ourRoutes,
     registry,
   });
   report.status = "ok";

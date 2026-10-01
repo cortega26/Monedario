@@ -54,3 +54,21 @@ Fuera de alcance:
 
 Borrar los scripts/workflows/registro y sus referencias en `package.json` y
 docs. No toca contenido ni rutas.
+
+## Fase 0.1 — fuente libre (2026-10-01)
+
+- Intento pagado bloqueado y verificado: Semrush `no_api_units`, Ahrefs
+  `Insufficient plan`. Registrado en el control-plane como
+  `action_monedario_external_intelligence` (revisión 2, draft).
+- `pnpm run growth:collect:competitors` lee sitemaps públicos de
+  `src/config/competitors.json` y escribe
+  `output/external-intelligence/<semana>.json` con
+  `source: "free"` y `competitorPages` (sin volumen ni dificultad).
+- Nuevo detector `competitor_sitemap_gap` (A0): compara los tokens de las
+  páginas de competidores contra el vocabulario de queries GSC + rutas
+  propias; emite gaps de cobertura sin volumen para revisión editorial.
+- Tope por tipo (`maxCandidatesPerType: 10`) además del global (60) para que
+  los detectores de baja señal no queden fuera del reporte.
+- Resultado de prueba W39: 31 candidatos (10 sitemap gaps, 2 decay, 8 CTR
+  gap, 10 striking, 1 funnel); sitemaps: 5/7 dominios OK (2 fallos HTTP
+  reportados sin romper).

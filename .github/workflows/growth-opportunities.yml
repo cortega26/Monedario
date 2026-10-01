@@ -34,6 +34,10 @@ jobs:
         with:
           node-version: 22
 
+      - name: "📡 Recolectar sitemaps de competidores (fuente libre)"
+        continue-on-error: true
+        run: node scripts/collect-competitor-sitemaps.mjs
+
       - name: "🌱 Detectar oportunidades"
         run: node scripts/detect-seo-opportunities.mjs
 
