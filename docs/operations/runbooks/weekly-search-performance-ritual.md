@@ -55,16 +55,6 @@ JSON presente pero inválido es un **incidente de calidad de datos** y no debe
 usarse para decidir hasta repararlo o regenerarlo. El issue semanal registra uno
 de tres estados: `available`, `missing` o `invalid`.
 
-### Growth Engine (report-only)
-
-Desde 2026-10-01, el workflow `growth-opportunities.yml` publica cada lunes el
-issue `🌱 Growth opportunities (report-only)` con los candidatos priorizados
-(striking distance, CTR gap, decay, canibalización, funnel y gaps de cobertura
-de competidores). Es **insumo** del ritual: los candidatos se revisan aquí, se
-promueven a experimento vía issue con spec, o se suprimen con
-`src/config/growth-opportunity-feedback.json`. No ejecuta cambios por sí solo;
-ver `docs/operations/GROWTH-ENGINE.md`.
-
 ## Fuentes de verdad
 
 - Watchlist estratégica: `docs/operations/runbooks/weekly-search-performance-watchlist.json`

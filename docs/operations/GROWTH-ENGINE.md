@@ -49,21 +49,6 @@ Con proveedores pagados bloqueados (Semrush `no_api_units`, Ahrefs
 para descartar cobertura existente; sin volumen, el resultado es una lista
 de revisión editorial, no una priorización por demanda.
 
-## 2c. Calibración y memoria (Fase 0.2)
-
-Los reportes se repiten cada semana, así que el ruido ya revisado se suprime
-con `src/config/growth-opportunity-feedback.json` (editable por el owner vía
-PR; la automatización solo lo lee):
-
-- `dismissed`: IDs exactos de candidatos ya revisados.
-- `dismissedPatterns`: `{ "domain", "pathPattern", "reason" }`; la regex se
-  aplica al path del candidato y `domain: null` aplica a todos.
-- `promoted`: candidatos convertidos en experimento (traza).
-
-El reporte indica cuántos candidatos se suprimieron, sin borrar la evidencia
-de la semana. Promover un candidato es un issue con spec; el experimento
-formal se registra en `src/config/growth-opportunity-registry.json` en Fase 2.
-
 ## 3. Disciplina estadística
 
 - `n_min = ceil(ln(0,05) / ln(1−p))` al 95%; sin muestra suficiente el
