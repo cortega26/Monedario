@@ -1,6 +1,22 @@
 export const ANALYTICS_SCHEMA_VERSION = 2 as const;
 
 export const ANALYTICS_EVENT_ALLOWLIST = {
+  editorial_image_impression: [
+    "article_slug",
+    "image_version",
+    "image_surface",
+    "device_class",
+    "page_type",
+    "app_version",
+  ],
+  editorial_image_click: [
+    "article_slug",
+    "image_version",
+    "image_surface",
+    "device_class",
+    "page_type",
+    "app_version",
+  ],
   calculator_view: ["calculator_id", "page_type", "cluster", "app_version"],
   calculator_start: [
     "calculator_id",
@@ -101,6 +117,9 @@ export const ANALYTICS_EVENT_ALLOWLIST = {
   article_scroll_depth: [
     "article_slug",
     "scroll_depth_percent",
+    "image_version",
+    "image_surface",
+    "device_class",
     "page_type",
     "app_version",
   ],
@@ -190,12 +209,17 @@ export const ANALYTICS_ALLOWED_PROPERTIES = [
   "mode",
   "article_slug",
   "scroll_depth_percent",
+  "image_version",
+  "image_surface",
+  "device_class",
   // Pre-contrato de monetización: etiquetas de desarrollo, sin PII.
   "affiliate_slot",
   "lead_type",
 ] as const satisfies readonly AnalyticsPropertyName[];
 
 const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
+  image_surface: new Set(["article_card", "related_posts", "article_hero"]),
+  device_class: new Set(["mobile", "tablet", "desktop"]),
   // "article" lo emite PostDetails.astro y "calculator-index" lo emite el
   // índice de calculadoras; ambos faltaban en el enum y se descartaban en
   // silencio (plan 083).
@@ -253,6 +277,9 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
   lead_type: new Set(["newsletter", "alert", "contact"]),
 };
 
+// Public asset hash, grouped to avoid false positives in the existing export
+// anti-PII guard. This is image identity, never visitor identity.
+const IMAGE_VERSION = /^img-(?:[a-f0-9]{4}-){3}[a-f0-9]{4}$/;
 const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]{0,79}$/;
 // affiliate_slot: SAFE_TOKEN sin secuencias de 6+ dígitos, para no chocar con
 // la heurística anti-PII de scripts/data-signals/fetch-analytics-export.mjs.
@@ -296,13 +323,15 @@ export function sanitizeAnalyticsPayload(
     const enumValues = ENUM_VALUES[key];
     const valid = enumValues
       ? enumValues.has(value)
-      : key === "app_version"
-        ? APP_VERSION.test(value)
-        : key === "destination_url"
-          ? INTERNAL_URL.test(value)
-          : key === "affiliate_slot"
-            ? AFFILIATE_SLOT.test(value)
-            : SAFE_TOKEN.test(value);
+      : key === "image_version"
+        ? IMAGE_VERSION.test(value)
+        : key === "app_version"
+          ? APP_VERSION.test(value)
+          : key === "destination_url"
+            ? INTERNAL_URL.test(value)
+            : key === "affiliate_slot"
+              ? AFFILIATE_SLOT.test(value)
+              : SAFE_TOKEN.test(value);
     if (!valid) {
       if (options.rejectUnknown) return null;
       continue;
@@ -310,6 +339,23 @@ export function sanitizeAnalyticsPayload(
     clean[key] = value;
   }
 
+  if (
+    eventName === "editorial_image_impression" ||
+    eventName === "editorial_image_click"
+  ) {
+    if (
+      !["article_slug", "image_version", "image_surface", "device_class"].every(
+        key => clean[key]
+      )
+    )
+      return null;
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(clean.article_slug)) return null;
+    if (
+      eventName === "editorial_image_click" &&
+      clean.image_surface === "article_hero"
+    )
+      return null;
+  }
   return { event: eventName, params: clean };
 }
 

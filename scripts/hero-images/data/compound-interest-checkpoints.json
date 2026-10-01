@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "status": "PENDING_INDEPENDENT_AUDIT",
+  "cutoffDate": "2025-12-31",
+  "currency": "USD",
+  "grain": "documented_checkpoints_only",
+  "interpolation": "none",
+  "sources": [
+    {
+      "id": "article-table",
+      "kind": "repository_transcription_not_independent_verification",
+      "path": "src/data/blog/el-poder-del-interes-compuesto.mdx",
+      "section": "Lo que habría pasado, década a década",
+      "retrievedAt": "2026-09-29",
+      "status": "PENDING_INDEPENDENT_AUDIT"
+    },
+    {
+      "id": "methodology",
+      "kind": "repository_declared_assumptions",
+      "path": "src/data/blog/interes-compuesto-nota-metodologica.md",
+      "section": "7. Resultados de la fase de acumulación",
+      "retrievedAt": "2026-09-29",
+      "status": "PENDING_INDEPENDENT_AUDIT"
+    },
+    {
+      "id": "sii-fx",
+      "kind": "primary_source",
+      "url": "https://www.sii.cl/valores_y_fechas/dolar/dolar2025.htm",
+      "quote": "Diciembre: 30 | 911,18; 31 | [celda vacía]",
+      "retrievedAt": "2026-09-29",
+      "evidenceRef": "docs/editorial/audits/visual-interest-compound-20260929/evidence/01-sources.md",
+      "status": "SOURCE_READ_NOT_INDEPENDENT_AUDIT"
+    }
+  ],
+  "checkpoints": [
+    { "date": "1995-12-31", "usd": 770, "sourceRef": "article-table" },
+    { "date": "2000-12-31", "usd": 4702, "sourceRef": "article-table" },
+    { "date": "2005-12-31", "usd": 4537, "sourceRef": "article-table" },
+    { "date": "2010-12-31", "usd": 8124, "sourceRef": "article-table" },
+    { "date": "2015-12-31", "usd": 20258, "sourceRef": "article-table" },
+    { "date": "2020-12-31", "usd": 62846, "sourceRef": "article-table" },
+    { "date": "2025-12-31", "usd": 129495, "sourceRef": "article-table" }
+  ],
+  "closingFx": {
+    "clpPerUsd": "911.18",
+    "observedAt": "2025-12-30",
+    "sourceRef": "sii-fx"
+  },
+  "limitations": [
+    "Los checkpoints son valores declarados por el artículo, no una simulación reejecutada ni una validación de la serie histórica.",
+    "No se dispone de la serie mensual original ni de los índices exactos de los 24 meses sin aporte; una semilla aislada no reconstruye el procedimiento.",
+    "No se dibujan curvas interpoladas, aportes mensuales ni crisis entre checkpoints.",
+    "El importe final en CLP convierte el checkpoint USD de 2025; no demuestra la corrección del checkpoint.",
+    "Valores nominales; el ejercicio excluye costos e impuestos y no garantiza rentabilidad futura."
+  ]
+}

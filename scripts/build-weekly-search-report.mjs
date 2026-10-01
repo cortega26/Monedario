@@ -10,6 +10,8 @@ const DEFAULT_GSC_JSON_DIR = "output/operations/data-signals/gsc";
 const DEFAULT_CF_JSON_DIR = "output/operations/data-signals/cloudflare";
 const DEFAULT_ANALYTICS_JSON_DIR = "output/operations/data-signals/analytics";
 const ANALYTICS_EVENT_NAMES = new Set([
+  "editorial_image_impression",
+  "editorial_image_click",
   "calculator_view",
   "calculator_start",
   "calculator_complete",

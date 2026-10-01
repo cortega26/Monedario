@@ -1,0 +1,48 @@
+Author implementation checks captured 2026-09-30. Not an independent audit.
+
+Command: uv run --no-sync pytest tests/test_compound_interest_charts.py --no-cov
+platform linux -- Python 3.13.12, pytest-9.1.1, pluggy-1.6.0
+collected 15 items
+
+tests/test_compound_interest_charts.py ..............s                   [100%]
+
+======================== 14 passed, 1 skipped in 0.26s =========================
+
+The plot geometry test is skipped in the project environment because the plotting
+library intentionally lives in an isolated script environment. The complete
+suite was also executed in that environment:
+
+Command: uv run --no-project --python 3.13 --with matplotlib==3.10.6 --with pytest==8.4.2 pytest tests/test_compound_interest_charts.py -o addopts=
+Installed 15 packages in 11ms
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/carlos/VS_Code_Projects/products/monedario
+configfile: pyproject.toml
+collected 15 items
+
+tests/test_compound_interest_charts.py ...............                   [100%]
+
+=============================== warnings summary ===============================
+tests/test_compound_interest_charts.py::test_plots_have_only_documented_bars_zero_baseline_and_no_connected_curve
+  /home/carlos/.cache/uv/archive-v0/mkQ1_K9gHW973sML5Ow29/lib/python3.13/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 15 passed, 1 warning in 1.29s =========================
+
+Command: uv run --no-sync ruff check scripts/render_compound_interest_charts.py tests/test_compound_interest_charts.py
+All checks passed!
+
+Command: uv run --no-sync ruff format --check scripts/render_compound_interest_charts.py tests/test_compound_interest_charts.py
+2 files already formatted
+
+Command: pnpm exec prettier --check scripts/hero-images/data/compound-interest-checkpoints.json docs/editorial/audits/visual-interest-compound-20260929 docs/reports/REPORT-compound-interest-chart-candidates-2026-09-29.md
+Checking formatting...
+All matched files use Prettier code style!
+
+Command: pnpm run check:audit-artifacts
+[check-audit-artifacts] OK docs/editorial/audits/visual-interest-compound-20260929/02-result.json (verdict=null)
+[check-audit-artifacts] 2 artefacto(s) válidos.
+
+Command: pnpm run check:docs
+[check-docs-structure] OK. trackedMarkdown=913 rootMarkdown=10 adrFiles=57

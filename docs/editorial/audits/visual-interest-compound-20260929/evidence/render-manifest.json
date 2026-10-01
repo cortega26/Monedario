@@ -1,0 +1,35 @@
+{
+  "status": "PENDING_INDEPENDENT_AUDIT",
+  "python": "3.13.12",
+  "matplotlib": "3.10.6",
+  "dataSha256": "97130ff6360c5fd0a79e250ae93c73bf79c849f9e3da0e75eceb5191070c7eb3",
+  "rendererSha256": "ea27f92fc9cad3989f4c8800956198ce5cee52735395bbea28fc60f1906afd6a",
+  "conversion": {
+    "usd": "129495",
+    "clpPerUsd": "911.18",
+    "clpExact": "117993254.10",
+    "clpRounded": "117993254",
+    "clpMillions": "118.0",
+    "rounding": "ROUND_HALF_UP",
+    "scope": "conversion_of_declared_checkpoint_only"
+  },
+  "artifacts": [
+    {
+      "file": "compound-interest-hero-review.png",
+      "sha256": "87c6b4cee243a53cf85fe5ee74b8a3cdda52d94643b25ed3b64296901556015a"
+    },
+    {
+      "file": "compound-interest-hero-review.svg",
+      "sha256": "19a869258fcea3a0e84c6d7cc34f4ff989de220ed2abe61a4a7ee851bfcd1777"
+    },
+    {
+      "file": "compound-interest-inline-review.png",
+      "sha256": "624182ffd17fdf520955f175987f1d2f1937299eb2e58c7eda44c085ce785621"
+    },
+    {
+      "file": "compound-interest-inline-review.svg",
+      "sha256": "1cb039d58720036e2c015a9d53f93417946f097cd16aceebf6346a5e6c108396"
+    }
+  ],
+  "publicFilesChanged": false
+}

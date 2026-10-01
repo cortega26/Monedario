@@ -113,3 +113,32 @@ export function trackAnalyticsEvent(
   if (typeof window === "undefined") return;
   window.monedarioAnalytics?.track(eventName, params);
 }
+
+/** Public image identity and coarse viewport class; no user/device identifier. */
+export function getEditorialImageAnalyticsParams(
+  dataset: {
+    imageVersion?: string;
+    imageArticle?: string;
+    imageSurface?: string;
+  },
+  viewportWidth: number
+): Record<string, string> | null {
+  const hash = dataset.imageVersion;
+  if (!hash || !/^[a-f0-9]{16}$/.test(hash)) return null;
+  const imageVersion = `img-${hash.match(/.{4}/g)!.join("-")}`;
+  const params = {
+    article_slug: dataset.imageArticle,
+    image_surface: dataset.imageSurface,
+    image_version: imageVersion,
+    device_class:
+      viewportWidth < 768
+        ? "mobile"
+        : viewportWidth < 1024
+          ? "tablet"
+          : "desktop",
+  };
+  return (
+    sanitizeAnalyticsPayload("editorial_image_impression", params)?.params ??
+    null
+  );
+}

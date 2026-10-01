@@ -17,6 +17,7 @@ import {
 import { slugifyStr } from "@/utils/slugify";
 import { resolvePageTitle } from "@/utils/seoTitle";
 import { getReadingTime } from "@/utils/readingTime";
+import { resolveEditorialImage } from "@/utils/editorialImages";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
 import {
   computeRelatedSlugs,
@@ -69,7 +70,8 @@ const {
 
 const { Content } = await render(post);
 
-let ogImageUrl: string | undefined;
+const editorialImage = resolveEditorialImage(article.slug, post.data.heroImage);
+let ogImageUrl: string | undefined = editorialImage?.og;
 
 // Domains permitidos para OG images remotas.
 // Solo el propio sitio y CDNs controlados. Cualquier otro dominio se rechaza
@@ -77,7 +79,7 @@ let ogImageUrl: string | undefined;
 const ALLOWED_OG_IMAGE_DOMAINS = new Set([new URL(SITE.website).hostname]);
 
 // Determine OG image source
-if (typeof initOgImage === "string") {
+if (!ogImageUrl && typeof initOgImage === "string") {
   if (/^https?:\/\//i.test(initOgImage)) {
     // Absolute remote URL — validate domain before using.
     // Non-allowed domains are silently rejected and fall through to the
@@ -98,7 +100,7 @@ if (typeof initOgImage === "string") {
   } else {
     ogImageUrl = initOgImage;
   }
-} else if (initOgImage?.src) {
+} else if (!ogImageUrl && typeof initOgImage !== "string" && initOgImage?.src) {
   ogImageUrl = initOgImage.src; // Local asset
 }
 
@@ -285,9 +287,8 @@ const relatedPostSlugs =
 const articleAdvisoryText = resolveBlogArticleAdvisory(post);
 
 // ── Hero image ─────────────────────────────────────────────────────────────
-const heroImage = post.data.heroImage;
-const heroImageSrc = typeof heroImage === "string" ? heroImage : heroImage?.src;
-const hasHeroImage = !!heroImageSrc;
+// Decorative by default; informative illustrations opt in with reviewed text.
+const heroImageAlt = post.data.heroImageAlt ?? "";
 ---
 
 <Layout {...layoutProps}>
@@ -368,18 +369,19 @@ const hasHeroImage = !!heroImageSrc;
         </aside>
       )}
 
-    {hasHeroImage && (
-      <figure class="my-6 overflow-hidden rounded-xl">
+    {editorialImage && (
+      <figure
+        class="my-6 overflow-hidden rounded-xl"
+        data-image-version={editorialImage.version}
+        data-image-article={article.slug}
+        data-image-surface="article_hero"
+      >
         <img
-          src={getPath(heroImageSrc!)}
-          alt={`Ilustración del artículo: ${title}`}
+          src={editorialImage.src}
+          alt={heroImageAlt}
           width="1200"
           height="630"
-          srcset={`
-              ${getPath(heroImageSrc!.replace(".avif", "@mobile.avif"))} 600w,
-              ${getPath(heroImageSrc!.replace(".avif", "@tablet.avif"))} 800w,
-              ${getPath(heroImageSrc!)} 1200w
-            `}
+          srcset={editorialImage.srcset}
           sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
           class="aspect-[40/21] w-full object-cover"
           loading="eager"

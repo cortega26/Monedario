@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@/utils/slugify";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { getReadingTime } from "@/utils/readingTime";
+import { resolveEditorialImage } from "@/utils/editorialImages";
 import Datetime from "./Datetime.astro";
 import ArticlePlaceholder from "./ArticlePlaceholder.astro";
 
@@ -22,26 +23,28 @@ const {
 const { title, description, tags, ogImage, ...props } = data;
 const href = getCanonicalPathFromSlug(data.slug);
 const firstTag = tags?.[0] ?? "";
-const imageSrc = typeof ogImage === "string" ? ogImage : ogImage?.src;
+const image = resolveEditorialImage(data.slug, ogImage);
 const readingTime = getReadingTime(body ?? "");
 ---
 
 <li class="card group my-4 rounded-xl border border-border p-5">
   <!-- Miniatura + Título -->
-  <a href={href} class="transition-colors group-hover:text-accent">
+  <a
+    href={href}
+    class="transition-colors group-hover:text-accent"
+    data-image-version={showImage ? image?.version : undefined}
+    data-image-article={showImage && image ? data.slug : undefined}
+    data-image-surface={showImage && image ? "article_card" : undefined}
+  >
     <div class="mb-3 overflow-hidden rounded-lg">
-      {imageSrc && showImage ? (
+      {image && showImage ? (
         <img
-          src={imageSrc}
-          alt={`Artículo: ${title}`}
+          src={image.src}
+          alt=""
           width="1200"
           height="630"
-          srcset={`
-              ${imageSrc.replace(".avif", "@mobile.avif")} 600w,
-              ${imageSrc.replace(".avif", "@tablet.avif")} 800w,
-              ${imageSrc} 1200w
-            `}
-          sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
+          srcset={image.srcset}
+          sizes="auto, (min-width: 1280px) 340px, (min-width: 768px) 45vw, calc(100vw - 4rem)"
           class="aspect-[40/21] w-full object-cover"
           loading={earlyLoad ? "eager" : "lazy"}
           fetchpriority={earlyLoad ? "high" : undefined}

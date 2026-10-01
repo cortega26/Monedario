@@ -15,6 +15,8 @@ import {
   writeJson,
 } from "./lib.mjs";
 
+import { articleContentHash } from "./prompt-plan.mjs";
+
 const PUBLISHED_INDEX_PATH = path.join(
   process.cwd(),
   "context",
@@ -84,6 +86,7 @@ async function main() {
 
     articles.push({
       slug,
+      sourceContentHash: articleContentHash(frontmatter, body),
       title: String(frontmatter.title ?? "").trim(),
       tags: normalizeStringArray(frontmatter.tags),
       category: String(frontmatter.category ?? "general").trim().toLowerCase(),
@@ -142,13 +145,15 @@ async function main() {
   };
 
   await writeJson(MANIFEST_PATH, manifest);
-  await writeJson(PUBLISHED_INDEX_PATH, publishedIndex);
+  if (!process.argv.includes("--manifest-only")) {
+    await writeJson(PUBLISHED_INDEX_PATH, publishedIndex);
+  }
 
   console.log(`[scan-articles] Total files: ${files.length}`);
   console.log(`[scan-articles] Prompt candidates: ${articles.length}`);
   console.log(`[scan-articles] Publishable: ${publishedArticles.length}`);
   console.log(`[scan-articles] Manifest: ${toRepoRelative(MANIFEST_PATH)}`);
-  console.log(`[scan-articles] Published index: ${toRepoRelative(PUBLISHED_INDEX_PATH)}`);
+  if (!process.argv.includes("--manifest-only")) console.log(`[scan-articles] Published index: ${toRepoRelative(PUBLISHED_INDEX_PATH)}`);
 }
 
 main().catch(error => {

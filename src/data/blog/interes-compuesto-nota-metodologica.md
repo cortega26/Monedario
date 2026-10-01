@@ -19,6 +19,7 @@ unlisted: true
 featured: false
 draft: false
 heroImage: /images/hero/interes-compuesto-nota-metodologica.avif
+heroImageAlt: "Gráfico histórico del ejercicio de ahorro e inversión descrito en esta nota metodológica."
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180

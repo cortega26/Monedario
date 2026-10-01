@@ -1,0 +1,119 @@
+{
+  "auditId": "visual-interest-compound-20260929",
+  "protocolVersion": "v1",
+  "createdAt": "2026-09-30",
+  "status": "PENDING_EXECUTION",
+  "scope": {
+    "commit": "676f8bc358b7d5ad727b2d56b3bd27e750206076",
+    "workingTree": true,
+    "description": "Candidatos gráficos de checkpoints transcritos del artículo y conversión del cierre USD a CLP; no se afirma reconstrucción o certificación de la simulación histórica.",
+    "files": [
+      "scripts/render_compound_interest_charts.py",
+      "scripts/hero-images/data/compound-interest-checkpoints.json",
+      "tests/test_compound_interest_charts.py"
+    ],
+    "fileHashes": {
+      "scripts/render_compound_interest_charts.py": "ea27f92fc9cad3989f4c8800956198ce5cee52735395bbea28fc60f1906afd6a",
+      "scripts/hero-images/data/compound-interest-checkpoints.json": "97130ff6360c5fd0a79e250ae93c73bf79c849f9e3da0e75eceb5191070c7eb3",
+      "tests/test_compound_interest_charts.py": "8d0493b241340403c5ba2adab626712e3605604533dcff2efb5f9146205ba8bb"
+    },
+    "vectors": [
+      {
+        "id": "V1",
+        "date": "1995-12-31",
+        "usd": 770,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V2",
+        "date": "2000-12-31",
+        "usd": 4702,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V3",
+        "date": "2005-12-31",
+        "usd": 4537,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V4",
+        "date": "2010-12-31",
+        "usd": 8124,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V5",
+        "date": "2015-12-31",
+        "usd": 20258,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V6",
+        "date": "2020-12-31",
+        "usd": 62846,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V7",
+        "date": "2025-12-31",
+        "usd": 129495,
+        "status": "UNVERIFIED_ORIGIN"
+      },
+      {
+        "id": "V8",
+        "claim": "129495 USD x 911.18 CLP/USD = 117993254.10 CLP; entero 117993254; millones a un decimal 118.0",
+        "status": "AUTHOR_REPRODUCTION_ONLY"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "path": "src/data/blog/el-poder-del-interes-compuesto.mdx",
+        "section": "Lo que habría pasado, década a década",
+        "authority": "transcription_only"
+      },
+      {
+        "id": "S2",
+        "path": "src/data/blog/interes-compuesto-nota-metodologica.md",
+        "section": "§§1-7",
+        "authority": "declared_assumptions_only"
+      },
+      {
+        "id": "S3",
+        "url": "https://www.sii.cl/valores_y_fechas/dolar/dolar2025.htm",
+        "quote": "Diciembre, día 30: 911,18; día 31: vacío.",
+        "retrievedAt": "2026-09-29",
+        "evidenceRef": "evidence/01-sources.md"
+      },
+      {
+        "id": "S4",
+        "path": "docs/reports/VERIFY-el-poder-del-interes-compuesto-2026-09-17.md",
+        "section": "§§2 y 8",
+        "authority": "prior_scoped_verification_not_checkpoint_audit"
+      }
+    ],
+    "commands": [
+      "uv run --python 3.13 --script scripts/render_compound_interest_charts.py",
+      "uv run --no-sync pytest tests/test_compound_interest_charts.py --no-cov",
+      "uv run --no-project --python 3.13 --with matplotlib==3.10.6 --with pytest==8.4.2 pytest tests/test_compound_interest_charts.py -o addopts=",
+      "pnpm run check:audit-artifacts"
+    ],
+    "excluded": [
+      "public/**",
+      "src/data/blog/**",
+      "calculadoras y dominio",
+      "plan-115-correctitud",
+      "reconstrucción de retornos mensuales sin datos originales"
+    ]
+  },
+  "publication": {
+    "allowed": false,
+    "reason": "Checkpoints sin auditoría independiente; borradores fuera de public. La firma humana permanece pendiente."
+  },
+  "author": {
+    "role": "DraftAgent / implementation",
+    "session": "visual_measurement_plan",
+    "modelFamily": "GPT"
+  }
+}

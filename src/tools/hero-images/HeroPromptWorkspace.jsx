@@ -101,27 +101,6 @@ function byPriority(a, b) {
   return aRank.localeCompare(bRank);
 }
 
-function formatPromptForChatGPTImages(entry) {
-  return `${entry.prompt}
-
-USE CASE: ${entry.title}
-SLUG: ${entry.slug}
-TARGET FILE: ${entry.targetImagePath}
-VISUAL CONCEPT: ${entry.batchConcept}
-WHY THIS IMAGE EXISTS: ${entry.batchWhyFirst}
-PASS CUE: ${entry.batchPassCue}${
-    entry.batchRevisionGoal
-      ? `\nNEXT REVISION GOAL: ${entry.batchRevisionGoal}`
-      : ""
-  }${
-    entry.batchObservedFailures?.length
-      ? `\nOBSERVED FAILURE MODES TO AVOID:\n- ${entry.batchObservedFailures.join(
-          "\n- "
-        )}`
-      : ""
-  }`;
-}
-
 function InfoCard({ label, children }) {
   return (
     <section
@@ -148,7 +127,7 @@ function InfoCard({ label, children }) {
 
 export default function HeroPromptWorkspace({ entries }) {
   const [query, setQuery] = useState("");
-  const [mode, setMode] = useState("p0");
+  const [mode, setMode] = useState("all");
   const [selectedSlug, setSelectedSlug] = useState(entries[0]?.slug ?? "");
   const [copiedKind, setCopiedKind] = useState("");
 
@@ -180,9 +159,7 @@ export default function HeroPromptWorkspace({ entries }) {
     filteredEntries[0] ??
     entries[0];
 
-  const promptForCopy = selectedEntry
-    ? formatPromptForChatGPTImages(selectedEntry)
-    : "";
+  const promptForCopy = selectedEntry ? selectedEntry.prompt : "";
 
   async function handleCopy(kind, value) {
     if (!value) return;
@@ -241,7 +218,8 @@ export default function HeroPromptWorkspace({ entries }) {
         >
           Panel de trabajo para generar manualmente hero images en ChatGPT
           Images. Carga los prompts reales desde{" "}
-          <code>scripts/hero-images/prompts.json</code> y prioriza el lote P0.
+          <code>scripts/hero-images/prompts.json</code> con briefs revisados y
+          huella del contenido.
         </p>
       </div>
 
@@ -277,7 +255,7 @@ export default function HeroPromptWorkspace({ entries }) {
               style={S.button(mode === "p0")}
               onClick={() => setMode("p0")}
             >
-              Lote P0
+              Renovación v5
             </button>
             <button
               type="button"
@@ -292,6 +270,7 @@ export default function HeroPromptWorkspace({ entries }) {
             <input
               value={query}
               onChange={event => setQuery(event.target.value)}
+              aria-label="Buscar artículo o concepto visual"
               placeholder="Buscar por slug, título o concepto..."
               style={S.input}
             />
@@ -427,7 +406,9 @@ export default function HeroPromptWorkspace({ entries }) {
                     borderColor: "#7f1d1d",
                   }}
                 >
-                  {selectedEntry.palette.hex}
+                  {selectedEntry.generationMethod === "image-edit"
+                    ? "Conservar estilo original"
+                    : selectedEntry.palette.hex}
                 </span>
                 <span
                   style={{
@@ -458,7 +439,7 @@ export default function HeroPromptWorkspace({ entries }) {
                 }}
               >
                 <code>{selectedEntry.slug}</code> · {selectedEntry.category} ·{" "}
-                {selectedEntry.sceneId}
+                {selectedEntry.styleVersion}
               </div>
 
               <div
@@ -469,7 +450,7 @@ export default function HeroPromptWorkspace({ entries }) {
                   marginBottom: "1rem",
                 }}
               >
-                <InfoCard label="Por qué va primero">
+                <InfoCard label="Necesidad del lector">
                   {selectedEntry.batchWhyFirst}
                 </InfoCard>
 
@@ -477,7 +458,7 @@ export default function HeroPromptWorkspace({ entries }) {
                   {selectedEntry.batchConcept}
                 </InfoCard>
 
-                <InfoCard label="Pass cue">
+                <InfoCard label="Mensaje al lector">
                   {selectedEntry.batchPassCue}
                 </InfoCard>
 
@@ -532,11 +513,15 @@ export default function HeroPromptWorkspace({ entries }) {
                 <button
                   type="button"
                   style={S.copyButton(copiedKind === "prompt")}
-                  onClick={() => handleCopy("prompt", promptForCopy)}
+                  disabled={!selectedEntry.canCopyPrompt}
+                  onClick={() => {
+                    if (selectedEntry.canCopyPrompt)
+                      handleCopy("prompt", promptForCopy);
+                  }}
                 >
                   {copiedKind === "prompt"
                     ? "Prompt copiado"
-                    : "Copiar prompt listo para ChatGPT Images"}
+                    : "Copiar prompt listo para Imagegen"}
                 </button>
                 <button
                   type="button"
@@ -558,7 +543,35 @@ export default function HeroPromptWorkspace({ entries }) {
                 </button>
               </div>
 
-              <textarea readOnly value={promptForCopy} style={S.textarea} />
+              <p style={S.headerMeta}>
+                Prompt final · SHA-256: {selectedEntry.promptHash}
+              </p>
+              {selectedEntry.briefErrors?.length > 0 ? (
+                <p role="alert">
+                  Brief pendiente de revisión:{" "}
+                  {selectedEntry.briefErrors.join(" ")}
+                </p>
+              ) : null}
+              {selectedEntry.generationMethod === "data-render" ? (
+                <p>
+                  Gráfico de datos: ejecutar el render reproducible y revisar
+                  sus fuentes. No generar con imagegen.
+                </p>
+              ) : null}
+              {selectedEntry.generationMethod === "image-edit" ? (
+                <p>
+                  Edición acotada: adjuntar el original preservado{" "}
+                  <code>{selectedEntry.referenceImagePath}</code>. Conservar su
+                  estilo y composición. SHA-256:{" "}
+                  <code>{selectedEntry.referenceImageHash}</code>.
+                </p>
+              ) : null}
+              <textarea
+                aria-label="Prompt final validado"
+                readOnly
+                value={promptForCopy}
+                style={S.textarea}
+              />
             </>
           ) : (
             <div style={{ color: "#9ca3af" }}>No hay prompts para mostrar.</div>

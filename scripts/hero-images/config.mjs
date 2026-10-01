@@ -270,3 +270,31 @@ export function findApprovedPromptModel(template, approvedModelId) {
     null
   );
 }
+
+
+// v5 article prompts use reviewed briefs; the model catalog above remains only
+// for compatibility with the historical, explicitly curated image pool.
+export const EDITORIAL_STYLE_VERSION = "monedario-editorial-v5";
+export const EDITORIAL_PALETTE = {
+  navy: "#16324f",
+  teal: "#0d9488",
+  paper: "#f5f1e8",
+  accent: "#c77b55",
+};
+
+export function buildEditorialPrompt(brief) {
+  return [
+    "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.",
+    "Style: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.",
+    `Palette: deep navy ${EDITORIAL_PALETTE.navy} and teal ${EDITORIAL_PALETTE.teal}, warm paper ${EDITORIAL_PALETTE.paper}, with a restrained terracotta ${EDITORIAL_PALETTE.accent} accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.`,
+    `Reader situation: ${brief.readerNeed}`,
+    `Editorial promise: ${brief.editorialPromise}`,
+    `Visual message: ${brief.visualMessage}`,
+    `Scene: ${brief.scene}`,
+    `Essential elements: ${brief.requiredElements.join("; ")}.`,
+    `Avoid these interpretations: ${brief.avoidInterpretations.join("; ")}.`,
+    "Composition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.",
+    "Do not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.",
+    "Canvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+  ].join("\n");
+}
