@@ -23,11 +23,9 @@ const tags = getUniqueTagsWithCount(posts);
     pageDesc="Navega por categoría para encontrar artículos relacionados con un mismo tema. Cada etiqueta agrupa piezas del sitio que comparten un concepto o área de decisión financiera."
   >
     <ul class="flex flex-wrap gap-6">
-      {
-        tags.map(({ tag, tagName, count }) => (
-          <Tag tag={tag} tagName={tagName} count={count} showIcon={true} />
-        ))
-      }
+      {tags.map(({ tag, tagName, count }) => (
+        <Tag tag={tag} tagName={tagName} count={count} showIcon={true} />
+      ))}
     </ul>
   </Main>
   <Footer />

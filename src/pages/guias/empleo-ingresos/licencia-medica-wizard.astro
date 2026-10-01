@@ -20,9 +20,7 @@ const hubPath = getPath("/guias/empleo-ingresos/");
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
         Herramienta — Empleo e ingresos
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
@@ -42,35 +40,32 @@ const hubPath = getPath("/guias/empleo-ingresos/");
       <DecisionWizard config={LICENCIA_MEDICA_WIZARD_CONFIG} />
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border py-8 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border py-8 dark:prose-invert">
       <h2>La regla fundamental: duración ≥ 11 días vs. menos de 11 días</h2>
       <p>
-        En Chile, la duración total de la licencia <strong>autorizada</strong> (no
-        la solicitada) determina desde cuándo se paga el subsidio:
+        En Chile, la duración total de la licencia <strong>autorizada</strong>{" "}
+        (no la solicitada) determina desde cuándo se paga el subsidio:
       </p>
       <ul>
         <li>
-          <strong>1 a 10 días autorizados:</strong> el subsidio parte desde el día
-          4. Los 3 primeros días no generan pago.
+          <strong>1 a 10 días autorizados:</strong> el subsidio parte desde el
+          día 4. Los 3 primeros días no generan pago.
         </li>
         <li>
-          <strong>11 días o más autorizados:</strong> el subsidio parte desde el día
-          1, sin días de espera.
+          <strong>11 días o más autorizados:</strong> el subsidio parte desde el
+          día 1, sin días de espera.
         </li>
       </ul>
       <p>
-        Para el detalle completo del cálculo y los pasos de apelación, lee la{
-          " "
-        }
+        Para el detalle completo del cálculo y los pasos de apelación, lee la{" "}
         <a
           href={articuloPath}
           data-analytics-cta="wizard-to-article"
           data-analytics-location="licencia_wizard_explainer"
         >
           guía completa de licencia médica
-        </a>.
+        </a>
+        .
       </p>
     </section>
 

@@ -103,7 +103,7 @@ const articulosSeccion = [
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
@@ -128,20 +128,18 @@ const articulosSeccion = [
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Elige por objetivo principal</h2>
       <ul class="grid gap-4">
-        {
-          articulosSeccion.map(item => (
-            <li class="rounded-xl border border-border p-5">
-              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
-              <a
-                href={item.href}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                Ir a esta guía
-              </a>
-            </li>
-          ))
-        }
+        {articulosSeccion.map(item => (
+          <li class="rounded-xl border border-border p-5">
+            <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+            <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+            <a
+              href={item.href}
+              class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              Ir a esta guía
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
 

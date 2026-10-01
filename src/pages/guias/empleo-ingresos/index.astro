@@ -92,7 +92,7 @@ const articulosSeccion = [
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
@@ -116,30 +116,28 @@ const articulosSeccion = [
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Elige por la contingencia laboral</h2>
       <ul class="grid gap-4">
-        {
-          articulosSeccion.map(item => (
-            <li class="rounded-xl border border-border p-5">
-              {item.esHerramienta && (
-                <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
-                  Herramienta interactiva
-                </p>
-              )}
-              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
-              <a
-                href={item.href}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                data-analytics-cta={
-                  item.esHerramienta ? "hub-tool" : "hub-article"
-                }
-                data-analytics-label={item.titulo}
-                data-analytics-location="empleo_ingresos_hub"
-              >
-                {item.esHerramienta ? "Ir a la herramienta" : "Ir a esta guía"}
-              </a>
-            </li>
-          ))
-        }
+        {articulosSeccion.map(item => (
+          <li class="rounded-xl border border-border p-5">
+            {item.esHerramienta && (
+              <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
+                Herramienta interactiva
+              </p>
+            )}
+            <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+            <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+            <a
+              href={item.href}
+              class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              data-analytics-cta={
+                item.esHerramienta ? "hub-tool" : "hub-article"
+              }
+              data-analytics-label={item.titulo}
+              data-analytics-location="empleo_ingresos_hub"
+            >
+              {item.esHerramienta ? "Ir a la herramienta" : "Ir a esta guía"}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
 
@@ -208,25 +206,23 @@ const articulosSeccion = [
     >
       <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
       <div class="grid gap-4 md:grid-cols-2">
-        {
-          empleoIngresosCalcCards.map(card => (
-            <article class="rounded-2xl border border-border bg-surface-muted p-5">
-              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {card.kind}
-              </p>
-              <h3 class="text-lg font-semibold">{card.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-secondary">
-                {card.description}
-              </p>
-              <a
-                href={card.href}
-                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {card.cta}
-              </a>
-            </article>
-          ))
-        }
+        {empleoIngresosCalcCards.map(card => (
+          <article class="rounded-2xl border border-border bg-surface-muted p-5">
+            <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+              {card.kind}
+            </p>
+            <h3 class="text-lg font-semibold">{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-secondary">
+              {card.description}
+            </p>
+            <a
+              href={card.href}
+              class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {card.cta}
+            </a>
+          </article>
+        ))}
       </div>
     </section>
 

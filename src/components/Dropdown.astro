@@ -50,33 +50,31 @@ const { label, items, id = "dropdown", isActive = false } = Astro.props;
     id={`${id}-menu`}
     class="dropdown-menu hidden w-full origin-top flex-col overflow-hidden lg:absolute lg:top-full lg:-left-4 lg:z-50 lg:w-64 lg:rounded-xl lg:border lg:border-border lg:bg-background lg:p-2 lg:shadow-lg lg:backdrop-blur-xl"
   >
-    {
-      items.map(item => (
-        <li>
-          <a
-            href={item.href}
-            data-analytics-cta={item.analyticsCta}
-            data-analytics-label={item.label}
-            data-analytics-location={item.analyticsLocation}
-            class:list={[
-              "block rounded-lg px-4 py-[14px] lg:px-3 lg:py-2",
-              "text-sm font-medium transition-colors hover:bg-accent/10 hover:text-accent focus:bg-accent/10 focus:text-accent focus:outline-none",
-              "pl-8 lg:pl-3",
-              { "bg-accent/5 text-accent": item.isActive },
-            ]}
-          >
-            <div class="flex items-center gap-2">
-              {item.icon && (
-                <span class="text-base leading-none" aria-hidden="true">
-                  {item.icon}
-                </span>
-              )}
-              <span>{item.label}</span>
-            </div>
-          </a>
-        </li>
-      ))
-    }
+    {items.map(item => (
+      <li>
+        <a
+          href={item.href}
+          data-analytics-cta={item.analyticsCta}
+          data-analytics-label={item.label}
+          data-analytics-location={item.analyticsLocation}
+          class:list={[
+            "block rounded-lg px-4 py-[14px] lg:px-3 lg:py-2",
+            "text-sm font-medium transition-colors hover:bg-accent/10 hover:text-accent focus:bg-accent/10 focus:text-accent focus:outline-none",
+            "pl-8 lg:pl-3",
+            { "bg-accent/5 text-accent": item.isActive },
+          ]}
+        >
+          <div class="flex items-center gap-2">
+            {item.icon && (
+              <span class="text-base leading-none" aria-hidden="true">
+                {item.icon}
+              </span>
+            )}
+            <span>{item.label}</span>
+          </div>
+        </a>
+      </li>
+    ))}
   </ul>
 </div>
 

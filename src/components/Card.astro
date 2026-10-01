@@ -30,28 +30,26 @@ const readingTime = getReadingTime(body ?? "");
   <!-- Miniatura + Título -->
   <a href={href} class="transition-colors group-hover:text-accent">
     <div class="mb-3 overflow-hidden rounded-lg">
-      {
-        imageSrc && showImage ? (
-          <img
-            src={imageSrc}
-            alt={`Artículo: ${title}`}
-            width="1200"
-            height="630"
-            srcset={`
+      {imageSrc && showImage ? (
+        <img
+          src={imageSrc}
+          alt={`Artículo: ${title}`}
+          width="1200"
+          height="630"
+          srcset={`
               ${imageSrc.replace(".avif", "@mobile.avif")} 600w,
               ${imageSrc.replace(".avif", "@tablet.avif")} 800w,
               ${imageSrc} 1200w
             `}
-            sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
-            class="aspect-[40/21] w-full object-cover"
-            loading={earlyLoad ? "eager" : "lazy"}
-            fetchpriority={earlyLoad ? "high" : undefined}
-            decoding={earlyLoad ? "sync" : "async"}
-          />
-        ) : (
-          <ArticlePlaceholder tag={firstTag} />
-        )
-      }
+          sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
+          class="aspect-[40/21] w-full object-cover"
+          loading={earlyLoad ? "eager" : "lazy"}
+          fetchpriority={earlyLoad ? "high" : undefined}
+          decoding={earlyLoad ? "sync" : "async"}
+        />
+      ) : (
+        <ArticlePlaceholder tag={firstTag} />
+      )}
     </div>
     <Heading
       class="card-heading mb-1 text-lg leading-snug font-semibold text-foreground transition-colors group-hover:text-accent"

@@ -129,15 +129,13 @@ const itemListSchema = {
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
         Referencia rápida
       </p>
       <h1 class="mb-3 text-3xl font-bold sm:text-4xl">
@@ -151,20 +149,16 @@ const itemListSchema = {
     </section>
 
     <section class="border-b border-border py-8">
-      <div
-        class="mb-3 rounded-lg border border-border bg-surface-muted px-4 py-3 text-xs text-secondary"
-      >
-        {sourceLabel}{
-          parameters.source !== "fallback" &&
-            ` · Actualizado el ${fmtFecha(parameters.lastUpdated)}`
-        }.
+      <div class="mb-3 rounded-lg border border-border bg-surface-muted px-4 py-3 text-xs text-secondary">
+        {sourceLabel}
+        {parameters.source !== "fallback" &&
+          ` · Actualizado el ${fmtFecha(parameters.lastUpdated)}`}
+        .
       </div>
 
       <div class="overflow-x-auto rounded-2xl border border-border">
         <table class="min-w-full divide-y divide-border text-sm">
-          <thead
-            class="bg-surface-muted text-left text-xs tracking-wide text-muted uppercase"
-          >
+          <thead class="bg-surface-muted text-left text-xs tracking-wide text-muted uppercase">
             <tr>
               <th class="px-4 py-3">Indicador</th>
               <th class="px-4 py-3">Valor</th>
@@ -173,30 +167,28 @@ const itemListSchema = {
             </tr>
           </thead>
           <tbody class="divide-y divide-border">
-            {
-              items.map(item => (
-                <tr>
-                  <td class="px-4 py-3">
-                    <p class="font-semibold text-foreground">{item.codigo}</p>
-                    <p class="text-xs text-secondary">{item.nombre}</p>
-                  </td>
-                  <td class="px-4 py-3 font-semibold text-foreground tabular-nums">
-                    {item.unidad === "CLP"
-                      ? formatCLP(item.valor)
-                      : `${item.valor.toLocaleString("es-CL", {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}${item.unidad}`}
-                  </td>
-                  <td class="px-4 py-3 text-secondary">
-                    {item.periodoMensual
-                      ? fmtMesAnio(item.fecha)
-                      : fmtFecha(item.fecha)}
-                  </td>
-                  <td class="px-4 py-3 text-secondary">{item.impacto}</td>
-                </tr>
-              ))
-            }
+            {items.map(item => (
+              <tr>
+                <td class="px-4 py-3">
+                  <p class="font-semibold text-foreground">{item.codigo}</p>
+                  <p class="text-xs text-secondary">{item.nombre}</p>
+                </td>
+                <td class="px-4 py-3 font-semibold text-foreground tabular-nums">
+                  {item.unidad === "CLP"
+                    ? formatCLP(item.valor)
+                    : `${item.valor.toLocaleString("es-CL", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}${item.unidad}`}
+                </td>
+                <td class="px-4 py-3 text-secondary">
+                  {item.periodoMensual
+                    ? fmtMesAnio(item.fecha)
+                    : fmtFecha(item.fecha)}
+                </td>
+                <td class="px-4 py-3 text-secondary">{item.impacto}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -206,9 +198,7 @@ const itemListSchema = {
       <h2 class="mb-4 text-2xl font-bold">Úsalo para decidir, no solo mirar</h2>
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <article class="rounded-xl border border-border p-5">
-          <p
-            class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
             Herramienta
           </p>
           <h3 class="text-lg font-semibold">Conversor UF a pesos</h3>
@@ -225,9 +215,7 @@ const itemListSchema = {
         </article>
 
         <article class="rounded-xl border border-border p-5">
-          <p
-            class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
             Herramienta
           </p>
           <h3 class="text-lg font-semibold">Conversor UTM a pesos</h3>
@@ -244,9 +232,7 @@ const itemListSchema = {
         </article>
 
         <article class="rounded-xl border border-border p-5">
-          <p
-            class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
             Herramienta
           </p>
           <h3 class="text-lg font-semibold">Reajuste de arriendo</h3>
@@ -263,9 +249,7 @@ const itemListSchema = {
         </article>
 
         <article class="rounded-xl border border-border p-5">
-          <p
-            class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
             Siguiente lectura
           </p>
           <h3 class="text-lg font-semibold">UF, inflación y costo de vida</h3>

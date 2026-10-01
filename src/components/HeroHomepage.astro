@@ -42,7 +42,9 @@ const headlineParts = headline.split("plata");
     class="homepage-body-heading mb-3 max-w-3xl text-3xl leading-tight font-bold sm:text-5xl"
     style="font-family: var(--font-display); line-height: 1.05;"
   >
-    {headlineParts[0]}<span class="italic">plata</span>{headlineParts[1]}
+    {headlineParts[0]}
+    <span class="italic">plata</span>
+    {headlineParts[1]}
   </h1>
 
   <p class="mb-6 max-w-2xl text-sm leading-relaxed text-secondary sm:text-base">
@@ -52,36 +54,34 @@ const headlineParts = headline.split("plata");
   <!-- CTAs como links editoriales con dashed underline -->
   <nav aria-label="Calculadoras principales" class="mb-6">
     <ul class="divide-y divide-border border-y border-border">
-      {
-        ctaLinks.map(link => (
-          <li class={link.primary ? "bg-accent/5" : ""}>
-            <a
-              href={getPath(link.href)}
-              class="group flex items-center justify-between rounded px-4 py-2.5 text-sm transition-colors hover:bg-accent/5"
-              data-analytics-cta="home-hero-cta"
-              data-analytics-label={link.label}
-              data-analytics-location="home_hero"
+      {ctaLinks.map(link => (
+        <li class={link.primary ? "bg-accent/5" : ""}>
+          <a
+            href={getPath(link.href)}
+            class="group flex items-center justify-between rounded px-4 py-2.5 text-sm transition-colors hover:bg-accent/5"
+            data-analytics-cta="home-hero-cta"
+            data-analytics-label={link.label}
+            data-analytics-location="home_hero"
+          >
+            <span
+              class={`underline underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent ${link.primary ? "font-semibold text-foreground decoration-accent decoration-dashed" : "text-foreground decoration-border decoration-dashed"}`}
             >
-              <span
-                class={`underline underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent ${link.primary ? "font-semibold text-foreground decoration-accent decoration-dashed" : "text-foreground decoration-border decoration-dashed"}`}
-              >
-                {link.label}
-                {link.badge && (
-                  <span class="ml-2 inline-block rounded border border-accent/30 px-1.5 py-0.5 text-[10px] leading-none font-semibold tracking-wide text-accent uppercase">
-                    {link.badge}
-                  </span>
-                )}
-              </span>
-              <span
-                class="text-muted transition-colors group-hover:text-accent"
-                aria-hidden="true"
-              >
-                →
-              </span>
-            </a>
-          </li>
-        ))
-      }
+              {link.label}
+              {link.badge && (
+                <span class="ml-2 inline-block rounded border border-accent/30 px-1.5 py-0.5 text-[10px] leading-none font-semibold tracking-wide text-accent uppercase">
+                  {link.badge}
+                </span>
+              )}
+            </span>
+            <span
+              class="text-muted transition-colors group-hover:text-accent"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </a>
+        </li>
+      ))}
     </ul>
   </nav>
 

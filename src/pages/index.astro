@@ -52,12 +52,8 @@ const homeDescription =
 
     <ProblemCards />
 
-    <section
-      class="mt-6 mb-10 rounded-xl border border-accent/15 bg-accent/5 px-6 py-5"
-    >
-      <div
-        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
-      >
+    <section class="mt-6 mb-10 rounded-xl border border-accent/15 bg-accent/5 px-6 py-5">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h2 class="homepage-body-heading text-lg font-semibold">
             Calcula tu caso
@@ -73,47 +69,44 @@ const homeDescription =
           data-analytics-label="Ver calculadoras"
           data-analytics-location="home_calculators"
         >
-          Ver calculadoras <IconArrowRight
-            class="inline-block rtl:-rotate-180"
-          />
+          Ver calculadoras{" "}
+          <IconArrowRight class="inline-block rtl:-rotate-180" />
         </LinkButton>
       </div>
     </section>
 
-    {
-      recentRichPosts.length > 0 && (
-        <section
-          class="py-5 lg:py-6"
-          style="content-visibility: auto; contain-intrinsic-size: 600px;"
-        >
-          <div class="rounded-xl bg-surface-muted/22 px-4 py-5 sm:px-6 sm:py-6">
-            <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <h2 class="homepage-body-heading text-xl font-semibold tracking-wide">
-                  Artículos recientes
-                </h2>
-              </div>
-              <LinkButton
-                href={getPath("/posts/")}
-                class="text-sm font-semibold"
-                data-analytics-cta="home-all-posts-inline"
-                data-analytics-label="Ver todos los artículos"
-                data-analytics-location="home_recent_heading"
-              >
-                Ver todos los artículos{" "}
-                <IconArrowRight class="inline-block rtl:-rotate-180" />
-              </LinkButton>
+    {recentRichPosts.length > 0 && (
+      <section
+        class="py-5 lg:py-6"
+        style="content-visibility: auto; contain-intrinsic-size: 600px;"
+      >
+        <div class="rounded-xl bg-surface-muted/22 px-4 py-5 sm:px-6 sm:py-6">
+          <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 class="homepage-body-heading text-xl font-semibold tracking-wide">
+                Artículos recientes
+              </h2>
             </div>
-
-            <ul class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {recentRichPosts.map(post => (
-                <Card variant="h3" {...post} />
-              ))}
-            </ul>
+            <LinkButton
+              href={getPath("/posts/")}
+              class="text-sm font-semibold"
+              data-analytics-cta="home-all-posts-inline"
+              data-analytics-label="Ver todos los artículos"
+              data-analytics-location="home_recent_heading"
+            >
+              Ver todos los artículos{" "}
+              <IconArrowRight class="inline-block rtl:-rotate-180" />
+            </LinkButton>
           </div>
-        </section>
-      )
-    }
+
+          <ul class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {recentRichPosts.map(post => (
+              <Card variant="h3" {...post} />
+            ))}
+          </ul>
+        </div>
+      </section>
+    )}
   </main>
   <Footer />
 </Layout>

@@ -114,19 +114,17 @@ const breadcrumbItems = [
 ];
 ---
 
-{
-  breadcrumbItems.length > 1 && (
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={serializeJsonLd({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: breadcrumbItems,
-      })}
-    />
-  )
-}
+{breadcrumbItems.length > 1 && (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={serializeJsonLd({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbItems,
+    })}
+  ></script>
+)}
 <nav class="app-layout mt-8 mb-1" aria-label="Migas de pan">
   <ul class="font-light [&>li]:inline">
     <li>
@@ -136,8 +134,44 @@ const breadcrumbItems = [
       >
         Inicio
       </a>
-      {
-        crumbs.length > 0 ? (
+      {crumbs.length > 0 ? (
+        <span aria-hidden="true" class="inline-block text-muted">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="inline-block align-middle"
+          >
+            <>
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M9 6l6 6l-6 6" />
+            </>
+          </svg>
+        </span>
+      ) : null}
+    </li>
+
+    {crumbs.map((crumb, index) =>
+      index + 1 === crumbs.length ? (
+        <li>
+          <span class="text-muted" aria-current="page">
+            {labels[index]}
+          </span>
+        </li>
+      ) : (
+        <li>
+          <a
+            href={getPath(index === 0 && hub ? hub.href : crumb.href)}
+            class="text-secondary underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground"
+          >
+            {labels[index]}
+          </a>
           <span aria-hidden="true" class="inline-block text-muted">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -157,48 +191,8 @@ const breadcrumbItems = [
               </>
             </svg>
           </span>
-        ) : null
-      }
-    </li>
-
-    {
-      crumbs.map((crumb, index) =>
-        index + 1 === crumbs.length ? (
-          <li>
-            <span class="text-muted" aria-current="page">
-              {labels[index]}
-            </span>
-          </li>
-        ) : (
-          <li>
-            <a
-              href={getPath(index === 0 && hub ? hub.href : crumb.href)}
-              class="text-secondary underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground"
-            >
-              {labels[index]}
-            </a>
-            <span aria-hidden="true" class="inline-block text-muted">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="inline-block align-middle"
-              >
-                <>
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M9 6l6 6l-6 6" />
-                </>
-              </svg>
-            </span>
-          </li>
-        )
+        </li>
       )
-    }
+    )}
   </ul>
 </nav>

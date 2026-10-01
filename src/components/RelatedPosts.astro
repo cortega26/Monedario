@@ -30,69 +30,67 @@ const relatedPosts = relatedSlugs
   .filter((item): item is RelatedItem => item !== undefined);
 ---
 
-{
-  relatedPosts.length > 0 && (
-    <section
-      class="mt-10 border-t border-border px-4 pt-8 sm:px-6"
-      style="content-visibility: auto; contain-intrinsic-size: 600px; background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 70%, transparent) 0%, transparent 24%);"
+{relatedPosts.length > 0 && (
+  <section
+    class="mt-10 border-t border-border px-4 pt-8 sm:px-6"
+    style="content-visibility: auto; contain-intrinsic-size: 600px; background: linear-gradient(to bottom, color-mix(in srgb, var(--color-surface) 70%, transparent) 0%, transparent 24%);"
+  >
+    <h2
+      class="mb-5 text-2xl font-bold sm:text-3xl"
+      style="font-family: var(--font-body);"
     >
-      <h2
-        class="mb-5 text-2xl font-bold sm:text-3xl"
-        style="font-family: var(--font-body);"
-      >
-        También puede interesarte
-      </h2>
+      También puede interesarte
+    </h2>
 
-      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {relatedPosts.map(({ post, article }) => {
-          const imageSrc =
-            typeof post.data.ogImage === "string"
-              ? post.data.ogImage
-              : post.data.ogImage?.src;
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {relatedPosts.map(({ post, article }) => {
+        const imageSrc =
+          typeof post.data.ogImage === "string"
+            ? post.data.ogImage
+            : post.data.ogImage?.src;
 
-          return (
-            <li class="rounded-xl border border-border p-3">
-              <a
-                href={getCanonicalPathFromSlug(article.slug)}
-                class="group block"
-                data-analytics-cta="related-post"
-                data-analytics-label={article.title}
-                data-analytics-location="related_posts"
+        return (
+          <li class="rounded-xl border border-border p-3">
+            <a
+              href={getCanonicalPathFromSlug(article.slug)}
+              class="group block"
+              data-analytics-cta="related-post"
+              data-analytics-label={article.title}
+              data-analytics-location="related_posts"
+            >
+              <div class="mb-3 overflow-hidden rounded-lg">
+                {imageSrc ? (
+                  <img
+                    src={imageSrc}
+                    alt={`Portada de ${post.data.title}`}
+                    width="1200"
+                    height="675"
+                    class="aspect-video w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <ArticlePlaceholder tag={article.tags?.[0]} />
+                )}
+              </div>
+
+              <h3
+                class="mb-2 text-base leading-snug font-semibold transition-colors group-hover:text-accent"
+                style="font-family: var(--font-body);"
               >
-                <div class="mb-3 overflow-hidden rounded-lg">
-                  {imageSrc ? (
-                    <img
-                      src={imageSrc}
-                      alt={`Portada de ${post.data.title}`}
-                      width="1200"
-                      height="675"
-                      class="aspect-video w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <ArticlePlaceholder tag={article.tags?.[0]} />
-                  )}
-                </div>
+                {article.title}
+              </h3>
 
-                <h3
-                  class="mb-2 text-base leading-snug font-semibold transition-colors group-hover:text-accent"
-                  style="font-family: var(--font-body);"
-                >
-                  {article.title}
-                </h3>
-
-                <Datetime
-                  pubDatetime={article.pubDate}
-                  modDatetime={article.updatedDate}
-                  timezone={post.data.timezone}
-                  size="sm"
-                />
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  )
-}
+              <Datetime
+                pubDatetime={article.pubDate}
+                modDatetime={article.updatedDate}
+                timezone={post.data.timezone}
+                size="sm"
+              />
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+)}

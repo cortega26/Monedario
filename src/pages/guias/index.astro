@@ -103,32 +103,30 @@ const capasConHubs = capas
       </p>
     </section>
 
-    {
-      capasConHubs.map(capa => (
-        <section class="border-b border-border py-8 last:border-b-0">
-          <h2 class="mb-2 text-2xl font-bold">{capa.titulo}</h2>
-          <p class="mb-5 max-w-3xl text-secondary">{capa.resumen}</p>
+    {capasConHubs.map(capa => (
+      <section class="border-b border-border py-8 last:border-b-0">
+        <h2 class="mb-2 text-2xl font-bold">{capa.titulo}</h2>
+        <p class="mb-5 max-w-3xl text-secondary">{capa.resumen}</p>
 
-          <ul class="grid gap-3 sm:grid-cols-2">
-            {capa.hubs.map(hub => (
-              <li>
-                <a
-                  href={getPath(`/guias/${hub.slug}/`)}
-                  class="group block rounded-lg border border-border p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
-                >
-                  <h3 class="text-base font-semibold text-foreground transition-colors group-hover:text-accent">
-                    {hub.nombre}
-                  </h3>
-                  <p class="mt-1 text-sm leading-relaxed text-secondary">
-                    {hub.descripcion}
-                  </p>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {capa.hubs.map(hub => (
+            <li>
+              <a
+                href={getPath(`/guias/${hub.slug}/`)}
+                class="group block rounded-lg border border-border p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
+              >
+                <h3 class="text-base font-semibold text-foreground transition-colors group-hover:text-accent">
+                  {hub.nombre}
+                </h3>
+                <p class="mt-1 text-sm leading-relaxed text-secondary">
+                  {hub.descripcion}
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </main>
 
   <Footer />

@@ -49,14 +49,12 @@ const apoyarHref = `/apoyar/?src=${safeContext}`;
   </p>
   <p class="mb-4 max-w-prose text-sm leading-relaxed text-secondary">
     Puedes ayudar compartiendo{" "}
-    {
-      pageTitle ? (
-        <strong class="text-foreground">{pageTitle}</strong>
-      ) : (
-        "esta página"
-      )
-    }
-    {" "}con alguien a quien le pueda servir, o apoyando el mantenimiento del
+    {pageTitle ? (
+      <strong class="text-foreground">{pageTitle}</strong>
+    ) : (
+      "esta página"
+    )}{" "}
+    con alguien a quien le pueda servir, o apoyando el mantenimiento del
     proyecto.
   </p>
   <div class="flex flex-wrap gap-3">

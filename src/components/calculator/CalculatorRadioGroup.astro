@@ -21,23 +21,21 @@ const { legend, name, options, hint, class: extraClass, ...rest } = Astro.props;
 <fieldset class:list={["mb-5 border-0 p-0", extraClass]} {...rest}>
   <legend class="mb-2 text-sm font-medium text-secondary">{legend}</legend>
   <div class="flex gap-2">
-    {
-      options.map(opt => (
-        <label class="flex-1 cursor-pointer">
-          <input
-            type="radio"
-            name={name}
-            id={opt.id}
-            value={opt.value}
-            checked={opt.checked}
-            class="peer sr-only"
-          />
-          <span class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2">
-            {opt.label}
-          </span>
-        </label>
-      ))
-    }
+    {options.map(opt => (
+      <label class="flex-1 cursor-pointer">
+        <input
+          type="radio"
+          name={name}
+          id={opt.id}
+          value={opt.value}
+          checked={opt.checked}
+          class="peer sr-only"
+        />
+        <span class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2">
+          {opt.label}
+        </span>
+      </label>
+    ))}
   </div>
   {hint && <p class="mt-1 text-xs text-muted">{hint}</p>}
 </fieldset>

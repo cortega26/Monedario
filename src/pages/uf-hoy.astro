@@ -73,16 +73,14 @@ const webPageSchema = {
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(webPageSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
   <main id="main-content" class="app-layout">
     <!-- Valor principal -->
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
         Valor vigente
       </p>
       <h1 class="mb-3 text-3xl font-bold sm:text-4xl">UF hoy en Chile</h1>
@@ -97,9 +95,7 @@ const webPageSchema = {
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <!-- UF -->
         <div class="bg-surface rounded-2xl border border-border p-6">
-          <p
-            class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase">
             UF
           </p>
           <p class="text-3xl font-bold text-foreground tabular-nums">
@@ -122,9 +118,7 @@ const webPageSchema = {
 
         <!-- UTM -->
         <div class="bg-surface rounded-2xl border border-border p-6">
-          <p
-            class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase"
-          >
+          <p class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase">
             UTM
           </p>
           <p class="text-3xl font-bold text-foreground tabular-nums">
@@ -146,25 +140,23 @@ const webPageSchema = {
         </div>
 
         <!-- Dólar observado (condicional) -->
-        {
-          dolarDisplay && dolarFechaDisplay && (
-            <div class="bg-surface rounded-2xl border border-border p-6">
-              <p class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase">
-                USD
-              </p>
-              <p class="text-3xl font-bold text-foreground tabular-nums">
-                {dolarDisplay}
-              </p>
-              <p class="mt-1 text-xs text-secondary">
-                Dólar observado · {dolarFechaDisplay}
-              </p>
-              <p class="mt-3 text-sm leading-relaxed text-secondary">
-                Tipo de cambio oficial del Banco Central. Influye en productos
-                importados, viajes y decisiones en moneda extranjera.
-              </p>
-            </div>
-          )
-        }
+        {dolarDisplay && dolarFechaDisplay && (
+          <div class="bg-surface rounded-2xl border border-border p-6">
+            <p class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase">
+              USD
+            </p>
+            <p class="text-3xl font-bold text-foreground tabular-nums">
+              {dolarDisplay}
+            </p>
+            <p class="mt-1 text-xs text-secondary">
+              Dólar observado · {dolarFechaDisplay}
+            </p>
+            <p class="mt-3 text-sm leading-relaxed text-secondary">
+              Tipo de cambio oficial del Banco Central. Influye en productos
+              importados, viajes y decisiones en moneda extranjera.
+            </p>
+          </div>
+        )}
       </div>
 
       <p class="mt-4 text-xs text-secondary">

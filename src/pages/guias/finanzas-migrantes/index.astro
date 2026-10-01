@@ -87,44 +87,40 @@ const relacionados = [
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Recursos disponibles</h2>
       <div class="grid gap-4 md:grid-cols-2">
-        {
-          recursos.map(card => (
-            <article class="rounded-lg border border-border p-5">
-              <h3 class="text-lg font-semibold">{card.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-secondary">
-                {card.description}
-              </p>
-              <a
-                href={getPath(card.href)}
-                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {card.cta}
-              </a>
-            </article>
-          ))
-        }
+        {recursos.map(card => (
+          <article class="rounded-lg border border-border p-5">
+            <h3 class="text-lg font-semibold">{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-secondary">
+              {card.description}
+            </p>
+            <a
+              href={getPath(card.href)}
+              class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {card.cta}
+            </a>
+          </article>
+        ))}
       </div>
     </section>
 
     <section class="py-8">
       <h2 class="mb-4 text-2xl font-bold">Secciones relacionadas</h2>
       <div class="grid gap-4 md:grid-cols-2">
-        {
-          relacionados.map(item => (
-            <article class="rounded-lg border border-border p-5">
-              <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-              <p class="mb-3 text-sm leading-relaxed text-secondary">
-                {item.description}
-              </p>
-              <a
-                href={getPath(item.href)}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                Ir a la sección
-              </a>
-            </article>
-          ))
-        }
+        {relacionados.map(item => (
+          <article class="rounded-lg border border-border p-5">
+            <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+            <p class="mb-3 text-sm leading-relaxed text-secondary">
+              {item.description}
+            </p>
+            <a
+              href={getPath(item.href)}
+              class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              Ir a la sección
+            </a>
+          </article>
+        ))}
       </div>
     </section>
   </main>

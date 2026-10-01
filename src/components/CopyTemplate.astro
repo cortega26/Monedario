@@ -12,9 +12,7 @@ const containerId = `copy-template-${id}`;
 ---
 
 <div id={containerId} class="my-6 rounded-xl border border-border">
-  <div
-    class="flex items-center justify-between border-b border-border px-4 py-3"
-  >
+  <div class="flex items-center justify-between border-b border-border px-4 py-3">
     <p class="text-sm font-semibold">{title}</p>
     <button
       id={`${containerId}-btn`}
@@ -26,14 +24,13 @@ const containerId = `copy-template-${id}`;
   </div>
   <pre
     id={`${containerId}-text`}
-    class="px-4 py-4 font-sans text-sm leading-relaxed break-words whitespace-pre-wrap text-secondary">{template}</pre>
-  {
-    disclaimer && (
-      <div class="border-t border-border px-4 py-3">
-        <p class="text-xs text-muted">{disclaimer}</p>
-      </div>
-    )
-  }
+    class="px-4 py-4 font-sans text-sm leading-relaxed break-words whitespace-pre-wrap text-secondary"
+  >{template}</pre>
+  {disclaimer && (
+    <div class="border-t border-border px-4 py-3">
+      <p class="text-xs text-muted">{disclaimer}</p>
+    </div>
+  )}
 </div>
 
 <script is:inline define:vars={{ containerId }}>

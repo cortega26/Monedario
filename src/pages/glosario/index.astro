@@ -100,7 +100,7 @@ const definedTermSetSchema = {
     type="application/ld+json"
     is:inline
     set:html={serializeJsonLd(definedTermSetSchema)}
-  />
+  ></script>
   <Header />
 
   <main id="main-content" class="app-layout">
@@ -130,40 +130,38 @@ const definedTermSetSchema = {
     <SectionDivider />
 
     <section class="py-8">
-      {
-        letters.length > 0 ? (
-          <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            {letters.map(letter => (
-              <div>
-                <h2 class="mb-4 inline-block border-b-2 border-accent pb-1 text-2xl font-bold text-accent">
-                  {letter}
-                </h2>
-                <ul class="flex flex-col gap-3">
-                  {groupedEntries[letter].map(entry => (
-                    <li class="group">
-                      <a
-                        href={getPath(`/glosario/${entry.id}/`)}
-                        class="block rounded-lg border border-transparent p-3 transition-colors hover:border-border hover:bg-accent/5 focus:border-border focus:bg-accent/5 focus:outline-none"
-                      >
-                        <h3 class="font-semibold transition-colors group-hover:text-accent">
-                          {entry.data.term}
-                        </h3>
-                        <p class="mt-1 line-clamp-2 text-sm text-secondary">
-                          {entry.data.shortDefinition}
-                        </p>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p class="py-12 text-center text-lg text-secondary">
-            No hay términos definidos en el glosario aún.
-          </p>
-        )
-      }
+      {letters.length > 0 ? (
+        <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          {letters.map(letter => (
+            <div>
+              <h2 class="mb-4 inline-block border-b-2 border-accent pb-1 text-2xl font-bold text-accent">
+                {letter}
+              </h2>
+              <ul class="flex flex-col gap-3">
+                {groupedEntries[letter].map(entry => (
+                  <li class="group">
+                    <a
+                      href={getPath(`/glosario/${entry.id}/`)}
+                      class="block rounded-lg border border-transparent p-3 transition-colors hover:border-border hover:bg-accent/5 focus:border-border focus:bg-accent/5 focus:outline-none"
+                    >
+                      <h3 class="font-semibold transition-colors group-hover:text-accent">
+                        {entry.data.term}
+                      </h3>
+                      <p class="mt-1 line-clamp-2 text-sm text-secondary">
+                        {entry.data.shortDefinition}
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="py-12 text-center text-lg text-secondary">
+          No hay términos definidos en el glosario aún.
+        </p>
+      )}
     </section>
 
     <SectionDivider />
@@ -177,43 +175,41 @@ const definedTermSetSchema = {
         tu situación real.
       </p>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          [
-            {
-              href: "/calculadoras/sueldo-liquido/",
-              label: "Sueldo líquido",
-              desc: "Descuentos AFP, salud, impuesto único y más.",
-            },
-            {
-              href: "/calculadoras/conversor-uf/",
-              label: "Conversor UF",
-              desc: "UF a pesos y pesos a UF al valor de hoy.",
-            },
-            {
-              href: "/calculadoras/comisiones-afp/",
-              label: "Comisiones AFP",
-              desc: "Compara lo que descuenta cada AFP.",
-            },
-            {
-              href: "/calculadoras/credito-consumo/",
-              label: "Crédito de consumo",
-              desc: "Simula cuota, interés y costo total.",
-            },
-            {
-              href: "/calculadoras/operacion-renta/",
-              label: "Operación Renta",
-              desc: "Estima si recibirás devolución o pagarás más.",
-            },
-          ].map(item => (
-            <a
-              href={getPath(item.href)}
-              class="block rounded-xl border border-border p-4 transition-colors hover:border-accent hover:bg-accent/5"
-            >
-              <p class="font-semibold text-foreground">{item.label}</p>
-              <p class="mt-1 text-sm text-secondary">{item.desc}</p>
-            </a>
-          ))
-        }
+        {[
+          {
+            href: "/calculadoras/sueldo-liquido/",
+            label: "Sueldo líquido",
+            desc: "Descuentos AFP, salud, impuesto único y más.",
+          },
+          {
+            href: "/calculadoras/conversor-uf/",
+            label: "Conversor UF",
+            desc: "UF a pesos y pesos a UF al valor de hoy.",
+          },
+          {
+            href: "/calculadoras/comisiones-afp/",
+            label: "Comisiones AFP",
+            desc: "Compara lo que descuenta cada AFP.",
+          },
+          {
+            href: "/calculadoras/credito-consumo/",
+            label: "Crédito de consumo",
+            desc: "Simula cuota, interés y costo total.",
+          },
+          {
+            href: "/calculadoras/operacion-renta/",
+            label: "Operación Renta",
+            desc: "Estima si recibirás devolución o pagarás más.",
+          },
+        ].map(item => (
+          <a
+            href={getPath(item.href)}
+            class="block rounded-xl border border-border p-4 transition-colors hover:border-accent hover:bg-accent/5"
+          >
+            <p class="font-semibold text-foreground">{item.label}</p>
+            <p class="mt-1 text-sm text-secondary">{item.desc}</p>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -224,32 +220,30 @@ const definedTermSetSchema = {
         Explora por tema
       </h2>
       <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          thematicGroups.map(group => (
-            <div>
-              <h3 class="mb-4 inline-block border-b-2 border-accent pb-1 text-xl font-bold text-accent">
-                {group.label}
-              </h3>
-              <ul class="flex flex-col gap-3">
-                {group.entries.map(entry => (
-                  <li class="group">
-                    <a
-                      href={getPath(`/glosario/${entry.id}/`)}
-                      class="block rounded-lg border border-transparent p-3 transition-colors hover:border-border hover:bg-accent/5 focus:border-border focus:bg-accent/5 focus:outline-none"
-                    >
-                      <h4 class="font-semibold transition-colors group-hover:text-accent">
-                        {entry.data.term}
-                      </h4>
-                      <p class="mt-1 line-clamp-2 text-sm text-secondary">
-                        {entry.data.shortDefinition}
-                      </p>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+        {thematicGroups.map(group => (
+          <div>
+            <h3 class="mb-4 inline-block border-b-2 border-accent pb-1 text-xl font-bold text-accent">
+              {group.label}
+            </h3>
+            <ul class="flex flex-col gap-3">
+              {group.entries.map(entry => (
+                <li class="group">
+                  <a
+                    href={getPath(`/glosario/${entry.id}/`)}
+                    class="block rounded-lg border border-transparent p-3 transition-colors hover:border-border hover:bg-accent/5 focus:border-border focus:bg-accent/5 focus:outline-none"
+                  >
+                    <h4 class="font-semibold transition-colors group-hover:text-accent">
+                      {entry.data.term}
+                    </h4>
+                    <p class="mt-1 line-clamp-2 text-sm text-secondary">
+                      {entry.data.shortDefinition}
+                    </p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </section>
   </main>
