@@ -13,6 +13,14 @@ cómo llega y qué restricciones aplican.
 
 - La suscripción Ahrefs con API quedó **bloqueada por licencia**
   (`ADR-20260416-external-data-signals.md`, `PHASE_2_DATA_SIGNALS.md`).
+- Intento verificado 2026-10-01: Semrush responde `no_api_units` (sin
+  unidades API) y Ahrefs responde `Insufficient plan`. No hay extracción
+  pagada disponible por ahora (registrado en el control-plane:
+  `action_monedario_external_intelligence`, revisión 2).
+- **Vía libre (Fase 0.1, activa):** `source: "free"` con
+  `competitorPages` obtenidas de sitemaps públicos de competidores
+  (`pnpm run growth:collect:competitors`). Sin volumen ni dificultad: sirve
+  para descubrir gaps de cobertura, no para priorizar por demanda.
 - Si el owner habilita Semrush y/o Ahrefs, el **control-plane** (operador
   automatizado del portafolio) es el canal preferido: recolecta y entrega el
   archivo semanal normalizado. Monedario no llama a las APIs pagadas desde
@@ -77,6 +85,29 @@ usuario; `volume` y `difficulty` en la escala nativa del proveedor
 (documentarla en `source`); listas ordenadas por volumen; máximo 200 filas
 por lista.
 
+### Fuente libre (`source: "free"`)
+
+Además de las listas de proveedor, el archivo puede traer la cobertura de
+competidores obtenida de sitemaps públicos:
+
+```json
+{
+  "source": "free",
+  "freeSources": ["competitor-sitemaps"],
+  "competitorPages": [
+    { "domain": "valor-utm.cl", "url": "https://valor-utm.cl/valor-utm-hoy" }
+  ]
+}
+```
+
+- `volume`/`difficulty` pueden ser `null` o estar ausentes en modo libre; el
+  detector `competitor_sitemap_gap` no los requiere.
+- Los competidores se configuran en `src/config/competitors.json` (editable
+  por el owner). Solo se leen sitemaps públicos (`<loc>`), sin scraping de
+  páginas.
+- Si conviven proveedor y fuente libre, se preservan las listas del proveedor
+  y se agrega `freeSources: ["competitor-sitemaps"]`.
+
 ## 4. Solicitud concreta al control-plane
 
 > Necesito, para el proyecto Monedario.cl, un archivo semanal normalizado
@@ -122,5 +153,6 @@ por lista.
 | `content_gap_query` | `keywordGaps` | A3 |
 | `competitor_gap_query` | `competitorGaps` | A3 |
 | `serp_feature_risk` | `serpFeatures` | A0 (observación) |
+| `competitor_sitemap_gap` | `competitorPages` (fuente libre) | A0 (observación) |
 
 Umbrales en `src/config/growth-opportunity-registry.json`.

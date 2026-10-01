@@ -30,11 +30,24 @@ Reglas de frontera: `URL.PUBLIC.NO_POST_ID`, FOCO ESTRICTO hasta
 | `decay_page` | Clicks caen ≥25% con impresiones estables (semana vs semana previa) | Refresh/frescura | A2 |
 | `cannibalization_query` | Misma query con ≥2 URLs propias con impresiones | Consolidar/enlazar | A3 |
 | `calculator_funnel` | `view→start` o `start→complete` bajo umbral con muestra suficiente | UX/copy | A3 |
+| `competitor_sitemap_gap` | Página de competidor (sitemap público) sin tokens compartidos con nuestras queries GSC | Cobertura (sin volumen) | A0 |
 
 Cada candidato incluye: `id` estable, tipo, evidencia, `expectedGain`,
 `score`, hipótesis redactada y experimento recomendado (métrica, umbral,
 `n_min`, ventana 14/28 días, rollback). Umbrales y curva de CTR viven en el
-registro.
+registro. El tope es 10 candidatos por tipo (60 global) para que los
+detectores de baja señal no queden fuera.
+
+## 2b. Fuente libre (Fase 0.1)
+
+Con proveedores pagados bloqueados (Semrush `no_api_units`, Ahrefs
+`Insufficient plan`), la capa externa arranca en modo libre:
+`pnpm run growth:collect:competitors` lee sitemaps públicos de
+`src/config/competitors.json` y escribe `competitorPages` en
+`output/external-intelligence/<semana>.json` (`source: "free"`). El detector
+`competitor_sitemap_gap` usa el vocabulario de queries GSC + rutas propias
+para descartar cobertura existente; sin volumen, el resultado es una lista
+de revisión editorial, no una priorización por demanda.
 
 ## 3. Disciplina estadística
 

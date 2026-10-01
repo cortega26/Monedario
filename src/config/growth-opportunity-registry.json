@@ -3,7 +3,8 @@
   "policy": "docs/operations/GROWTH-ENGINE.md",
   "phase": "report-only",
   "updated": "2026-10-01",
-  "maxCandidates": 20,
+  "maxCandidates": 60,
+  "maxCandidatesPerType": 10,
   "expectedCtrBands": [
     [3, 0.08],
     [5, 0.05],
@@ -81,14 +82,21 @@
       "maxCtr": 0.02,
       "decisionP": 0.05,
       "windowDays": 28
+    },
+    "competitor_sitemap_gap": {
+      "enabled": true,
+      "tier": "A0",
+      "minDistinctiveTokens": 2,
+      "decisionP": 0.05,
+      "windowDays": 28
     }
   },
   "externalData": {
     "path": "output/external-intelligence/<week>.json",
     "contract": "docs/operations/EXTERNAL-INTELLIGENCE-CONTRACT.md",
-    "sources": ["semrush", "ahrefs", "control-plane"],
+    "sources": ["semrush", "ahrefs", "control-plane", "free"],
     "license": "internal-only",
-    "note": "Datos de proveedor externo agregados; el path está gitignoreado y nunca se commitea crudo. Sin archivo, los detectores externos se omiten."
+    "note": "Datos agregados; el path está gitignoreado y nunca se commitea crudo. La fuente libre (competitor sitemaps) se activa con `pnpm run growth:collect:competitors`; sin archivo, los detectores externos se omiten."
   },
   "experiments": []
 }

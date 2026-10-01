@@ -45,6 +45,193 @@ export function pathFromUrl(url) {
   }
 }
 
+/** Palabras vacías ES + tokens genéricos de sección/ruta. */
+export const TOKEN_STOPWORDS = new Set([
+  "de",
+  "del",
+  "la",
+  "las",
+  "el",
+  "los",
+  "en",
+  "y",
+  "o",
+  "u",
+  "a",
+  "al",
+  "para",
+  "por",
+  "con",
+  "sin",
+  "tu",
+  "tus",
+  "su",
+  "sus",
+  "un",
+  "una",
+  "unos",
+  "unas",
+  "que",
+  "como",
+  "mas",
+  "más",
+  "es",
+  "son",
+  "se",
+  "lo",
+  "te",
+  "mi",
+  "mis",
+  "me",
+  "si",
+  "no",
+  "ni",
+  "ya",
+  "guia",
+  "guias",
+  "blog",
+  "post",
+  "posts",
+  "page",
+  "pages",
+  "index",
+  "home",
+  "inicio",
+  "categoria",
+  "categorias",
+  "tag",
+  "tags",
+  "glosario",
+  "ley",
+  "leyes",
+  "calculadora",
+  "calculadoras",
+  "autor",
+  "autores",
+  "www",
+  "com",
+  "cl",
+  "es",
+  "html",
+  "php",
+  "chile",
+  "chileno",
+  "chilena",
+  "chilenos",
+  "chilenas",
+]);
+
+/** Tokens cortos con significado propio en finanzas chilenas. */
+export const SHORT_MEANINGFUL_TOKENS = new Set([
+  "uf",
+  "utm",
+  "afp",
+  "apv",
+  "pgu",
+  "ipc",
+  "iva",
+  "dap",
+  "cae",
+  "uta",
+  "ing",
+]);
+
+function stripAccents(value) {
+  return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+}
+
+/** Convierte una ruta o query en tokens normalizados (minúsculas, sin stopwords). */
+export function tokenize(value) {
+  return stripAccents(String(value ?? ""))
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+    .filter(token => {
+      if (/^\d+$/.test(token)) return false;
+      if (TOKEN_STOPWORDS.has(token)) return false;
+      if (token.length >= 3) return true;
+      return SHORT_MEANINGFUL_TOKENS.has(token);
+    });
+}
+
+/**
+ * Construye el vocabulario propio (tokens) desde las queries GSC con más
+ * impresiones. Es la señal libre que sustituye al volumen externo: si un
+ * competidor publica una página cuyos tokens no aparecen en ninguna query
+ * nuestra, es candidata a gap de cobertura.
+ */
+export function tokensFromQueries(queries, maxRows = 500) {
+  const rows = [...(queries ?? [])]
+    .filter(row => typeof row.query === "string")
+    .sort((a, b) => (b.impressions ?? 0) - (a.impressions ?? 0))
+    .slice(0, maxRows);
+  const tokens = new Set();
+  for (const row of rows) {
+    for (const token of tokenize(row.query)) tokens.add(token);
+  }
+  return tokens;
+}
+
+export function competitorSitemapGapCandidates(external, ourTokens, config) {
+  const pages = external?.competitorPages ?? [];
+  if (!(ourTokens instanceof Set) || ourTokens.size === 0) return [];
+
+  const ignoredSection =
+    /(^|\/)(medios|noticias|prensa|news|eventos|contacto|equipo|nosotros|legal|privacidad|terminos|cookies|vision-semanal|analisis-de-mercado)(\/|$)/i;
+  const monthName =
+    /(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i;
+
+  const seen = new Set();
+  const out = [];
+  for (const page of pages) {
+    if (!page?.url) continue;
+    let pathname;
+    let domain;
+    try {
+      const parsed = new URL(page.url);
+      pathname = parsed.pathname;
+      domain = page.domain ?? parsed.hostname;
+    } catch {
+      continue;
+    }
+    if (pathname === "/" || pathname === "") continue;
+    if (ignoredSection.test(pathname) || monthName.test(pathname)) continue;
+
+    const tokens = tokenize(pathname);
+    const distinctive = tokens.filter(token => token.length >= 4);
+    if (distinctive.length < (config.minDistinctiveTokens ?? 2)) continue;
+    if (tokens.some(token => ourTokens.has(token))) continue;
+
+    const key = `${domain}|${pathname}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const score = Math.min(distinctive.length, 6);
+    out.push({
+      id: `competitor_sitemap_gap:${key}`,
+      type: "competitor_sitemap_gap",
+      tier: config.tier,
+      url: pathname,
+      metrics: {
+        domain,
+        distinctiveTokens: distinctive.slice(0, 6).join(", "),
+      },
+      expectedGainClicks: 0,
+      score,
+      hypothesis: `${domain} publica ${pathname} sin tokens compartidos con nuestras queries GSC; evaluar cobertura con criterio editorial (fuente libre: sin volumen ni dificultad).`,
+      experiment: {
+        metric: "coverage_decision",
+        threshold: "decisión editorial: cubrir, enlazar o descartar (sin volumen)",
+        nMin: nMinFor(config.decisionP),
+        windowDays: config.windowDays,
+        rollback: "no aplica (observación)",
+      },
+    });
+  }
+
+  return out.sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+}
+
 function round(value, digits = 2) {
   const factor = 10 ** digits;
   return Math.round(value * factor) / factor;
@@ -434,12 +621,14 @@ export function buildOpportunityReport({
   window,
   counts,
   pages,
+  queries,
   queryPage,
   analytics,
   previousPages,
   previousWeekAvailable,
   external,
   externalAvailable,
+  ourRoutes,
   registry,
 }) {
   const bands = registry.expectedCtrBands;
@@ -482,11 +671,27 @@ export function buildOpportunityReport({
     run("serp_feature_risk", config =>
       serpFeatureRiskCandidates(external ?? {}, config)
     );
+
+    const ourTokens = new Set([
+      ...tokensFromQueries(queries),
+      ...(ourRoutes ?? []).flatMap(route => tokenize(route)),
+    ]);
+    if (ourTokens.size > 0) {
+      run("competitor_sitemap_gap", config =>
+        competitorSitemapGapCandidates(external ?? {}, ourTokens, config)
+      );
+    } else if (detectors.competitor_sitemap_gap?.enabled) {
+      skipped.push({
+        detector: "competitor_sitemap_gap",
+        reason: "no_own_tokens",
+      });
+    }
   } else {
     for (const key of [
       "content_gap_query",
       "competitor_gap_query",
       "serp_feature_risk",
+      "competitor_sitemap_gap",
     ]) {
       if (detectors[key]?.enabled) {
         skipped.push({ detector: key, reason: "external_data_unavailable" });
@@ -494,9 +699,21 @@ export function buildOpportunityReport({
     }
   }
 
-  const sorted = candidates
+  const perTypeMax = registry.maxCandidatesPerType ?? 10;
+  const byTypeSorted = new Map();
+  for (const candidate of candidates.sort(
+    (a, b) => b.score - a.score || a.id.localeCompare(b.id)
+  )) {
+    const list = byTypeSorted.get(candidate.type) ?? [];
+    if (list.length < perTypeMax) {
+      list.push(candidate);
+      byTypeSorted.set(candidate.type, list);
+    }
+  }
+  const sorted = [...byTypeSorted.values()]
+    .flat()
     .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id))
-    .slice(0, registry.maxCandidates ?? 20);
+    .slice(0, registry.maxCandidates ?? 60);
 
   /** @type {Record<string, number>} */
   const byType = {};

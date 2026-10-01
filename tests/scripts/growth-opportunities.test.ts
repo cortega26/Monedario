@@ -5,6 +5,7 @@ import {
   calculatorFunnelCandidates,
   cannibalizationCandidates,
   competitorGapCandidates,
+  competitorSitemapGapCandidates,
   contentGapCandidates,
   ctrGapCandidates,
   decayCandidates,
@@ -13,7 +14,15 @@ import {
   renderOpportunityMarkdown,
   serpFeatureRiskCandidates,
   strikingDistanceCandidates,
+  tokenize,
+  tokensFromQueries,
 } from "../../scripts/lib/growth-opportunities.mjs";
+import {
+  buildCompetitorPages,
+  isSitemapIndex,
+  mergeExternalIntelligence,
+  resolveSitemapUrl,
+} from "../../scripts/collect-competitor-sitemaps.mjs";
 
 const BANDS = [
   [3, 0.08],
@@ -368,6 +377,8 @@ describe("buildOpportunityReport", () => {
         position: 5,
       },
     ],
+    queries: [{ query: "utm", impressions: 500 }],
+    ourRoutes: ["/calculadoras/conversor-utm/"],
     queryPage: [
       {
         query: "utm hoy",
@@ -428,5 +439,161 @@ describe("buildOpportunityReport", () => {
     expect(markdown).toContain("# Growth opportunities — 2026-W39");
     expect(markdown).toContain("report-only");
     expect(markdown).toContain("striking_distance_query");
+  });
+});
+
+describe("tokenize y tokensFromQueries", () => {
+  it("normaliza, quita stopwords y descarta números", () => {
+    expect(tokenize("Valor UTM hoy para tu sueldo 2026")).toEqual([
+      "valor",
+      "utm",
+      "hoy",
+      "sueldo",
+    ]);
+    expect(tokenize("guía de trámites")).toEqual(["tramites"]);
+  });
+
+  it("construye vocabulario desde las queries con más impresiones", () => {
+    const tokens = tokensFromQueries([
+      { query: "utm hoy", impressions: 100 },
+      { query: "valor uf", impressions: 500 },
+    ]);
+    for (const token of ["utm", "hoy", "valor", "uf"]) {
+      expect(tokens.has(token)).toBe(true);
+    }
+  });
+});
+
+describe("competitorSitemapGapCandidates", () => {
+  const config = {
+    tier: "A0",
+    minDistinctiveTokens: 2,
+    decisionP: 0.05,
+    windowDays: 28,
+  };
+  const ourTokens = new Set(["valor", "utm", "sueldo", "uf", "afp"]);
+
+  it("descarta páginas con tokens compartidos con nuestras queries", () => {
+    const candidates = competitorSitemapGapCandidates(
+      {
+        competitorPages: [
+          { domain: "valor-utm.cl", url: "https://valor-utm.cl/valor-utm-hoy" },
+        ],
+      },
+      ourTokens,
+      config
+    );
+    expect(candidates).toHaveLength(0);
+  });
+
+  it("detecta un gap de cobertura sin tokens compartidos", () => {
+    const candidates = competitorSitemapGapCandidates(
+      {
+        competitorPages: [
+          { domain: "x.cl", url: "https://x.cl/guia-multas-municipales-2026" },
+        ],
+      },
+      ourTokens,
+      config
+    );
+    expect(candidates).toHaveLength(1);
+    expect(candidates[0].type).toBe("competitor_sitemap_gap");
+    expect(candidates[0].tier).toBe("A0");
+    expect(candidates[0].url).toBe("/guia-multas-municipales-2026");
+  });
+
+  it("respeta minDistinctiveTokens y deduplica", () => {
+    const candidates = competitorSitemapGapCandidates(
+      {
+        competitorPages: [
+          { domain: "x.cl", url: "https://x.cl/abc/" },
+          { domain: "x.cl", url: "https://x.cl/multas-municipales/" },
+          { domain: "x.cl", url: "https://x.cl/multas-municipales/" },
+        ],
+      },
+      ourTokens,
+      config
+    );
+    expect(candidates).toHaveLength(1);
+  });
+
+  it("sin vocabulario propio no emite candidatos", () => {
+    const candidates = competitorSitemapGapCandidates(
+      {
+        competitorPages: [
+          { domain: "x.cl", url: "https://x.cl/multas-municipales/" },
+        ],
+      },
+      new Set(),
+      config
+    );
+    expect(candidates).toHaveLength(0);
+  });
+
+  it("ignora secciones de prensa/contacto y rutas con mes", () => {
+    const candidates = competitorSitemapGapCandidates(
+      {
+        competitorPages: [
+          { domain: "x.cl", url: "https://x.cl/medios/nota-especial" },
+          { domain: "x.cl", url: "https://x.cl/vision-febrero-mercados" },
+          { domain: "x.cl", url: "https://x.cl/contacto" },
+        ],
+      },
+      ourTokens,
+      config
+    );
+    expect(candidates).toHaveLength(0);
+  });
+});
+
+describe("collect-competitor-sitemaps helpers", () => {
+  it("resuelve la URL del sitemap con fallback", () => {
+    expect(resolveSitemapUrl({ domain: "x.cl" })).toBe(
+      "https://x.cl/sitemap.xml"
+    );
+    expect(
+      resolveSitemapUrl({ domain: "x.cl", sitemapUrl: "https://x.cl/map.xml" })
+    ).toBe("https://x.cl/map.xml");
+  });
+
+  it("detecta sitemap index", () => {
+    expect(
+      isSitemapIndex(
+        "<sitemapindex><sitemap><loc>https://x.cl/a.xml</loc></sitemap></sitemapindex>"
+      )
+    ).toBe(true);
+    expect(
+      isSitemapIndex("<urlset><url><loc>https://x.cl/a</loc></url></urlset>")
+    ).toBe(false);
+  });
+
+  it("construye páginas filtrando sitemaps y deduplicando con tope", () => {
+    const pages = buildCompetitorPages(
+      [
+        "https://x.cl/a/",
+        "https://x.cl/a/",
+        "https://x.cl/sitemap-2.xml",
+        "not-a-url",
+        "https://x.cl/b/",
+      ],
+      "x.cl",
+      1
+    );
+    expect(pages).toEqual([{ domain: "x.cl", url: "https://x.cl/a/" }]);
+  });
+
+  it("mezcla preservando las listas de proveedor", () => {
+    const merged = mergeExternalIntelligence(
+      { source: "semrush", keywordGaps: [{ query: "x" }] },
+      {
+        source: "free",
+        week: "2026-W39",
+        competitorPages: [{ domain: "x.cl", url: "https://x.cl/a" }],
+      }
+    );
+    expect(merged.source).toBe("semrush");
+    expect(merged.keywordGaps).toEqual([{ query: "x" }]);
+    expect(merged.freeSources).toContain("competitor-sitemaps");
+    expect(merged.competitorPages).toHaveLength(1);
   });
 });
