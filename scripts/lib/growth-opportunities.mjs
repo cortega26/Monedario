@@ -151,7 +151,12 @@ export function tokenize(value) {
       if (TOKEN_STOPWORDS.has(token)) return false;
       if (token.length >= 3) return true;
       return SHORT_MEANINGFUL_TOKENS.has(token);
-    });
+    })
+    .map(token =>
+      token.length > 4 && token.endsWith("s") && !token.endsWith("ss")
+        ? token.slice(0, -1)
+        : token
+    );
 }
 
 /**
@@ -627,7 +632,7 @@ function normalizeQueryText(query) {
  * Demanda visible en otro motor (Bing/Copilot) que no aparece en GSC: señal
  * free de cobertura/intención. Sin volumen propio, es lista de revisión.
  */
-export function crossEngineQueryCandidates(external, gscQueries, config) {
+export function crossEngineQueryCandidates(external, gscQueries, config, ourRoutes) {
   const rows = (external?.engineQueries ?? []).filter(
     row => row?.engine === "bing"
   );
@@ -635,12 +640,16 @@ export function crossEngineQueryCandidates(external, gscQueries, config) {
 
   // Cobertura por tokens (no match exacto): una query de Bing se considera
   // cubierta si todas sus palabras significativas aparecen juntas en alguna
-  // query de GSC, ignorando tildes/stopwords/variantes.
+  // query de GSC o en alguna ruta propia, ignorando tildes/plural/stopwords.
   const gscTokenSets = [...(gscQueries ?? [])]
     .filter(row => typeof row.query === "string")
     .sort((a, b) => (b.impressions ?? 0) - (a.impressions ?? 0))
     .slice(0, config.maxGscQueries ?? 3000)
     .map(row => new Set(tokenize(row.query)));
+  const ownTokenSets = (ourRoutes ?? []).map(
+    route => new Set(tokenize(route))
+  );
+  const coverageSets = [...gscTokenSets, ...ownTokenSets];
 
   const seen = new Map();
   for (const row of rows) {
@@ -656,7 +665,7 @@ export function crossEngineQueryCandidates(external, gscQueries, config) {
     }
     const tokens = new Set(tokenize(query));
     if (tokens.size === 0) continue;
-    const covered = gscTokenSets.some(set => {
+    const covered = coverageSets.some(set => {
       for (const token of tokens) {
         if (!set.has(token)) return false;
       }
@@ -721,11 +730,12 @@ export function applyFeedback(candidates, feedback) {
       continue;
     }
     const url = candidate.url ?? "";
+    const query = candidate.query ?? "";
     const domain = candidate.metrics?.domain ?? null;
     const hit = patterns.find(
       pattern =>
         (pattern.domain === null || pattern.domain === domain) &&
-        pattern.re.test(url)
+        (pattern.re.test(url) || pattern.re.test(query))
     );
     if (hit) {
       suppressed.push({ id: candidate.id, reason: `pattern:${hit.re.source}` });
@@ -813,7 +823,7 @@ export function buildOpportunityReport({
       external.engineQueries.length > 0
     ) {
       run("cross_engine_query", config =>
-        crossEngineQueryCandidates(external, queries ?? [], config)
+        crossEngineQueryCandidates(external, queries ?? [], config, ourRoutes)
       );
     } else if (detectors.cross_engine_query?.enabled) {
       skipped.push({

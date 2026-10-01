@@ -53,7 +53,8 @@ de revisión editorial, no una priorización por demanda.
 `pnpm run growth:collect:bing` (clave `BING_WEBMASTER_API_KEY` en entorno o
 `.env`) agrega `engineQueries` del sitio verificado en Bing Webmaster Tools;
 el detector `cross_engine_query` marca queries con impresiones en Bing que no
-aparecen en GSC (demanda o indexación distinta; base de Copilot).
+aparecen ni en GSC ni en nuestras rutas propias (cobertura por tokens con
+plural/tildes normalizados; base de Copilot).
 
 ## 2c. Calibración y memoria (Fase 0.2)
 
@@ -63,7 +64,7 @@ PR; la automatización solo lo lee):
 
 - `dismissed`: IDs exactos de candidatos ya revisados.
 - `dismissedPatterns`: `{ "domain", "pathPattern", "reason" }`; la regex se
-  aplica al path del candidato y `domain: null` aplica a todos.
+  aplica al path o a la query del candidato y `domain: null` aplica a todos.
 - `promoted`: candidatos convertidos en experimento (traza).
 
 El reporte indica cuántos candidatos se suprimieron, sin borrar la evidencia
