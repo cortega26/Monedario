@@ -50,9 +50,11 @@ Excluir erratas y cambios de estilo. Al publicarla: enlazar desde
 2. Auditoría interna (white-box) sobre el mismo snapshot; consolidar por causa raíz.
 3. Remediación sistémica + control de regresión por cada P0/P1.
 4. Enlace discreto "Reportar un error" en contenido YMYL (hoy solo en
-   `/autor/` y `/metodologia/`), prellenando la URL.
+   `/autor/` y `/metodologia/`), prellenando la URL. **Hecho (#628).**
 5. Bloque de verificación compacto en páginas YMYL críticas (autor, vigencia,
    fuentes, metodología, reportar error) sin badges ni revisiones inexistentes.
+   **Hecho (#628):** bloque en artículos vía `PostDetails` y enlace de reporte
+   en calculadoras vía `MethodologyBlock`.
 
 ## LATER
 

@@ -27,6 +27,8 @@ const {
 const normalizedMethodologyHref = methodologyHref.endsWith("/")
   ? methodologyHref
   : `${methodologyHref}/`;
+
+const reportHref = `${getPath("/autor/")}?url=${encodeURIComponent(Astro.url.pathname)}#reportar-error`;
 ---
 
 <section class="mt-10 mb-6 rounded-2xl border border-border bg-surface-muted p-6">
@@ -106,6 +108,14 @@ const normalizedMethodologyHref = methodologyHref.endsWith("/")
       data-analytics-location="calculator_methodology"
     >
       metodología y proceso editorial
+    </a>
+    . ¿Encuentras un error?{" "}
+    <a
+      href={reportHref}
+      data-report-error
+      class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+    >
+      Repórtalo
     </a>
     .
   </p>
