@@ -265,9 +265,7 @@ const corrections: Correction[] = [
   <Breadcrumb />
   <main id="main-content" class="app-layout pb-16">
     <section class="border-b border-border py-10">
-      <p
-        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
         Transparencia
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Correcciones</h1>
@@ -286,13 +284,17 @@ const corrections: Correction[] = [
           <a
             href={getPath("/metodologia/#correcciones")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >metodología</a
-          >; si encuentras un error,
+          >
+            metodología
+          </a>
+          ; si encuentras un error,
           <a
             href={getPath("/autor/#reportar-error")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >repórtalo</a
-          >.
+          >
+            repórtalo
+          </a>
+          .
         </p>
         <p class="text-sm">
           Las correcciones de septiembre de 2026 vienen de una auditoría de
@@ -305,76 +307,72 @@ const corrections: Correction[] = [
 
     <section class="py-10">
       <ol class="max-w-2xl space-y-10">
-        {
-          corrections.map(c => (
-            <li id={c.id} class="scroll-mt-24">
-              <article>
-                <p class="text-xs font-semibold tracking-wide text-muted uppercase">
-                  <time datetime={c.date}>{c.dateLabel}</time>
-                </p>
-                <h2 class="mt-1 mb-2 text-xl font-bold">{c.title}</h2>
-                <p class="mb-4 text-sm text-secondary">
-                  Afecta a:{" "}
-                  {c.pages.map((p, i) => (
-                    <>
-                      {i > 0 && " · "}
-                      <a
-                        href={getPath(p.href)}
-                        class="text-accent underline underline-offset-4 hover:opacity-80"
-                      >
-                        {p.label}
-                      </a>
-                    </>
-                  ))}
-                </p>
-                <dl class="space-y-4 text-sm leading-relaxed text-secondary">
-                  <div>
-                    <dt class="font-semibold text-foreground">
-                      Qué estaba incorrecto
-                    </dt>
-                    <dd>
-                      <ul class="mt-1 list-disc space-y-1 pl-5">
-                        {c.wrong.map(w => (
-                          <li>{w}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt class="font-semibold text-foreground">
-                      Qué se corrigió
-                    </dt>
-                    <dd>
-                      <ul class="mt-1 list-disc space-y-1 pl-5">
-                        {c.fixed.map(f => (
-                          <li>{f}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt class="font-semibold text-foreground">
-                      A quién podía afectar
-                    </dt>
-                    <dd class="mt-1">{c.affected}</dd>
-                  </div>
-                  <div>
-                    <dt class="font-semibold text-foreground">
-                      Fuente usada para corregir
-                    </dt>
-                    <dd class="mt-1">{c.sources}</dd>
-                  </div>
-                  <div>
-                    <dt class="font-semibold text-foreground">
-                      Qué hicimos para que no se repita
-                    </dt>
-                    <dd class="mt-1">{c.prevention}</dd>
-                  </div>
-                </dl>
-              </article>
-            </li>
-          ))
-        }
+        {corrections.map(c => (
+          <li id={c.id} class="scroll-mt-24">
+            <article>
+              <p class="text-xs font-semibold tracking-wide text-muted uppercase">
+                <time datetime={c.date}>{c.dateLabel}</time>
+              </p>
+              <h2 class="mt-1 mb-2 text-xl font-bold">{c.title}</h2>
+              <p class="mb-4 text-sm text-secondary">
+                Afecta a:{" "}
+                {c.pages.map((p, i) => (
+                  <>
+                    {i > 0 && " · "}
+                    <a
+                      href={getPath(p.href)}
+                      class="text-accent underline underline-offset-4 hover:opacity-80"
+                    >
+                      {p.label}
+                    </a>
+                  </>
+                ))}
+              </p>
+              <dl class="space-y-4 text-sm leading-relaxed text-secondary">
+                <div>
+                  <dt class="font-semibold text-foreground">
+                    Qué estaba incorrecto
+                  </dt>
+                  <dd>
+                    <ul class="mt-1 list-disc space-y-1 pl-5">
+                      {c.wrong.map(w => (
+                        <li>{w}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-foreground">Qué se corrigió</dt>
+                  <dd>
+                    <ul class="mt-1 list-disc space-y-1 pl-5">
+                      {c.fixed.map(f => (
+                        <li>{f}</li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-foreground">
+                    A quién podía afectar
+                  </dt>
+                  <dd class="mt-1">{c.affected}</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-foreground">
+                    Fuente usada para corregir
+                  </dt>
+                  <dd class="mt-1">{c.sources}</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-foreground">
+                    Qué hicimos para que no se repita
+                  </dt>
+                  <dd class="mt-1">{c.prevention}</dd>
+                </div>
+              </dl>
+            </article>
+          </li>
+        ))}
       </ol>
     </section>
   </main>

@@ -3,7 +3,7 @@
   "generatedBy": "scripts/build-page-lastmod.mjs",
   "note": "Generated file. Do not edit manually; regenerate via node scripts/build-page-lastmod.mjs",
   "source": "src/pages/**/*.astro (static routes) + src/data/{blog,glossary,laws} (dynamic routes)",
-  "pageCount": 191,
+  "pageCount": 192,
   "pages": {
     "/": "2026-10-01",
     "/404/": "2026-05-08",
@@ -39,6 +39,7 @@
     "/calendario/": "2026-10-01",
     "/como-usamos-los-datos/": "2026-10-01",
     "/cookies/": "2026-10-01",
+    "/correcciones/": "2026-10-01",
     "/glosario/": "2026-10-01",
     "/glosario/afc/": "2026-06-29",
     "/glosario/afp/": "2026-06-29",
