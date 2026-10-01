@@ -15,9 +15,7 @@ import { SITE } from "@/config";
   <Breadcrumb />
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-10">
-      <p
-        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
         Cookies
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Política de cookies</h1>
@@ -30,13 +28,14 @@ import { SITE } from "@/config";
         <a
           href={getPath("/privacidad/")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
-          >Política de privacidad</a
-        > y debe leerse en conjunto con ella.
+        >
+          Política de privacidad
+        </a>{" "}
+        y debe leerse en conjunto con ella.
       </p>
       <p class="mt-3 text-sm text-secondary">
-        Última actualización: <strong class="text-foreground"
-          >2 de agosto de 2026</strong
-        >.
+        Última actualización:{" "}
+        <strong class="text-foreground">2 de agosto de 2026</strong>.
       </p>
     </section>
 
@@ -47,10 +46,10 @@ import { SITE } from "@/config";
       </h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Una <strong class="text-foreground">cookie</strong> es un pequeño archivo
-          que un sitio web o un servicio que aparece en él puede guardar en tu navegador.
-          Las cookies permiten recordar información entre visitas (preferencias, sesión,
-          idioma) o medir el uso del sitio.
+          Una <strong class="text-foreground">cookie</strong> es un pequeño
+          archivo que un sitio web o un servicio que aparece en él puede guardar
+          en tu navegador. Las cookies permiten recordar información entre
+          visitas (preferencias, sesión, idioma) o medir el uso del sitio.
         </p>
         <p>
           Existen, además, tecnologías parecidas que cumplen finalidades
@@ -77,9 +76,7 @@ import { SITE } from "@/config";
         Las cookies y tecnologías similares se agrupan habitualmente en estas
         categorías:
       </p>
-      <ul
-        class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
-      >
+      <ul class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary">
         <li>
           <strong class="text-foreground">Estrictamente necesarias</strong>:
           imprescindibles para que el sitio funcione (entrega de páginas,
@@ -87,10 +84,11 @@ import { SITE } from "@/config";
           previo.
         </li>
         <li>
-          <strong class="text-foreground"
-            >De preferencias y funcionalidad</strong
-          >: recuerdan elecciones que mejoran la experiencia (tema visual,
-          página recientemente visitada). Su uso responde a una funcionalidad
+          <strong class="text-foreground">
+            De preferencias y funcionalidad
+          </strong>
+          : recuerdan elecciones que mejoran la experiencia (tema visual, página
+          recientemente visitada). Su uso responde a una funcionalidad
           solicitada por el visitante al utilizar el sitio.
         </li>
         <li>
@@ -99,8 +97,10 @@ import { SITE } from "@/config";
           una persona, requieren consentimiento previo.
         </li>
         <li>
-          <strong class="text-foreground">Publicitarias o de seguimiento</strong
-          >: se usan para construir perfiles y mostrar publicidad personalizada.
+          <strong class="text-foreground">
+            Publicitarias o de seguimiento
+          </strong>
+          : se usan para construir perfiles y mostrar publicidad personalizada.
           Requieren consentimiento previo. Monedario no las utiliza.
         </li>
       </ul>
@@ -160,9 +160,9 @@ import { SITE } from "@/config";
             <dd>
               Recordar el tema visual (claro/oscuro), páginas recientes,
               calculadoras retomables y valores locales para reutilizar algunos
-              inputs entre calculadoras. Estos datos <strong
-                class="text-foreground">no se envían</strong
-              > a Monedario ni a sus servidores.
+              inputs entre calculadoras. Estos datos{" "}
+              <strong class="text-foreground">no se envían</strong> a Monedario
+              ni a sus servidores.
             </dd>
             <dt class="font-semibold text-foreground">Consentimiento</dt>
             <dd>
@@ -249,8 +249,10 @@ import { SITE } from "@/config";
               <a
                 href={getPath("/apoyar/")}
                 class="text-accent underline underline-offset-4 hover:opacity-80"
-                >Apoyar el proyecto</a
-              >, y solo si decides interactuar con el panel de aporte. En el
+              >
+                Apoyar el proyecto
+              </a>
+              , y solo si decides interactuar con el panel de aporte. En el
               resto del sitio no se carga código de Ko-fi.
             </dd>
             <dt class="font-semibold text-foreground">Finalidad</dt>
@@ -275,13 +277,12 @@ import { SITE } from "@/config";
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
           Las cookies se envían al servidor que las creó cada vez que visitas
-          una página de ese dominio. El almacenamiento local (<code
-            class="text-accent">localStorage</code
-          >,
+          una página de ese dominio. El almacenamiento local (
+          <code class="text-accent">localStorage</code>,
           <code class="text-accent">sessionStorage</code>) permanece en tu
-          navegador y normalmente <strong class="text-foreground"
-            >no se transmite al servidor</strong
-          >; el sitio puede leerlo desde tu propio dispositivo cuando vuelvas a
+          navegador y normalmente{" "}
+          <strong class="text-foreground">no se transmite al servidor</strong>;
+          el sitio puede leerlo desde tu propio dispositivo cuando vuelvas a
           visitarlo.
         </p>
         <p>
@@ -306,9 +307,9 @@ import { SITE } from "@/config";
           para cookies publicitarias o de seguimiento.
         </p>
         <p>
-          Monedario, en la configuración descrita en esta página, <strong
-            class="text-foreground">no utiliza</strong
-          > ninguna de esas categorías:
+          Monedario, en la configuración descrita en esta página,{" "}
+          <strong class="text-foreground">no utiliza</strong> ninguna de esas
+          categorías:
         </p>
         <ul class="list-disc space-y-1.5 pl-5 text-sm">
           <li>
@@ -400,9 +401,7 @@ import { SITE } from "@/config";
 
     <!-- RELACIÓN -->
     <section class="py-10">
-      <div
-        class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6"
-      >
+      <div class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6">
         <h2 class="mb-3 text-lg font-bold text-foreground">
           Documentos relacionados
         </h2>
@@ -411,26 +410,34 @@ import { SITE } from "@/config";
           <a
             href={getPath("/privacidad/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >Política de privacidad</a
-          > y los
+          >
+            Política de privacidad
+          </a>{" "}
+          y los
           <a
             href={getPath("/terminos/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >Términos de uso</a
-          >. Para conocer cómo se elabora el contenido editorial, consulta la
+          >
+            Términos de uso
+          </a>
+          . Para conocer cómo se elabora el contenido editorial, consulta la
           <a
             href={getPath("/metodologia/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >metodología</a
-          >.
+          >
+            metodología
+          </a>
+          .
         </p>
         <p class="mt-3 text-sm leading-relaxed text-secondary">
           Para consultas, escribe a
           <a
             href="mailto:contacto@monedario.cl"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >contacto@monedario.cl</a
-          >.
+          >
+            contacto@monedario.cl
+          </a>
+          .
         </p>
       </div>
     </section>

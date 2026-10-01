@@ -79,7 +79,7 @@ const relatedCards = pensionHubRelatedCards.filter(
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
@@ -175,25 +175,23 @@ const relatedCards = pensionHubRelatedCards.filter(
     >
       <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {
-          pensionesAfpCalcCards.map(card => (
-            <article class="rounded-2xl border border-border bg-surface-muted p-5">
-              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {card.kind}
-              </p>
-              <h3 class="text-lg font-semibold">{card.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-secondary">
-                {card.description}
-              </p>
-              <a
-                href={card.href}
-                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {card.cta}
-              </a>
-            </article>
-          ))
-        }
+        {pensionesAfpCalcCards.map(card => (
+          <article class="rounded-2xl border border-border bg-surface-muted p-5">
+            <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+              {card.kind}
+            </p>
+            <h3 class="text-lg font-semibold">{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-secondary">
+              {card.description}
+            </p>
+            <a
+              href={card.href}
+              class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {card.cta}
+            </a>
+          </article>
+        ))}
       </div>
     </section>
 

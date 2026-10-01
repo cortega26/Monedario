@@ -33,7 +33,9 @@ const pageDescription = isPaginatedArchive
   <Header />
   <Main pageTitle="Artículos" pageDesc="Todos los artículos publicados.">
     <ul>
-      {page.data.map(data => <Card {...data} />)}
+      {page.data.map(data => (
+        <Card {...data} />
+      ))}
     </ul>
     <p class="mt-8 text-sm text-secondary">
       ¿Buscas por fecha? Revisa el{" "}
@@ -42,7 +44,8 @@ const pageDescription = isPaginatedArchive
         class="text-accent underline underline-offset-4 hover:opacity-80"
       >
         archivo cronológico completo
-      </a>.
+      </a>
+      .
     </p>
   </Main>
 

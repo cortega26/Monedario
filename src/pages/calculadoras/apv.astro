@@ -165,9 +165,9 @@ const calculatorNextStepItems = [
         />
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Tipo de contrato</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Tipo de contrato
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -178,9 +178,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Indefinido
               </span>
             </label>
@@ -192,9 +190,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Plazo fijo / obra
               </span>
             </label>
@@ -206,9 +202,9 @@ const calculatorNextStepItems = [
         </div>
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Sistema de salud</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Sistema de salud
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -219,9 +215,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Fonasa (7%)
               </span>
             </label>
@@ -233,9 +227,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Isapre (7%+)
               </span>
             </label>
@@ -262,29 +254,26 @@ const calculatorNextStepItems = [
             data-profile-bind="afpId"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            {
-              AFP_COMMISSIONS_PERCENT.map(afp => (
-                <option
-                  value={afp.name}
-                  data-commission={String(afp.total)}
-                  selected={afp.name === "Habitat"}
-                >
-                  {afp.name} – {afp.total.toFixed(2)}%
-                </option>
-              ))
-            }
+            {AFP_COMMISSIONS_PERCENT.map(afp => (
+              <option
+                value={afp.name}
+                data-commission={String(afp.total)}
+                selected={afp.name === "Habitat"}
+              >
+                {afp.name} – {afp.total.toFixed(2)}%
+              </option>
+            ))}
           </select>
         </CalculatorField>
 
-        <div
-          class="mb-4 rounded-lg border border-border/60 bg-surface-muted/40 px-4 py-3 text-xs leading-relaxed text-secondary"
-        >
-          <strong class="font-semibold text-foreground"
-            >¿Cuándo conviene el Régimen B?</strong
-          > Solo cuando tu tasa marginal supera el 15% que ofrece el Régimen A. Si
-          tu imponible mensual está por debajo de ~70 UTM, el Régimen A suele ganar.
-          El simulador calculará tu tasa marginal con el imponible que ingresaste
-          y la mostrará en los resultados.
+        <div class="mb-4 rounded-lg border border-border/60 bg-surface-muted/40 px-4 py-3 text-xs leading-relaxed text-secondary">
+          <strong class="font-semibold text-foreground">
+            ¿Cuándo conviene el Régimen B?
+          </strong>{" "}
+          Solo cuando tu tasa marginal supera el 15% que ofrece el Régimen A. Si
+          tu imponible mensual está por debajo de ~70 UTM, el Régimen A suele
+          ganar. El simulador calculará tu tasa marginal con el imponible que
+          ingresaste y la mostrará en los resultados.
         </div>
 
         <button
@@ -297,18 +286,13 @@ const calculatorNextStepItems = [
           id="form-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <CalculatorResultPanel title="Comparación de regímenes">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Beneficio anual Régimen B (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -346,16 +330,13 @@ const calculatorNextStepItems = [
           data-uf={String(economicParameters.uf)}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
         >
-          {
-            ` · UF usada: ${formatCurrency(economicParameters.uf)} · topes: 50 UF/mes y 600 UF/año.`
-          }
+          {` · UF usada: ${formatCurrency(economicParameters.uf)} · topes: 50 UF/mes y 600 UF/año.`}
         </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
@@ -408,9 +389,7 @@ const calculatorNextStepItems = [
     </section>
 
     <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es el APV y cómo funciona el beneficio?</h2>
       <p>
         El APV (Ahorro Previsional Voluntario) es un mecanismo legal para
@@ -419,33 +398,31 @@ const calculatorNextStepItems = [
       </p>
       <ul>
         <li>
-          <strong>Régimen A:</strong> El Estado te deposita directamente un bono del
-          15% de lo que ahorraste, con tope de 6 UTM anuales (~{
-            formatCurrency(annualRegimeABonusCap)
-          }).
+          <strong>Régimen A:</strong> El Estado te deposita directamente un bono
+          del 15% de lo que ahorraste, con tope de 6 UTM anuales (~
+          {formatCurrency(annualRegimeABonusCap)}).
         </li>
         <li>
-          <strong>Régimen B:</strong> Tus aportes se descuentan de tu base imponible,
-          reduciendo el impuesto que pagas cada mes. Ideal si estás en tramos altos
-          de impuesto (23%+).
+          <strong>Régimen B:</strong> Tus aportes se descuentan de tu base
+          imponible, reduciendo el impuesto que pagas cada mes. Ideal si estás
+          en tramos altos de impuesto (23%+).
         </li>
         <li>
-          <strong>Estrategia mixta:</strong> en algunos casos conviene usar una parte
-          en A y otra en B. Eso depende de tu base imponible efectiva, de tu tramo
-          marginal y de cuánto del bono A todavía puedes aprovechar.
+          <strong>Estrategia mixta:</strong> en algunos casos conviene usar una
+          parte en A y otra en B. Eso depende de tu base imponible efectiva, de
+          tu tramo marginal y de cuánto del bono A todavía puedes aprovechar.
         </li>
       </ul>
       <p>
         Si retiras antes de jubilar, en Régimen A devuelves el bono. En Régimen
-        B, el retiro no destinado a pensión paga un <strong
-          >impuesto único</strong
-        >: su tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
-          >multiplicada por 1,1</strong
-        >{" "}
-        y <strong>aumentada en 3 puntos porcentuales</strong> (art. 42 bis N°3 LIR).
-        La AFP retiene 15% al momento del retiro como abono a ese impuesto. Quienes
-        ya son pensionados o cumplen los requisitos de edad y pensión del DL 3.500
-        no pagan esos recargos. El APV es un instrumento de largo plazo.
+        B, el retiro no destinado a pensión paga un{" "}
+        <strong>impuesto único</strong>: su tasa es la tasa media del retiro
+        (ΔIGC ÷ monto retirado) <strong>multiplicada por 1,1</strong> y{" "}
+        <strong>aumentada en 3 puntos porcentuales</strong> (art. 42 bis N°3
+        LIR). La AFP retiene 15% al momento del retiro como abono a ese
+        impuesto. Quienes ya son pensionados o cumplen los requisitos de edad y
+        pensión del DL 3.500 no pagan esos recargos. El APV es un instrumento de
+        largo plazo.
       </p>
       <p class="text-sm text-muted">
         Valores referenciales. Parámetros económicos vigentes al momento del
@@ -453,50 +430,63 @@ const calculatorNextStepItems = [
         como aproximación. En Régimen B trata el tope de 50 UF mensuales para
         aportes por planilla y el tope conjunto anual de 600 UF como referencias
         normativas para estimar beneficio tributario. Para información oficial
-        visita la <a
+        visita la{" "}
+        <a
           href="https://www.spensiones.cl"
           target="_blank"
-          rel="noopener noreferrer">Superintendencia de Pensiones</a
-        > y el <a
-          href="https://www.sii.cl"
-          target="_blank"
-          rel="noopener noreferrer">SII</a
-        >.
+          rel="noopener noreferrer"
+        >
+          Superintendencia de Pensiones
+        </a>{" "}
+        y el{" "}
+        <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer">
+          SII
+        </a>
+        .
       </p>
       <p>
-        Antes de decidir régimen, revisa la <a
+        Antes de decidir régimen, revisa la{" "}
+        <a
           href={apvGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia completa de APV"
-          data-analytics-location="calculator_explainer">guía completa de APV</a
-        > para entender beneficios, límites y costos de retiro anticipado. Si tu duda
-        cambió y ya no es tributaria, vuelve a la <a
+          data-analytics-location="calculator_explainer"
+        >
+          guía completa de APV
+        </a>{" "}
+        para entender beneficios, límites y costos de retiro anticipado. Si tu
+        duda cambió y ya no es tributaria, vuelve a la{" "}
+        <a
           href="/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
           data-analytics-cta="calculator-related"
           data-analytics-label="Reforma previsional 2025"
           data-analytics-location="calculator_explainer"
-          >reforma previsional 2025</a
-        > o a <a
+        >
+          reforma previsional 2025
+        </a>{" "}
+        o a{" "}
+        <a
           href="/posts/fondos-afp-a-b-c-d-e/"
           data-analytics-cta="calculator-related"
           data-analytics-label="Fondos AFP A-E"
-          data-analytics-location="calculator_explainer">fondos AFP A-E</a
-        >.
+          data-analytics-location="calculator_explainer"
+        >
+          fondos AFP A-E
+        </a>
+        .
       </p>
     </section>
     <section class="border-t border-border py-8">
       <h2 class="mb-6 text-xl font-semibold">Preguntas frecuentes sobre APV</h2>
       <dl class="space-y-6">
-        {
-          apvFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
-              </dd>
-            </div>
-          ))
-        }
+        {apvFaqs.map(faq => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+            <dd class="text-sm leading-relaxed text-secondary">
+              <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
+            </dd>
+          </div>
+        ))}
       </dl>
     </section>
     <PrimaryCTA
@@ -555,13 +545,13 @@ const calculatorNextStepItems = [
 
       <h3>¿Cuándo conviene el Régimen A y cuándo el Régimen B?</h3>
       <p>
-        El <strong>Régimen A</strong> conviene si tus ingresos son bajos o medianos
-        y estás exento o en tramos bajos del impuesto a la renta: el Estado te bonifica
-        directamente el 15% de tus aportes (hasta 6 UTM anuales de bono). El <strong
-          >Régimen B</strong
-        > conviene si tienes ingresos altos y pagas una tasa marginal elevada en el
-        Impuesto Global Complementario, ya que el aporte reduce tu base imponible
-        y el ahorro tributario puede superar la bonificación del Régimen A.
+        El <strong>Régimen A</strong> conviene si tus ingresos son bajos o
+        medianos y estás exento o en tramos bajos del impuesto a la renta: el
+        Estado te bonifica directamente el 15% de tus aportes (hasta 6 UTM
+        anuales de bono). El <strong>Régimen B</strong> conviene si tienes
+        ingresos altos y pagas una tasa marginal elevada en el Impuesto Global
+        Complementario, ya que el aporte reduce tu base imponible y el ahorro
+        tributario puede superar la bonificación del Régimen A.
       </p>
 
       <h3>¿Puedo retirar mi APV antes de jubilar?</h3>
@@ -569,25 +559,23 @@ const calculatorNextStepItems = [
         Sí, puedes retirar el APV antes de pensionarte, pero el retiro
         anticipado conlleva un costo tributario. Si usaste Régimen A, debes
         devolver la bonificación estatal recibida. Si usaste Régimen B, el monto
-        retirado no destinado a pensión paga un <strong>impuesto único</strong>{
-          " "
-        }
-        cuya tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
-          >multiplicada por 1,1</strong
-        >{" "}
-        más <strong>3 puntos porcentuales</strong> (art. 42 bis N°3 LIR); la AFP retiene
-        15% como abono. Quienes ya son pensionados o cumplen los requisitos de edad
-        y pensión del DL 3.500 no pagan esos recargos. Por este motivo el APV es más
-        útil si el horizonte de ahorro supera los 10 años.
+        retirado no destinado a pensión paga un <strong>impuesto único</strong>{" "}
+        cuya tasa es la tasa media del retiro (ΔIGC ÷ monto retirado){" "}
+        <strong>multiplicada por 1,1</strong> más{" "}
+        <strong>3 puntos porcentuales</strong> (art. 42 bis N°3 LIR); la AFP
+        retiene 15% como abono. Quienes ya son pensionados o cumplen los
+        requisitos de edad y pensión del DL 3.500 no pagan esos recargos. Por
+        este motivo el APV es más útil si el horizonte de ahorro supera los 10
+        años.
       </p>
 
       <h3>¿Cuánto es el monto máximo de APV que puedo aportar al año?</h3>
       <p>
-        El tope del APV con beneficio tributario es <strong
-          >600 UF anuales</strong
-        > en Régimen B. Para el Régimen A, el bono estatal se topa en el equivalente
-        a 6 UTM anuales (15% sobre lo aportado hasta ese tope). Puedes aportar más
-        allá de estos límites, pero el exceso no recibe beneficio tributario.
+        El tope del APV con beneficio tributario es{" "}
+        <strong>600 UF anuales</strong> en Régimen B. Para el Régimen A, el bono
+        estatal se topa en el equivalente a 6 UTM anuales (15% sobre lo aportado
+        hasta ese tope). Puedes aportar más allá de estos límites, pero el
+        exceso no recibe beneficio tributario.
       </p>
 
       <h3>¿El APV reduce mi impuesto en la Operación Renta?</h3>

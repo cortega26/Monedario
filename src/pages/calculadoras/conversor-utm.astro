@@ -224,8 +224,7 @@ const conversorUtmFaqs = [
           data-last-updated={utmLastUpdated}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- COLUMNA DERECHA: valor del mes + referencia -->
@@ -236,18 +235,15 @@ const conversorUtmFaqs = [
           class="flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
         >
           <div>
-            <p
-              class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
-            >
+            <p class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase">
               Valor UTM vigente
             </p>
             <p id="utm-display" class="text-3xl font-bold">
               {"$" + utmDisplay}
             </p>
             <p id="utm-fecha" class="mt-0.5 text-xs text-muted">
-              {utmDateDisplay} · {economicSourceMeta.bannerText} ({
-                economicSourceLabel
-              })
+              {utmDateDisplay} · {economicSourceMeta.bannerText} (
+              {economicSourceLabel})
             </p>
           </div>
           <span class="text-4xl">🇨🇱</span>
@@ -263,42 +259,38 @@ const conversorUtmFaqs = [
             source={economicParameters.source}
             updatedDate={utmDateDisplay}
           />
-          {
-            utaDisplay ? (
-              <p class="mt-1 text-xs text-muted">
-                UTA de referencia anual: {utaDisplay} (12 × UTM de{" "}
-                {utaPeriodLabel}, cierre del año comercial).
-              </p>
-            ) : null
-          }
+          {utaDisplay ? (
+            <p class="mt-1 text-xs text-muted">
+              UTA de referencia anual: {utaDisplay} (12 × UTM de{" "}
+              {utaPeriodLabel}, cierre del año comercial).
+            </p>
+          ) : null}
         </div>
       </div>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es la UTM y para qué sirve?</h2>
       <p>
-        La <strong>Unidad Tributaria Mensual (UTM)</strong> es la unidad que usa el
-        Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites.
-        Cambia el primer día hábil de cada mes según el IPC del mes anterior, publicado
-        por el INE.
+        La <strong>Unidad Tributaria Mensual (UTM)</strong> es la unidad que usa
+        el Estado chileno para fijar multas, tramos de impuestos y aranceles de
+        trámites. Cambia el primer día hábil de cada mes según el IPC del mes
+        anterior, publicado por el INE.
       </p>
       <ul>
         <li>
-          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290 expresa
-          las sanciones en UTM. El monto en pesos depende de la UTM vigente al momento
-          del pago.
+          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290
+          expresa las sanciones en UTM. El monto en pesos depende de la UTM
+          vigente al momento del pago.
         </li>
         <li>
-          <strong>Impuesto a la renta:</strong> el tramo exento del Impuesto de Segunda
-          Categoría equivale a 13,5 UTM mensuales. La tabla completa se reajusta cada
-          mes con la UTM.
+          <strong>Impuesto a la renta:</strong> el tramo exento del Impuesto de
+          Segunda Categoría equivale a 13,5 UTM mensuales. La tabla completa se
+          reajusta cada mes con la UTM.
         </li>
         <li>
-          <strong>Trámites y aranceles:</strong> costos notariales, consulares y del
-          Conservador de Bienes Raíces se expresan en UTM.
+          <strong>Trámites y aranceles:</strong> costos notariales, consulares y
+          del Conservador de Bienes Raíces se expresan en UTM.
         </li>
       </ul>
       <p class="text-sm text-muted">
@@ -308,8 +300,11 @@ const conversorUtmFaqs = [
         <a
           href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
           target="_blank"
-          rel="noopener noreferrer">SII</a
-        >.
+          rel="noopener noreferrer"
+        >
+          SII
+        </a>
+        .
       </p>
       <p>
         Para entender en detalle cómo se reajusta la UTM, en qué se diferencia
@@ -320,21 +315,21 @@ const conversorUtmFaqs = [
           data-analytics-label="Guia UTM completa"
           data-analytics-location="calculator_explainer"
         >
-          guía completa de la UTM en Chile</a
-        >.
+          guía completa de la UTM en Chile
+        </a>
+        .
       </p>
       <p>
-        Si necesitas convertir UF (Unidad de Fomento) en lugar de UTM, usa el{
-          " "
-        }
+        Si necesitas convertir UF (Unidad de Fomento) en lugar de UTM, usa el{" "}
         <a
           href="/calculadoras/conversor-uf/"
           data-analytics-cta="calculator-related"
           data-analytics-label="Conversor UF a pesos"
           data-analytics-location="calculator_explainer"
         >
-          conversor UF a pesos chilenos</a
-        >, actualizado a diario con el valor del Banco Central.
+          conversor UF a pesos chilenos
+        </a>
+        , actualizado a diario con el valor del Banco Central.
       </p>
       <p>
         Si tu cálculo es el impuesto mensual sobre tu sueldo, usa la{" "}
@@ -344,8 +339,9 @@ const conversorUtmFaqs = [
           data-analytics-label="Calculadora impuesto segunda categoria"
           data-analytics-location="calculator_explainer"
         >
-          calculadora de Impuesto de Segunda Categoría</a
-        >, que aplica los tramos progresivos del SII con la UTM vigente.
+          calculadora de Impuesto de Segunda Categoría
+        </a>
+        , que aplica los tramos progresivos del SII con la UTM vigente.
       </p>
     </section>
 
@@ -372,16 +368,14 @@ const conversorUtmFaqs = [
         Preguntas frecuentes sobre el conversor UTM
       </h2>
       <dl class="space-y-6">
-        {
-          conversorUtmFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
-              </dd>
-            </div>
-          ))
-        }
+        {conversorUtmFaqs.map(faq => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+            <dd class="text-sm leading-relaxed text-secondary">
+              <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
+            </dd>
+          </div>
+        ))}
       </dl>
     </section>
     <NextSteps

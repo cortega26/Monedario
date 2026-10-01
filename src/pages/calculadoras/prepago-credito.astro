@@ -102,9 +102,7 @@ const calculatorNextStepItems = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 $ CLP
               </span>
             </label>
@@ -115,20 +113,17 @@ const calculatorNextStepItems = [
                 value="UF"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 UF
               </span>
             </label>
           </div>
           <p class="mt-1 text-xs text-muted">
-            UF del día: ${
-              economicParameters.uf.toLocaleString("es-CL", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })
-            }
+            UF del día: $
+            {economicParameters.uf.toLocaleString("es-CL", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </p>
           <CalculatorDataFreshness
             source={economicParameters.source}
@@ -162,15 +157,11 @@ const calculatorNextStepItems = [
           hint="Hipotecarios: ~0.4–0.8% mensual. Consumo: ~1.5–3.5% mensual."
         />
         <div class="mb-4">
-          <div
-            class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted"
-          >
+          <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
             <span>¿Solo conoces tu tasa anual o CAE?</span>
             <div class="flex items-center gap-1">
-              {
-                /* Excepción TD-0111: helper inline (input + "% anual" + resultado)
-                  dentro de una línea de texto; CalculatorField no cubre ese layout. */
-              }
+              {/* Excepción TD-0111: helper inline (input + "% anual" + resultado)
+                  dentro de una línea de texto; CalculatorField no cubre ese layout. */}
               <input
                 id="tasa-anual-helper"
                 type="number"
@@ -183,7 +174,9 @@ const calculatorNextStepItems = [
               />
               <span>% anual</span>
             </div>
-            <span id="tasa-conversion-resultado" class="font-medium text-accent"
+            <span
+              id="tasa-conversion-resultado"
+              class="font-medium text-accent"
             ></span>
           </div>
         </div>
@@ -214,9 +207,9 @@ const calculatorNextStepItems = [
         />
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Efecto del prepago</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Efecto del prepago
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -226,9 +219,7 @@ const calculatorNextStepItems = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Acortar plazo
               </span>
             </label>
@@ -239,9 +230,7 @@ const calculatorNextStepItems = [
                 value="reducir-cuota"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Bajar cuota
               </span>
             </label>
@@ -259,10 +248,13 @@ const calculatorNextStepItems = [
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
             <option value="3">3% — DAP / Fondo E AFP</option>
-            <option value="5" selected>5% — Fondo mutuo conservador</option>
+            <option value="5" selected>
+              5% — Fondo mutuo conservador
+            </option>
             <option value="7">7% — Fondo mixto / APV</option>
-            <option value="10">10% — Renta variable (estimado histórico)</option
-            >
+            <option value="10">
+              10% — Renta variable (estimado histórico)
+            </option>
           </select>
         </CalculatorField>
 
@@ -275,8 +267,7 @@ const calculatorNextStepItems = [
         <div
           id="prepago-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- RESULTADO -->
@@ -288,12 +279,8 @@ const calculatorNextStepItems = [
           data-is-example="true"
           aria-live="polite"
         >
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Ahorro en intereses (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -329,34 +316,36 @@ const calculatorNextStepItems = [
       </div>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Cuándo conviene prepagar y cuándo no?</h2>
       <p>
-        La regla básica: <strong
-          >si la tasa de tu crédito es mayor a la rentabilidad que puedes
-          obtener invirtiendo, conviene prepagar</strong
-        >. Si es al revés, puede ser mejor invertir.
+        La regla básica:{" "}
+        <strong>
+          si la tasa de tu crédito es mayor a la rentabilidad que puedes obtener
+          invirtiendo, conviene prepagar
+        </strong>
+        . Si es al revés, puede ser mejor invertir.
       </p>
       <ul>
         <li>
-          <strong>Crédito de consumo (tasa alta ~3% mensual):</strong> Casi siempre
-          conviene prepagar. Ninguna inversión segura renta más que el 36–50% anual
-          que cobran estas deudas.
+          <strong>Crédito de consumo (tasa alta ~3% mensual):</strong> Casi
+          siempre conviene prepagar. Ninguna inversión segura renta más que el
+          36–50% anual que cobran estas deudas.
         </li>
         <li>
-          <strong>Crédito hipotecario (tasa baja ~0.5% mensual):</strong> La decisión
-          es más pareja. Una inversión en fondos mutuos o ETF puede superar fácilmente
-          ese costo anual de ~6%.
+          <strong>Crédito hipotecario (tasa baja ~0.5% mensual):</strong> La
+          decisión es más pareja. Una inversión en fondos mutuos o ETF puede
+          superar fácilmente ese costo anual de ~6%.
         </li>
         <li>
-          <strong>Factor emocional:</strong> Quedar sin deudas tiene un valor que
-          los números no capturan. Si la deuda te genera estrés, eso también importa.
+          <strong>Factor emocional:</strong> Quedar sin deudas tiene un valor
+          que los números no capturan. Si la deuda te genera estrés, eso también
+          importa.
         </li>
         <li>
-          <strong>Comisión de prepago:</strong> Algunos créditos cobran hasta 1 mes
-          de interés por prepago anticipado. Verifica en tu contrato antes de decidir.
+          <strong>Comisión de prepago:</strong> Algunos créditos cobran hasta 1
+          mes de interés por prepago anticipado. Verifica en tu contrato antes
+          de decidir.
         </li>
       </ul>
       <p class="text-sm text-muted">

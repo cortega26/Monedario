@@ -80,11 +80,13 @@ const calculatorNextStepItems = [
         Si antes de calcular necesitas interpretar la cláusula, revisa la guía
         <a href={rentGuidePath} class="underline underline-offset-4">
           Reajuste de arriendo en Chile: UF, IPC y cálculo
-        </a>. Si quieres ver además cómo esta herramienta se conecta con UF e
+        </a>
+        . Si quieres ver además cómo esta herramienta se conecta con UF e
         inflación, parte por la{" "}
         <a href={ufHubPath} class="underline underline-offset-4">
           guía UF, inflación y costo de vida
-        </a>.
+        </a>
+        .
       </p>
     </CalculatorHero>
 
@@ -97,9 +99,9 @@ const calculatorNextStepItems = [
         <h2 class="mb-5 text-lg font-semibold">Datos del arriendo</h2>
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Tipo de reajuste según contrato</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Tipo de reajuste según contrato
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -109,9 +111,7 @@ const calculatorNextStepItems = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 En UF
               </span>
             </label>
@@ -122,9 +122,7 @@ const calculatorNextStepItems = [
                 value="ipc"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Por IPC
               </span>
             </label>
@@ -135,9 +133,7 @@ const calculatorNextStepItems = [
                 value="pesos"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Pesos fijos
               </span>
             </label>
@@ -186,12 +182,16 @@ const calculatorNextStepItems = [
               inputAttrs={{ "aria-describedby": "ipc-variacion-hint" }}
             />
             <p id="ipc-variacion-hint" class="mt-1 text-xs text-muted">
-              IPC acumulado del año o del período pactado. Verifica en <a
+              IPC acumulado del año o del período pactado. Verifica en{" "}
+              <a
                 href="https://www.ine.gob.cl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="underline">ine.gob.cl</a
-              >.
+                class="underline"
+              >
+                ine.gob.cl
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -204,14 +204,11 @@ const calculatorNextStepItems = [
             placeholder="Ej: 450.000"
             min="0"
           />
-          <div
-            class="mb-4 rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-3 text-sm text-secondary"
-          >
-            Un contrato en pesos fijos <strong
-              >no se reajusta automáticamente</strong
-            >. El propietario solo puede subir el arriendo al renovar o
-            renegociar el contrato. Si el contrato dice "reajuste por IPC" o
-            "por UF", usa las otras opciones.
+          <div class="mb-4 rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-3 text-sm text-secondary">
+            Un contrato en pesos fijos{" "}
+            <strong>no se reajusta automáticamente</strong>. El propietario solo
+            puede subir el arriendo al renovar o renegociar el contrato. Si el
+            contrato dice "reajuste por IPC" o "por UF", usa las otras opciones.
           </div>
         </div>
 
@@ -224,20 +221,15 @@ const calculatorNextStepItems = [
         <div
           id="reajuste-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- RESULTADO -->
       <div class="rounded-xl border border-border bg-background p-6">
         <h2 class="mb-5 text-lg font-semibold">Resultado</h2>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Nuevo arriendo (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -272,8 +264,7 @@ const calculatorNextStepItems = [
           data-uf={String(economicParameters.uf)}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
@@ -282,9 +273,7 @@ const calculatorNextStepItems = [
       </div>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Cómo se reajusta legalmente un arriendo en Chile?</h2>
       <p>
         En Chile, el reajuste del arriendo depende de lo que diga el contrato.
@@ -293,26 +282,26 @@ const calculatorNextStepItems = [
       </p>
       <ul>
         <li>
-          <strong>Contrato en UF:</strong> El arriendo se convierte a pesos al valor
-          de la UF del día de pago. No hay "reajuste" propiamente tal: el monto en
-          UF es fijo, pero su equivalencia en pesos sube con la inflación automáticamente
-          cada mes.
+          <strong>Contrato en UF:</strong> El arriendo se convierte a pesos al
+          valor de la UF del día de pago. No hay "reajuste" propiamente tal: el
+          monto en UF es fijo, pero su equivalencia en pesos sube con la
+          inflación automáticamente cada mes.
         </li>
         <li>
-          <strong>Contrato con reajuste anual por IPC:</strong> El arriendo en pesos
-          sube según la variación del IPC del período y en la oportunidad que indique
-          la cláusula. Verifica siempre base, fecha y forma de cálculo.
+          <strong>Contrato con reajuste anual por IPC:</strong> El arriendo en
+          pesos sube según la variación del IPC del período y en la oportunidad
+          que indique la cláusula. Verifica siempre base, fecha y forma de
+          cálculo.
         </li>
         <li>
-          <strong>Contrato en pesos fijos sin cláusula:</strong> El monto no cambia
-          hasta que se acuerde una modificación. El propietario no puede subir unilateralmente
-          el precio durante la vigencia del contrato.
+          <strong>Contrato en pesos fijos sin cláusula:</strong> El monto no
+          cambia hasta que se acuerde una modificación. El propietario no puede
+          subir unilateralmente el precio durante la vigencia del contrato.
         </li>
       </ul>
       <p>
-        Ante cualquier duda o conflicto, el organismo competente es el <strong
-          >Juzgado de Letras con competencia en arrendamiento</strong
-        >.
+        Ante cualquier duda o conflicto, el organismo competente es el{" "}
+        <strong>Juzgado de Letras con competencia en arrendamiento</strong>.
       </p>
     </section>
 

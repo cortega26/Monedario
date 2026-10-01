@@ -25,14 +25,10 @@ const {
     {title}
   </h2>
   <slot />
-  {
-    disclaimer && (
-      <p class="mt-4 rounded-lg border border-border bg-surface-muted/30 px-3 py-2 text-xs text-muted">
-        <span class="font-semibold text-foreground">
-          Estimación referencial.
-        </span>{" "}
-        No es una cotización ni una liquidación oficial.
-      </p>
-    )
-  }
+  {disclaimer && (
+    <p class="mt-4 rounded-lg border border-border bg-surface-muted/30 px-3 py-2 text-xs text-muted">
+      <span class="font-semibold text-foreground">Estimación referencial.</span>{" "}
+      No es una cotización ni una liquidación oficial.
+    </p>
+  )}
 </div>

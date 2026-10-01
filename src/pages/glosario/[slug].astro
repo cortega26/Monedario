@@ -80,20 +80,16 @@ if (relatedTerms.length > 0) {
         {term}
       </h1>
 
-      {
-        publishedDate && (
-          <p class="mt-2 text-sm text-muted">
-            Publicado: {formatMetadataDate(publishedDate, "long")}
-            {reviewedDate && reviewedDate > publishedDate && (
-              <> · Revisado: {formatMetadataDate(reviewedDate, "long")}</>
-            )}
-          </p>
-        )
-      }
+      {publishedDate && (
+        <p class="mt-2 text-sm text-muted">
+          Publicado: {formatMetadataDate(publishedDate, "long")}
+          {reviewedDate && reviewedDate > publishedDate && (
+            <> · Revisado: {formatMetadataDate(reviewedDate, "long")}</>
+          )}
+        </p>
+      )}
 
-      <div
-        class="mt-8 mb-4 border-l-4 border-accent/30 bg-accent/5 p-4 text-lg font-medium text-secondary"
-      >
+      <div class="mt-8 mb-4 border-l-4 border-accent/30 bg-accent/5 p-4 text-lg font-medium text-secondary">
         {shortDefinition}
       </div>
 
@@ -101,133 +97,127 @@ if (relatedTerms.length > 0) {
         <Content />
       </div>
 
-      {
-        sources.length > 0 && (
-          <section class="bg-surface mt-12 rounded-xl border border-border p-6">
-            <h2 class="mb-4 text-xl font-bold">Fuentes</h2>
-            <ul class="space-y-2">
-              {sources.map(source => (
-                <li>
-                  <a
-                    href={source.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-accent underline underline-offset-4 hover:opacity-80"
-                  >
-                    {source.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )
-      }
+      {sources.length > 0 && (
+        <section class="bg-surface mt-12 rounded-xl border border-border p-6">
+          <h2 class="mb-4 text-xl font-bold">Fuentes</h2>
+          <ul class="space-y-2">
+            {sources.map(source => (
+              <li>
+                <a
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-accent underline underline-offset-4 hover:opacity-80"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-      {
-        (relatedCalculators.length > 0 ||
-          relatedGuides.length > 0 ||
-          relatedLaws.length > 0) && (
-          <div class="bg-surface mt-12 rounded-xl border border-border p-6">
-            <h2 class="mb-4 text-xl font-bold">Dónde se usa esto</h2>
-            <div class="flex flex-col gap-6">
-              {relatedCalculators.length > 0 && (
-                <div>
-                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
-                    Calculadoras
-                  </h3>
-                  <ul class="flex flex-wrap gap-2">
-                    {relatedCalculators.map(item => (
-                      <li>
-                        <a
-                          href={getPath(item.href)}
-                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {relatedGuides.length > 0 && (
-                <div>
-                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
-                    Guías y artículos
-                  </h3>
-                  <ul class="flex flex-wrap gap-2">
-                    {relatedGuides.map(item => (
-                      <li>
-                        <a
-                          href={getPath(item.href)}
-                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {relatedLaws.length > 0 && (
-                <div>
-                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
-                    Marco legal
-                  </h3>
-                  <ul class="flex flex-wrap gap-2">
-                    {relatedLaws.map(item => (
-                      <li>
-                        <a
-                          href={getPath(item.href)}
-                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
-                        >
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <p class="mt-4 text-sm text-muted">
-              Explora todas las{" "}
-              <a
-                href={getPath("/calculadoras/")}
-                class="text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                calculadoras
-              </a>{" "}
-              o las{" "}
-              <a
-                href={getPath("/leyes/")}
-                class="text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                leyes vigentes
-              </a>{" "}
-              de Monedario.
-            </p>
+      {(relatedCalculators.length > 0 ||
+        relatedGuides.length > 0 ||
+        relatedLaws.length > 0) && (
+        <div class="bg-surface mt-12 rounded-xl border border-border p-6">
+          <h2 class="mb-4 text-xl font-bold">Dónde se usa esto</h2>
+          <div class="flex flex-col gap-6">
+            {relatedCalculators.length > 0 && (
+              <div>
+                <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                  Calculadoras
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                  {relatedCalculators.map(item => (
+                    <li>
+                      <a
+                        href={getPath(item.href)}
+                        class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {relatedGuides.length > 0 && (
+              <div>
+                <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                  Guías y artículos
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                  {relatedGuides.map(item => (
+                    <li>
+                      <a
+                        href={getPath(item.href)}
+                        class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {relatedLaws.length > 0 && (
+              <div>
+                <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                  Marco legal
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                  {relatedLaws.map(item => (
+                    <li>
+                      <a
+                        href={getPath(item.href)}
+                        class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-        )
-      }
+          <p class="mt-4 text-sm text-muted">
+            Explora todas las{" "}
+            <a
+              href={getPath("/calculadoras/")}
+              class="text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              calculadoras
+            </a>{" "}
+            o las{" "}
+            <a
+              href={getPath("/leyes/")}
+              class="text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              leyes vigentes
+            </a>{" "}
+            de Monedario.
+          </p>
+        </div>
+      )}
 
-      {
-        relatedTermsData.length > 0 && (
-          <div class="bg-surface mt-6 rounded-xl border border-border p-6">
-            <h2 class="mb-4 text-xl font-bold">Términos relacionados</h2>
-            <ul class="flex flex-wrap gap-2">
-              {relatedTermsData.map(relatedEntry => (
-                <li>
-                  <a
-                    href={getPath(`/glosario/${relatedEntry.id}/`)}
-                    class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
-                  >
-                    {relatedEntry.data.term}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
+      {relatedTermsData.length > 0 && (
+        <div class="bg-surface mt-6 rounded-xl border border-border p-6">
+          <h2 class="mb-4 text-xl font-bold">Términos relacionados</h2>
+          <ul class="flex flex-wrap gap-2">
+            {relatedTermsData.map(relatedEntry => (
+              <li>
+                <a
+                  href={getPath(`/glosario/${relatedEntry.id}/`)}
+                  class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                >
+                  {relatedEntry.data.term}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </article>
   </main>
 

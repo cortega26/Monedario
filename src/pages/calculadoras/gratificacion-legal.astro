@@ -255,24 +255,22 @@ const gratiFaqs = [
       data-imm={String(immMensual)}
       class="hidden"
       aria-hidden="true"
-    >
-    </div>
+    ></div>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es la gratificación legal?</h2>
       <p>
-        La <strong>gratificación legal</strong> es un pago adicional al sueldo que
-        todos los empleadores están obligados a otorgar si han obtenido utilidades
-        en el ejercicio. Está regulada en los artículos 47 a 52 del Código del Trabajo.
+        La <strong>gratificación legal</strong> es un pago adicional al sueldo
+        que todos los empleadores están obligados a otorgar si han obtenido
+        utilidades en el ejercicio. Está regulada en los artículos 47 a 52 del
+        Código del Trabajo.
       </p>
       <p>
-        Existen dos modalidades principales: el <strong>art. 50</strong> (la más usada)
-        permite pagar el 25% de la remuneración mensual mes a mes, con el tope de
-        4,75 IMM al año. El <strong>art. 47</strong> obliga a repartir el 30% de las
-        utilidades del ejercicio entre todos los trabajadores, en proporción a sus
-        días y remuneraciones.
+        Existen dos modalidades principales: el <strong>art. 50</strong> (la más
+        usada) permite pagar el 25% de la remuneración mensual mes a mes, con el
+        tope de 4,75 IMM al año. El <strong>art. 47</strong> obliga a repartir
+        el 30% de las utilidades del ejercicio entre todos los trabajadores, en
+        proporción a sus días y remuneraciones.
       </p>
       <p>
         Para entender todos los detalles, revisa la{" "}
@@ -293,7 +291,8 @@ const gratiFaqs = [
           data-analytics-location="calculator_explainer"
         >
           calculadora de sueldo líquido
-        </a>.
+        </a>
+        .
       </p>
     </section>
 
@@ -302,16 +301,14 @@ const gratiFaqs = [
         Preguntas frecuentes sobre la gratificación legal
       </h2>
       <dl class="space-y-6">
-        {
-          gratiFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
-              </dd>
-            </div>
-          ))
-        }
+        {gratiFaqs.map(faq => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+            <dd class="text-sm leading-relaxed text-secondary">
+              <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
+            </dd>
+          </div>
+        ))}
       </dl>
     </section>
 

@@ -44,19 +44,15 @@ const { calc, familyId, tagClass, showAlternative = true } = Astro.props;
 const CalcIcon = iconMap[calc.icon];
 ---
 
-<article
-  class="rounded-xl border border-border bg-background p-5 transition-colors duration-150 hover:border-accent hover:bg-accent/5"
->
+<article class="rounded-xl border border-border bg-background p-5 transition-colors duration-150 hover:border-accent hover:bg-accent/5">
   <div class="flex items-start justify-between gap-3">
-    {
-      CalcIcon ? (
-        <CalcIcon class="size-7 shrink-0 text-foreground" aria-hidden="true" />
-      ) : (
-        <span class="text-2xl" aria-hidden="true">
-          {calc.icon}
-        </span>
-      )
-    }
+    {CalcIcon ? (
+      <CalcIcon class="size-7 shrink-0 text-foreground" aria-hidden="true" />
+    ) : (
+      <span class="text-2xl" aria-hidden="true">
+        {calc.icon}
+      </span>
+    )}
     <span
       class:list={[
         "rounded-md border px-2 py-0.5 text-xs font-semibold",
@@ -68,9 +64,7 @@ const CalcIcon = iconMap[calc.icon];
   </div>
 
   <h3 class="mt-4 text-lg leading-snug font-semibold">{calc.title}</h3>
-  <p class="mt-2 text-sm leading-relaxed text-secondary">
-    {calc.description}
-  </p>
+  <p class="mt-2 text-sm leading-relaxed text-secondary">{calc.description}</p>
 
   <div class="mt-4 space-y-2 text-sm leading-relaxed text-secondary">
     <p>
@@ -87,21 +81,19 @@ const CalcIcon = iconMap[calc.icon];
     </p>
   </div>
 
-  {
-    showAlternative && calc.related[0] && (
-      <div class="mt-4 border-t border-border pt-4 text-sm leading-relaxed text-secondary">
-        <span class="font-semibold text-foreground">Cámbiate si:</span>{" "}
-        {calc.related[0].when}{" "}
-        <a
-          href={getPath(calc.related[0].href)}
-          class="font-semibold text-foreground underline decoration-border underline-offset-4 hover:text-accent"
-        >
-          {calc.related[0].label}
-        </a>
-        .
-      </div>
-    )
-  }
+  {showAlternative && calc.related[0] && (
+    <div class="mt-4 border-t border-border pt-4 text-sm leading-relaxed text-secondary">
+      <span class="font-semibold text-foreground">Cámbiate si:</span>{" "}
+      {calc.related[0].when}{" "}
+      <a
+        href={getPath(calc.related[0].href)}
+        class="font-semibold text-foreground underline decoration-border underline-offset-4 hover:text-accent"
+      >
+        {calc.related[0].label}
+      </a>
+      .
+    </div>
+  )}
 
   <div class="mt-5">
     <a

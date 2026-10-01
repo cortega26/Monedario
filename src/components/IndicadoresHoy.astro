@@ -79,20 +79,18 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
       >
         ${ufValue}
       </a>
-      {
-        ufDelta ? (
-          <span
-            class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
-            data-field="delta"
-          >
-            {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
-          </span>
-        ) : (
-          <span class="indicador-delta" data-field="delta" aria-hidden="true">
-            &nbsp;
-          </span>
-        )
-      }
+      {ufDelta ? (
+        <span
+          class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+          data-field="delta"
+        >
+          {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
+        </span>
+      ) : (
+        <span class="indicador-delta" data-field="delta" aria-hidden="true">
+          &nbsp;
+        </span>
+      )}
     </div>
 
     <div class="indicador" data-indicator="utm">
@@ -106,50 +104,46 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
       >
         ${utmValue}
       </span>
-      {
-        utmDelta ? (
+      {utmDelta ? (
+        <span
+          class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+          data-field="delta"
+        >
+          {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
+        </span>
+      ) : (
+        <span class="indicador-delta" data-field="delta" aria-hidden="true">
+          &nbsp;
+        </span>
+      )}
+    </div>
+
+    {hasDolar && (
+      <div class="indicador indicador--last" data-indicator="dolar">
+        <span class="indicador-label" data-field="label">
+          DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
+        </span>
+        <span
+          class="indicador-value"
+          title={`Fuente: Banco Central de Chile — Dólar al ${fmtFecha(dolarFecha)}`}
+          data-field="value"
+        >
+          ${dolarValue}
+        </span>
+        {dolarDelta ? (
           <span
-            class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+            class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
             data-field="delta"
           >
-            {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
+            {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
           </span>
         ) : (
           <span class="indicador-delta" data-field="delta" aria-hidden="true">
             &nbsp;
           </span>
-        )
-      }
-    </div>
-
-    {
-      hasDolar && (
-        <div class="indicador indicador--last" data-indicator="dolar">
-          <span class="indicador-label" data-field="label">
-            DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
-          </span>
-          <span
-            class="indicador-value"
-            title={`Fuente: Banco Central de Chile — Dólar al ${fmtFecha(dolarFecha)}`}
-            data-field="value"
-          >
-            ${dolarValue}
-          </span>
-          {dolarDelta ? (
-            <span
-              class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
-              data-field="delta"
-            >
-              {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
-            </span>
-          ) : (
-            <span class="indicador-delta" data-field="delta" aria-hidden="true">
-              &nbsp;
-            </span>
-          )}
-        </div>
-      )
-    }
+        )}
+      </div>
+    )}
 
     <div class="indicador-cta">
       <a
@@ -160,7 +154,10 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
         data-analytics-location="home_indicadores_hoy"
         aria-label="Ver todos los indicadores económicos"
       >
-        Ver<br />todos<br />→
+        Ver
+        <br />
+        todos
+        <br />→
       </a>
     </div>
   </div>

@@ -33,11 +33,9 @@ const hasDetail = Astro.slots.has("default");
     isResult && "rounded-lg border border-border bg-surface-muted/30 px-3 py-2",
   ]}
 >
-  {
-    isResult && (
-      <p class="font-semibold text-foreground">Estimación referencial</p>
-    )
-  }
+  {isResult && (
+    <p class="font-semibold text-foreground">Estimación referencial</p>
+  )}
   <p class:list={[isResult && "mt-0.5"]}>
     {`Datos al ${updatedDate} · ${label}`}
     {isResult && !hasDetail ? "." : null}

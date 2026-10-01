@@ -181,8 +181,7 @@ const calculatorNextStepItems = [
         id="segunda-categoria-error"
         class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
         role="alert"
-      >
-      </div>
+      ></div>
     </section>
 
     <!-- RESULTADO -->
@@ -192,12 +191,8 @@ const calculatorNextStepItems = [
     >
       <h2 class="mb-5 text-lg font-semibold">Resultado</h2>
       <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-        <div
-          class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-        >
-          <p
-            class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-          >
+        <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+          <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
             Impuesto mensual (Ejemplo ilustrativo)
           </p>
           <p class="text-4xl font-bold text-foreground/80">
@@ -232,8 +227,7 @@ const calculatorNextStepItems = [
         data-utm={String(utm)}
         class="hidden"
         aria-hidden="true"
-      >
-      </div>
+      ></div>
       <CalculatorDataFreshness
         source={economicParameters.source}
         updatedDate={formatEconomicDate(utmLastUpdated)}
@@ -250,17 +244,15 @@ const calculatorNextStepItems = [
   <section class="border-t border-border py-8">
     <h2 class="mb-2 text-xl font-bold">Tabla de tramos vigente 2026</h2>
     <p class="mb-4 max-w-3xl text-sm text-secondary">
-      Calculada con UTM {fmt(utm)}. Fórmula: <strong
-        >impuesto = imponible × tasa − cuantía a rebajar</strong
-      >. El impuesto es progresivo: solo tributa la parte del sueldo que supera
-      cada umbral.
+      Calculada con UTM {fmt(utm)}. Fórmula:{" "}
+      <strong>impuesto = imponible × tasa − cuantía a rebajar</strong>. El
+      impuesto es progresivo: solo tributa la parte del sueldo que supera cada
+      umbral.
     </p>
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
         <thead>
-          <tr
-            class="border-b border-border text-left text-xs font-semibold text-muted uppercase"
-          >
+          <tr class="border-b border-border text-left text-xs font-semibold text-muted uppercase">
             <th class="pr-4 pb-2">Tramo (UTM)</th>
             <th class="pr-4 pb-2">Hasta ($)</th>
             <th class="pr-4 pb-2">Tasa</th>
@@ -268,61 +260,59 @@ const calculatorNextStepItems = [
           </tr>
         </thead>
         <tbody>
-          {
-            bracketRows.map((row, i) => (
-              <tr
-                id={`tramo-${i}`}
-                class="border-b border-border/50 transition-colors last:border-0"
-              >
-                <td class="py-2 pr-4 font-mono text-secondary">
-                  {row.desde}–{row.hasta} UTM
-                </td>
-                <td class="py-2 pr-4 font-mono">{row.hastaPesos}</td>
-                <td class="py-2 pr-4 font-semibold">{row.tasa}</td>
-                <td class="py-2 font-mono text-muted">{row.rebaja}</td>
-              </tr>
-            ))
-          }
+          {bracketRows.map((row, i) => (
+            <tr
+              id={`tramo-${i}`}
+              class="border-b border-border/50 transition-colors last:border-0"
+            >
+              <td class="py-2 pr-4 font-mono text-secondary">
+                {row.desde}–{row.hasta} UTM
+              </td>
+              <td class="py-2 pr-4 font-mono">{row.hastaPesos}</td>
+              <td class="py-2 pr-4 font-semibold">{row.tasa}</td>
+              <td class="py-2 font-mono text-muted">{row.rebaja}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
   </section>
 
   <!-- EXPLICACIÓN -->
-  <section
-    class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-  >
+  <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
     <h2>¿Cómo funciona el impuesto de segunda categoría?</h2>
     <p>
       El impuesto único al trabajo (segunda categoría) aplica a sueldos de
-      trabajadores dependientes. Se calcula sobre el <strong
-        >sueldo imponible mensual</strong
-      > y usa una tabla progresiva del SII que se actualiza con la UTM.
+      trabajadores dependientes. Se calcula sobre el{" "}
+      <strong>sueldo imponible mensual</strong> y usa una tabla progresiva del
+      SII que se actualiza con la UTM.
     </p>
     <ul>
       <li>
-        <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM mensuales
-        (~{fmt(13.5 * utm)}), no pagas impuesto.
+        <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM
+        mensuales (~{fmt(13.5 * utm)}), no pagas impuesto.
       </li>
       <li>
-        <strong>Progresividad:</strong> Solo paga impuesto la parte de tu sueldo que
-        supera el umbral de cada tramo, no el total.
+        <strong>Progresividad:</strong> Solo paga impuesto la parte de tu sueldo
+        que supera el umbral de cada tramo, no el total.
       </li>
       <li>
-        <strong>Cuantía a rebajar:</strong> Equivale a la suma de los tramos inferiores
-        ya pagados. La fórmula SII es: impuesto = imponible × tasa − rebaja.
+        <strong>Cuantía a rebajar:</strong> Equivale a la suma de los tramos
+        inferiores ya pagados. La fórmula SII es: impuesto = imponible × tasa −
+        rebaja.
       </li>
       <li>
-        <strong>Retención mensual:</strong> El empleador retiene y entera este impuesto
-        cada mes directamente al SII.
+        <strong>Retención mensual:</strong> El empleador retiene y entera este
+        impuesto cada mes directamente al SII.
       </li>
     </ul>
     <p class="text-sm text-muted">
       Valores de referencia calculados con UTM vigente. El SII publica la tabla
       oficial cada mes. Para información oficial consulta{" "}
-      <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer"
-        >sii.cl</a
-      >.
+      <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer">
+        sii.cl
+      </a>
+      .
     </p>
     <p class="text-sm text-secondary">
       Lee también:{" "}
@@ -331,8 +321,8 @@ const calculatorNextStepItems = [
         class="text-accent underline underline-offset-4 hover:opacity-80"
       >
         Qué es el impuesto único (glosario)
-      </a>
-      {" "}·{" "}
+      </a>{" "}
+      ·{" "}
       <a
         href="/posts/como-calcular-sueldo-liquido/"
         class="text-accent underline underline-offset-4 hover:opacity-80"
@@ -347,8 +337,10 @@ const calculatorNextStepItems = [
         data-analytics-cta="calculator-related"
         data-analytics-label="Calculadora sueldo liquido"
         data-analytics-location="calculator_explainer"
-        >calculadora de sueldo líquido</a
-      >.
+      >
+        calculadora de sueldo líquido
+      </a>
+      .
     </p>
   </section>
 

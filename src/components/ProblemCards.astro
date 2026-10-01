@@ -161,48 +161,46 @@ function metaLine(card: Card): string {
   <p class="mb-6 text-sm text-secondary">Elige tu situación y entra directo.</p>
 
   <div class="space-y-6">
-    {
-      groups.map(group => (
-        <div>
-          <p class="mb-2 text-xs font-semibold tracking-widest text-secondary uppercase">
-            {group.eyebrow}
-          </p>
-          <ul class="divide-y divide-border">
-            {group.cards.map(card => (
-              <li>
-                <a
-                  href={getPath(card.href)}
-                  class="group -mx-2 flex items-start gap-4 rounded px-2 py-3 transition-colors hover:bg-accent/5"
-                  data-analytics-cta="home-problem-card"
-                  data-analytics-label={card.title}
-                  data-analytics-location="home_problem_cards"
+    {groups.map(group => (
+      <div>
+        <p class="mb-2 text-xs font-semibold tracking-widest text-secondary uppercase">
+          {group.eyebrow}
+        </p>
+        <ul class="divide-y divide-border">
+          {group.cards.map(card => (
+            <li>
+              <a
+                href={getPath(card.href)}
+                class="group -mx-2 flex items-start gap-4 rounded px-2 py-3 transition-colors hover:bg-accent/5"
+                data-analytics-cta="home-problem-card"
+                data-analytics-label={card.title}
+                data-analytics-location="home_problem_cards"
+              >
+                <span
+                  class="w-7 shrink-0 text-lg font-bold text-secondary tabular-nums transition-colors group-hover:text-accent"
+                  style="font-family: var(--font-display)"
                 >
-                  <span
-                    class="w-7 shrink-0 text-lg font-bold text-secondary tabular-nums transition-colors group-hover:text-accent"
-                    style="font-family: var(--font-display)"
-                  >
-                    {card.number}
-                  </span>
-                  <div class="min-w-0 flex-1">
-                    <p class="font-semibold text-foreground transition-colors group-hover:text-accent">
-                      {card.title}
-                    </p>
-                    <p class="mt-0.5 text-sm leading-relaxed text-secondary">
-                      {card.description}
-                    </p>
-                    <p class="mt-1 font-mono text-xs text-muted">
-                      {metaLine(card)}
-                    </p>
-                  </div>
-                  <span class="shrink-0 text-sm whitespace-nowrap text-accent underline decoration-dashed underline-offset-2">
-                    {card.ctaLabel} →
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
+                  {card.number}
+                </span>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-foreground transition-colors group-hover:text-accent">
+                    {card.title}
+                  </p>
+                  <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+                    {card.description}
+                  </p>
+                  <p class="mt-1 font-mono text-xs text-muted">
+                    {metaLine(card)}
+                  </p>
+                </div>
+                <span class="shrink-0 text-sm whitespace-nowrap text-accent underline decoration-dashed underline-offset-2">
+                  {card.ctaLabel} →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 </section>

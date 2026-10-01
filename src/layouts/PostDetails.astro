@@ -291,12 +291,12 @@ const hasHeroImage = !!heroImageSrc;
 ---
 
 <Layout {...layoutProps}>
-  {
-    article.unlisted && (
-      <meta name="robots" content="noindex,follow" slot="head" />
-    )
-  }
-  {tags.map(tag => <meta property="article:tag" content={tag} slot="head" />)}
+  {article.unlisted && (
+    <meta name="robots" content="noindex,follow" slot="head" />
+  )}
+  {tags.map(tag => (
+    <meta property="article:tag" content={tag} slot="head" />
+  ))}
   <ArticleJsonLd
     {post}
     canonicalUrl={layoutProps.canonicalURL ?? ""}
@@ -333,67 +333,61 @@ const hasHeroImage = !!heroImageSrc;
         class:list={[
           "max-sm:hidden",
           { hidden: !SITE.editPost.enabled || hideEditPost },
-        ]}>|</span
+        ]}
       >
+        |
+      </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
 
-    {
-      articleLead && (
-        <ArticleDecisionIntro
-          lead={articleLead}
-          reviewedDate={article.updatedDate ?? article.pubDate}
-        />
-      )
-    }
+    {articleLead && (
+      <ArticleDecisionIntro
+        lead={articleLead}
+        reviewedDate={article.updatedDate ?? article.pubDate}
+      />
+    )}
 
-    {
-      post.data.topicRole === "support" &&
-        post.data.articleLead?.nextStepHref &&
-        post.data.articleLead?.nextStepLabel && (
-          <aside
-            aria-label="Guía de referencia"
-            class="my-4 border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm"
+    {post.data.topicRole === "support" &&
+      post.data.articleLead?.nextStepHref &&
+      post.data.articleLead?.nextStepLabel && (
+        <aside
+          aria-label="Guía de referencia"
+          class="my-4 border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm"
+        >
+          <span class="font-medium text-foreground">Guía de referencia: </span>
+          <a
+            href={getPath(post.data.articleLead.nextStepHref)}
+            class="font-semibold text-accent underline underline-offset-4 hover:opacity-80"
           >
-            <span class="font-medium text-foreground">
-              Guía de referencia:{" "}
-            </span>
-            <a
-              href={getPath(post.data.articleLead.nextStepHref)}
-              class="font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              {post.data.articleLead.nextStepLabel}
-            </a>
-            <span class="text-secondary">
-              {" "}
-              — contiene la cobertura completa del tema.
-            </span>
-          </aside>
-        )
-    }
+            {post.data.articleLead.nextStepLabel}
+          </a>
+          <span class="text-secondary">
+            {" "}
+            — contiene la cobertura completa del tema.
+          </span>
+        </aside>
+      )}
 
-    {
-      hasHeroImage && (
-        <figure class="my-6 overflow-hidden rounded-xl">
-          <img
-            src={getPath(heroImageSrc!)}
-            alt={`Ilustración del artículo: ${title}`}
-            width="1200"
-            height="630"
-            srcset={`
+    {hasHeroImage && (
+      <figure class="my-6 overflow-hidden rounded-xl">
+        <img
+          src={getPath(heroImageSrc!)}
+          alt={`Ilustración del artículo: ${title}`}
+          width="1200"
+          height="630"
+          srcset={`
               ${getPath(heroImageSrc!.replace(".avif", "@mobile.avif"))} 600w,
               ${getPath(heroImageSrc!.replace(".avif", "@tablet.avif"))} 800w,
               ${getPath(heroImageSrc!)} 1200w
             `}
-            sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
-            class="aspect-[40/21] w-full object-cover"
-            loading="eager"
-            decoding="sync"
-            fetchpriority="high"
-          />
-        </figure>
-      )
-    }
+          sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
+          class="aspect-[40/21] w-full object-cover"
+          loading="eager"
+          decoding="sync"
+          fetchpriority="high"
+        />
+      </figure>
+    )}
 
     <div class="lg:flex lg:items-start lg:gap-10">
       <article
@@ -403,26 +397,24 @@ const hasHeroImage = !!heroImageSrc;
         data-analytics-article-title={title}
       >
         <ArticleEntryGuide guideId={entryGuideId} />
-        <GlossaryContentWrapper><Content /></GlossaryContentWrapper>
-        {
-          articleLead?.calculatorHref && articleLead.calculatorLabel && (
-            <CalculatorCTA
-              href={articleLead.calculatorHref}
-              label={articleLead.calculatorLabel}
-              description={articleLead.answer}
-            />
-          )
-        }
+        <GlossaryContentWrapper>
+          <Content />
+        </GlossaryContentWrapper>
+        {articleLead?.calculatorHref && articleLead.calculatorLabel && (
+          <CalculatorCTA
+            href={articleLead.calculatorHref}
+            label={articleLead.calculatorLabel}
+            description={articleLead.answer}
+          />
+        )}
         <ArticleAdvisory text={articleAdvisoryText} />
       </article>
       <TOCSidebar />
     </div>
 
-    {
-      contextualSectionsWithoutNextStepDuplicates.map(section => (
-        <ContextLinkSection {...section} />
-      ))
-    }
+    {contextualSectionsWithoutNextStepDuplicates.map(section => (
+      <ContextLinkSection {...section} />
+    ))}
 
     <NextSteps
       currentHref={getCanonicalPathFromSlug(article.slug)}
@@ -466,9 +458,7 @@ const hasHeroImage = !!heroImageSrc;
           Investigador financiero y desarrollador de herramientas de educación
           financiera para Chile. Abogado de formación y analista de datos.
         </p>
-        <div
-          class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted"
-        >
+        <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
           <a
             href={SITE.authorLinkedIn}
             target="_blank"
@@ -483,13 +473,11 @@ const hasHeroImage = !!heroImageSrc;
           >
             Sobre el autor →
           </a>
-          {
-            article.updatedDate && (
-              <span class="text-muted">
-                Revisado el {formatMetadataDate(article.updatedDate, "long")}
-              </span>
-            )
-          }
+          {article.updatedDate && (
+            <span class="text-muted">
+              Revisado el {formatMetadataDate(article.updatedDate, "long")}
+            </span>
+          )}
         </div>
       </div>
     </aside>
@@ -499,7 +487,9 @@ const hasHeroImage = !!heroImageSrc;
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
     <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+      {tags.map(tag => (
+        <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />
+      ))}
     </ul>
 
     <BackToTopButton />
@@ -510,48 +500,42 @@ const hasHeroImage = !!heroImageSrc;
 
     <!-- Previous/Next Post Buttons -->
     <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      {
-        prevPost && (
-          <a
-            href={getCanonicalPathFromSlug(prevPost.slug)}
-            class="flex w-full gap-1 hover:opacity-75"
-            data-analytics-cta="article-nav"
-            data-analytics-label={prevPost.title}
-            data-analytics-location="article_previous"
-          >
-            <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
-            <div>
-              <span>
-                {useTopicalNav
-                  ? `Anterior en ${hubLabel}`
-                  : "Artículo anterior"}
-              </span>
-              <div class="text-sm text-accent/85">{prevPost.title}</div>
-            </div>
-          </a>
-        )
-      }
-      {
-        nextPost && (
-          <a
-            href={getCanonicalPathFromSlug(nextPost.slug)}
-            class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
-            data-analytics-cta="article-nav"
-            data-analytics-label={nextPost.title}
-            data-analytics-location="article_next"
-          >
-            <div>
-              <span>
-                {useTopicalNav
-                  ? `Siguiente en ${hubLabel}`
-                  : "Artículo siguiente"}
-              </span>
-              <div class="text-sm text-accent/85">{nextPost.title}</div>
-            </div>
-            <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
-          </a>
-        )
-      }
+      {prevPost && (
+        <a
+          href={getCanonicalPathFromSlug(prevPost.slug)}
+          class="flex w-full gap-1 hover:opacity-75"
+          data-analytics-cta="article-nav"
+          data-analytics-label={prevPost.title}
+          data-analytics-location="article_previous"
+        >
+          <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
+          <div>
+            <span>
+              {useTopicalNav ? `Anterior en ${hubLabel}` : "Artículo anterior"}
+            </span>
+            <div class="text-sm text-accent/85">{prevPost.title}</div>
+          </div>
+        </a>
+      )}
+      {nextPost && (
+        <a
+          href={getCanonicalPathFromSlug(nextPost.slug)}
+          class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
+          data-analytics-cta="article-nav"
+          data-analytics-label={nextPost.title}
+          data-analytics-location="article_next"
+        >
+          <div>
+            <span>
+              {useTopicalNav
+                ? `Siguiente en ${hubLabel}`
+                : "Artículo siguiente"}
+            </span>
+            <div class="text-sm text-accent/85">{nextPost.title}</div>
+          </div>
+          <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
+        </a>
+      )}
     </div>
 
     <RelatedPosts

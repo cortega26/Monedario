@@ -74,9 +74,7 @@ const calculatorNextStepItems = [
       descriptionClass="max-w-2xl text-secondary"
     />
 
-    <section
-      class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
-    >
+    <section class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
       <div
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
@@ -128,18 +126,13 @@ const calculatorNextStepItems = [
           id="honorarios-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <CalculatorResultPanel title="Resultado orientativo" disclaimer>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Recibes líquido (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -167,9 +160,7 @@ const calculatorNextStepItems = [
       </CalculatorResultPanel>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>Qué sí responde esta calculadora</h2>
       <ul>
         <li>Cuánto te retienen al emitir una boleta.</li>
@@ -204,19 +195,25 @@ const calculatorNextStepItems = [
         situación previsional real.
       </p>
       <p>
-        Si quieres el paso a paso completo, revisa la <a
+        Si quieres el paso a paso completo, revisa la{" "}
+        <a
           href={guidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de boletas honorarios 2026"
           data-analytics-location="calculator_explainer"
-          >guía de boletas de honorarios 2026</a
-        >. Si tu foco es la declaración anual completa, parte por el <a
+        >
+          guía de boletas de honorarios 2026
+        </a>
+        . Si tu foco es la declaración anual completa, parte por el{" "}
+        <a
           href={rentaGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Checklist operacion renta"
           data-analytics-location="calculator_explainer_secondary"
-          >checklist de Operación Renta</a
-        >.
+        >
+          checklist de Operación Renta
+        </a>
+        .
       </p>
     </section>
 

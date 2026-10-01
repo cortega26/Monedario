@@ -121,9 +121,9 @@ const seguroCesantiaFaqs = [
         />
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Tipo de contrato</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Tipo de contrato
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -133,9 +133,7 @@ const seguroCesantiaFaqs = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Indefinido
               </span>
             </label>
@@ -146,9 +144,7 @@ const seguroCesantiaFaqs = [
                 value="plazo-fijo"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Plazo fijo / obra
               </span>
             </label>
@@ -166,9 +162,9 @@ const seguroCesantiaFaqs = [
         />
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Modo de cálculo CIC</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Modo de cálculo CIC
+          </label>
           <div class="grid gap-2">
             <label class="cursor-pointer rounded-lg border border-border p-3">
               <input
@@ -178,9 +174,7 @@ const seguroCesantiaFaqs = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block text-sm font-medium transition-all peer-checked:text-accent"
-              >
+              <span class="block text-sm font-medium transition-all peer-checked:text-accent">
                 Usaré mi saldo real en AFC
               </span>
               <span class="mt-1 block text-xs text-muted">
@@ -194,9 +188,7 @@ const seguroCesantiaFaqs = [
                 value="estimated"
                 class="peer sr-only"
               />
-              <span
-                class="block text-sm font-medium transition-all peer-checked:text-accent"
-              >
+              <span class="block text-sm font-medium transition-all peer-checked:text-accent">
                 Estimaré mi CIC por cotizaciones
               </span>
               <span class="mt-1 block text-xs text-muted">
@@ -220,18 +212,19 @@ const seguroCesantiaFaqs = [
             id="causal"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="necesidad">Necesidad de la empresa (art. 161)</option
-            >
-            <option value="vencimiento"
-              >Vencimiento de plazo / conclusión de obra</option
-            >
-            <option value="liquidacion"
-              >Procedimiento concursal / liquidación del empleador</option
-            >
+            <option value="necesidad">
+              Necesidad de la empresa (art. 161)
+            </option>
+            <option value="vencimiento">
+              Vencimiento de plazo / conclusión de obra
+            </option>
+            <option value="liquidacion">
+              Procedimiento concursal / liquidación del empleador
+            </option>
             <option value="renuncia">Renuncia voluntaria</option>
-            <option value="despido-culpa"
-              >Despido por conducta (art. 160)</option
-            >
+            <option value="despido-culpa">
+              Despido por conducta (art. 160)
+            </option>
           </select>
         </CalculatorField>
 
@@ -245,7 +238,9 @@ const seguroCesantiaFaqs = [
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
             <option value="si">Sí</option>
-            <option value="no-se" selected>No lo sé</option>
+            <option value="no-se" selected>
+              No lo sé
+            </option>
             <option value="no">No</option>
           </select>
         </CalculatorField>
@@ -260,19 +255,14 @@ const seguroCesantiaFaqs = [
           id="cesantia-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Tu cobertura estimada">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Cobertura total estimada (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -307,66 +297,69 @@ const seguroCesantiaFaqs = [
           )}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
         >
-          {
-            ` · Tope imponible AFC: ${economicParameters.afcTopes?.monthlyTaxableCapUf ?? 131.9} UF/mes.`
-          }
+          {` · Tope imponible AFC: ${economicParameters.afcTopes?.monthlyTaxableCapUf ?? 131.9} UF/mes.`}
         </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Cómo funciona el Seguro de Cesantía?</h2>
       <p>
-        El Seguro de Cesantía tiene dos fondos: tu <strong
-          >Cuenta Individual (CIC)</strong
-        >, que es solo tuya, y el <strong>Fondo Solidario (FCS)</strong>, que es
-        compartido. Siempre se usa primero la CIC; el FCS solo entra si tu saldo
-        individual es insuficiente y cumples los requisitos.
+        El Seguro de Cesantía tiene dos fondos: tu{" "}
+        <strong>Cuenta Individual (CIC)</strong>, que es solo tuya, y el{" "}
+        <strong>Fondo Solidario (FCS)</strong>, que es compartido. Siempre se
+        usa primero la CIC; el FCS solo entra si tu saldo individual es
+        insuficiente y cumples los requisitos.
       </p>
       <ul>
         <li>
-          <strong>Contrato indefinido:</strong> 0,6% lo aporta la persona trabajadora,
-          1,6% va a tu CIC y 0,8% al Fondo Solidario.
+          <strong>Contrato indefinido:</strong> 0,6% lo aporta la persona
+          trabajadora, 1,6% va a tu CIC y 0,8% al Fondo Solidario.
         </li>
         <li>
-          <strong>Plazo fijo / obra:</strong> el empleador aporta 2,8% a tu CIC y
-          0,2% al Fondo Solidario.
+          <strong>Plazo fijo / obra:</strong> el empleador aporta 2,8% a tu CIC
+          y 0,2% al Fondo Solidario.
         </li>
         <li>
-          <strong>Mínimo para cobrar CIC:</strong> desde el 1 de agosto de 2025 se
-          exigen 10 cotizaciones para indefinido y 5 para plazo fijo/obra.
+          <strong>Mínimo para cobrar CIC:</strong> desde el 1 de agosto de 2025
+          se exigen 10 cotizaciones para indefinido y 5 para plazo fijo/obra.
         </li>
         <li>
-          <strong>Para revisar FCS:</strong> se requiere causal válida, 10 cotizaciones
-          en los últimos 24 meses y las 3 últimas continuas con el mismo empleador.
+          <strong>Para revisar FCS:</strong> se requiere causal válida, 10
+          cotizaciones en los últimos 24 meses y las 3 últimas continuas con el
+          mismo empleador.
         </li>
       </ul>
       <p class="text-sm text-muted">
         Esta calculadora no reemplaza la liquidación oficial de AFC. El saldo
-        exacto de tu CIC está en <a
+        exacto de tu CIC está en{" "}
+        <a
           href="https://personas.afc.cl/"
           target="_blank"
-          rel="noopener noreferrer">Sucursal Virtual de AFC</a
-        > con tu ClaveÚnica y los montos del FCS se revisan en la tabla vigente de
+          rel="noopener noreferrer"
+        >
+          Sucursal Virtual de AFC
+        </a>{" "}
+        con tu ClaveÚnica y los montos del FCS se revisan en la tabla vigente de
         AFC.
       </p>
       <p>
-        Para revisar requisitos legales y causales en detalle, lee la <a
+        Para revisar requisitos legales y causales en detalle, lee la{" "}
+        <a
           href={unemploymentGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia completa del seguro de cesantia"
           data-analytics-location="calculator_explainer"
-          >guía completa del seguro de cesantía</a
-        >.
+        >
+          guía completa del seguro de cesantía
+        </a>
+        .
       </p>
     </section>
 
@@ -381,16 +374,12 @@ const seguroCesantiaFaqs = [
         Preguntas frecuentes sobre el seguro de cesantía
       </h2>
       <dl class="space-y-6">
-        {
-          seguroCesantiaFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
-              </dd>
-            </div>
-          ))
-        }
+        {seguroCesantiaFaqs.map(faq => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+            <dd class="text-sm leading-relaxed text-secondary">{faq.answer}</dd>
+          </div>
+        ))}
       </dl>
     </section>
     <MethodologyBlock

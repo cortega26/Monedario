@@ -37,14 +37,12 @@ const sourceLabel =
 <span class="indicador-economico">
   <strong class="text-accent">{formatCLP(valor)}</strong>
   {descripcion && <span class="text-secondary"> ({descripcion})</span>}
-  {
-    mostrarFecha && (
-      <sup
-        title={`Basado en ${tipo.toUpperCase()} = ${formatCLP(base)} al ${fmtFecha(indicatorDate)} (${sourceLabel})`}
-        class="ml-0.5 cursor-help text-xs text-muted"
-      >
-        ⓘ
-      </sup>
-    )
-  }
+  {mostrarFecha && (
+    <sup
+      title={`Basado en ${tipo.toUpperCase()} = ${formatCLP(base)} al ${fmtFecha(indicatorDate)} (${sourceLabel})`}
+      class="ml-0.5 cursor-help text-xs text-muted"
+    >
+      ⓘ
+    </sup>
+  )}
 </span>

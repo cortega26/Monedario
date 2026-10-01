@@ -46,15 +46,13 @@ const webPageSchema = {
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(webPageSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
         Transparencia
       </p>
       <h1 class="mb-3 text-3xl font-bold sm:text-4xl">Cómo usamos los datos</h1>
@@ -75,12 +73,11 @@ const webPageSchema = {
         <div class="rounded-xl border border-border p-4">
           <p class="mb-1 text-xs font-semibold text-secondary uppercase">UF</p>
           <p class="text-2xl font-bold tabular-nums">
-            ${
-              ufValor.toLocaleString("es-CL", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })
-            }
+            $
+            {ufValor.toLocaleString("es-CL", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
           </p>
           <p class="mt-1 text-xs text-secondary">
             vigente al {formatEconomicDate(ufFecha)}
@@ -98,13 +95,11 @@ const webPageSchema = {
             Fuente
           </p>
           <p class="text-sm">
-            {
-              parameters.source === "live"
-                ? "En tiempo real (mindicador.cl)"
-                : parameters.source === "snapshot"
-                  ? "Snapshot actualizado automáticamente"
-                  : "Valores de referencia (fallback)"
-            }
+            {parameters.source === "live"
+              ? "En tiempo real (mindicador.cl)"
+              : parameters.source === "snapshot"
+                ? "Snapshot actualizado automáticamente"
+                : "Valores de referencia (fallback)"}
           </p>
         </div>
       </div>
@@ -118,33 +113,39 @@ const webPageSchema = {
         <div class="rounded-xl border border-border p-5">
           <p class="mb-2 font-semibold">UF (Unidad de Fomento)</p>
           <p class="text-sm leading-relaxed text-secondary">
-            <strong class="text-foreground">Origen:</strong> Banco Central de Chile.
-            La UF se recalcula diariamente a partir del IPC del mes anterior y la
-            publica el BCCh.<br />
-            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
+            <strong class="text-foreground">Origen:</strong> Banco Central de
+            Chile. La UF se recalcula diariamente a partir del IPC del mes
+            anterior y la publica el BCCh.
+            <br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través
+            de
             <a
               href="https://mindicador.cl"
               target="_blank"
               rel="noopener noreferrer"
               class="text-accent underline underline-offset-2 hover:opacity-80"
-              >mindicador.cl</a
             >
-            (agregador público de indicadores del BCCh y el SII), vía un proceso automático
-            que corre diariamente.<br />
-            <strong class="text-foreground">Frecuencia:</strong> diaria (el valor
-            cambia cada día hábil).
+              mindicador.cl
+            </a>
+            (agregador público de indicadores del BCCh y el SII), vía un proceso
+            automático que corre diariamente.
+            <br />
+            <strong class="text-foreground">Frecuencia:</strong> diaria (el
+            valor cambia cada día hábil).
           </p>
         </div>
 
         <div class="rounded-xl border border-border p-5">
           <p class="mb-2 font-semibold">UTM (Unidad Tributaria Mensual)</p>
           <p class="text-sm leading-relaxed text-secondary">
-            <strong class="text-foreground">Origen:</strong> SII — Servicio de Impuestos
-            Internos. La UTM se reajusta mensualmente por inflación.<br />
-            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
-            mindicador.cl.<br />
-            <strong class="text-foreground">Frecuencia:</strong> mensual (primer día
-            de cada mes).
+            <strong class="text-foreground">Origen:</strong> SII — Servicio de
+            Impuestos Internos. La UTM se reajusta mensualmente por inflación.
+            <br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través
+            de mindicador.cl.
+            <br />
+            <strong class="text-foreground">Frecuencia:</strong> mensual (primer
+            día de cada mes).
           </p>
         </div>
 
@@ -153,12 +154,14 @@ const webPageSchema = {
             IPC (Índice de Precios al Consumidor)
           </p>
           <p class="text-sm leading-relaxed text-secondary">
-            <strong class="text-foreground">Origen:</strong> INE — Instituto Nacional
-            de Estadísticas de Chile.<br />
-            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
-            mindicador.cl.<br />
-            <strong class="text-foreground">Frecuencia:</strong> mensual. El IPC que
-            mostramos es la
+            <strong class="text-foreground">Origen:</strong> INE — Instituto
+            Nacional de Estadísticas de Chile.
+            <br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través
+            de mindicador.cl.
+            <br />
+            <strong class="text-foreground">Frecuencia:</strong> mensual. El IPC
+            que mostramos es la
             <em>variación porcentual del período</em>, no un índice acumulado.
           </p>
         </div>
@@ -166,11 +169,13 @@ const webPageSchema = {
         <div class="rounded-xl border border-border p-5">
           <p class="mb-2 font-semibold">Dólar observado</p>
           <p class="text-sm leading-relaxed text-secondary">
-            <strong class="text-foreground">Origen:</strong> Banco Central de Chile
-            (tipo de cambio representativo de las transacciones del día anterior).<br
-            />
-            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
-            mindicador.cl.<br />
+            <strong class="text-foreground">Origen:</strong> Banco Central de
+            Chile (tipo de cambio representativo de las transacciones del día
+            anterior).
+            <br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través
+            de mindicador.cl.
+            <br />
             <strong class="text-foreground">Frecuencia:</strong> diaria.
           </p>
         </div>
@@ -178,13 +183,14 @@ const webPageSchema = {
         <div class="rounded-xl border border-border p-5">
           <p class="mb-2 font-semibold">IMM (Ingreso Mínimo Mensual)</p>
           <p class="text-sm leading-relaxed text-secondary">
-            <strong class="text-foreground">Origen:</strong> Ley de reajuste del sueldo
-            mínimo (publicada en el Diario Oficial).<br />
-            <strong class="text-foreground">Cómo la obtenemos:</strong> el IMM es
-            una
-            <em>constante gestionada</em> —no la consultamos diariamente— porque mindicador.cl
-            no la publica. Cuando cambia la ley, actualizamos el valor manualmente
-            junto con la fecha de vigencia.
+            <strong class="text-foreground">Origen:</strong> Ley de reajuste del
+            sueldo mínimo (publicada en el Diario Oficial).
+            <br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> el IMM
+            es una
+            <em>constante gestionada</em> —no la consultamos diariamente— porque
+            mindicador.cl no la publica. Cuando cambia la ley, actualizamos el
+            valor manualmente junto con la fecha de vigencia.
           </p>
         </div>
       </div>
@@ -202,25 +208,24 @@ const webPageSchema = {
           en cada visita.
         </p>
 
-        <ol
-          class="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-secondary"
-        >
+        <ol class="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-secondary">
           <li>
-            <strong class="text-foreground">Banco Central / INE / SII</strong> publican
-            los valores oficiales.
+            <strong class="text-foreground">Banco Central / INE / SII</strong>{" "}
+            publican los valores oficiales.
           </li>
           <li>
-            <strong class="text-foreground">mindicador.cl</strong> los agrega y los
-            expone vía API pública.
+            <strong class="text-foreground">mindicador.cl</strong> los agrega y
+            los expone vía API pública.
           </li>
           <li>
-            <strong class="text-foreground">Worker de Cloudflare</strong> consulta
-            la API diariamente, valida los valores (rechaza cambios implausibles),
-            y actualiza el snapshot.
+            <strong class="text-foreground">Worker de Cloudflare</strong>{" "}
+            consulta la API diariamente, valida los valores (rechaza cambios
+            implausibles), y actualiza el snapshot.
           </li>
           <li>
-            <strong class="text-foreground">Calculadoras y páginas</strong> de Monedario
-            leen el snapshot y muestran los valores con su fecha de origen.
+            <strong class="text-foreground">Calculadoras y páginas</strong> de
+            Monedario leen el snapshot y muestran los valores con su fecha de
+            origen.
           </li>
         </ol>
       </div>

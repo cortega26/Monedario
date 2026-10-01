@@ -98,11 +98,9 @@ const calculatorNextStepItems = [
           <p class="mb-3 text-sm font-medium text-secondary">
             Deudas vencidas (cada una con más de 90 días corridos)
           </p>
-          {
-            /* Excepción TD-0111: filas compuestas monto+días+acreedor que el JS
+          {/* Excepción TD-0111: filas compuestas monto+días+acreedor que el JS
               clona al agregar deudas (agregar-deuda); CalculatorField no aplica
-              a filas dinámicas con aria-label. */
-          }
+              a filas dinámicas con aria-label. */}
           <div id="deudas-container" class="space-y-3">
             <div class="deuda-row flex flex-wrap items-center gap-2">
               <input
@@ -156,8 +154,9 @@ const calculatorNextStepItems = [
           <button
             id="agregar-deuda"
             class="mt-2 text-xs text-accent hover:underline"
-            >+ Agregar otra deuda</button
           >
+            + Agregar otra deuda
+          </button>
           <p class="mt-1 text-xs text-muted">
             La regla legal no es "3 meses aproximados": cada deuda debe superar
             90 días corridos al momento de presentar la solicitud.
@@ -246,8 +245,7 @@ const calculatorNextStepItems = [
           id="calc-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- RESULTADO -->
@@ -260,12 +258,8 @@ const calculatorNextStepItems = [
           data-is-example="true"
           aria-live="polite"
         >
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Cuota renegociada (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -312,68 +306,73 @@ const calculatorNextStepItems = [
       hidden
       class="border-t border-border py-8"
       aria-live="polite"
-    >
-    </div>
+    ></div>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es la renegociación Superir?</h2>
       <p>
-        La <strong
-          >Superintendencia de Insolvencia y Reemprendimiento (Superir)</strong
-        > ofrece un procedimiento gratuito donde actúa como mediadora entre tú y tus
-        acreedores para acordar nuevas condiciones de pago. No necesitas abogado y
-        más del 93% de quienes lo intentan llegan a acuerdo.
+        La{" "}
+        <strong>
+          Superintendencia de Insolvencia y Reemprendimiento (Superir)
+        </strong>{" "}
+        ofrece un procedimiento gratuito donde actúa como mediadora entre tú y
+        tus acreedores para acordar nuevas condiciones de pago. No necesitas
+        abogado y más del 93% de quienes lo intentan llegan a acuerdo.
       </p>
       <ul>
         <li>
-          <strong>Requisito clave:</strong> 2 o más deudas vencidas hace más de 90
-          días corridos que sumen más de 80 UF en total.
+          <strong>Requisito clave:</strong> 2 o más deudas vencidas hace más de
+          90 días corridos que sumen más de 80 UF en total.
         </li>
         <li>
-          <strong>Resultado posible:</strong> cuota más baja, plazo más largo, tasa
-          menor, meses de gracia o condonación de intereses.
+          <strong>Resultado posible:</strong> cuota más baja, plazo más largo,
+          tasa menor, meses de gracia o condonación de intereses.
         </li>
         <li>
-          <strong>No aplica a:</strong> contribuyentes de primera categoría (empresas
-          con actividad comercial) en los últimos 24 meses.
+          <strong>No aplica a:</strong> contribuyentes de primera categoría
+          (empresas con actividad comercial) en los últimos 24 meses.
         </li>
         <li>
-          <strong>También bloquea:</strong> haber sido notificado de un juicio ejecutivo
-          o de una liquidación forzosa, y llegar sin la documentación requerida.
+          <strong>También bloquea:</strong> haber sido notificado de un juicio
+          ejecutivo o de una liquidación forzosa, y llegar sin la documentación
+          requerida.
         </li>
       </ul>
       <p class="text-sm text-muted">
         Esta simulación es educativa. El bloque superior revisa un filtro legal
         básico y el bloque de cuota es solo una referencia financiera. La
         admisibilidad final la decide la Superir al revisar tus antecedentes.
-        Para iniciar el trámite visita <a
+        Para iniciar el trámite visita{" "}
+        <a
           href="https://www.superir.gob.cl"
           target="_blank"
-          rel="noopener noreferrer">superir.gob.cl</a
-        >.
+          rel="noopener noreferrer"
+        >
+          superir.gob.cl
+        </a>
+        .
       </p>
       <p>
-        Antes de iniciar la solicitud, revisa la <a
+        Antes de iniciar la solicitud, revisa la{" "}
+        <a
           href={renegociacionGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de renegociacion Superir"
           data-analytics-location="calculator_explainer"
-          >guía de renegociación Superir paso a paso</a
-        >.
+        >
+          guía de renegociación Superir paso a paso
+        </a>
+        .
       </p>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Cómo afecta la renegociación Superir a mi DICOM?</h2>
       <p>
-        La renegociación ante la Superir <strong
-          >no limpia automáticamente tu historial DICOM</strong
-        >. El DICOM (Equifax/TransUnion) refleja deudas impagadas que los
-        acreedores reportan a los burós de información financiera; el acuerdo de
+        La renegociación ante la Superir{" "}
+        <strong>no limpia automáticamente tu historial DICOM</strong>. El DICOM
+        (Equifax/TransUnion) refleja deudas impagadas que los acreedores
+        reportan a los burós de información financiera; el acuerdo de
         renegociación por sí solo no borra ese registro.
       </p>
       <p>
@@ -386,26 +385,29 @@ const calculatorNextStepItems = [
       </p>
       <p>
         Tu historial en los registros comerciales se rige por la{" "}
-        <strong>Ley 19.628</strong> (artículos 17 y 18). Reglas clave: los datos de
-        deudas morosas solo pueden comunicarse si la obligación está vigente y <strong
-          >hasta 5 años desde que se hizo exigible</strong
-        >;{" "}
-        <strong
-          >una deuda pagada o extinguida no puede seguir comunicándose</strong
-        >
+        <strong>Ley 19.628</strong> (artículos 17 y 18). Reglas clave: los datos
+        de deudas morosas solo pueden comunicarse si la obligación está vigente
+        y <strong>hasta 5 años desde que se hizo exigible</strong>;{" "}
+        <strong>
+          una deuda pagada o extinguida no puede seguir comunicándose
+        </strong>
         (no existe un plazo de "5 años desde el pago"); y las deudas{" "}
-        <strong>repactadas, renegociadas o novadas</strong> con modalidad pendiente
-        tampoco pueden comunicarse. La{" "}
-        <strong>Ley 21.214 («Educación sin DICOM»)</strong> aplica específicamente
-        a deudas educacionales, no a una regla general de montos. Si tu acuerdo de
-        renegociación queda vigente, los acreedores deben actualizar tu estado en
-        el registro. Si quieres revisar tu situación actual, puedes <a
+        <strong>repactadas, renegociadas o novadas</strong> con modalidad
+        pendiente tampoco pueden comunicarse. La{" "}
+        <strong>Ley 21.214 («Educación sin DICOM»)</strong> aplica
+        específicamente a deudas educacionales, no a una regla general de
+        montos. Si tu acuerdo de renegociación queda vigente, los acreedores
+        deben actualizar tu estado en el registro. Si quieres revisar tu
+        situación actual, puedes{" "}
+        <a
           href={dicomGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia DICOM gratis"
           data-analytics-location="calculator_explainer_dicom"
-          >consultar tu DICOM gratis</a
-        >.
+        >
+          consultar tu DICOM gratis
+        </a>
+        .
       </p>
     </section>
 

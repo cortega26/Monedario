@@ -56,44 +56,40 @@ const hintId = hint && !hasSlot ? `${id}-hint` : undefined;
   >
     {label}
   </label>
-  {
-    hasSlot ? (
-      <slot />
-    ) : (
-      <input
-        type={
-          type as
-            | "text"
-            | "number"
-            | "email"
-            | "tel"
-            | "url"
-            | "password"
-            | "search"
-            | "date"
-            | "time"
-        }
-        id={id}
-        placeholder={placeholder}
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        required={required}
-        aria-describedby={hintId}
-        class:list={[
-          "w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none",
-          inputClass,
-        ]}
-        {...(inputAttrs ?? {})}
-      />
-    )
-  }
-  {
-    hint && (
-      <p id={hintId} class="mt-1 text-xs text-muted">
-        {hint}
-      </p>
-    )
-  }
+  {hasSlot ? (
+    <slot />
+  ) : (
+    <input
+      type={
+        type as
+          | "text"
+          | "number"
+          | "email"
+          | "tel"
+          | "url"
+          | "password"
+          | "search"
+          | "date"
+          | "time"
+      }
+      id={id}
+      placeholder={placeholder}
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      required={required}
+      aria-describedby={hintId}
+      class:list={[
+        "w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none",
+        inputClass,
+      ]}
+      {...(inputAttrs ?? {})}
+    />
+  )}
+  {hint && (
+    <p id={hintId} class="mt-1 text-xs text-muted">
+      {hint}
+    </p>
+  )}
 </div>

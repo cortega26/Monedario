@@ -11,41 +11,39 @@ const uniqueItems = items.filter(
 );
 ---
 
-{
-  uniqueItems.length > 0 && (
-    <section class="mt-10 rounded-2xl border border-border bg-surface-muted p-6">
-      {eyebrow && (
-        <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
-          {eyebrow}
-        </p>
-      )}
-      <h2 class="text-xl font-bold">{title}</h2>
-      <p class="mt-2 max-w-3xl text-sm leading-relaxed text-secondary">
-        {description}
+{uniqueItems.length > 0 && (
+  <section class="mt-10 rounded-2xl border border-border bg-surface-muted p-6">
+    {eyebrow && (
+      <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
+        {eyebrow}
       </p>
+    )}
+    <h2 class="text-xl font-bold">{title}</h2>
+    <p class="mt-2 max-w-3xl text-sm leading-relaxed text-secondary">
+      {description}
+    </p>
 
-      <div class="mt-5 grid gap-4 md:grid-cols-2">
-        {uniqueItems.map(item => (
-          <article class="rounded-xl border border-border bg-background p-5">
-            <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
-              {item.kind}
-            </p>
-            <h3 class="text-base font-semibold">{item.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-secondary">
-              {item.description}
-            </p>
-            <a
-              href={getPath(item.href)}
-              class="mt-4 inline-flex min-h-[24px] items-center py-1 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              data-analytics-cta="context-link"
-              data-analytics-label={item.title}
-              data-analytics-location={title}
-            >
-              {item.cta}
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      {uniqueItems.map(item => (
+        <article class="rounded-xl border border-border bg-background p-5">
+          <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
+            {item.kind}
+          </p>
+          <h3 class="text-base font-semibold">{item.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-secondary">
+            {item.description}
+          </p>
+          <a
+            href={getPath(item.href)}
+            class="mt-4 inline-flex min-h-[24px] items-center py-1 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            data-analytics-cta="context-link"
+            data-analytics-label={item.title}
+            data-analytics-location={title}
+          >
+            {item.cta}
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+)}

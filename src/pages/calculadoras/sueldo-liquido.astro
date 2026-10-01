@@ -230,10 +230,9 @@ const calculatorNextStepItems = [
             class="mt-2 hidden rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-warning"
             role="status"
           >
-            El sueldo mínimo mensual en Chile es ${
-              IMM_MENSUAL_SERVER.toLocaleString("es-CL")
-            }. El monto ingresado está por debajo del mínimo legal para jornada
-            completa.
+            El sueldo mínimo mensual en Chile es $
+            {IMM_MENSUAL_SERVER.toLocaleString("es-CL")}. El monto ingresado
+            está por debajo del mínimo legal para jornada completa.
           </div>
         </div>
 
@@ -249,9 +248,9 @@ const calculatorNextStepItems = [
         />
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Tipo de contrato</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Tipo de contrato
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -262,9 +261,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Indefinido
               </span>
             </label>
@@ -276,9 +273,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Plazo fijo / obra
               </span>
             </label>
@@ -289,9 +284,9 @@ const calculatorNextStepItems = [
         </div>
 
         <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary"
-            >Sistema de salud</label
-          >
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            Sistema de salud
+          </label>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -302,9 +297,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Fonasa (7%)
               </span>
             </label>
@@ -316,9 +309,7 @@ const calculatorNextStepItems = [
                 data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Isapre (7%+)
               </span>
             </label>
@@ -346,17 +337,15 @@ const calculatorNextStepItems = [
             data-profile-bind="afpId"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            {
-              AFP_COMMISSIONS_PERCENT.map(afp => (
-                <option
-                  value={afp.name}
-                  data-commission={String(afp.total)}
-                  selected={afp.name === "Habitat"}
-                >
-                  {afp.name} – {afp.total.toFixed(2)}%
-                </option>
-              ))
-            }
+            {AFP_COMMISSIONS_PERCENT.map(afp => (
+              <option
+                value={afp.name}
+                data-commission={String(afp.total)}
+                selected={afp.name === "Habitat"}
+              >
+                {afp.name} – {afp.total.toFixed(2)}%
+              </option>
+            ))}
           </select>
         </CalculatorField>
 
@@ -370,7 +359,9 @@ const calculatorNextStepItems = [
             class="flex w-full items-center justify-between text-sm font-medium text-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <span>Modo avanzado</span>
-            <span id="advanced-arrow" class="transition-transform">▼</span>
+            <span id="advanced-arrow" class="transition-transform">
+              ▼
+            </span>
           </button>
           <div id="advanced-fields" class="mt-4 hidden space-y-4">
             <p class="text-xs text-muted">
@@ -388,7 +379,9 @@ const calculatorNextStepItems = [
                 id="jornada-fraccion"
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               >
-                <option value="100" selected>Jornada completa (100%)</option>
+                <option value="100" selected>
+                  Jornada completa (100%)
+                </option>
                 <option value="75">3/4 jornada (75%)</option>
                 <option value="50">Media jornada (50%)</option>
                 <option value="25">1/4 jornada (25%)</option>
@@ -453,14 +446,13 @@ const calculatorNextStepItems = [
                 base imponible mensual y por lo tanto el impuesto de 2ª
                 categoría (art. 42 bis LIR).
               </p>
-              <div
-                class="mt-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-700 dark:text-blue-400"
-              >
-                <strong>Régimen A vs. Régimen B:</strong> El Régimen B reduce directamente
-                tu impuesto mensual al descontar el APV de la renta tributable. El
-                Régimen A en cambio genera un crédito fiscal del 15% que se aplica
-                en tu declaración anual de impuestos (Operación Renta), no en tu liquidación
-                mensual; ingrésalo aquí solo si cotizas bajo Régimen B.
+              <div class="mt-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-700 dark:text-blue-400">
+                <strong>Régimen A vs. Régimen B:</strong> El Régimen B reduce
+                directamente tu impuesto mensual al descontar el APV de la renta
+                tributable. El Régimen A en cambio genera un crédito fiscal del
+                15% que se aplica en tu declaración anual de impuestos
+                (Operación Renta), no en tu liquidación mensual; ingrésalo aquí
+                solo si cotizas bajo Régimen B.
               </div>
             </div>
           </div>
@@ -471,14 +463,10 @@ const calculatorNextStepItems = [
           class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
           aria-live="assertive"
-        >
-        </div>
+        ></div>
         <div class="mt-2 flex items-center justify-between gap-3 text-xs">
-          <span
-            class="inline-flex items-center gap-1.5 font-semibold text-accent"
-          >
-            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"
-            ></span>
+          <span class="inline-flex items-center gap-1.5 font-semibold text-accent">
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"></span>
             Actualizamos a medida que escribes
           </span>
           <button
@@ -493,12 +481,8 @@ const calculatorNextStepItems = [
 
       <CalculatorResultPanel headingId="resultado-heading">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Ejemplo ilustrativo — no es tu resultado
             </p>
             <p
@@ -510,99 +494,90 @@ const calculatorNextStepItems = [
           </div>
           <!-- barra apilada generada desde el motor (auditoría F08) -->
           <div class="mb-3">
-            <div
-              class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border"
-            >
-              {
-                exampleSegments.map(segment => (
-                  <div
-                    class={`h-full ${segment.tw}`}
-                    style={`width:${exampleWidth(segment.value)}`}
-                    title={`${segment.label}: ${exampleFmt(segment.value)}`}
-                  />
-                ))
-              }
+            <div class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border">
+              {exampleSegments.map(segment => (
+                <div
+                  class={`h-full ${segment.tw}`}
+                  style={`width:${exampleWidth(segment.value)}`}
+                  title={`${segment.label}: ${exampleFmt(segment.value)}`}
+                />
+              ))}
               <div
                 class="h-full"
                 style={`width:${exampleWidth(exampleNet.netSalary)};background-color:var(--color-accent-2)`}
                 title={`Líquido: ${exampleFmt(exampleNet.netSalary)}`}
-              >
-              </div>
+              ></div>
             </div>
             <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
-              {
-                exampleSegments.map(segment => (
-                  <span class="flex items-center gap-1 text-xs text-muted">
-                    <span
-                      class={`inline-block h-2 w-2 flex-shrink-0 rounded-full ${segment.tw}`}
-                    />
-                    {segment.label}{" "}
-                    {examplePct((segment.value / exampleNet.grossSalary) * 100)}
-                  </span>
-                ))
-              }
+              {exampleSegments.map(segment => (
+                <span class="flex items-center gap-1 text-xs text-muted">
+                  <span
+                    class={`inline-block h-2 w-2 flex-shrink-0 rounded-full ${segment.tw}`}
+                  />
+                  {segment.label}{" "}
+                  {examplePct((segment.value / exampleNet.grossSalary) * 100)}
+                </span>
+              ))}
               <span class="flex items-center gap-1 text-xs">
                 <span
                   class="inline-block h-2 w-2 flex-shrink-0 rounded-full"
-                  style="background-color:var(--color-accent-2)"></span>
+                  style="background-color:var(--color-accent-2)"
+                ></span>
                 <span class="font-semibold text-foreground">
                   Líquido{" "}
-                  {
-                    examplePct(
-                      (exampleNet.netSalary / exampleNet.grossSalary) * 100
-                    )
-                  }
+                  {examplePct(
+                    (exampleNet.netSalary / exampleNet.grossSalary) * 100
+                  )}
                 </span>
               </span>
             </div>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
-              <span class="text-secondary">Sueldo bruto</span><span
-                class="font-medium tabular-nums"
-                >{exampleFmt(exampleNet.grossSalary)}</span
-              >
+              <span class="text-secondary">Sueldo bruto</span>
+              <span class="font-medium tabular-nums">
+                {exampleFmt(exampleNet.grossSalary)}
+              </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary"
-                >AFP ({examplePct(exampleNet.effectiveRates.afpPercent)})</span
-              ><span class="tabular-nums"
-                >− {exampleFmt(exampleNet.deductions.afp)}</span
-              >
+              <span class="text-secondary">
+                AFP ({examplePct(exampleNet.effectiveRates.afpPercent)})
+              </span>
+              <span class="tabular-nums">
+                − {exampleFmt(exampleNet.deductions.afp)}
+              </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary"
-                >Salud ({
-                  examplePct(exampleNet.effectiveRates.healthPercent)
-                })</span
-              ><span class="tabular-nums"
-                >− {exampleFmt(exampleNet.deductions.health)}</span
-              >
+              <span class="text-secondary">
+                Salud ({examplePct(exampleNet.effectiveRates.healthPercent)})
+              </span>
+              <span class="tabular-nums">
+                − {exampleFmt(exampleNet.deductions.health)}
+              </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary"
-                >Seg. cesantía ({
-                  examplePct(
-                    exampleNet.effectiveRates.unemploymentInsurancePercent
-                  )
-                })</span
-              ><span class="tabular-nums"
-                >− {
-                  exampleFmt(exampleNet.deductions.unemploymentInsurance)
-                }</span
-              >
+              <span class="text-secondary">
+                Seg. cesantía (
+                {examplePct(
+                  exampleNet.effectiveRates.unemploymentInsurancePercent
+                )}
+                )
+              </span>
+              <span class="tabular-nums">
+                − {exampleFmt(exampleNet.deductions.unemploymentInsurance)}
+              </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Imp. 2ª categoría</span><span
-                class="tabular-nums"
-                >− {exampleFmt(exampleNet.deductions.tax)}</span
-              >
+              <span class="text-secondary">Imp. 2ª categoría</span>
+              <span class="tabular-nums">
+                − {exampleFmt(exampleNet.deductions.tax)}
+              </span>
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo para sueldo bruto {exampleFmt(EXAMPLE_GROSS)} con Fonasa y Habitat,
-            generado con el mismo motor de cálculo. Ingresa tus datos para calcular
-            tu caso real.
+            Ejemplo para sueldo bruto {exampleFmt(EXAMPLE_GROSS)} con Fonasa y
+            Habitat, generado con el mismo motor de cálculo. Ingresa tus datos
+            para calcular tu caso real.
           </p>
         </div>
         <div
@@ -612,23 +587,20 @@ const calculatorNextStepItems = [
           data-imm={String(economicParameters.imm ?? DEFAULT_IMM)}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
         >
-          {
-            ` · UTM usada: $${economicParameters.utm.toLocaleString("es-CL")} · IMM: $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}.`
-          }
+          {` · UTM usada: $${economicParameters.utm.toLocaleString("es-CL")} · IMM: $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}.`}
         </CalculatorDataFreshness>
         <p class="mt-1 text-xs text-muted">
-          Sueldo mínimo (IMM): ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}{
-            immEffectiveDateLabel
-              ? ` vigente desde ${immEffectiveDateLabel}`
-              : ""
-          }.
+          Sueldo mínimo (IMM): ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}
+          {immEffectiveDateLabel
+            ? ` vigente desde ${immEffectiveDateLabel}`
+            : ""}
+          .
         </p>
         <div
           id="result-actions"
@@ -650,12 +622,10 @@ const calculatorNextStepItems = [
               stroke-linecap="round"
               stroke-linejoin="round"
               aria-hidden="true"
-              ><path
-                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-              ></path><path
-                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-              ></path></svg
             >
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
             Copiar enlace con mis datos
           </button>
           <button
@@ -674,10 +644,10 @@ const calculatorNextStepItems = [
               stroke-linecap="round"
               stroke-linejoin="round"
               aria-hidden="true"
-              ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path
-                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-              ></path></svg
             >
+              <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            </svg>
             Copiar resumen
           </button>
         </div>
@@ -719,52 +689,63 @@ const calculatorNextStepItems = [
       </p>
       <ul>
         <li>
-          <strong>AFP (10% + comisión):</strong> Entre 10.46% y 11.45% según tu AFP.
-          El 10% va a tu fondo personal, el resto es la comisión del servicio.
+          <strong>AFP (10% + comisión):</strong> Entre 10.46% y 11.45% según tu
+          AFP. El 10% va a tu fondo personal, el resto es la comisión del
+          servicio.
         </li>
         <li>
-          <strong>Salud (7%):</strong> Va a Fonasa o tu Isapre para cubrir atención
-          médica.
+          <strong>Salud (7%):</strong> Va a Fonasa o tu Isapre para cubrir
+          atención médica.
         </li>
         <li>
-          <strong>Seguro de cesantía (0.6%):</strong> Fondo para periodos de desempleo.
-          En contrato a plazo fijo u obra, normalmente el aporte del trabajador es
-          0%.
+          <strong>Seguro de cesantía (0.6%):</strong> Fondo para periodos de
+          desempleo. En contrato a plazo fijo u obra, normalmente el aporte del
+          trabajador es 0%.
         </li>
         <li>
-          <strong>Impuesto de segunda categoría:</strong> Solo aplica si tu sueldo
-          supera el primer tramo exento (~{
-            "$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")
-          }). Es progresivo.
+          <strong>Impuesto de segunda categoría:</strong> Solo aplica si tu
+          sueldo supera el primer tramo exento (~
+          {"$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")}). Es
+          progresivo.
         </li>
       </ul>
       <p class="text-sm text-muted">
         Esta calculadora entrega valores referenciales. Para información oficial
-        consulta la <a
+        consulta la{" "}
+        <a
           href="https://www.spensiones.cl"
           target="_blank"
-          rel="noopener noreferrer">Superintendencia de Pensiones</a
-        > y el <a
-          href="https://www.sii.cl"
-          target="_blank"
-          rel="noopener noreferrer">SII</a
-        >. El cálculo aplica topes previsionales mensuales de referencia para
+          rel="noopener noreferrer"
+        >
+          Superintendencia de Pensiones
+        </a>{" "}
+        y el{" "}
+        <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer">
+          SII
+        </a>
+        . El cálculo aplica topes previsionales mensuales de referencia para
         AFP/salud y AFC vigentes al momento del build.
       </p>
       <p>
-        Si quieres el paso a paso completo de cada descuento, revisa la <a
+        Si quieres el paso a paso completo de cada descuento, revisa la{" "}
+        <a
           href={salaryGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de sueldo liquido en Chile"
           data-analytics-location="calculator_explainer"
-          >guía de sueldo líquido en Chile</a
-        >. Si tu liquidación incluye gratificación mensualizada, consulta la <a
+        >
+          guía de sueldo líquido en Chile
+        </a>
+        . Si tu liquidación incluye gratificación mensualizada, consulta la{" "}
+        <a
           href="/posts/gratificacion-legal-chile/"
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de gratificacion legal"
           data-analytics-location="calculator_explainer"
-          >guía de gratificación legal</a
-        > para entender el tope de 4,75 IMM.
+        >
+          guía de gratificación legal
+        </a>{" "}
+        para entender el tope de 4,75 IMM.
       </p>
     </CalculatorExplainerSection>
 
@@ -776,14 +757,11 @@ const calculatorNextStepItems = [
 
       <div class="space-y-2">
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cómo se calcula el sueldo líquido en Chile?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Se parte del sueldo bruto y se descuentan las cotizaciones
@@ -795,14 +773,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cuánto descuenta la AFP de mi sueldo?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese
@@ -813,14 +788,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué es el sueldo imponible?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Es la base sobre la que se calculan AFP, salud y seguro de cesantía.
@@ -832,14 +804,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cuánto me descuentan de salud?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y
@@ -849,14 +818,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿El seguro de cesantía se descuenta en todos los contratos?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a
@@ -867,35 +833,29 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Desde qué sueldo pago impuesto de segunda categoría?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Solo si tu renta tributable mensual supera el primer tramo exento de
-            la tabla del SII. En 2026 ese umbral es aproximadamente <strong
-              >{
-                "$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")
-              }</strong
-            >. El impuesto es progresivo: solo paga la parte del sueldo que
+            la tabla del SII. En 2026 ese umbral es aproximadamente{" "}
+            <strong>
+              {"$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")}
+            </strong>
+            . El impuesto es progresivo: solo paga la parte del sueldo que
             supera cada tramo.
           </div>
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cómo calculo el bruto si sé cuánto quiero recibir?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Usa el modo "Líquido → Bruto" de esta calculadora: ingresa el monto
@@ -906,14 +866,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué incluye la gratificación en el sueldo?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             La gratificación legal en Chile puede pagarse mensualizada (25% de
@@ -925,14 +882,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Las horas extra se descuentan de AFP y salud?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Sí. Las horas extra son remuneración imponible: se suman a la base
@@ -945,18 +899,13 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿La Ley 40h cambia mi sueldo líquido?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
-          <div
-            class="space-y-2 border-t border-border px-4 py-3 text-sm text-secondary"
-          >
+          <div class="space-y-2 border-t border-border px-4 py-3 text-sm text-secondary">
             <p>
               No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal
               ordinaria de 45 a 42 horas semanales en abril de 2026 (con una
@@ -987,14 +936,11 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué AFP cobra menos comisión en Chile?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             AFP Uno tiene la comisión más baja (0,46%), con un descuento total
@@ -1008,31 +954,31 @@ const calculatorNextStepItems = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cuánto me corresponde de gratificación legal mensual?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el
-            tope legal es el menor valor entre el <strong
-              >25% de tu remuneración mensual</strong
-            > y <strong>${GRATI_CAP_SERVER.toLocaleString("es-CL")}</strong>
-            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = ${
-              IMM_MENSUAL_SERVER.toLocaleString("es-CL")
-            }). Ejemplo: con bruto de $900.000 el máximo legal es ${
-              GRATI_CAP_SERVER.toLocaleString("es-CL")
-            }; con bruto de $600.000 sería $150.000. Esta calculadora muestra el
-            estimado en el resultado cuando calculas en modo Bruto → Líquido.
-            Para el detalle completo de modalidades y obligaciones, revisa la <a
+            tope legal es el menor valor entre el{" "}
+            <strong>25% de tu remuneración mensual</strong> y{" "}
+            <strong>${GRATI_CAP_SERVER.toLocaleString("es-CL")}</strong>
+            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = $
+            {IMM_MENSUAL_SERVER.toLocaleString("es-CL")}). Ejemplo: con bruto de
+            $900.000 el máximo legal es $
+            {GRATI_CAP_SERVER.toLocaleString("es-CL")}; con bruto de $600.000
+            sería $150.000. Esta calculadora muestra el estimado en el resultado
+            cuando calculas en modo Bruto → Líquido. Para el detalle completo de
+            modalidades y obligaciones, revisa la{" "}
+            <a
               href="/posts/gratificacion-legal-chile/"
               class="underline underline-offset-2 hover:text-foreground"
-              >guía de gratificación legal</a
-            >.
+            >
+              guía de gratificación legal
+            </a>
+            .
           </div>
         </details>
       </div>
@@ -1102,11 +1048,9 @@ const calculatorNextStepItems = [
         },
       ]}
     />
-    {
-      sueldoCalculatorSections.map(section => (
-        <ContextLinkSection {...section} />
-      ))
-    }
+    {sueldoCalculatorSections.map(section => (
+      <ContextLinkSection {...section} />
+    ))}
     <NextSteps
       currentHref="/calculadoras/sueldo-liquido/"
       items={calculatorNextStepItems}

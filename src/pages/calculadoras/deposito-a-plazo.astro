@@ -135,8 +135,7 @@ const dapFaqs = [
           class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
           aria-live="assertive"
-        >
-        </div>
+        ></div>
         <button
           id="calcBtn"
           class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
@@ -152,12 +151,8 @@ const dapFaqs = [
         disclaimer
       >
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Monto al vencimiento (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$5.123.288</p>
@@ -193,19 +188,20 @@ const dapFaqs = [
         calcula proporcionalmente al plazo en días.
       </p>
       <p>
-        <strong>Fórmula:</strong> Interés bruto = Monto × (TIR% / 100) × (días / 365).
+        <strong>Fórmula:</strong> Interés bruto = Monto × (TIR% / 100) × (días /
+        365).
       </p>
       <p>
-        Para una persona natural residente, el banco <strong
-          >no practica retención</strong
-        >{" "}
-        sobre los intereses: te paga el interés completo al vencimiento y la tributación
-        se resuelve en tu <strong>declaración anual de renta</strong>
-        (Impuesto Global Complementario). Ahí aplica el tramo exento general de 13,5
-        UTA y, si solo tienes rentas de sueldo o de pequeño contribuyente, una exención
-        de hasta <strong>20 UTM</strong> (SII, FAQ 001.140.2738). La retención del
-        4% del art. 59 inciso 2° N°1 letras a) y g) LIR corresponde al Impuesto Adicional
-        de personas sin domicilio ni residencia en Chile.
+        Para una persona natural residente, el banco{" "}
+        <strong>no practica retención</strong> sobre los intereses: te paga el
+        interés completo al vencimiento y la tributación se resuelve en tu{" "}
+        <strong>declaración anual de renta</strong>
+        (Impuesto Global Complementario). Ahí aplica el tramo exento general de
+        13,5 UTA y, si solo tienes rentas de sueldo o de pequeño contribuyente,
+        una exención de hasta <strong>20 UTM</strong> (SII, FAQ 001.140.2738).
+        La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR
+        corresponde al Impuesto Adicional de personas sin domicilio ni
+        residencia en Chile.
       </p>
       <p>
         Para comparar si conviene un DAP en UF versus pesos, revisa el artículo
@@ -214,8 +210,10 @@ const dapFaqs = [
           data-analytics-cta="calculator-guide"
           data-analytics-label="Articulo DAP UF vs pesos"
           data-analytics-location="calculator_explainer"
-          >Depósito a plazo: UF vs pesos</a
-        >.
+        >
+          Depósito a plazo: UF vs pesos
+        </a>
+        .
       </p>
       <p class="text-sm text-muted">
         Esta calculadora es de referencia. El impuesto real depende de tu
@@ -230,14 +228,11 @@ const dapFaqs = [
       <h2 class="mb-4 text-xl font-semibold">Preguntas frecuentes</h2>
       <div class="space-y-2">
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cómo se calcula el interés de un DAP?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Interés bruto = Monto × (TIR% ÷ 100) × (días ÷ 365). Ejemplo:
@@ -247,14 +242,11 @@ const dapFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Los DAP pagan impuesto en Chile?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Los intereses se suman a tus rentas del año y tributan en el
@@ -269,14 +261,11 @@ const dapFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué es la TIR en un DAP?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             La TIR (Tasa Interna de Retorno) anual es la tasa de rendimiento
@@ -287,14 +276,11 @@ const dapFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Conviene un DAP en UF o en pesos?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Depende de la inflación esperada. Un DAP en UF protege el capital de

@@ -99,9 +99,7 @@ const calculatorNextStepItems = [
       description="Estima un caso base de salida laboral: sueldo pendiente, feriado proporcional, aviso previo e indemnización por años de servicio. No reemplaza la revisión del documento real ni un caso judicial."
     />
 
-    <section
-      class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
-    >
+    <section class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
       <div
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
@@ -162,20 +160,20 @@ const calculatorNextStepItems = [
             id="termination-cause"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="necesidad"
-              >Necesidades de la empresa (art. 161)</option
-            >
+            <option value="necesidad">
+              Necesidades de la empresa (art. 161)
+            </option>
             <option value="mutuo-acuerdo">Mutuo acuerdo</option>
             <option value="renuncia">Renuncia voluntaria</option>
-            <option value="disciplinaria"
-              >Despido por causal disciplinaria</option
-            >
-            <option value="vencimiento-obra"
-              >Vencimiento de plazo / fin de obra</option
-            >
-            <option value="judicial"
-              >Despido injustificado declarado judicialmente</option
-            >
+            <option value="disciplinaria">
+              Despido por causal disciplinaria
+            </option>
+            <option value="vencimiento-obra">
+              Vencimiento de plazo / fin de obra
+            </option>
+            <option value="judicial">
+              Despido injustificado declarado judicialmente
+            </option>
           </select>
         </CalculatorField>
 
@@ -190,15 +188,15 @@ const calculatorNextStepItems = [
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
             <option value="">No especificado — lo fija el tribunal</option>
-            <option value="improcedente-161"
-              >Improcedente del art. 161 (recargo 30%)</option
-            >
-            <option value="injustificada-159"
-              >Injustificada del art. 159 o sin causal (recargo 50%)</option
-            >
-            <option value="indebida-160"
-              >Indebida del art. 160 (recargo 80%)</option
-            >
+            <option value="improcedente-161">
+              Improcedente del art. 161 (recargo 30%)
+            </option>
+            <option value="injustificada-159">
+              Injustificada del art. 159 o sin causal (recargo 50%)
+            </option>
+            <option value="indebida-160">
+              Indebida del art. 160 (recargo 80%)
+            </option>
           </select>
         </CalculatorField>
 
@@ -207,8 +205,7 @@ const calculatorNextStepItems = [
           data-uf={String(economicParameters.uf)}
           class="hidden"
           aria-hidden="true"
-        >
-        </div>
+        ></div>
 
         <CalculatorRadioGroup
           legend="¿Te avisaron con 30 días de anticipación?"
@@ -272,18 +269,13 @@ const calculatorNextStepItems = [
           id="finiquito-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <CalculatorResultPanel title="Estimación orientativa" disclaimer>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Total estimado (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$3.600.000</p>
@@ -352,33 +344,40 @@ const calculatorNextStepItems = [
         variables remuneracionales y controversias legales.
       </p>
       <p>
-        Para revisar la lógica completa, abre la <a
+        Para revisar la lógica completa, abre la{" "}
+        <a
           href={finiquitoGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de finiquito"
           data-analytics-location="calculator_explainer"
-          >guía de finiquito e indemnizaciones</a
-        >. Si además quedaste sin trabajo, complementa con la guía de <a
+        >
+          guía de finiquito e indemnizaciones
+        </a>
+        . Si además quedaste sin trabajo, complementa con la guía de{" "}
+        <a
           href={cesantiaGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia de seguro de cesantia"
           data-analytics-location="calculator_explainer_secondary"
-          >seguro de cesantía</a
-        >.
+        >
+          seguro de cesantía
+        </a>
+        .
       </p>
 
       <h2>Vacaciones proporcionales (art. 71 CT)</h2>
       <p>
         Al término de la relación laboral, el trabajador tiene derecho al pago
         del feriado proporcional por los días trabajados desde el último ciclo
-        completo de vacaciones. La fórmula es: <strong
-          >1,25 días hábiles × meses trabajados</strong
-        > desde el último ciclo. El valor diario se calcula dividiendo la última remuneración
+        completo de vacaciones. La fórmula es:{" "}
+        <strong>1,25 días hábiles × meses trabajados</strong> desde el último
+        ciclo. El valor diario se calcula dividiendo la última remuneración
         mensual por 30.
       </p>
       <p>
-        Usa el modo <strong>Vacaciones proporcionales</strong> de esta calculadora
-        para estimar solo ese componente sin ingresar todos los datos del finiquito.
+        Usa el modo <strong>Vacaciones proporcionales</strong> de esta
+        calculadora para estimar solo ese componente sin ingresar todos los
+        datos del finiquito.
       </p>
     </CalculatorExplainerSection>
 

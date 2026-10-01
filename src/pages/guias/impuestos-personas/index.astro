@@ -95,7 +95,7 @@ const rutasPrincipales = [
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
@@ -124,25 +124,23 @@ const rutasPrincipales = [
         es la devolución o el líquido de honorarios.
       </p>
       <ul class="grid gap-4">
-        {
-          rutasPrincipales.map(item => (
-            <li class="rounded-xl border border-border p-5">
-              {item.esSubhub && (
-                <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
-                  Centro de recursos
-                </p>
-              )}
-              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
-              <a
-                href={item.href}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {item.esSubhub ? "Ir al centro OR" : "Resolver esta duda"}
-              </a>
-            </li>
-          ))
-        }
+        {rutasPrincipales.map(item => (
+          <li class="rounded-xl border border-border p-5">
+            {item.esSubhub && (
+              <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
+                Centro de recursos
+              </p>
+            )}
+            <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+            <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+            <a
+              href={item.href}
+              class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {item.esSubhub ? "Ir al centro OR" : "Resolver esta duda"}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
 
@@ -200,25 +198,23 @@ const rutasPrincipales = [
     >
       <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
       <div class="grid gap-4 md:grid-cols-2">
-        {
-          impuestosPersonasCalcCards.map(card => (
-            <article class="rounded-2xl border border-border bg-surface-muted p-5">
-              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {card.kind}
-              </p>
-              <h3 class="text-lg font-semibold">{card.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-secondary">
-                {card.description}
-              </p>
-              <a
-                href={card.href}
-                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {card.cta}
-              </a>
-            </article>
-          ))
-        }
+        {impuestosPersonasCalcCards.map(card => (
+          <article class="rounded-2xl border border-border bg-surface-muted p-5">
+            <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+              {card.kind}
+            </p>
+            <h3 class="text-lg font-semibold">{card.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-secondary">
+              {card.description}
+            </p>
+            <a
+              href={card.href}
+              class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {card.cta}
+            </a>
+          </article>
+        ))}
       </div>
     </section>
 

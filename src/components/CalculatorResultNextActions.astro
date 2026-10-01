@@ -19,43 +19,41 @@ const { actions, calculatorSlug } = Astro.props;
 >
   <p class="mb-3 text-sm font-medium text-secondary">¿Qué hacer ahora?</p>
   <div class="flex flex-wrap gap-2">
-    {
-      actions.map(action =>
-        action.type === "print" ? (
-          <button
-            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
-            data-analytics-cta="result-next-action"
-            data-analytics-label={action.label}
-            data-analytics-location="calculator_result_next_actions"
-            data-action-type="print"
-          >
-            → {action.label}
-          </button>
-        ) : action.type === "share" ? (
-          <button
-            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
-            data-analytics-cta="result-next-action"
-            data-analytics-label={action.label}
-            data-analytics-location="calculator_result_next_actions"
-            data-action-type="share"
-          >
-            → {action.label}
-          </button>
-        ) : (
-          <a
-            href={action.href}
-            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
-            data-analytics-cta="result-next-action"
-            data-analytics-label={action.label}
-            data-analytics-location="calculator_result_next_actions"
-            data-action-type={action.type}
-            data-action-href={action.href}
-          >
-            → {action.label}
-          </a>
-        )
+    {actions.map(action =>
+      action.type === "print" ? (
+        <button
+          class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+          data-analytics-cta="result-next-action"
+          data-analytics-label={action.label}
+          data-analytics-location="calculator_result_next_actions"
+          data-action-type="print"
+        >
+          → {action.label}
+        </button>
+      ) : action.type === "share" ? (
+        <button
+          class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+          data-analytics-cta="result-next-action"
+          data-analytics-label={action.label}
+          data-analytics-location="calculator_result_next_actions"
+          data-action-type="share"
+        >
+          → {action.label}
+        </button>
+      ) : (
+        <a
+          href={action.href}
+          class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+          data-analytics-cta="result-next-action"
+          data-analytics-label={action.label}
+          data-analytics-location="calculator_result_next_actions"
+          data-action-type={action.type}
+          data-action-href={action.href}
+        >
+          → {action.label}
+        </a>
       )
-    }
+    )}
   </div>
 </div>
 
