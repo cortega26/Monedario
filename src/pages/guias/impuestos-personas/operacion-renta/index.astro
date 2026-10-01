@@ -134,21 +134,19 @@ const faqSchema = {
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(articleSchema)}
-  />
+  ></script>
   <script
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(faqSchema)}
-  />
+  ></script>
   <Header />
   <Breadcrumb />
 
   <main id="main-content" class="app-layout">
     <!-- HERO -->
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
-      >
+      <p class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
         Impuestos para personas
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
@@ -163,16 +161,15 @@ const faqSchema = {
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           orientación inicial y preguntas frecuentes
-        </a>.
+        </a>
+        .
       </p>
     </section>
 
     <!-- RESPUESTA RÁPIDA (detalle en el centro) -->
     <section class="border-b border-border py-8">
       <div class="rounded-xl border border-accent/30 bg-accent/5 p-6">
-        <p
-          class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
-        >
+        <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
           Respuesta rápida
         </p>
         <h2 class="mb-3 text-xl font-bold">¿Debo declarar la renta en 2026?</h2>
@@ -197,9 +194,7 @@ const faqSchema = {
     <!-- CALCULADORA CTA -->
     <section class="border-b border-border py-8">
       <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
-        <p
-          class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase"
-        >
+        <p class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
           Herramienta
         </p>
         <h2 class="mb-2 text-xl font-bold">Calculadora Operación Renta</h2>
@@ -231,7 +226,8 @@ const faqSchema = {
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           orientación inicial de Operación Renta
-        </a>.
+        </a>
+        .
       </p>
     </section>
 
@@ -247,7 +243,8 @@ const faqSchema = {
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           orientación inicial
-        </a>.
+        </a>
+        .
       </p>
     </section>
 
@@ -255,37 +252,33 @@ const faqSchema = {
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Elige tu situación específica</h2>
       <ul class="grid gap-4 sm:grid-cols-2">
-        {
-          subcasos.map(item => (
-            <li class="rounded-xl border border-border p-5">
-              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
-              <a
-                href={item.href}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                {item.cta}
-              </a>
-            </li>
-          ))
-        }
+        {subcasos.map(item => (
+          <li class="rounded-xl border border-border p-5">
+            <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+            <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+            <a
+              href={item.href}
+              class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {item.cta}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
 
     <!-- FECHAS CLAVE (calendario completo en el centro) -->
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Fechas clave 2026</h2>
-      <ul
-        class="mb-4 max-w-3xl list-disc space-y-2 pl-6 text-sm text-secondary"
-      >
+      <ul class="mb-4 max-w-3xl list-disc space-y-2 pl-6 text-sm text-secondary">
         <li>
           Declaración por internet (F22): hasta el{" "}
           <strong>8 de mayo de 2026</strong>.
         </li>
         <li>
-          Devoluciones: desde el <strong>29 de abril</strong> según el tramo de presentación
-          (9–23 de abril → 15 de mayo; 24 de abril–8 de mayo → 27 de mayo; sin cuenta
-          bancaria → cheque el 29 de mayo).
+          Devoluciones: desde el <strong>29 de abril</strong> según el tramo de
+          presentación (9–23 de abril → 15 de mayo; 24 de abril–8 de mayo → 27
+          de mayo; sin cuenta bancaria → cheque el 29 de mayo).
         </li>
         <li>
           Registro de cuenta bancaria en TGR: hazlo antes de tu fecha de pago
@@ -305,15 +298,19 @@ const faqSchema = {
           target="_blank"
           rel="noopener noreferrer"
           class="text-accent underline underline-offset-4 hover:opacity-80"
-          >sii.cl</a
-        > y{" "}
+        >
+          sii.cl
+        </a>{" "}
+        y{" "}
         <a
           href="https://pagos.tgr.cl"
           target="_blank"
           rel="noopener noreferrer"
           class="text-accent underline underline-offset-4 hover:opacity-80"
-          >tgr.cl</a
-        >.
+        >
+          tgr.cl
+        </a>
+        .
       </p>
     </section>
 
@@ -332,7 +329,8 @@ const faqSchema = {
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           checklist del F22
-        </a>.
+        </a>
+        .
       </p>
     </section>
 
@@ -351,7 +349,8 @@ const faqSchema = {
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           orientación inicial
-        </a>.
+        </a>
+        .
       </p>
       <p class="mt-4 text-xs text-secondary">
         Esta guía describe el procedimiento general. No es asesoría tributaria.
@@ -367,9 +366,9 @@ const faqSchema = {
       </h2>
       <p class="mb-4 text-sm text-secondary">
         Si emitiste boletas de honorarios en 2025, cada boleta tuvo una
-        retención del <strong>14,5%</strong> que tu cliente envió directamente al
-        SII como pago provisional mensual (PPM), según la tasa vigente establecida
-        por la Ley 21.133.
+        retención del <strong>14,5%</strong> que tu cliente envió directamente
+        al SII como pago provisional mensual (PPM), según la tasa vigente
+        establecida por la Ley 21.133.
       </p>
       <div class="mb-4 rounded-lg border border-border p-5">
         <p class="mb-2 text-sm font-semibold">Ejemplo conceptual</p>
@@ -393,14 +392,12 @@ const faqSchema = {
     <section class="border-b border-border py-8">
       <h2 class="mb-6 text-2xl font-bold">Preguntas frecuentes</h2>
       <div class="space-y-4">
-        {
-          faqs.map(faq => (
-            <div class="rounded-xl border border-border p-5">
-              <p class="mb-2 text-sm font-semibold">{faq.q}</p>
-              <p class="text-sm text-secondary">{faq.a}</p>
-            </div>
-          ))
-        }
+        {faqs.map(faq => (
+          <div class="rounded-xl border border-border p-5">
+            <p class="mb-2 text-sm font-semibold">{faq.q}</p>
+            <p class="text-sm text-secondary">{faq.a}</p>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -447,20 +444,19 @@ const faqSchema = {
         <h2 class="mb-2 text-xl font-bold">Qué cambió en 2026</h2>
         <p class="text-sm text-secondary">
           La retención de honorarios para boletas emitidas en 2025 es{" "}
-          <strong>14,5%</strong> (Ley 21.133); desde el 1 de enero de 2026 sube a{
-            " "
-          }
-          <strong>15,25%</strong>. El plazo de declaración online cambió al <strong
-            >8 de mayo de 2026</strong
-          > (en campañas anteriores era el 30 de abril). Verifica las tablas de impuesto
-          y topes de UTM vigentes en{" "}
+          <strong>14,5%</strong> (Ley 21.133); desde el 1 de enero de 2026 sube
+          a <strong>15,25%</strong>. El plazo de declaración online cambió al{" "}
+          <strong>8 de mayo de 2026</strong> (en campañas anteriores era el 30
+          de abril). Verifica las tablas de impuesto y topes de UTM vigentes en{" "}
           <a
             href="https://www.sii.cl"
             target="_blank"
             rel="noopener noreferrer"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-            >sii.cl</a
-          >.
+          >
+            sii.cl
+          </a>
+          .
         </p>
         <p class="mt-2 text-xs text-secondary">
           Última actualización: 2026-09-29. Fuentes: SII y TGR, campaña

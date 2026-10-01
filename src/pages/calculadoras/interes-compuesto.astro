@@ -147,8 +147,7 @@ const interesCompuestoFaqs = [
           class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
           aria-live="assertive"
-        >
-        </div>
+        ></div>
         <button
           id="calcBtn"
           class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
@@ -164,12 +163,8 @@ const interesCompuestoFaqs = [
         disclaimer
       >
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Monto final (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$2.707.041</p>
@@ -212,8 +207,10 @@ const interesCompuestoFaqs = [
               <th class="py-2 font-medium text-secondary">Interés acumulado</th>
             </tr>
           </thead>
-          <tbody id="tabla-evolucion-body" class="divide-y divide-border">
-          </tbody>
+          <tbody
+            id="tabla-evolucion-body"
+            class="divide-y divide-border"
+          ></tbody>
         </table>
       </div>
     </section>
@@ -231,8 +228,8 @@ const interesCompuestoFaqs = [
       </p>
       <p>
         La fórmula base es: <strong>Monto = Capital × (1 + r/n)^(n×t)</strong>,
-        donde <em>r</em> es la tasa anual, <em>n</em> la frecuencia de capitalización
-        y <em>t</em> el período en años.
+        donde <em>r</em> es la tasa anual, <em>n</em> la frecuencia de
+        capitalización y <em>t</em> el período en años.
       </p>
       <p>
         La frecuencia de capitalización importa: capitalizar mensualmente (n=12)
@@ -241,13 +238,16 @@ const interesCompuestoFaqs = [
       </p>
       <p>
         Para ver el poder del interés compuesto en un caso concreto para Chile,
-        revisa el artículo <a
+        revisa el artículo{" "}
+        <a
           href="/posts/el-poder-del-interes-compuesto/"
           data-analytics-cta="calculator-guide"
           data-analytics-label="Articulo interes compuesto"
           data-analytics-location="calculator_explainer"
-          >El poder del interés compuesto</a
-        >.
+        >
+          El poder del interés compuesto
+        </a>
+        .
       </p>
       <p class="text-sm text-muted">
         Esta calculadora muestra crecimiento nominal sin descontar inflación ni
@@ -263,14 +263,11 @@ const interesCompuestoFaqs = [
       <h2 class="mb-4 text-xl font-semibold">Preguntas frecuentes</h2>
       <div class="space-y-2">
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué es el interés compuesto?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             El interés compuesto es el interés que se calcula sobre el capital
@@ -281,14 +278,11 @@ const interesCompuestoFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Cómo se calcula el monto final?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Monto final = Capital × (1 + tasa/n)^(n × años), donde "tasa" es la
@@ -298,14 +292,11 @@ const interesCompuestoFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Qué frecuencia de capitalización conviene elegir?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             A mayor frecuencia, mayor monto final. La capitalización mensual
@@ -317,14 +308,11 @@ const interesCompuestoFaqs = [
         </details>
 
         <details class="group rounded-lg border border-border">
-          <summary
-            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
-          >
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden">
             ¿Esta calculadora incluye inflación o impuestos?
-            <span
-              class="text-xs text-muted transition-transform group-open:rotate-180"
-              >▼</span
-            >
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">
+              ▼
+            </span>
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             No. La calculadora muestra el crecimiento nominal del capital, sin

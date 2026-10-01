@@ -51,7 +51,9 @@ const pageDescription =
   >
     <h1 slot="title" transition:name={tag}>{`Etiqueta: ${tag}`}</h1>
     <ul>
-      {page.data.map(data => <Card {...data} />)}
+      {page.data.map(data => (
+        <Card {...data} />
+      ))}
     </ul>
   </Main>
 

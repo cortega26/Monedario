@@ -129,17 +129,14 @@ const calculatorNextStepItems = [
           id="imponible-error"
           role="alert"
           class="mt-1 hidden text-xs text-danger"
-        >
-        </p>
+        ></p>
       </div>
 
       <!-- TABLA AFP -->
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
-            <tr
-              class="border-b border-border text-left text-xs font-semibold text-muted uppercase"
-            >
+            <tr class="border-b border-border text-left text-xs font-semibold text-muted uppercase">
               <th class="pr-4 pb-2">AFP</th>
               <th class="pr-4 pb-2 text-right">Comisión</th>
               <th class="pr-4 pb-2 text-right">Tasa total</th>
@@ -152,52 +149,50 @@ const calculatorNextStepItems = [
             </tr>
           </thead>
           <tbody id="afp-table-body" aria-live="polite">
-            {
-              AFP_LIST.map(afp => {
-                const isCheapest = afp.commission === cheapest.commission;
-                return (
-                  <tr
-                    data-total={afp.total}
-                    data-commission={afp.commission}
-                    class:list={[
-                      "border-b border-border/50 transition-colors last:border-0",
-                      { "bg-accent/5": isCheapest },
-                    ]}
+            {AFP_LIST.map(afp => {
+              const isCheapest = afp.commission === cheapest.commission;
+              return (
+                <tr
+                  data-total={afp.total}
+                  data-commission={afp.commission}
+                  class:list={[
+                    "border-b border-border/50 transition-colors last:border-0",
+                    { "bg-accent/5": isCheapest },
+                  ]}
+                >
+                  <td class="py-3 pr-4">
+                    <span class="font-semibold">{afp.name}</span>
+                    {isCheapest && (
+                      <span class="ml-2 rounded-full bg-accent/15 px-2 py-0.5 text-xs font-medium text-accent">
+                        más barata
+                      </span>
+                    )}
+                  </td>
+                  <td class="py-3 pr-4 text-right font-mono">
+                    {afp.commission.toFixed(2)}%
+                  </td>
+                  <td class="py-3 pr-4 text-right font-mono text-secondary">
+                    {afp.total.toFixed(2)}%
+                  </td>
+                  <td
+                    class="py-3 pr-4 text-right font-mono"
+                    data-cell="mensual"
                   >
-                    <td class="py-3 pr-4">
-                      <span class="font-semibold">{afp.name}</span>
-                      {isCheapest && (
-                        <span class="ml-2 rounded-full bg-accent/15 px-2 py-0.5 text-xs font-medium text-accent">
-                          más barata
-                        </span>
-                      )}
-                    </td>
-                    <td class="py-3 pr-4 text-right font-mono">
-                      {afp.commission.toFixed(2)}%
-                    </td>
-                    <td class="py-3 pr-4 text-right font-mono text-secondary">
-                      {afp.total.toFixed(2)}%
-                    </td>
-                    <td
-                      class="py-3 pr-4 text-right font-mono"
-                      data-cell="mensual"
-                    >
-                      —
-                    </td>
-                    <td
-                      class:list={[
-                        "py-3 text-right font-mono",
-                        { "text-danger": !isCheapest },
-                        { "text-success": isCheapest },
-                      ]}
-                      data-cell="extra"
-                    >
-                      {isCheapest ? "referencia" : "—"}
-                    </td>
-                  </tr>
-                );
-              })
-            }
+                    —
+                  </td>
+                  <td
+                    class:list={[
+                      "py-3 text-right font-mono",
+                      { "text-danger": !isCheapest },
+                      { "text-success": isCheapest },
+                    ]}
+                    data-cell="extra"
+                  >
+                    {isCheapest ? "referencia" : "—"}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -221,9 +216,7 @@ const calculatorNextStepItems = [
     <NextBestStep slug="comisiones-afp" />
 
     <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es la comisión AFP y por qué importa?</h2>
       <p>
         Cada AFP descuenta de tu sueldo imponible dos cosas distintas: el{" "}
@@ -264,8 +257,11 @@ const calculatorNextStepItems = [
         <a
           href="https://www.spensiones.cl"
           target="_blank"
-          rel="noopener noreferrer">Superintendencia de Pensiones</a
-        > antes de tomar una decisión.
+          rel="noopener noreferrer"
+        >
+          Superintendencia de Pensiones
+        </a>{" "}
+        antes de tomar una decisión.
       </p>
     </section>
 
@@ -274,16 +270,14 @@ const calculatorNextStepItems = [
         Preguntas frecuentes sobre comisiones AFP
       </h2>
       <dl class="space-y-6">
-        {
-          comisionFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
-              </dd>
-            </div>
-          ))
-        }
+        {comisionFaqs.map(faq => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+            <dd class="text-sm leading-relaxed text-secondary">
+              <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
+            </dd>
+          </div>
+        ))}
       </dl>
     </section>
 

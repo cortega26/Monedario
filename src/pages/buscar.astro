@@ -114,7 +114,9 @@ const searchGroups = [
       class="mb-6 rounded-xl border border-border bg-surface-muted p-4 sm:p-5"
       action={Astro.url.pathname}
     >
-      <label for="site-search" class="sr-only">Buscar en Monedario</label>
+      <label for="site-search" class="sr-only">
+        Buscar en Monedario
+      </label>
       <div class="flex flex-col gap-3 sm:flex-row">
         <input
           id="site-search"
@@ -143,29 +145,27 @@ const searchGroups = [
     <div class="mb-6" id="search-chips">
       <p class="mb-3 text-sm font-medium text-secondary">Temas frecuentes</p>
       <div class="flex flex-col gap-4">
-        {
-          searchGroups.map(group => (
-            <div>
-              <p class="mb-2 text-xs font-semibold tracking-wide text-muted uppercase">
-                {group.label}
-              </p>
-              <div class="flex flex-wrap gap-2">
-                {group.chips.map(chip => (
-                  <a
-                    href={chip.href}
-                    class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
-                    data-analytics-cta="search-chip"
-                    data-analytics-label={chip.label}
-                    data-analytics-location="search_chips"
-                  >
-                    {chip.label}
-                    <span class="text-xs text-muted">({chip.type})</span>
-                  </a>
-                ))}
-              </div>
+        {searchGroups.map(group => (
+          <div>
+            <p class="mb-2 text-xs font-semibold tracking-wide text-muted uppercase">
+              {group.label}
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {group.chips.map(chip => (
+                <a
+                  href={chip.href}
+                  class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+                  data-analytics-cta="search-chip"
+                  data-analytics-label={chip.label}
+                  data-analytics-location="search_chips"
+                >
+                  {chip.label}
+                  <span class="text-xs text-muted">({chip.type})</span>
+                </a>
+              ))}
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
 
@@ -175,8 +175,7 @@ const searchGroups = [
       aria-label="Resultados de búsqueda"
       transition:persist
       data-backurl={backUrl}
-    >
-    </div>
+    ></div>
 
     <div
       id="search-empty-state"
@@ -197,22 +196,20 @@ const searchGroups = [
         >
           Limpiar búsqueda
         </button>
-        {
-          searchGroups
-            .flatMap(group => group.chips)
-            .slice(0, 6)
-            .map(chip => (
-              <a
-                href={chip.href}
-                class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
-                data-analytics-cta="search-empty-chip"
-                data-analytics-label={chip.label}
-                data-analytics-location="search_empty_state"
-              >
-                {chip.label}
-              </a>
-            ))
-        }
+        {searchGroups
+          .flatMap(group => group.chips)
+          .slice(0, 6)
+          .map(chip => (
+            <a
+              href={chip.href}
+              class="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+              data-analytics-cta="search-empty-chip"
+              data-analytics-label={chip.label}
+              data-analytics-location="search_empty_state"
+            >
+              {chip.label}
+            </a>
+          ))}
       </div>
     </div>
   </Main>

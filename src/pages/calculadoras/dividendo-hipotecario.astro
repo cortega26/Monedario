@@ -88,9 +88,7 @@ const calculatorNextStepItems = [
       description="Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización."
       descriptionClass="max-w-xl text-secondary"
     >
-      <div
-        class="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-sm"
-      >
+      <div class="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-sm">
         <span class="font-semibold text-accent">UF hoy:</span>
         <span class="font-mono">${ufDisplay}</span>
         <span class="text-muted">— Fuente: Banco Central de Chile</span>
@@ -128,9 +126,7 @@ const calculatorNextStepItems = [
                 checked
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 UF
               </span>
             </label>
@@ -141,17 +137,13 @@ const calculatorNextStepItems = [
                 value="pesos"
                 class="peer sr-only"
               />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Pesos
               </span>
             </label>
           </div>
-          {
-            /* Excepción TD-0111: input compuesto (label + selector de moneda UF/Pesos
-              + valor + equivalencia). CalculatorField no cubre ese layout. */
-          }
+          {/* Excepción TD-0111: input compuesto (label + selector de moneda UF/Pesos
+              + valor + equivalencia). CalculatorField no cubre ese layout. */}
           <input
             type="number"
             id="propertyValue"
@@ -169,22 +161,20 @@ const calculatorNextStepItems = [
             Pie (% del valor)
           </label>
           <div class="flex flex-wrap gap-2">
-            {
-              ["10", "15", "20", "25"].map(v => (
-                <label class="cursor-pointer">
-                  <input
-                    type="radio"
-                    name="downPayment"
-                    value={v}
-                    checked={v === "20"}
-                    class="peer sr-only"
-                  />
-                  <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
-                    {v}%
-                  </span>
-                </label>
-              ))
-            }
+            {["10", "15", "20", "25"].map(v => (
+              <label class="cursor-pointer">
+                <input
+                  type="radio"
+                  name="downPayment"
+                  value={v}
+                  checked={v === "20"}
+                  class="peer sr-only"
+                />
+                <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                  {v}%
+                </span>
+              </label>
+            ))}
           </div>
           <p id="downpayment-amount" class="mt-1 text-xs text-muted"></p>
         </div>
@@ -219,27 +209,25 @@ const calculatorNextStepItems = [
             Plazo
           </label>
           <div class="flex flex-wrap gap-2">
-            {
-              [
-                { label: "15 años", value: "15" },
-                { label: "20 años", value: "20" },
-                { label: "25 años", value: "25" },
-                { label: "30 años", value: "30" },
-              ].map(({ label, value }) => (
-                <label class="cursor-pointer">
-                  <input
-                    type="radio"
-                    name="termYears"
-                    value={value}
-                    checked={value === "20"}
-                    class="peer sr-only"
-                  />
-                  <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
-                    {label}
-                  </span>
-                </label>
-              ))
-            }
+            {[
+              { label: "15 años", value: "15" },
+              { label: "20 años", value: "20" },
+              { label: "25 años", value: "25" },
+              { label: "30 años", value: "30" },
+            ].map(({ label, value }) => (
+              <label class="cursor-pointer">
+                <input
+                  type="radio"
+                  name="termYears"
+                  value={value}
+                  checked={value === "20"}
+                  class="peer sr-only"
+                />
+                <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                  {label}
+                </span>
+              </label>
+            ))}
           </div>
         </div>
 
@@ -273,19 +261,14 @@ const calculatorNextStepItems = [
           id="calc-error"
           class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
-        >
-        </div>
+        ></div>
       </div>
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Resumen del crédito">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Dividendo mensual (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
@@ -338,13 +321,16 @@ const calculatorNextStepItems = [
               <th class="py-2 pr-4">Cuota (UF)</th>
               <th class="py-2 pr-4">Capital</th>
               <th class="py-2 pr-4">Interés</th>
-              <th id="col-desg-head" class="hidden py-2 pr-4">Desgravamen</th>
-              <th id="col-fire-head" class="hidden py-2 pr-4">Incendio/Sismo</th
-              >
+              <th id="col-desg-head" class="hidden py-2 pr-4">
+                Desgravamen
+              </th>
+              <th id="col-fire-head" class="hidden py-2 pr-4">
+                Incendio/Sismo
+              </th>
               <th class="py-2">Saldo pendiente</th>
             </tr>
           </thead>
-          <tbody id="amort-body" class="divide-y divide-border"> </tbody>
+          <tbody id="amort-body" class="divide-y divide-border"></tbody>
         </table>
       </div>
       <div class="mt-4 text-center">
@@ -358,38 +344,36 @@ const calculatorNextStepItems = [
     </section>
 
     <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Cómo se calcula el dividendo hipotecario?</h2>
       <p>
-        El <strong>dividendo hipotecario</strong> es la cuota mensual que pagas por
-        tu crédito para comprar una vivienda. En Chile se fija en{" "}
+        El <strong>dividendo hipotecario</strong> es la cuota mensual que pagas
+        por tu crédito para comprar una vivienda. En Chile se fija en{" "}
         <strong>UF (Unidad de Fomento)</strong>, lo que significa que el número
         de UF que pagas es constante, pero su equivalente en pesos cambia cada
         mes con la inflación.
       </p>
       <ul>
         <li>
-          <strong>Amortización francesa:</strong> el dividendo base (capital + interés)
-          es constante en UF. Al inicio pagas más intereses y menos capital; al final,
-          al revés.
+          <strong>Amortización francesa:</strong> el dividendo base (capital +
+          interés) es constante en UF. Al inicio pagas más intereses y menos
+          capital; al final, al revés.
         </li>
         <li>
-          <strong>Tasa mensual compuesta:</strong> la calculadora convierte la tasa
-          anual a mensual mediante la fórmula compuesta:{" "}
+          <strong>Tasa mensual compuesta:</strong> la calculadora convierte la
+          tasa anual a mensual mediante la fórmula compuesta:{" "}
           <code>(1 + r_anual)^(1/12) - 1</code>.
         </li>
         <li>
-          <strong>Seguros opcionales:</strong> el desgravamen varía mes a mes (decrece
-          conforme baja el saldo); el seguro de incendio/sismo es fijo.
+          <strong>Seguros opcionales:</strong> el desgravamen varía mes a mes
+          (decrece conforme baja el saldo); el seguro de incendio/sismo es fijo.
         </li>
       </ul>
       <p class="text-sm text-muted">
         Las tasas son orientativas. Solicita siempre la{" "}
-        <strong>Hoja de Condiciones (CAE)</strong> a tu banco para conocer el costo
-        real del crédito. Los costos de notaría, Conservador y tasación son adicionales
-        al dividendo (1%–1,5% del valor de la propiedad).
+        <strong>Hoja de Condiciones (CAE)</strong> a tu banco para conocer el
+        costo real del crédito. Los costos de notaría, Conservador y tasación
+        son adicionales al dividendo (1%–1,5% del valor de la propiedad).
       </p>
     </section>
 

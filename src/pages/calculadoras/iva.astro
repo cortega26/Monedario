@@ -101,8 +101,10 @@ const fmtClp = formatCLP;
           <div class="relative">
             <span
               class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted"
-              aria-hidden="true">$</span
+              aria-hidden="true"
             >
+              $
+            </span>
             <input
               type="text"
               id="monto-input"
@@ -121,8 +123,7 @@ const fmtClp = formatCLP;
             id="monto-error"
             role="alert"
             class="mt-1 hidden text-xs text-danger"
-          >
-          </p>
+          ></p>
         </CalculatorField>
       </div>
 
@@ -144,9 +145,7 @@ const fmtClp = formatCLP;
           </p>
           <div class="grid grid-cols-3 gap-3 text-center">
             <div>
-              <p
-                class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase"
-              >
+              <p class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase">
                 Neto
               </p>
               <p id="res-neto" class="text-xl font-bold tabular-nums">
@@ -154,9 +153,7 @@ const fmtClp = formatCLP;
               </p>
             </div>
             <div>
-              <p
-                class="mb-0.5 text-xs font-semibold tracking-wider text-accent uppercase"
-              >
+              <p class="mb-0.5 text-xs font-semibold tracking-wider text-accent uppercase">
                 IVA 19%
               </p>
               <p
@@ -167,9 +164,7 @@ const fmtClp = formatCLP;
               </p>
             </div>
             <div>
-              <p
-                class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase"
-              >
+              <p class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase">
                 Bruto
               </p>
               <p id="res-bruto" class="text-xl font-bold tabular-nums">
@@ -186,15 +181,11 @@ const fmtClp = formatCLP;
         <!-- INFO TASA -->
         <div class="mt-5 border-t border-border pt-4">
           <h3 class="mb-3 text-sm font-semibold">Tasa vigente</h3>
-          <div
-            class="flex items-center justify-between border-b border-border py-2"
-          >
+          <div class="flex items-center justify-between border-b border-border py-2">
             <span class="text-sm text-secondary">IVA Chile</span>
             <span class="font-mono font-semibold">19%</span>
           </div>
-          <div
-            class="flex items-center justify-between border-b border-border py-2"
-          >
+          <div class="flex items-center justify-between border-b border-border py-2">
             <span class="text-sm text-secondary">Factor neto → bruto</span>
             <span class="font-mono font-semibold">× 1,19</span>
           </div>
@@ -211,27 +202,23 @@ const fmtClp = formatCLP;
       </CalculatorResultPanel>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <section class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert">
       <h2>¿Qué es el IVA en Chile?</h2>
       <p>
-        El <strong>Impuesto al Valor Agregado (IVA)</strong> es un tributo indirecto
-        que grava la venta de bienes y servicios en Chile. La tasa vigente es del{
-          " "
-        }
-        <strong>19%</strong>, establecida por la Ley N°18.768 y administrada por
-        el Servicio de Impuestos Internos (SII).
+        El <strong>Impuesto al Valor Agregado (IVA)</strong> es un tributo
+        indirecto que grava la venta de bienes y servicios en Chile. La tasa
+        vigente es del <strong>19%</strong>, establecida por la Ley N°18.768 y
+        administrada por el Servicio de Impuestos Internos (SII).
       </p>
       <h2>¿Cómo funciona el cálculo?</h2>
       <ul>
         <li>
-          <strong>Neto a bruto:</strong> multiplica el monto neto por 1,19. El IVA
-          equivale al 19% del monto neto.
+          <strong>Neto a bruto:</strong> multiplica el monto neto por 1,19. El
+          IVA equivale al 19% del monto neto.
         </li>
         <li>
-          <strong>Bruto a neto:</strong> divide el monto bruto por 1,19. El IVA es
-          la diferencia entre bruto y neto.
+          <strong>Bruto a neto:</strong> divide el monto bruto por 1,19. El IVA
+          es la diferencia entre bruto y neto.
         </li>
       </ul>
       <p>
@@ -242,9 +229,10 @@ const fmtClp = formatCLP;
         ⚠️ Esta herramienta realiza el cálculo aritmético de la tasa de IVA del
         19%. Para situaciones específicas (exenciones, casos especiales,
         declaración de IVA), consulta directamente al{" "}
-        <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer"
-          >SII</a
-        > o a un profesional tributario.
+        <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer">
+          SII
+        </a>{" "}
+        o a un profesional tributario.
       </p>
       <p class="mt-4 text-sm text-secondary">
         Lee también:{" "}
@@ -253,8 +241,8 @@ const fmtClp = formatCLP;
           class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           Qué es el IVA en el glosario
-        </a>
-        {" "}·{" "}
+        </a>{" "}
+        ·{" "}
         <a
           href="/leyes/dl-824-impuesto-renta/"
           class="text-accent underline underline-offset-4 hover:opacity-80"

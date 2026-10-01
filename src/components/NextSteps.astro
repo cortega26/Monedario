@@ -62,69 +62,65 @@ const resolvedCalculatorId = deriveCalculatorId(currentHref);
 const isCalculatorPage = currentHref.startsWith("/calculadoras/");
 ---
 
-{
-  (visibleItems.length > 0 || isCalculatorPage) && (
-    <section
-      class="mt-10 border-t border-border pt-8 pb-10"
-      data-next-steps-cluster={cluster}
-      data-analytics-next-steps
-      data-analytics-calculator-id={resolvedCalculatorId}
-      aria-labelledby="next-steps-title"
-    >
-      <div class="mb-5 max-w-2xl">
-        <h2
-          id="next-steps-title"
-          class="text-2xl font-bold"
-          style="font-family: var(--font-body);"
-        >
-          {title}
-        </h2>
-        {description && (
-          <p class="mt-2 text-sm leading-relaxed text-secondary">
-            {description}
-          </p>
-        )}
-        {isCalculatorPage && (
-          <p class="mt-4">
-            <a
-              href="#calculator-form-card"
-              class="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-accent transition-colors hover:border-accent/60"
-            >
-              ↑ Ir al cálculo
-            </a>
-          </p>
-        )}
-      </div>
-      <ul class="grid gap-4 md:grid-cols-3">
-        {visibleItems.map(item => (
-          <li class="rounded-lg border border-border bg-background p-4">
-            {item.label && (
-              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {item.label}
-              </p>
-            )}
-            <h3 class="text-base leading-snug font-semibold">{item.title}</h3>
-            {item.description && (
-              <p class="mt-2 text-sm leading-relaxed text-secondary">
-                {item.description}
-              </p>
-            )}
-            <a
-              href={getPath(item.href)}
-              class="mt-4 inline-flex min-h-6 items-center py-1 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              data-next-step-id={deriveNextStepId(item.href)}
-              data-analytics-label={item.title}
-              data-analytics-location={location}
-              aria-label={`${item.cta ?? defaultCta(item.href)} ${item.title}`}
-            >
-              {item.cta ?? defaultCta(item.href)}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
+{(visibleItems.length > 0 || isCalculatorPage) && (
+  <section
+    class="mt-10 border-t border-border pt-8 pb-10"
+    data-next-steps-cluster={cluster}
+    data-analytics-next-steps
+    data-analytics-calculator-id={resolvedCalculatorId}
+    aria-labelledby="next-steps-title"
+  >
+    <div class="mb-5 max-w-2xl">
+      <h2
+        id="next-steps-title"
+        class="text-2xl font-bold"
+        style="font-family: var(--font-body);"
+      >
+        {title}
+      </h2>
+      {description && (
+        <p class="mt-2 text-sm leading-relaxed text-secondary">{description}</p>
+      )}
+      {isCalculatorPage && (
+        <p class="mt-4">
+          <a
+            href="#calculator-form-card"
+            class="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-accent transition-colors hover:border-accent/60"
+          >
+            ↑ Ir al cálculo
+          </a>
+        </p>
+      )}
+    </div>
+    <ul class="grid gap-4 md:grid-cols-3">
+      {visibleItems.map(item => (
+        <li class="rounded-lg border border-border bg-background p-4">
+          {item.label && (
+            <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+              {item.label}
+            </p>
+          )}
+          <h3 class="text-base leading-snug font-semibold">{item.title}</h3>
+          {item.description && (
+            <p class="mt-2 text-sm leading-relaxed text-secondary">
+              {item.description}
+            </p>
+          )}
+          <a
+            href={getPath(item.href)}
+            class="mt-4 inline-flex min-h-6 items-center py-1 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            data-next-step-id={deriveNextStepId(item.href)}
+            data-analytics-label={item.title}
+            data-analytics-location={location}
+            aria-label={`${item.cta ?? defaultCta(item.href)} ${item.title}`}
+          >
+            {item.cta ?? defaultCta(item.href)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
 
 <script>
   import { trackAnalyticsEvent } from "@/utils/analytics";
