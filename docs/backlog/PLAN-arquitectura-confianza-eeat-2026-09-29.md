@@ -47,8 +47,14 @@ Excluir erratas y cambios de estilo. Al publicarla: enlazar desde
 ## NEXT
 
 1. Auditoría factual externa (black-box) sobre un snapshot de producción.
+   **Hecho (#629):** muestra pre-declarada de 10 afirmaciones R4/R3 contra
+   fuente primaria; `docs/reports/AUDIT-FACTUAL-SCOPED-2026-10-01.md`.
 2. Auditoría interna (white-box) sobre el mismo snapshot; consolidar por causa raíz.
-3. Remediación sistémica + control de regresión por cada P0/P1.
+   **Hecho (#629):** gates + provenance + frescura, sin P0/P1; OBS-1
+   (TD-0108), OBS-2 (método BCN), OBS-3 (detección de contradicciones, LATER).
+3. Remediación sistémica + control de regresión por cada P0/P1. **No aplica:
+   sin P0/P1.** Los controles de cobertura/provenance quedan en #630
+   (`check:risk-tiers`).
 4. Enlace discreto "Reportar un error" en contenido YMYL (hoy solo en
    `/autor/` y `/metodologia/`), prellenando la URL. **Hecho (#628).**
 5. Bloque de verificación compacto en páginas YMYL críticas (autor, vigencia,
@@ -58,7 +64,7 @@ Excluir erratas y cambios de estilo. Al publicarla: enlazar desde
 
 ## LATER
 
-- Publicar `/correcciones/` (ver arriba).
+- Publicar `/correcciones/`. **Hecho (#626).**
 - Métricas operativas internas (no "E-E-A-T score"): % claims de alto riesgo
   con fuente primaria, % parámetros con vigencia explícita, contradicciones
   activas, páginas con vigencia vencida, P0/P1 sin control de regresión.
