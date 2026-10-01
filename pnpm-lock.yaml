@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  undici@>=8 <9: 8.11.2
   tmp: '>=0.2.6'
   yaml: '>=2.8.3'
   qs: '>=6.16.0'
@@ -132,7 +133,7 @@ importers:
         version: 17.5.1
       openai:
         specifier: ^7.10.0
-        version: 7.15.0(undici@8.11.0)(ws@8.21.3)(zod@4.6.5)
+        version: 7.15.0(undici@8.11.2)(ws@8.21.3)(zod@4.6.5)
       pagefind:
         specifier: ^1.5.2
         version: 1.5.2
@@ -3845,7 +3846,7 @@ packages:
       '@aws-sdk/credential-provider-node': '>=3.972.0 <4'
       '@smithy/hash-node': '>=4.3.0 <5'
       '@smithy/signature-v4': '>=5.4.0 <6'
-      undici: '>=5 <9'
+      undici: 8.11.2
       ws: ^8.21.0
       zod: ^3.25 || ^4.0
     peerDependenciesMeta:
@@ -4668,8 +4669,8 @@ packages:
     resolution: {integrity: sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw==}
     engines: {node: '>=20.18.1'}
 
-  undici@8.11.0:
-    resolution: {integrity: sha512-AdzuGcAkzhbha3GgCSoUBx2P0quwym6qdFNCQz/fDGZc8w9XJ741wHUbt2kTmfPz+ZIOMkySFkiY7RXmiDDC8w==}
+  undici@8.11.2:
+    resolution: {integrity: sha512-u4UB2/IrKdU6lFxumHmmo1a3fCQO5tzQllRorfoRS63txhrB7xTpSn1PftwC4qEHkOaqP95fCWW4lJzwErwzhQ==}
     engines: {node: '>=22.19.0'}
 
   unenv@2.0.0-rc.24:
@@ -8570,7 +8571,7 @@ snapshots:
       mime: 4.1.0
       saxes: 6.0.0
       srcset: 5.0.3
-      undici: 8.11.0
+      undici: 8.11.2
 
   lint-staged@17.5.1:
     dependencies:
@@ -9234,9 +9235,9 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openai@7.15.0(undici@8.11.0)(ws@8.21.3)(zod@4.6.5):
+  openai@7.15.0(undici@8.11.2)(ws@8.21.3)(zod@4.6.5):
     optionalDependencies:
-      undici: 8.11.0
+      undici: 8.11.2
       ws: 8.21.3
       zod: 4.6.5
 
@@ -10190,7 +10191,7 @@ snapshots:
 
   undici@7.29.0: {}
 
-  undici@8.11.0: {}
+  undici@8.11.2: {}
 
   unenv@2.0.0-rc.24:
     dependencies:
@@ -10215,7 +10216,7 @@ snapshots:
     dependencies:
       css-tree: 3.2.1
       ohash: 2.0.12
-      undici: 8.11.0
+      undici: 8.11.2
 
   unique-string@2.0.0:
     dependencies:
