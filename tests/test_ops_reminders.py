@@ -1,4 +1,5 @@
 """Tests de scripts/ops_reminders.py (recordatorios de operación)."""
+
 from datetime import date
 
 import ops_reminders
@@ -7,7 +8,13 @@ DATA = {
     "items": [
         {"id": "a", "date": "2026-09-28", "title": "A", "owner": "carlos"},
         {"id": "b", "date": "2026-09-23", "title": "B", "owner": "carlos"},
-        {"id": "c", "date": "2026-10-30", "end_date": "2026-11-02", "title": "C", "owner": "carlos"},
+        {
+            "id": "c",
+            "date": "2026-10-30",
+            "end_date": "2026-11-02",
+            "title": "C",
+            "owner": "carlos",
+        },
     ],
     "undated": [{"id": "d", "title": "D", "owner": "carlos"}],
 }
