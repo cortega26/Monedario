@@ -31,6 +31,7 @@ Reglas de frontera: `URL.PUBLIC.NO_POST_ID`, FOCO ESTRICTO hasta
 | `cannibalization_query` | Misma query con ≥2 URLs propias con impresiones | Consolidar/enlazar | A3 |
 | `calculator_funnel` | `view→start` o `start→complete` bajo umbral con muestra suficiente | UX/copy | A3 |
 | `competitor_sitemap_gap` | Página de competidor (sitemap público) sin tokens compartidos con nuestras queries GSC | Cobertura (sin volumen) | A0 |
+| `cross_engine_query` | Query con impresiones en Bing (Webmaster Tools) que no aparece en GSC | Demanda/motor alterno | A0 |
 
 Cada candidato incluye: `id` estable, tipo, evidencia, `expectedGain`,
 `score`, hipótesis redactada y experimento recomendado (métrica, umbral,
@@ -48,6 +49,11 @@ Con proveedores pagados bloqueados (Semrush `no_api_units`, Ahrefs
 `competitor_sitemap_gap` usa el vocabulario de queries GSC + rutas propias
 para descartar cobertura existente; sin volumen, el resultado es una lista
 de revisión editorial, no una priorización por demanda.
+
+`pnpm run growth:collect:bing` (clave `BING_WEBMASTER_API_KEY` en entorno o
+`.env`) agrega `engineQueries` del sitio verificado en Bing Webmaster Tools;
+el detector `cross_engine_query` marca queries con impresiones en Bing que no
+aparecen en GSC (demanda o indexación distinta; base de Copilot).
 
 ## 2c. Calibración y memoria (Fase 0.2)
 

@@ -34,6 +34,12 @@ jobs:
         with:
           node-version: 22
 
+      - name: "🔎 Recolectar queries de Bing Webmaster (fuente libre)"
+        continue-on-error: true
+        env:
+          BING_WEBMASTER_API_KEY: ${{ secrets.BING_WEBMASTER_API_KEY }}
+        run: node scripts/collect-bing-queries.mjs
+
       - name: "📡 Recolectar sitemaps de competidores (fuente libre)"
         continue-on-error: true
         run: node scripts/collect-competitor-sitemaps.mjs
