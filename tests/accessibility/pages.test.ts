@@ -185,3 +185,41 @@ test.describe("Monedario Privado — result-state accessibility", () => {
     expect(criticalAndSerious).toEqual([]);
   });
 });
+
+test.describe("Verificación y reporte de errores (#628)", () => {
+  test("artículo YMYL: bloque de verificación con reporte prellenado", async ({
+    page,
+  }) => {
+    await page.goto("/posts/como-calcular-sueldo-liquido/");
+
+    const block = page.locator("[data-verification-block]");
+    await expect(block).toBeVisible();
+    await expect(
+      block.locator('a[href*="/autor/"]').first()
+    ).toBeVisible();
+    await expect(block.locator("time")).toBeVisible();
+
+    await block.locator("a[data-report-error]").click();
+    await expect(page.locator('[name="url_afectada"]')).toHaveValue(
+      "/posts/como-calcular-sueldo-liquido/"
+    );
+  });
+
+  test("calculadora: enlace de reporte con la URL de la página", async ({
+    page,
+  }) => {
+    await page.goto("/calculadoras/sueldo-liquido/");
+
+    const report = page.locator("a[data-report-error]");
+    await expect(report).toBeVisible();
+    await expect(report).toHaveAttribute(
+      "href",
+      /url=%2Fcalculadoras%2Fsueldo-liquido%2F/
+    );
+
+    await report.click();
+    await expect(page.locator('[name="url_afectada"]')).toHaveValue(
+      "/calculadoras/sueldo-liquido/"
+    );
+  });
+});

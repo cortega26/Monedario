@@ -42,6 +42,7 @@ import ArticleAdvisory from "@/components/ArticleAdvisory.astro";
 import { resolveBlogArticleAdvisory } from "@/config/blogAdvisory";
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import ArticleEntryGuide from "@/components/ArticleEntryGuide.astro";
+import VerificationBlock from "@/components/VerificationBlock.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -413,6 +414,14 @@ const heroImageAlt = post.data.heroImageAlt ?? "";
       </article>
       <TOCSidebar />
     </div>
+
+    <VerificationBlock
+      author={author}
+      validAsOf={articleLead?.validAsOf}
+      updatedDate={modDatetime}
+      sources={articleLead?.officialSources ?? []}
+      pagePath={getCanonicalPathFromSlug(article.slug)}
+    />
 
     {contextualSectionsWithoutNextStepDuplicates.map(section => (
       <ContextLinkSection {...section} />

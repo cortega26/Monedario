@@ -1,0 +1,115 @@
+---
+import { getPath } from "@/utils/getPath";
+import { formatMetadataDate } from "@/utils/metadataDate";
+
+interface Source {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  author: string;
+  /** Fecha de corte verificada contra fuentes (articleLead.validAsOf). */
+  validAsOf?: Date | null;
+  /** Última modificación sustantiva del contenido. */
+  updatedDate?: Date | null;
+  sources?: Source[];
+  /** Ruta canónica de la página, para prellenar el reporte de error. */
+  pagePath: string;
+  methodologyHref?: string;
+}
+
+const {
+  author,
+  validAsOf,
+  updatedDate,
+  sources = [],
+  pagePath,
+  methodologyHref = "/metodologia/",
+} = Astro.props;
+
+const authorHref = getPath("/autor/");
+const methodologyPath = methodologyHref.endsWith("/")
+  ? methodologyHref
+  : `${methodologyHref}/`;
+const methodology = getPath(methodologyPath);
+const reportHref = `${authorHref}?url=${encodeURIComponent(pagePath)}#reportar-error`;
+
+const verificationDate = validAsOf ?? updatedDate ?? null;
+const verificationLabel = validAsOf
+  ? "Vigencia verificada"
+  : "Última actualización";
+---
+
+<section
+  data-verification-block
+  aria-labelledby="verificacion-heading"
+  class="not-prose mt-10 rounded-2xl border border-border bg-surface-muted p-5"
+>
+  <h2
+    id="verificacion-heading"
+    class="mb-3 text-xs font-semibold tracking-widest text-secondary uppercase"
+  >
+    Verificación
+  </h2>
+  <dl class="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+    <div class="flex flex-wrap gap-x-2">
+      <dt class="font-medium text-foreground">Autor</dt>
+      <dd class="text-secondary">
+        <a
+          href={authorHref}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+        >
+          {author}
+        </a>
+      </dd>
+    </div>
+    {verificationDate && (
+      <div class="flex flex-wrap gap-x-2">
+        <dt class="font-medium text-foreground">{verificationLabel}</dt>
+        <dd class="text-secondary">
+          <time datetime={verificationDate.toISOString().slice(0, 10)}>
+            {formatMetadataDate(verificationDate, "long")}
+          </time>
+        </dd>
+      </div>
+    )}
+    {sources.length > 0 && (
+      <div class="flex flex-wrap gap-x-2 sm:col-span-2">
+        <dt class="font-medium text-foreground">Fuentes oficiales</dt>
+        <dd class="text-secondary">
+          <ul class="flex flex-wrap gap-x-3 gap-y-1">
+            {sources.map(source => (
+              <li>
+                <a
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-accent underline underline-offset-4 hover:opacity-80"
+                >
+                  {source.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    )}
+  </dl>
+  <p class="mt-3 border-t border-border pt-3 text-xs leading-relaxed text-secondary">
+    <a
+      href={methodology}
+      class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+    >
+      Metodología y proceso editorial
+    </a>
+    {" · "}
+    <a
+      href={reportHref}
+      data-report-error
+      class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+    >
+      Reportar un error
+    </a>
+  </p>
+</section>
