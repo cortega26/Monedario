@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  applyFeedback,
   buildOpportunityReport,
   calculatorFunnelCandidates,
   cannibalizationCandidates,
@@ -379,6 +380,7 @@ describe("buildOpportunityReport", () => {
     ],
     queries: [{ query: "utm", impressions: 500 }],
     ourRoutes: ["/calculadoras/conversor-utm/"],
+    feedback: null,
     queryPage: [
       {
         query: "utm hoy",
@@ -595,5 +597,85 @@ describe("collect-competitor-sitemaps helpers", () => {
     expect(merged.keywordGaps).toEqual([{ query: "x" }]);
     expect(merged.freeSources).toContain("competitor-sitemaps");
     expect(merged.competitorPages).toHaveLength(1);
+  });
+});
+
+describe("applyFeedback", () => {
+  const candidates = [
+    { id: "ctr_gap_page:x", type: "ctr_gap_page", url: "/x/" },
+    {
+      id: "competitor_sitemap_gap:patrimore.com|/blog/nota",
+      type: "competitor_sitemap_gap",
+      url: "/blog/nota",
+      metrics: { domain: "patrimore.com" },
+    },
+    {
+      id: "competitor_sitemap_gap:uf-hoy.com|/arriendos",
+      type: "competitor_sitemap_gap",
+      url: "/arriendos",
+      metrics: { domain: "uf-hoy.com" },
+    },
+  ];
+
+  it("suprime por ID exacto", () => {
+    const { candidates: kept, suppressed } = applyFeedback(candidates, {
+      dismissed: ["ctr_gap_page:x"],
+    });
+    expect(kept.map(candidate => candidate.id)).not.toContain("ctr_gap_page:x");
+    expect(suppressed).toEqual([{ id: "ctr_gap_page:x", reason: "dismissed" }]);
+  });
+
+  it("suprime por patrón de dominio y ruta", () => {
+    const { candidates: kept } = applyFeedback(candidates, {
+      dismissedPatterns: [
+        { domain: "patrimore.com", pathPattern: "^/blog/", reason: "PR" },
+      ],
+    });
+    expect(kept.map(candidate => candidate.id)).toContain(
+      "competitor_sitemap_gap:uf-hoy.com|/arriendos"
+    );
+    expect(kept).toHaveLength(2);
+  });
+
+  it("ignora regex inválidas sin romper", () => {
+    const { candidates: kept } = applyFeedback(candidates, {
+      dismissedPatterns: [{ domain: null, pathPattern: "[" }],
+    });
+    expect(kept).toHaveLength(3);
+  });
+
+  it("sin feedback no suprime nada", () => {
+    const { candidates: kept, suppressed } = applyFeedback(candidates, null);
+    expect(kept).toHaveLength(3);
+    expect(suppressed).toHaveLength(0);
+  });
+
+  it("el reporte cuenta las supresiones", () => {
+    const report = buildOpportunityReport({
+      week: "2026-W39",
+      window: { from: "2026-09-21", to: "2026-09-27" },
+      counts: { pages: 1, queries: 1, queryPage: 0, analytics: 0, external: 0 },
+      pages: [
+        {
+          page: "https://monedario.cl/posts/x/",
+          impressions: 2000,
+          clicks: 20,
+          ctr: 0.01,
+          position: 5,
+        },
+      ],
+      queries: [{ query: "utm", impressions: 500 }],
+      queryPage: [],
+      analytics: [],
+      previousPages: [],
+      previousWeekAvailable: false,
+      external: null,
+      externalAvailable: false,
+      ourRoutes: [],
+      feedback: { dismissed: ["ctr_gap_page:https://monedario.cl/posts/x/"] },
+      registry: REGISTRY,
+    });
+    expect(report.feedback.suppressed).toBe(1);
+    expect(report.byType.ctr_gap_page).toBeUndefined();
   });
 });

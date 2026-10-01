@@ -101,6 +101,9 @@ function main() {
     path.join(root, "context", "page-lastmod-index.json")
   );
   const ourRoutes = Object.keys(pageLastmodIndex?.pages ?? {});
+  const feedback = readJson(
+    path.join(root, "src", "config", "growth-opportunity-feedback.json")
+  );
 
   const missing = [
     !pagesDoc && "gsc/pages",
@@ -161,6 +164,7 @@ function main() {
     external: externalDoc ?? null,
     externalAvailable: Boolean(externalDoc),
     ourRoutes,
+    feedback: feedback ?? null,
     registry,
   });
   report.status = "ok";
