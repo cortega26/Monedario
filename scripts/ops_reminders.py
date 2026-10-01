@@ -13,6 +13,7 @@ Config del topic (opcional), en orden de prioridad:
 Uso:
   python3 scripts/ops_reminders.py [--days 7] [--all] [--notify]
 """
+
 from __future__ import annotations
 
 import argparse
@@ -91,7 +92,7 @@ def notify_desktop(title: str, message: str) -> bool:
     try:
         subprocess.run(["notify-send", "-a", "Monedario", title, message], check=False, timeout=10)
         return True
-    except (OSError, subprocess.SubprocessError):
+    except OSError, subprocess.SubprocessError:
         return False
 
 
@@ -110,7 +111,7 @@ def notify_ntfy(title: str, message: str) -> bool:
     try:
         with urllib.request.urlopen(request, timeout=10):
             return True
-    except (urllib.error.URLError, OSError, ValueError):
+    except urllib.error.URLError, OSError, ValueError:
         return False
 
 
@@ -118,7 +119,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Recordatorios de operación de Monedario")
     parser.add_argument("--days", type=int, default=7, help="ventana hacia adelante (default 7)")
     parser.add_argument("--all", action="store_true", help="imprime todo el calendario")
-    parser.add_argument("--notify", action="store_true", help="envía notificación (escritorio/ntfy)")
+    parser.add_argument(
+        "--notify", action="store_true", help="envía notificación (escritorio/ntfy)"
+    )
     parser.add_argument("--schedule", type=Path, default=SCHEDULE_PATH)
     args = parser.parse_args(argv)
 
@@ -127,7 +130,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.all:
         lines = format_lines(data.get("items", []), today)
-        lines += [f"· {it['title']} (sin fecha) [{it.get('owner', '-')}]" for it in data.get("undated", [])]
+        lines += [
+            f"· {it['title']} (sin fecha) [{it.get('owner', '-')}]"
+            for it in data.get("undated", [])
+        ]
         print("\n".join(lines))
         return 0
 
