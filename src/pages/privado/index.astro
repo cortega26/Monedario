@@ -25,47 +25,52 @@ import { getPath } from "@/utils/getPath";
           MVP experimental
         </span>
         <span
-          class="rounded-full border border-border bg-surface-muted/40 px-3 py-1 text-xs font-semibold text-secondary"
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold"
         >
-          Procesamiento local
+          <span class="h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"
+          ></span>
+          Modo privado activo
         </span>
       </div>
 
       <h1 class="mt-5 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl">
         Monedario Privado
       </h1>
-      <p class="mt-4 max-w-3xl text-lg leading-relaxed text-secondary">
-        Carga un CSV de movimientos y obtén un resumen de ingresos, egresos y
+      <p
+        class="mt-4 max-w-4xl text-2xl leading-tight font-semibold tracking-tight sm:text-3xl"
+      >
+        Entiende tus finanzas sin entregarnos tus movimientos.
+      </p>
+      <p
+        class="mt-3 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg"
+      >
+        Carga una cartola CSV y obtén un resumen de ingresos, egresos y
         categorías. Tus archivos, transacciones y resultados se procesan en este
         navegador y no se envían a Monedario ni a terceros.
       </p>
 
       <div
-        class="mt-6 grid gap-3 rounded-xl border border-accent/20 bg-accent/5 p-4 text-sm sm:grid-cols-3"
-        aria-label="Garantías del modo privado"
+        class="mt-6 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4"
+        aria-label="Estado del modo privado"
       >
-        <div>
-          <strong class="block text-foreground">Sin subir archivos</strong>
-          <span class="text-secondary">
-            El archivo se lee con la API local del navegador.
+        <div class="grid gap-1.5 text-sm sm:grid-cols-3 sm:gap-4">
+          <span class="flex items-baseline gap-1">
+            <strong class="text-foreground">Archivos:</strong>
+            <span class="text-secondary">local</span>
+          </span>
+          <span class="flex items-baseline gap-1">
+            <strong class="text-foreground">Analytics:</strong>
+            <span class="text-secondary">off</span>
+          </span>
+          <span class="flex items-baseline gap-1">
+            <strong class="text-foreground">Persistencia:</strong>
+            <span class="text-secondary">off</span>
           </span>
         </div>
-        <div>
-          <strong class="block text-foreground"
-            >Sin analytics de Monedario</strong
-          >
-          <span class="text-secondary">
-            Esta ruta no inicia analytics ni envía eventos del análisis.
-          </span>
-        </div>
-        <div>
-          <strong class="block text-foreground"
-            >Sin persistencia financiera</strong
-          >
-          <span class="text-secondary">
-            No guarda tus movimientos ni resultados; recarga y desaparecen.
-          </span>
-        </div>
+        <p class="mt-2 text-xs leading-relaxed text-secondary">
+          El archivo se lee con la API local del navegador. Esta ruta no inicia
+          analytics ni guarda tus movimientos o resultados.
+        </p>
       </div>
     </section>
 
@@ -76,7 +81,7 @@ import { getPath } from "@/utils/getPath";
         class="rounded-2xl border border-border bg-background p-5 shadow-sm sm:p-7"
       >
         <div>
-          <h2 class="text-2xl font-semibold">Analiza una cartola CSV en CLP</h2>
+          <h2 class="text-2xl font-semibold">Carga una cartola</h2>
           <p class="mt-2 text-sm leading-relaxed text-secondary">
             Funciona mejor con columnas como
             <code>Fecha</code>, <code>Descripción</code>,
@@ -139,12 +144,19 @@ import { getPath } from "@/utils/getPath";
         class="rounded-2xl border border-border bg-surface-muted/25 p-5"
         aria-labelledby="verify-privacy-title"
       >
-        <h2 id="verify-privacy-title" class="text-lg font-semibold">
-          No tienes que creerme
-        </h2>
+        <div class="flex items-center justify-between gap-3">
+          <h2 id="verify-privacy-title" class="text-lg font-semibold">
+            Verifica la privacidad tú mismo
+          </h2>
+          <span
+            class="shrink-0 rounded-full border border-border bg-background px-2.5 py-1 text-xs font-semibold text-secondary"
+          >
+            3 pasos
+          </span>
+        </div>
         <p class="mt-2 text-sm leading-relaxed text-secondary">
-          Puedes verificar el límite de privacidad con las herramientas de
-          desarrollo del navegador.
+          No tienes que confiar en el texto de esta página. Puedes comprobar el
+          límite de privacidad con las herramientas de desarrollo del navegador.
         </p>
         <ol class="mt-4 list-decimal space-y-2 pl-5 text-sm text-secondary">
           <li>Abre DevTools → Network y limpia el registro.</li>
@@ -192,25 +204,61 @@ import { getPath } from "@/utils/getPath";
       </div>
 
       <div
+        class="mt-5 rounded-xl border border-accent/20 bg-accent/5 p-4 sm:p-5"
+        aria-labelledby="private-insight-label"
+      >
+        <p
+          id="private-insight-label"
+          class="text-xs font-semibold tracking-wide text-accent uppercase"
+        >
+          Lectura rápida
+        </p>
+        <p id="private-insight" class="mt-1 text-lg font-semibold"></p>
+      </div>
+
+      <div
         class="mt-6 rounded-xl border border-border bg-background p-5 sm:p-6"
       >
-        <h3 class="text-xl font-semibold">Egresos por categoría</h3>
-        <p class="mt-2 text-sm text-secondary">
-          Clasificación heurística experimental. Revisa el resultado antes de
-          usarlo para tomar una decisión.
-        </p>
-        <div class="mt-4 overflow-x-auto">
-          <table class="w-full min-w-[520px] text-left text-sm">
-            <thead>
-              <tr class="border-b border-border text-secondary">
-                <th class="py-2 pr-4 font-semibold">Categoría</th>
-                <th class="py-2 pr-4 text-right font-semibold">Movimientos</th>
-                <th class="py-2 text-right font-semibold">Monto</th>
-              </tr>
-            </thead>
-            <tbody id="private-categories"></tbody>
-          </table>
+        <div
+          class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between"
+        >
+          <div>
+            <h3 class="text-xl font-semibold">Egresos por categoría</h3>
+            <p class="mt-2 text-sm text-secondary">
+              Clasificación heurística experimental. Revisa el resultado antes
+              de usarlo para tomar una decisión.
+            </p>
+          </div>
+          <span class="text-xs font-medium text-secondary"
+            >Proporción del total</span
+          >
         </div>
+
+        <div
+          id="private-category-bars"
+          class="mt-5 space-y-4"
+          aria-label="Distribución visual de egresos por categoría"
+        >
+        </div>
+
+        <details class="mt-6 border-t border-border pt-4">
+          <summary class="cursor-pointer text-sm font-semibold">
+            Ver detalle en tabla
+          </summary>
+          <div class="mt-3 overflow-x-auto">
+            <table class="w-full min-w-[520px] text-left text-sm">
+              <thead>
+                <tr class="border-b border-border text-secondary">
+                  <th class="py-2 pr-4 font-semibold">Categoría</th>
+                  <th class="py-2 pr-4 text-right font-semibold">Movimientos</th
+                  >
+                  <th class="py-2 text-right font-semibold">Monto</th>
+                </tr>
+              </thead>
+              <tbody id="private-categories"></tbody>
+            </table>
+          </div>
+        </details>
       </div>
 
       <details
@@ -237,15 +285,16 @@ import { getPath } from "@/utils/getPath";
     >
       <div class="max-w-3xl">
         <p class="text-xs font-semibold tracking-wide text-accent uppercase">
-          Arquitectura prevista
+          Después del MVP
         </p>
         <h2 id="private-roadmap-title" class="mt-2 text-2xl font-semibold">
-          Esto es el MVP, no el producto terminado
+          Lo que viene
         </h2>
         <p class="mt-2 text-sm leading-relaxed text-secondary">
-          La idea completa es ampliar capacidades sin romper la frontera
-          local-first. Estas etiquetas muestran intención de producto, no
-          funciones disponibles hoy ni fechas comprometidas.
+          Esta primera versión prueba el núcleo local-first. Quiero ir sumando
+          capacidades sin romper esa frontera. Estas etiquetas muestran
+          intención de producto, no funciones disponibles hoy ni fechas
+          comprometidas.
         </p>
       </div>
 
@@ -357,6 +406,10 @@ import { getPath } from "@/utils/getPath";
   const expenses = document.querySelector<HTMLElement>("#private-expenses");
   const net = document.querySelector<HTMLElement>("#private-net");
   const categories = document.querySelector<HTMLElement>("#private-categories");
+  const categoryBars = document.querySelector<HTMLElement>(
+    "#private-category-bars"
+  );
+  const insight = document.querySelector<HTMLElement>("#private-insight");
   const columns = document.querySelector<HTMLElement>("#private-columns");
 
   const currency = new Intl.NumberFormat("es-CL", {
@@ -379,6 +432,8 @@ import { getPath } from "@/utils/getPath";
       expenses &&
       net &&
       categories &&
+      categoryBars &&
+      insight &&
       columns
     );
   }
@@ -404,6 +459,8 @@ import { getPath } from "@/utils/getPath";
       !expenses ||
       !net ||
       !categories ||
+      !categoryBars ||
+      !insight ||
       !columns ||
       !fileName
     ) {
@@ -423,6 +480,7 @@ import { getPath } from "@/utils/getPath";
       net.textContent = currency.format(summary.net);
 
       categories.replaceChildren();
+      categoryBars.replaceChildren();
       const visibleCategories =
         summary.categories.length > 0
           ? summary.categories
@@ -433,8 +491,35 @@ import { getPath } from "@/utils/getPath";
                 transactionCount: 0,
               },
             ];
-
       for (const item of visibleCategories) {
+        const barRow = document.createElement("div");
+        const barHeader = document.createElement("div");
+        barHeader.className =
+          "mb-1.5 flex items-baseline justify-between gap-4";
+
+        const barLabel = document.createElement("span");
+        barLabel.className = "text-sm font-medium";
+        barLabel.textContent = item.category;
+
+        const barAmount = document.createElement("span");
+        barAmount.className = "text-sm font-semibold";
+        barAmount.textContent = currency.format(item.amount);
+
+        const track = document.createElement("div");
+        track.className = "h-2.5 overflow-hidden rounded-full bg-surface-muted";
+        track.setAttribute("aria-hidden", "true");
+
+        const fill = document.createElement("div");
+        fill.className = "h-full rounded-full bg-accent";
+        const width =
+          summary.expenses > 0 ? (item.amount / summary.expenses) * 100 : 0;
+        fill.style.width = `${Math.max(0, Math.min(100, width))}%`;
+
+        barHeader.append(barLabel, barAmount);
+        track.append(fill);
+        barRow.append(barHeader, track);
+        categoryBars.append(barRow);
+
         const tr = document.createElement("tr");
         tr.className = "border-b border-border/70 last:border-b-0";
 
@@ -452,6 +537,16 @@ import { getPath } from "@/utils/getPath";
 
         tr.append(categoryCell, countCell, amountCell);
         categories.append(tr);
+      }
+
+      const topCategory = summary.categories[0];
+      if (topCategory && summary.expenses > 0) {
+        const share = Math.round((topCategory.amount / summary.expenses) * 100);
+        insight.textContent =
+          `${topCategory.category} concentra ${share}% de los egresos ` +
+          "detectados en este archivo.";
+      } else {
+        insight.textContent = "No se detectaron egresos para comparar.";
       }
 
       columns.textContent = JSON.stringify(summary.detectedColumns, null, 2);
@@ -490,6 +585,8 @@ import { getPath } from "@/utils/getPath";
       resetError();
       results?.classList.add("hidden");
       categories?.replaceChildren();
+      categoryBars?.replaceChildren();
+      if (insight) insight.textContent = "";
       if (columns) columns.textContent = "";
     });
 

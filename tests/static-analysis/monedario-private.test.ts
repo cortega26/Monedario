@@ -47,7 +47,9 @@ describe("Monedario Privado contracts", () => {
     expect(page).toContain('data-roadmap-status="available"');
     expect(page).toContain('data-roadmap-status="planned"');
     expect(page).toContain('data-roadmap-status="evaluating"');
-    expect(page).toContain("funciones disponibles hoy ni fechas comprometidas");
+    expect(page.replace(/\s+/g, " ")).toContain(
+      "intención de producto, no funciones disponibles hoy ni fechas comprometidas."
+    );
   });
 
   it("denies runtime network connections at the route boundary", () => {

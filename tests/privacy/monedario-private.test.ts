@@ -45,6 +45,10 @@ test("fictional demo produces a useful local summary", async ({ page }) => {
   await expect(page.locator("#private-row-count")).toContainText("8 movimientos");
   await expect(page.locator("#private-income")).not.toHaveText("");
   await expect(page.locator("#private-expenses")).not.toHaveText("");
+  await expect(page.locator("#private-category-bars > div")).toHaveCount(7);
+  await expect(page.locator("#private-insight")).toContainText(
+    "Vivienda concentra 72% de los egresos"
+  );
   await expect(page.locator("#private-categories tr")).toHaveCount(7);
 });
 
