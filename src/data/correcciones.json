@@ -1,0 +1,213 @@
+{
+  "corrections": [
+    {
+      "id": "finiquito-indemnizacion",
+      "date": "2026-09-29",
+      "title": "Calculadora de finiquito e indemnización por años de servicio",
+      "pages": [
+        {
+          "href": "/calculadoras/finiquito-indemnizacion/",
+          "label": "Calculadora de finiquito"
+        }
+      ],
+      "wrong": [
+        "No aplicaba el tope de 90 UF a la remuneración base de la indemnización (art. 172 del Código del Trabajo), por lo que sobrestimaba el monto en sueldos altos.",
+        "Calculaba indemnización por años de servicio aunque el contrato hubiera durado menos de un año.",
+        "Contaba un año adicional con una fracción de exactamente seis meses; la ley exige una fracción superior a seis meses.",
+        "Calculaba el recargo del art. 168 según la antigüedad, con una regla que ya no está vigente.",
+        "En contratos por obra o faena no calculaba la indemnización del art. 163 inciso 3°."
+      ],
+      "fixed": [
+        "La base se limita a 90 UF para la indemnización y el aviso previo.",
+        "La indemnización por años de servicio exige un año o más de contrato.",
+        "La fracción cuenta como año solo si supera seis meses.",
+        "El recargo depende de la causal declarada por el tribunal (30%, 50% u 80%); si no hay declaración, no se suma y se indica que lo fija el tribunal.",
+        "Obra o faena: 2,5 días de remuneración por mes trabajado. El campo de sueldo advierte que la base excluye horas extra y bonos esporádicos."
+      ],
+      "affected": "Quienes estimaron su finiquito con la calculadora antes de esta fecha, en especial con sueldos sobre 90 UF, contratos de menos de un año, despidos declarados injustificados o contratos por obra.",
+      "sources": "Código del Trabajo, arts. 163, 168 y 172 (texto oficial publicado por SUSESO).",
+      "prevention": "Casos de prueba derivados del texto legal para cada regla (tope, antigüedad mínima, fracción, recargo por causal y obra o faena), que fallan si el cálculo vuelve a apartarse de la ley."
+    },
+    {
+      "id": "impuesto-segunda-categoria-tramos",
+      "date": "2026-09-29",
+      "title": "Tramos superiores del impuesto de segunda categoría",
+      "pages": [
+        {
+          "href": "/calculadoras/impuesto-segunda-categoria/",
+          "label": "Calculadora de impuesto de segunda categoría"
+        },
+        {
+          "href": "/calculadoras/operacion-renta/",
+          "label": "Simulador de Operación Renta"
+        }
+      ],
+      "wrong": [
+        "La tabla situaba el límite del tramo del 35% en 150 UTM (o UTA) y aplicaba el 40% sobre ese monto."
+      ],
+      "fixed": [
+        "El 35% llega hasta 310 UTM (o UTA) y el 40% aplica sobre ese tope, con rebaja de 38,82 UTM (o UTA). La tabla mostrada y el tramo resaltado usan los mismos límites."
+      ],
+      "affected": "Personas con rentas mensuales entre 150 y 310 UTM, o anuales en el tramo equivalente en UTA, a quienes se les estimaba un impuesto mayor al que corresponde.",
+      "sources": "Tabla de impuesto único de segunda categoría y del global complementario publicada por el SII.",
+      "prevention": "Pruebas de la tabla en cada límite de tramo y una prueba de navegador que verifica qué tramo se resalta para rentas a ambos lados de 310 UTM."
+    },
+    {
+      "id": "operacion-renta-at2026",
+      "date": "2026-09-28",
+      "dateEnd": "2026-09-29",
+      "title": "Parámetros y base del simulador de Operación Renta 2026",
+      "pages": [
+        {
+          "href": "/calculadoras/operacion-renta/",
+          "label": "Simulador de Operación Renta"
+        },
+        {
+          "href": "/posts/impuesto-global-complementario-chile/",
+          "label": "Artículo sobre el impuesto global complementario"
+        }
+      ],
+      "wrong": [
+        "Calculaba el año tributario 2026 con la UTA derivada de la UTM vigente (UTM actual × 12), en lugar de la UTA de diciembre de 2025, que corresponde a las rentas de 2025.",
+        "Pedía sueldos brutos como base, cuando el cálculo parte de la renta neta pagada que informa el empleador.",
+        "Indicaba una retención de honorarios del 15,25% para el año tributario 2026; esa tasa corresponde a las boletas emitidas en 2026, que se declaran en el año tributario 2027. En algunos artículos, además, se hablaba de «año tributario 2025» para rentas de 2025.",
+        "Durante la corrección, la UF de cierre de 2025 quedó por un día con un valor erróneo ($39.643,59 en vez de $39.727,96), que se usa para el tope de 600 UF del APV."
+      ],
+      "fixed": [
+        "Los parámetros del año tributario 2026 quedan fijos: UTA de diciembre de 2025, UF al 31 de diciembre de 2025 ($39.727,96) y retención de honorarios del 14,5%.",
+        "La entrada principal es la renta neta pagada por sueldos; también se puede estimar desde el sueldo bruto, y en ese caso el resultado se marca como estimado.",
+        "Los artículos relacionados distinguen año comercial (rentas de 2025) y año tributario (declaración de 2026)."
+      ],
+      "affected": "Quienes usaron el simulador o leyeron los artículos relacionados para preparar la declaración de renta 2026.",
+      "sources": "SII: tabla del impuesto global complementario, valores de UTM/UTA y tasas de retención de honorarios; Banco Central y SII para la UF al 31-12-2025.",
+      "prevention": "Un registro de parámetros por año tributario, con período de vigencia y fuente, que falla si falta un año. Una prueba automática impide que el cálculo tributario lea indicadores vigentes. Además, se comprueba contra un caso de referencia del SII (renta de $18.000.000 ⇒ impuesto de $269.368) y otra guarda detecta la tasa de honorarios fuera de su año."
+    },
+    {
+      "id": "deposito-a-plazo-retencion",
+      "date": "2026-09-29",
+      "title": "Supuesta retención del 4% en depósitos a plazo",
+      "pages": [
+        {
+          "href": "/calculadoras/deposito-a-plazo/",
+          "label": "Calculadora de depósito a plazo"
+        },
+        {
+          "href": "/posts/fondo-emergencia-chile/",
+          "label": "Artículo sobre fondo de emergencia"
+        }
+      ],
+      "wrong": [
+        "La calculadora descontaba de los intereses una retención del 4% y el título, la descripción y otras páginas hablaban de un «impuesto del 4%» para cualquier persona."
+      ],
+      "fixed": [
+        "Para personas residentes en Chile, el banco no retiene impuesto: los intereses se declaran en el impuesto global complementario anual, con el tramo exento y, cuando corresponde, la exención de hasta 20 UTM. El 4% es un impuesto adicional que aplica solo a personas sin domicilio ni residencia en Chile. La calculadora muestra el interés y el monto al vencimiento sin descuentos."
+      ],
+      "affected": "Quienes compararon depósitos a plazo con la calculadora o con las guías de ahorro: el interés neto se mostraba menor que el real.",
+      "sources": "SII, pregunta frecuente 001.140.2738 y Oficio N° 2047; Ley sobre Impuesto a la Renta, art. 59.",
+      "prevention": "Una guarda automática revisa artículos, guías y calculadoras, y falla si vuelve a aparecer la retención del 4% como regla general."
+    },
+    {
+      "id": "apv-retiro-anticipado",
+      "date": "2026-09-29",
+      "title": "Impuesto por retiro anticipado del APV régimen B",
+      "pages": [
+        {
+          "href": "/calculadoras/apv/",
+          "label": "Calculadora de APV"
+        }
+      ],
+      "wrong": [
+        "La explicación del impuesto único por retiro anticipado del APV régimen B describía mal la fórmula y la presentaba como una tasa marginal."
+      ],
+      "fixed": [
+        "La tasa es el aumento del impuesto global complementario que produce el retiro, dividido por el monto retirado, multiplicado por 1,1 y aumentado en 3 puntos porcentuales. La retención del 15% es un abono a ese impuesto, y los pensionados no pagan el recargo."
+      ],
+      "affected": "Quienes evaluaban retirar ahorro APV del régimen B antes de pensionarse.",
+      "sources": "Ley sobre Impuesto a la Renta, art. 42 bis.",
+      "prevention": "La fórmula quedó implementada como cálculo verificable, con pruebas, en vez de solo descrita en texto."
+    },
+    {
+      "id": "renegociacion-superir-dicom",
+      "date": "2026-09-29",
+      "title": "Requisitos de renegociación y reglas de DICOM",
+      "pages": [
+        {
+          "href": "/calculadoras/simulador-renegociacion/",
+          "label": "Simulador de renegociación"
+        }
+      ],
+      "wrong": [
+        "El simulador consideraba que una deuda de exactamente 80 UF cumplía el requisito; la ley exige más de 80 UF.",
+        "Durante la corrección se exigió por un día que las deudas fueran con acreedores distintos; la ley exige dos o más obligaciones, aunque sean con el mismo acreedor.",
+        "La sección sobre DICOM atribuía sus reglas a la Ley 21.214 e indicaba un plazo de 5 años desde el pago."
+      ],
+      "fixed": [
+        "Requisito: dos o más obligaciones vencidas por más de 90 días corridos, por un total superior a 80 UF.",
+        "DICOM: según la Ley 19.628, una deuda no puede informarse pasados 5 años desde que se hizo exigible ni después de pagada o extinguida. La Ley 21.214 solo aplica a deudas educacionales."
+      ],
+      "affected": "Personas que evaluaban acogerse a la renegociación de la Superintendencia de Insolvencia y Reemprendimiento o que querían saber cuándo sale una deuda de DICOM.",
+      "sources": "Ley 20.720, art. 260; Ley 19.628, arts. 17 y 18 (Ley Chile, BCN).",
+      "prevention": "Pruebas de elegibilidad para el umbral exacto de 80 UF y para varias obligaciones con un mismo acreedor."
+    },
+    {
+      "id": "glosario-tramos-pesos",
+      "date": "2026-09-29",
+      "title": "Tramos del impuesto único en pesos fijos en el glosario",
+      "pages": [
+        {
+          "href": "/glosario/",
+          "label": "Glosario"
+        }
+      ],
+      "wrong": [
+        "Algunas entradas del glosario expresaban los tramos del impuesto único en pesos fijos (por ejemplo, «desde ~$943.000»), sin indicar el mes, así que quedaban desactualizados cuando cambiaba la UTM."
+      ],
+      "fixed": [
+        "Los tramos se expresan en UTM (el tramo exento llega a 13,5 UTM) y el equivalente en pesos se calcula con la UTM vigente."
+      ],
+      "affected": "Lectores que usaron el glosario para saber si su sueldo paga impuesto.",
+      "sources": "Ley sobre Impuesto a la Renta, art. 43 N°1; UTM publicada por el SII.",
+      "prevention": "Una guarda impide publicar en el glosario montos en pesos escritos a mano para los tramos del impuesto."
+    },
+    {
+      "id": "sueldo-liquido-ejemplo",
+      "date": "2026-09-29",
+      "title": "Ejemplo de la calculadora de sueldo líquido",
+      "pages": [
+        {
+          "href": "/calculadoras/sueldo-liquido/",
+          "label": "Calculadora de sueldo líquido"
+        }
+      ],
+      "wrong": [
+        "El ejemplo de la página mostraba un resultado distinto al que daba la propia calculadora con los mismos datos."
+      ],
+      "fixed": [
+        "El ejemplo se genera con el mismo motor de cálculo. Para un sueldo bruto de $1.200.000 (AFP Habitat, Fonasa, contrato indefinido) muestra un líquido de $973.347, igual que la calculadora."
+      ],
+      "affected": "Quienes tomaron el ejemplo como referencia sin usar la calculadora.",
+      "sources": "Motor de cálculo de la propia calculadora, con parámetros oficiales vigentes.",
+      "prevention": "Una prueba automática compara el ejemplo publicado con el resultado real de la calculadora."
+    },
+    {
+      "id": "ipc-serie-desactualizada",
+      "date": "2026-09-29",
+      "title": "Serie de IPC desactualizada en el actualizador por inflación",
+      "pages": [
+        {
+          "href": "/calculadoras/actualizador-inflacion/",
+          "label": "Actualizador por inflación"
+        }
+      ],
+      "wrong": [
+        "La serie de IPC llegaba hasta diciembre de 2025, pero la página la presentaba como la última cifra disponible del INE."
+      ],
+      "fixed": [
+        "La página compara la serie cargada con la última cifra publicada por el INE y, si hay atraso, muestra un aviso que indica hasta qué mes llegan los datos. Pendiente: incorporar los meses de 2026 desde una fuente primaria del INE; mientras tanto, el aviso se mantiene visible."
+      ],
+      "affected": "Quienes actualizaron montos por inflación con períodos de 2026.",
+      "sources": "INE, Índice de Precios al Consumidor.",
+      "prevention": "Un control de vigencia que falla de forma visible, en vez de presentar datos atrasados como actuales."
+    }
+  ]
+}

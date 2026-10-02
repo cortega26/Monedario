@@ -17,6 +17,7 @@
 
 - [ ] I have read the [Contributing Guide](https://github.com/cortega26/Monedario/blob/main/.github/CONTRIBUTING.md)
 - [ ] I have added the necessary documentation (if appropriate)
+- [ ] If this PR fixes a material error in published content, I registered it in `src/data/correcciones.json` (cosmetic-only changes per NORMA_YMYL §5.4 are exempt)
 - [ ] Breaking Change (fix or feature that would cause existing functionality to not work as expected)
 
 ## Further comments
