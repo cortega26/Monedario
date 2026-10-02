@@ -18,6 +18,8 @@ import {
   strikingDistanceCandidates,
   tokenize,
   tokensFromQueries,
+  reportSignature,
+  computeReportDelta,
 } from "../../scripts/lib/growth-opportunities.mjs";
 import {
   buildCompetitorPages,
@@ -387,6 +389,7 @@ describe("buildOpportunityReport", () => {
     queries: [{ query: "utm", impressions: 500 }],
     ourRoutes: ["/calculadoras/conversor-utm/"],
     feedback: null,
+    previousSignature: null,
     queryPage: [
       {
         query: "utm hoy",
@@ -726,6 +729,7 @@ describe("applyFeedback", () => {
       externalAvailable: false,
       ourRoutes: [],
       feedback: { dismissed: ["ctr_gap_page:https://monedario.cl/posts/x/"] },
+      previousSignature: null,
       registry: REGISTRY,
     });
     expect(report.feedback.suppressed).toBe(1);
@@ -921,5 +925,67 @@ describe("crossEngineQueryCandidates", () => {
 
   it("sin engineQueries no emite candidatos", () => {
     expect(crossEngineQueryCandidates({}, gsc, config)).toHaveLength(0);
+  });
+});
+
+describe("delta semanal", () => {
+  it("genera una firma ordenada de ids", () => {
+    const signature = reportSignature({
+      week: "2026-W39",
+      candidates: [{ id: "b" }, { id: "a" }],
+    });
+    expect(signature).toEqual({ week: "2026-W39", ids: ["a", "b"] });
+  });
+
+  it("clasifica nuevos y resueltos", () => {
+    const delta = computeReportDelta(["a", "c"], {
+      week: "2026-W38",
+      ids: ["a", "b"],
+    });
+    expect(delta).toEqual({
+      previousWeek: "2026-W38",
+      new: ["c"],
+      resolved: ["b"],
+    });
+  });
+
+  it("el reporte incluye delta y el markdown lo muestra", () => {
+    const report = buildOpportunityReport({
+      week: "2026-W39",
+      window: { from: "2026-09-21", to: "2026-09-27" },
+      counts: { pages: 1, queries: 1, queryPage: 0, analytics: 0, external: 0 },
+      pages: [
+        {
+          page: "https://monedario.cl/posts/x/",
+          impressions: 2000,
+          clicks: 20,
+          ctr: 0.01,
+          position: 5,
+        },
+      ],
+      queries: [{ query: "utm", impressions: 500 }],
+      queryPage: [],
+      analytics: [],
+      previousPages: [],
+      previousWeekAvailable: false,
+      external: null,
+      externalAvailable: false,
+      ourRoutes: [],
+      feedback: null,
+      previousSignature: {
+        week: "2026-W38",
+        ids: ["ctr_gap_page:https://monedario.cl/posts/otro/"],
+      },
+      registry: REGISTRY,
+    });
+    expect(report.delta.previousWeek).toBe("2026-W38");
+    expect(report.delta.new).toContain(
+      "ctr_gap_page:https://monedario.cl/posts/x/"
+    );
+    expect(report.delta.resolved).toContain(
+      "ctr_gap_page:https://monedario.cl/posts/otro/"
+    );
+    const markdown = renderOpportunityMarkdown(report);
+    expect(markdown).toContain("## Cambios vs 2026-W38");
   });
 });

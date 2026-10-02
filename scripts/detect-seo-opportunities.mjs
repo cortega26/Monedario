@@ -38,6 +38,7 @@ function parseArgs(argv) {
     root: DEFAULT_ROOT,
     out: null,
     registry: null,
+    previousSignature: null,
   };
   for (let i = 2; i < argv.length; i += 1) {
     const flag = argv[i];
@@ -46,6 +47,7 @@ function parseArgs(argv) {
     else if (flag === "--root") args.root = path.resolve(value);
     else if (flag === "--out") args.out = value;
     else if (flag === "--registry") args.registry = value;
+    else if (flag === "--previous-signature") args.previousSignature = value;
     else {
       console.error(`[growth] argumento desconocido: ${flag}`);
       process.exit(1);
@@ -104,6 +106,17 @@ function main() {
   const feedback = readJson(
     path.join(root, "src", "config", "growth-opportunity-feedback.json")
   );
+  let previousSignature = args.previousSignature
+    ? readJson(path.resolve(root, args.previousSignature))
+    : null;
+  if (
+    previousSignature &&
+    (!Array.isArray(previousSignature.ids) ||
+      typeof previousSignature.week !== "string")
+  ) {
+    console.warn("[growth] firma previa inválida; se ignora el delta");
+    previousSignature = null;
+  }
 
   const missing = [
     !pagesDoc && "gsc/pages",
@@ -165,6 +178,7 @@ function main() {
     externalAvailable: Boolean(externalDoc),
     ourRoutes,
     feedback: feedback ?? null,
+    previousSignature,
     registry,
   });
   report.status = "ok";
