@@ -18,7 +18,7 @@
   "promoted": [
     {
       "id": "ctr_gap_page:https://monedario.cl/calculadoras/actualizador-inflacion/",
-      "experiment": "exp-actualizador-inflacion-ctr-2026-10",
+      "experiment": "exp-ipc-reajuste-cluster-2026-10",
       "status": "proposed",
       "at": "2026-10-01"
     }

@@ -108,22 +108,41 @@
   },
   "experiments": [
     {
-      "id": "exp-actualizador-inflacion-ctr-2026-10",
+      "id": "exp-ipc-reajuste-cluster-2026-10",
       "candidateId": "ctr_gap_page:https://monedario.cl/calculadoras/actualizador-inflacion/",
       "page": "/calculadoras/actualizador-inflacion/",
-      "type": "snippet",
+      "type": "cluster-intent",
       "tier": "A2",
       "status": "proposed",
       "spec": "docs/reports/EXPERIMENT-SPEC-actualizador-inflacion-2026-10-01.md",
-      "preRegistered": {
-        "metric": "ctr_page",
+      "phaseA": {
+        "id": "serp-diagnosis",
+        "tier": "A0",
+        "owner": "carlos",
+        "status": "pending",
+        "queries": [
+          "calculadora ipc",
+          "calculadora ipc arriendo",
+          "calculo ipc arriendo"
+        ],
+        "note": "Captura manual; Google bloquea la verificación automatizada (captcha)."
+      },
+      "phaseB": {
+        "metric": "ctr_cluster_ipc_arriendo",
         "threshold": 0.015,
-        "positionGuard": 8.5,
+        "secondary": {
+          "positionQuery": "calculadora ipc arriendo",
+          "positionMax": 6,
+          "baselinePosition": 8.28,
+          "clusterClicksBaseline": 0
+        },
         "nMin": 199,
         "windowDays": 28,
-        "decision": "keep|extend|revert"
+        "decision": "keep|extend|revert",
+        "requiresOwnerApproval": true
       },
-      "createdAt": "2026-10-01"
+      "createdAt": "2026-10-01",
+      "revisedAt": "2026-10-01"
     }
   ]
 }
