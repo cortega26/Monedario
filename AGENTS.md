@@ -11,6 +11,7 @@ Rules live in `docs/development/`. This file is the entry map, not the manual.
 - Never mark a gate `[X]` in `07-publish-packet.md` — only humans sign off publication gates.
 - Never draft and audit/comply a YMYL piece in the same agent session (`INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`).
 - Never change a public slug without a route/RSS snapshot before/after + ADR.
+- Never publish a material fix to published content without registering it in `src/data/correcciones.json` (validated by `check:correcciones`). Cosmetic-only changes as defined in `docs/editorial/NORMA_YMYL.md` §5.4 are exempt and must NOT be registered.
 - No new indexable URL without approved exception (strategic focus: `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED` through 2026-11-02).
 - `no-console: "error"` in `src/` — use proper logging or none. Scripts (`scripts/*.mjs`) and workers are exempt.
 

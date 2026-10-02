@@ -179,6 +179,34 @@ Toda actualizacion de `updatedDate` requiere **registro** (1 linea) en backlog/r
 - por que
 - fuente(s) que justifican
 
+### 5.4 Registro publico de correcciones
+
+Toda correccion material a contenido ya publicado **debe** registrarse en
+`src/data/correcciones.json`, que alimenta la pagina `/correcciones/`.
+El registro se valida con `pnpm run check:correcciones` (campos obligatorios,
+fechas ISO, ids unicos, orden descendente por fecha, enlaces internos que
+resuelven). La pagina es un directorio consultable por fecha: cualquier
+cambio que agregue URLs indexables requiere excepcion al freeze.
+
+**Material (se registra):** todo fix que cambia lo que un lector razonable
+puede decidir o entender: numeros, tasas, topes, formulas, resultados de
+calculadoras, ejemplos con resultado distinto al real, fechas, plazos,
+periodos de vigencia, requisitos, condiciones de elegibilidad, pasos cuyo
+orden o contenido cambia el resultado, conclusiones, recomendaciones y
+alcance (a quienes aplica). Incluye correcciones a correcciones ya
+registradas: nueva entrada, nunca reescritura silenciosa del historial.
+
+**Cosmetic-only (exento, NO se registra):** erratas, ortografia y puntuacion;
+gramatica y estilo que no cambian el significado; formato, layout y
+tipografia; UX/UI y presentacion que no alteran valores ni significado;
+interlinks (agregar o arreglar enlaces internos); reordenamiento sin
+contenido nuevo; imagenes y alt que no cambian informacion factual;
+metadatos (tags, SEO) que no cambian afirmaciones visibles al lector.
+
+**Regla de desempate:** si un cambio mezcla ambas clases, manda lo material
+y se registra. Un cambio de presentacion que altera un numero, fecha,
+requisito o conclusion visible es material. En caso de duda, se registra.
+
 ---
 
 ## 6) Checklist de revision (GATE antes de merge)
