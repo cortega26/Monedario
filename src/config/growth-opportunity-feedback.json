@@ -15,5 +15,12 @@
       "reason": "noticia de mercado inmobiliario, no gap de contenido"
     }
   ],
-  "promoted": []
+  "promoted": [
+    {
+      "id": "ctr_gap_page:https://monedario.cl/calculadoras/actualizador-inflacion/",
+      "experiment": "exp-actualizador-inflacion-ctr-2026-10",
+      "status": "proposed",
+      "at": "2026-10-01"
+    }
+  ]
 }

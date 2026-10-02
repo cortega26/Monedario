@@ -44,8 +44,54 @@ jobs:
         continue-on-error: true
         run: node scripts/collect-competitor-sitemaps.mjs
 
+      - name: "🧾 Extraer firma previa del issue"
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const title = "🌱 Growth opportunities (report-only)";
+            const { owner, repo } = context.repo;
+            const dir = "output/validation/growth-opportunities";
+            fs.mkdirSync(dir, { recursive: true });
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (!existing?.body) {
+              core.info("Sin issue previo; primera corrida sin delta");
+              return;
+            }
+            const match = existing.body.match(
+              /<!-- growth-signature: ([\s\S]*?) -->/
+            );
+            if (!match) {
+              core.info("Sin firma previa en el issue");
+              return;
+            }
+            try {
+              const signature = JSON.parse(match[1]);
+              fs.writeFileSync(
+                `${dir}/previous-signature.json`,
+                JSON.stringify(signature)
+              );
+              core.info(
+                `Firma previa ${signature.week} (${signature.ids?.length ?? 0} candidatos)`
+              );
+            } catch (error) {
+              core.warning(`Firma previa inválida: ${error.message}`);
+            }
+
       - name: "🌱 Detectar oportunidades"
-        run: node scripts/detect-seo-opportunities.mjs
+        run: |
+          if [ -f output/validation/growth-opportunities/previous-signature.json ]; then
+            node scripts/detect-seo-opportunities.mjs \
+              --previous-signature output/validation/growth-opportunities/previous-signature.json
+          else
+            node scripts/detect-seo-opportunities.mjs
+          fi
 
       - name: "📤 Upload opportunity report"
         if: always()
@@ -77,10 +123,34 @@ jobs:
             }
             const latest = files[files.length - 1];
             const body = fs.readFileSync(`${dir}/${latest}`, "utf8");
+            const reportFiles = fs
+              .readdirSync(dir)
+              .filter(
+                (file) =>
+                  file.endsWith(".json") && file !== "previous-signature.json"
+              )
+              .sort();
+            let marker = "";
+            if (reportFiles.length > 0) {
+              try {
+                const report = JSON.parse(
+                  fs.readFileSync(
+                    `${dir}/${reportFiles[reportFiles.length - 1]}`,
+                    "utf8"
+                  )
+                );
+                if (report.signature) {
+                  marker = `\n\n<!-- growth-signature: ${JSON.stringify(report.signature)} -->`;
+                }
+              } catch (error) {
+                core.warning(`No se pudo leer la firma nueva: ${error.message}`);
+              }
+            }
             const title = "🌱 Growth opportunities (report-only)";
             const { owner, repo } = context.repo;
             const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
             const footer = `\n\n---\n_Reporte automático Fase 0 (sin acciones). Run: ${runUrl}_`;
+            const fullBody = body + footer + marker;
 
             const { data: issues } = await github.rest.issues.listForRepo({
               owner,
@@ -94,7 +164,7 @@ jobs:
                 owner,
                 repo,
                 issue_number: existing.number,
-                body: body + footer,
+                body: fullBody,
               });
               core.info(`Issue actualizado: #${existing.number}`);
             } else {
@@ -102,7 +172,7 @@ jobs:
                 owner,
                 repo,
                 title,
-                body: body + footer,
+                body: fullBody,
                 labels: ["automation", "search"],
               });
               core.info("Issue de oportunidades creado");

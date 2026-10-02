@@ -106,5 +106,24 @@
     "license": "internal-only",
     "note": "Datos agregados; el path está gitignoreado y nunca se commitea crudo. La fuente libre (competitor sitemaps) se activa con `pnpm run growth:collect:competitors`; sin archivo, los detectores externos se omiten."
   },
-  "experiments": []
+  "experiments": [
+    {
+      "id": "exp-actualizador-inflacion-ctr-2026-10",
+      "candidateId": "ctr_gap_page:https://monedario.cl/calculadoras/actualizador-inflacion/",
+      "page": "/calculadoras/actualizador-inflacion/",
+      "type": "snippet",
+      "tier": "A2",
+      "status": "proposed",
+      "spec": "docs/reports/EXPERIMENT-SPEC-actualizador-inflacion-2026-10-01.md",
+      "preRegistered": {
+        "metric": "ctr_page",
+        "threshold": 0.015,
+        "positionGuard": 8.5,
+        "nMin": 199,
+        "windowDays": 28,
+        "decision": "keep|extend|revert"
+      },
+      "createdAt": "2026-10-01"
+    }
+  ]
 }

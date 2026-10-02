@@ -746,6 +746,25 @@ export function applyFeedback(candidates, feedback) {
   return { candidates: kept, suppressed };
 }
 
+/** Firma estable de una semana: ids de candidatos ordenados. */
+export function reportSignature(report) {
+  return {
+    week: report?.week ?? null,
+    ids: (report?.candidates ?? []).map(candidate => candidate.id).sort(),
+  };
+}
+
+/** Delta entre la firma actual y la de la semana anterior. */
+export function computeReportDelta(currentIds, previousSignature) {
+  const previous = new Set(previousSignature?.ids ?? []);
+  const current = new Set(currentIds ?? []);
+  return {
+    previousWeek: previousSignature?.week ?? null,
+    new: [...current].filter(id => !previous.has(id)).sort(),
+    resolved: [...previous].filter(id => !current.has(id)).sort(),
+  };
+}
+
 export function buildOpportunityReport({
   week,
   window,
@@ -760,6 +779,7 @@ export function buildOpportunityReport({
   externalAvailable,
   ourRoutes,
   feedback,
+  previousSignature,
   registry,
 }) {
   const bands = registry.expectedCtrBands;
@@ -872,6 +892,9 @@ export function buildOpportunityReport({
     byType[candidate.type] = (byType[candidate.type] ?? 0) + 1;
   }
 
+  const signature = reportSignature({ week, candidates: sorted });
+  const delta = computeReportDelta(signature.ids, previousSignature);
+
   return {
     schemaVersion: 1,
     phase: registry.phase ?? "report-only",
@@ -887,6 +910,8 @@ export function buildOpportunityReport({
       suppressed: suppressed.length,
       suppressedIds: suppressed.map(item => item.id),
     },
+    signature,
+    delta,
   };
 }
 
@@ -912,6 +937,23 @@ export function renderOpportunityMarkdown(report) {
     lines.push(
       `- Suprimidos por feedback: ${report.feedback.suppressed} (ya revisados; ver src/config/growth-opportunity-feedback.json)`
     );
+  }
+
+  if (report.delta?.previousWeek) {
+    lines.push("");
+    lines.push(`## Cambios vs ${report.delta.previousWeek}`);
+    lines.push("");
+    lines.push(`- Nuevos: ${report.delta.new.length}`);
+    for (const id of report.delta.new.slice(0, 10)) {
+      const candidate = report.candidates.find(item => item.id === id);
+      lines.push(
+        `  - [${candidate?.type ?? "?"}] ${candidate?.query ?? candidate?.url ?? candidate?.calculator ?? id}`
+      );
+    }
+    lines.push(`- Resueltos (ya no aparecen): ${report.delta.resolved.length}`);
+    for (const id of report.delta.resolved.slice(0, 10)) {
+      lines.push(`  - ${id}`);
+    }
   }
   lines.push("");
   lines.push(
