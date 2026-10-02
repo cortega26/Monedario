@@ -62,9 +62,7 @@ def test_recurring_lines_formatea_cadencia_y_owner():
             }
         ]
     }
-    assert ops_reminders.recurring_lines(data) == [
-        "↻ Revisar Growth [carlos] (weekly)"
-    ]
+    assert ops_reminders.recurring_lines(data) == ["↻ Revisar Growth [carlos] (weekly)"]
     assert ops_reminders.recurring_lines({}) == []
 
 
