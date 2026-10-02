@@ -75,6 +75,14 @@ def format_lines(items: list[dict], today: date) -> list[str]:
     return lines
 
 
+def recurring_lines(data: dict) -> list[str]:
+    """Líneas de los pendientes recurrentes (repaso semanal)."""
+    return [
+        f"↻ {item['title']} [{item.get('owner', '-')}] ({item.get('cadence', 'recurrente')})"
+        for item in data.get("recurring", [])
+    ]
+
+
 def ntfy_topic() -> str | None:
     topic = os.environ.get("MONEDARIO_OPS_NTFY_TOPIC")
     if topic:
@@ -134,6 +142,7 @@ def main(argv: list[str] | None = None) -> int:
             f"· {it['title']} (sin fecha) [{it.get('owner', '-')}]"
             for it in data.get("undated", [])
         ]
+        lines += recurring_lines(data)
         print("\n".join(lines))
         return 0
 

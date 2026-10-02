@@ -49,3 +49,27 @@ def test_schedule_real_es_valido():
         if item.get("end_date"):
             date.fromisoformat(item["end_date"])
         assert item["title"]
+
+
+def test_recurring_lines_formatea_cadencia_y_owner():
+    data = {
+        "recurring": [
+            {
+                "id": "growth-review",
+                "title": "Revisar Growth",
+                "owner": "carlos",
+                "cadence": "weekly",
+            }
+        ]
+    }
+    assert ops_reminders.recurring_lines(data) == [
+        "↻ Revisar Growth [carlos] (weekly)"
+    ]
+    assert ops_reminders.recurring_lines({}) == []
+
+
+def test_schedule_real_recurring_valido():
+    data = ops_reminders.load_schedule()
+    for item in data.get("recurring", []):
+        assert item.get("id") and item.get("title") and item.get("owner")
+        assert item.get("cadence")
