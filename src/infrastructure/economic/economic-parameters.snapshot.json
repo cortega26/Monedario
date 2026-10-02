@@ -21,14 +21,14 @@
     "dolar": "2026-10-02"
   },
   "lastUpdated": "2026-10-02",
-  "capturedAt": "2026-10-02T10:15:23.617Z",
+  "capturedAt": "2026-10-02T18:15:23.612Z",
   "source": "mindicador.cl/api",
   "provenance": {
     "utm": {
       "primarySource": "SII",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "status": "primary",
-      "verifiedAt": "2026-10-02T10:15:23.617Z"
+      "verifiedAt": "2026-10-02T18:15:23.612Z"
     }
   },
   "prev": {
