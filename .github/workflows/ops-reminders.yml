@@ -57,6 +57,10 @@ jobs:
               ...(data.undated || []).map(
                 (it) => `- [ ] (sin fecha) — ${it.title} · _${it.owner}_`
               ),
+              ...(data.recurring || []).map(
+                (it) =>
+                  `- [ ] (recurrente ${it.cadence}) — ${it.title} · _${it.owner}_`
+              ),
             ].join("\n");
 
             const { owner, repo } = context.repo;
@@ -95,9 +99,15 @@ jobs:
               const end = it.end_date ? ` (hasta ${it.end_date})` : "";
               return `- [ ] **${it.date}${end}** — ${it.title} · _${it.owner}_`;
             });
+            const recurringLines = (data.recurring || []).map(
+              (it) => `- [ ] ${it.title} · _${it.owner}_ (${it.cadence})`
+            );
             const body =
               `${MARKER}\n### Pendientes al ${iso(today)}\n\n` +
               `${lines.join("\n")}\n\n` +
+              (recurringLines.length
+                ? `### Recurrentes\n\n${recurringLines.join("\n")}\n\n`
+                : "") +
               `<sub>Fuente: \`docs/operations/ops-schedule.json\` · ` +
               `ventana ${HORIZON_DAYS} días</sub>`;
 

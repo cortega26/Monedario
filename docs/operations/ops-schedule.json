@@ -221,5 +221,21 @@
       "detail": "Requiere login una vez; el resto de la primera corrida ya está registrado.",
       "owner": "carlos"
     }
+  ],
+  "recurring": [
+    {
+      "id": "growth-review",
+      "title": "Revisar reporte 🌱 Growth opportunities (#644) y calibrar",
+      "detail": "Lunes: revisar candidatos nuevos vs la semana anterior, promover a spec o descartar en src/config/growth-opportunity-feedback.json.",
+      "cadence": "weekly",
+      "owner": "carlos"
+    },
+    {
+      "id": "gate-d",
+      "title": "Gate D semanal (inputs owner) durante W39–W43",
+      "detail": "weeklyHours, weeklyCostClp, burnoutLevel1To5 en output/operations/weekly-search-performance/<semana>/utility-led-ops.json.",
+      "cadence": "weekly",
+      "owner": "carlos"
+    }
   ]
 }
