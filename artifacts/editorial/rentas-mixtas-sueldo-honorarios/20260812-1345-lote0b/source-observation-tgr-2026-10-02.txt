@@ -1,0 +1,23 @@
+Fuente: https://tgr.gob.cl/convenios-de-pago/
+Fecha de consulta: 2026-10-02
+Método: página oficial abierta en Chrome; texto visible del acordeón expandido
+“Convenio para deudas vencidas de Impuestos Fiscales y Aduaneros”.
+
+Texto observado:
+
+“Este convenio da la facilidad de pagar tus deudas vencidas de Impuestos
+Fiscales y Aduaneros en cuotas mensuales. Ley N° 20.780 Política de Convenios y
+Condonación permanente del Servicio de Tesorerías.”
+
+“Plazo hasta 24 cuotas (de acuerdo al comportamiento de pago)”
+
+“Pie entre un 10% y un 30% (de acuerdo al comportamiento de pago, si tiene o no
+garantía)”
+
+“Con un mínimo de 1 UTM puedes solicitar un convenio de pago en cuotas
+mensuales.”
+
+Esta observación respalda esos términos para el producto descrito. No los
+extiende a los demás convenios listados en la misma página. El fetch de texto
+desde la herramienta web devolvió 403 en esta sesión; la página exacta sí
+cargó en el navegador y mostró el acordeón indicado.

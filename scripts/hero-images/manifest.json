@@ -1246,7 +1246,7 @@
     },
     {
       "slug": "operacion-renta-f22-checklist",
-      "sourceContentHash": "84bd3ce429fe51c5cccfb05b5a2225f66b7dff9c1262a0e92e263e45f70620f5",
+      "sourceContentHash": "b635ab3025bdb92d9a7f5b21cbf9dfcfe9399eb6d6ab74087da40158cc860510",
       "title": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores",
       "tags": [
         "impuestos",
@@ -1258,24 +1258,24 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/operacion-renta-f22-checklist.md",
       "heroImage": "/images/hero/operacion-renta-f22-checklist.avif",
-      "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. Estado del ciclo AT2026 (rev...",
+      "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. Qué cambió con el cierre de...",
       "leadParagraphs": [
         "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.",
-        "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones.",
-        "La propuesta ya te muestra el resultado. Busca las líneas \"Impuesto determinado\" y \"Total créditos y retenciones\":"
+        "**Estado del ciclo AT2026 (revisado el 2 de octubre de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones.",
+        "**Ejemplo breve:** si un F22 atrasado determina un pago y el retraso no supera 5 meses, la FAQ del SII ubica el caso en la regla de multa del 10% sobre impuestos reajustados, además del interés penal. Si el F22 da derecho a devolución o queda sin pago ni devolución, la FAQ lista una multa entre 1 UTM y 1 UTA y no enumera interés penal en esos apartados. Esas son reglas publicadas; este ejemplo no calcula un monto individual. ([SII FAQ 001_140_3095](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm))."
       ],
       "headings": [
+        "Qué cambió con el cierre de AT2026",
         "Fuera de la ventana AT2026: qué puedes hacer hoy",
         "¿Tienes que declarar o solo aceptar la propuesta?",
         "¿Te van a devolver o debes pagar?",
         "Cuándo llega la devolución (calendario del ciclo AT2026, ya ejecutado)",
         "Qué hacer ahora (10 minutos)",
         "Escenarios frecuentes (si te pasa X, haz Y)",
-        "Errores que más atrasan la devolución",
-        "Preguntas frecuentes (rápidas)"
+        "Errores que más atrasan la devolución"
       ],
-      "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. **Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones. ## Fuera de la ventana AT2026: qué puedes hacer hoy - **Si tu declaración quedó observada:** entra a sii.cl → Servicios online → Renta → Declaración de Renta → \"Consulta y seguimiento\" → \"Consultar estado de declaración\" para ver el detalle de la observación y rectificar por internet. Este trámite está disponible desde la segunda semana de junio del año en curso — es decir, después del cierre de la ventana de abril-mayo, por lo ",
-      "wordCount": 2249,
+      "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. ## Qué cambió con el cierre de AT2026 **Estado del ciclo AT2026 (revisado el 2 de octubre de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones. ## Fuera de la ventana AT2026: qué puedes hacer hoy - **Si tu declaración quedó observada:** entra a sii.cl → Servicios online → Renta → Declaración de Renta → \"Consulta y seguimiento\" → \"Consultar estado de declaración\" para ver el detalle de la observación y rectificar por internet. Este trámite está disponible desde la segunda semana de junio del año en curso — es decir, después del cierr",
+      "wordCount": 2415,
       "sourceFile": "operacion-renta-f22-checklist.md"
     },
     {
@@ -1624,7 +1624,7 @@
     },
     {
       "slug": "rentas-mixtas-sueldo-honorarios",
-      "sourceContentHash": "336098fe06bb7ab61fe25817702dadc7cd776ff63d78809b206ff2c3be1f4e41",
+      "sourceContentHash": "887886d4826f3b404c1196db48429885dfbad246551671c55f4fac41001b214e",
       "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
       "tags": [
         "impuestos",
@@ -1637,24 +1637,24 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/rentas-mixtas-sueldo-honorarios.md",
       "heroImage": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
-      "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas...",
+      "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, revisa que la propuesta del SII incluya la información reportada por todas tus fuentes. La obligación de presentar el F22 depende de tus rentas imponibles y de las demás condiciones legales; también puedes declarar volun...",
       "leadParagraphs": [
-        "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.",
-        "**Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
-        "**Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revisa el [checklist de Operación Renta F22](/posts/operacion-renta-f22-checklist/) para tus opciones fuera de ventana; el próximo ciclo (AT2027) aún no tiene calendario publicado por el SII."
+        "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, revisa que la propuesta del SII incluya la información reportada por todas tus fuentes. La obligación de presentar el F22 depende de tus rentas imponibles y de las demás condiciones legales; también puedes declarar voluntariamente para solicitar la devolución de retenciones. Esta guía explica cómo revisar las rentas y créditos, y qué determina si recibes devolución o pagas más.",
+        "Cuando combinas sueldo y honorarios, los agentes informan por separado sus pagos y retenciones, mientras el F22 determina el impuesto anual sobre las bases imponibles aplicables y lo compara con los créditos y pagos provisionales. Por eso, sumar los montos brutos no basta para saber si tendrás devolución o un saldo por pagar. ([SII FAQ 001.140.2772.027](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2772.htm); [Formulario 22 AT2026](https://www.sii.cl/ayudas/formularios/f22_at2026.pdf)).",
+        "**Respuesta rápida:** Tener sueldo y emitir boletas en el mismo año no vuelve obligatorio el F22 en todos los casos. Para AT2026, el SII indica que las personas naturales deben presentar declaración cuando sus rentas afectas al IGC superan 13,5 UTA ($11.265.804); en o bajo el umbral, pueden presentarla voluntariamente para solicitar devolución de retenciones, PPM u otros créditos. Otras circunstancias legales pueden generar una obligación distinta. ([SII FAQ 001.140.0972.009](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0972.htm); [SII, Guía Práctica de Declaración de Renta AT2026](https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf))."
       ],
       "headings": [
-        "Regla general: con rentas mixtas siempre debes declarar",
-        "¿Por qué no existe una propuesta completa para rentas mixtas?",
+        "Qué es y qué cambia con las rentas mixtas",
+        "Cuándo presentar F22 con rentas mixtas",
+        "Qué revisar en la propuesta del SII",
         "Cómo se calcula el resultado: ¿pagas más o recuperas?",
         "Tramos del Global Complementario AT 2026 (Art. 52 LIR)",
-        "Cuándo casi siempre pagas más",
+        "Cuándo puede quedar un pago adicional",
         "Cuándo normalmente recuperas",
-        "Paso a paso para declarar con rentas mixtas",
-        "Lo que necesitas antes de entrar al SII"
+        "Paso a paso para declarar con rentas mixtas"
       ],
-      "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revi",
-      "wordCount": 2060,
+      "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, revisa que la propuesta del SII incluya la información reportada por todas tus fuentes. La obligación de presentar el F22 depende de tus rentas imponibles y de las demás condiciones legales; también puedes declarar voluntariamente para solicitar la devolución de retenciones. Esta guía explica cómo revisar las rentas y créditos, y qué determina si recibes devolución o pagas más. ## Qué es y qué cambia con las rentas mixtas Cuando combinas sueldo y honorarios, los agentes informan por separado sus pagos y retenciones, mientras el F22 determina el impuesto anual sobre las bases imponibles aplicables y lo compara con los créditos y pagos provisionales. Por eso, sumar los montos brutos no basta para saber si tendrás devolución o un saldo por pagar. ( ; ). ## Cuándo presentar F22 con rentas mixtas **Respuesta rápida:** Tener sueldo y emitir boletas en el mismo año no vuelve obligatorio el F22 en todos los casos. Para AT2026, el SII indica que las personas naturales deben presentar declaración cuando sus rentas afectas al IGC superan 13,5 UTA ($11.265.804); en o bajo el umbral, pueden presentarla voluntariamente para solicitar ",
+      "wordCount": 3123,
       "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
     {
