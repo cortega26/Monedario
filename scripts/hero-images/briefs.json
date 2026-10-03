@@ -489,15 +489,15 @@
         "Siempre llega devolución completa"
       ],
       "alt": "",
-      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
+      "sourceContentHash": "2d139aed7a2bae8a2224f646ed6ca3a16765406e9d0730303558709089c46d1c",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
-        "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-03",
+        "reviewedBy": "agent/brief-review",
+        "method": "Re-review after the 2026-10-02 source-correction diff (FAQ 0516 citation, penalty-by-outcome ranges, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
       }
     },
     {
@@ -1021,15 +1021,15 @@
         "Calendario anterior válido para todo año"
       ],
       "alt": "",
-      "sourceContentHash": "84bd3ce429fe51c5cccfb05b5a2225f66b7dff9c1262a0e92e263e45f70620f5",
+      "sourceContentHash": "b635ab3025bdb92d9a7f5b21cbf9dfcfe9399eb6d6ab74087da40158cc860510",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
-        "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-03",
+        "reviewedBy": "agent/brief-review",
+        "method": "Re-review after the 2026-10-02 source-correction diff (penalty-by-outcome rules, IUSC simultaneous-employer condition, SII summons, threshold example, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
       }
     },
     {
@@ -1330,15 +1330,15 @@
         "Se usa cualquier tasa sin mirar el año"
       ],
       "alt": "",
-      "sourceContentHash": "336098fe06bb7ab61fe25817702dadc7cd776ff63d78809b206ff2c3be1f4e41",
+      "sourceContentHash": "887886d4826f3b404c1196db48429885dfbad246551671c55f4fac41001b214e",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
-        "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-03",
+        "reviewedBy": "agent/brief-review",
+        "method": "Re-review after the 2026-10-02 source-correction diff (13.5 UTA threshold rule replacing always-file, proposal-data description, taxable-base distinction, APV aggregate limit and TGR scope, new DoD H2, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
       }
     },
     {

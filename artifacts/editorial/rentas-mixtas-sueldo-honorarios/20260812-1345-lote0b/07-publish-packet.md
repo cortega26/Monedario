@@ -289,3 +289,92 @@ sesión fresca de `MathAuditAgent`; el resto de la cadena (compliance, firma)
 permanece bloqueado en cascada por diseño. Este es el comportamiento
 correcto en este punto del pipeline para un run con
 `requires_calculation=true`.
+
+## Addendum 2026-10-02
+
+Esta ronda incorporó la prelación y el tope agregado de APV, la condición de
+cotizaciones para la bonificación A y el alcance del producto TGR. No se
+derivaron cifras nuevas; el registro material correspondiente está en
+`src/data/correcciones.json`.
+
+Evidencia de roles para esta ronda:
+
+- DraftAgent: Codex (OpenAI GPT-6), instancia raíz `/root`; esta ejecución
+  continuó con ediciones ya presentes en el worktree y revisó el artículo y su
+  `git diff HEAD`. No se atribuye a una sesión sin exposición previa.
+- ComplianceAgent: agente independiente `/root/compliance_rentas_round5`,
+  creado sin historial de conversación (`fork_turns=none`) y con verificación
+  de fuentes en vivo; resultado en `06-compliance-round5.md`.
+- No se creó MathAuditAgent para esta ronda: no hay cifra derivada nueva
+  (`requires_calculation=false`). HumanEditor conserva la firma; no se marcó
+  ningún gate `[X]`.
+
+### Seguimiento posterior a Compliance R5 — 2026-10-02
+
+El informe histórico `06-compliance-round5.md` conserva su veredicto FAIL para
+la versión que revisó. Después se añadió al artículo un ejemplo orientativo
+AT2026 con la retención oficial de 14,5% para boletas emitidas en 2025; no se
+deriva impuesto ni monto individual y no se crea `05-*`. La observación en vivo
+del acordeón TGR está conservada en
+`source-observation-tgr-2026-10-02.txt`; se limita al convenio para deudas
+vencidas de Impuestos Fiscales y Aduaneros. Queda pendiente una nueva revisión
+Compliance de esta versión y la repetición de `format:check`. No se marcó
+ningún gate `[X]`.
+
+### Seguimiento posterior a Compliance R6 — 2026-10-02
+
+El informe histórico `06-compliance-round6.md` conserva su veredicto FAIL
+para la versión revisada. Después se corrigió el alcance de la obligación de
+declarar con la FAQ SII 001.140.0972.009 y la Guía Práctica AT2026; se
+describió la propuesta F22 según los datos informados y su corrección posible
+con la FAQ 001.140.2772.027; y se distinguieron honorarios brutos, gastos y
+base imponible con la Guía Práctica y el Formulario 22 AT2026. El ejemplo
+ahora usa únicamente el umbral oficial de 13,5 UTA (`$11.265.804`) y no
+calcula un resultado individual. Las fuentes se refetchearon el 2026-10-02.
+
+Las fechas `updatedDate`, `articleLead.validAsOf` y "revisado el" permanecen
+en 2026-10-02 conforme a NORMA §5.1; también se volvió a comprobar que el
+sitio de Operación Renta y el índice de noticias SII consultados no publican
+calendario AT2027. Se preserva el reporte de ronda 6 y queda pendiente la
+revisión independiente fresca de ronda 7. La procedencia DraftAgent continúa
+registrando esta instancia raíz con exposición a cambios previos; no se
+representa como sesión fresca. No se marcó ningún gate `[X]` ni se firmó.
+
+### Seguimiento posterior a Compliance R7 — 2026-10-02
+
+El informe histórico `06-compliance-round7.md` queda preservado con FAIL para
+la versión que revisó. Sus verificaciones confirmaron los fixes de obligación
+F22, propuesta, base imponible, umbral/IGC, APV agregado, tasa y TGR. Encontró
+que la explicación del Régimen A omitía que el ahorro elegible debe destinarse
+a anticipar o incrementar la pensión (Compendio SPensiones, Capítulo XII,
+nums. 5–7; fetch 2026-10-02). El artículo y la entrada existente
+`rentas-mixtas-apv-y-convenios` del registro de correcciones se actualizaron
+para incluir esa condición.
+
+R7 indicó que no halló registro material; en el worktree actual se comprobó
+que el ID ya existía, estaba asociado al artículo y el gate había validado 12
+entradas. La descripción de ese registro era incompleta respecto del nuevo
+hallazgo y ahora está ampliada. Queda pendiente una ronda 8 fresca para
+verificar el contenido y resolver esta diferencia de evidencia. Ningún gate
+`[X]` fue marcado ni se firmó.
+
+### Seguimiento estructural posterior — 2026-10-02
+
+Una instancia Compliance fresca comunicó preliminarmente la falta del H2
+obligatorio de DoD §2 y cuestionó la columna de tasas efectivas; no alcanzó a
+guardar un informe R9. Se añadió `## Qué es y qué cambia con las rentas
+mixtas` y se retiró el resumen redondeado de tasas efectivas máximas,
+conservando los tramos UTA y las tasas marginales publicadas. La fuente SII
+2026 consultada el 2026-10-02 publica dichas tasas efectivas a dos decimales;
+por eso el registro describe la diferencia como redondeo de la fuente, no como
+un cálculo nuevo. No se derivó ninguna cifra ni se creó `05-*`.
+
+### Seguimiento de Compliance round 10 — 2026-10-02
+
+La revisión holística fresca del artículo final concluyó **PASS, 9,58/10**;
+véase `06-compliance-round10.md`. Confirmó estructura DoD §2, umbral IGC,
+propuesta F22, base imponible, tasas, APV, ejemplo sin aritmética derivada y
+alcance específico del convenio TGR. Registró con transparencia límites de
+fetch para el PDF SII Línea 23, la página TGR y la reconfirmación independiente
+del estado AT2027. Ningún gate fue marcado ni firmado; HumanEditor conserva la
+aprobación.

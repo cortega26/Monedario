@@ -148,5 +148,24 @@ este archivo.
   `docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md`.
 - **No se marcó ningún gate `[X]` en esta lista.** No se genera
   `06-compliance-round3.md` en esta sesión — corresponde a ComplianceAgent
-  en sesión fresca. Pendiente: compliance ronda 3 (sesión fresca) → firma
-  humana.
+en sesión fresca. Pendiente: compliance ronda 3 (sesión fresca) → firma
+humana.
+
+## Addendum 2026-10-02
+
+Esta ronda corrigió las sanciones por resultado de F22, acotó la reliquidación
+por empleadores simultáneos a sueldos afectos al IUSC, agregó la citación del
+SII y añadió un ejemplo sin cálculo derivado. El registro de correcciones
+materiales se actualizó bajo §5.4 en `src/data/correcciones.json`.
+
+Evidencia de roles para esta ronda:
+
+- DraftAgent: Codex (OpenAI GPT-6), instancia raíz `/root`; esta ejecución
+  continuó con ediciones ya presentes en el worktree y revisó el artículo y su
+  `git diff HEAD`. No se atribuye a una sesión sin exposición previa.
+- ComplianceAgent: agente independiente `/root/compliance_f22_round6`, creado
+  sin historial de conversación (`fork_turns=none`) y con verificación de
+  fuentes en vivo; resultado en `06-compliance-round6.md`.
+- No se creó MathAuditAgent para esta ronda: no hay cifra derivada nueva
+  (`requires_calculation=false`). HumanEditor conserva la firma; no se marcó
+  ningún gate `[X]`.

@@ -222,3 +222,39 @@ este archivo.
 - Ningun gate de esta lista fue marcado `[X]` por esta ronda. Pendiente:
   `06-compliance-round3.md` (sesion fresca de ComplianceAgent, fuera del
   alcance de esta sesion) + firma humana.
+
+## Addendum 2026-10-02
+
+El checklist histórico registra un corte de 2026-08-12; la versión del artículo
+anterior a esta corrección mostraba 2026-08-13. Esta revisión sustantiva agregó
+la FAQ SII 001.140.0516.011 junto a la regla de tres semanas y resumió los
+rangos oficiales de multas de la FAQ 001.140.3095.025. Por NORMA §5.1, se
+refetchearon las fuentes temporales, incluido el estado AT2027, y se alinearon
+`updatedDate`, `articleLead.validAsOf` y la fecha visible de revisión del
+artículo a 2026-10-02. El artículo y este addendum quedan sincronizados en ese
+corte actual; la fecha 2026-08-12 del checklist queda preservada como registro
+histórico. No se modificaron las fechas de la tabla AT2026 ni el umbral
+`$3.000.000`. Los gates históricos siguen sin marcar.
+
+### Evidencia de roles — 2026-10-02
+
+- DraftAgent: Codex (OpenAI GPT-6), instancia raíz `/root`; esta ejecución
+  continuó con ediciones ya presentes en el worktree y revisó el artículo y su
+  `git diff HEAD`. No se atribuye a una sesión sin exposición previa.
+- ComplianceAgent: agente independiente `/root/compliance_refund_round8`,
+  creado sin historial de conversación (`fork_turns=none`), refetcheó las fuentes
+  y auditó el artículo y este paquete. Resultado en
+  `06-compliance-round8.md`.
+- No se añadió un MathAuditAgent para esta corrección porque no se derivó ningún
+  monto (`requires_calculation=false`). HumanEditor conserva la firma; ningún
+  gate fue marcado `[X]`.
+
+### Seguimiento Compliance round 8 — 2026-10-02
+
+`06-compliance-round8-followup.md` es una verificación independiente de las
+fuentes y del artículo/paquete actuales. Confirma las afirmaciones materiales y
+resuelve el hallazgo previo de atribución, pero conserva veredicto FAIL porque
+el DraftAgent raíz retomó ediciones existentes pese a la instrucción explícita
+de usar una sesión DraftAgent sin exposición previa. Esta desviación se separa
+de SoD Draft/Compliance: las instancias fueron distintas. Ningún gate se marca
+`[X]`; firma de HumanEditor pendiente.
