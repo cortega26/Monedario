@@ -592,7 +592,7 @@
     },
     {
       "slug": "devolucion-impuestos-fechas-compensaciones",
-      "sourceContentHash": "2d139aed7a2bae8a2224f646ed6ca3a16765406e9d0730303558709089c46d1c",
+      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
       "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
       "tags": [
         "impuestos",
@@ -604,14 +604,14 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/devolucion-impuestos-fechas-compensaciones.md",
       "heroImage": "/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
-      "summary": "Estado del ciclo AT2026 (revisado el 2 de octubre de 2026): el calendario ordinario ya cerró. El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el...",
+      "summary": "Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró. El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el...",
       "leadParagraphs": [
-        "**Estado del ciclo AT2026 (revisado el 2 de octubre de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).",
+        "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).",
         "El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación:",
         "**Si declaraste dentro de AT2026 y nunca te llegó el depósito:**"
       ],
       "headings": [
-        "Ciclo AT2026: calendario ordinario cerrado y qué hacer hoy",
+        "Ciclo AT2026 cerrado: qué hacer hoy",
         "Fechas de referencia y ventanas de pago (calendario del ciclo AT2026, ya ejecutado)",
         "Si te pasa X, haz Y",
         "Errores que retrasan el pago",
@@ -619,8 +619,8 @@
         "Fuentes y referencias primarias",
         "Información de vigencia"
       ],
-      "bodyExcerpt": "**Estado del ciclo AT2026 (revisado el 2 de octubre de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027). ## Ciclo AT2026: calendario ordinario cerrado y qué hacer hoy El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación: **Si declaraste dentro de AT2026 y nunca te llegó el depósito:** 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revi",
-      "wordCount": 1772,
+      "bodyExcerpt": "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027). ## Ciclo AT2026 cerrado: qué hacer hoy El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación: **Si declaraste dentro de AT2026 y nunca te llegó el depósito:** 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compe",
+      "wordCount": 1685,
       "sourceFile": "devolucion-impuestos-fechas-compensaciones.md"
     },
     {

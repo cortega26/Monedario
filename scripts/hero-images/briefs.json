@@ -489,15 +489,15 @@
         "Siempre llega devolución completa"
       ],
       "alt": "",
-      "sourceContentHash": "2d139aed7a2bae8a2224f646ed6ca3a16765406e9d0730303558709089c46d1c",
+      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-03",
-        "reviewedBy": "agent/brief-review",
-        "method": "Re-review after the 2026-10-02 source-correction diff (FAQ 0516 citation, penalty-by-outcome ranges, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/source-review",
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
       }
     },
     {

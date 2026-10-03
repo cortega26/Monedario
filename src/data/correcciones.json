@@ -24,28 +24,6 @@
       "prevention": "Citas primarias junto a cada regla, separación de las sanciones por resultado de F22 y condición IUSC explícita en la tabla y el cuerpo."
     },
     {
-      "id": "devolucion-impuestos-plazo-y-multas",
-      "date": "2026-10-02",
-      "title": "Plazo de devolución por rectificatoria y multas por declaración tardía",
-      "pages": [
-        {
-          "href": "/posts/devolucion-impuestos-fechas-compensaciones/",
-          "label": "Devolución de impuestos: fechas y compensaciones"
-        }
-      ],
-      "wrong": [
-        "La regla de alrededor de tres semanas para una devolución originada por rectificatoria no identificaba la FAQ específica que la respalda.",
-        "La orientación sobre una declaración atrasada no mostraba los rangos oficiales distintos para pago, devolución y ausencia de pago."
-      ],
-      "fixed": [
-        "La guía atribuye el plazo aproximado de tres semanas a la FAQ SII 001.140.0516.011, que se refiere al período después de que el SII autoriza los montos a TGR.",
-        "La guía resume los rangos de la FAQ SII 001.140.3095.025 y aclara que el monto individual y una eventual condonación dependen del caso."
-      ],
-      "affected": "Personas que esperan una devolución originada por rectificatoria o que deben regularizar una declaración de renta fuera de plazo.",
-      "sources": "SII FAQ 001.140.0516.011 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0516.htm); SII FAQ 001.140.3095.025 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm).",
-      "prevention": "Verificación de la versión vigente de cada FAQ y cita de la fuente específica junto a los plazos y rangos de multa."
-    },
-    {
       "id": "rentas-mixtas-apv-y-convenios",
       "date": "2026-10-02",
       "title": "Obligación F22, límites del APV y alcance de convenios TGR en rentas mixtas",

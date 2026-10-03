@@ -176,3 +176,25 @@ The report records the live-fetch limits for the Línea 23 PDF, TGR page, and
 independent AT2027 status check. DraftAgent provenance remains the root
 instance resuming existing worktree edits. HumanEditor signature and
 publication gates remain pending.
+
+## Browser refetch after Compliance R10 — 2026-10-02 (America/Santiago)
+
+After the editor asked for another attempt, Chrome rendered the exact official
+sources that the R10 text extractor could not read. The official five-page
+SII Línea 23 PDF opened in Chrome; its page 4 §23.4 visibly confirmed the
+600-UF aggregate cap, allocation priority (monthly employer APV B, direct APV
+B, then APV A), and exclusion of the excess. The exact TGR convenios page
+loaded; its expanded “Convenio para deudas vencidas de Impuestos Fiscales y
+Aduaneros” states up to 24 monthly installments, a 10%–30% down payment based
+on payment behavior and whether there is a guarantee, and a 1-UTM minimum.
+
+The SII Operación Renta portal loaded as the AT2026 portal. The 2026 news index
+also loaded and showed a September 1 item about DJ 1965 taking effect from
+Renta 2027, but no calendar item was visible in that index. This supports only
+the dated, page-bounded status check; it does not establish that no AT2027
+calendar exists elsewhere. Source URLs and the full observation are recorded
+in `07-publish-packet.md`.
+
+This supplements the R10 fetch limitations with successful browser-rendered
+verification. It does not alter the article, freshness dates, or protected
+metadata, and does not change the R10 report. No gate was marked or signed.

@@ -378,3 +378,31 @@ alcance específico del convenio TGR. Registró con transparencia límites de
 fetch para el PDF SII Línea 23, la página TGR y la reconfirmación independiente
 del estado AT2027. Ningún gate fue marcado ni firmado; HumanEditor conserva la
 aprobación.
+
+### Refetch con navegador tras R10 — 2026-10-02 (America/Santiago)
+
+A petición del editor, repetí las consultas con Chrome, cuyo visor renderizó las
+páginas que el extractor anterior no había podido leer. Esto complementa la
+evidencia posterior a R10; el informe R10 queda preservado como registro fiel
+de los límites de lectura de aquella sesión.
+
+- El PDF oficial de [Instrucciones SII, Línea 23 AT2026](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf)
+  abrió en el visor Chrome (5 páginas). En la página 4, §23.4, se observaron el
+  tope agregado de 600 UF, la prioridad de imputación —APV B mensual vía
+  empleador, APV B directo y luego APV A— y que el exceso no se acoge a ninguno
+  de esos regímenes.
+- La [página TGR de convenios](https://tgr.gob.cl/convenios-de-pago/) cargó y
+  permitió desplegar “Convenio para deudas vencidas de Impuestos Fiscales y
+  Aduaneros”: hasta 24 cuotas mensuales; pie de 10%–30% según comportamiento
+  de pago y existencia de garantía; mínimo de 1 UTM para solicitar.
+- El [portal SII Operación Renta 2026](https://www.sii.cl/destacados/renta/2026/)
+  cargó y presentó materiales y enlaces AT2026. El [índice de noticias SII
+  2026](https://www.sii.cl/noticias/2026/index.html) cargó su listado; incluye
+  una noticia del 1 de septiembre sobre la DJ 1965 desde Renta 2027, pero no
+  vi allí un calendario AT2027. La observación se limita a esas dos páginas y
+  no prueba que no exista un calendario en otra ubicación.
+
+Este refetch resuelve las limitaciones de acceso a Línea 23 y TGR para esta
+comprobación, y mejora la evidencia de la búsqueda AT2027 acotada. No modifica
+el artículo, sus fechas, el informe R10, ni gates; no se marcó `[X]` ni se
+firmó.

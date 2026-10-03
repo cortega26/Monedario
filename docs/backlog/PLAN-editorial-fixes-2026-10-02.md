@@ -96,3 +96,12 @@ committed on fix/editorial-fixes-2026-10-02-wip for human review via PR, not
 merged: F22 R6 PASS and rentas R10 PASS await sign-off; devolución R8
 follow-up stays FAIL on the fresh-session instruction and needs a human
 override or a zero-exposure redo before publication.
+
+## Split 2026-10-03
+
+HumanEditor signed the F22 and rentas packets. Devolución was split out of
+this branch into `fix/devolucion-reaudit-2026-10-02` (article, packet
+addendum, registry entry, hero entries, R7/R8 reports) for a redo or an
+explicit override. This branch now carries F22 + rentas only (registry: 11
+entries). A browser refetch note supplementing R10's fetch limits was
+appended to the rentas packet without touching the article, R10, or gates.
