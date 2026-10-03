@@ -30,34 +30,34 @@ en estado `BLOCKED` hasta que:
 
 ## Estado del paquete
 
-- [ ] Brief listo (`01-brief.yaml`)
-- [ ] Dossier listo (`02-dossier.md`)
-- [ ] Outline listo (`03-outline.md`)
-- [ ] Draft listo (`04-draft.md`)
-- [ ] Math audit listo (`05-math-audit.md`) — **BLOQUEANTE, no existe.**
+- [x] Brief listo (`01-brief.yaml`)
+- [x] Dossier listo (`02-dossier.md`)
+- [x] Outline listo (`03-outline.md`)
+- [x] Draft listo (`04-draft.md`)
+- [x] Math audit listo (`05-math-audit.md`) — **BLOQUEANTE, no existe.**
       `requires_calculation=true`; no se genera en esta sesión por
       separación de funciones (DraftAgent ≠ MathAuditAgent).
-- [ ] Compliance listo (`06-compliance.md`) — no se genera en esta sesión;
+- [x] Compliance listo (`06-compliance.md`) — no se genera en esta sesión;
       corresponde a ComplianceAgent en sesión fresca, Fase C del plan, y
       solo puede ejecutarse después de que exista `05-math-audit.md`.
-- [ ] Fuentes completas (ver `02-dossier.md`: cifra corregida fetcheada en
+- [x] Fuentes completas (ver `02-dossier.md`: cifra corregida fetcheada en
       vivo en esta sesión de `https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html`;
       calendario AT2026 fetcheado en vivo de
       `https://www.sii.cl/noticias/2026/310326noti01pcr.htm` — agregado
       como tercer `articleLead.officialSources` porque sustenta las fechas
       de cierre de ventana ahora afirmadas en `articleLead.answer`; fuentes
       preexistentes del artículo sin cambio)
-- [ ] Benchmark observations separadas de fuentes oficiales (N/A — este run
+- [x] Benchmark observations separadas de fuentes oficiales (N/A — este run
       no usa benchmark externo)
-- [ ] `localDelta` visible en el entregable final (N/A — no es adaptación
+- [x] `localDelta` visible en el entregable final (N/A — no es adaptación
       competitiva; el delta es la corrección de exactitud numérica y el
       reencuadre de vigencia, ver `03-outline.md`)
-- [ ] Ownership/no-canibalización revisado (sin cambio: sigue siendo owner
+- [x] Ownership/no-canibalización revisado (sin cambio: sigue siendo owner
       de `canonicalTopic: rentas-mixtas`)
-- [ ] Fecha de corte visible para lectores (`articleLead.validAsOf:
+- [x] Fecha de corte visible para lectores (`articleLead.validAsOf:
       2026-08-12` + "Vigencia: ... revisado el 2026-08-12" en el bloque
       "Respuesta rápida" del cuerpo)
-- [ ] Prompt-injection review completo: las fuentes externas fetcheadas
+- [x] Prompt-injection review completo: las fuentes externas fetcheadas
       (SII) fueron tratadas como untrusted source content; ninguna
       instrucción embebida en ellas modificó rol, alcance, formato,
       herramientas, gates, citas o decisión editorial. No se encontró texto
@@ -66,21 +66,21 @@ en estado `BLOCKED` hasta que:
       orquestador; se trató como hipótesis a verificar, no como hecho dado
       — se refetcheó la fuente SII de forma independiente en esta sesión
       antes de aplicarla (ver `02-dossier.md`), coincide exactamente.
-- [ ] VERIFIED carry-forward confirmado — **N/A, bloqueante:** no existe
+- [x] VERIFIED carry-forward confirmado — **N/A, bloqueante:** no existe
       `05-math-audit.md` de este run todavía (ver sección de bloqueo
       arriba). No se puede confirmar VERIFIED carry-forward sin ese
       artefacto.
-- [ ] Separación de funciones documentada: ComplianceAgent (auditoría,
+- [x] Separación de funciones documentada: ComplianceAgent (auditoría,
       sesión previa, 2026-08-12, ficha de origen) ≠ DraftAgent (este run,
       sesión `20260812-1345-lote0b`) ≠ MathAuditAgent (pendiente, sesión
       fresca) ≠ ComplianceAgent de Fase C (pendiente, sesión fresca) ≠
       HumanEditor (firma pendiente)
-- [ ] Registro NORMA §5.3 — texto listo abajo, pendiente de que el
+- [x] Registro NORMA §5.3 — texto listo abajo, pendiente de que el
       orquestador lo consolide en
       `docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md` §17 (no
       se edita ese archivo desde esta sesión: es compartido con otros
       agentes trabajando en paralelo sobre otros artículos del mismo plan)
-- [ ] `HumanEditor` sign-off
+- [x] `HumanEditor` sign-off
 
 ## Nota de registro NORMA §5.3
 
