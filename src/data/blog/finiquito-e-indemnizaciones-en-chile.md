@@ -45,7 +45,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.empleo-ingresos
+    - registry:slugOverrides.finiquito-e-indemnizaciones-en-chile
   computedAt: "2026-05-06"
 ---
 

@@ -44,7 +44,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.general
+    - registry:slugOverrides.bancos-y-fintech-chile
   computedAt: "2026-07-01"
 ---
 

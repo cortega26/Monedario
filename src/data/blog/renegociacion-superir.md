@@ -45,7 +45,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.renegociacion-superir
   computedAt: "2026-05-06"
 ---
 

@@ -45,7 +45,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.general
+    - registry:slugOverrides.fondo-emergencia-chile
   computedAt: "2026-05-12"
 ---
 

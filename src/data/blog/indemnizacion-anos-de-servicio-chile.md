@@ -45,7 +45,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.empleo-ingresos
+    - registry:slugOverrides.indemnizacion-anos-de-servicio-chile
   computedAt: "2026-05-06"
 ---
 

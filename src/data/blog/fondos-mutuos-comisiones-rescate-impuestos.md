@@ -19,13 +19,6 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif
-reviewPolicy:
-  cadenceLabel: semiannual
-  maxDays: 180
-  dataTriggers: []
-  derivationFactors:
-    - registry:categoryPolicies.ahorro-inversion
-  computedAt: "2026-05-06"
 articleLead:
   answer: "Antes de invertir en un fondo mutuo revisa tres cosas: la remuneración de administración, la comisión y el plazo de rescate (hasta 10 días hábiles según el reglamento interno), y el tratamiento tributario del mayor valor al rescatar. El reglamento interno del fondo es la fuente vinculante."
   nextStepHref: "/guias/ahorro-e-inversion/"
@@ -44,6 +37,13 @@ articleLead:
   limits:
     - "No compara fondos ni administradoras específicas."
     - "Los reglamentos internos y comisiones cambian; revisa el del fondo que evalúas."
+reviewPolicy:
+  cadenceLabel: semiannual
+  maxDays: 180
+  dataTriggers: []
+  derivationFactors:
+    - registry:slugOverrides.fondos-mutuos-comisiones-rescate-impuestos
+  computedAt: "2026-05-06"
 ---
 
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.

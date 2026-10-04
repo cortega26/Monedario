@@ -58,7 +58,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.como-salir-boletin-comercial-chile
   computedAt: "2026-05-06"
 ---
 

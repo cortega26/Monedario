@@ -24,7 +24,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.seguridad-financiera
+    - registry:slugOverrides.suplantacion-identidad-creditos-no-reconocidos
   computedAt: "2026-05-06"
 ---
 

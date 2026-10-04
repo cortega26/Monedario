@@ -51,8 +51,8 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.impuestos
     - template:uta
-  computedAt: "2026-09-20"
-updatedDate: 2026-09-29T00:00:00Z
+  computedAt: "2026-10-04"
+updatedDate: 2026-10-04T00:00:00Z
 ---
 
 > **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.

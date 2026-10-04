@@ -23,7 +23,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.ahorro-inversion
+    - registry:slugOverrides.como-invertir-en-etfs-desde-chile
   computedAt: "2026-05-06"
 ---
 

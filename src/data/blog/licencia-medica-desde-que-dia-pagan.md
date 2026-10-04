@@ -25,7 +25,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.empleo-ingresos
+    - registry:slugOverrides.licencia-medica-desde-que-dia-pagan
   computedAt: "2026-05-06"
 ---
 

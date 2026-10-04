@@ -44,7 +44,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.donde-ver-si-estoy-en-dicom-gratis
   computedAt: "2026-05-06"
 ---
 

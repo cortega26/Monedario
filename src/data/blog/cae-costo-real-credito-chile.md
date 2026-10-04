@@ -46,7 +46,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.cae-costo-real-credito-chile
   computedAt: "2026-05-06"
 ---
 
