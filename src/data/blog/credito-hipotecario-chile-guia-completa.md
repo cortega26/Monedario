@@ -69,7 +69,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.credito-hipotecario-chile-guia-completa
   computedAt: "2026-05-06"
 ---
 

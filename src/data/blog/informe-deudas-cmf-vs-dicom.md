@@ -43,7 +43,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.informe-deudas-cmf-vs-dicom
   computedAt: "2026-05-06"
 ---
 

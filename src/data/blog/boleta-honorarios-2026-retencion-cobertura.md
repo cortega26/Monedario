@@ -5,7 +5,6 @@ description: "Explicación práctica de la retención 2026 en boletas de honorar
 slug: boleta-honorarios-2026-retencion-cobertura
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:20:00Z
-updatedDate: 2026-05-11T00:00:00Z
 tags:
   - boletas
   - honorarios
@@ -39,17 +38,19 @@ articleLead:
     - "No sustituye la declaración anual real ante SII."
     - "No define por sí sola exenciones legales o por monto."
     - "No reemplaza asesoría tributaria en casos mixtos."
-reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 90
-  dataTriggers: []
-  derivationFactors:
-    - registry:slugOverrides.boleta-honorarios-2026-retencion-cobertura
-  computedAt: "2026-05-06"
 volatileData:
   - id: "economic.imm.value"
     sync: strict
     expectedValue: 553553
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 90
+  dataTriggers:
+    - economic.imm.value
+  derivationFactors:
+    - registry:slugOverrides.boleta-honorarios-2026-retencion-cobertura
+  computedAt: "2026-10-04"
+updatedDate: 2026-10-04T00:00:00Z
 ---
 
 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.

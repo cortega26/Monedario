@@ -25,7 +25,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.ahorro-inversion
+    - registry:slugOverrides.interes-compuesto-nota-metodologica
   computedAt: "2026-05-06"
 ---
 

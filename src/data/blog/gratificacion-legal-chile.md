@@ -41,17 +41,19 @@ articleLead:
     - "No reemplaza asesoría laboral específica para tu contrato o empresa."
     - "Los valores del IMM se actualizan; verifica el vigente en Ministerio del Trabajo."
     - "No cubre regímenes especiales ni contratos sujetos a estatutos particulares."
-reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 90
-  dataTriggers: []
-  derivationFactors:
-    - registry:slugOverrides.gratificacion-legal-chile
-  computedAt: "2026-05-06"
 volatileData:
   - id: "economic.imm.value"
     sync: strict
     expectedValue: 553553
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 90
+  dataTriggers:
+    - economic.imm.value
+  derivationFactors:
+    - registry:slugOverrides.gratificacion-legal-chile
+  computedAt: "2026-10-04"
+updatedDate: 2026-10-04T00:00:00Z
 ---
 
 > **Información vigente al 2026-08-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.

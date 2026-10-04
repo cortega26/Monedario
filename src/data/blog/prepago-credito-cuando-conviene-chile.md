@@ -45,7 +45,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.deuda-credito
+    - registry:slugOverrides.prepago-credito-cuando-conviene-chile
   computedAt: "2026-05-06"
 ---
 

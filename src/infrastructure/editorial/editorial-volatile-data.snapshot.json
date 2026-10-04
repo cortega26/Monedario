@@ -1,22 +1,22 @@
 {
-  "lastUpdated": "2026-09-30",
-  "capturedAt": "2026-09-30T15:43:29.738Z",
+  "lastUpdated": "2026-10-04",
+  "capturedAt": "2026-10-04T12:28:38.641Z",
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
-      "value": 41057.2,
+      "value": 41089.96,
       "unit": "clp",
-      "lastObservedAt": "2026-09-30",
-      "reviewTriggerDate": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
+      "reviewTriggerDate": "2026-10-04",
       "sourceUrl": "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx",
       "sourceLabel": "Banco Central de Chile"
     },
     "economic.utm.value": {
       "label": "Valor UTM",
-      "value": 71721,
+      "value": 72151,
       "unit": "clp",
-      "lastObservedAt": "2026-09-30",
-      "reviewTriggerDate": "2026-09-01",
+      "lastObservedAt": "2026-10-04",
+      "reviewTriggerDate": "2026-10-01",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "sourceLabel": "Servicio de Impuestos Internos (SII)"
     },
@@ -24,17 +24,17 @@
       "label": "Valor UTA (Unidad Tributaria Anual)",
       "value": 834504,
       "unit": "clp",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2025-12-01",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "sourceLabel": "Servicio de Impuestos Internos (SII)"
     },
     "economic.ipc.monthly_variation": {
       "label": "IPC mensual",
-      "value": -0.2,
+      "value": 0.6,
       "unit": "percent",
-      "lastObservedAt": "2026-09-30",
-      "reviewTriggerDate": "2025-12-01",
+      "lastObservedAt": "2026-10-04",
+      "reviewTriggerDate": "2026-08-01",
       "sourceUrl": "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor",
       "sourceLabel": "Instituto Nacional de Estadísticas (INE)"
     },
@@ -42,7 +42,7 @@
       "label": "Tope imponible AFC",
       "value": 135.2,
       "unit": "uf",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
       "sourceLabel": "Superintendencia de Pensiones"
@@ -51,7 +51,7 @@
       "label": "Tope imponible AFP y salud",
       "value": 90,
       "unit": "uf",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
       "sourceLabel": "Superintendencia de Pensiones"
@@ -60,7 +60,7 @@
       "label": "Ingreso Mínimo Mensual (IMM)",
       "value": 553553,
       "unit": "clp",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2026-05-01",
       "sourceUrl": "https://www.dt.gob.cl/portal/1626/w3-channel.html",
       "sourceLabel": "Dirección del Trabajo"
@@ -69,7 +69,7 @@
       "label": "Cotización obligatoria trabajador AFP",
       "value": 10,
       "unit": "percent",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
       "sourceLabel": "Superintendencia de Pensiones"
@@ -78,7 +78,7 @@
       "label": "Comisión AFP Uno",
       "value": 0.46,
       "unit": "percent",
-      "lastObservedAt": "2026-09-30",
+      "lastObservedAt": "2026-10-04",
       "reviewTriggerDate": "2025-10-01",
       "effectiveDate": "2025-10-01",
       "previousValue": 0.49,

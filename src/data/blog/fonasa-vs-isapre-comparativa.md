@@ -4,7 +4,6 @@ author: "Equipo Monedario"
 description: "Compara Fonasa e Isapre en Chile: tramos, copagos, GES, CAEC y cuándo conviene cada sistema según tu situación de salud e ingreso."
 slug: fonasa-vs-isapre-comparativa
 pubDate: 2026-04-08T12:00:00Z
-updatedDate: 2026-09-18T12:00:00Z
 tags:
   - seguridad-financiera
   - fonasa
@@ -35,17 +34,19 @@ articleLead:
   limits:
     - "No sustituye asesoría médica ni revisión del contrato del plan."
     - "Los precios de planes Isapre varían por edad y carga familiar."
-reviewPolicy:
-  cadenceLabel: annual
-  maxDays: 365
-  dataTriggers: []
-  derivationFactors:
-    - registry:categoryPolicies.seguridad-financiera
-  computedAt: "2026-05-06"
 volatileData:
   - id: "economic.imm.value"
     sync: strict
     expectedValue: 553553
+reviewPolicy:
+  cadenceLabel: annual
+  maxDays: 365
+  dataTriggers:
+    - economic.imm.value
+  derivationFactors:
+    - registry:slugOverrides.fonasa-vs-isapre-comparativa
+  computedAt: "2026-10-04"
+updatedDate: 2026-10-04T00:00:00Z
 ---
 
 Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti?

@@ -26,7 +26,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.general
+    - registry:slugOverrides.como-hacer-presupuesto-mensual-chile
   computedAt: "2026-05-06"
 ---
 

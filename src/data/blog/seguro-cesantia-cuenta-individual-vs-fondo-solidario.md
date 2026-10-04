@@ -47,7 +47,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.empleo-ingresos
+    - registry:slugOverrides.seguro-cesantia-cuenta-individual-vs-fondo-solidario
   computedAt: "2026-05-06"
 ---
 

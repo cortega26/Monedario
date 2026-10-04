@@ -48,7 +48,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.general
+    - registry:slugOverrides.finanzas-para-migrantes-chile
   computedAt: "2026-07-01"
 ---
 

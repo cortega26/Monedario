@@ -56,17 +56,19 @@ faqs:
     a: "Pasas al régimen de cotización obligatoria por boletas de honorarios, con retención mensual y regularización en Operación Renta. Revisa la guía de boleta de honorarios para ese mecanismo, que es distinto al de este artículo."
   - q: "¿La cotización voluntaria en AFP me cubre de salud automáticamente?"
     a: "No. La cotización de salud (7% en Fonasa o Isapre) es un trámite aparte de la afiliación voluntaria en AFP. Puedes hacer uno sin el otro."
-reviewPolicy:
-  cadenceLabel: semiannual
-  maxDays: 180
-  dataTriggers: []
-  derivationFactors:
-    - registry:categoryPolicies.prevision
-  computedAt: "2026-09-17"
 volatileData:
   - id: "economic.imm.value"
     sync: strict
     expectedValue: 553553
+reviewPolicy:
+  cadenceLabel: semiannual
+  maxDays: 180
+  dataTriggers:
+    - economic.imm.value
+  derivationFactors:
+    - registry:categoryPolicies.prevision
+  computedAt: "2026-10-04"
+updatedDate: 2026-10-04T00:00:00Z
 ---
 
 > **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.

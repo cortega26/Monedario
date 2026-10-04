@@ -25,7 +25,7 @@ reviewPolicy:
   maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - registry:categoryPolicies.seguridad-financiera
+    - registry:slugOverrides.estafas-financieras-chile-vishing-smishing-marketplace
   computedAt: "2026-05-06"
 ---
 
