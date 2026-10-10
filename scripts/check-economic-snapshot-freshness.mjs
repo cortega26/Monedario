@@ -146,7 +146,7 @@ function main() {
           86_400_000;
         if (lagDays > UF_SERIES_MAX_LAG_DAYS) {
           errors.push(
-            `uf-historico.json llega a ${lastDate} (rezago ${lagDays.toFixed(1)}d vs snapshot ${snapshotUfDate}) — corre \`pnpm run fetch-economic-history --solo=uf\``
+            `uf-historico.json llega a ${lastDate} (rezago ${lagDays.toFixed(1)}d vs snapshot ${snapshotUfDate}) — corre \`pnpm run fetch:economic-history --solo=uf\``
           );
         }
       }
@@ -159,6 +159,9 @@ function main() {
 
   // TD-0112: la serie IPC ingerida no puede ir detrás del último período
   // publicado en el snapshot (la extensión oficial se ingiere vía BCCh).
+  // La última fecha real de `serie` manda; `hastaFecha` solo es fallback para
+  // archivos antiguos/vacíos. Así un metadato adelantado no puede enmascarar
+  // una serie que en los hechos sigue atrás.
   const snapshotIpcPeriod = String(snapshot.indicatorUpdatedAt?.ipc ?? "").slice(
     0,
     7
@@ -166,14 +169,28 @@ function main() {
   if (/^\d{4}-\d{2}$/.test(snapshotIpcPeriod)) {
     try {
       const series = JSON.parse(readFileSync(IPC_SERIES_PATH, "utf8"));
-      const lastPeriod = String(series.hastaFecha ?? "").slice(0, 7);
-      if (!/^\d{4}-\d{2}$/.test(lastPeriod)) {
+      const entries = Array.isArray(series.serie) ? series.serie : [];
+      const lastEntryDate = String(entries.at(-1)?.fecha ?? "");
+      const metadataDate = String(series.hastaFecha ?? "");
+      let lastPeriod;
+      if (entries.length > 0) {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(lastEntryDate)) {
+          lastPeriod = lastEntryDate.slice(0, 7);
+        } else {
+          errors.push(
+            `ipc-historico.json con última entrada inválida: ${lastEntryDate || "(vacía)"}`
+          );
+        }
+      } else {
+        lastPeriod = metadataDate.slice(0, 7);
+      }
+      if (lastPeriod !== undefined && !/^\d{4}-\d{2}$/.test(lastPeriod)) {
         errors.push(
-          `ipc-historico.json sin hastaFecha válida: ${series.hastaFecha}`
+          `ipc-historico.json sin última fecha válida: serie=${lastEntryDate || "(vacía)"} hastaFecha=${metadataDate || "(vacía)"}`
         );
-      } else if (lastPeriod < snapshotIpcPeriod) {
+      } else if (lastPeriod !== undefined && lastPeriod < snapshotIpcPeriod) {
         errors.push(
-          `ipc-historico.json llega a ${lastPeriod} pero el snapshot publica ${snapshotIpcPeriod} — corre \`pnpm run fetch-economic-history --solo=ipc\``
+          `ipc-historico.json llega a ${lastPeriod} pero el snapshot publica ${snapshotIpcPeriod} — corre \`pnpm run fetch:economic-history --solo=ipc\``
         );
       }
     } catch (err) {

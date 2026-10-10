@@ -29,6 +29,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260929-calculator-field-migration.md` | Accepted | Migración de inputs de calculadoras a `CalculatorField` por lotes | components, UX, maintenance |
 | `ADR-20260929-ai-independent-audit-protocol.md` | Accepted | Auditorías independientes por IA con protocolo anti-alucinación como pre-gate YMYL | editorial, governance, YMYL |
 | `ADR-20260930-editorial-image-delivery.md` | Accepted | Sistema visual v5, procedencia y entrega de imágenes por hash, accesibilidad y medición agregada | editorial, assets, analytics |
+| `ADR-20261010-monthly-ipc-ingestion.md` | Accepted | Ingesta mensual del IPC con PR revisable, guard anti-regresión y frescura anclada al dato real | CI, data, YMYL |
 
 ## Convencion minima
 

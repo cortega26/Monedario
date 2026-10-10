@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   extendSeriesByDate,
+  findMissingDates,
   parseBcchIpcObservations,
 } from "../../scripts/economic-history-ipc.mjs";
 
@@ -78,5 +79,34 @@ describe("extendSeriesByDate", () => {
     const base = [{ fecha: "2025-12-01", valor: -0.2 }];
     extendSeriesByDate(base, [{ fecha: "2026-01-01", valor: 0.4 }]);
     expect(base).toHaveLength(1);
+  });
+});
+
+describe("findMissingDates", () => {
+  it("detecta fechas que desaparecerían (regresión de serie)", () => {
+    const previous = [
+      { fecha: "2025-12-01", valor: -0.2 },
+      { fecha: "2026-01-01", valor: 0.4 },
+      { fecha: "2026-09-01", valor: 0.4 },
+    ];
+    const next = [
+      { fecha: "2025-12-01", valor: -0.2 },
+      { fecha: "2026-01-01", valor: 0.4 },
+    ];
+    expect(findMissingDates(previous, next)).toEqual(["2026-09-01"]);
+  });
+
+  it("no reporta nada cuando la serie se mantiene o se extiende", () => {
+    const previous = [{ fecha: "2026-08-01", valor: 0.6 }];
+    const next = [
+      { fecha: "2026-08-01", valor: 0.6 },
+      { fecha: "2026-09-01", valor: 0.4 },
+    ];
+    expect(findMissingDates(previous, next)).toEqual([]);
+  });
+
+  it("tolera entradas vacías o indefinidas", () => {
+    expect(findMissingDates(undefined, [])).toEqual([]);
+    expect(findMissingDates([], undefined)).toEqual([]);
   });
 });
