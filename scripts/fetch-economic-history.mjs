@@ -19,6 +19,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   extendSeriesByDate,
+  findMissingDates,
   parseBcchIpcObservations,
 } from "./economic-history-ipc.mjs";
 
@@ -72,9 +73,31 @@ const SOLO = args.solo
       .map(value => value.trim())
       .filter(Boolean)
   : null;
+// La ingesta nunca debe perder fechas ya ingestadas (p. ej. mindicador deja de
+// publicar IPC y la extensión BCCh falla: la serie mindicador-only borraría los
+// meses oficiales). --allow-series-shrink habilita encogimientos intencionales.
+const ALLOW_SERIES_SHRINK = args["allow-series-shrink"] === true;
 
 function incluyeIndicador(indicador) {
   return !SOLO || SOLO.includes(indicador);
+}
+
+/**
+ * Detecta regresiones de la serie recién ingerida contra la versión en disco:
+ * cualquier `fecha` existente que desaparezca. Devuelve null si no hay archivo
+ * previo, si no se puede parsear o si no hay fechas perdidas.
+ */
+function findSeriesRegression(indicador, serie) {
+  const filePath = join(OUT_DIR, `${indicador}-historico.json`);
+  if (!existsSync(filePath)) return null;
+  let previous;
+  try {
+    previous = JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
+  const missing = findMissingDates(previous.serie, serie);
+  return missing.length > 0 ? { filePath, missing } : null;
 }
 
 // --- Utilidades -----------------------------------------------------------
@@ -242,6 +265,16 @@ const files = [
 ].filter(file => file.data !== null);
 
 for (const { name, data } of files) {
+  const regression = findSeriesRegression(data.indicador, data.serie);
+  if (regression && !ALLOW_SERIES_SHRINK) {
+    const sample = regression.missing.slice(-3).join(", ");
+    console.error(
+      `\n✗ ${name}: la nueva serie perdería ${regression.missing.length} fecha(s) ya ingestada(s) ` +
+        `(${sample}). Se aborta para no regresar el dataset; si el encogimiento es ` +
+        `intencional, repite con --allow-series-shrink.`
+    );
+    process.exit(1);
+  }
   const path = join(OUT_DIR, name);
   writeFileSync(path, JSON.stringify(data, null, 2) + "\n", "utf8");
   console.log(

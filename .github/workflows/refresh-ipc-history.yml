@@ -1,0 +1,166 @@
+name: Refresh IPC history
+
+# La serie histórica del IPC (`src/data/economic-history/ipc-historico.json`)
+# se ingiere desde mindicador.cl + la extensión oficial del BCCh. El INE
+# publica el IPC mensual en la primera semana del mes siguiente (septiembre
+# 2026 se publicó el 2026-10-08), por eso este workflow corre a diario entre
+# el día 8 y el 12: si la serie ya está al día no hay diff y no se abre PR.
+#
+# - PR revisable (sin auto-merge): el dato entra a `main` con revisión humana.
+# - Cualquier fallo (secretos BCCh ausentes, red, serie rezagada respecto del
+#   snapshot) abre/actualiza un issue `data-freshness` que se cierra solo
+#   cuando el workflow vuelve a estar verde.
+# - `check:economic-snapshot-freshness` corre SIEMPRE después de la ingesta:
+#   un fallo de la extensión BCCh no puede quedar como no-op silencioso.
+
+on:
+  schedule:
+    - cron: "0 13 8-12 * *"
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-ipc-history-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  refresh-ipc:
+    name: Refresh IPC history and open reviewable PR
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    timeout-minutes: 15
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "🔑 Verify BCCh credentials"
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
+        run: |
+          if [ -z "$BCCH_USER" ] || [ -z "$BCCH_PASSWORD" ]; then
+            echo "::error::Faltan los secretos BCCH_USER/BCCH_PASSWORD; la extensión oficial del IPC no puede ingerirse."
+            exit 1
+          fi
+
+      - name: "📈 Refresh IPC history (mindicador + BCCh)"
+        id: ingest
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
+        run: pnpm run fetch:economic-history --solo=ipc
+
+      - name: "🕰️ Economic snapshot freshness (always after ingestion)"
+        id: freshness
+        if: always()
+        run: pnpm run check:economic-snapshot-freshness
+
+      - name: "📬 Create pull request"
+        id: create-pr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        env:
+          HUSKY: "0"
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(data): refresh IPC history from official sources"
+          title: "chore(data): refresh IPC history from official sources"
+          body: |
+            Automated monthly refresh of the IPC historical series.
+
+            - Trigger: `${{ github.event_name }}` from `refresh-ipc-history.yml`.
+            - Source: mindicador.cl history + official BCCh extension
+              (`G073.IPC.VAR.2023.M`, IPC INE monthly variation, base 2023=100).
+            - Expected change: one or more new monthly entries plus
+              `actualizadoEl`/`hastaFecha`/`totalEntradas` metadata.
+            - Review before merge: the values must match the INE publication of
+              the same month; unexpected changes or removed months block merge.
+          branch: chore/refresh-ipc-history
+          delete-branch: true
+          labels: data-freshness
+          add-paths: |
+            src/data/economic-history/ipc-historico.json
+
+      - name: "📝 Build IPC freshness issue payload"
+        if: always()
+        id: issue_payload
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const title = "⚠️ Ingesta mensual del IPC — revisar serie histórica";
+            const failed =
+              "${{ steps.ingest.outcome }}" === "failure" ||
+              "${{ steps.freshness.outcome }}" === "failure";
+
+            core.setOutput("title", title);
+            core.setOutput("labels_json", JSON.stringify(["data-freshness"]));
+
+            if (!failed) {
+              core.setOutput("desired_state", "closed");
+              core.setOutput("body", "Serie IPC al día; issue cerrado automáticamente.");
+              return;
+            }
+
+            let seriesPeriod = "?";
+            try {
+              const series = JSON.parse(
+                fs.readFileSync("src/data/economic-history/ipc-historico.json", "utf8")
+              );
+              const entries = Array.isArray(series.serie) ? series.serie : [];
+              seriesPeriod = String(
+                entries.at(-1)?.fecha ?? series.hastaFecha ?? "?"
+              ).slice(0, 7);
+            } catch (_) {}
+            let snapshotPeriod = "?";
+            try {
+              const snapshot = JSON.parse(
+                fs.readFileSync(
+                  "src/infrastructure/economic/economic-parameters.snapshot.json",
+                  "utf8"
+                )
+              );
+              snapshotPeriod = String(snapshot.indicatorUpdatedAt?.ipc ?? "?").slice(0, 7);
+            } catch (_) {}
+
+            const body = [
+              "## La ingesta mensual del IPC falló o la serie quedó rezagada",
+              "",
+              `- **Serie histórica hasta:** \`${seriesPeriod}\``,
+              `- **Snapshot publica:** \`${snapshotPeriod}\``,
+              `- **Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              "",
+              "### Acciones requeridas",
+              "",
+              "1. Confirmar que los secretos `BCCH_USER`/`BCCH_PASSWORD` del repositorio existen y siguen vigentes.",
+              "2. Reproducir localmente: `pnpm run fetch:economic-history --solo=ipc` (credenciales en `.env.local`).",
+              "3. Verificar el valor del mes nuevo contra la publicación oficial del INE antes de mergear el PR.",
+              "4. Si el PR se mergeó, cerrar este issue manualmente (o dejarlo cerrar en la próxima corrida verde).",
+              "",
+              `**Triggered by:** \`${context.eventName}\` — run \`${context.runId}\``,
+            ].join("\n");
+
+            core.setOutput("desired_state", "open");
+            core.setOutput("body", body);
+
+      - name: "📝 Sync IPC freshness issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}
+
+      - name: "✅ Fail workflow when ingestion or freshness failed"
+        if: steps.ingest.outcome == 'failure' || steps.freshness.outcome == 'failure'
+        run: exit 1

@@ -2,10 +2,10 @@
   "fuente": "INE (IPC mensual) vía mindicador.cl; extensión vía Banco Central de Chile (G073.IPC.VAR.2023.M, base 2023=100)",
   "indicador": "ipc",
   "granularidad": "mensual",
-  "actualizadoEl": "2026-09-29",
+  "actualizadoEl": "2026-10-10",
   "desdeFecha": "2000-01-01",
-  "hastaFecha": "2026-08-01",
-  "totalEntradas": 320,
+  "hastaFecha": "2026-09-01",
+  "totalEntradas": 321,
   "nota": "Variación porcentual mensual del IPC según el INE, publicada por mindicador.cl. Este campo refleja la variación del período (%), NO un índice acumulado. Para calcular poder adquisitivo acumulado es necesario encadenar las variaciones. Los meses sin dato en mindicador.cl se completan con la serie oficial del BCCh (IPC INE, empalme base 2023=100).",
   "serie": [
     {
@@ -1287,6 +1287,10 @@
     {
       "fecha": "2026-08-01",
       "valor": 0.6
+    },
+    {
+      "fecha": "2026-09-01",
+      "valor": 0.4
     }
   ]
 }

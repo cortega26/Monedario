@@ -103,3 +103,18 @@ describe("economic-history datasets", () => {
     });
   }
 });
+
+describe("ipc-historico.json — regresión de ingesta 2026-09", () => {
+  const ds = loadDataset("ipc-historico.json");
+
+  it("contiene la variación oficial de septiembre 2026 (INE: +0,4%)", () => {
+    expect(ds.serie.find(entry => entry.fecha === "2026-09-01")?.valor).toBe(0.4);
+  });
+
+  it("mantiene la secuencia mensual contigua en torno a septiembre 2026", () => {
+    const fechas = ds.serie.map(entry => entry.fecha);
+    const idx = fechas.indexOf("2026-09-01");
+    expect(idx).toBeGreaterThan(0);
+    expect(fechas[idx - 1]).toBe("2026-08-01");
+  });
+});

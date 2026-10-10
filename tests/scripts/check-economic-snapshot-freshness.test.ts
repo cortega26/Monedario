@@ -19,12 +19,16 @@ function writeSnapshot(snapshot: unknown): string {
   return root;
 }
 
-function writeIpcSeries(root: string, hastaFecha: string) {
+function writeIpcSeries(
+  root: string,
+  hastaFecha: string,
+  serie: Array<{ fecha: string; valor: number }> = []
+) {
   const dir = path.join(root, "src", "data", "economic-history");
   mkdirSync(dir, { recursive: true });
   writeFileSync(
     path.join(dir, "ipc-historico.json"),
-    JSON.stringify({ hastaFecha, serie: [] })
+    JSON.stringify({ hastaFecha, serie })
   );
 }
 
@@ -127,6 +131,43 @@ describe("check-economic-snapshot-freshness", () => {
     const root = writeSnapshot(snapshot);
     writeIpcSeries(root, "2026-06-01");
     const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(0);
+  });
+
+  // Escenario de producción 2026-10-10: el snapshot ya publica septiembre pero
+  // la serie aún termina en agosto. La fecha real de `serie` manda sobre
+  // `hastaFecha`: un metadato adelantado no puede enmascarar el rezago.
+  it("fails when the real IPC series trails the snapshot even if hastaFecha is advanced (metadata drift)", () => {
+    const snapshot = {
+      capturedAt: "2026-10-10T18:15:23.612Z",
+      indicatorUpdatedAt: {
+        uf: "2026-10-10",
+        utm: "2026-10-01",
+        dolar: "2026-10-10",
+        ipc: "2026-09-01",
+      },
+    };
+    const root = writeSnapshot(snapshot);
+    writeIpcSeries(root, "2026-09-01", [{ fecha: "2026-08-01", valor: 0.6 }]);
+    const r = run(root, "2026-10-10T20:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("ipc-historico.json llega a 2026-08");
+    expect(r.stderr).toContain("--solo=ipc");
+  });
+
+  it("passes when the real IPC series is current even if hastaFecha lags", () => {
+    const snapshot = {
+      capturedAt: "2026-10-10T18:15:23.612Z",
+      indicatorUpdatedAt: {
+        uf: "2026-10-10",
+        utm: "2026-10-01",
+        dolar: "2026-10-10",
+        ipc: "2026-09-01",
+      },
+    };
+    const root = writeSnapshot(snapshot);
+    writeIpcSeries(root, "2026-08-01", [{ fecha: "2026-09-01", valor: 0.4 }]);
+    const r = run(root, "2026-10-10T20:00:00.000Z");
     expect(r.status).toBe(0);
   });
 

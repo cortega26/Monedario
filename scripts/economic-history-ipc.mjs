@@ -47,3 +47,16 @@ export function extendSeriesByDate(baseSerie, extensionSerie) {
     .map(([fecha, valor]) => ({ fecha, valor }));
   return { serie, added };
 }
+
+/**
+ * Fechas presentes en `previousSerie` que desaparecerían en `nextSerie`.
+ * Arreglo vacío = sin regresión. La ingesta lo usa para no borrar meses ya
+ * ingestados cuando una fuente deja de publicar (p. ej. mindicador sin IPC +
+ * extensión BCCh no disponible).
+ */
+export function findMissingDates(previousSerie, nextSerie) {
+  const nextDates = new Set((nextSerie ?? []).map(entry => entry.fecha));
+  return (previousSerie ?? [])
+    .map(entry => entry.fecha)
+    .filter(fecha => !nextDates.has(fecha));
+}
