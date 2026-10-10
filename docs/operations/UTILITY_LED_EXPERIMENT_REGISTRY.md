@@ -147,3 +147,37 @@ del owner y sin tocar superficies en ventana. Reglas comunes:
 | SEO-EXP-2 | Seguro de cesantía, intención «simular» (pos 8,6–10,8) | `calcular seguro de cesantia`: 506i/28c pos 4,74 CTR 5,5 %; «simular» pos 8,6–10,8 | Sección/CTA de simulación en la superficie de seguro de cesantía | «simular» en top 8 y CTR ≥2 % | top 8–10 | sin cambio tras 4 semanas | 149 (p=2 %) |
 | SEO-EXP-3 | Prepago, decisión (`conviene prepagar un credito de consumo`: 97i/0c pos 14,8) | pos 14,8, 0 clics | Escenarios cuota vs plazo / prepagar vs invertir | pos ≤10 y ≥1 clic | pos 10–14 | sin cambio tras 4 semanas | 299 (p=1 %) |
 | SEO-EXP-4 | Impuesto 2ª, queries «2026» (pos 9–10, CTR 0–0,5 %; página 5.107i/50c) | CTR 0–0,5 % en queries «2026» | Tabla 2026 accesible + snippet de sección | CTR ≥2 % en el grupo | 0,5–1,9 % | sin cambio tras 4 semanas | 149 (p=2 %) |
+
+### Ejecución SEO-EXP-2 (2026-10-10, confirmación del owner)
+
+Cambio on-page en `src/pages/calculadoras/seguro-cesantia.astro`, limitado al
+lever registrado («sección/CTA de simulación»):
+
+- Copy del hero que separa el cobro estimado de la CIC (según sueldo,
+  cotizaciones, saldo y causal) del **filtro base** del FCS, cuyos montos
+  exactos entrega la AFC en su tabla oficial.
+- H2 «Simulador de Seguro de Cesantía» en la tarjeta del formulario.
+- Ancla simple `#calculator-form-card` («Simular mi seguro ↓»), sin atributos
+  de analytics nuevos.
+
+**Intactos**: H1, title, description, `CalculatorJsonLd` y nombres de analytics
+(«Calculadora…»). Razones: el freeze de títulos rige hasta ~2026-10-14 y el
+experimento de título de julio (plan 040, revertido en #354) mostró que
+«simulador» en el title no convierte (0 clics @ pos 7–9 en W28, vs «calcular…»
+con clics @ pos ~3). El H1 se mantiene como señal de la query que convierte.
+
+**Deploy y ventana**: deploy efectivo 2026-10-10 — el owner autorizó
+adelantarlo al fin del freeze (~2026-10-14) y la decisión quedó registrada
+antes del deploy. La ventana de 4 semanas comparables corre desde esa fecha
+(lectura ≈2026-11-07); sin claims de causalidad mientras el spam update siga
+activo.
+
+**Baselines de lectura (query×page):**
+
+- «simular seguro de cesantia»: 623i, pos 10,3, CTR 0,48 % (2026-09-10→10-06).
+- «calcular seguro de cesantia»: 506i/28c, pos 4,74, CTR 5,5 % (§8).
+
+**Guardarraíl y rollback**: la posición de la familia «calcular» no debe
+empeorar; si «calcular seguro de cesantia» sale del top ~5–6 o degrada >2
+posiciones por 2 semanas consecutivas, revertir el cambio on-page. Sin
+veredicto bajo `n_min`=149 ni causalidad mientras el spam update siga activo.
