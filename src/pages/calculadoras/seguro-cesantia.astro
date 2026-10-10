@@ -101,9 +101,16 @@ const seguroCesantiaFaqs = [
   >
     <CalculatorHero
       title="Calculadora de Seguro de Cesantía"
-      description="Separa el filtro base de elegibilidad del cobro estimado de tu CIC, sin presentar como exactos los montos que dependen de AFC."
+      description="Simula cuánto podrías recibir de tu Cuenta Individual de Cesantía (CIC) según tu sueldo, cotizaciones, saldo y causal de término. Además, revisa si cumples el filtro base del Fondo de Cesantía Solidario (FCS): los montos exactos del FCS los entrega la AFC en su tabla oficial."
       descriptionClass="max-w-xl text-secondary"
-    />
+    >
+      <a
+        href="#calculator-form-card"
+        class="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+      >
+        Simular mi seguro ↓
+      </a>
+    </CalculatorHero>
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -111,7 +118,9 @@ const seguroCesantiaFaqs = [
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
       >
-        <h2 class="mb-5 text-lg font-semibold">Tus datos</h2>
+        <h2 class="mb-5 text-lg font-semibold">
+          Simulador de Seguro de Cesantía
+        </h2>
 
         <CalculatorField
           id="sueldo"

@@ -188,7 +188,7 @@
       "role": "tool",
       "priority": "p1",
       "refreshSla": "weekly",
-      "queryThemes": ["calculadora seguro de cesantia", "simulador afc", "estimar pago afc"],
+      "queryThemes": ["calculadora seguro de cesantia", "simulador afc", "estimar pago afc", "simular seguro de cesantia"],
       "nextStepPaths": ["/posts/seguro-de-cesantia/"]
     },
     {
