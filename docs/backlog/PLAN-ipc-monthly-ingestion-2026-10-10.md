@@ -1,6 +1,6 @@
 # PLAN — Ingesta mensual del IPC y serie al día (P1, 2026-10-10)
 
-- **Estado:** DONE — cambios en working tree (sin commit, por instrucción)
+- **Estado:** DONE — mergeado en #663 (`8d474013`, 2026-10-10)
 - **Owner:** Sin asignar
 - **Origen:** defecto de producción confirmado — la calculadora
   `/calculadoras/actualizador-inflacion/` usa IPC solo hasta agosto 2026
