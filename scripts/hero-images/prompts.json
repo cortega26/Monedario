@@ -2413,13 +2413,13 @@
       "targetImagePath": "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
-      "briefHash": "110bf3be849fcf330c52b699408d3b922ac89d933570a56ee342f7d28ea42b95",
+      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
+      "briefHash": "ac70548de1f03af558f35eb7c95539fa6a3efa9a3c420b86569ca28313726dea",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-10",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
       },
       "template": "C",
       "promptTrack": "C",
@@ -2463,13 +2463,13 @@
       "targetImagePath": "/images/hero/seguro-de-cesantia.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
-      "briefHash": "d8e0c88078cec4e9cf872b81af7016eca1f4cbda5f4453ba49013b7bcb14ae51",
+      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "briefHash": "cd08b6ffa6e61858819fc138ea286769c3171d185a21bda8e1eaecffd89a075d",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-10",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
       },
       "template": "A",
       "promptTrack": "A",

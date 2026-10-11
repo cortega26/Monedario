@@ -130,6 +130,6 @@ No. Los pagos de la CIC dependen de tu saldo y bajan progresivamente: 70%, 55%, 
 No. Si no usas el seguro, el saldo sigue acumulado a tu nombre para la próxima vez que lo necesites.
 
 **¿Puedo estimar cuánto recibiría antes de hacer la solicitud?**
-Sí. El [simulador de seguro de cesantía](/calculadoras/seguro-cesantia/) te permite ingresar tu saldo CIC real y te muestra los pagos estimados mes a mes. Para los montos del FCS, la AFC publica las tablas vigentes en su sitio.
+Sí. Puedes [simular tu seguro de cesantía](/calculadoras/seguro-cesantia/) con tu saldo CIC real y ver los pagos estimados mes a mes. Para los montos del FCS, la AFC publica las tablas vigentes en su sitio.
 
 Para el proceso completo de consulta, cobro y documentos necesarios, la [guía general del seguro de cesantía](/posts/seguro-de-cesantia/) tiene los pasos detallados.

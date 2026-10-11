@@ -159,6 +159,12 @@ lever registrado («sección/CTA de simulación»):
 - H2 «Simulador de Seguro de Cesantía» en la tarjeta del formulario.
 - Ancla simple `#calculator-form-card` («Simular mi seguro ↓»), sin atributos
   de analytics nuevos.
+- Sección «Cómo simular tu seguro de cesantía» (4 pasos: datos, saldo CIC,
+  filtro FCS, interpretación) en el cuerpo de la página.
+- Anclas internas hacia la calculadora: glosario y acción siguiente de
+  finiquito con «Simular seguro de cesantía»; guías owner y support reescritas
+  a «simular tu seguro de cesantía» (sin cambios de afirmaciones; briefs
+  visuales re-revisados, sin tocar `updatedDate` por §5.2).
 
 **Intactos**: H1, title, description, `CalculatorJsonLd` y nombres de analytics
 («Calculadora…»). Razones: el freeze de títulos rige hasta ~2026-10-14 y el
@@ -168,9 +174,11 @@ con clics @ pos ~3). El H1 se mantiene como señal de la query que convierte.
 
 **Deploy y ventana**: deploy efectivo 2026-10-10 — el owner autorizó
 adelantarlo al fin del freeze (~2026-10-14) y la decisión quedó registrada
-antes del deploy. La ventana de 4 semanas comparables corre desde esa fecha
-(lectura ≈2026-11-07); sin claims de causalidad mientras el spam update siga
-activo.
+antes del deploy. El refuerzo on-page/anclas del mismo día se registra como
+parte de la misma intervención (misma semana GSC): la ventana de 4 semanas
+comparables se mantiene con lectura ≈2026-11-07. Si el refuerzo se hubiera
+deployado en otra semana, la ventana se reiniciaría desde ese segundo deploy.
+Sin claims de causalidad mientras el spam update siga activo.
 
 **Baselines de lectura (query×page):**
 
@@ -179,5 +187,6 @@ activo.
 
 **Guardarraíl y rollback**: la posición de la familia «calcular» no debe
 empeorar; si «calcular seguro de cesantia» sale del top ~5–6 o degrada >2
-posiciones por 2 semanas consecutivas, revertir el cambio on-page. Sin
-veredicto bajo `n_min`=149 ni causalidad mientras el spam update siga activo.
+posiciones por 2 semanas consecutivas, revertir **todo** el paquete (sección,
+hero/H2/ancla, labels y anclas internas a su texto previo). Sin veredicto bajo
+`n_min`=149 ni causalidad mientras el spam update siga activo.

@@ -4,7 +4,7 @@ shortDefinition: "Sistema de protección para trabajadores formales en Chile que
 relatedTerms: ["afc", "fondo-solidario", "cic", "renta-imponible"]
 relatedCalculators:
   - href: /calculadoras/seguro-cesantia/
-    label: Simula tus beneficios de cesantía
+    label: Simular seguro de cesantía
 relatedLaws:
   - href: /leyes/ley-19728-seguro-cesantia/
     label: Ley 19.728 — Seguro de Cesantía
