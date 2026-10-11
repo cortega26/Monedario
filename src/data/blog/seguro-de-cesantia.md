@@ -241,6 +241,6 @@ No. El **seguro de cesantía** es el que administra la AFC y es para trabajadore
 
 </details>
 
-Si quieres estimar cobertura con tus datos, usa la [calculadora de seguro de cesantía](/calculadoras/seguro-cesantia/). Si tu caso incluye licencia activa o rechazo de pago, revisa [licencia médica: desde qué día pagan](/posts/licencia-medica-desde-que-dia-pagan/). Y si estás cerrando contrato, valida montos con [finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
+Si quieres estimar cobertura con tus datos, usa la calculadora para [simular tu seguro de cesantía](/calculadoras/seguro-cesantia/). Si tu caso incluye licencia activa o rechazo de pago, revisa [licencia médica: desde qué día pagan](/posts/licencia-medica-desde-que-dia-pagan/). Y si estás cerrando contrato, valida montos con [finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
 
 ---

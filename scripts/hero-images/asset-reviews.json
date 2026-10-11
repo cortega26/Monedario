@@ -468,7 +468,7 @@
     "seguro-de-cesantia": {
       "slug": "seguro-de-cesantia",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
+      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Consultar y tramitar apoyo de cesantía según saldo, cotizaciones y causal.\nEditorial promise: Orientar la revisión de cuenta y documentos antes de solicitar cobro.\nVisual message: Perder un empleo abre una revisión concreta de recursos y requisitos.\nScene: An adult man with close-cropped hair at a modest workspace calmly checks a neutral laptop while placing a termination document beside an account statement. A work bag rests on a nearby chair. His posture is active and focused on the next step, without drooping shoulders, empty pockets or an oversized protective shield.\nEssential elements: Consulta de cuenta; Documento de término laboral; Persona actuando con autonomía.\nAvoid these interpretations: Toda persona cesante cobra lo mismo; Existe cobertura sin requisitos; La persona está indefensa.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "107b41d5a81501cf015dce420600c3a02637d480fbaaba7836d610bf4f4e910d",
       "source": {
@@ -492,10 +492,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-10",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
-        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+        "method": "Interlink anchor update only (no claims or structure changed); visual brief and prompt unchanged. Existing asset re-inspected against the revised article; still accepted. Not a YMYL compliance or human publication signoff.",
+        "note": "Re-revisión por cambio de interlink: la imagen, el brief visual y el prompt no cambian; el asset sigue representando la situación del artículo. Se archiva la revisión previa en history."
       }
     },
     "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
@@ -666,7 +666,7 @@
     "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
+      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Distinguir saldo individual de acceso condicionado al fondo colectivo.\nEditorial promise: Explicar el orden CIC primero y evaluación del complemento solidario.\nVisual message: Una reserva propia y una ayuda común tienen acceso diferente.\nScene: Two clearly distinct folders sit on a table: a personal account folder in the foreground and a shared-support folder behind it. A small document gate stands before the shared folder, suggesting eligibility review. A simple open hand points first to the personal folder. There is no automatic pipe connecting the two and no promise of equal balances.\nEssential elements: Cuenta individual primero; Fondo colectivo separado; Condición de acceso.\nAvoid these interpretations: Ambos fondos son saldo propio; El complemento es automático; Las reglas son idénticas.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "79822b5b23748a4031d9769f4a8d139cdb8c49f4935d72525e82ee622d93c05c",
       "source": {
@@ -690,10 +690,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-10",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
-        "note": "ACEPTABLE para selección de arte. Generada con entry.prompt exacto, sin enriquecimiento. Inspección ampliada: la carpeta individual se presenta primero en primer plano; la colectiva queda separada detrás de una barrera cerrada y un documento de revisión. Mano extendida coherente; sin cifras, texto legible ni emblemas oficiales. El check de la tablilla es un pictograma genérico de requisito; acompañado de la barrera cerrada comunica control de acceso, no transferencia automática. No hay tubería, flecha entre saldos, montos ni promesa de igualdad. A 300 px siguen distinguiéndose persona individual, grupo y barrera; el empleado del fondo es secundario. La persona añadida en la escena apoya el gesto de elegir primero la cuenta personal. Comparada con indemnización, conserva un mecanismo visual claramente distinto. Revisión de ilustración, no auditoría financiera ni firma humana."
+        "method": "Interlink anchor update only (no claims or structure changed); visual brief and prompt unchanged. Existing asset re-inspected against the revised article; still accepted. Not a YMYL compliance or human publication signoff.",
+        "note": "Re-revisión por cambio de interlink: la imagen, el brief visual y el prompt no cambian; el asset sigue representando la situación del artículo. Se archiva la revisión previa en history."
       }
     },
     "primer-empleo-chile-guia-completa": {
@@ -875,6 +875,72 @@
         "reviewedBy": "agent/visual-curation",
         "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
         "note": "Revisada: equivalencia variable sin pilas, monedas, firma ni sello. Contrato estable y tiempo distinguibles."
+      }
+    },
+    {
+      "slug": "seguro-de-cesantia",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Consultar y tramitar apoyo de cesantía según saldo, cotizaciones y causal.\nEditorial promise: Orientar la revisión de cuenta y documentos antes de solicitar cobro.\nVisual message: Perder un empleo abre una revisión concreta de recursos y requisitos.\nScene: An adult man with close-cropped hair at a modest workspace calmly checks a neutral laptop while placing a termination document beside an account statement. A work bag rests on a nearby chair. His posture is active and focused on the next step, without drooping shoulders, empty pockets or an oversized protective shield.\nEssential elements: Consulta de cuenta; Documento de término laboral; Persona actuando con autonomía.\nAvoid these interpretations: Toda persona cesante cobra lo mismo; Existe cobertura sin requisitos; La persona está indefensa.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "107b41d5a81501cf015dce420600c3a02637d480fbaaba7836d610bf4f4e910d",
+      "source": {
+        "path": "scripts/hero-images/sources/seguro-de-cesantia.webp",
+        "hash": "4278c65320a1a3fb941d9782637a3a0f1eb9ad513fe57979792f68eb2e522db2"
+      },
+      "asset": {
+        "path": "public/images/hero/seguro-de-cesantia.avif",
+        "hash": "1645e05212b3b342ba92911d44ad2fc0d76b61d68c57ff4c7e8d414b5c59cd0f"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/seguro-de-cesantia-5b9075c4d5de8697.png",
+        "hash": "5b9075c4d5de869755d097497a5d73c1676b646556685cf72d70c5118bb4668a"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+      }
+    },
+    {
+      "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "b499727a569ebfb5e01f07f2ce7fd3190ff3616ac6af07e960c96cac3093c900",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Distinguir saldo individual de acceso condicionado al fondo colectivo.\nEditorial promise: Explicar el orden CIC primero y evaluación del complemento solidario.\nVisual message: Una reserva propia y una ayuda común tienen acceso diferente.\nScene: Two clearly distinct folders sit on a table: a personal account folder in the foreground and a shared-support folder behind it. A small document gate stands before the shared folder, suggesting eligibility review. A simple open hand points first to the personal folder. There is no automatic pipe connecting the two and no promise of equal balances.\nEssential elements: Cuenta individual primero; Fondo colectivo separado; Condición de acceso.\nAvoid these interpretations: Ambos fondos son saldo propio; El complemento es automático; Las reglas son idénticas.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "79822b5b23748a4031d9769f4a8d139cdb8c49f4935d72525e82ee622d93c05c",
+      "source": {
+        "path": "scripts/hero-images/sources/seguro-cesantia-cuenta-individual-vs-fondo-solidario.webp",
+        "hash": "30839afe1862c7c4a47a7fe09c62e4ea2af487a5a2b22451f0c4c449625295fe"
+      },
+      "asset": {
+        "path": "public/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
+        "hash": "7c0ff6261d096bfc7c56f30790d0a64bea5fc48fbedb79a6a8e47134c6c155ad"
+      },
+      "toolOriginal": {
+        "path": "output/hero-images/visual-v5/originals/seguro-cesantia-cuenta-individual-vs-fondo-solidario-e6565a6d0d678c05.png",
+        "hash": "e6565a6d0d678c052b8dec60eb2ed4a9d670aef089de4b9450ef5b2faf5dfc81"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-09-30",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "note": "ACEPTABLE para selección de arte. Generada con entry.prompt exacto, sin enriquecimiento. Inspección ampliada: la carpeta individual se presenta primero en primer plano; la colectiva queda separada detrás de una barrera cerrada y un documento de revisión. Mano extendida coherente; sin cifras, texto legible ni emblemas oficiales. El check de la tablilla es un pictograma genérico de requisito; acompañado de la barrera cerrada comunica control de acceso, no transferencia automática. No hay tubería, flecha entre saldos, montos ni promesa de igualdad. A 300 px siguen distinguiéndose persona individual, grupo y barrera; el empleado del fondo es secundario. La persona añadida en la escena apoya el gesto de elegir primero la cuenta personal. Comparada con indemnización, conserva un mecanismo visual claramente distinto. Revisión de ilustración, no auditoría financiera ni firma humana."
       }
     }
   ]
