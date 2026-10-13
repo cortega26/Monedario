@@ -32,3 +32,14 @@ pequeñas, sin cambiar rutas, contenido editorial o navbar de escritorio.
 - `pnpm exec astro check`: sin errores.
 
 Rollback: revertir el PR. No hay migraciones ni cambios de datos.
+
+## Evidencia y estado
+
+- Base examinada: `main@c61d71a9d5f84b639f89a12372ec8eff2b4396ba`.
+- Inspección estática: rutas y atributos ARIA conservados; cuadrícula móvil,
+  opciones alineadas y utilidades en columnas; pruebas Playwright añadidas.
+- CI del PR #668: jobs de CI, Python y seguridad fallaron antes de registrar
+  pasos ejecutados; los logs no estuvieron disponibles (404).
+- La máquina de pruebas remota figura desconectada. No se pudo ejecutar
+  Playwright, lint, Prettier o Astro localmente; **validación pendiente**.
+- Estado: PR en borrador, sin fusionar ni desplegar hasta superar las pruebas.
