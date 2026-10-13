@@ -90,7 +90,7 @@
       "readerNeed": "Comparar el costo completo de créditos con condiciones equivalentes.",
       "editorialPromise": "Separar tasa, cuota, CAE y costo total al evaluar ofertas.",
       "visualMessage": "Mirar debajo de la cuota revela costos que también importan.",
-      "scene": "Two comparable loan offer sheets lie side by side. A natural hand lifts a folded lower flap on one sheet, revealing additional unlettered cost bands beneath the main band. A simple calculator is secondary and has no readable display. Both documents are equally sized; no graduation cap or education icon.",
+      "scene": "Two comparable generic loan offer sheets lie side by side. A natural hand lifts a folded lower flap on one sheet, revealing additional unlettered cost bands beneath the main band. A simple calculator is secondary and has no readable display. Both documents are equally sized. Keep the setting about comparing loan costs: show no house, building, real-estate, education or bank-institution imagery, and no readable labels.",
       "requiredElements": [
         "Dos ofertas equivalentes",
         "Costos adicionales visibles",
@@ -99,7 +99,9 @@
       "avoidInterpretations": [
         "CAE significa crédito estudiantil",
         "Cuota menor implica costo menor",
-        "La CAE por sí sola determina legalidad"
+        "La CAE por sí sola determina legalidad",
+        "El artículo trata exclusivamente de créditos hipotecarios",
+        "Los íconos representan instituciones o tipos de crédito específicos"
       ],
       "alt": "",
       "sourceContentHash": "d5d09b822f486f1d68c7734ed43b300a77f0466daebc8705dbe5e724a7f986f8",
@@ -108,9 +110,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
-        "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-12",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Brief visualmente acotado tras revisar dos candidatas ambiguas; mantiene el alcance del artículo y excluye iconografía de vivienda, edificios, educación e instituciones."
       }
     },
     {
@@ -1336,9 +1338,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-03",
-        "reviewedBy": "agent/brief-review",
-        "method": "Re-review after the 2026-10-02 source-correction diff (13.5 UTA threshold rule replacing always-file, proposal-data description, taxable-base distinction, APV aggregate limit and TGR scope, new DoD H2, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-12",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Revalidación del brief visual contra el artículo publicado en origin/main (00d372c8): las dos fuentes de ingreso y su revisión conjunta en la declaración anual siguen vigentes. No es auditoría YMYL ni signoff de publicación."
       }
     },
     {

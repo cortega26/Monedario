@@ -162,12 +162,12 @@
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
       "sourceContentHash": "d5d09b822f486f1d68c7734ed43b300a77f0466daebc8705dbe5e724a7f986f8",
-      "briefHash": "9c84d178c240d1bd62209511d38be9c23882aa615f6dc23df8f72dae8eaece70",
+      "briefHash": "c96c51c45f2ca87bb09ff9bf9db4ef239e2ba3e0e9a5592d2e6411be99afb7b7",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
-        "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-12",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Brief visualmente acotado tras revisar dos candidatas ambiguas; mantiene el alcance del artículo y excluye iconografía de vivienda, edificios, educación e instituciones."
       },
       "template": "B",
       "promptTrack": "B",
@@ -196,8 +196,8 @@
         "quality": "curated",
         "size": "1200x630"
       },
-      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comparar el costo completo de créditos con condiciones equivalentes.\nEditorial promise: Separar tasa, cuota, CAE y costo total al evaluar ofertas.\nVisual message: Mirar debajo de la cuota revela costos que también importan.\nScene: Two comparable loan offer sheets lie side by side. A natural hand lifts a folded lower flap on one sheet, revealing additional unlettered cost bands beneath the main band. A simple calculator is secondary and has no readable display. Both documents are equally sized; no graduation cap or education icon.\nEssential elements: Dos ofertas equivalentes; Costos adicionales visibles; Mano que revisa el detalle.\nAvoid these interpretations: CAE significa crédito estudiantil; Cuota menor implica costo menor; La CAE por sí sola determina legalidad.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
-      "promptHash": "8c7ba20dcbd64200fcd480046285b45200a60b625493d8328f247784b5efcb82",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comparar el costo completo de créditos con condiciones equivalentes.\nEditorial promise: Separar tasa, cuota, CAE y costo total al evaluar ofertas.\nVisual message: Mirar debajo de la cuota revela costos que también importan.\nScene: Two comparable generic loan offer sheets lie side by side. A natural hand lifts a folded lower flap on one sheet, revealing additional unlettered cost bands beneath the main band. A simple calculator is secondary and has no readable display. Both documents are equally sized. Keep the setting about comparing loan costs: show no house, building, real-estate, education or bank-institution imagery, and no readable labels.\nEssential elements: Dos ofertas equivalentes; Costos adicionales visibles; Mano que revisa el detalle.\nAvoid these interpretations: CAE significa crédito estudiantil; Cuota menor implica costo menor; La CAE por sí sola determina legalidad; El artículo trata exclusivamente de créditos hipotecarios; Los íconos representan instituciones o tipos de crédito específicos.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "b00bc5df7eb9b58127464dfaa822e4d1fc9cf4cdade4204170596ea6cf691baf",
       "selectors": {
         "ruleId": "explicit-reviewed-brief",
         "category": "deuda-credito",
@@ -2364,12 +2364,12 @@
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
       "sourceContentHash": "887886d4826f3b404c1196db48429885dfbad246551671c55f4fac41001b214e",
-      "briefHash": "6df8dcb35f01cb84bb23ab59735d303fd3e569cc47de01f2437dee01099f8d63",
+      "briefHash": "5dde88e0e4093903c7de7e32db6ee19d3640a6289c1f7677087e73e43dfe0553",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-03",
-        "reviewedBy": "agent/brief-review",
-        "method": "Re-review after the 2026-10-02 source-correction diff (13.5 UTA threshold rule replacing always-file, proposal-data description, taxable-base distinction, APV aggregate limit and TGR scope, new DoD H2, dated AT2027 check): title, lead, headings and hero-relevant meaning re-read; readerNeed, promise, message, scene, elements and alt unchanged, so brief text stands and only the source hash and review are renewed. This is visual source alignment, not a financial or YMYL compliance audit."
+        "reviewedAt": "2026-10-12",
+        "reviewedBy": "agent/visual-curation",
+        "method": "Revalidación del brief visual contra el artículo publicado en origin/main (00d372c8): las dos fuentes de ingreso y su revisión conjunta en la declaración anual siguen vigentes. No es auditoría YMYL ni signoff de publicación."
       },
       "template": "B",
       "promptTrack": "B",
