@@ -37,206 +37,206 @@
       }
     },
     "bancos-y-fintech-chile": {
-      "sourcePath": "public/images/hero/bancos-y-fintech-chile.avif",
-      "sourceHash": "e808e843ebd8856978f43d68c59fe6a174775d6d453525fa2b0701da36a63e9b",
+      "sourcePath": "scripts/hero-images/sources/bancos-y-fintech-chile.webp",
+      "sourceHash": "c88fe9467b84c3b8a8f6f7fcb281e76635a7d3305127d9b8cf4b6a04c29a1808",
       "assets": {
         "hero": {
-          "src": "/images/editorial/bancos-y-fintech-chile/e808e843ebd8856978f43d68c59fe6a174775d6d453525fa2b0701da36a63e9b.avif",
-          "hash": "e808e843ebd8856978f43d68c59fe6a174775d6d453525fa2b0701da36a63e9b",
+          "src": "/images/editorial/bancos-y-fintech-chile/c8ab8e510516d7729f1ad2e87eef81173c4607af606fa85f5482588e9b0f7bb4.avif",
+          "hash": "c8ab8e510516d7729f1ad2e87eef81173c4607af606fa85f5482588e9b0f7bb4",
           "width": 1200,
           "height": 630,
-          "bytes": 5581
+          "bytes": 57229
         },
         "tablet": {
-          "src": "/images/editorial/bancos-y-fintech-chile/32bd5423c5e654d50f651501f88cd52ddda8480839cf2f390f8e70ba0bc9be44.avif",
-          "hash": "32bd5423c5e654d50f651501f88cd52ddda8480839cf2f390f8e70ba0bc9be44",
+          "src": "/images/editorial/bancos-y-fintech-chile/8685052492d8d89253dc53924c3383e92e544a752d09736089bf5ea5ac24fa53.avif",
+          "hash": "8685052492d8d89253dc53924c3383e92e544a752d09736089bf5ea5ac24fa53",
           "width": 800,
           "height": 420,
-          "bytes": 6428
+          "bytes": 30485
         },
         "mobile": {
-          "src": "/images/editorial/bancos-y-fintech-chile/2a876030c8943d95fe69aa18d012e32adaa0008fd2aaae5ecbc87cead4a0fbcd.avif",
-          "hash": "2a876030c8943d95fe69aa18d012e32adaa0008fd2aaae5ecbc87cead4a0fbcd",
+          "src": "/images/editorial/bancos-y-fintech-chile/ab098a5fc0cfc4bdfcb365af8186e18fdcdf3d699cab80d1103f59a4b6580dd5.avif",
+          "hash": "ab098a5fc0cfc4bdfcb365af8186e18fdcdf3d699cab80d1103f59a4b6580dd5",
           "width": 600,
           "height": 315,
-          "bytes": 4852
+          "bytes": 21743
         },
         "og": {
-          "src": "/images/editorial/bancos-y-fintech-chile/ee2097f0860c8834ba2f7076584ff4a9968c1602b132aa2f5aca5dd418eeb1b3.jpg",
-          "hash": "ee2097f0860c8834ba2f7076584ff4a9968c1602b132aa2f5aca5dd418eeb1b3",
+          "src": "/images/editorial/bancos-y-fintech-chile/4b27474aab26cdfa3b45d8e425471ef1940e85f48a640abcf7dfca9e4ce08ecb.jpg",
+          "hash": "4b27474aab26cdfa3b45d8e425471ef1940e85f48a640abcf7dfca9e4ce08ecb",
           "width": 1200,
           "height": 630,
-          "bytes": 23633
+          "bytes": 107330
         }
       }
     },
     "boleta-honorarios-2026-retencion-cobertura": {
-      "sourcePath": "public/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
-      "sourceHash": "0ca45f53821b083f7fd35d028cc179203e4229c5c1aecd5cd6d642990a8ca418",
+      "sourcePath": "scripts/hero-images/sources/boleta-honorarios-2026-retencion-cobertura.webp",
+      "sourceHash": "e58625100838cf9c069ce08ba6d91d67cae3c406f468a5b2ce75ba9acff7f440",
       "assets": {
         "hero": {
-          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/0ca45f53821b083f7fd35d028cc179203e4229c5c1aecd5cd6d642990a8ca418.avif",
-          "hash": "0ca45f53821b083f7fd35d028cc179203e4229c5c1aecd5cd6d642990a8ca418",
+          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/2b10f8d59c1a95a5aba9a119404760105e4e23454da912c9b1fac498cee4a3ee.avif",
+          "hash": "2b10f8d59c1a95a5aba9a119404760105e4e23454da912c9b1fac498cee4a3ee",
           "width": 1200,
           "height": 630,
-          "bytes": 10908
+          "bytes": 55058
         },
         "tablet": {
-          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/abae47639b2d0501650d3b56c1616ab4f42c5c7a674be84542c982c8defc493f.avif",
-          "hash": "abae47639b2d0501650d3b56c1616ab4f42c5c7a674be84542c982c8defc493f",
+          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/00b9f7ddbacce391a930c23e4fda02de7b98f503a9efd813b8222456f7f0e472.avif",
+          "hash": "00b9f7ddbacce391a930c23e4fda02de7b98f503a9efd813b8222456f7f0e472",
           "width": 800,
           "height": 420,
-          "bytes": 9255
+          "bytes": 28519
         },
         "mobile": {
-          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/9a322dd72a4b9055a09865919f071d5fb14581d46fe44c4eefc69bbee8ab8840.avif",
-          "hash": "9a322dd72a4b9055a09865919f071d5fb14581d46fe44c4eefc69bbee8ab8840",
+          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/da135cbe7cd5e018f56c9930bd8263e533ebc8413b15e4b2e686b8e0c1204a75.avif",
+          "hash": "da135cbe7cd5e018f56c9930bd8263e533ebc8413b15e4b2e686b8e0c1204a75",
           "width": 600,
           "height": 315,
-          "bytes": 6621
+          "bytes": 19837
         },
         "og": {
-          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/e29c079dd78b8c87dcf03ef9ccbef1a4335f6723c2261f211f9ae92d956299a3.jpg",
-          "hash": "e29c079dd78b8c87dcf03ef9ccbef1a4335f6723c2261f211f9ae92d956299a3",
+          "src": "/images/editorial/boleta-honorarios-2026-retencion-cobertura/87f2ebda93f61daa947c8ba8d18bea4c7834beae2783ee3c79bb92aa28b88d44.jpg",
+          "hash": "87f2ebda93f61daa947c8ba8d18bea4c7834beae2783ee3c79bb92aa28b88d44",
           "width": 1200,
           "height": 630,
-          "bytes": 34979
+          "bytes": 102166
         }
       }
     },
     "cae-costo-real-credito-chile": {
-      "sourcePath": "public/images/hero/cae-costo-real-credito-chile.avif",
-      "sourceHash": "3629d769fadfb2d7effe3217498cb7a814538c988af0e092f3b48ec872407482",
+      "sourcePath": "scripts/hero-images/sources/cae-costo-real-credito-chile.webp",
+      "sourceHash": "12832debb7840ac21db5e750814f96ea368a46111a174e0ae9503de235fd8f03",
       "assets": {
         "hero": {
-          "src": "/images/editorial/cae-costo-real-credito-chile/3629d769fadfb2d7effe3217498cb7a814538c988af0e092f3b48ec872407482.avif",
-          "hash": "3629d769fadfb2d7effe3217498cb7a814538c988af0e092f3b48ec872407482",
+          "src": "/images/editorial/cae-costo-real-credito-chile/02626f8981839ab7c0bfa3f4c7c786bf55a5e14be2151aebb4d784de96df9a0a.avif",
+          "hash": "02626f8981839ab7c0bfa3f4c7c786bf55a5e14be2151aebb4d784de96df9a0a",
           "width": 1200,
           "height": 630,
-          "bytes": 3719
+          "bytes": 51932
         },
         "tablet": {
-          "src": "/images/editorial/cae-costo-real-credito-chile/6565e49c7df89d69a6c24daf5b184d1aabc60d4df4fc617f5c4ee9087923d5c6.avif",
-          "hash": "6565e49c7df89d69a6c24daf5b184d1aabc60d4df4fc617f5c4ee9087923d5c6",
+          "src": "/images/editorial/cae-costo-real-credito-chile/4525d2e7f29dfdf0a0038afe07691bfc23b0af6754d14f9d646331b929ef1dbb.avif",
+          "hash": "4525d2e7f29dfdf0a0038afe07691bfc23b0af6754d14f9d646331b929ef1dbb",
           "width": 800,
           "height": 420,
-          "bytes": 3916
+          "bytes": 22287
         },
         "mobile": {
-          "src": "/images/editorial/cae-costo-real-credito-chile/0e015f6b3a5e015cee7d75ed274a0de19c592a49274137efb2bb3fb2d212e30e.avif",
-          "hash": "0e015f6b3a5e015cee7d75ed274a0de19c592a49274137efb2bb3fb2d212e30e",
+          "src": "/images/editorial/cae-costo-real-credito-chile/f1ed4f54dedd18efaf17c96644fbe97402c1a3008669ca8d09716205ff2d9622.avif",
+          "hash": "f1ed4f54dedd18efaf17c96644fbe97402c1a3008669ca8d09716205ff2d9622",
           "width": 600,
           "height": 315,
-          "bytes": 2735
+          "bytes": 14959
         },
         "og": {
-          "src": "/images/editorial/cae-costo-real-credito-chile/c7974ff4e613339af696cf56cb3a2699010e038674535d65243ecfc2d84b6252.jpg",
-          "hash": "c7974ff4e613339af696cf56cb3a2699010e038674535d65243ecfc2d84b6252",
+          "src": "/images/editorial/cae-costo-real-credito-chile/711a7f75a043e093061e27005cf6da87d624e7008966e349c422eaa385fb9e4e.jpg",
+          "hash": "711a7f75a043e093061e27005cf6da87d624e7008966e349c422eaa385fb9e4e",
           "width": 1200,
           "height": 630,
-          "bytes": 16147
+          "bytes": 92038
         }
       }
     },
     "como-calcular-sueldo-liquido": {
-      "sourcePath": "public/images/hero/como-calcular-sueldo-liquido.avif",
-      "sourceHash": "d4453d75887abf1b8f418ed4d1a070957cbf86ec948307e53df60ea4bc67c2ce",
+      "sourcePath": "scripts/hero-images/sources/como-calcular-sueldo-liquido.webp",
+      "sourceHash": "e08fd2fc70a9983b8f2f50469b373b5ae6765a7ce67305512cb59297ac35bdcc",
       "assets": {
         "hero": {
-          "src": "/images/editorial/como-calcular-sueldo-liquido/d4453d75887abf1b8f418ed4d1a070957cbf86ec948307e53df60ea4bc67c2ce.avif",
-          "hash": "d4453d75887abf1b8f418ed4d1a070957cbf86ec948307e53df60ea4bc67c2ce",
+          "src": "/images/editorial/como-calcular-sueldo-liquido/c2a40cb69863e456bdaa2ae57e86268c678042cea316e89585fb6a9420944c3c.avif",
+          "hash": "c2a40cb69863e456bdaa2ae57e86268c678042cea316e89585fb6a9420944c3c",
           "width": 1200,
           "height": 630,
-          "bytes": 6988
+          "bytes": 55360
         },
         "tablet": {
-          "src": "/images/editorial/como-calcular-sueldo-liquido/65f6dfa95dbe9f1c7d18de86a931251f24347c839ca91fce2afdd32ffbebb9ba.avif",
-          "hash": "65f6dfa95dbe9f1c7d18de86a931251f24347c839ca91fce2afdd32ffbebb9ba",
+          "src": "/images/editorial/como-calcular-sueldo-liquido/2aebc4f16085b5af864c3b7a2b15e698110760f4c138e02d83ada054888e6981.avif",
+          "hash": "2aebc4f16085b5af864c3b7a2b15e698110760f4c138e02d83ada054888e6981",
           "width": 800,
           "height": 420,
-          "bytes": 6569
+          "bytes": 29565
         },
         "mobile": {
-          "src": "/images/editorial/como-calcular-sueldo-liquido/de05d3cb7640f9148aed4849f62aaed3a795a436fb861ce1abb61c0d7f40626d.avif",
-          "hash": "de05d3cb7640f9148aed4849f62aaed3a795a436fb861ce1abb61c0d7f40626d",
+          "src": "/images/editorial/como-calcular-sueldo-liquido/eaeee0a3529d590c6ba3532d10955b8e1959ae375add6edc5cdbf28667b23efe.avif",
+          "hash": "eaeee0a3529d590c6ba3532d10955b8e1959ae375add6edc5cdbf28667b23efe",
           "width": 600,
           "height": 315,
-          "bytes": 4757
+          "bytes": 21187
         },
         "og": {
-          "src": "/images/editorial/como-calcular-sueldo-liquido/f9aff05d1c7264124daf0f9fed39ce97bbcd900d3a2b68c654ff1050af8d5efe.jpg",
-          "hash": "f9aff05d1c7264124daf0f9fed39ce97bbcd900d3a2b68c654ff1050af8d5efe",
+          "src": "/images/editorial/como-calcular-sueldo-liquido/aa5920e51996f567ce0d727388a014a9bce995dd76bd5d9a164764883dfc16d1.jpg",
+          "hash": "aa5920e51996f567ce0d727388a014a9bce995dd76bd5d9a164764883dfc16d1",
           "width": 1200,
           "height": 630,
-          "bytes": 29373
+          "bytes": 107773
         }
       }
     },
     "como-cambiarse-de-afp": {
-      "sourcePath": "public/images/hero/como-cambiarse-de-afp.avif",
-      "sourceHash": "a63466a56eb17a4ab866e7be0667af6d105f8d7926bfc372f3d97395c60939ca",
+      "sourcePath": "scripts/hero-images/sources/como-cambiarse-de-afp.webp",
+      "sourceHash": "3cfaa5fec9747b2986cad1c98fdb344836e5bc41301b1842c0e4d2c5ea61b730",
       "assets": {
         "hero": {
-          "src": "/images/editorial/como-cambiarse-de-afp/a63466a56eb17a4ab866e7be0667af6d105f8d7926bfc372f3d97395c60939ca.avif",
-          "hash": "a63466a56eb17a4ab866e7be0667af6d105f8d7926bfc372f3d97395c60939ca",
+          "src": "/images/editorial/como-cambiarse-de-afp/ec2321f6048e6425cf06ef14afda3510b27e4f6c57f04a5c12c3557885aba0f4.avif",
+          "hash": "ec2321f6048e6425cf06ef14afda3510b27e4f6c57f04a5c12c3557885aba0f4",
           "width": 1200,
           "height": 630,
-          "bytes": 11166
+          "bytes": 48555
         },
         "tablet": {
-          "src": "/images/editorial/como-cambiarse-de-afp/839afce3fff035acb617421d01424f633c4ca5483213ef8ca519b22b0bcd3541.avif",
-          "hash": "839afce3fff035acb617421d01424f633c4ca5483213ef8ca519b22b0bcd3541",
+          "src": "/images/editorial/como-cambiarse-de-afp/226ca0ade72d719c6da930feca96c30001c234af6e43dc1391196942a30e28e4.avif",
+          "hash": "226ca0ade72d719c6da930feca96c30001c234af6e43dc1391196942a30e28e4",
           "width": 800,
           "height": 420,
-          "bytes": 9893
+          "bytes": 24635
         },
         "mobile": {
-          "src": "/images/editorial/como-cambiarse-de-afp/511a04906d3cb6f2803bf5a4cb82ca1aa1dd7af8ecb1a77ebd8a9ab1398675d8.avif",
-          "hash": "511a04906d3cb6f2803bf5a4cb82ca1aa1dd7af8ecb1a77ebd8a9ab1398675d8",
+          "src": "/images/editorial/como-cambiarse-de-afp/51b4ccc5bd97797da363b28ced978b4735c42ceab5d5a04226d2d0d16e7b25b6.avif",
+          "hash": "51b4ccc5bd97797da363b28ced978b4735c42ceab5d5a04226d2d0d16e7b25b6",
           "width": 600,
           "height": 315,
-          "bytes": 6804
+          "bytes": 17520
         },
         "og": {
-          "src": "/images/editorial/como-cambiarse-de-afp/f59a4eb1ebdb35ef69edf318b43e65fc4b04edee63d6ea5e99c1c49f76002917.jpg",
-          "hash": "f59a4eb1ebdb35ef69edf318b43e65fc4b04edee63d6ea5e99c1c49f76002917",
+          "src": "/images/editorial/como-cambiarse-de-afp/9c4550608a05131c2cd60379ab489b1485efa63b4f4fb50e339e2550f9ce7725.jpg",
+          "hash": "9c4550608a05131c2cd60379ab489b1485efa63b4f4fb50e339e2550f9ce7725",
           "width": 1200,
           "height": 630,
-          "bytes": 38735
+          "bytes": 97715
         }
       }
     },
     "como-elegir-inversion-segun-plazo-riesgo-objetivos": {
-      "sourcePath": "public/images/hero/como-elegir-inversion-segun-plazo-riesgo-objetivos.avif",
-      "sourceHash": "3911142e152ff9807260ccb2525f078c9e819af782fc5b8f2c937c0e3f0c575f",
+      "sourcePath": "scripts/hero-images/sources/como-elegir-inversion-segun-plazo-riesgo-objetivos.webp",
+      "sourceHash": "091cc1e6d61192711cc516d20803055c8320f84173bce39d38a7649ee4dfbb73",
       "assets": {
         "hero": {
-          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/3911142e152ff9807260ccb2525f078c9e819af782fc5b8f2c937c0e3f0c575f.avif",
-          "hash": "3911142e152ff9807260ccb2525f078c9e819af782fc5b8f2c937c0e3f0c575f",
+          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/5b619035d1238ba8d243b5b1af5c8adde24f7ad78152aff3a99a100e75786248.avif",
+          "hash": "5b619035d1238ba8d243b5b1af5c8adde24f7ad78152aff3a99a100e75786248",
           "width": 1200,
           "height": 630,
-          "bytes": 11444
+          "bytes": 68572
         },
         "tablet": {
-          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/5aa2884ab544a0ae23d2b9faed65a6ef3a32590aa95134dff9bdb5ebf83db3bf.avif",
-          "hash": "5aa2884ab544a0ae23d2b9faed65a6ef3a32590aa95134dff9bdb5ebf83db3bf",
+          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/a26d49a8ef32f00ace23013dc21a70108092f3021a15906e2d8bf74c5928c0f7.avif",
+          "hash": "a26d49a8ef32f00ace23013dc21a70108092f3021a15906e2d8bf74c5928c0f7",
           "width": 800,
           "height": 420,
-          "bytes": 7685
+          "bytes": 33916
         },
         "mobile": {
-          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/e69e29c57bb80c05a688512b6c22e5803472e4b5bba6f9533d9d5801d47291d4.avif",
-          "hash": "e69e29c57bb80c05a688512b6c22e5803472e4b5bba6f9533d9d5801d47291d4",
+          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/31459add04be6c98d543943cfc96e9692bd8d3fd8cc8cd26e27c77002c21f545.avif",
+          "hash": "31459add04be6c98d543943cfc96e9692bd8d3fd8cc8cd26e27c77002c21f545",
           "width": 600,
           "height": 315,
-          "bytes": 5460
+          "bytes": 24006
         },
         "og": {
-          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/372dd16c1ae3238049a983460a949dbf616c74ce102b21f487e0c9f214a0c61f.jpg",
-          "hash": "372dd16c1ae3238049a983460a949dbf616c74ce102b21f487e0c9f214a0c61f",
+          "src": "/images/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/fd74270d6e4c16184211ffc33dec584abf248d8db9dccc0ff3f242a720778ee8.jpg",
+          "hash": "fd74270d6e4c16184211ffc33dec584abf248d8db9dccc0ff3f242a720778ee8",
           "width": 1200,
           "height": 630,
-          "bytes": 26514
+          "bytes": 121964
         }
       }
     },
@@ -275,70 +275,70 @@
       }
     },
     "como-invertir-en-etfs-desde-chile": {
-      "sourcePath": "public/images/hero/como-invertir-en-etfs-desde-chile.avif",
-      "sourceHash": "e1b87455138ecc32faa6db7005333327d0e7865f7eac33359a1a99e78e99f187",
+      "sourcePath": "scripts/hero-images/sources/como-invertir-en-etfs-desde-chile.webp",
+      "sourceHash": "b5dc0fec3c1aa53260aae49b4193c09c30e75381890ee46a94ae8c498dff1b98",
       "assets": {
         "hero": {
-          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/e1b87455138ecc32faa6db7005333327d0e7865f7eac33359a1a99e78e99f187.avif",
-          "hash": "e1b87455138ecc32faa6db7005333327d0e7865f7eac33359a1a99e78e99f187",
+          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/7450090d8a0fc104c50c4b828a1bc9900122eb4c4d4c11c5864f6050aede57a6.avif",
+          "hash": "7450090d8a0fc104c50c4b828a1bc9900122eb4c4d4c11c5864f6050aede57a6",
           "width": 1200,
           "height": 630,
-          "bytes": 4695
+          "bytes": 66486
         },
         "tablet": {
-          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/8d2919c75a6e99c6f5aa50f80d39e1cb624291610cf896c7e14606a07aef0368.avif",
-          "hash": "8d2919c75a6e99c6f5aa50f80d39e1cb624291610cf896c7e14606a07aef0368",
+          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/aabce391bc8f195b4ccd71180dcbcd8bc847fbb2be7d99fa641d52764e2a82c1.avif",
+          "hash": "aabce391bc8f195b4ccd71180dcbcd8bc847fbb2be7d99fa641d52764e2a82c1",
           "width": 800,
           "height": 420,
-          "bytes": 4369
+          "bytes": 33432
         },
         "mobile": {
-          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/406f2be16f684b3a44d048a99182b6ec141f20569068fbac143e260de24c8719.avif",
-          "hash": "406f2be16f684b3a44d048a99182b6ec141f20569068fbac143e260de24c8719",
+          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/7dd30af21195c3c47f5ad2f6039bc7fedf80c81742c731fe64ffa45ca7d5f406.avif",
+          "hash": "7dd30af21195c3c47f5ad2f6039bc7fedf80c81742c731fe64ffa45ca7d5f406",
           "width": 600,
           "height": 315,
-          "bytes": 3334
+          "bytes": 23174
         },
         "og": {
-          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/1810ddaf6425ac4a7ab6326f805fe91cd1dcb17a5ab921884866a88fd5ac43e5.jpg",
-          "hash": "1810ddaf6425ac4a7ab6326f805fe91cd1dcb17a5ab921884866a88fd5ac43e5",
+          "src": "/images/editorial/como-invertir-en-etfs-desde-chile/327fd28f629a2d8b4e83d704899cbbe7b52ecf2a63c86c5723040f213e3f4df1.jpg",
+          "hash": "327fd28f629a2d8b4e83d704899cbbe7b52ecf2a63c86c5723040f213e3f4df1",
           "width": 1200,
           "height": 630,
-          "bytes": 19426
+          "bytes": 121942
         }
       }
     },
     "como-leer-cartola-afp-chile": {
-      "sourcePath": "public/images/hero/como-leer-cartola-afp-chile.avif",
-      "sourceHash": "c399a42d2214e5cbb8c436199314fdd68a462307307ea9b9ffa599f460071ce9",
+      "sourcePath": "scripts/hero-images/sources/como-leer-cartola-afp-chile.webp",
+      "sourceHash": "4c7b07695c4d46a47652ced6d2fa8828cad21411530f786c41993ef1859a95d4",
       "assets": {
         "hero": {
-          "src": "/images/editorial/como-leer-cartola-afp-chile/c399a42d2214e5cbb8c436199314fdd68a462307307ea9b9ffa599f460071ce9.avif",
-          "hash": "c399a42d2214e5cbb8c436199314fdd68a462307307ea9b9ffa599f460071ce9",
+          "src": "/images/editorial/como-leer-cartola-afp-chile/118bbe6bd02a2e146c55b96d5db170afebafdfa3464898ae7519b460554b6ead.avif",
+          "hash": "118bbe6bd02a2e146c55b96d5db170afebafdfa3464898ae7519b460554b6ead",
           "width": 1200,
           "height": 630,
-          "bytes": 10593
+          "bytes": 65286
         },
         "tablet": {
-          "src": "/images/editorial/como-leer-cartola-afp-chile/7c19d3db11b9ea594c5244f5b11429291867fcf8be70359b486e5a2be8cca2be.avif",
-          "hash": "7c19d3db11b9ea594c5244f5b11429291867fcf8be70359b486e5a2be8cca2be",
+          "src": "/images/editorial/como-leer-cartola-afp-chile/9e811ca69d0cd6d19414f7a90b144fc9b298de620dee38fca9a0ed8bbc31e7a9.avif",
+          "hash": "9e811ca69d0cd6d19414f7a90b144fc9b298de620dee38fca9a0ed8bbc31e7a9",
           "width": 800,
           "height": 420,
-          "bytes": 6038
+          "bytes": 30235
         },
         "mobile": {
-          "src": "/images/editorial/como-leer-cartola-afp-chile/5589e4b4d0c65e3635c91e9a7c215290f253fb410b665d3b61fe93f8438449b0.avif",
-          "hash": "5589e4b4d0c65e3635c91e9a7c215290f253fb410b665d3b61fe93f8438449b0",
+          "src": "/images/editorial/como-leer-cartola-afp-chile/1d2dd103bcc3bf53df6c86c78ea2a3502408869df7f36700093ca066fcba167e.avif",
+          "hash": "1d2dd103bcc3bf53df6c86c78ea2a3502408869df7f36700093ca066fcba167e",
           "width": 600,
           "height": 315,
-          "bytes": 4437
+          "bytes": 20907
         },
         "og": {
-          "src": "/images/editorial/como-leer-cartola-afp-chile/fa38d1b4367eae2951e20d90b09181012c3d962a5a5b9bc68b44a4e601b3f4d8.jpg",
-          "hash": "fa38d1b4367eae2951e20d90b09181012c3d962a5a5b9bc68b44a4e601b3f4d8",
+          "src": "/images/editorial/como-leer-cartola-afp-chile/2288392822bbb7b0936f4464609014e1c7d0e98f3c12bc8d3b73d5d0a2455a47.jpg",
+          "hash": "2288392822bbb7b0936f4464609014e1c7d0e98f3c12bc8d3b73d5d0a2455a47",
           "width": 1200,
           "height": 630,
-          "bytes": 25952
+          "bytes": 118367
         }
       }
     },
@@ -377,36 +377,36 @@
       }
     },
     "contribuciones-bienes-raices-chile": {
-      "sourcePath": "public/images/hero/contribuciones-bienes-raices-chile.avif",
-      "sourceHash": "414eae4558da0b796e757c4642494cd41278f680c25c7a3f197163e6334949a5",
+      "sourcePath": "scripts/hero-images/sources/contribuciones-bienes-raices-chile.webp",
+      "sourceHash": "30d37e27478ad11a47f0c34d65e8d5933e23d07d79cef1e93ecce29269eb98fc",
       "assets": {
         "hero": {
-          "src": "/images/editorial/contribuciones-bienes-raices-chile/414eae4558da0b796e757c4642494cd41278f680c25c7a3f197163e6334949a5.avif",
-          "hash": "414eae4558da0b796e757c4642494cd41278f680c25c7a3f197163e6334949a5",
+          "src": "/images/editorial/contribuciones-bienes-raices-chile/999e062a78a62b6d9ff42f1064591035760657f337bb5dae3b3ac3e1a22b3843.avif",
+          "hash": "999e062a78a62b6d9ff42f1064591035760657f337bb5dae3b3ac3e1a22b3843",
           "width": 1200,
           "height": 630,
-          "bytes": 7123
+          "bytes": 57631
         },
         "tablet": {
-          "src": "/images/editorial/contribuciones-bienes-raices-chile/a275a5de90f48d68d4f7e0467c1684c9c32e0d67b01e729156aa131725febcb8.avif",
-          "hash": "a275a5de90f48d68d4f7e0467c1684c9c32e0d67b01e729156aa131725febcb8",
+          "src": "/images/editorial/contribuciones-bienes-raices-chile/74a3c5455f740a226c1f595bf97fa0312fd286a04b495d66897e71b6418868d7.avif",
+          "hash": "74a3c5455f740a226c1f595bf97fa0312fd286a04b495d66897e71b6418868d7",
           "width": 800,
           "height": 420,
-          "bytes": 7976
+          "bytes": 31481
         },
         "mobile": {
-          "src": "/images/editorial/contribuciones-bienes-raices-chile/b4ca66757f510893ba51587e7caaf24265a9fed79acd44350123055c74b7fbb3.avif",
-          "hash": "b4ca66757f510893ba51587e7caaf24265a9fed79acd44350123055c74b7fbb3",
+          "src": "/images/editorial/contribuciones-bienes-raices-chile/1fd7118535a090d23ae985916ca903eb4b48ad6e4f281d9cbfd96d778c1f4a62.avif",
+          "hash": "1fd7118535a090d23ae985916ca903eb4b48ad6e4f281d9cbfd96d778c1f4a62",
           "width": 600,
           "height": 315,
-          "bytes": 6083
+          "bytes": 22390
         },
         "og": {
-          "src": "/images/editorial/contribuciones-bienes-raices-chile/54bb95737b55cc220342faa1af6d83fc71326e8b29ae92522eb6a4a4ccff2a5f.jpg",
-          "hash": "54bb95737b55cc220342faa1af6d83fc71326e8b29ae92522eb6a4a4ccff2a5f",
+          "src": "/images/editorial/contribuciones-bienes-raices-chile/270b59fdc3103a8c2764e09ef6bfb2352aa62a8e075a780d4ecf47c691400e19.jpg",
+          "hash": "270b59fdc3103a8c2764e09ef6bfb2352aa62a8e075a780d4ecf47c691400e19",
           "width": 1200,
           "height": 630,
-          "bytes": 30955
+          "bytes": 115731
         }
       }
     },
@@ -547,36 +547,36 @@
       }
     },
     "descuentos-de-sueldo": {
-      "sourcePath": "public/images/hero/descuentos-de-sueldo.avif",
-      "sourceHash": "d5b312fd3670d2361d193615b32b21b50755d9857a7ad185dffaa29244723e0d",
+      "sourcePath": "scripts/hero-images/sources/descuentos-de-sueldo.webp",
+      "sourceHash": "06ced5a771162b10684b7064c72f3ee96e887c4673c2ad054a929e66ad516945",
       "assets": {
         "hero": {
-          "src": "/images/editorial/descuentos-de-sueldo/d5b312fd3670d2361d193615b32b21b50755d9857a7ad185dffaa29244723e0d.avif",
-          "hash": "d5b312fd3670d2361d193615b32b21b50755d9857a7ad185dffaa29244723e0d",
+          "src": "/images/editorial/descuentos-de-sueldo/c97591501016dbd1a7a39f21f469f9a19fdae4c400a9df5e39df7efad1f548bf.avif",
+          "hash": "c97591501016dbd1a7a39f21f469f9a19fdae4c400a9df5e39df7efad1f548bf",
           "width": 1200,
           "height": 630,
-          "bytes": 4436
+          "bytes": 51597
         },
         "tablet": {
-          "src": "/images/editorial/descuentos-de-sueldo/1a6f665a761d2e3a0c2a6b3f4195a3bba53088f599bfb84c1b4b8acb2a40302e.avif",
-          "hash": "1a6f665a761d2e3a0c2a6b3f4195a3bba53088f599bfb84c1b4b8acb2a40302e",
+          "src": "/images/editorial/descuentos-de-sueldo/b0619eaae0fedb2391a3616feb55ca48945d1bb80c15c57280bb4b404bc56609.avif",
+          "hash": "b0619eaae0fedb2391a3616feb55ca48945d1bb80c15c57280bb4b404bc56609",
           "width": 800,
           "height": 420,
-          "bytes": 4505
+          "bytes": 26633
         },
         "mobile": {
-          "src": "/images/editorial/descuentos-de-sueldo/17885102fae56f1e1c55120a34ec2e1cd1a35777eb29ab54df4a98f3821057ba.avif",
-          "hash": "17885102fae56f1e1c55120a34ec2e1cd1a35777eb29ab54df4a98f3821057ba",
+          "src": "/images/editorial/descuentos-de-sueldo/4d2de4d7607083869d04f464eb9fe0390e3d4fb2f42aa2f43e7cff897480c475.avif",
+          "hash": "4d2de4d7607083869d04f464eb9fe0390e3d4fb2f42aa2f43e7cff897480c475",
           "width": 600,
           "height": 315,
-          "bytes": 3451
+          "bytes": 18920
         },
         "og": {
-          "src": "/images/editorial/descuentos-de-sueldo/696e9677cad656b2d49b9abba743db59b1568cd721b0e4a0c6a4b2eac1ec581e.jpg",
-          "hash": "696e9677cad656b2d49b9abba743db59b1568cd721b0e4a0c6a4b2eac1ec581e",
+          "src": "/images/editorial/descuentos-de-sueldo/b2a69dd45630294ba9fd642303a98ae61013d7242377225173c6cff05272daf1.jpg",
+          "hash": "b2a69dd45630294ba9fd642303a98ae61013d7242377225173c6cff05272daf1",
           "width": 1200,
           "height": 630,
-          "bytes": 25040
+          "bytes": 102020
         }
       }
     },
@@ -615,36 +615,36 @@
       }
     },
     "donde-ver-si-estoy-en-dicom-gratis": {
-      "sourcePath": "public/images/hero/donde-ver-si-estoy-en-dicom-gratis.avif",
-      "sourceHash": "f4ac51d88e0d776232f33d2c4c926dcb8866d896fabb4c79db7b5fe751cec23c",
+      "sourcePath": "scripts/hero-images/sources/donde-ver-si-estoy-en-dicom-gratis.webp",
+      "sourceHash": "8dd7ebc0c093e659da89329a6c5eb39350a481a7b9b53f984945b01bdf139ca1",
       "assets": {
         "hero": {
-          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/f4ac51d88e0d776232f33d2c4c926dcb8866d896fabb4c79db7b5fe751cec23c.avif",
-          "hash": "f4ac51d88e0d776232f33d2c4c926dcb8866d896fabb4c79db7b5fe751cec23c",
+          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/817cbbff6e57abbddbff349dd7b7e669a9872255450f6d1943dceddb2d51d204.avif",
+          "hash": "817cbbff6e57abbddbff349dd7b7e669a9872255450f6d1943dceddb2d51d204",
           "width": 1200,
           "height": 630,
-          "bytes": 11331
+          "bytes": 62256
         },
         "tablet": {
-          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/7614228982c49bef674edb6c59866a5b0b8a7e791762cc30c574bdb3b4fbf9db.avif",
-          "hash": "7614228982c49bef674edb6c59866a5b0b8a7e791762cc30c574bdb3b4fbf9db",
+          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/cab88693331fa129d2bbed72cd735ef029d0f914d0bf81b3b3335c8a2c0c25c4.avif",
+          "hash": "cab88693331fa129d2bbed72cd735ef029d0f914d0bf81b3b3335c8a2c0c25c4",
           "width": 800,
           "height": 420,
-          "bytes": 9896
+          "bytes": 32418
         },
         "mobile": {
-          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/3a647438b88ee7bbf3b4cc8a30998473281c4476068f44edb10faffff4286eb4.avif",
-          "hash": "3a647438b88ee7bbf3b4cc8a30998473281c4476068f44edb10faffff4286eb4",
+          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/16e76c38aecf234070a551c85477d1121939c37633bf167e8e57a4950ffca4c8.avif",
+          "hash": "16e76c38aecf234070a551c85477d1121939c37633bf167e8e57a4950ffca4c8",
           "width": 600,
           "height": 315,
-          "bytes": 6935
+          "bytes": 22901
         },
         "og": {
-          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/488cb9e8bca5d7eef15cd81211702169927b8033237bdde8dd692b7fd2a957ad.jpg",
-          "hash": "488cb9e8bca5d7eef15cd81211702169927b8033237bdde8dd692b7fd2a957ad",
+          "src": "/images/editorial/donde-ver-si-estoy-en-dicom-gratis/6c8e2e466e50b28760e714f660facfcdf9dedbe5de691d153a170e9577018881.jpg",
+          "hash": "6c8e2e466e50b28760e714f660facfcdf9dedbe5de691d153a170e9577018881",
           "width": 1200,
           "height": 630,
-          "bytes": 36599
+          "bytes": 116547
         }
       }
     },
@@ -683,172 +683,172 @@
       }
     },
     "estafas-financieras-chile-vishing-smishing-marketplace": {
-      "sourcePath": "public/images/hero/estafas-financieras-chile-vishing-smishing-marketplace.avif",
-      "sourceHash": "656b55d04cd7283324ad9e3e7c41060b55cfbfd41272f1c62d59120798123ee1",
+      "sourcePath": "scripts/hero-images/sources/estafas-financieras-chile-vishing-smishing-marketplace.webp",
+      "sourceHash": "103cf316a7753c1929d970c3fe6dc2f74e920cb59bf96da7a0e02cdaed957ba6",
       "assets": {
         "hero": {
-          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/656b55d04cd7283324ad9e3e7c41060b55cfbfd41272f1c62d59120798123ee1.avif",
-          "hash": "656b55d04cd7283324ad9e3e7c41060b55cfbfd41272f1c62d59120798123ee1",
+          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/962ee7ccc66f860173d0152942e7b6d23abb79ff60aa9ba0f4ec74e289b9ca9e.avif",
+          "hash": "962ee7ccc66f860173d0152942e7b6d23abb79ff60aa9ba0f4ec74e289b9ca9e",
           "width": 1200,
           "height": 630,
-          "bytes": 5022
+          "bytes": 54066
         },
         "tablet": {
-          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/0c7f725227e038754baa9cd6e3142279a6977674fbf2b6273e512c07b8679099.avif",
-          "hash": "0c7f725227e038754baa9cd6e3142279a6977674fbf2b6273e512c07b8679099",
+          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/1f520dfbc713548b0bc922350218d0c6b44369feccb933dbb6e2656afcff60ce.avif",
+          "hash": "1f520dfbc713548b0bc922350218d0c6b44369feccb933dbb6e2656afcff60ce",
           "width": 800,
           "height": 420,
-          "bytes": 4279
+          "bytes": 28227
         },
         "mobile": {
-          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/e38e5913f1f97445292e8871bbfa18fe6e7294774dcfde6a671afe4aa0b93e1b.avif",
-          "hash": "e38e5913f1f97445292e8871bbfa18fe6e7294774dcfde6a671afe4aa0b93e1b",
+          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/a699e30659ca0f3715ecabf80c04075682e51f4b220dc7ee0038081cb3dcb488.avif",
+          "hash": "a699e30659ca0f3715ecabf80c04075682e51f4b220dc7ee0038081cb3dcb488",
           "width": 600,
           "height": 315,
-          "bytes": 3246
+          "bytes": 19836
         },
         "og": {
-          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/2a39ccbdc99d3b6858464985506935ca2648cd5103d4b5e960c13232f2b783d5.jpg",
-          "hash": "2a39ccbdc99d3b6858464985506935ca2648cd5103d4b5e960c13232f2b783d5",
+          "src": "/images/editorial/estafas-financieras-chile-vishing-smishing-marketplace/42629ecd2264ae3ab9ae460f27846d03799a60c853326035ca7820e937e10f86.jpg",
+          "hash": "42629ecd2264ae3ab9ae460f27846d03799a60c853326035ca7820e937e10f86",
           "width": 1200,
           "height": 630,
-          "bytes": 17583
+          "bytes": 103219
         }
       }
     },
     "finanzas-para-migrantes-chile": {
-      "sourcePath": "public/images/hero/finanzas-para-migrantes-chile.avif",
-      "sourceHash": "cd15e61850fd2d76fb3252de085ab312dfed2283f50ce84d96a0faca13982609",
+      "sourcePath": "scripts/hero-images/sources/finanzas-para-migrantes-chile.webp",
+      "sourceHash": "65a3151689f5c7bb8cdf944a0c85dc394bf3438f7c36091b5193e0fe46d0a452",
       "assets": {
         "hero": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/cd15e61850fd2d76fb3252de085ab312dfed2283f50ce84d96a0faca13982609.avif",
-          "hash": "cd15e61850fd2d76fb3252de085ab312dfed2283f50ce84d96a0faca13982609",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/ca268b49fa7e4dda2758ee1ecefb3dfa21c9467dac61d614c5a062cc2f218ca7.avif",
+          "hash": "ca268b49fa7e4dda2758ee1ecefb3dfa21c9467dac61d614c5a062cc2f218ca7",
           "width": 1200,
           "height": 630,
-          "bytes": 14238
+          "bytes": 71560
         },
         "tablet": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/52bc8b202acf1b6fa6270b27a61356cba338c8fc9e0429f1e7ec99cbc54aed94.avif",
-          "hash": "52bc8b202acf1b6fa6270b27a61356cba338c8fc9e0429f1e7ec99cbc54aed94",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/3c815a423257f9613b34d82a417ae29ee916840848eef4ea6eaa91cab9648eee.avif",
+          "hash": "3c815a423257f9613b34d82a417ae29ee916840848eef4ea6eaa91cab9648eee",
           "width": 800,
           "height": 420,
-          "bytes": 8839
+          "bytes": 36398
         },
         "mobile": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/8b68cb672dcd8c88fb434eace2bf3980c4fa4d6959c4ef12f2e7af42d09e2ceb.avif",
-          "hash": "8b68cb672dcd8c88fb434eace2bf3980c4fa4d6959c4ef12f2e7af42d09e2ceb",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/02c45070eb24bb2ae3461c96fe5a89e68c15c8780a724211c0ea598d1f620590.avif",
+          "hash": "02c45070eb24bb2ae3461c96fe5a89e68c15c8780a724211c0ea598d1f620590",
           "width": 600,
           "height": 315,
-          "bytes": 6473
+          "bytes": 25348
         },
         "og": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/7d124cfc35a67fbd4386609b050b203b9d669964b1b451aa8f3ca248130e75c3.jpg",
-          "hash": "7d124cfc35a67fbd4386609b050b203b9d669964b1b451aa8f3ca248130e75c3",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/f78d9cea6ce0095e5bfade0c5fa762afa335509910dccae1a67c1c7bd54a09b3.jpg",
+          "hash": "f78d9cea6ce0095e5bfade0c5fa762afa335509910dccae1a67c1c7bd54a09b3",
           "width": 1200,
           "height": 630,
-          "bytes": 32371
+          "bytes": 122437
         }
       }
     },
     "finiquito-e-indemnizaciones-en-chile": {
-      "sourcePath": "public/images/hero/finiquito-e-indemnizaciones-en-chile.avif",
-      "sourceHash": "8dccaf1ac1220c4ddc72d715caa97ce123c7dbc4b4b6b7a439ca99ef51057ec3",
+      "sourcePath": "scripts/hero-images/sources/finiquito-e-indemnizaciones-en-chile.webp",
+      "sourceHash": "42c5e8d924aa657c5f83ed97008a5f201511b88600bf7b11c2b344dac41a18d9",
       "assets": {
         "hero": {
-          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/8dccaf1ac1220c4ddc72d715caa97ce123c7dbc4b4b6b7a439ca99ef51057ec3.avif",
-          "hash": "8dccaf1ac1220c4ddc72d715caa97ce123c7dbc4b4b6b7a439ca99ef51057ec3",
+          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/0e3e515cd00db5745add52cd9a384c7f61b4fe42962309f4e25861e54dc28dd3.avif",
+          "hash": "0e3e515cd00db5745add52cd9a384c7f61b4fe42962309f4e25861e54dc28dd3",
           "width": 1200,
           "height": 630,
-          "bytes": 8210
+          "bytes": 54181
         },
         "tablet": {
-          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/d6687aba34851dbd03142bb3712dea39b2bd651dc8b8f973bbafa7f69127725c.avif",
-          "hash": "d6687aba34851dbd03142bb3712dea39b2bd651dc8b8f973bbafa7f69127725c",
+          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/bf728114c5d62fc6bf28fcf9b5882f60962b76da54d7acfbabfa985d1febd8da.avif",
+          "hash": "bf728114c5d62fc6bf28fcf9b5882f60962b76da54d7acfbabfa985d1febd8da",
           "width": 800,
           "height": 420,
-          "bytes": 7937
+          "bytes": 28242
         },
         "mobile": {
-          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/9b12782753437527a86b7a13a0d1af44a10168b7617409ad53303f5e7de8a54a.avif",
-          "hash": "9b12782753437527a86b7a13a0d1af44a10168b7617409ad53303f5e7de8a54a",
+          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/63abded3e06d62adcbe89b16c820a82f657a82568dc5eaf499c449311eee29d0.avif",
+          "hash": "63abded3e06d62adcbe89b16c820a82f657a82568dc5eaf499c449311eee29d0",
           "width": 600,
           "height": 315,
-          "bytes": 5573
+          "bytes": 20028
         },
         "og": {
-          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/5bd7c6df408bd6b8ec47d5463761784006e359414f2ffd80765eed6cb40aa5cd.jpg",
-          "hash": "5bd7c6df408bd6b8ec47d5463761784006e359414f2ffd80765eed6cb40aa5cd",
+          "src": "/images/editorial/finiquito-e-indemnizaciones-en-chile/5ab073453525044480ae326dcfbe9b22fcd97b96a490352179a0949c6d201ee3.jpg",
+          "hash": "5ab073453525044480ae326dcfbe9b22fcd97b96a490352179a0949c6d201ee3",
           "width": 1200,
           "height": 630,
-          "bytes": 28296
+          "bytes": 100964
         }
       }
     },
     "fonasa-vs-isapre-comparativa": {
-      "sourcePath": "public/images/hero/fonasa-vs-isapre-comparativa.avif",
-      "sourceHash": "d75f5c34403ad7f9e915a0590a887331c3a30da1a8fd9560f1a85798ffa856b7",
+      "sourcePath": "scripts/hero-images/sources/fonasa-vs-isapre-comparativa.webp",
+      "sourceHash": "1250d93d2ad246cbb062647e29356a9cf28654dccbce206f6dc357e72f11613c",
       "assets": {
         "hero": {
-          "src": "/images/editorial/fonasa-vs-isapre-comparativa/d75f5c34403ad7f9e915a0590a887331c3a30da1a8fd9560f1a85798ffa856b7.avif",
-          "hash": "d75f5c34403ad7f9e915a0590a887331c3a30da1a8fd9560f1a85798ffa856b7",
+          "src": "/images/editorial/fonasa-vs-isapre-comparativa/79bcc1457c2805abc98b85cc1db8d25a1edf14a58d998f79a0001bf46753dd3d.avif",
+          "hash": "79bcc1457c2805abc98b85cc1db8d25a1edf14a58d998f79a0001bf46753dd3d",
           "width": 1200,
           "height": 630,
-          "bytes": 10514
+          "bytes": 68584
         },
         "tablet": {
-          "src": "/images/editorial/fonasa-vs-isapre-comparativa/0ce4b596a7d6d992e7e2ac1aa8fcc523cc16c7e3828e832be552c5b40b1384cd.avif",
-          "hash": "0ce4b596a7d6d992e7e2ac1aa8fcc523cc16c7e3828e832be552c5b40b1384cd",
+          "src": "/images/editorial/fonasa-vs-isapre-comparativa/e6b42b125bfd5419e18e39e595403f67f5bbcd4ce6d4b98860b0dbca22a4f187.avif",
+          "hash": "e6b42b125bfd5419e18e39e595403f67f5bbcd4ce6d4b98860b0dbca22a4f187",
           "width": 800,
           "height": 420,
-          "bytes": 5469
+          "bytes": 36003
         },
         "mobile": {
-          "src": "/images/editorial/fonasa-vs-isapre-comparativa/55e9cee9b741afe8981cd393f3e21c02dfa5ed43dedf2c343051896f21b785c9.avif",
-          "hash": "55e9cee9b741afe8981cd393f3e21c02dfa5ed43dedf2c343051896f21b785c9",
+          "src": "/images/editorial/fonasa-vs-isapre-comparativa/865d280090a3df88ae4eb1d965070eddadedf36b99488e998c6ad48165c9c4cf.avif",
+          "hash": "865d280090a3df88ae4eb1d965070eddadedf36b99488e998c6ad48165c9c4cf",
           "width": 600,
           "height": 315,
-          "bytes": 4125
+          "bytes": 25516
         },
         "og": {
-          "src": "/images/editorial/fonasa-vs-isapre-comparativa/a4da6a7c124e800eba109a03b2ed35d42f30278a7917f5382f54f75f6fec7ec8.jpg",
-          "hash": "a4da6a7c124e800eba109a03b2ed35d42f30278a7917f5382f54f75f6fec7ec8",
+          "src": "/images/editorial/fonasa-vs-isapre-comparativa/93dd7cfad9ee0d95bfe8293857b2d82db6f2121af0e328310af5568ff2d90d89.jpg",
+          "hash": "93dd7cfad9ee0d95bfe8293857b2d82db6f2121af0e328310af5568ff2d90d89",
           "width": 1200,
           "height": 630,
-          "bytes": 27070
+          "bytes": 124611
         }
       }
     },
     "fondo-emergencia-chile": {
-      "sourcePath": "public/images/hero/fondo-emergencia-chile.avif",
-      "sourceHash": "b60acff7b7fcc159eae946c391b6499efeb30f7e114574926d50afb294c9af2e",
+      "sourcePath": "scripts/hero-images/sources/fondo-emergencia-chile.webp",
+      "sourceHash": "1bca55712d90a2bf74d37c599fb4c622adcd7f6f8754deeb6ec8aa9bebef8712",
       "assets": {
         "hero": {
-          "src": "/images/editorial/fondo-emergencia-chile/b60acff7b7fcc159eae946c391b6499efeb30f7e114574926d50afb294c9af2e.avif",
-          "hash": "b60acff7b7fcc159eae946c391b6499efeb30f7e114574926d50afb294c9af2e",
+          "src": "/images/editorial/fondo-emergencia-chile/368c7463e3a1e78af85e83f0676dc260ea67428e07c31412ab14c84b9280f968.avif",
+          "hash": "368c7463e3a1e78af85e83f0676dc260ea67428e07c31412ab14c84b9280f968",
           "width": 1200,
           "height": 630,
-          "bytes": 8551
+          "bytes": 56662
         },
         "tablet": {
-          "src": "/images/editorial/fondo-emergencia-chile/bcf8c208d8aedf6d1b34840277df9978655bffba9b961b8cedc80af0e7558b1c.avif",
-          "hash": "bcf8c208d8aedf6d1b34840277df9978655bffba9b961b8cedc80af0e7558b1c",
+          "src": "/images/editorial/fondo-emergencia-chile/279353aefe5421b5a060511659a4d898576818ac83f52b1947d28605ef61e1d7.avif",
+          "hash": "279353aefe5421b5a060511659a4d898576818ac83f52b1947d28605ef61e1d7",
           "width": 800,
           "height": 420,
-          "bytes": 8288
+          "bytes": 30525
         },
         "mobile": {
-          "src": "/images/editorial/fondo-emergencia-chile/6c40e17207ce142fcd8dd06221d18092dbc4c09d2332e21826cea63b32a17d41.avif",
-          "hash": "6c40e17207ce142fcd8dd06221d18092dbc4c09d2332e21826cea63b32a17d41",
+          "src": "/images/editorial/fondo-emergencia-chile/c6bd466a962c32a81dc04c0b79b892d525477b645b6f5cbf31e67cd9692647aa.avif",
+          "hash": "c6bd466a962c32a81dc04c0b79b892d525477b645b6f5cbf31e67cd9692647aa",
           "width": 600,
           "height": 315,
-          "bytes": 6184
+          "bytes": 22032
         },
         "og": {
-          "src": "/images/editorial/fondo-emergencia-chile/13040d8f5171e56e69df6c4e83d02fdbc708c2959e343ca4e7cd60f9d1ea5ba2.jpg",
-          "hash": "13040d8f5171e56e69df6c4e83d02fdbc708c2959e343ca4e7cd60f9d1ea5ba2",
+          "src": "/images/editorial/fondo-emergencia-chile/ca70cf4086594dc676557974321d189d45aef9360fd62f9a5f556654c5d5ccfa.jpg",
+          "hash": "ca70cf4086594dc676557974321d189d45aef9360fd62f9a5f556654c5d5ccfa",
           "width": 1200,
           "height": 630,
-          "bytes": 29497
+          "bytes": 105837
         }
       }
     },
@@ -887,138 +887,138 @@
       }
     },
     "fondos-mutuos-comisiones-rescate-impuestos": {
-      "sourcePath": "public/images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif",
-      "sourceHash": "ea37c6211501fea3c1ccfbac6f88c1c8b021891f4492d25cfb47e364eb719987",
+      "sourcePath": "scripts/hero-images/sources/fondos-mutuos-comisiones-rescate-impuestos.webp",
+      "sourceHash": "7832f6c7d0181aa26d0fdda67ed7df24a92f6ef79765e62c9d4cb33961df27ec",
       "assets": {
         "hero": {
-          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/ea37c6211501fea3c1ccfbac6f88c1c8b021891f4492d25cfb47e364eb719987.avif",
-          "hash": "ea37c6211501fea3c1ccfbac6f88c1c8b021891f4492d25cfb47e364eb719987",
+          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/9987ded0c0613b84fea5ffa3151ab491ddb5fd99b1358358d359784ecf98253b.avif",
+          "hash": "9987ded0c0613b84fea5ffa3151ab491ddb5fd99b1358358d359784ecf98253b",
           "width": 1200,
           "height": 630,
-          "bytes": 10510
+          "bytes": 38295
         },
         "tablet": {
-          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/a6f20c0accaf76e7867e28d24de11fe3dfeef1f0e62fde672f2996f7dd4e5635.avif",
-          "hash": "a6f20c0accaf76e7867e28d24de11fe3dfeef1f0e62fde672f2996f7dd4e5635",
+          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/b2c4a3141f168104364846a339da75e16b0e6eb99b4e12e4de4cbeaa04431fce.avif",
+          "hash": "b2c4a3141f168104364846a339da75e16b0e6eb99b4e12e4de4cbeaa04431fce",
           "width": 800,
           "height": 420,
-          "bytes": 9565
+          "bytes": 20528
         },
         "mobile": {
-          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/4047ce6dc894bdc653ac71958ce8d568f65cdc11aefe7349fb09f785bbc76d7d.avif",
-          "hash": "4047ce6dc894bdc653ac71958ce8d568f65cdc11aefe7349fb09f785bbc76d7d",
+          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/c501f047ea2f649648c3a51cf2487c52d853c0f41459299d497fcf87604792f2.avif",
+          "hash": "c501f047ea2f649648c3a51cf2487c52d853c0f41459299d497fcf87604792f2",
           "width": 600,
           "height": 315,
-          "bytes": 7021
+          "bytes": 14707
         },
         "og": {
-          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/808605a5789b500b5e8b5fe6a0e851758f2d25b9d911a19c96233e7d3050b180.jpg",
-          "hash": "808605a5789b500b5e8b5fe6a0e851758f2d25b9d911a19c96233e7d3050b180",
+          "src": "/images/editorial/fondos-mutuos-comisiones-rescate-impuestos/b5077104da7eb62a0c3a6f288a1103c1c0b3234ec6065c38316a4a9a15f38f1e.jpg",
+          "hash": "b5077104da7eb62a0c3a6f288a1103c1c0b3234ec6065c38316a4a9a15f38f1e",
           "width": 1200,
           "height": 630,
-          "bytes": 35625
+          "bytes": 82428
         }
       }
     },
     "fraude-tarjeta-que-hacer": {
-      "sourcePath": "public/images/hero/fraude-tarjeta-que-hacer.avif",
-      "sourceHash": "f5b2afbba5eed666f26a30058367ea6ba63f6c713094567a8fe91172252cde60",
+      "sourcePath": "scripts/hero-images/sources/fraude-tarjeta-que-hacer.webp",
+      "sourceHash": "f461bacbe4ffee22aebf1042dc8b0cf0cca609f0e7bbdea472c2cf5b2bbd1d28",
       "assets": {
         "hero": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/f5b2afbba5eed666f26a30058367ea6ba63f6c713094567a8fe91172252cde60.avif",
-          "hash": "f5b2afbba5eed666f26a30058367ea6ba63f6c713094567a8fe91172252cde60",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/0caff38b2d2ad7f8e16e9564c7933336f4496eb85adaf1b2c612b0f800c5bdd4.avif",
+          "hash": "0caff38b2d2ad7f8e16e9564c7933336f4496eb85adaf1b2c612b0f800c5bdd4",
           "width": 1200,
           "height": 630,
-          "bytes": 7727
+          "bytes": 55956
         },
         "tablet": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/325a8e32f15189330cd6f4209f8d8a04eed9fb1f98873a38bff9d0b91a38f19e.avif",
-          "hash": "325a8e32f15189330cd6f4209f8d8a04eed9fb1f98873a38bff9d0b91a38f19e",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/42b09118905d6943e229b4c1f5c41c73d9d5a97bde50281668ce1af3d15585cf.avif",
+          "hash": "42b09118905d6943e229b4c1f5c41c73d9d5a97bde50281668ce1af3d15585cf",
           "width": 800,
           "height": 420,
-          "bytes": 7889
+          "bytes": 28537
         },
         "mobile": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/a54dd254059f0ab4040cdbc5d05497d4b57261cc61ceea62d008104ff0c4c764.avif",
-          "hash": "a54dd254059f0ab4040cdbc5d05497d4b57261cc61ceea62d008104ff0c4c764",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/3bbdee92fa47cd8b9ce7873d54e6f3c14ac4e65a71e98e0a929de83dd070b7d8.avif",
+          "hash": "3bbdee92fa47cd8b9ce7873d54e6f3c14ac4e65a71e98e0a929de83dd070b7d8",
           "width": 600,
           "height": 315,
-          "bytes": 5672
+          "bytes": 20312
         },
         "og": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/10b4ba9575550ccf1d544b23e9e331b4bcb425bcfde65847f96cc56dca66198c.jpg",
-          "hash": "10b4ba9575550ccf1d544b23e9e331b4bcb425bcfde65847f96cc56dca66198c",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/41f8fd616bd4c11f6eb63f603b370b8e968372d10d515cee23807375c5821732.jpg",
+          "hash": "41f8fd616bd4c11f6eb63f603b370b8e968372d10d515cee23807375c5821732",
           "width": 1200,
           "height": 630,
-          "bytes": 28959
+          "bytes": 102229
         }
       }
     },
     "gratificacion-legal-chile": {
-      "sourcePath": "public/images/hero/gratificacion-legal-chile.avif",
-      "sourceHash": "5678c9ce4017784e15a53cb6d0bc256d4e10fe658a3b02dfe2b0f86355101f32",
+      "sourcePath": "scripts/hero-images/sources/gratificacion-legal-chile.webp",
+      "sourceHash": "8cf730a61b02fc642d9ccdb0c0ceb57e3447683a8377411c047debc19a903a45",
       "assets": {
         "hero": {
-          "src": "/images/editorial/gratificacion-legal-chile/5678c9ce4017784e15a53cb6d0bc256d4e10fe658a3b02dfe2b0f86355101f32.avif",
-          "hash": "5678c9ce4017784e15a53cb6d0bc256d4e10fe658a3b02dfe2b0f86355101f32",
+          "src": "/images/editorial/gratificacion-legal-chile/36d0a9162f86da4334e9bfee4241c48042d7c5639111acee6641ba52e94cdb0f.avif",
+          "hash": "36d0a9162f86da4334e9bfee4241c48042d7c5639111acee6641ba52e94cdb0f",
           "width": 1200,
           "height": 630,
-          "bytes": 7365
+          "bytes": 56100
         },
         "tablet": {
-          "src": "/images/editorial/gratificacion-legal-chile/9223d08998491c24a2aff0d871e54b965fc7241e98a70b84f1c750716358d517.avif",
-          "hash": "9223d08998491c24a2aff0d871e54b965fc7241e98a70b84f1c750716358d517",
+          "src": "/images/editorial/gratificacion-legal-chile/4000b698736531c777c9e0875c09cb3c20937fa2bb5666d54c33a1495efea6fd.avif",
+          "hash": "4000b698736531c777c9e0875c09cb3c20937fa2bb5666d54c33a1495efea6fd",
           "width": 800,
           "height": 420,
-          "bytes": 8368
+          "bytes": 27095
         },
         "mobile": {
-          "src": "/images/editorial/gratificacion-legal-chile/d41d9d6270db96d90a2077fc1a23680ef43bb50b183e0c4660832e317524bb67.avif",
-          "hash": "d41d9d6270db96d90a2077fc1a23680ef43bb50b183e0c4660832e317524bb67",
+          "src": "/images/editorial/gratificacion-legal-chile/4c5914daa929bb6769355ea241745eea8f44ea86d7267cd13342803b9dac56d4.avif",
+          "hash": "4c5914daa929bb6769355ea241745eea8f44ea86d7267cd13342803b9dac56d4",
           "width": 600,
           "height": 315,
-          "bytes": 6313
+          "bytes": 18727
         },
         "og": {
-          "src": "/images/editorial/gratificacion-legal-chile/c1c5b30d08189e84cfb8d6773ae943b675191b9d8ce2eae1fe44c159b47402bc.jpg",
-          "hash": "c1c5b30d08189e84cfb8d6773ae943b675191b9d8ce2eae1fe44c159b47402bc",
+          "src": "/images/editorial/gratificacion-legal-chile/c8059731b338b320c8e7fe498ce71fe0c7e80bb5b9eeb70ede07ea0b70843389.jpg",
+          "hash": "c8059731b338b320c8e7fe498ce71fe0c7e80bb5b9eeb70ede07ea0b70843389",
           "width": 1200,
           "height": 630,
-          "bytes": 31410
+          "bytes": 108231
         }
       }
     },
     "impuesto-global-complementario-chile": {
-      "sourcePath": "public/images/hero/impuesto-global-complementario-chile.avif",
-      "sourceHash": "fcfe5262808f5099f2d1f83b9ad355acfaeb908254fedc47d07fd6e5c52bbcd5",
+      "sourcePath": "scripts/hero-images/sources/impuesto-global-complementario-chile.webp",
+      "sourceHash": "9ff19b8513b2057fb3c69c516c4507c929104733e5a52192b781cff003b19a8e",
       "assets": {
         "hero": {
-          "src": "/images/editorial/impuesto-global-complementario-chile/fcfe5262808f5099f2d1f83b9ad355acfaeb908254fedc47d07fd6e5c52bbcd5.avif",
-          "hash": "fcfe5262808f5099f2d1f83b9ad355acfaeb908254fedc47d07fd6e5c52bbcd5",
+          "src": "/images/editorial/impuesto-global-complementario-chile/d6b0858136f3ec65f96bc1eebb1953b5f625f35189b256559e80e531201f528f.avif",
+          "hash": "d6b0858136f3ec65f96bc1eebb1953b5f625f35189b256559e80e531201f528f",
           "width": 1200,
           "height": 630,
-          "bytes": 3617
+          "bytes": 52125
         },
         "tablet": {
-          "src": "/images/editorial/impuesto-global-complementario-chile/54fee2bcf7efbb79c44576e383982998142399c5d524251ecac5e69b6174bf64.avif",
-          "hash": "54fee2bcf7efbb79c44576e383982998142399c5d524251ecac5e69b6174bf64",
+          "src": "/images/editorial/impuesto-global-complementario-chile/ee51b3f5b56bd6f97d050ba3e6352779527f19241a8ffb5be581f4f5071cf291.avif",
+          "hash": "ee51b3f5b56bd6f97d050ba3e6352779527f19241a8ffb5be581f4f5071cf291",
           "width": 800,
           "height": 420,
-          "bytes": 4196
+          "bytes": 26096
         },
         "mobile": {
-          "src": "/images/editorial/impuesto-global-complementario-chile/a4a39a3e9a92bb8459906cba5cc984dacf2cee1e09806ae917986eb364cab995.avif",
-          "hash": "a4a39a3e9a92bb8459906cba5cc984dacf2cee1e09806ae917986eb364cab995",
+          "src": "/images/editorial/impuesto-global-complementario-chile/77da46fd8cde672188554fd2e4c4ccda7b4507836dc788ac128e025093da7538.avif",
+          "hash": "77da46fd8cde672188554fd2e4c4ccda7b4507836dc788ac128e025093da7538",
           "width": 600,
           "height": 315,
-          "bytes": 3129
+          "bytes": 18251
         },
         "og": {
-          "src": "/images/editorial/impuesto-global-complementario-chile/35bd146dde180916334a95e2e61ec940de8ec126d60e3fbe7820215ccdbe5675.jpg",
-          "hash": "35bd146dde180916334a95e2e61ec940de8ec126d60e3fbe7820215ccdbe5675",
+          "src": "/images/editorial/impuesto-global-complementario-chile/18fbc68b49019b281a79218eead66c8e28a8991c201108f3a85d82927938d7fe.jpg",
+          "hash": "18fbc68b49019b281a79218eead66c8e28a8991c201108f3a85d82927938d7fe",
           "width": 1200,
           "height": 630,
-          "bytes": 22572
+          "bytes": 100914
         }
       }
     },
@@ -1057,36 +1057,36 @@
       }
     },
     "informe-deudas-cmf-vs-dicom": {
-      "sourcePath": "public/images/hero/informe-deudas-cmf-vs-dicom.avif",
-      "sourceHash": "310cbdfd169653559e16f8ba17e2eaab8f8cca1a39f0688d9fafd439f89567e6",
+      "sourcePath": "scripts/hero-images/sources/informe-deudas-cmf-vs-dicom.webp",
+      "sourceHash": "8440ec13fc5ecac9000a4e2e2b5804677b81a9a322229ee0aaeeaf5f220a18d9",
       "assets": {
         "hero": {
-          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/310cbdfd169653559e16f8ba17e2eaab8f8cca1a39f0688d9fafd439f89567e6.avif",
-          "hash": "310cbdfd169653559e16f8ba17e2eaab8f8cca1a39f0688d9fafd439f89567e6",
+          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/409c7ba1372b9d128c2a210acdf6debcba340b3d266c5a7d562b8e1efdb04dc3.avif",
+          "hash": "409c7ba1372b9d128c2a210acdf6debcba340b3d266c5a7d562b8e1efdb04dc3",
           "width": 1200,
           "height": 630,
-          "bytes": 13762
+          "bytes": 53037
         },
         "tablet": {
-          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/25d99e5bb47c99e339124ce890fe7592969d6b26d23dc1f3665266c8442020b3.avif",
-          "hash": "25d99e5bb47c99e339124ce890fe7592969d6b26d23dc1f3665266c8442020b3",
+          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/7a5f328244eeed9d8ec26a50e2b69b4a6b2dfd705e5edb5079996e06985f65b6.avif",
+          "hash": "7a5f328244eeed9d8ec26a50e2b69b4a6b2dfd705e5edb5079996e06985f65b6",
           "width": 800,
           "height": 420,
-          "bytes": 10845
+          "bytes": 28335
         },
         "mobile": {
-          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/d6f1cede225311950539e2752524a5b027e8d23abaf6cd5d36f4882aac05a7ca.avif",
-          "hash": "d6f1cede225311950539e2752524a5b027e8d23abaf6cd5d36f4882aac05a7ca",
+          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/fbe115ac0b59045d2c63d8b974f44c71c16cc5f10acb5024108425674dd59fdd.avif",
+          "hash": "fbe115ac0b59045d2c63d8b974f44c71c16cc5f10acb5024108425674dd59fdd",
           "width": 600,
           "height": 315,
-          "bytes": 7835
+          "bytes": 20091
         },
         "og": {
-          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/58867905e53ad7631fe8ce5ed9f20281117d22e14d01dca233b8a9ea297288c5.jpg",
-          "hash": "58867905e53ad7631fe8ce5ed9f20281117d22e14d01dca233b8a9ea297288c5",
+          "src": "/images/editorial/informe-deudas-cmf-vs-dicom/959cef74b2c4d3bcbab5bff7fcec18e687b695c5c3f6b6eaa46a9d912183f100.jpg",
+          "hash": "959cef74b2c4d3bcbab5bff7fcec18e687b695c5c3f6b6eaa46a9d912183f100",
           "width": 1200,
           "height": 630,
-          "bytes": 42484
+          "bytes": 101655
         }
       }
     },
@@ -1125,36 +1125,36 @@
       }
     },
     "licencia-medica-desde-que-dia-pagan": {
-      "sourcePath": "public/images/hero/licencia-medica-desde-que-dia-pagan.avif",
-      "sourceHash": "f6105a23e54285c6d3d6d1d9278f8091a49b084541cad955f038a4475b71a6d1",
+      "sourcePath": "scripts/hero-images/sources/licencia-medica-desde-que-dia-pagan.webp",
+      "sourceHash": "36c771a8c9d0f290473d54db2d93d0c165cb6dec347fb76699d750d3b81d33e8",
       "assets": {
         "hero": {
-          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/f6105a23e54285c6d3d6d1d9278f8091a49b084541cad955f038a4475b71a6d1.avif",
-          "hash": "f6105a23e54285c6d3d6d1d9278f8091a49b084541cad955f038a4475b71a6d1",
+          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/569f0279ef46ad5621f8649b301bd75761ed5103c794e87260ce623248c7a693.avif",
+          "hash": "569f0279ef46ad5621f8649b301bd75761ed5103c794e87260ce623248c7a693",
           "width": 1200,
           "height": 630,
-          "bytes": 4622
+          "bytes": 77415
         },
         "tablet": {
-          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/f164b83d9d57d7318b51843fb13d949ea4f7ac19e932ca8bccb3fd249a468a1d.avif",
-          "hash": "f164b83d9d57d7318b51843fb13d949ea4f7ac19e932ca8bccb3fd249a468a1d",
+          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/3312a69ccc1dedf9b97587ea2d4f1bcfe7af64effa0ea425c14ec1c5fcb8c281.avif",
+          "hash": "3312a69ccc1dedf9b97587ea2d4f1bcfe7af64effa0ea425c14ec1c5fcb8c281",
           "width": 800,
           "height": 420,
-          "bytes": 4782
+          "bytes": 42889
         },
         "mobile": {
-          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/889412bed2d777a9ab11f94ab937939bfa6c61e2c8c8d4596effbe69d3428365.avif",
-          "hash": "889412bed2d777a9ab11f94ab937939bfa6c61e2c8c8d4596effbe69d3428365",
+          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/4b34d70246d12f9d29116c0643b3d6943db31e5c9f4c59c3d91645605d3ee17d.avif",
+          "hash": "4b34d70246d12f9d29116c0643b3d6943db31e5c9f4c59c3d91645605d3ee17d",
           "width": 600,
           "height": 315,
-          "bytes": 3572
+          "bytes": 29022
         },
         "og": {
-          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/880cc32843393b2340d476ea050d65d4a2f30284f9d74db58684da5f98fbc9ff.jpg",
-          "hash": "880cc32843393b2340d476ea050d65d4a2f30284f9d74db58684da5f98fbc9ff",
+          "src": "/images/editorial/licencia-medica-desde-que-dia-pagan/a5f716c145e81dfdd7b1478380bb08a2735dcd11ca9621e13230477bb3ccaaed.jpg",
+          "hash": "a5f716c145e81dfdd7b1478380bb08a2735dcd11ca9621e13230477bb3ccaaed",
           "width": 1200,
           "height": 630,
-          "bytes": 18551
+          "bytes": 143709
         }
       }
     },
@@ -1227,36 +1227,36 @@
       }
     },
     "operacion-renta-f22-checklist": {
-      "sourcePath": "public/images/hero/operacion-renta-f22-checklist.avif",
-      "sourceHash": "d1d336ca85a71cb208ee50b820adc5f4f42dd80753e4fb7ceb14396c8f1b3fbd",
+      "sourcePath": "scripts/hero-images/sources/operacion-renta-f22-checklist.webp",
+      "sourceHash": "5413b1062d9f914c6fd9070c585cc60bf0700b7ec229d842ac5949f54bb178bc",
       "assets": {
         "hero": {
-          "src": "/images/editorial/operacion-renta-f22-checklist/d1d336ca85a71cb208ee50b820adc5f4f42dd80753e4fb7ceb14396c8f1b3fbd.avif",
-          "hash": "d1d336ca85a71cb208ee50b820adc5f4f42dd80753e4fb7ceb14396c8f1b3fbd",
+          "src": "/images/editorial/operacion-renta-f22-checklist/2e233e1b3371d993587485f6627db46699418cfbfbcf77c709223380e8bcf27c.avif",
+          "hash": "2e233e1b3371d993587485f6627db46699418cfbfbcf77c709223380e8bcf27c",
           "width": 1200,
           "height": 630,
-          "bytes": 3981
+          "bytes": 59607
         },
         "tablet": {
-          "src": "/images/editorial/operacion-renta-f22-checklist/a2934cf1bdcda4973e7ac7c963b6246f0be53dbf48371a26f6d9163bc9ce56c3.avif",
-          "hash": "a2934cf1bdcda4973e7ac7c963b6246f0be53dbf48371a26f6d9163bc9ce56c3",
+          "src": "/images/editorial/operacion-renta-f22-checklist/dac44194d733d0879173f912a3c616f8452130df2e079d1b7b2d9f9ac3b4957a.avif",
+          "hash": "dac44194d733d0879173f912a3c616f8452130df2e079d1b7b2d9f9ac3b4957a",
           "width": 800,
           "height": 420,
-          "bytes": 3889
+          "bytes": 29542
         },
         "mobile": {
-          "src": "/images/editorial/operacion-renta-f22-checklist/1a0b222b3043c60f97b2fbddbc930454f4e4726c5791d3987e4ae8087fa08ad5.avif",
-          "hash": "1a0b222b3043c60f97b2fbddbc930454f4e4726c5791d3987e4ae8087fa08ad5",
+          "src": "/images/editorial/operacion-renta-f22-checklist/2cfd91de2409f169a098abd2d4e767413ee5336f8410423985f80296ae28f6d1.avif",
+          "hash": "2cfd91de2409f169a098abd2d4e767413ee5336f8410423985f80296ae28f6d1",
           "width": 600,
           "height": 315,
-          "bytes": 2858
+          "bytes": 20926
         },
         "og": {
-          "src": "/images/editorial/operacion-renta-f22-checklist/dee350cfb03896a04a0ec761fe8102481267c42359713797a35b789800c330c1.jpg",
-          "hash": "dee350cfb03896a04a0ec761fe8102481267c42359713797a35b789800c330c1",
+          "src": "/images/editorial/operacion-renta-f22-checklist/be7943f2c527ef9bc587a5d58ab2f0e76f0c9f69f6a08b1c43c4d5bd9942bda3.jpg",
+          "hash": "be7943f2c527ef9bc587a5d58ab2f0e76f0c9f69f6a08b1c43c4d5bd9942bda3",
           "width": 1200,
           "height": 630,
-          "bytes": 17335
+          "bytes": 111924
         }
       }
     },
@@ -1295,36 +1295,36 @@
       }
     },
     "prepago-credito-cuando-conviene-chile": {
-      "sourcePath": "public/images/hero/prepago-credito-cuando-conviene-chile.avif",
-      "sourceHash": "b07aa9ef675a1972b14ab795f2435e2aad68b039f8acbf730e5d5df88eda3809",
+      "sourcePath": "scripts/hero-images/sources/prepago-credito-cuando-conviene-chile.webp",
+      "sourceHash": "fdea75b3d5e6e0c4adb00da69a40f11167bfa779150585599b9b5593efbb848f",
       "assets": {
         "hero": {
-          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/b07aa9ef675a1972b14ab795f2435e2aad68b039f8acbf730e5d5df88eda3809.avif",
-          "hash": "b07aa9ef675a1972b14ab795f2435e2aad68b039f8acbf730e5d5df88eda3809",
+          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/34390f8b264bf42b708fc743d1d4ab340e79a5db4aa202e2005fcff0a45387c0.avif",
+          "hash": "34390f8b264bf42b708fc743d1d4ab340e79a5db4aa202e2005fcff0a45387c0",
           "width": 1200,
           "height": 630,
-          "bytes": 7734
+          "bytes": 49261
         },
         "tablet": {
-          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/cf015cdc36b0129c07275da7d94e2bbfe7db7b24b4e077b07007c34dd1ae05d4.avif",
-          "hash": "cf015cdc36b0129c07275da7d94e2bbfe7db7b24b4e077b07007c34dd1ae05d4",
+          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/d397aeb2c8ab75678a19d1718ec347fb6dc922fd3b4e9cb398a0adcc4438579c.avif",
+          "hash": "d397aeb2c8ab75678a19d1718ec347fb6dc922fd3b4e9cb398a0adcc4438579c",
           "width": 800,
           "height": 420,
-          "bytes": 7549
+          "bytes": 25456
         },
         "mobile": {
-          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/508c9d606f8d0c6bc0723932271a3ab4a5b37afa242d40623c92ed79082918f8.avif",
-          "hash": "508c9d606f8d0c6bc0723932271a3ab4a5b37afa242d40623c92ed79082918f8",
+          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/905ff91594dc91167cc11a7c03c4129b5352f7f6c8796682d2d76d65d9f4112b.avif",
+          "hash": "905ff91594dc91167cc11a7c03c4129b5352f7f6c8796682d2d76d65d9f4112b",
           "width": 600,
           "height": 315,
-          "bytes": 5464
+          "bytes": 17977
         },
         "og": {
-          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/96353ffe07d65efef2a746142390f89a5376a9c9ef8faae8b02791e4ef4069a3.jpg",
-          "hash": "96353ffe07d65efef2a746142390f89a5376a9c9ef8faae8b02791e4ef4069a3",
+          "src": "/images/editorial/prepago-credito-cuando-conviene-chile/24883e5814bcad9233cdf6cfd6dd7150870b3cd20cffe4e165376de0a886bb8e.jpg",
+          "hash": "24883e5814bcad9233cdf6cfd6dd7150870b3cd20cffe4e165376de0a886bb8e",
           "width": 1200,
           "height": 630,
-          "bytes": 27875
+          "bytes": 94225
         }
       }
     },
@@ -1499,36 +1499,36 @@
       }
     },
     "reajuste-arriendo-uf-ipc-chile": {
-      "sourcePath": "public/images/hero/reajuste-arriendo-uf-ipc-chile.avif",
-      "sourceHash": "4684bd3d80b22751b9ddbfce8bfc8d5fbed811f76537c0f418bdd94fcb68b5f0",
+      "sourcePath": "scripts/hero-images/sources/reajuste-arriendo-uf-ipc-chile.webp",
+      "sourceHash": "70dfe7171759517c17620bde5adf9e86f6f319e4032fb1822059e20ae65bd93e",
       "assets": {
         "hero": {
-          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/4684bd3d80b22751b9ddbfce8bfc8d5fbed811f76537c0f418bdd94fcb68b5f0.avif",
-          "hash": "4684bd3d80b22751b9ddbfce8bfc8d5fbed811f76537c0f418bdd94fcb68b5f0",
+          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/4e28d380c820bca4a604a0c61c084f35810e6a2a00b3159104ed3530d91ee699.avif",
+          "hash": "4e28d380c820bca4a604a0c61c084f35810e6a2a00b3159104ed3530d91ee699",
           "width": 1200,
           "height": 630,
-          "bytes": 5185
+          "bytes": 63682
         },
         "tablet": {
-          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/7332d2aa8f6d5aaff38f735bdcfe4802680a771978773b99417f51630a186dca.avif",
-          "hash": "7332d2aa8f6d5aaff38f735bdcfe4802680a771978773b99417f51630a186dca",
+          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/c7cef20e39a492fc7ded4c97b477509ab692fe7b15281ee196698189164dc894.avif",
+          "hash": "c7cef20e39a492fc7ded4c97b477509ab692fe7b15281ee196698189164dc894",
           "width": 800,
           "height": 420,
-          "bytes": 4721
+          "bytes": 32742
         },
         "mobile": {
-          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/1fa0788206262e2130abc117f8147318e95feba44bb2fafd1d5cead814e9d543.avif",
-          "hash": "1fa0788206262e2130abc117f8147318e95feba44bb2fafd1d5cead814e9d543",
+          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/f34c132073271fa05e9f0c90137d6121166f7da10bbbcda3f4c3a23d0e393d48.avif",
+          "hash": "f34c132073271fa05e9f0c90137d6121166f7da10bbbcda3f4c3a23d0e393d48",
           "width": 600,
           "height": 315,
-          "bytes": 3592
+          "bytes": 23023
         },
         "og": {
-          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/4e7d2a4d12fe43859c83841a31f992a3f98860b67b3fc3463f48bfb7e2dba2d3.jpg",
-          "hash": "4e7d2a4d12fe43859c83841a31f992a3f98860b67b3fc3463f48bfb7e2dba2d3",
+          "src": "/images/editorial/reajuste-arriendo-uf-ipc-chile/c1bd76f1a9efdbc27f033f8af7ec6ffe545d8e399e07374167134fc7e1929e92.jpg",
+          "hash": "c1bd76f1a9efdbc27f033f8af7ec6ffe545d8e399e07374167134fc7e1929e92",
           "width": 1200,
           "height": 630,
-          "bytes": 20866
+          "bytes": 116479
         }
       }
     },
@@ -1601,36 +1601,36 @@
       }
     },
     "rentas-mixtas-sueldo-honorarios": {
-      "sourcePath": "public/images/hero/rentas-mixtas-sueldo-honorarios.avif",
-      "sourceHash": "d3ed13ecb21e7ac98455a137cafbd6261d8c171736a2e116bd63600975a726c0",
+      "sourcePath": "scripts/hero-images/sources/rentas-mixtas-sueldo-honorarios.webp",
+      "sourceHash": "88bc9ed26867571b7c180e1c8b35facccb68ec94ee6ce4c0398a9ac6f4e253be",
       "assets": {
         "hero": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/d3ed13ecb21e7ac98455a137cafbd6261d8c171736a2e116bd63600975a726c0.avif",
-          "hash": "d3ed13ecb21e7ac98455a137cafbd6261d8c171736a2e116bd63600975a726c0",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/690b5d4b3293fc090c38f9ba284564643ac31e2e55ffe6208640433dbe899ca5.avif",
+          "hash": "690b5d4b3293fc090c38f9ba284564643ac31e2e55ffe6208640433dbe899ca5",
           "width": 1200,
           "height": 630,
-          "bytes": 9776
+          "bytes": 59187
         },
         "tablet": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/d1323a316d3b48475ed3cf60a27ceb5ab824ac768fb7b3a17248069968a2b9db.avif",
-          "hash": "d1323a316d3b48475ed3cf60a27ceb5ab824ac768fb7b3a17248069968a2b9db",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/4af4df624ada735b42757cf995e899dcebee4865a116459e564bbb640efbc9be.avif",
+          "hash": "4af4df624ada735b42757cf995e899dcebee4865a116459e564bbb640efbc9be",
           "width": 800,
           "height": 420,
-          "bytes": 4712
+          "bytes": 29211
         },
         "mobile": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/a14b58933fb808bf44bbc4ef7b1afdad25ef1be5fe2f378b8f3792486c28f622.avif",
-          "hash": "a14b58933fb808bf44bbc4ef7b1afdad25ef1be5fe2f378b8f3792486c28f622",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/265137fa00060e0909a42eea204eb018a714a33b12fdafa4531e4278e0903536.avif",
+          "hash": "265137fa00060e0909a42eea204eb018a714a33b12fdafa4531e4278e0903536",
           "width": 600,
           "height": 315,
-          "bytes": 3623
+          "bytes": 20426
         },
         "og": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/9b4eef5e5ec63e75bf6c8ee63a7dc7a7d7313648dde6b5efb71db321e2d7c569.jpg",
-          "hash": "9b4eef5e5ec63e75bf6c8ee63a7dc7a7d7313648dde6b5efb71db321e2d7c569",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/58fdebb2506a2fd5622e553c6515e9b56c0c4dfc0f60ae5d36cf797ffef31884.jpg",
+          "hash": "58fdebb2506a2fd5622e553c6515e9b56c0c4dfc0f60ae5d36cf797ffef31884",
           "width": 1200,
           "height": 630,
-          "bytes": 23147
+          "bytes": 107126
         }
       }
     },
@@ -1703,104 +1703,104 @@
       }
     },
     "sueldo-imponible-chile": {
-      "sourcePath": "public/images/hero/sueldo-imponible-chile.avif",
-      "sourceHash": "e7c3a012ed5d6e58ad0cd21ff69965f9c64879f7695a2395c7e9e5543776acd2",
+      "sourcePath": "scripts/hero-images/sources/sueldo-imponible-chile.webp",
+      "sourceHash": "0db927651cb2e8a1bc10a28d527cbbb3cf16f98aed390575862153965d7a0cf1",
       "assets": {
         "hero": {
-          "src": "/images/editorial/sueldo-imponible-chile/e7c3a012ed5d6e58ad0cd21ff69965f9c64879f7695a2395c7e9e5543776acd2.avif",
-          "hash": "e7c3a012ed5d6e58ad0cd21ff69965f9c64879f7695a2395c7e9e5543776acd2",
+          "src": "/images/editorial/sueldo-imponible-chile/52f0a180e057099f518ed9631e4afcd0a1eb9cea5cd7f52c729432638c1fe672.avif",
+          "hash": "52f0a180e057099f518ed9631e4afcd0a1eb9cea5cd7f52c729432638c1fe672",
           "width": 1200,
           "height": 630,
-          "bytes": 6484
+          "bytes": 59608
         },
         "tablet": {
-          "src": "/images/editorial/sueldo-imponible-chile/fc13e6b76709319fd592581372e986cd86557033cae74cf5686c1794544c1b64.avif",
-          "hash": "fc13e6b76709319fd592581372e986cd86557033cae74cf5686c1794544c1b64",
+          "src": "/images/editorial/sueldo-imponible-chile/8a1c5059ca2f7ae442502efff44f322954046274d49b87f2a7d75a0905cd8f6e.avif",
+          "hash": "8a1c5059ca2f7ae442502efff44f322954046274d49b87f2a7d75a0905cd8f6e",
           "width": 800,
           "height": 420,
-          "bytes": 7497
+          "bytes": 26731
         },
         "mobile": {
-          "src": "/images/editorial/sueldo-imponible-chile/8c455646a2b93700a3ea11fb31c134deb9616098f51ff89a915a151bf184b7c0.avif",
-          "hash": "8c455646a2b93700a3ea11fb31c134deb9616098f51ff89a915a151bf184b7c0",
+          "src": "/images/editorial/sueldo-imponible-chile/dc0153599f54edd04353b680b537e4b1d987cbeaa93be7ba184692d90b66724a.avif",
+          "hash": "dc0153599f54edd04353b680b537e4b1d987cbeaa93be7ba184692d90b66724a",
           "width": 600,
           "height": 315,
-          "bytes": 5552
+          "bytes": 18446
         },
         "og": {
-          "src": "/images/editorial/sueldo-imponible-chile/b4801e1e0f86fe8eea02713c0924025cb1383a63a7b9892b1bf10a38b62d5c02.jpg",
-          "hash": "b4801e1e0f86fe8eea02713c0924025cb1383a63a7b9892b1bf10a38b62d5c02",
+          "src": "/images/editorial/sueldo-imponible-chile/c47b2f5faf2080fca57c4847a7337d1ae602c004f47f78faf46a651335fb8b87.jpg",
+          "hash": "c47b2f5faf2080fca57c4847a7337d1ae602c004f47f78faf46a651335fb8b87",
           "width": 1200,
           "height": 630,
-          "bytes": 31858
+          "bytes": 105625
         }
       }
     },
     "suplantacion-identidad-creditos-no-reconocidos": {
-      "sourcePath": "public/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
-      "sourceHash": "16a6d2ab461e59cc9df93d5797e6fb9ae4f649f3a7cac8d0236d841881a51ad8",
+      "sourcePath": "scripts/hero-images/sources/suplantacion-identidad-creditos-no-reconocidos.webp",
+      "sourceHash": "c0108696709e96acea66c3c993a70ec6499b08af93a69adbe61b585adde66efb",
       "assets": {
         "hero": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/16a6d2ab461e59cc9df93d5797e6fb9ae4f649f3a7cac8d0236d841881a51ad8.avif",
-          "hash": "16a6d2ab461e59cc9df93d5797e6fb9ae4f649f3a7cac8d0236d841881a51ad8",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/63d04c467421cf78670410c5c434020cf1c45c205c85f8ce38deb22fc6feac54.avif",
+          "hash": "63d04c467421cf78670410c5c434020cf1c45c205c85f8ce38deb22fc6feac54",
           "width": 1200,
           "height": 630,
-          "bytes": 11630
+          "bytes": 63167
         },
         "tablet": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/3e6ea841417a74cc700a72044aea6f0d9a907041ab65b7d76fdb78795814c704.avif",
-          "hash": "3e6ea841417a74cc700a72044aea6f0d9a907041ab65b7d76fdb78795814c704",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/4a93ad6859973ac6ab2c238b1ce925df3b277fcb76d70deb29bf70fd70940f74.avif",
+          "hash": "4a93ad6859973ac6ab2c238b1ce925df3b277fcb76d70deb29bf70fd70940f74",
           "width": 800,
           "height": 420,
-          "bytes": 10080
+          "bytes": 32071
         },
         "mobile": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/8ba464f1daac956abc8338cd07257c126e7ecdd7377b9e2915c1d30b06a81384.avif",
-          "hash": "8ba464f1daac956abc8338cd07257c126e7ecdd7377b9e2915c1d30b06a81384",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/c611cf628bb09a32afd6566f027533e39735d774ed0af446a67141288b2111ea.avif",
+          "hash": "c611cf628bb09a32afd6566f027533e39735d774ed0af446a67141288b2111ea",
           "width": 600,
           "height": 315,
-          "bytes": 7378
+          "bytes": 22476
         },
         "og": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/3214e9061e1d2ea8fd9169ae6e1b1614ba157bbd4231ad67648a10fff4920879.jpg",
-          "hash": "3214e9061e1d2ea8fd9169ae6e1b1614ba157bbd4231ad67648a10fff4920879",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/d89aa4b1128f40f65db36d0ead644f24a5b02c54ae47349d40720c3be0449212.jpg",
+          "hash": "d89aa4b1128f40f65db36d0ead644f24a5b02c54ae47349d40720c3be0449212",
           "width": 1200,
           "height": 630,
-          "bytes": 39276
+          "bytes": 114301
         }
       }
     },
     "tarjeta-credito-costo-real-chile": {
-      "sourcePath": "public/images/hero/tarjeta-credito-costo-real-chile.avif",
-      "sourceHash": "ed36ec583a33c0c99ab0ce9767f4c3acf8ac56b24307e48d9d444f6f41e51042",
+      "sourcePath": "scripts/hero-images/sources/tarjeta-credito-costo-real-chile.webp",
+      "sourceHash": "e1606607fd47b04143748fab6a004c86f0c4ebdd947d0971ca07ae2155ac80e9",
       "assets": {
         "hero": {
-          "src": "/images/editorial/tarjeta-credito-costo-real-chile/ed36ec583a33c0c99ab0ce9767f4c3acf8ac56b24307e48d9d444f6f41e51042.avif",
-          "hash": "ed36ec583a33c0c99ab0ce9767f4c3acf8ac56b24307e48d9d444f6f41e51042",
+          "src": "/images/editorial/tarjeta-credito-costo-real-chile/87511b13da9d50e2f8d41c296b48dea8733c7a8f1bf4b7d1bfafee73e0dd238d.avif",
+          "hash": "87511b13da9d50e2f8d41c296b48dea8733c7a8f1bf4b7d1bfafee73e0dd238d",
           "width": 1200,
           "height": 630,
-          "bytes": 5328
+          "bytes": 55748
         },
         "tablet": {
-          "src": "/images/editorial/tarjeta-credito-costo-real-chile/ddfecbc40c1378c824537609c53bfbb5d163f8058708baf8eb04cb453d13a93a.avif",
-          "hash": "ddfecbc40c1378c824537609c53bfbb5d163f8058708baf8eb04cb453d13a93a",
+          "src": "/images/editorial/tarjeta-credito-costo-real-chile/cceb74a38a92f1c15f443acfa1f42a56f6a7d66121b869513a829a27e3fdbf06.avif",
+          "hash": "cceb74a38a92f1c15f443acfa1f42a56f6a7d66121b869513a829a27e3fdbf06",
           "width": 800,
           "height": 420,
-          "bytes": 5297
+          "bytes": 27570
         },
         "mobile": {
-          "src": "/images/editorial/tarjeta-credito-costo-real-chile/c3d2970f567e91fe64e5a4a3b846b0be8d6a864e5701d34083615440fd9892a2.avif",
-          "hash": "c3d2970f567e91fe64e5a4a3b846b0be8d6a864e5701d34083615440fd9892a2",
+          "src": "/images/editorial/tarjeta-credito-costo-real-chile/517d1493d916a00dc92356c97f9685fad7e1d327e2b053aecb2fb8f3640d69f2.avif",
+          "hash": "517d1493d916a00dc92356c97f9685fad7e1d327e2b053aecb2fb8f3640d69f2",
           "width": 600,
           "height": 315,
-          "bytes": 3765
+          "bytes": 19252
         },
         "og": {
-          "src": "/images/editorial/tarjeta-credito-costo-real-chile/4ba34045456f1e968e47209ad681867912a7c73930e66e730df662a2b7bfc6f5.jpg",
-          "hash": "4ba34045456f1e968e47209ad681867912a7c73930e66e730df662a2b7bfc6f5",
+          "src": "/images/editorial/tarjeta-credito-costo-real-chile/0a5d1ae0ed6a0dd86610245d74099ea3200055d0cdacea1b6ec6d3638f515caf.jpg",
+          "hash": "0a5d1ae0ed6a0dd86610245d74099ea3200055d0cdacea1b6ec6d3638f515caf",
           "width": 1200,
           "height": 630,
-          "bytes": 22200
+          "bytes": 99596
         }
       }
     },
