@@ -30,13 +30,13 @@ test.describe("Navegación móvil compacta", () => {
     const positions = rectangles.map(rect => rect!);
     for (let index = 1; index < positions.length; index++) {
       expect(Math.abs(positions[index].x - positions[0].x)).toBeLessThan(2);
-      expect(positions[index].y).toBeGreaterThan(
-        positions[index - 1].y + 40
-      );
+      expect(positions[index].y).toBeGreaterThan(positions[index - 1].y + 40);
       expect(positions[index].width).toBeGreaterThan(300);
     }
 
-    const search = await page.locator('#menu-items a[aria-label="Buscar"]').boundingBox();
+    const search = await page
+      .locator('#menu-items a[aria-label="Buscar"]')
+      .boundingBox();
     const theme = await page.locator("#theme-btn").boundingBox();
     expect(search).not.toBeNull();
     expect(theme).not.toBeNull();
