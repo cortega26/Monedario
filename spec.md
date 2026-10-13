@@ -1,26 +1,34 @@
 # Menú móvil compacto — Monedario
 
 ## Objetivo
-Corregir la desalineación y el exceso de espacio del menú de navegación en pantallas pequeñas, sin cambios en las rutas, el contenido editorial ni el navbar de escritorio.
+
+Corregir la desalineación y el exceso de espacio del menú en pantallas
+pequeñas, sin cambiar rutas, contenido editorial o navbar de escritorio.
 
 ## Alcance
-- In scope: `src/components/Header.astro`, `tests/accessibility/mobile-navigation.test.ts`.
-- Out of scope: páginas, rutas/SEO, componentes de calculadoras, tokens globales de diseño y lógica de menú desplegable.
-- Cambios mínimos en las clases Tailwind; preservar IDs, atributos ARIA, analytics y funcionamiento del menú.
+
+- Dentro: `src/components/Header.astro` y
+  `tests/accessibility/mobile-navigation.test.ts`.
+- Fuera: páginas, rutas/SEO, calculadoras, estilos globales y código de
+  comportamiento del desplegable.
+- Diff mínimo. Preservar IDs, atributos ARIA, eventos de analítica y enlaces.
 
 ## Comportamiento esperado
-- Móvil (<1024px): enlaces Guías, Calculadoras, Glosario y Metodología alineados a la izquierda, cada uno ocupando todo el ancho, espaciado uniforme; Buscar y tema juntos en una fila de utilidades.
-- Escritorio (>=1024px): navegación horizontal sin cambios.
-- Abrir/cerrar, desplegar Guías y accesos por teclado siguen funcionando.
-- Sin cambios en enlaces ni incorporación de dependencias.
 
-## Verificación
-| Prueba | Comando | Resultado esperado |
-| --- | --- | --- |
-| Layout y accesibilidad responsive | `pnpm exec playwright test tests/accessibility/mobile-navigation.test.ts` | Menú móvil alineado, utilidades en fila, escritorio horizontal, Guías interactivo |
-| Lint | `pnpm run lint` | Sin errores |
-| Formato | `pnpm run format:check` | Sin errores |
-| Tests | `pnpm run test` | Sin regresiones |
-| Verificación de tipos | `pnpm exec astro check` | Sin errores |
+- Móvil (menos de 1024 px): Guías, Calculadoras, Glosario y Metodología
+  alineados a la izquierda, cada uno a todo el ancho y con espaciado uniforme.
+- Buscar y cambiar tema comparten una fila separada visualmente.
+- Escritorio: menú horizontal sin alteraciones.
+- Guías, Escape, apertura/cierre y teclado continúan operativos.
+- Sin dependencias ni URLs nuevas.
 
-Rollback: revertir los commits del PR; no hay migraciones ni cambios de datos.
+## Comprobaciones
+
+- `pnpm exec playwright test tests/accessibility/mobile-navigation.test.ts`:
+  alineación móvil, utilidades, desplegable y escritorio.
+- `pnpm run lint`: sin errores.
+- `pnpm run format:check`: sin errores.
+- `pnpm run test`: sin regresiones.
+- `pnpm exec astro check`: sin errores.
+
+Rollback: revertir el PR. No hay migraciones ni cambios de datos.
