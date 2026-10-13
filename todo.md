@@ -10,9 +10,3 @@ Spec: docs/backlog/PLAN-renovacion-visual-editorial-2026-09-29.md
 - [x] Entrega por hash, OG, alt y responsive integrada.
 - [x] Medición sin nuevos identificadores y documentación actualizada.
 - [x] Tests/build/rutas/RSS y revisión independiente completados.
-
-# Ajuste navbar móvil (fix/mobile-header-navigation-alignment)
-
-- [ ] Layout móvil compacto, izquierda y utilidades agrupadas
-- [ ] Pruebas de interacción y responsive
-- [ ] Verificaciones técnicas y revisión del diff
