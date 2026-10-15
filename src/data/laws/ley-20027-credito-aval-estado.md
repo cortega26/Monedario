@@ -29,7 +29,7 @@ La Ley 20.027 establece el sistema de garantía estatal para créditos educativo
 
 **Vigencia / fecha de corte:** verificado al **2026-05-25**. El sistema CAE ha estado sujeto a discusiones legislativas de reforma; verifica el estado actual en MINEDUC e INGRESA.
 
-**Fuentes primarias:** [BCN — Ley 20.027](https://www.bcn.cl/leychile/navegar?idNorma=238989), [INGRESA](https://www.ingresa.cl), [MINEDUC](https://www.mineduc.cl).
+**Fuentes primarias:** [BCN — Ley 20.027](https://www.bcn.cl/leychile/navegar?idNorma=238989), [INGRESA](https://portal.ingresa.cl/), [MINEDUC](https://www.mineduc.cl).
 
 ## Puntos clave para personas
 
@@ -65,7 +65,7 @@ Solo pueden acceder al CAE los estudiantes de instituciones elegibles acreditada
 
 Texto completo y modificaciones: [BCN — Ley 20.027](https://www.bcn.cl/leychile/navegar?idNorma=238989)
 
-Administración y cobranza: [INGRESA](https://www.ingresa.cl)
+Administración y cobranza: [INGRESA](https://portal.ingresa.cl/)
 
 ---
 
