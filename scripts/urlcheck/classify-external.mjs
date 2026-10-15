@@ -205,7 +205,9 @@ export function buildExternalSummary(results) {
   // Include actionable samples without exposing query strings or fragments.
   const findings = results.filter(r => r.classification !== "ok");
   lines.push("");
-  lines.push("findings_sample (up to 20; query strings and fragments removed):");
+  lines.push(
+    "findings_sample (up to 20; query strings and fragments removed):"
+  );
   for (const r of findings.slice(0, 20)) {
     lines.push(
       `  ${r.blocking ? "BLOCKING" : "notice"} ${r.classification} ` +
@@ -215,7 +217,9 @@ export function buildExternalSummary(results) {
     );
   }
   if (findings.length > 20) {
-    lines.push(`  ... ${findings.length - 20} more findings in external-full.csv`);
+    lines.push(
+      `  ... ${findings.length - 20} more findings in external-full.csv`
+    );
   }
   return lines.join("\n");
 }
