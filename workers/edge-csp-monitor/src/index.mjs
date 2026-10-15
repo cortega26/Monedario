@@ -86,7 +86,9 @@ export async function runScheduled(env, now = new Date(), { sleep = defaultSleep
     // Minimum spacing between account-wide Quick Actions; each probe has
     // completed before the next delay, so request starts are >11 s apart.
     if (i > 0) await sleep(QUICK_ACTION_SPACING_MS);
-    results.push(await probe(env, TARGETS[i], String(now.getTime()) + "-" + i, sleep));
+    const result = await probe(env, TARGETS[i], String(now.getTime()) + "-" + i, sleep);
+    results.push(result);
+    console.log("[edge-csp-monitor] probe", JSON.stringify(result));
   }
   const status = classifyBatch(results);
   console.log("[edge-csp-monitor]", JSON.stringify({ timestamp, status, results }));
@@ -106,8 +108,12 @@ export async function runScheduled(env, now = new Date(), { sleep = defaultSleep
 }
 
 export default {
-  async scheduled(_event, env, ctx) {
-    ctx.waitUntil(runScheduled(env));
+  async scheduled(_event, env) {
+    // Cron Trigger allows up to 15 minutes of wall time. Returning the
+    // promise keeps the invocation alive through all paced browser probes.
+    // ctx.waitUntil() after returning was cancelled before the last probe
+    // because its 30-second grace period is not a cron execution budget.
+    await runScheduled(env);
   },
   async fetch() {
     return new Response("Not found", { status: 404 });
