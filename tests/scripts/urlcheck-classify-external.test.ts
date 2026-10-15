@@ -378,8 +378,9 @@ describe("classifyExternalResult – artifact field contract", () => {
 });
 
 describe("buildExternalSummary", () => {
-  it("prints actionable nonblocking failures with redacted URL parameters", () => {
-    const source = "https://random-blog.cl/old-page/?token=NEVER_LOG_ME#private";
+  it("redacts URL parameters in actionable failure samples", () => {
+    const source =
+      "https://random-blog.cl/old-page/?token=NEVER_LOG_ME#private";
     const result = classifyExternalResult(
       makeLink(source),
       makeProbe(source, { status: 404 })
