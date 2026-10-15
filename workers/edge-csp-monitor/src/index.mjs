@@ -5,6 +5,11 @@ import {
 
 const GITHUB_COMMENTS_API = "https://api.github.com/repos/cortega26/Monedario/issues/675/comments";
 const SITE_ORIGIN = "https://monedario.cl";
+// Browser Run Quick Actions on Workers Free: at most one request per 10 seconds.
+// Use 11 seconds to leave headroom for enforcement/clock skew across the account.
+export const QUICK_ACTION_SPACING_MS = 11_000;
+
+const defaultSleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
 
 async function githubRequest(env, url, options = {}) {
@@ -21,16 +26,31 @@ async function githubRequest(env, url, options = {}) {
   return response.json();
 }
 
-async function probe(env, target, stamp) {
+async function probe(env, target, stamp, sleep) {
   const url = SITE_ORIGIN + target.path + "?edge-guard=" + encodeURIComponent(stamp);
   try {
-    const response = await env.BROWSER.quickAction("content", {
+    const request = () => env.BROWSER.quickAction("content", {
       url,
       userAgent: UA,
       gotoOptions: { waitUntil: "domcontentloaded", timeout: 20000 },
       waitForTimeout: 1000, // Observe deferred Precursor/JSD injections.
       rejectResourceTypes: ["image", "font", "stylesheet"],
     });
+    let response = await request();
+    if (response.status === 429) {
+      // Other Workers on the account may have used the shared rate budget.
+      // One bounded retry, never a loop. Keep persistent 429 inconclusive.
+      const retryAfterSeconds = Number(response.headers.get("retry-after"));
+      const retryMs = Math.max(
+        QUICK_ACTION_SPACING_MS,
+        Number.isFinite(retryAfterSeconds) && retryAfterSeconds > 0
+          ? Math.min(retryAfterSeconds * 1000, 60_000)
+          : 0
+      );
+      console.warn("[edge-csp-monitor] Quick Action 429; retry once", target.path, retryMs);
+      await sleep(retryMs);
+      response = await request();
+    }
     if (!response.ok) {
       return {
         path: target.path, status: "inconclusive",
@@ -50,7 +70,7 @@ async function probe(env, target, stamp) {
   }
 }
 
-export async function runScheduled(env, now = new Date()) {
+export async function runScheduled(env, now = new Date(), { sleep = defaultSleep } = {}) {
   if (!env.BROWSER || typeof env.BROWSER.quickAction !== "function") {
     throw new Error("BROWSER binding not configured");
   }
@@ -63,7 +83,10 @@ export async function runScheduled(env, now = new Date()) {
   const timestamp = now.toISOString();
   const results = [];
   for (let i = 0; i < TARGETS.length; i++) {
-    results.push(await probe(env, TARGETS[i], String(now.getTime()) + "-" + i));
+    // Minimum spacing between account-wide Quick Actions; each probe has
+    // completed before the next delay, so request starts are >11 s apart.
+    if (i > 0) await sleep(QUICK_ACTION_SPACING_MS);
+    results.push(await probe(env, TARGETS[i], String(now.getTime()) + "-" + i, sleep));
   }
   const status = classifyBatch(results);
   console.log("[edge-csp-monitor]", JSON.stringify({ timestamp, status, results }));
