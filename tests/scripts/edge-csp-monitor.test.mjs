@@ -54,7 +54,7 @@ test("deduplicates alerts, reminds daily, and reports recovery once", () => {
 test("shadow mode checks all pages without posting to GitHub", async () => {
   let calls = 0;
   const env = {
-    MONITOR_MODE: "shadow", EDGE_MONITOR_GITHUB_TOKEN: "test",
+    MONITOR_MODE: "shadow",
     BROWSER: { async quickAction() { calls++; return new Response(good); } },
   };
   const result = await runScheduled(env, new Date("2026-10-15T19:00:00Z"));
