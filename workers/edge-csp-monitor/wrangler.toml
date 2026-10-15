@@ -11,8 +11,9 @@ crons = ["15 09,21 * * *"]
 binding = "BROWSER"
 
 [vars]
-# Do not activate notifications until real Browser Run baseline is validated.
-MONITOR_MODE = "shadow"
+# Active since 2026-10-15 after successful 3/3 real Browser Run baseline.
+# Keep GitHub issue token as a Worker secret: never commit the token.
+MONITOR_MODE = "active"
 
 [observability]
 enabled = true
