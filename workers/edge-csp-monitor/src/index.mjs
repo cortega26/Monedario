@@ -54,11 +54,11 @@ export async function runScheduled(env, now = new Date()) {
   if (!env.BROWSER || typeof env.BROWSER.quickAction !== "function") {
     throw new Error("BROWSER binding not configured");
   }
-  if (!env.EDGE_MONITOR_GITHUB_TOKEN) {
-    throw new Error("EDGE_MONITOR_GITHUB_TOKEN secret required: fail closed");
-  }
   if (!["shadow", "active"].includes(env.MONITOR_MODE)) {
     throw new Error("MONITOR_MODE must be shadow or active");
+  }
+  if (env.MONITOR_MODE === "active" && !env.EDGE_MONITOR_GITHUB_TOKEN) {
+    throw new Error("EDGE_MONITOR_GITHUB_TOKEN secret required: fail closed");
   }
   const timestamp = now.toISOString();
   const results = [];
