@@ -659,15 +659,15 @@
         "La ilustración ofrece diagnóstico médico"
       ],
       "alt": "",
-      "sourceContentHash": "6cc0624f8012f978fe7801e2140bb3c434571af4869b0514b44eccfc4fd8324a",
+      "sourceContentHash": "641b3bbfd77d48b9570149b04e0d64b321ce9eb1caccc1b4f97952b28a3278ab",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-15",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Targeted source diff review on 2026-10-15: the only article body edit swaps an obsolete Fonasa MLE link for the official bond quote URL and updates the link label. The coverage comparison, reader situation and illustrative scene remain unchanged. Existing artwork retained; not a medical or YMYL compliance review."
       }
     },
     {
