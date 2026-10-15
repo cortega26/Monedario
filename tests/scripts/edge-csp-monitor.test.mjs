@@ -4,7 +4,7 @@ import {
   TARGETS, classifyHtml, classifyBatch, extractHtml, makeComment,
   parseLatestMonitorComment, shouldComment,
 } from "../../workers/edge-csp-monitor/src/check.mjs";
-import { runScheduled, QUICK_ACTION_SPACING_MS } from "../../workers/edge-csp-monitor/src/index.mjs";
+import edgeMonitor, { runScheduled, QUICK_ACTION_SPACING_MS } from "../../workers/edge-csp-monitor/src/index.mjs";
 
 const good = '<!DOCTYPE html><html><head><script src="/_astro/client.js"></script><script src="https://static.cloudflareinsights.com/beacon.min.js"></script></head><body><main id="main-content"><input id="utm-input"/></main></body></html>';
 const utm = TARGETS.find(target => target.path.includes("utm"));
@@ -164,4 +164,25 @@ test("reports a persistent 429 as inconclusive, without unbounded retries", asyn
     ["browser-http-429"],
     ["browser-http-429"],
   ]);
+});
+
+test("scheduled handler awaits and propagates monitor failure instead of using waitUntil", async () => {
+  let waitUntilCalls = 0;
+  const ctx = {
+    waitUntil() {
+      waitUntilCalls++;
+      throw new Error("scheduled work must not use ctx.waitUntil");
+    },
+  };
+  const env = {
+    MONITOR_MODE: "active",
+    // Fail fast before the 11-second pacing. This failure must reject
+    // scheduled() itself, not become abandoned background work.
+    BROWSER: { async quickAction() { throw new Error("should not run"); } },
+  };
+  await assert.rejects(
+    edgeMonitor.scheduled({}, env, ctx),
+    /EDGE_MONITOR_GITHUB_TOKEN secret required/
+  );
+  assert.equal(waitUntilCalls, 0);
 });
