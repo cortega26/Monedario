@@ -1,7 +1,7 @@
 # Edge CSP monitor — Cloudflare Precursor / JSD
 
 **Existing incident:** [Monedario #675](https://github.com/cortega26/Monedario/issues/675).
-**Default:** SHADOW. Merely merging this code does **not** activate monitoring.
+**Current default:** ACTIVE (after 2026-10-15 successful 3/3 real Browser Run baseline). Merely merging this code does **not** update the standalone Worker; it must be deployed separately. A missing GitHub token fails closed.
 
 Cloudflare Precursor supersedes JavaScript Detections and adds its own browser code. The historical JSD API switch (`bot_management.enable_js`) does **not** fully describe Precursor. This standalone Worker runs **Chromium Browser Run** against the real custom domain with distinct cache-busting queries; detects known injected edge script signatures and challenge-platform paths; and requires normal page markup. It never changes zone settings, security policies, TTLs or application code.
 
@@ -9,9 +9,9 @@ Cloudflare Precursor supersedes JavaScript Detections and adds its own browser c
 
 1. `pnpm run test:edge-guard` — pure Node tests (no network or secrets).
 2. `pnpm exec wrangler deploy --config workers/edge-csp-monitor/wrangler.toml`. The new Worker is independent of Cloudflare Pages and GitHub Actions; Wrangler defaults to `MONITOR_MODE="shadow"` and requires **no GitHub token** to take a read-only baseline.
-3. After the shadow baseline passes, set `EDGE_MONITOR_GITHUB_TOKEN` via `pnpm exec wrangler secret put EDGE_MONITOR_GITHUB_TOKEN --config workers/edge-csp-monitor/wrangler.toml`. Use a fine-grained Monedario token with **Issues Read/Write** only; never commit it.
+3. After the shadow baseline passes, set `EDGE_MONITOR_GITHUB_TOKEN` via `pnpm exec wrangler secret put EDGE_MONITOR_GITHUB_TOKEN --config workers/edge-csp-monitor/wrangler.toml`. Use a fine-grained Monedario token with **Issues Read/Write** only; never commit it. **Completed 2026-10-15** by the owner. Cloudflare secrets survive Worker redeploys and are not displayed in the binding summary.
 4. Test `scheduled()` with Wrangler's scheduled testing endpoint (or observe the first Cron Trigger). Inspect `[edge-csp-monitor]` logs, require **3 of 3 ok**, confirm no Challenge/Browser Run failures, and check Browser Run usage. Browser Run is recognizable as an automated client and can see different behavior from a normal visitor.
-5. Only after the real baseline is successful, change `MONITOR_MODE` to `active` and redeploy. Verify delivery using a controlled test; **never reenable Precursor on the live site just to test alerts**.
+5. After 3/3 real shadow probes, set `MONITOR_MODE` to `active` and redeploy. **Completed 2026-10-15** through a Wrangler CLI override; active is now also persisted in versioned config. The **first healthy active Cron run** posts a one-time `CLEAN BASELINE / RECOVERY` comment on issue #675, proving authenticated GitHub Issues read/write without manufacturing drift or toggling Precursor. Subsequent healthy runs are silent. Verify this real comment and the Cron logs before considering alerts operational.
 6. Observe at least **two Cron Trigger runs** and verify a normal-visitor Chromium CSP test independently before closing #675.
 
 ## Schedule, notification, and limitations
@@ -22,7 +22,7 @@ Cloudflare Precursor supersedes JavaScript Detections and adds its own browser c
 - **Cron lifecycle / remote preview regression (2026-10-15):** With 11-second gaps the first real remote scheduled test showed `GET /__scheduled 200 OK` but **no final** `[edge-csp-monitor]` summary; Wrangler reported `waitUntil() tasks did not complete within the allowed time after invocation end and have been cancelled`. The previous `scheduled()` returned immediately after registering `ctx.waitUntil(runScheduled(env))`, which exceeded the 30-second post-response grace seen in the remote test. The handler now uses **`await runScheduled(env)`**, keeping the Cron invocation alive up to its documented 15-minute wall-clock budget and propagating failures. A 200 from `/__scheduled` alone is **not** proof of monitoring completion: require the final `[edge-csp-monitor]` result with all 3 targets. Individual `[edge-csp-monitor] probe` logs show where a run stops. Documentation: [scheduled handler](https://developers.cloudflare.com/workers/runtime-apis/handlers/scheduled/), [context/waitUntil](https://developers.cloudflare.com/workers/runtime-apis/context/).
 
 - Browser Run `quickAction("content")` returns rendered HTML; it does **not** capture browser console CSP errors. Match known JSD/Precursor-related paths as an early warning; future injection patterns may differ. Independent normal Chromium console checks and an authorized Cloudflare dashboard audit remain necessary.
-- `shadow` writes only to Worker observability logs. `active` posts a drift/inconclusive alert to **existing issue #675**, once per state transition or daily until resolved. When subsequent checks recover, posts a recovery notice. No new issue, automated toggle change or auto-rollback.
+- `shadow` writes only to Worker observability logs. `active` posts **one clean activation baseline** to existing issue #675 if no prior monitor status comment exists, then only drift/inconclusive alerts once per state transition or daily until resolved. Subsequent healthy checks are silent; recovery from a failure posts once. No new issue, automated toggle change or auto-rollback.
 - `inconclusive` = HTML invalid, challenge, browser exception or quota issue. It is **not** evidence that Precursor switched on. Missing GitHub token in active mode, missing browser binding or failed GitHub notification throws a hard error and must be investigated via Worker observability.
 - **Never** add `no-transform` as an automated workaround: Cloudflare then stops compressing HTML. Don't weaken CSP with `unsafe-inline` or static nonces. See `docs/operations/runbooks/CSP_CLOUDFLARE_JSD_2026-08-02.md`.
 
