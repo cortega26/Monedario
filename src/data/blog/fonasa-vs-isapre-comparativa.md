@@ -93,7 +93,7 @@ Fonasa clasifica a sus beneficiarios en cuatro tramos según ingreso imponible m
 
 > **Nota:** Desde septiembre de 2022 rige el Copago Cero en la Modalidad de Atención Institucional (red pública: CESFAM, postas y hospitales públicos): todos los tramos tienen 0% de copago. Los umbrales exactos de ingreso de cada tramo se actualizan periódicamente; consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de tomar una decisión.
 
-**Modalidad de Libre Elección (MLE):** Fonasa también permite atenderse con médicos y clínicas privadas registradas, pagando un bono. Fonasa subsidia parte del arancel oficial y el paciente paga el resto. El copago en MLE es generalmente mayor que en la red hospitalaria pública y no depende del tramo. Consulta los valores de bonificación MLE en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/tramites/valor-bono).
+**Modalidad de Libre Elección (MLE):** Fonasa también permite atenderse con médicos y clínicas privadas registradas, pagando un bono. Fonasa subsidia parte del arancel oficial y el paciente paga el resto. El copago en MLE es generalmente mayor que en la red hospitalaria pública y no depende del tramo. Consulta los valores de bonificación MLE en [cotizador oficial de bonos Fonasa](https://cotizarbono.fonasa.gob.cl/).
 
 ### Cómo funciona el precio en Isapres
 
