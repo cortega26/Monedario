@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { classifyExternalResult, buildExternalSummary } from "../../scripts/urlcheck/classify-external.mjs";
+import {
+  classifyExternalResult,
+  buildExternalSummary,
+} from "../../scripts/urlcheck/classify-external.mjs";
 
 // ---- Helpers ----
 
