@@ -1,0 +1,20 @@
+name = "monedario-edge-csp-monitor"
+main = "src/index.mjs"
+compatibility_date = "2026-10-15"
+workers_dev = true
+
+[triggers]
+# UTC. Six low-cost browser requests/day, no GitHub Actions minutes.
+crons = ["15 09,21 * * *"]
+
+[browser]
+binding = "BROWSER"
+
+[vars]
+# Do not activate notifications until real Browser Run baseline is validated.
+MONITOR_MODE = "shadow"
+
+[observability]
+enabled = true
+
+# Secret: EDGE_MONITOR_GITHUB_TOKEN (repo Monedario, Issues Read/Write only).

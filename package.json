@@ -7,7 +7,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
-    "build": "pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist",
+    "build": "pnpm run test:edge-guard && pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist",
     "build:ci": "pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run og:jpegs && node scripts/check-images.mjs && pnpm run check:legal-citations && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && node scripts/check-postbuild.mjs dist",
     "preview": "astro preview",
     "sync": "astro sync",
@@ -87,7 +87,7 @@
     "worker:analytics:tail": "wrangler tail --config workers/analytics-collector/wrangler.toml",
     "worker:analytics:typecheck": "npx tsc --noEmit -p workers/analytics-collector/tsconfig.json",
     "worker:economic-snapshot:typecheck": "npx tsc --noEmit -p workers/economic-snapshot-refresh/tsconfig.json",
-    "check:workers": "pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck",
+    "check:workers": "pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck && pnpm run test:edge-guard",
     "worker:economic-snapshot:dev": "wrangler dev workers/economic-snapshot-refresh/wrangler.toml --test-scheduled",
     "worker:economic-snapshot:deploy": "wrangler deploy --config workers/economic-snapshot-refresh/wrangler.toml",
     "worker:economic-snapshot:tail": "wrangler tail --config workers/economic-snapshot-refresh/wrangler.toml",
@@ -129,7 +129,8 @@
     "growth:detect": "node scripts/detect-seo-opportunities.mjs",
     "growth:collect:competitors": "node scripts/collect-competitor-sitemaps.mjs",
     "growth:collect:bing": "node scripts/collect-bing-queries.mjs",
-    "doctor": "node scripts/doctor.mjs"
+    "doctor": "node scripts/doctor.mjs",
+    "test:edge-guard": "node --test tests/scripts/edge-csp-monitor.test.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",

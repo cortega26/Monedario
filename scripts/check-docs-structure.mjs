@@ -101,11 +101,9 @@ function isAllowedLocation(filePath) {
     return true;
   }
 
-  if (filePath === "workers/economic-snapshot-refresh/README.md") {
-    return true;
-  }
-
-  if (filePath === "workers/analytics-collector/README.md") {
+  // Every Worker owns one co-located operational README; other Markdown
+  // remains under the canonical docs/ tree.
+  if (/^workers\/[a-z0-9-]+\/README\.md$/.test(filePath)) {
     return true;
   }
 
