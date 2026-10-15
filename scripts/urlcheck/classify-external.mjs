@@ -200,7 +200,39 @@ export function buildExternalSummary(results) {
   for (const [host, n] of Object.entries(countByHost).sort()) {
     lines.push(`  ${host}: ${n}`);
   }
+
+  // CI logs are available even when artifact downloads are not.
+  // Include actionable samples without exposing query strings or fragments.
+  const findings = results.filter(r => r.classification !== "ok");
+  lines.push("");
+  lines.push(
+    "findings_sample (up to 20; query strings and fragments removed):"
+  );
+  for (const r of findings.slice(0, 20)) {
+    lines.push(
+      `  ${r.blocking ? "BLOCKING" : "notice"} ${r.classification} ` +
+        `HTTP=${r.status ?? "-"} source=${displayAuditUrl(r.source_url)} ` +
+        `final=${displayAuditUrl(r.final_url)} ` +
+        `referrer=${displayAuditUrl(r.referrer_url)}`
+    );
+  }
+  if (findings.length > 20) {
+    lines.push(
+      `  ... ${findings.length - 20} more findings in external-full.csv`
+    );
+  }
   return lines.join("\n");
+}
+
+// Strip URL queries, fragments and credentials before logging.
+function displayAuditUrl(rawUrl) {
+  if (!rawUrl) return "unknown";
+  try {
+    const url = new URL(rawUrl);
+    return `${url.origin}${url.pathname}`;
+  } catch {
+    return "unknown";
+  }
 }
 
 // ---- Helpers ----

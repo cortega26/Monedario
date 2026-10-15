@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { classifyExternalResult } from "../../scripts/urlcheck/classify-external.mjs";
+import {
+  classifyExternalResult,
+  buildExternalSummary,
+} from "../../scripts/urlcheck/classify-external.mjs";
 
 // ---- Helpers ----
 
@@ -371,5 +374,52 @@ describe("classifyExternalResult – artifact field contract", () => {
     };
     const result = classifyExternalResult(link, makeProbe("https://www.bcentral.cl/", {}));
     expect(result.referrer_url).toBe("https://monedario.cl/p1/");
+  });
+});
+
+describe("buildExternalSummary", () => {
+  it("redacts URL parameters in actionable failure samples", () => {
+    const source =
+      "https://random-blog.cl/old-page/?token=NEVER_LOG_ME#private";
+    const result = classifyExternalResult(
+      makeLink(source),
+      makeProbe(source, { status: 404 })
+    );
+    const summary = buildExternalSummary([result]);
+
+    expect(summary).toContain("hard_fail: 1");
+    expect(summary).toContain("notice hard_fail HTTP=404");
+    expect(summary).toContain("source=https://random-blog.cl/old-page/");
+    expect(summary).toContain("referrer=https://monedario.cl/posts/test/");
+    expect(summary).not.toContain("NEVER_LOG_ME");
+    expect(summary).not.toContain("?token=");
+    expect(summary).not.toContain("#private");
+  });
+
+  it("caps printed findings at 20 without losing counts", () => {
+    const baseResult = classifyExternalResult(
+      makeLink("https://random-blog.cl/missing"),
+      makeProbe("https://random-blog.cl/missing", { status: 404 })
+    );
+    const results = Array.from({ length: 22 }, (_, i) => ({
+      ...baseResult,
+      source_url: `https://random-blog.cl/missing-${i}`,
+    }));
+    const summary = buildExternalSummary(results);
+
+    expect(summary).toContain("hard_fail: 22");
+    expect(summary).toContain("... 2 more findings in external-full.csv");
+    expect(summary).not.toContain("missing-20");
+    expect(summary).not.toContain("missing-21");
+  });
+
+  it("does not mark successful links as findings", () => {
+    const url = "https://random-blog.cl/ok";
+    const result = classifyExternalResult(makeLink(url), makeProbe(url));
+    const summary = buildExternalSummary([result]);
+
+    expect(summary).toContain("blocking_failures: 0");
+    expect(summary).not.toContain("notice ok");
+    expect(summary).not.toContain("source=https://random-blog.cl/ok");
   });
 });
