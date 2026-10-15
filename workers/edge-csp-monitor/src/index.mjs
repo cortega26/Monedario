@@ -28,6 +28,7 @@ async function probe(env, target, stamp) {
       url,
       userAgent: UA,
       gotoOptions: { waitUntil: "domcontentloaded", timeout: 20000 },
+      waitForTimeout: 1000, // Observe deferred Precursor/JSD injections.
       rejectResourceTypes: ["image", "font", "stylesheet"],
     });
     if (!response.ok) {
