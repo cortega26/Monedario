@@ -102,8 +102,12 @@ function normaliseRows(rows) {
  */
 export function buildRedirectInventory(results) {
   const intentionalSharingHosts = new Set([
-    "wa.me", "www.facebook.com", "facebook.com", "x.com",
-    "t.me", "www.linkedin.com",
+    "wa.me",
+    "www.facebook.com",
+    "facebook.com",
+    "x.com",
+    "t.me",
+    "www.linkedin.com",
   ]);
   const intentionalSharingPaths = new Map([
     ["wa.me", ["/"]],
@@ -113,34 +117,49 @@ export function buildRedirectInventory(results) {
     ["t.me", ["/share/"]],
     ["www.linkedin.com", ["/sharing/"]],
   ]);
-  return results.flatMap(r => {
-    if (r.error || r.status == null || r.status >= 400 || !r.final_url) return [];
-    let start, end;
-    try {
-      start = new URL(r.source_url);
-      end = new URL(r.final_url);
-    } catch { return []; }
-    if (start.href === end.href) return [];
-    const paths = intentionalSharingPaths.get(start.hostname) ?? [];
-    const isSharing = intentionalSharingHosts.has(start.hostname) &&
-      paths.some(prefix => start.pathname.startsWith(prefix));
-    const referrers = Array.isArray(r.referrers)
-      ? r.referrers
-      : r.referrer_url ? [r.referrer_url] : [];
-    return [{
-      source_url: r.source_url,
-      final_url: r.final_url,
-      referrers,
-      affected_pages: referrers.length,
-      host_category: r.host_category,
-      status: r.status,
-      classification: r.classification,
-      review: isSharing ? "intentional_share" : "review_destination",
-    }];
-  }).sort((a, b) => a.source_url.localeCompare(b.source_url));
+  return results
+    .flatMap(r => {
+      if (r.error || r.status == null || r.status >= 400 || !r.final_url) {
+        return [];
+      }
+      let start, end;
+      try {
+        start = new URL(r.source_url);
+        end = new URL(r.final_url);
+      } catch {
+        return [];
+      }
+      if (start.href === end.href) return [];
+      const paths = intentionalSharingPaths.get(start.hostname) ?? [];
+      const isSharing =
+        intentionalSharingHosts.has(start.hostname) &&
+        paths.some(prefix => start.pathname.startsWith(prefix));
+      const referrers = Array.isArray(r.referrers)
+        ? r.referrers
+        : r.referrer_url
+          ? [r.referrer_url]
+          : [];
+      return [
+        {
+          source_url: r.source_url,
+          final_url: r.final_url,
+          referrers,
+          affected_pages: referrers.length,
+          host_category: r.host_category,
+          status: r.status,
+          classification: r.classification,
+          review: isSharing ? "intentional_share" : "review_destination",
+        },
+      ];
+    })
+    .sort((a, b) => a.source_url.localeCompare(b.source_url));
 }
 
-function buildSummaryPayload(results, mode, redirects = buildRedirectInventory(results)) {
+function buildSummaryPayload(
+  results,
+  mode,
+  redirects = buildRedirectInventory(results)
+) {
   const nonOk = results.filter((r) => r.classification !== "ok");
   const blockingCount = nonOk.filter((r) => r.blocking).length;
 
@@ -169,8 +188,12 @@ function buildSummaryPayload(results, mode, redirects = buildRedirectInventory(r
     blockingFailures: blockingCount,
     totalNonOk: nonOk.length,
     redirectedExternalLinks: redirects.length,
-    redirectsRequiringReview: redirects.filter(r => r.review === "review_destination").length,
-    intentionalShareRedirects: redirects.filter(r => r.review === "intentional_share").length,
+    redirectsRequiringReview: redirects.filter(
+      r => r.review === "review_destination"
+    ).length,
+    intentionalShareRedirects: redirects.filter(
+      r => r.review === "intentional_share"
+    ).length,
     byClassification,
     byHost,
   };

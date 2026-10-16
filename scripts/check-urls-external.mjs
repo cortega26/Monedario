@@ -84,7 +84,15 @@ async function main() {
   const artifacts = await writeExternalArtifacts(classifiedResults, { mode });
   console.log(`[check-urls-external] artifacts written: ${Object.values(artifacts).join(", ")}`);
   const redirects = buildRedirectInventory(classifiedResults);
-  console.log(`[check-urls-external] redirects=${redirects.length} review=${redirects.filter(r => r.review === "review_destination").length} intentional_share=${redirects.filter(r => r.review === "intentional_share").length} inventory=${artifacts.redirectsJson}`);
+  const reviewCount = redirects.filter(
+    r => r.review === "review_destination"
+  ).length;
+  const shareCount = redirects.filter(
+    r => r.review === "intentional_share"
+  ).length;
+  console.log(
+    `[check-urls-external] redirects=${redirects.length} review=${reviewCount} intentional_share=${shareCount} inventory=${artifacts.redirectsJson}`
+  );
 
   // 5. Print workflow summary
   console.log("");

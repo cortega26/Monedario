@@ -1,6 +1,9 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { readFile, rm } from "node:fs/promises";
-import { buildRedirectInventory, writeExternalArtifacts } from "../../scripts/urlcheck/external-artifacts.mjs";
+import {
+  buildRedirectInventory,
+  writeExternalArtifacts,
+} from "../../scripts/urlcheck/external-artifacts.mjs";
 import { URLCHECK_ARTIFACT_DIR } from "../../scripts/urlcheck/constants.mjs";
 
 const GENERATED_FILES = [
@@ -83,7 +86,10 @@ describe("Ahrefs-style external redirect inventory", () => {
       source_url: "https://www.example.gov/old",
       final_url: "https://www.example.gov/updated",
       referrer_url: "https://monedario.cl/posts/a/",
-      referrers: ["https://monedario.cl/posts/a/", "https://monedario.cl/posts/b/"],
+      referrers: [
+        "https://monedario.cl/posts/a/",
+        "https://monedario.cl/posts/b/",
+      ],
       classification: "ok",
       host_category: "official_source",
       status: 200,
@@ -100,23 +106,34 @@ describe("Ahrefs-style external redirect inventory", () => {
     };
     const same = { ...realRedirect, final_url: realRedirect.source_url };
     const failure = { ...realRedirect, error: "timeout", status: null };
-    const inventory = buildRedirectInventory([realRedirect, sharing, same, failure]);
+    const inventory = buildRedirectInventory([
+      realRedirect,
+      sharing,
+      same,
+      failure,
+    ]);
     expect(inventory).toHaveLength(2);
-    expect(inventory.find(r => r.source_url === realRedirect.source_url)).toMatchObject({
+    expect(
+      inventory.find(r => r.source_url === realRedirect.source_url)
+    ).toMatchObject({
       review: "review_destination",
       affected_pages: 2,
       referrers: ["https://monedario.cl/posts/a/", "https://monedario.cl/posts/b/"],
     });
-    expect(inventory.find(r => r.source_url === sharing.source_url)).toMatchObject({
+    expect(
+      inventory.find(r => r.source_url === sharing.source_url)
+    ).toMatchObject({
       review: "intentional_share", affected_pages: 1,
     });
-    await writeExternalArtifacts([realRedirect, sharing, same, failure], { mode: "audit" });
-    const exported = JSON.parse(await readFile(
-      `${URLCHECK_ARTIFACT_DIR}/external-redirects.json`, "utf8"
-    ));
-    const summary = JSON.parse(await readFile(
-      `${URLCHECK_ARTIFACT_DIR}/external-summary.json`, "utf8"
-    ));
+    await writeExternalArtifacts([realRedirect, sharing, same, failure], {
+      mode: "audit",
+    });
+    const exported = JSON.parse(
+      await readFile(`${URLCHECK_ARTIFACT_DIR}/external-redirects.json`, "utf8")
+    );
+    const summary = JSON.parse(
+      await readFile(`${URLCHECK_ARTIFACT_DIR}/external-summary.json`, "utf8")
+    );
     expect(exported).toEqual(inventory);
     expect(summary.redirectedExternalLinks).toBe(2);
     expect(summary.redirectsRequiringReview).toBe(1);
