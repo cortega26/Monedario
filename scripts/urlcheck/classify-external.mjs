@@ -64,6 +64,9 @@ export function classifyExternalResult(link, probe) {
     source_url: link.href,
     final_url: probe.finalUrl,
     referrer_url: referrer,
+    // Preserve the complete affected-page list for forensic redirect reports.
+    // Existing normalized artifacts retain their stable legacy schema.
+    referrers: link.referrers,
     anchor_text: link.anchorText,
     link_type: link.linkType,
     host_category: category,

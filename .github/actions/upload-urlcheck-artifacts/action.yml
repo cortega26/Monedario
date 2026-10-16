@@ -45,7 +45,8 @@ runs:
                 output/validation/urlcheck/external-soft-404.json \
                 output/validation/urlcheck/external-host-mismatch.json \
                 output/validation/urlcheck/external-non-blocking.json \
-                output/validation/urlcheck/external-full.csv
+                output/validation/urlcheck/external-full.csv \
+                output/validation/urlcheck/external-redirects.json
               echo '__URLCHECK_PATHS__'
             } >> "$GITHUB_OUTPUT"
             ;;

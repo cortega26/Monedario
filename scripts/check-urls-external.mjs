@@ -27,7 +27,7 @@ import { MODES } from "./urlcheck/constants.mjs";
 import { extractExternalLinks } from "./urlcheck/extract-external.mjs";
 import { runProbePool } from "./urlcheck/probe-external.mjs";
 import { classifyExternalResult, buildExternalSummary } from "./urlcheck/classify-external.mjs";
-import { writeExternalArtifacts } from "./urlcheck/external-artifacts.mjs";
+import { buildRedirectInventory, writeExternalArtifacts } from "./urlcheck/external-artifacts.mjs";
 
 // ---- Canary test server port range ----
 const CANARY_PORT_BASE = 4500;
@@ -83,6 +83,16 @@ async function main() {
   // 4. Write artifacts
   const artifacts = await writeExternalArtifacts(classifiedResults, { mode });
   console.log(`[check-urls-external] artifacts written: ${Object.values(artifacts).join(", ")}`);
+  const redirects = buildRedirectInventory(classifiedResults);
+  const reviewCount = redirects.filter(
+    r => r.review === "review_destination"
+  ).length;
+  const shareCount = redirects.filter(
+    r => r.review === "intentional_share"
+  ).length;
+  console.log(
+    `[check-urls-external] redirects=${redirects.length} review=${reviewCount} intentional_share=${shareCount} inventory=${artifacts.redirectsJson}`
+  );
 
   // 5. Print workflow summary
   console.log("");

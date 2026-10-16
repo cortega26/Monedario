@@ -147,3 +147,23 @@ Phase 2 amendment (2026-06-19):
 - AGENTS.md Rule 4.3 (ADR trigger for CI gate semantics change).
 - `docs/ADR-20260304-urlcheck-operational-hardening.md` (internal link gate).
 - `context/CONTRACTS.md CONTRACT.INTERNAL_URLCHECK`.
+
+
+## October 2026: Redirect observability addendum (Ahrefs project 9684282)
+
+Ahrefs' 2026-10-15 crawl reported **36 pages with links to redirects**, **32 external 3XX targets**, **one external 5XX** and **four external timeouts**, with 422 internal URLs analyzed and Health Score 99. Its Site Audit API returned `Insufficient plan` for detailed URL lists. The email's **six errors** are an overall error count, not automatically six redirecting URLs.
+
+**Existing gap:** `probeUrl()` follows external redirects and reports the final HTTP code. When a redirect ultimately returns 200, `classifyExternalResult()` marks it `ok`; the prior artifacts exported only non-`ok` rows, so successful redirects were invisible, even if Ahrefs flagged them.
+
+**Remedy:** the non-blocking `external-redirects.json` artifact now inventories every successful external URL whose fetched final URL differs from the original href, including its complete referrer-page list, final destination, host category and a review label. Shares through `wa.me`, `facebook.com/sharer`, `x.com/intent/`, `t.me/share/`, and `linkedin.com/sharing/` are labeled `intentional_share`; these must not trigger auto-rewrites or make CI fail. Other redirects are labeled `review_destination`. Cross-host or misdirected official references retain the existing blocking semantics. We do **not** claim that all historical Ahrefs items are resolved until a new real crawl confirms them.
+
+Run against a current, already-built `dist/`:
+
+```bash
+pnpm run check:urls:external:audit
+node -e "const fs=require('node:fs'); const p='output/validation/urlcheck/external-redirects.json';const rows=JSON.parse(fs.readFileSync(p));console.table(rows.filter(x=>x.review==='review_destination').map(({source_url,final_url,affected_pages})=>({source_url,final_url,affected_pages})));"
+```
+
+Inspect `output/validation/urlcheck/external-hard-fail.json` for actual official-source HTTP 5XX, `external-non-blocking.json` for timeouts/bot defenses, and `external-redirects.json` for 3XXs ending in success. A timeout is not by itself a broken page. Adjust outbound citations only after validating the final destination's correctness and authorship; never change canonical Monedario routes or server redirects to silence a crawler.
+
+The GitHub Actions `urlcheck-artifacts-external-audit` upload includes the new artifact; if Actions minutes are exhausted, execute the same `pnpm` command on an authorized local machine or self-hosted runner and inspect the JSON locally.

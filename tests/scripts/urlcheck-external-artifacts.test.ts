@@ -1,6 +1,9 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { readFile, rm } from "node:fs/promises";
-import { writeExternalArtifacts } from "../../scripts/urlcheck/external-artifacts.mjs";
+import {
+  buildRedirectInventory,
+  writeExternalArtifacts,
+} from "../../scripts/urlcheck/external-artifacts.mjs";
 import { URLCHECK_ARTIFACT_DIR } from "../../scripts/urlcheck/constants.mjs";
 
 const GENERATED_FILES = [
@@ -10,6 +13,7 @@ const GENERATED_FILES = [
   "external-non-blocking.json",
   "external-summary.json",
   "external-full.csv",
+  "external-redirects.json",
 ];
 
 afterEach(async () => {
@@ -73,5 +77,78 @@ describe("writeExternalArtifacts", () => {
     expect(summary.blockingFailures).toBe(1);
     expect(csv).toContain("source_url,final_url,referrer_url,link_type,host_category,classification");
     expect(csv).toContain("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html");
+  });
+});
+
+describe("Ahrefs-style external redirect inventory", () => {
+  it("retains successful HTTP redirects and all referrer pages", async () => {
+    const realRedirect = {
+      source_url: "https://www.example.gov/old",
+      final_url: "https://www.example.gov/updated",
+      referrer_url: "https://monedario.cl/posts/a/",
+      anchor_text: "Ejemplo gubernamental",
+      link_type: "structured" as const,
+      blocking: false,
+      matched_signal: null,
+      expected_host_family: null,
+      referrers: [
+        "https://monedario.cl/posts/a/",
+        "https://monedario.cl/posts/b/",
+      ],
+      classification: "ok" as const,
+      host_category: "official_source",
+      status: 200,
+      error: null,
+    };
+    const sharing = {
+      source_url: "https://wa.me/?text=hello",
+      final_url: "https://api.whatsapp.com/send?text=hello",
+      referrer_url: "https://monedario.cl/posts/a/",
+      anchor_text: "Compartir en WhatsApp",
+      link_type: "inline" as const,
+      blocking: false,
+      matched_signal: null,
+      expected_host_family: null,
+      host_category: "share_endpoint",
+      classification: "ok" as const,
+      status: 200,
+      error: null,
+    };
+    const same = { ...realRedirect, final_url: realRedirect.source_url };
+    const failure = { ...realRedirect, error: "timeout", status: null };
+    const inventory = buildRedirectInventory([
+      realRedirect,
+      sharing,
+      same,
+      failure,
+    ]);
+    expect(inventory).toHaveLength(2);
+    expect(
+      inventory.find((r: { source_url: string }) => r.source_url === realRedirect.source_url)
+    ).toMatchObject({
+      review: "review_destination",
+      affected_pages: 2,
+      referrers: ["https://monedario.cl/posts/a/", "https://monedario.cl/posts/b/"],
+    });
+    expect(
+      inventory.find((r: { source_url: string }) => r.source_url === sharing.source_url)
+    ).toMatchObject({
+      review: "intentional_share", affected_pages: 1,
+    });
+    await writeExternalArtifacts([realRedirect, sharing, same, failure], {
+      mode: "audit",
+    });
+    const exported = JSON.parse(
+      await readFile(`${URLCHECK_ARTIFACT_DIR}/external-redirects.json`, "utf8")
+    );
+    const summary = JSON.parse(
+      await readFile(`${URLCHECK_ARTIFACT_DIR}/external-summary.json`, "utf8")
+    );
+    expect(exported).toEqual(inventory);
+    expect(summary.redirectedExternalLinks).toBe(2);
+    expect(summary.redirectsRequiringReview).toBe(1);
+    expect(summary.intentionalShareRedirects).toBe(1);
+    // A success redirect is not promoted into an audit-blocking failure.
+    expect(summary.blockingFailures).toBe(0);
   });
 });
