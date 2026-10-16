@@ -22,7 +22,7 @@ const YMYL_SOURCES: Readonly<Record<string, { label: string; url: string }>> = {
   },
   credit: {
     label: "Comisión para el Mercado Financiero",
-    url: "https://www.cmfchile.cl/portal/principal/613/w3-channel.html",
+    url: "https://www.cmfchile.cl/portal/principal/623/w4-channel.html",
   },
 };
 

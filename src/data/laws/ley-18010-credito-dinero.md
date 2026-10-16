@@ -51,13 +51,13 @@ La ley prohíbe que el acreedor capitalice intereses impagos para cobrar interé
 
 ### ¿Cómo verificar si tu tasa supera la TMC?
 
-La CMF publica mensualmente la TMC vigente en [cmfchile.cl](https://www.cmfchile.cl/portal/principal/613/w3-channel.html). Compara la tasa que aparece en tu contrato o en la simulación de crédito con la TMC del mes en que contrataste. Si la supera, tienes derecho a impugnarla.
+La CMF publica mensualmente la TMC vigente en [cmfchile.cl](https://www.cmfchile.cl/portal/principal/623/w4-channel.html). Compara la tasa que aparece en tu contrato o en la simulación de crédito con la TMC del mes en que contrataste. Si la supera, tienes derecho a impugnarla.
 
 ## Texto oficial
 
 Texto completo y modificaciones: [BCN — Ley 18.010](https://www.bcn.cl/leychile/navegar?idNorma=29438)
 
-Tasas vigentes: [CMF — Tasa Máxima Convencional e interés corriente](https://www.cmfchile.cl/portal/estadisticas/617/w3-propertyvalue-43345.html?indice=15.1)
+Tasas vigentes: [CMF — Tasa Máxima Convencional e interés corriente](https://www.cmfchile.cl/portal/estadisticas/626/w4-propertyvalue-43285.html)
 
 ---
 

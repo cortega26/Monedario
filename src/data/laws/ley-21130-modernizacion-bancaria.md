@@ -51,7 +51,7 @@ Bajo la Ley 21.130, la CMF fiscaliza:
 Si tienes un problema con tu banco que no se resuelve internamente, el canal oficial es:
 
 1. **Reclamo interno:** primero al banco (tienen plazo para responder).
-2. **CMF:** si el banco no responde o rechaza tu reclamo sin fundamento, puedes acudir al [portal de reclamos de la CMF](https://www.cmfchile.cl/portal/principal/613/w3-channel.html).
+2. **CMF:** si el banco no responde o rechaza tu reclamo sin fundamento, puedes acudir al [portal de reclamos de la CMF](https://www.cmfchile.cl/portal/principal/623/w4-channel.html).
 3. **SERNAC:** también puede recibir reclamos por incumplimientos de la Ley del Consumidor (19.496) en servicios financieros.
 
 ### Basilea III y requisitos de capital
@@ -62,7 +62,7 @@ La Ley 21.130 incorporó estándares de capital bancario más exigentes (Basilea
 
 Texto completo: [BCN — Ley 21.130](https://www.bcn.cl/leychile/navegar?idNorma=1129754)
 
-Supervisión bancaria: [CMF — Canal bancario](https://www.cmfchile.cl/portal/principal/613/w3-channel.html)
+Supervisión bancaria: [CMF — Canal bancario](https://www.cmfchile.cl/portal/principal/623/w4-channel.html)
 
 ---
 
