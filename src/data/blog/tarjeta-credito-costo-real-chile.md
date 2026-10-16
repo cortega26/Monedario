@@ -55,7 +55,7 @@ Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto
 
 ## Cómo funciona el interés en una tarjeta
 
-Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **[tasa máxima convencional (TMC)](https://www.cmfchile.cl/portal/estadisticas/617/w3-propertyvalue-30141.html)** para tarjetas, que es el techo legal que ningún emisor puede superar.
+Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **[tasa máxima convencional (TMC)](https://www.cmfchile.cl/portal/estadisticas/626/w4-propertyvalue-30141.html)** para tarjetas, que es el techo legal que ningún emisor puede superar.
 
 El mecanismo central es este: si no pagas el saldo completo al vencimiento del estado de cuenta, sobre el saldo restante se [calculan intereses](https://www.cmfchile.cl/portal/principal/613/w3-article-27793.html). Esos intereses se suman al siguiente saldo, y el ciclo continúa.
 
@@ -81,7 +81,7 @@ La calculadora muestra el escenario completo para tus números reales.
 ## Cómo usar esta calculadora
 
 1. **Ingresa el saldo actual** de tu tarjeta — lo encuentras en el estado de cuenta o en la app de tu banco o emisor.
-2. **Ingresa la tasa de interés mensual** — revisa tu contrato o estado de cuenta; si no la encuentras, puedes usar la TMC vigente de la CMF como referencia de techo. Ojo: la TMC se publica como tasa anual por tramo en el [certificado mensual](https://www.cmfchile.cl/portal/estadisticas/617/w3-propertyvalue-30141.html), así que divídela por 12 (referencia nominal) antes de ingresarla como mensual.
+2. **Ingresa la tasa de interés mensual** — revisa tu contrato o estado de cuenta; si no la encuentras, puedes usar la TMC vigente de la CMF como referencia de techo. Ojo: la TMC se publica como tasa anual por tramo en el [certificado mensual](https://www.cmfchile.cl/portal/estadisticas/626/w4-propertyvalue-30141.html), así que divídela por 12 (referencia nominal) antes de ingresarla como mensual.
 3. **Ingresa el pago mensual que puedes hacer** — puedes probar con el pago mínimo, con un monto fijo mayor o con el objetivo de liquidar en N meses.
 4. **Lee los resultados**: la calculadora muestra el total de cuotas, el total de intereses pagados y el tiempo estimado de pago.
 5. **Compara escenarios**: ajusta el monto del pago y observa cómo cambia radicalmente el costo final y el plazo.
@@ -96,7 +96,7 @@ Esta calculadora es útil cuando:
 
 No usarla si lo que necesitas es comparar ofertas de nuevas tarjetas — para eso usa la CAE de cada emisor.
 
-**Lo que viene (hoy vs después):** el nuevo Reglamento de Tarjetas de Crédito ([DS N° 75](https://www.sernac.cl/604/w3-article-89070.html), publicado en el Diario Oficial el 2026-08-06) reemplaza la regulación de 2012 y entra en vigencia 18 meses después (alrededor del 2028-02-06). Hoy no cambia tu cartola, pero exigirá información más clara y comparable.
+**Lo que viene (hoy vs después):** el nuevo Reglamento de Tarjetas de Crédito ([DS N° 75](https://www.sernac.cl/portal/604/w3-article-89070.html), publicado en el Diario Oficial el 2026-08-06) reemplaza la regulación de 2012 y entra en vigencia 18 meses después (alrededor del 2028-02-06). Hoy no cambia tu cartola, pero exigirá información más clara y comparable.
 
 ## Señales de que la deuda rotativa ya es un problema
 

@@ -251,7 +251,7 @@ Usa una calculadora de crédito de consumo para estimar CAE, cuota y costo total
 
 La información de esta guía se basa en la normativa vigente a marzo de 2026. Los valores de TMC cambian mensualmente y deben verificarse directamente en las fuentes:
 
-- **CMF — Tasa Máxima Convencional:** [cmfchile.cl](https://www.cmfchile.cl/portal/estadisticas/617/w3-propertyvalue-43345.html?indice=15.1)
+- **CMF — Tasa Máxima Convencional:** [cmfchile.cl](https://www.cmfchile.cl/portal/estadisticas/626/w4-propertyvalue-43285.html)
 - **SERNAC — Derechos del consumidor financiero, simulador de créditos y denuncias:** [sernac.cl](https://www.sernac.cl)
 - **Ley N° 18.010 — Operaciones de crédito de dinero (prepago, tasa, TMC):** [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=29438)
 - **CMF Educa — Crédito de consumo y Hoja de Información Precontractual:** [cmfchile.cl/educa](https://www.cmfchile.cl/educa/621/w3-propertyvalue-43579.html)

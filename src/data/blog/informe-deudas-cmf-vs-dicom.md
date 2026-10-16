@@ -159,7 +159,7 @@ Puedes consultarlo en [boletincomercial.cl](https://www.boletincomercial.cl/). S
 
 **Segundo:** Contacta directamente a esa institución y solicita información sobre el origen de la deuda. Tienen obligación de responderte.
 
-**Tercero:** Si la institución confirma que es un error, pide que corrijan el reporte a la CMF. Si no responden o niegan el error, puedes presentar un reclamo formal en la CMF a través de su [formulario de reclamos](https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html).
+**Tercero:** Si la institución confirma que es un error, pide que corrijan el reporte a la CMF. Si no responden o niegan el error, puedes presentar un reclamo formal en la CMF a través de su [formulario de reclamos](https://www.cmfchile.cl/portal/principal/623/w4-propertyvalue-48790.html).
 
 **Cuarto:** Si sospechas que hubo suplantación de identidad (alguien contrató un crédito a tu nombre sin tu autorización), debes hacer la denuncia policial correspondiente además del reclamo a la CMF.
 
@@ -196,7 +196,7 @@ No. Solo tú puedes ver tu propio informe usando tu ClaveÚnica. La ley permite 
 <details>
 <summary>¿Puedo pedirlo si soy heredero de una persona fallecida?</summary>
 
-Sí, con documentación que acredite la calidad de heredero. El trámite es 100% en línea a través de CMF sin papel ([trámite para herederos](https://www.cmfchile.cl/portal/principal/613/w3-article-95399.html)); también existe la vía presencial.
+Sí, con documentación que acredite la calidad de heredero. El trámite es 100% en línea a través de CMF sin papel ([trámite para herederos](https://www.cmfchile.cl/portal/principal/623/w4-article-95399.html)); también existe la vía presencial.
 
 </details>
 

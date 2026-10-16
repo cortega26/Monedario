@@ -16,18 +16,18 @@ category: prevision
 cluster: pensiones-afp
 topicRole: owner
 canonicalTopic: cartola-afp
-description: "Guía completa para leer la cartola AFP trimestral: qué muestra cada sección, qué errores buscar y cómo reclamar ante la Superintendencia de Pensiones."
+description: "Guía completa para leer la cartola AFP cuatrimestral: qué muestra cada sección, qué errores buscar y cómo reclamar ante la Superintendencia de Pensiones."
 heroImage: /images/hero/como-leer-cartola-afp-chile.avif
 articleLead:
-  answer: "La cartola AFP es un estado de cuenta trimestral que llega en enero, abril, julio y octubre. Muestra tu saldo, las cotizaciones del período, la comisión cobrada y la rentabilidad de tu fondo. Vigente a 2026-04-09."
+  answer: "La cartola AFP es un estado de cuenta cuatrimestral, emitido cada cuatro meses. Muestra el saldo, las cotizaciones del período, la comisión cobrada y la rentabilidad del fondo. Vigente a 2026-10-16."
   calculatorHref: "/calculadoras/comisiones-afp/"
   calculatorLabel: "Comparar comisiones AFP"
   nextStepHref: "/posts/fondos-afp-a-b-c-d-e/"
   nextStepLabel: "Entiende los fondos que aparecen en tu cartola"
-  validAsOf: 2026-05-11
+  validAsOf: 2026-10-16
   officialSources:
-    - label: "Superintendencia de Pensiones — Información al afiliado"
-      href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html"
+    - label: "Superintendencia de Pensiones — Normativa sobre cartolas"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-article-7854.html"
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/"
   covers:
@@ -39,9 +39,9 @@ articleLead:
     - "No cubre retiros extraordinarios ni productos de rentas vitalicias."
 faqs:
   - q: "¿Con qué frecuencia llega la cartola AFP?"
-    a: "La cartola AFP es trimestral. Llega cuatro veces al año: en enero (resumen oct–dic), abril (resumen ene–mar), julio (resumen abr–jun) y octubre (resumen jul–sep). Vigente a 2026-04-09."
+    a: "La cartola AFP es cuatrimestral: se emite tres veces al año, con los movimientos de los cuatro meses anteriores. Según la normativa vigente de la Superintendencia de Pensiones."
   - q: "¿Qué sección muestra cuánto gané o perdí?"
-    a: "La sección de Rentabilidad muestra la variación del valor de tu fondo en el trimestre y la rentabilidad acumulada desde que te afiliaste. Si el fondo tuvo pérdidas, el valor cuota baja y el saldo disminuye."
+    a: "La sección de Rentabilidad muestra la variación del valor de tu fondo en el cuatrimestre y la rentabilidad acumulada desde que te afiliaste. Si el fondo tuvo pérdidas, el valor cuota baja y el saldo disminuye."
   - q: "¿Por qué la rentabilidad de mi cartola es distinta a la del fondo?"
     a: "La rentabilidad de tu cartola refleja el movimiento de tu saldo particular, que puede diferir de la rentabilidad general del fondo si hiciste cambios de fondo, aportes voluntarios o si tu empleador cotizó en fechas distintas al promedio del fondo."
   - q: "¿Qué hago si falta un mes de cotización en la cartola?"
@@ -60,14 +60,14 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.prevision
   computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+updatedDate: 2026-10-16T00:00:00Z
 ---
 
-La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período.
+La **cartola AFP** es tu estado de cuenta previsional cuatrimestral. Se emite tres veces al año y resume lo que pasó con tu dinero durante los cuatro meses informados.
 
-**Respuesta rápida:** La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo.
+**Respuesta rápida:** La cartola AFP se emite cada cuatro meses (tres veces al año), muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo.
 **Vigencia:** 2026-04-09.
-**Fuente:** [Superintendencia de Pensiones — Información al afiliado](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html).
+**Fuente:** [Superintendencia de Pensiones — Normativa sobre cartolas](https://www.spensiones.cl/portal/institucional/594/w3-article-7854.html).
 
 Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu [AFP](/glosario/afp/). Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores.
 
@@ -83,8 +83,8 @@ La Superintendencia de Pensiones exige un formato mínimo estandarizado para tod
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Datos del afiliado**                | Nombre completo, RUT, AFP, tipo de fondo actual (A, B, C, D o E)                                                                                                                | Que el fondo sea el que elegiste. Si ves un fondo equivocado, revisa [aquí qué implica cada fondo](/posts/fondos-afp-a-b-c-d-e/).                                 |
 | **Saldo por tipo de cuenta**          | Saldo en cuenta obligatoria (CCI), Cuenta 2 si la tienes, y cuenta de ahorro de indemnización (CAI) si aplica                                                                   | Que los saldos sean coherentes con el período anterior más cotizaciones menos retiros autorizados                                                                 |
-| **Cotizaciones del período**          | Mes a mes: renta imponible declarada, cotización obligatoria (10%), comisión AFP cobrada, SIS (seguro de invalidez y sobrevivencia), y aporte adicional del empleador si aplica | Que aparezcan los tres meses del trimestre; que la renta imponible coincida con tu liquidación de sueldo; que la comisión coincida con la tabla vigente de tu AFP |
-| **Rentabilidad**                      | Rentabilidad del fondo en el período (trimestre) y rentabilidad acumulada                                                                                                       | No compare porcentajes entre trimestres sin contexto; son normales las variaciones negativas en fondos más riesgosos (A, B)                                       |
+| **Cotizaciones del período**          | Mes a mes: renta imponible declarada, cotización obligatoria (10%), comisión AFP cobrada, SIS (seguro de invalidez y sobrevivencia), y aporte adicional del empleador si aplica | Que aparezcan los cuatro meses del cuatrimestre; que la renta imponible coincida con tu liquidación de sueldo; que la comisión coincida con la tabla vigente de tu AFP |
+| **Rentabilidad**                      | Rentabilidad del fondo en el período (cuatrimestre) y rentabilidad acumulada                                                                                                       | No compare porcentajes entre cuatrimestres sin contexto; son normales las variaciones negativas en fondos más riesgosos (A, B)                                       |
 | **Información de contacto y reclamo** | Datos del fondo, canales de atención de la AFP, referencia a la Superintendencia de Pensiones                                                                                   | Que tengas el fono y portal web de tu AFP anotados por si necesitas reclamar                                                                                      |
 
 > **Nota sobre la comisión:** Cada AFP cobra una comisión porcentual sobre la renta imponible. Puedes comparar las comisiones vigentes en nuestra [calculadora de comisiones AFP](/calculadoras/comisiones-afp/). El SIS (Seguro de Invalidez y Sobrevivencia) es un cargo separado que también aparece en la cotización.
@@ -97,7 +97,7 @@ No todos los errores son visibles a simple vista. Estos son los cinco problemas 
 
 ### 1. Mes con cotización faltante
 
-Si el período cubre enero–marzo y solo aparecen dos meses de cotización, hay un mes sin movimiento. Las causas pueden ser:
+Si el período cubre enero–abril y solo aparecen dos meses de cotización, hay un mes sin movimiento. Las causas pueden ser:
 
 - El empleador no cotizó (mora previsional).
 - Estuviste con licencia médica y el pago quedó en nombre de CCAF o Isapre.
@@ -121,7 +121,7 @@ La cartola indica en qué fondo está invertido tu dinero (A, B, C, D o E). Si n
 
 ### 5. Cotizaciones de trabajador independiente (PPM)
 
-Si emites boletas de honorarios, tus cotizaciones se canalizan como PPM (Pago Provisional Mensual) a través de tu declaración de impuestos anual. Verifica que el aporte aparezca en la cartola del trimestre correspondiente. Si no figura, revisa tu declaración en el SII y contacta a la SP si la inconsistencia persiste.
+Si emites boletas de honorarios, tus cotizaciones se canalizan como PPM (Pago Provisional Mensual) a través de tu declaración de impuestos anual. Verifica que el aporte aparezca en la cartola del cuatrimestre correspondiente. Si no figura, revisa tu declaración en el SII y contacta a la SP si la inconsistencia persiste.
 
 ---
 
@@ -143,7 +143,7 @@ En tu reclamo indica: RUT, período afectado, número de la cartola, campo con e
 
 Si la AFP no resolvió en plazo o la solución fue insatisfactoria, presenta tu reclamo en **SP Atiende** de la Superintendencia de Pensiones:
 
-- **Portal SP Atiende:** [spensiones.cl](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html)
+- **Portal SP Atiende:** [reclamos contra AFP](https://www.spensiones.cl/portal/institucional/597/w3-article-15726.html)
 - **Plazo para reclamar:** Hasta **4 años** desde el período en cuestión (vigente a 2026-04-09, conforme normativa SP).
 
 Sube el comprobante de tu reclamo ante la AFP, tu cartola, y la liquidación de sueldo que demuestra el error. La SP tiene facultades para obligar a la AFP a corregir.
@@ -156,11 +156,11 @@ Sube el comprobante de tu reclamo ante la AFP, tu cartola, y la liquidación de 
 
 **¿Con qué frecuencia llega la cartola AFP?**
 
-La cartola AFP es trimestral. Llega cuatro veces al año: en enero (resumen oct–dic), abril (resumen ene–mar), julio (resumen abr–jun) y octubre (resumen jul–sep). Vigente a 2026-04-09.
+La cartola AFP es cuatrimestral: se emite tres veces al año, con los movimientos de los cuatro meses anteriores, según la normativa de la Superintendencia de Pensiones.
 
 **¿Qué sección muestra cuánto gané o perdí?**
 
-La sección de **Rentabilidad** muestra la variación del valor de tu fondo en el trimestre y la rentabilidad acumulada desde que te afiliaste. Si el fondo tuvo pérdidas, el valor cuota baja y el saldo disminuye. Esto es una característica normal de los fondos de mayor riesgo (A y B).
+La sección de **Rentabilidad** muestra la variación del valor de tu fondo en el cuatrimestre y la rentabilidad acumulada desde que te afiliaste. Si el fondo tuvo pérdidas, el valor cuota baja y el saldo disminuye. Esto es una característica normal de los fondos de mayor riesgo (A y B).
 
 **¿Por qué la rentabilidad de mi cartola es distinta a la del fondo?**
 
@@ -178,7 +178,7 @@ Primero contacta a tu AFP directamente (portal web, fono de atención, sucursal)
 
 ### Fuentes oficiales
 
-- Superintendencia de Pensiones — Portal SP Atiende y reclamos: <https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html>
+- Superintendencia de Pensiones — Reclamos contra AFP: <https://www.spensiones.cl/portal/institucional/597/w3-article-15726.html>
 - Superintendencia de Pensiones — Inicio fondos generacionales (abril 2027): <https://www.spensiones.cl>
 - BCN — Ley N° 21.735 (reforma previsional): <https://www.bcn.cl/leychile/navegar?idNorma=1212060>
 - ChileAtiende — Aportes del empleador al sistema de pensiones: <https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones>
