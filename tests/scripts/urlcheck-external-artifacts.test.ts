@@ -86,11 +86,16 @@ describe("Ahrefs-style external redirect inventory", () => {
       source_url: "https://www.example.gov/old",
       final_url: "https://www.example.gov/updated",
       referrer_url: "https://monedario.cl/posts/a/",
+      anchor_text: "Ejemplo gubernamental",
+      link_type: "structured" as const,
+      blocking: false,
+      matched_signal: null,
+      expected_host_family: null,
       referrers: [
         "https://monedario.cl/posts/a/",
         "https://monedario.cl/posts/b/",
       ],
-      classification: "ok",
+      classification: "ok" as const,
       host_category: "official_source",
       status: 200,
       error: null,
@@ -99,8 +104,13 @@ describe("Ahrefs-style external redirect inventory", () => {
       source_url: "https://wa.me/?text=hello",
       final_url: "https://api.whatsapp.com/send?text=hello",
       referrer_url: "https://monedario.cl/posts/a/",
+      anchor_text: "Compartir en WhatsApp",
+      link_type: "inline" as const,
+      blocking: false,
+      matched_signal: null,
+      expected_host_family: null,
       host_category: "share_endpoint",
-      classification: "ok",
+      classification: "ok" as const,
       status: 200,
       error: null,
     };
@@ -114,14 +124,14 @@ describe("Ahrefs-style external redirect inventory", () => {
     ]);
     expect(inventory).toHaveLength(2);
     expect(
-      inventory.find(r => r.source_url === realRedirect.source_url)
+      inventory.find((r: { source_url: string }) => r.source_url === realRedirect.source_url)
     ).toMatchObject({
       review: "review_destination",
       affected_pages: 2,
       referrers: ["https://monedario.cl/posts/a/", "https://monedario.cl/posts/b/"],
     });
     expect(
-      inventory.find(r => r.source_url === sharing.source_url)
+      inventory.find((r: { source_url: string }) => r.source_url === sharing.source_url)
     ).toMatchObject({
       review: "intentional_share", affected_pages: 1,
     });
