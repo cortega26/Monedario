@@ -33,7 +33,7 @@ runs:
             [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
             [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
             [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
-            [ -f output/validation/urlcheck/external-redirects.json ] || printf '[]\\n' > output/validation/urlcheck/external-redirects.json
+            [ -f output/validation/urlcheck/external-redirects.json ] || printf '[]\n' > output/validation/urlcheck/external-redirects.json
             ;;
           *)
             echo "Unsupported urlcheck scope: $URLCHECK_SCOPE" >&2
