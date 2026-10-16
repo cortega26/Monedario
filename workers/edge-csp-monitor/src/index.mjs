@@ -22,7 +22,35 @@ async function githubRequest(env, url, options = {}) {
       ...(options.body ? { "Content-Type": "application/json" } : {}),
     },
   });
-  if (!response.ok) throw new Error("GitHub issue notification HTTP " + response.status);
+  if (!response.ok) {
+    // Only report fixed, non-secret fields. GitHub's response body can
+    // distinguish insufficient token scope, API abuse limits and SSO policy.
+    // Never log request headers, Authorization, or the token itself.
+    const method = options.method ?? "GET";
+    const body = await response.text();
+    let message = "unavailable";
+    try {
+      const parsed = JSON.parse(body);
+      if (typeof parsed.message === "string") {
+        message = parsed.message
+          .replace(/(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+/g, "[redacted-token]")
+          .replace(/\s+/g, " ")
+          .slice(0, 240);
+      }
+    } catch {
+      // Non-JSON errors are intentionally not reproduced in logs.
+    }
+    const accepted = response.headers.get("x-accepted-github-permissions") ?? "unspecified";
+    const remaining = response.headers.get("x-ratelimit-remaining") ?? "unknown";
+    const retryAfter = response.headers.get("retry-after") ?? "none";
+    throw new Error(
+      "GitHub issue notification " + method + " HTTP " + response.status +
+      " message=" + JSON.stringify(message) +
+      " accepted-permissions=" + JSON.stringify(accepted.slice(0, 160)) +
+      " rate-limit-remaining=" + JSON.stringify(remaining.slice(0, 16)) +
+      " retry-after=" + JSON.stringify(retryAfter.slice(0, 16))
+    );
+  }
   return response.json();
 }
 
