@@ -140,6 +140,6 @@ Si quieres ampliar el mapa de este tema, revisa también la [sección Seguridad 
 
 - SERNAC, fraude en medios de pago y orientación al consumidor: https://www.sernac.cl/portal/604/w3-propertyname-791.html
 - CSIRT de Gobierno, alertas de ciberseguridad: https://csirt.gob.cl/
-- CMF, canal de reclamos para entidades supervisadas: https://www.cmfchile.cl/portal/principal/623/w4-propertyvalue-48790.html
+- CMF, canal de reclamos para entidades supervisadas: https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html
 - CMF, listado público de corredores de bolsa: https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V
 - Ley N° 20.009, responsabilidad bancaria por uso fraudulento de tarjetas: <https://www.bcn.cl/leychile/navegar?idNorma=236736>

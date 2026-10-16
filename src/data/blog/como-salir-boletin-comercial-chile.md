@@ -134,7 +134,7 @@ Una anotación incorrecta puede ser: un error en tus datos (RUT, nombre), una de
 
 Identifica la empresa o persona que reportó la anotación y comunícate directamente con ella. Tienes derecho a exigir información sobre el origen del protesto y a que corrijan los datos erróneos. Pide respuesta escrita.
 
-Si además tienes un conflicto de consumo con el acreedor como proveedor (un cobro indebido o un incumplimiento de la Ley 19.496), ese reclamo va al SERNAC ([Portal del Consumidor](https://www.sernac.cl/portal/617/w3-propertyvalue-518.html)) y, si corresponde, al Juzgado de Policía Local; la eliminación del dato en el Boletín sigue la vía del responsable del registro y el juzgado civil descrita en esta guía.
+Si además tienes un conflicto de consumo con el acreedor como proveedor (un cobro indebido o un incumplimiento de la Ley 19.496), ese reclamo va al SERNAC ([Portal del Consumidor](https://www.sernac.cl/portal-del-consumidor)) y, si corresponde, al Juzgado de Policía Local; la eliminación del dato en el Boletín sigue la vía del responsable del registro y el juzgado civil descrita en esta guía.
 
 ### Paso 2 — Exige al responsable y recurre al juzgado si el acreedor no corrige
 

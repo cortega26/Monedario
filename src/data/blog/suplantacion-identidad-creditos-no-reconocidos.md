@@ -91,7 +91,7 @@ Guarda el comprobante con número de parte y fecha. Ese documento te lo pedirán
 
 ### Paso 4 — Escala a CMF si la institución no responde
 
-Si la respuesta de la institución es incompleta, fuera de plazo o te niegan el reclamo sin justificación, escala a la [CMF](https://www.cmfchile.cl/portal/principal/623/w4-channel.html). La CMF fiscaliza a bancos, cooperativas, emisoras de tarjetas y otras entidades supervisadas. Reclamar ante la CMF puede ayudarte a exigir una respuesta formal de una entidad supervisada.
+Si la respuesta de la institución es incompleta, fuera de plazo o te niegan el reclamo sin justificación, escala a la [CMF](https://www.cmfchile.cl/portal/principal/613/w3-channel.html). La CMF fiscaliza a bancos, cooperativas, emisoras de tarjetas y otras entidades supervisadas. Reclamar ante la CMF puede ayudarte a exigir una respuesta formal de una entidad supervisada.
 
 Si la institución no está supervisada por CMF, escala al SERNAC para mediación de consumo.
 
