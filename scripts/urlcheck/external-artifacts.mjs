@@ -8,6 +8,7 @@ const EXTERNAL_HOST_MISMATCH_JSON = "external-host-mismatch.json";
 const EXTERNAL_NON_BLOCKING_JSON = "external-non-blocking.json";
 const EXTERNAL_SUMMARY_JSON = "external-summary.json";
 const EXTERNAL_FULL_CSV = "external-full.csv";
+const EXTERNAL_REDIRECTS_JSON = "external-redirects.json";
 
 /**
  * Writes all external-link audit artifacts to URLCHECK_ARTIFACT_DIR.
@@ -28,7 +29,10 @@ export async function writeExternalArtifacts(results, { mode }) {
     (r) => r.classification === "non_blocking_host_issue" || r.classification === "network_error"
   );
 
-  const summary = buildSummaryPayload(results, mode);
+  // Redirects can end on HTTP 200 and therefore classify as "ok".
+  // Retain those redirects independently for Ahrefs-style SEO review.
+  const redirects = buildRedirectInventory(results);
+  const summary = buildSummaryPayload(results, mode, redirects);
 
   const paths = {
     hardFailJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_HARD_FAIL_JSON),
@@ -37,6 +41,7 @@ export async function writeExternalArtifacts(results, { mode }) {
     nonBlockingJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_NON_BLOCKING_JSON),
     summaryJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_SUMMARY_JSON),
     fullCsv: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_FULL_CSV),
+    redirectsJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_REDIRECTS_JSON),
   };
 
   const rows = results.filter((r) => r.classification !== "ok");
@@ -56,6 +61,7 @@ export async function writeExternalArtifacts(results, { mode }) {
     ),
     writeFile(paths.summaryJson, `${JSON.stringify(summary, null, 2)}\n`, "utf8"),
     writeFile(paths.fullCsv, toCsv(rows), "utf8"),
+    writeFile(paths.redirectsJson, `${JSON.stringify(redirects, null, 2)}\n`, "utf8"),
   ]);
 
   await assertArtifactIntegrity(Object.values(paths));
@@ -89,7 +95,52 @@ function normaliseRows(rows) {
   return rows.map(normaliseRow);
 }
 
-function buildSummaryPayload(results, mode) {
+/**
+ * Collect every external URL whose final destination differs from the href.
+ * This is a report, not a block gate: sharing endpoints legitimately redirect.
+ * Consumers must not rewrite official citations without verifying destination.
+ */
+export function buildRedirectInventory(results) {
+  const intentionalSharingHosts = new Set([
+    "wa.me", "www.facebook.com", "facebook.com", "x.com",
+    "t.me", "www.linkedin.com",
+  ]);
+  const intentionalSharingPaths = new Map([
+    ["wa.me", ["/"]],
+    ["www.facebook.com", ["/sharer.php", "/sharer/sharer.php"]],
+    ["facebook.com", ["/sharer.php", "/sharer/sharer.php"]],
+    ["x.com", ["/intent/"]],
+    ["t.me", ["/share/"]],
+    ["www.linkedin.com", ["/sharing/"]],
+  ]);
+  return results.flatMap(r => {
+    if (r.error || r.status == null || r.status >= 400 || !r.final_url) return [];
+    let start, end;
+    try {
+      start = new URL(r.source_url);
+      end = new URL(r.final_url);
+    } catch { return []; }
+    if (start.href === end.href) return [];
+    const paths = intentionalSharingPaths.get(start.hostname) ?? [];
+    const isSharing = intentionalSharingHosts.has(start.hostname) &&
+      paths.some(prefix => start.pathname.startsWith(prefix));
+    const referrers = Array.isArray(r.referrers)
+      ? r.referrers
+      : r.referrer_url ? [r.referrer_url] : [];
+    return [{
+      source_url: r.source_url,
+      final_url: r.final_url,
+      referrers,
+      affected_pages: referrers.length,
+      host_category: r.host_category,
+      status: r.status,
+      classification: r.classification,
+      review: isSharing ? "intentional_share" : "review_destination",
+    }];
+  }).sort((a, b) => a.source_url.localeCompare(b.source_url));
+}
+
+function buildSummaryPayload(results, mode, redirects = buildRedirectInventory(results)) {
   const nonOk = results.filter((r) => r.classification !== "ok");
   const blockingCount = nonOk.filter((r) => r.blocking).length;
 
@@ -117,6 +168,9 @@ function buildSummaryPayload(results, mode) {
     scannedExternalLinks: results.length,
     blockingFailures: blockingCount,
     totalNonOk: nonOk.length,
+    redirectedExternalLinks: redirects.length,
+    redirectsRequiringReview: redirects.filter(r => r.review === "review_destination").length,
+    intentionalShareRedirects: redirects.filter(r => r.review === "intentional_share").length,
     byClassification,
     byHost,
   };
