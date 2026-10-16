@@ -96,15 +96,51 @@ test("active mode comments only on existing incident and never leaks token", asy
   }
 });
 
-test("fails loudly if GitHub refuses to deliver an alert", async () => {
+
+test("GitHub API 403 diagnoses read scope without exposing the token", async () => {
   const savedFetch = globalThis.fetch;
-  globalThis.fetch = async () => new Response("Forbidden", { status: 403 });
+  const secret = "github_pat_do_not_print_012345";
+  globalThis.fetch = async () => new Response(
+    JSON.stringify({ message: "Resource not accessible by personal access token: " + secret }),
+    { status: 403, headers: { "x-accepted-github-permissions": "issues=read", "x-ratelimit-remaining": "4999" } }
+  );
   try {
     const env = {
-      MONITOR_MODE: "active", EDGE_MONITOR_GITHUB_TOKEN: "test",
+      MONITOR_MODE: "active", EDGE_MONITOR_GITHUB_TOKEN: secret,
       BROWSER: { async quickAction() { return new Response(good); } },
     };
-    await assert.rejects(runScheduled(env), /notification HTTP 403/);
+    await assert.rejects(
+      runScheduled(env, new Date("2026-10-16T09:15:00Z"), noWait),
+      (error) => {
+        assert.match(error.message, /GitHub issue notification GET HTTP 403/);
+        assert.match(error.message, /Resource not accessible by personal access token/);
+        assert.match(error.message, /accepted-permissions="issues=read"/);
+        assert.match(error.message, /rate-limit-remaining="4999"/);
+        assert.ok(!error.message.includes(secret));
+        return true;
+      }
+    );
+  } finally {
+    globalThis.fetch = savedFetch;
+  }
+});
+
+test("GitHub API 403 identifies comment POST separately from successful GET", async () => {
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (_url, options = {}) => options.method === "POST"
+    ? new Response(JSON.stringify({ message: "You have exceeded a secondary rate limit." }), {
+        status: 403, headers: { "retry-after": "60", "x-ratelimit-remaining": "4800" },
+      })
+    : new Response("[]", { status: 200, headers: { "content-type": "application/json" } });
+  try {
+    const env = {
+      MONITOR_MODE: "active", EDGE_MONITOR_GITHUB_TOKEN: "fake-test-token",
+      BROWSER: { async quickAction() { return new Response(good); } },
+    };
+    await assert.rejects(
+      runScheduled(env, new Date("2026-10-16T09:15:00Z"), noWait),
+      /GitHub issue notification POST HTTP 403.*secondary rate limit.*retry-after="60"/
+    );
   } finally {
     globalThis.fetch = savedFetch;
   }
