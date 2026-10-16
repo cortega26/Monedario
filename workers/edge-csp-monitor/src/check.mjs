@@ -53,14 +53,17 @@ export function parseLatestMonitorComment(comments) {
 }
 
 export function shouldComment(status, previous, date) {
-  if (!previous) return status !== "ok";
+  // A single successful baseline comment proves GitHub Issues write access
+  // when the monitor is first activated, without manufacturing a drift event.
+  // Later clean runs stay silent until a state change.
+  if (!previous) return true;
   if (previous.status !== status) return true;
   return status !== "ok" && previous.date !== date;
 }
 
 export function makeComment({ status, results, timestamp }) {
   const date = timestamp.slice(0, 10);
-  const headline = status === "ok" ? "RECOVERY" : status === "drift" ? "DRIFT DETECTED" : "CHECK INCONCLUSIVE";
+  const headline = status === "ok" ? "CLEAN BASELINE / RECOVERY" : status === "drift" ? "DRIFT DETECTED" : "CHECK INCONCLUSIVE";
   const rows = results.map(result =>
     "- `" + result.path + "`: **" + result.status + "**" +
     (result.findings.length ? " — " + result.findings.join(", ") : "")
@@ -75,7 +78,7 @@ export function makeComment({ status, results, timestamp }) {
       ? "**Action:** inspect Cloudflare Security → Settings → Precursor and Security → Bots → JavaScript Detections. Keep CSP strict and Brotli enabled."
       : status === "inconclusive"
         ? "**Action:** investigate challenge, browser service, or page availability; this is NOT proof that Precursor is enabled."
-        : "Recovery observed from this probe. Independently verify in a normal Chromium browser.",
+        : "No injection signatures detected in this baseline/recovery. Independently verify in a normal Chromium browser.",
     "",
     "Limit: Browser Run is identifiable as automation; this does not replace a normal-visitor Chromium smoke or authenticated zone settings audit.",
   ].join("\n");

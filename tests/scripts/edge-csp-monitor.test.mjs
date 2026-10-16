@@ -40,7 +40,9 @@ test("drift wins over transport failure; failures are never healthy", () => {
 
 test("deduplicates alerts, reminds daily, and reports recovery once", () => {
   const day = "2026-10-15";
-  assert.equal(shouldComment("ok", null, day), false);
+  assert.equal(shouldComment("ok", null, day), true); // one-time clean activation signal
+  assert.equal(shouldComment("ok", { status: "ok", date: day }, day), false);
+  assert.equal(shouldComment("ok", { status: "ok", date: "2026-10-14" }, day), false);
   assert.equal(shouldComment("drift", null, day), true);
   assert.equal(shouldComment("drift", { status: "drift", date: day }, day), false);
   assert.equal(shouldComment("drift", { status: "drift", date: "2026-10-14" }, day), true);
@@ -185,4 +187,43 @@ test("scheduled handler awaits and propagates monitor failure instead of using w
     /EDGE_MONITOR_GITHUB_TOKEN secret required/
   );
   assert.equal(waitUntilCalls, 0);
+});
+
+test("active clean baseline writes one confirmation comment, then remains silent", async () => {
+  const savedFetch = globalThis.fetch;
+  const calls = [];
+  let posted = null;
+  globalThis.fetch = async (url, opts = {}) => {
+    const method = opts.method ?? "GET";
+    calls.push({ method, url: String(url) });
+    if (method === "POST") {
+      posted = JSON.parse(opts.body).body;
+      return new Response(JSON.stringify({ id: 42 }), {
+        headers: { "content-type": "application/json" },
+      });
+    }
+    return new Response(JSON.stringify(posted ? [{ body: posted }] : []), {
+      headers: { "content-type": "application/json" },
+    });
+  };
+  try {
+    const env = {
+      MONITOR_MODE: "active",
+      EDGE_MONITOR_GITHUB_TOKEN: "not-a-real-secret",
+      BROWSER: { async quickAction() { return new Response(good); } },
+    };
+    const day = new Date("2026-10-15T23:00:00.000Z");
+    const first = await runScheduled(env, day, noWait);
+    const second = await runScheduled(env, day, noWait);
+    assert.equal(first.status, "ok");
+    assert.equal(first.notified, true);
+    assert.equal(second.status, "ok");
+    assert.equal(second.notified, false);
+    assert.equal(calls.filter(c => c.method === "POST").length, 1);
+    assert.match(posted, /monedario-edge-csp-monitor:status=ok/);
+    assert.match(posted, /CLEAN BASELINE/);
+    assert.ok(!posted.includes("not-a-real-secret"));
+  } finally {
+    globalThis.fetch = savedFetch;
+  }
 });
