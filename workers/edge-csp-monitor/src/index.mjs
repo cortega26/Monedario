@@ -34,7 +34,7 @@ async function githubRequest(env, url, options = {}) {
       if (typeof parsed.message === "string") {
         message = parsed.message
           .replace(/(?:github_pat_|gh[pousr]_)[A-Za-z0-9_]+/g, "[redacted-token]")
-          .replace(/\\s+/g, " ")
+          .replace(/\s+/g, " ")
           .slice(0, 240);
       }
     } catch {
