@@ -75,6 +75,7 @@ async function probe(env, target, stamp, sleep) {
           ? Math.min(retryAfterSeconds * 1000, 60_000)
           : 0
       );
+      // eslint-disable-next-line no-console -- Cloudflare cron retry telemetry is intentional.
       console.warn("[edge-csp-monitor] Quick Action 429; retry once", target.path, retryMs);
       await sleep(retryMs);
       response = await request();
@@ -90,6 +91,7 @@ async function probe(env, target, stamp, sleep) {
     );
     return { path: target.path, ...classifyHtml(html, target) };
   } catch (error) {
+    // eslint-disable-next-line no-console -- Log bounded probe failures without exposing secrets.
     console.error("[edge-csp-monitor] browser probe failed", target.path, String(error?.message ?? error).slice(0, 150));
     return {
       path: target.path, status: "inconclusive",
@@ -116,9 +118,11 @@ export async function runScheduled(env, now = new Date(), { sleep = defaultSleep
     if (i > 0) await sleep(QUICK_ACTION_SPACING_MS);
     const result = await probe(env, TARGETS[i], String(now.getTime()) + "-" + i, sleep);
     results.push(result);
+    // eslint-disable-next-line no-console -- Per-target scheduled Worker telemetry is required.
     console.log("[edge-csp-monitor] probe", JSON.stringify(result));
   }
   const status = classifyBatch(results);
+  // eslint-disable-next-line no-console -- Scheduled Worker summary must remain observable.
   console.log("[edge-csp-monitor]", JSON.stringify({ timestamp, status, results }));
   if (env.MONITOR_MODE === "shadow") {
     return { timestamp, status, notified: false, results };
