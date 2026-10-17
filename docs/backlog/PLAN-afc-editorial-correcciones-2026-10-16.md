@@ -40,3 +40,10 @@ Riesgo editorial-laboral alto; publicación prohibida antes de gates completos. 
 - Branch inicial con remediación: `17581f3686b4e7b898f391367c5276af705e6fd3`.
 - GitHub informó fallos en `Code standards & tests`, `Code standards & build`, `Python lint & test` y `Secret scan (Gitleaks, PR diff)`. En las consultas realizadas, los cuatro jobs no mostraban ningún paso y sus logs devolvieron 404 (`BlobNotFound`). **No es evidencia de que las pruebas se hayan ejecutado ni de un error del código; falta diagnóstico del runner/CI.**
 - Estado: BLOQUEADO hasta ejecución verificable y auditoría editorial independiente. La fecha del registro de correcciones es provisional hasta publicar.
+
+## Diagnóstico estático de 17-10-2026 (UTC)
+
+- La CI estándar de GitHub-hosted no arrancó: runners vacíos, 0 pasos, 0 ms facturables (cuota del repositorio privado).
+- Hallazgo adicional anterior al restablecimiento de CI: el chequeo estricto `scripts/check-editorial-artifacts.mjs` selecciona el run canónico más reciente y exige `sources.yaml` con `title`, `publisher`, `date`, `url`. Nuestros runs recientes no contenían ese archivo, por lo que el gate editorial habría fallado al restaurar CI.
+- Remediación de este diagnóstico: añadidos `sources.yaml` y `metadata.yaml` a ambos runs, **sin presentar auditorías independientes ficticias ni firmar los gates**.
+- Falta CI real para determinar otros defectos y auditar Cloudflare Pages: su build es independiente del pool de minutos GitHub-hosted.
