@@ -21,6 +21,8 @@ describe("AFC: no regresión editorial de datos oficiales", () => {
       expect(content).not.toContain("55%");
       expect(content).not.toContain("al menos 6 cotizaciones");
       expect(content).not.toContain("al menos 3 cotizaciones");
+      expect(content).not.toContain("6 para contratos indefinidos");
+      expect(content).not.toContain("3 para plazo fijo");
       expect(content).not.toContain("acuerdo mutuo bajo art. 163 bis");
       expect(content).toContain("art. 163 bis");
       expect(content).toContain("validAsOf: 2026-10-16");
