@@ -1,6 +1,6 @@
 # GitHub Actions quota bridge runbook
 
-Status: retired 2026-09-04. History: added 2026-07-16 (minutes exhausted),
+Status: retired 2026-09-04 (old persistent bridge); **new disposable bridge prepared 2026-10-16 but not yet activated**, see `monedario-isolated-ci.md`. History: added 2026-07-16 (minutes exhausted),
 retired 2026-08-01, reactivated 2026-08-19/20 (PR #433/#434, minutes
 exhausted again within 3 weeks of the prior reset), retired again 2026-09-04
 after the user confirmed the September hosted-minute allowance had reset.
