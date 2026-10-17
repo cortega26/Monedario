@@ -2,7 +2,7 @@
 title: "Seguro de cesantía: saldo, cuándo cobrar y montos"
 author: "Equipo Monedario"
 pubDate: 2026-02-25T10:00:00Z
-updatedDate: 2026-05-11T00:00:00Z
+updatedDate: 2026-10-16T00:00:00Z
 slug: seguro-de-cesantia
 featured: false
 lang: es-CL
@@ -25,10 +25,14 @@ articleLead:
   calculatorLabel: "Estimar cobertura AFC"
   nextStepHref: "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
   nextStepLabel: "Separar CIC y Fondo Solidario"
-  validAsOf: 2026-05-11
+  validAsOf: 2026-10-16
   officialSources:
-    - label: "AFC Chile"
-      href: "https://www.afc.cl/"
+    - label: "AFC Chile — Requisitos y documentos"
+      href: "https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/"
+    - label: "AFC Chile — Beneficios y pagos"
+      href: "https://www.afc.cl/mi-seguro-de-cesantia/beneficios/"
+    - label: "AFC Chile — Cotizaciones"
+      href: "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/"
     - label: "BCN — Ley 19.728"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
   covers:
@@ -49,6 +53,8 @@ reviewPolicy:
 ---
 
 Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo.
+
+**Respuesta rápida (verificada al 16 de octubre de 2026):** para usar la Cuenta Individual de Cesantía necesitas al menos **10 cotizaciones** con contrato indefinido o de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. Para el Fondo Solidario se exigen requisitos adicionales. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).
 
 ## Tabla de contenidos
 
@@ -74,9 +80,9 @@ El aporte mensual al seguro varía según el tipo de contrato:
 | ------------------------- | ----------------- | ---------------- | ----- |
 | Indefinido                | 0.6%              | 2.4%             | 3%    |
 | Plazo fijo / obra o faena | 0%                | 3%               | 3%    |
-| Casa particular           | 0.6%              | 2.4%             | 3%    |
+| Casa particular           | 0%                | 3%               | 3%    |
 
-Si tienes contrato a plazo fijo, **no te descuentan nada del sueldo** para el seguro — pero igual acumulas, porque el empleador pone el 3% completo.
+Si tienes contrato a plazo fijo, **no te descuentan nada del sueldo** para el seguro — pero igual acumulas, porque el empleador pone el 3% completo. En el trabajo de **casa particular**, el empleador también financia el 3% completo (2,2% a la CIC y 0,8% al FCS), además del 1,11% correspondiente a la cuenta de indemnización en la AFP. [Fuente: AFC Chile](https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/).
 
 El **tope imponible** para el cálculo se actualiza anualmente. Si ganas más que ese tope, los aportes se calculan solo sobre ese límite — no sobre tu sueldo completo. Para el valor vigente del año en curso consulta directamente en [afc.cl](https://www.afc.cl).
 
@@ -102,10 +108,10 @@ La Cuenta Individual puedes cobrarla **cada vez que quedes cesante**, sin import
 
 **Requisitos mínimos para cobrar la CIC:**
 
-- Contrato indefinido o de casa particular: **al menos 6 cotizaciones** desde que te afiliaste o desde el último cobro
-- Contrato a plazo fijo u obra: **al menos 3 cotizaciones**
+- Contrato indefinido o de casa particular: **al menos 10 cotizaciones** desde que te afiliaste o desde el último cobro
+- Contrato a plazo fijo u obra: **al menos 5 cotizaciones**
 
-Si cumples eso, tienes derecho a retirar el saldo de tu cuenta individual.
+Las cotizaciones pueden ser continuas o discontinuas y de distintos empleadores, contadas desde la afiliación o desde el último cobro del seguro. Además, debes estar cesante y acreditar el término de la relación laboral. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).
 
 ---
 
@@ -123,9 +129,9 @@ El Fondo Solidario tiene requisitos más estrictos porque es un fondo común. Lo
    - Vencimiento del plazo convenido (art. 159 N°4)
    - Conclusión del trabajo o servicio (art. 159 N°5)
    - Caso fortuito o fuerza mayor (art. 159 N°6)
-   - Término por acuerdo mutuo bajo art. 163 bis
+   - Liquidación judicial del empleador (art. 163 bis)
 
-**Importante:** Si renunciaste voluntariamente sin acuerdo (art. 159 N°2) o te despidieron por conducta indebida (art. 160), **no puedes usar el FCS**. Solo puedes retirar tu CIC si tienes saldo.
+**Importante:** Si renunciaste voluntariamente (art. 159 N°2), terminaste por mutuo acuerdo o te despidieron por alguna causal del art. 160, **no puedes usar el FCS**. Puedes solicitar el cobro de tu CIC si cumples sus requisitos. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).
 
 ---
 
@@ -138,13 +144,13 @@ Los pagos se calculan como porcentaje del **promedio de tus últimas remuneracio
 | Mes            | % del promedio de remuneraciones |
 | -------------- | -------------------------------- |
 | 1°             | 70%                              |
-| 2°             | 55%                              |
+| 2°             | 60%                              |
 | 3°             | 45%                              |
 | 4°             | 40%                              |
 | 5°             | 35%                              |
 | 6° en adelante | 30%                              |
 
-Los pagos continúan mientras haya saldo en tu cuenta. Si se acaba antes del mes 6, los pagos se detienen.
+Los pagos continúan mientras haya saldo en tu cuenta. Si se acaba antes del mes 6, los pagos se detienen. [Fuente de la escala de pagos: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/beneficios/).
 
 ### Si cobras por el FCS
 
@@ -157,7 +163,7 @@ El FCS también financia los primeros pagos con lo que quede en tu CIC antes de 
 Sea que cobres por CIC o FCS, mientras recibes pagos del seguro tienes derecho a:
 
 - **Cobertura de salud a través de Fonasa**
-- **Aporte a tu AFP** equivalente al 10% de la prestación (desde mayo 2025, como parte de la Reforma Previsional)
+- **Aporte a tu AFP** equivalente al 10,10% de cada pago en 2026, financiado por el FCS sin descontarlo de tu prestación (seguro de lagunas previsionales; [AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/beneficios/))
 - Acceso a cursos de capacitación gratuitos (si cobras por FCS)
 - Apoyo para búsqueda de empleo a través de la Bolsa Nacional de Empleo
 

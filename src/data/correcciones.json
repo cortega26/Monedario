@@ -1,6 +1,38 @@
 {
   "corrections": [
     {
+      "id": "afc-cic-requisitos-porcentajes-y-financiamiento",
+      "date": "2026-10-16",
+      "title": "Requisitos, porcentajes y cotizaciones del Seguro de Cesantía",
+      "pages": [
+        {
+          "href": "/posts/seguro-de-cesantia/",
+          "label": "Seguro de Cesantía: guía general"
+        },
+        {
+          "href": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+          "label": "Cuenta Individual vs Fondo Solidario"
+        }
+      ],
+      "wrong": [
+        "Las dos guías exigían 6 cotizaciones (indefinido) o 3 (plazo fijo) para usar la CIC, en lugar de 10 o 5 respectivamente.",
+        "Las dos guías indicaban 55% para el segundo pago de la CIC, cuando corresponde 60%.",
+        "La guía principal atribuía a trabajadores de casa particular un aporte de 0,6%, cuando el 3% lo financia el empleador.",
+        "Las dos guías confundían la causal del art. 163 bis con un término por mutuo acuerdo.",
+        "La guía general aún indicaba un aporte del 10% al seguro de lagunas, desactualizado frente al 10,10% vigente en 2026."
+      ],
+      "fixed": [
+        "Mínimos CIC de 10 cotizaciones para contrato indefinido o casa particular y 5 para plazo fijo, obra o servicio.",
+        "Segundo pago de CIC de 60% y secuencia coherente con el simulador y la AFC.",
+        "Tabla de casa particular corregida: trabajador 0%, empleador 3% (2,2% CIC y 0,8% FCS); aporte adicional de 1,11% a cuenta de indemnización.",
+        "Artículo 163 bis descrito como liquidación judicial del empleador, no mutuo acuerdo.",
+        "Aporte previsional de 10,10% de cada pago, financiado por el Fondo Solidario."
+      ],
+      "affected": "Personas que compararon requisitos CIC, estimaron sus pagos, revisaron causales del FCS o buscaron entender cotizaciones, especialmente contratos a plazo fijo y trabajadores de casa particular.",
+      "sources": "AFC Chile — requisitos (https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/); beneficios (https://www.afc.cl/mi-seguro-de-cesantia/beneficios/); cotizaciones (https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/); seguro de lagunas (https://www.afc.cl/afc-informa/noticias/reforma-de-pensiones-asi-funcionara-el-seguro-de-lagunas-previsionales/).",
+      "prevention": "Test antirregresión de ambas guías para los mínimos de acceso, escala de pagos, casa particular y art. 163 bis; citas directas de AFC junto a las reglas modificadas."
+    },
+    {
       "id": "operacion-renta-f22-multas-reliquidacion",
       "date": "2026-10-02",
       "title": "Multas por atraso y reliquidación por empleadores simultáneos",

@@ -5,7 +5,7 @@ author: "Equipo Monedario"
 description: "CIC y Fondo de Cesantía Solidario no son lo mismo: quién financia cada capa, cuál aplica primero y qué condiciones mínimas exige el Fondo Solidario."
 slug: seguro-cesantia-cuenta-individual-vs-fondo-solidario
 pubDate: 2026-03-12T14:30:00Z
-updatedDate: 2026-04-12T19:05:00Z
+updatedDate: 2026-10-16T00:00:00Z
 tags:
   - cesantia
   - afc
@@ -26,8 +26,12 @@ articleLead:
   calculatorLabel: "Estimar cobertura AFC"
   nextStepHref: "/posts/seguro-de-cesantia/"
   nextStepLabel: "Volver a la guía completa"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-10-16
   officialSources:
+    - label: "AFC Chile — Requisitos y documentos"
+      href: "https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/"
+    - label: "AFC Chile — Beneficios y pagos"
+      href: "https://www.afc.cl/mi-seguro-de-cesantia/beneficios/"
     - label: "ChileAtiende — Seguro de Cesantía"
       href: "https://www.chileatiende.gob.cl/fichas/62932-solicitud-del-pago-del-seguro-de-cesantia"
     - label: "ChileAtiende — Fondo de Cesantía Solidario"
@@ -52,6 +56,8 @@ reviewPolicy:
 ---
 
 Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir.
+
+**Respuesta rápida (verificada al 16 de octubre de 2026):** para cobrar tu CIC necesitas **10 cotizaciones** si tenías contrato indefinido o eras trabajador de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. El FCS añade requisitos de cotizaciones, continuidad, causal y saldo. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).
 
 ## Las dos capas del seguro
 
@@ -97,11 +103,11 @@ El cuarto punto es el que más sorprende. Si tuviste dos empleadores distintos e
 
 La causal en el finiquito no es un detalle administrativo: define lo que puedes cobrar.
 
-**Habilitan el FCS:** necesidades de la empresa (art. 161), quiebra del empleador, vencimiento de plazo convenido (art. 159 N°4), conclusión de obra o faena (art. 159 N°5), caso fortuito o fuerza mayor (art. 159 N°6), término por acuerdo mutuo bajo art. 163 bis.
+**Habilitan el FCS:** necesidades de la empresa (art. 161), quiebra del empleador, vencimiento de plazo convenido (art. 159 N°4), conclusión de obra o faena (art. 159 N°5), caso fortuito o fuerza mayor (art. 159 N°6), liquidación judicial del empleador (art. 163 bis).
 
 **No habilitan el FCS:** renuncia voluntaria (art. 159 N°2) y despido por conducta (art. 160). En estos casos solo puedes cobrar lo que tengas en tu CIC, si cumples el mínimo de cotizaciones.
 
-Esta distinción importa especialmente cuando hay presión para firmar una renuncia en situaciones que legalmente corresponden a una terminación por necesidades de la empresa. La causal que firma el empleador en el finiquito determina la cobertura — no el motivo real.
+Esta distinción importa especialmente cuando hay presión para firmar una renuncia en situaciones que legalmente corresponden a una terminación por necesidades de la empresa. La causal de término acreditada en la solicitud influye en la cobertura que AFC evaluará. Si la causal no refleja lo ocurrido, conviene asesorarse antes de aceptar el finiquito.
 
 ## Qué revisar antes de hacer la solicitud
 
@@ -121,15 +127,15 @@ Tener esto claro antes de llamar a la AFC evita confusiones y acelera el proceso
 No. Primero la AFC verifica que cumplas los filtros de causal, cotizaciones y continuidad. Si no los cumples, recibes solo lo que tiene tu CIC y los pagos se detienen cuando se agota ese saldo.
 
 **Si renuncié, ¿pierdo todo?**
-No pierdes la CIC. Puedes cobrar tu saldo individual si cumples el mínimo de cotizaciones (6 para contratos indefinidos, 3 para plazo fijo). Lo que no aplica en renuncia es el Fondo Solidario.
+No pierdes la CIC. Puedes cobrar tu saldo individual si cumples el mínimo de cotizaciones (10 para contratos indefinidos o de casa particular, 5 para plazo fijo, obra o servicio). Lo que no aplica en renuncia es el Fondo Solidario.
 
 **¿Los montos del FCS y de la CIC son iguales?**
-No. Los pagos de la CIC dependen de tu saldo y bajan progresivamente: 70%, 55%, 45%, 40%, 35% y 30% del promedio de tus remuneraciones en meses sucesivos hasta agotar el saldo. Los pagos del FCS tienen topes mínimos y máximos que fija la Superintendencia de Pensiones anualmente y son distintos según tipo de contrato.
+No. Los pagos de la CIC dependen de tu saldo y bajan progresivamente: 70%, 60%, 45%, 40%, 35% y 30% del promedio de tus remuneraciones en meses sucesivos hasta agotar el saldo. Los pagos del FCS tienen topes mínimos y máximos que fija la Superintendencia de Pensiones anualmente y son distintos según tipo de contrato.
 
 **¿El saldo de la CIC se pierde si no lo cobro después de quedar cesante?**
 No. Si no usas el seguro, el saldo sigue acumulado a tu nombre para la próxima vez que lo necesites.
 
 **¿Puedo estimar cuánto recibiría antes de hacer la solicitud?**
-Sí. Puedes [simular tu seguro de cesantía](/calculadoras/seguro-cesantia/) con tu saldo CIC real y ver los pagos estimados mes a mes. Para los montos del FCS, la AFC publica las tablas vigentes en su sitio.
+Sí. Puedes [simular tu seguro de cesantía](/calculadoras/seguro-cesantia/) con tu saldo CIC real y ver los pagos estimados mes a mes. Para los montos del FCS, la [AFC publica las tablas vigentes](https://www.afc.cl/mi-seguro-de-cesantia/beneficios/) en su sitio.
 
 Para el proceso completo de consulta, cobro y documentos necesarios, la [guía general del seguro de cesantía](/posts/seguro-de-cesantia/) tiene los pasos detallados.

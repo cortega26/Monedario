@@ -1,0 +1,15 @@
+slug: seguro-cesantia-cuenta-individual-vs-fondo-solidario
+title: "Remediación AFC — requisitos, pagos y causales"
+category: empleo-ingresos
+ymyl_topic: "seguro de cesantía Chile"
+fecha_corte: 2026-10-16
+ymyl_risk: high
+regulatory_sensitivity: alta
+requires_calculation: true
+run_id: 20261016-2100-afcfix
+status: DRAFT
+sources:
+  - https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/
+  - https://www.afc.cl/mi-seguro-de-cesantia/beneficios/
+  - https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+  - https://www.afc.cl/afc-informa/noticias/reforma-de-pensiones-asi-funcionara-el-seguro-de-lagunas-previsionales/
