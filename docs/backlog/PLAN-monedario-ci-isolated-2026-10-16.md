@@ -20,7 +20,7 @@ Out: application, analytics, routes, article content, PCP repo, Fintual, Oracle 
 | Proof | Command or source | Status |
 |---|---|---|
 | YAML/runner portability invariant | `pnpm exec vitest run tests/static-analysis/actions-runner-portability.e2e.test.ts` | Pending local/CI |
-| Shell syntax | `bash -n ops/ci-runner/run-one.sh` | Pending local/CI |
+| Shell syntax | `bash -n ops/ci-runner/run-one.sh` | PASS in independent local scratch runtime; rerun on PC/CI |
 | Disposable runner image containment | `bash ops/ci-runner/run-one.sh --verify` twice | Pending PC |
 | Correct repo JIT identity | `gh api repos/cortega26/Monedario/actions/runners` | Pending PC |
 | Live PR jobs & check logs | PR #685 GitHub Checks | Pending runner/variable |
@@ -31,6 +31,7 @@ Out: application, analytics, routes, article content, PCP repo, Fintual, Oracle 
 - [x] Existing retired bridge and active PCP JIT design identified.
 - [x] Blocking PR Gitleaks job given configurable runner label.
 - [x] Existing portability test updated without weakening invariant.
+- [x] Added static isolation/shell test `tests/static-analysis/monedario-ci-runner.e2e.test.ts` (not yet executed under Monedario CI).
 - [x] Dedicated repo-scoped launcher/service and incident runbook prepared.
 - [ ] PC installation with two verified isolation canaries.
 - [ ] Set GitHub repo variable after runner online.
