@@ -1360,15 +1360,15 @@
         "Las reglas son idénticas"
       ],
       "alt": "",
-      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
+      "sourceContentHash": "4509275c43b46015d58076e3eb0ec3c2a5522d80f77925b3018fc2dde03fc165",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "C",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-10",
-        "reviewedBy": "agent/source-review",
-        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
+        "reviewedAt": "2026-10-16",
+        "reviewedBy": "agent/semantic-brief-review",
+        "method": "Revisión documental de la imagen descrita contra los cambios AFC de requisitos, porcentajes y causal. La escena y las interpretaciones prohibidas siguen evitando cifras no verificadas y acceso automático. Se conserva el activo visual existente y su revisión histórica; no se inspeccionaron nuevamente los píxeles, ni esto constituye conformidad YMYL o firma de publicación."
       }
     },
     {
@@ -1388,15 +1388,15 @@
         "La persona está indefensa"
       ],
       "alt": "",
-      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "sourceContentHash": "178e2f3a59570bcf2769342b66f9f4bad9971e9e58dafd8d01728254e3ba8079",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-10",
-        "reviewedBy": "agent/source-review",
-        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
+        "reviewedAt": "2026-10-16",
+        "reviewedBy": "agent/semantic-brief-review",
+        "method": "Revisión documental de la imagen descrita contra los cambios AFC de requisitos, porcentajes y causal. La escena y las interpretaciones prohibidas siguen evitando cifras no verificadas y acceso automático. Se conserva el activo visual existente y su revisión histórica; no se inspeccionaron nuevamente los píxeles, ni esto constituye conformidad YMYL o firma de publicación."
       }
     },
     {
