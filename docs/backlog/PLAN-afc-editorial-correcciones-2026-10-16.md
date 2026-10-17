@@ -33,3 +33,10 @@ Out: `src/domain/**`, `src/application/**`, calculadora, rutas/RSS, CI, dependen
 
 ## Riesgo/rollback
 Riesgo editorial-laboral alto; publicación prohibida antes de gates completos. Reversión mediante revert del commit antes de publicación; nunca borrar silenciosamente un registro de corrección que ya fue público.
+
+## PR y CI (16-10-2026)
+
+- PR de revisión: https://github.com/cortega26/Monedario/pull/685 (draft, sin auto-merge).
+- Branch inicial con remediación: `17581f3686b4e7b898f391367c5276af705e6fd3`.
+- GitHub informó fallos en `Code standards & tests`, `Code standards & build`, `Python lint & test` y `Secret scan (Gitleaks, PR diff)`. En las consultas realizadas, los cuatro jobs no mostraban ningún paso y sus logs devolvieron 404 (`BlobNotFound`). **No es evidencia de que las pruebas se hayan ejecutado ni de un error del código; falta diagnóstico del runner/CI.**
+- Estado: BLOQUEADO hasta ejecución verificable y auditoría editorial independiente. La fecha del registro de correcciones es provisional hasta publicar.
