@@ -1659,7 +1659,7 @@
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
-      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
+      "sourceContentHash": "4509275c43b46015d58076e3eb0ec3c2a5522d80f77925b3018fc165",
       "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
       "tags": [
         "cesantia",
@@ -1674,8 +1674,8 @@
       "summary": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a...",
       "leadParagraphs": [
         "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir.",
-        "**La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones.",
-        "**El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu saldo en la CIC es insuficiente para los pagos del seguro y, además, cumples todos los filtros que exige la ley. No es automático. No es universal. Y no entra si tu CIC alcanza."
+        "**Respuesta rápida (verificada al 16 de octubre de 2026):** para cobrar tu CIC necesitas **10 cotizaciones** si tenías contrato indefinido o eras trabajador de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. El FCS añade requisitos de cotizaciones, continuidad, causal y saldo. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).",
+        "**La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones."
       ],
       "headings": [
         "Las dos capas del seguro",
@@ -1686,13 +1686,13 @@
         "Qué revisar antes de hacer la solicitud",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir. ## Las dos capas del seguro **La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones. **El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu saldo en la CIC es insuficiente para los pagos del seguro y, además, cumples todos los filtros que exige la ley. No es automático. No es universal. Y no entra si tu CIC alcanza. ## Por qué el orden importa en la práctica La CIC siempre va primero. Esto tiene una consecuencia directa: si tu saldo individual alcanza pa",
-      "wordCount": 1049,
+      "bodyExcerpt": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir. **Respuesta rápida (verificada al 16 de octubre de 2026):** para cobrar tu CIC necesitas **10 cotizaciones** si tenías contrato indefinido o eras trabajador de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. El FCS añade requisitos de cotizaciones, continuidad, causal y saldo. . ## Las dos capas del seguro **La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones. **El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu ",
+      "wordCount": 1111,
       "sourceFile": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md"
     },
     {
       "slug": "seguro-de-cesantia",
-      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "sourceContentHash": "178e2f3a59570bcf2769342b66f9f4bad9971e9e58dafd8d01728254e3ba8079",
       "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
       "tags": [
         "cesantia",
@@ -1705,11 +1705,11 @@
       "cluster": "empleo-ingresos",
       "sourcePath": "src/data/blog/seguro-de-cesantia.md",
       "heroImage": "/images/hero/seguro-de-cesantia.avif",
-      "summary": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. Tabla de contenidos Qué es...",
+      "summary": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. Respuesta rápida (verificad...",
       "leadParagraphs": [
         "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo.",
-        "El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes:",
-        "**Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato."
+        "**Respuesta rápida (verificada al 16 de octubre de 2026):** para usar la Cuenta Individual de Cesantía necesitas al menos **10 cotizaciones** con contrato indefinido o de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. Para el Fondo Solidario se exigen requisitos adicionales. [Fuente: AFC Chile](https://www.afc.cl/mi-seguro-de-cesantia/requisitos-y-documentos/).",
+        "El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes:"
       ],
       "headings": [
         "Tabla de contenidos",
@@ -1721,8 +1721,8 @@
         "Cuánto te pagan",
         "Si cobras por la CIC"
       ],
-      "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fondo de Cesantía Solidario (FCS):** Es un fondo común financiado principalmente por los empleadores y el Estado. No es tuyo en particular, pero puedes acceder a él si cumples ciertos requisitos y tu cuenta individual no tiene saldo suficiente. Tiene montos mínimos y máximos definidos por ley. Si tu confusión principal ",
-      "wordCount": 1612,
+      "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. **Respuesta rápida (verificada al 16 de octubre de 2026):** para usar la Cuenta Individual de Cesantía necesitas al menos **10 cotizaciones** con contrato indefinido o de casa particular, o **5 cotizaciones** con contrato a plazo fijo, por obra o servicio. Para el Fondo Solidario se exigen requisitos adicionales. . ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fond",
+      "wordCount": 1731,
       "sourceFile": "seguro-de-cesantia.md"
     },
     {
