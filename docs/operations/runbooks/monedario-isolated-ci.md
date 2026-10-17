@@ -43,7 +43,7 @@ Do NOT set the label until a JIT runner is verified online. Then:
 
 ```bash
 gh variable set ACTIONS_RUNNER_LABEL --repo cortega26/Monedario --body monedario-ci-isolated
-gh variable get ACTIONS_RUNNER_LABEL --repo cortega26/Monedario
+gh variable list --repo cortega26/Monedario
 ```
 
 Existing workflows use `runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}`; the blocking `gitleaks-pr` was updated to use the same. Verify the CI, Python and Gitleaks checks on an existing trusted internal PR. A job should show a runner named `monedario-ci-isolated-...` and a **successful step-by-step log**; a queued or 0-step job is not a pass. Run the real editorial checks on PR #685 and resolve any findings rather than relaxing gates.
