@@ -30,6 +30,10 @@ runs:
         PNPM_HOME="${RUNNER_TEMP}/pnpm"
         echo "Installing pnpm@${PNPM_VERSION} (from package.json packageManager)"
         npm install --global --prefix "${PNPM_HOME}" "pnpm@${PNPM_VERSION}"
+        # Ephemeral JIT runners have a deliberately small /home/runner tmpfs.
+        # Keep pnpm's SQLite store under the job's larger runner temp volume,
+        # not in the 512 MiB home directory.
+        "${PNPM_HOME}/bin/pnpm" config set store-dir "${RUNNER_TEMP}/pnpm-store"
         echo "${PNPM_HOME}/bin" >> "${GITHUB_PATH}"
 
     - name: Setup Node.js
