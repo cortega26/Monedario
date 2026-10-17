@@ -86,7 +86,7 @@ jobs:
 
   gitleaks-pr:
     name: Secret scan (Gitleaks, PR diff)
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
     # Blocking per-PR scan: a committed secret must fail the PR, not the next
     # weekly scheduled run. No continue-on-error — failure blocks by design.

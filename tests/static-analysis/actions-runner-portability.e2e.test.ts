@@ -16,14 +16,6 @@ const fullyOutOfScopeFiles = new Set([
   "validate-committed-artifacts.yml",
 ]);
 
-// Files that mix bridge jobs with post-retirement jobs. Exceptions are keyed
-// by job name so a regression in any bridge job still fails the test.
-const perJobExceptions: Record<string, Record<string, string>> = {
-  "security-scans.yml": {
-    "gitleaks-pr": "ubuntu-latest",
-  },
-};
-
 function read(relativePath: string): string {
   return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
 }
@@ -70,22 +62,17 @@ describe("GitHub Actions runner portability", () => {
     expect(declarations.length).toBeGreaterThan(0);
 
     for (const declaration of declarations) {
-      const exception = perJobExceptions[declaration.file]?.[declaration.job];
-      if (exception !== undefined) {
-        expect(declaration.runner).toBe(exception);
-      } else {
-        expect(declaration.runner).toBe(expectedRunner);
-      }
+      expect(declaration.runner).toBe(expectedRunner);
     }
   });
 
-  it("keeps security-scans.yml bridge jobs on the fallback and gitleaks-pr as the only hardcoded exception", () => {
+  it("routes security-scans.yml jobs including blocking PR Gitleaks through the fallback", () => {
     const runners = jobRunnerMap(read(".github/workflows/security-scans.yml"));
 
     for (const job of ["gitleaks", "opengrep", "trivy", "python-audit"]) {
       expect(runners.get(job)).toBe(expectedRunner);
     }
-    expect(runners.get("gitleaks-pr")).toBe("ubuntu-latest");
+    expect(runners.get("gitleaks-pr")).toBe(expectedRunner);
   });
 
   it("installs bootstrap and security tools without root-owned paths", () => {
