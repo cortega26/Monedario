@@ -49,8 +49,8 @@ reviewPolicy:
     - economic.imm.value
   derivationFactors:
     - registry:slugOverrides.boleta-honorarios-2026-retencion-cobertura
-  computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+  computedAt: "2026-10-18"
+updatedDate: 2026-10-18T00:00:00Z
 ---
 
 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.

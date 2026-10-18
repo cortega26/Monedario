@@ -45,8 +45,8 @@ reviewPolicy:
     - economic.imm.value
   derivationFactors:
     - registry:slugOverrides.fonasa-vs-isapre-comparativa
-  computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+  computedAt: "2026-10-18"
+updatedDate: 2026-10-18T00:00:00Z
 ---
 
 Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti?
