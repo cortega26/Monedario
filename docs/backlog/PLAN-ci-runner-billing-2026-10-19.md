@@ -65,10 +65,17 @@ dominio y el WIP editorial local (91 archivos sin commitear).
 - [x] `vitest` de clasificación/retries/artefactos de URL.
 - [x] `node scripts/compute-review-policies.mjs` no modifica artículos con el
   snapshot actualizado.
-- [ ] `pnpm run format:check` y `pnpm run lint`.
+- [x] `pnpm run format:check` y `pnpm run lint`.
+- [x] `astro check` (0 errores / 0 warnings).
 - [ ] `pnpm run check:ci` (el gate editorial seguirá rojo por los 2 stale y el
   drift de `sueldo-imponible`, que requieren revisión editorial humana).
 - [ ] CI del PR en GitHub con el runner self-hosted.
+
+## Dependencias
+
+Los upgrades mayores y riesgos dev-only se registran en
+`PLAN-deferred-deps-2026-10-19.md` (Satori 0.51, TS7, extract-zip,
+astro-shield peer). El PR de parches runtime es `#691`.
 
 ## Rollback
 
