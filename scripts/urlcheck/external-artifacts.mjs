@@ -6,6 +6,7 @@ const EXTERNAL_HARD_FAIL_JSON = "external-hard-fail.json";
 const EXTERNAL_SOFT_404_JSON = "external-soft-404.json";
 const EXTERNAL_HOST_MISMATCH_JSON = "external-host-mismatch.json";
 const EXTERNAL_NON_BLOCKING_JSON = "external-non-blocking.json";
+const EXTERNAL_TRANSIENT_JSON = "external-transient.json";
 const EXTERNAL_SUMMARY_JSON = "external-summary.json";
 const EXTERNAL_FULL_CSV = "external-full.csv";
 const EXTERNAL_REDIRECTS_JSON = "external-redirects.json";
@@ -20,14 +21,19 @@ const EXTERNAL_REDIRECTS_JSON = "external-redirects.json";
 export async function writeExternalArtifacts(results, { mode }) {
   await mkdir(URLCHECK_ARTIFACT_DIR, { recursive: true });
 
-  const hardFail = results.filter((r) => r.classification === "hard_fail");
-  const soft404 = results.filter((r) => r.classification === "soft_404");
+  const hardFail = results.filter(r => r.classification === "hard_fail");
+  const soft404 = results.filter(r => r.classification === "soft_404");
   const hostMismatch = results.filter(
-    (r) => r.classification === "host_mismatch" || r.classification === "redirect_mismatch"
+    r =>
+      r.classification === "host_mismatch" ||
+      r.classification === "redirect_mismatch"
   );
   const nonBlocking = results.filter(
-    (r) => r.classification === "non_blocking_host_issue" || r.classification === "network_error"
+    r =>
+      r.classification === "non_blocking_host_issue" ||
+      r.classification === "network_error"
   );
+  const transient = results.filter(r => r.classification === "transient_http");
 
   // Redirects can end on HTTP 200 and therefore classify as "ok".
   // Retain those redirects independently for Ahrefs-style SEO review.
@@ -37,18 +43,33 @@ export async function writeExternalArtifacts(results, { mode }) {
   const paths = {
     hardFailJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_HARD_FAIL_JSON),
     soft404Json: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_SOFT_404_JSON),
-    hostMismatchJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_HOST_MISMATCH_JSON),
-    nonBlockingJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_NON_BLOCKING_JSON),
+    hostMismatchJson: path.join(
+      URLCHECK_ARTIFACT_DIR,
+      EXTERNAL_HOST_MISMATCH_JSON
+    ),
+    nonBlockingJson: path.join(
+      URLCHECK_ARTIFACT_DIR,
+      EXTERNAL_NON_BLOCKING_JSON
+    ),
+    transientJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_TRANSIENT_JSON),
     summaryJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_SUMMARY_JSON),
     fullCsv: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_FULL_CSV),
     redirectsJson: path.join(URLCHECK_ARTIFACT_DIR, EXTERNAL_REDIRECTS_JSON),
   };
 
-  const rows = results.filter((r) => r.classification !== "ok");
+  const rows = results.filter(r => r.classification !== "ok");
 
   await Promise.all([
-    writeFile(paths.hardFailJson, `${JSON.stringify(normaliseRows(hardFail), null, 2)}\n`, "utf8"),
-    writeFile(paths.soft404Json, `${JSON.stringify(normaliseRows(soft404), null, 2)}\n`, "utf8"),
+    writeFile(
+      paths.hardFailJson,
+      `${JSON.stringify(normaliseRows(hardFail), null, 2)}\n`,
+      "utf8"
+    ),
+    writeFile(
+      paths.soft404Json,
+      `${JSON.stringify(normaliseRows(soft404), null, 2)}\n`,
+      "utf8"
+    ),
     writeFile(
       paths.hostMismatchJson,
       `${JSON.stringify(normaliseRows(hostMismatch), null, 2)}\n`,
@@ -59,7 +80,16 @@ export async function writeExternalArtifacts(results, { mode }) {
       `${JSON.stringify(normaliseRows(nonBlocking), null, 2)}\n`,
       "utf8"
     ),
-    writeFile(paths.summaryJson, `${JSON.stringify(summary, null, 2)}\n`, "utf8"),
+    writeFile(
+      paths.transientJson,
+      `${JSON.stringify(normaliseRows(transient), null, 2)}\n`,
+      "utf8"
+    ),
+    writeFile(
+      paths.summaryJson,
+      `${JSON.stringify(summary, null, 2)}\n`,
+      "utf8"
+    ),
     writeFile(paths.fullCsv, toCsv(rows), "utf8"),
     writeFile(paths.redirectsJson, `${JSON.stringify(redirects, null, 2)}\n`, "utf8"),
   ]);
@@ -216,7 +246,7 @@ function toCsv(rows) {
   const lines = [CSV_HEADERS.join(",")];
   for (const r of rows) {
     const norm = normaliseRow(r);
-    lines.push(CSV_HEADERS.map((h) => csvEscape(norm[h])).join(","));
+    lines.push(CSV_HEADERS.map(h => csvEscape(norm[h])).join(","));
   }
   return `${lines.join("\n")}\n`;
 }
@@ -237,7 +267,9 @@ async function assertArtifactIntegrity(filePaths) {
       await access(filePath);
     } catch (error) {
       const detail =
-        error instanceof Error && "code" in error && typeof error.code === "string"
+        error instanceof Error &&
+        "code" in error &&
+        typeof error.code === "string"
           ? error.code
           : error instanceof Error
             ? error.message
@@ -247,6 +279,8 @@ async function assertArtifactIntegrity(filePaths) {
   }
 
   if (missing.length > 0) {
-    throw new Error(`external_artifact_generation_failed:${missing.join(", ")}`);
+    throw new Error(
+      `external_artifact_generation_failed:${missing.join(", ")}`
+    );
   }
 }

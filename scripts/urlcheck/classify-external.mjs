@@ -8,14 +8,18 @@ import {
 } from "./host-registry.mjs";
 
 /**
- * HTTP status codes that constitute a hard failure regardless of body content.
+ * HTTP status codes that constitute a content-level hard failure regardless of
+ * body content. Transient server failures (5xx) and throttling (429) are
+ * handled separately so a momentary outage does not block a PR.
  */
-const HARD_FAIL_STATUSES = new Set([404, 410, 500, 502, 503, 504]);
+const HARD_FAIL_STATUSES = new Set([404, 410]);
 
 /**
- * HTTP status codes that indicate transient server issues; not blocking.
+ * HTTP status codes that indicate transient server issues. They are retried by
+ * the probe pool and, if they persist, reported as telemetry with a dedicated
+ * artifact. A scheduled audit ages them and opens an ops issue.
  */
-const TRANSIENT_STATUSES = new Set([429, 503]);
+const TRANSIENT_STATUSES = new Set([429, 500, 502, 503, 504]);
 
 /** Statuses used by verified anti-automation responses. */
 const AUTOMATION_BLOCK_STATUSES = new Set([403, 410, 429]);
@@ -28,7 +32,7 @@ const AUTOMATION_BLOCK_STATUSES = new Set([403, 410, 429]);
  * @property {string}       anchor_text           – visible text of the original anchor
  * @property {'structured'|'inline'} link_type    – whether the link had explicit external markup
  * @property {string}       host_category         – from host-registry classifyHost()
- * @property {'hard_fail'|'soft_404'|'redirect_mismatch'|'host_mismatch'|'non_blocking_host_issue'|'network_error'|'ok'} classification
+ * @property {'hard_fail'|'soft_404'|'redirect_mismatch'|'host_mismatch'|'non_blocking_host_issue'|'transient_http'|'network_error'|'ok'} classification
  * @property {boolean}      blocking              – whether this failure exits the CI gate
  * @property {string|null}  matched_signal        – phrase/pattern that triggered the failure
  * @property {string[]|null} expected_host_family – allowed final hostnames for this source
@@ -39,15 +43,15 @@ const AUTOMATION_BLOCK_STATUSES = new Set([403, 410, 429]);
 /**
  * Classifies a single external link probe result into a structured result record.
  *
- * Blocking rules (phase 1 – per-result):
- *   hard_fail   on official_source / trusted_reference → blocking
+ * Blocking rules:
+ *   hard_fail (404/410) on official_source / trusted_reference → blocking
  *   soft_404    on official_source / trusted_reference → blocking
  *   host_mismatch (structured link + official/trusted)  → blocking
- *   All other failures → non-blocking (telemetry / warning)
+ *   transient_http (429/5xx after retries)              → non-blocking telemetry
+ *   network_error                                       → non-blocking telemetry
  *
- * The CI JOB uses continue-on-error:true during the initial rollout phase,
- * so even blocking=true results will not fail the workflow until the job is
- * promoted to hard-fail mode.
+ * Transient failures are written to a dedicated artifact so the scheduled audit
+ * can age them and open an ops issue if a host stays down.
  *
  * @param {{ href: string, referrers: string[], linkType: 'structured'|'inline', anchorText: string }} link
  * @param {import('./probe-external.mjs').ProbeResult} probe
@@ -95,13 +99,16 @@ export function classifyExternalResult(link, probe) {
     category === "known_soft_nonblocking"
   ) {
     const hasIssue =
-      probe.status === null || probe.status >= 400 || TRANSIENT_STATUSES.has(probe.status);
+      probe.status === null ||
+      probe.status >= 400 ||
+      TRANSIENT_STATUSES.has(probe.status);
     if (hasIssue) {
       return {
         ...base,
         classification: "non_blocking_host_issue",
         blocking: false,
-        matched_signal: probe.status !== null ? `HTTP_${probe.status}` : "no_response",
+        matched_signal:
+          probe.status !== null ? `HTTP_${probe.status}` : "no_response",
       };
     }
     return { ...base, classification: "ok", blocking: false };
@@ -124,7 +131,17 @@ export function classifyExternalResult(link, probe) {
     };
   }
 
-  // ---- Hard fail: 404 / 410 / 5xx ----
+  // ---- Transient server/throttle response after retries ----
+  if (probe.status !== null && TRANSIENT_STATUSES.has(probe.status)) {
+    return {
+      ...base,
+      classification: "transient_http",
+      blocking: false,
+      matched_signal: `HTTP_${probe.status}`,
+    };
+  }
+
+  // ---- Hard fail: 404 / 410 ----
   if (probe.status !== null && HARD_FAIL_STATUSES.has(probe.status)) {
     return {
       ...base,
@@ -135,7 +152,11 @@ export function classifyExternalResult(link, probe) {
   }
 
   // ---- Soft-404: 200/3xx but page content matches 404 pattern ----
-  if (probe.status !== null && probe.status < 400 && !isBinaryContentType(probe.contentType)) {
+  if (
+    probe.status !== null &&
+    probe.status < 400 &&
+    !isBinaryContentType(probe.contentType)
+  ) {
     const soft = detectSoft404(
       { title: probe.title, h1: probe.h1, bodySnippet: probe.bodySnippet },
       { hostname: finalHost, contentType: probe.contentType }
@@ -161,7 +182,9 @@ export function classifyExternalResult(link, probe) {
       const isHighConfidence = blocking && link.linkType === "structured";
       return {
         ...base,
-        classification: isHighConfidence ? "host_mismatch" : "redirect_mismatch",
+        classification: isHighConfidence
+          ? "host_mismatch"
+          : "redirect_mismatch",
         blocking: isHighConfidence,
         matched_signal: `redirected_to:${finalHost}`,
         expected_host_family: expectedFamilyList,

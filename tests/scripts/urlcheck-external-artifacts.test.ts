@@ -11,6 +11,7 @@ const GENERATED_FILES = [
   "external-soft-404.json",
   "external-host-mismatch.json",
   "external-non-blocking.json",
+  "external-transient.json",
   "external-summary.json",
   "external-full.csv",
   "external-redirects.json",
@@ -29,8 +30,10 @@ describe("writeExternalArtifacts", () => {
     await writeExternalArtifacts(
       [
         {
-          source_url: "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html",
-          final_url: "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html",
+          source_url:
+            "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html",
+          final_url:
+            "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html",
           referrer_url: "https://monedario.cl/posts/test/",
           anchor_text: "Dirección del Trabajo",
           link_type: "structured",
@@ -43,8 +46,10 @@ describe("writeExternalArtifacts", () => {
           error: null,
         },
         {
-          source_url: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-44868.html",
-          final_url: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-44868.html",
+          source_url:
+            "https://www.cmfchile.cl/educa/621/w3-propertyvalue-44868.html",
+          final_url:
+            "https://www.cmfchile.cl/educa/621/w3-propertyvalue-44868.html",
           referrer_url: "https://monedario.cl/posts/test/",
           anchor_text: "CMF",
           link_type: "structured",
@@ -66,7 +71,10 @@ describe("writeExternalArtifacts", () => {
     const summary = JSON.parse(
       await readFile(`${URLCHECK_ARTIFACT_DIR}/external-summary.json`, "utf8")
     );
-    const csv = await readFile(`${URLCHECK_ARTIFACT_DIR}/external-full.csv`, "utf8");
+    const csv = await readFile(
+      `${URLCHECK_ARTIFACT_DIR}/external-full.csv`,
+      "utf8"
+    );
 
     expect(hardFail).toHaveLength(1);
     expect(hardFail[0].source_url).toBe(
@@ -75,8 +83,12 @@ describe("writeExternalArtifacts", () => {
     expect(summary.scannedExternalLinks).toBe(2);
     expect(summary.totalNonOk).toBe(1);
     expect(summary.blockingFailures).toBe(1);
-    expect(csv).toContain("source_url,final_url,referrer_url,link_type,host_category,classification");
-    expect(csv).toContain("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html");
+    expect(csv).toContain(
+      "source_url,final_url,referrer_url,link_type,host_category,classification"
+    );
+    expect(csv).toContain(
+      "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html"
+    );
   });
 });
 
