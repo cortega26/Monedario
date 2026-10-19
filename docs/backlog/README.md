@@ -3,6 +3,45 @@
 > Generado el 2026-04-08. Última actualización: 2026-09-29.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
+## Actualización 2026-10-19 (reconciliación)
+
+> Esta sección reemplaza al "Siguiente orden recomendado" del 2026-09-25 como
+> estado operativo. El resto del documento se conserva como historial.
+
+### Cerrado en la sesión de saneamiento
+
+- **CI/billing/runner**: #690, #692, #693, #694, #698, #699, #703. Todos los
+  jobs usan el runner self-hosted; `Validate committed artifacts` corre en
+  verde.
+- **Dependencias**: #691 (Astro 7.3.8, Wrangler 4.149, sharp 0.35.5 y overrides).
+  `pnpm audit --prod` = 0; 0 alertas Dependabot abiertas.
+- **Editorial timeliness**: #696 (revalidación + corrección del enlace DT art. 54).
+  #659 y #661 cerrados; audit de timeliness en verde.
+- **Data Signals W41/W42**: #697 (GSC, Cloudflare, RUM y analytics backfill).
+- **#675 CSP**: cerrado; causa raíz era la falta de `User-Agent` en la API de GitHub.
+- **PR #423** (Lote 0 de la auditoría del corpus): mergeado.
+
+### Pendiente inmediato
+
+1. **WIP editorial local** (91 archivos): correcciones de `devolucion-impuestos`
+   y `rentas-mixtas`, hero/OG images y `correcciones.json`. Compliance PASS;
+   falta firma humana.
+2. **Auditoría del corpus**: lotes 1–5 (resto de los 54 artículos).
+3. **#688**: auditoría adversarial horaria, 0/54 completados.
+4. **Reconciliar/archivar planes stale**: `PLAN-coordinated-dependency-refresh`,
+   `PLAN-coordinated-eslint-knip-refresh`, `PLAN-deps-brace-expansion`,
+   `PLAN-followup-timeliness-siete`, `PLAN-github-workflow-hardening` (fase 3),
+   `PLAN-seo-cross-document-roadmap` (Sprint 1 parcial).
+5. **D2/D3**: `@astrojs/react@7`, Satori 0.51, TS7.
+
+### Bloqueado por decisión o evidencia
+
+- Monetización y FOCO: decisión 2026-11-02.
+- Newsletter (MON-301): plataforma pendiente.
+- #652 experimento IPC: aprobación.
+- Data Signals Phase 2: Ahrefs Advanced+.
+- Utility-led/result panel: ventanas de medición hasta 2026-11-02.
+
 ---
 
 ## Estado actual — 2026-09-25
