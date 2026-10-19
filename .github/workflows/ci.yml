@@ -52,7 +52,8 @@ jobs:
   lint-and-test:
     name: Code standards & tests
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
-    timeout-minutes: 5
+    # Self-hosted jobs run serially and cold caches can exceed the old 5 min.
+    timeout-minutes: 15
 
     steps:
       - name: "☁️ Checkout repository"
@@ -108,7 +109,7 @@ jobs:
   build:
     name: Code standards & build
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
-    timeout-minutes: 10
+    timeout-minutes: 15
     # Runs on PRs (blocking gate) AND on the daily schedule against the default
     # branch, so drift that lands on main (e.g. a stale test guard) is caught
     # within ~24h instead of going undetected. See
@@ -354,7 +355,7 @@ jobs:
     name: Accessibility audit (non-blocking)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     needs: build
-    timeout-minutes: 10
+    timeout-minutes: 15
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     continue-on-error: true
 
@@ -368,6 +369,10 @@ jobs:
           node-version: 22
 
       - name: "🌐 Install Playwright browsers"
+        env:
+          # The Playwright CDN can exceed the 30s default on the self-hosted
+          # runner; a timeout here used to fail the whole a11y job.
+          PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT: "120000"
         run: pnpm exec playwright install chromium
 
       - name: "⬇️ Restore build output handoff cache"
