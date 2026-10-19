@@ -358,6 +358,10 @@ jobs:
     timeout-minutes: 15
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     continue-on-error: true
+    env:
+      # /home/runner is a 512 MiB tmpfs; the Chromium download exceeds it.
+      # Keep the browser cache on the 5 GiB /runner tmpfs.
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/ms-playwright
 
     steps:
       - name: "☁️ Checkout repository"
