@@ -5,16 +5,7 @@ import { describe, expect, it } from "vitest";
 
 const repoRoot = process.cwd();
 const workflowsDir = path.join(repoRoot, ".github", "workflows");
-const expectedRunner = "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}";
-
-// Files created entirely after the bridge retirement (2026-08-01). Every job
-// in them is outside the documented ADR-20260716 bridge scope, so the whole
-// file stays on hardcoded ubuntu-latest.
-const fullyOutOfScopeFiles = new Set([
-  "deploy-analytics-collector.yml",
-  "ops-reminders.yml",
-  "validate-committed-artifacts.yml",
-]);
+const expectedRunner = "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}";
 
 function read(relativePath: string): string {
   return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
@@ -43,14 +34,13 @@ function jobRunnerMap(source: string): Map<string, string> {
 }
 
 describe("GitHub Actions runner portability", () => {
-  it("routes every in-scope workflow job through the hosted-default repository variable", () => {
+  it("routes every workflow job through the self-hosted runner variable", () => {
     const workflowFiles = fs
       .readdirSync(workflowsDir)
       .filter(file => file.endsWith(".yml"))
       .sort();
 
     const declarations = workflowFiles.flatMap(file => {
-      if (fullyOutOfScopeFiles.has(file)) return [];
       const source = read(path.join(".github", "workflows", file));
       return [...jobRunnerMap(source)].map(([job, runner]) => ({
         file,
@@ -62,17 +52,25 @@ describe("GitHub Actions runner portability", () => {
     expect(declarations.length).toBeGreaterThan(0);
 
     for (const declaration of declarations) {
-      expect(declaration.runner).toBe(expectedRunner);
+      expect(
+        declaration.runner,
+        `${declaration.file}:${declaration.job} must use the runner variable`
+      ).toBe(expectedRunner);
     }
   });
 
-  it("routes security-scans.yml jobs including blocking PR Gitleaks through the fallback", () => {
+  it("keeps security-scans.yml jobs on the runner variable", () => {
     const runners = jobRunnerMap(read(".github/workflows/security-scans.yml"));
 
-    for (const job of ["gitleaks", "opengrep", "trivy", "python-audit"]) {
+    for (const job of [
+      "gitleaks",
+      "gitleaks-pr",
+      "opengrep",
+      "trivy",
+      "python-audit",
+    ]) {
       expect(runners.get(job)).toBe(expectedRunner);
     }
-    expect(runners.get("gitleaks-pr")).toBe(expectedRunner);
   });
 
   it("installs bootstrap and security tools without root-owned paths", () => {

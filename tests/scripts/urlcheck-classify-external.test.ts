@@ -37,7 +37,8 @@ function makeProbe(
     contentType: opts.contentType ?? "text/html; charset=utf-8",
     title: opts.title ?? "Normal Page Title",
     h1: opts.h1 ?? "Normal H1",
-    bodySnippet: opts.bodySnippet ?? "Normal body content about financial topics.",
+    bodySnippet:
+      opts.bodySnippet ?? "Normal body content about financial topics.",
     error: opts.error ?? null,
   };
 }
@@ -48,7 +49,9 @@ describe("classifyExternalResult – hard_fail", () => {
   it("classifies HTTP 404 on official_source as hard_fail blocking=true", () => {
     const result = classifyExternalResult(
       makeLink("https://www.bcentral.cl/documentos/no-existe/"),
-      makeProbe("https://www.bcentral.cl/documentos/no-existe/", { status: 404 })
+      makeProbe("https://www.bcentral.cl/documentos/no-existe/", {
+        status: 404,
+      })
     );
     expect(result.classification).toBe("hard_fail");
     expect(result.blocking).toBe(true);
@@ -66,13 +69,32 @@ describe("classifyExternalResult – hard_fail", () => {
     expect(result.matched_signal).toBe("HTTP_410");
   });
 
-  it("classifies HTTP 500 on official_source as hard_fail blocking=true", () => {
+  it("classifies HTTP 500 on official_source as transient_http blocking=false", () => {
     const result = classifyExternalResult(
       makeLink("https://www.spensiones.cl/error/"),
       makeProbe("https://www.spensiones.cl/error/", { status: 500 })
     );
-    expect(result.classification).toBe("hard_fail");
-    expect(result.blocking).toBe(true);
+    expect(result.classification).toBe("transient_http");
+    expect(result.blocking).toBe(false);
+    expect(result.matched_signal).toBe("HTTP_500");
+  });
+
+  it("classifies HTTP 503 on official_source as transient_http blocking=false", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.spensiones.cl/infoydec"),
+      makeProbe("https://www.spensiones.cl/infoydec", { status: 503 })
+    );
+    expect(result.classification).toBe("transient_http");
+    expect(result.blocking).toBe(false);
+  });
+
+  it("classifies HTTP 429 on official_source as transient_http, not ok", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.sii.cl/valores_y_fechas/"),
+      makeProbe("https://www.sii.cl/valores_y_fechas/", { status: 429 })
+    );
+    expect(result.classification).toBe("transient_http");
+    expect(result.blocking).toBe(false);
   });
 
   it("classifies HTTP 404 on trusted_reference as hard_fail blocking=true", () => {
@@ -96,9 +118,14 @@ describe("classifyExternalResult – hard_fail", () => {
   it("preserves source_url and blocking classification for dt.gob.cl", () => {
     const result = classifyExternalResult(
       makeLink("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html"),
-      makeProbe("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html", { status: 404 })
+      makeProbe(
+        "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html",
+        { status: 404 }
+      )
     );
-    expect(result.source_url).toBe("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html");
+    expect(result.source_url).toBe(
+      "https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html"
+    );
     expect(result.host_category).toBe("official_source");
     expect(result.classification).toBe("hard_fail");
     expect(result.blocking).toBe(true);
@@ -221,14 +248,20 @@ describe("classifyExternalResult – redirect/host mismatch", () => {
 
   it("does NOT flag redirects between tesoreria.cl and tgr.cl host family", () => {
     const result = classifyExternalResult(
-      makeLink("https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf", {
-        linkType: "structured",
-      }),
-      makeProbe("https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf", {
-        status: 200,
-        contentType: "application/pdf",
-        finalUrl: "https://www.tgr.cl/web/Contenido/Documentos/4013/cn16.pdf",
-      })
+      makeLink(
+        "https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf",
+        {
+          linkType: "structured",
+        }
+      ),
+      makeProbe(
+        "https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf",
+        {
+          status: 200,
+          contentType: "application/pdf",
+          finalUrl: "https://www.tgr.cl/web/Contenido/Documentos/4013/cn16.pdf",
+        }
+      )
     );
     expect(result.classification).toBe("ok");
     expect(result.blocking).toBe(false);
@@ -372,7 +405,10 @@ describe("classifyExternalResult – artifact field contract", () => {
       linkType: "inline" as const,
       anchorText: "Banco Central",
     };
-    const result = classifyExternalResult(link, makeProbe("https://www.bcentral.cl/", {}));
+    const result = classifyExternalResult(
+      link,
+      makeProbe("https://www.bcentral.cl/", {})
+    );
     expect(result.referrer_url).toBe("https://monedario.cl/p1/");
   });
 });

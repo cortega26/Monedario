@@ -8,6 +8,7 @@ export const MODES = {
     verbosity: "error",
     retryMax: 2,
     retryBackoffMs: 350,
+    maxDurationMs: 8 * 60 * 1000,
   },
   local: {
     concurrency: 10,
@@ -29,6 +30,7 @@ export const MODES = {
     verbosity: "error",
     retryMax: 2,
     retryBackoffMs: 350,
+    maxDurationMs: 10 * 60 * 1000,
   },
 };
 

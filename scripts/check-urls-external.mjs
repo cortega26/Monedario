@@ -6,8 +6,8 @@
  *
  * Modes:
  *   --ci      Whole-site blocking PR validation. Exits 1 if any result has blocking=true.
- *             The CI JOB uses continue-on-error:true during initial rollout, so the workflow
- *             will not fail until the job is promoted to hard-fail mode.
+ *             Content-level failures (404, 410, soft-404, host mismatch) block;
+ *             transient 5xx/429 failures are retried and reported as telemetry.
  *   --audit   Nightly/manual full audit. Always exits 0 regardless of findings; all classes
  *             are written to artifacts for trend visibility.
  *   --canary  Smoke-test the external engine against local fixture responses. Exits 1 if
@@ -54,7 +54,8 @@ async function main() {
   await assertDistExists(distDir);
 
   const modeConfig = MODES[mode === "ci" ? "ci" : "external_audit"];
-  const { concurrency, timeoutMs } = modeConfig;
+  const { concurrency, timeoutMs, retryMax, retryBackoffMs, maxDurationMs } =
+    modeConfig;
 
   console.log(`[check-urls-external] mode=${mode} dist=${distDir}`);
 
@@ -63,18 +64,36 @@ async function main() {
   const uniqueUrls = [...linkMap.keys()];
 
   if (uniqueUrls.length === 0) {
-    console.log("[check-urls-external] No external links found — check dist/ output.");
+    console.log(
+      "[check-urls-external] No external links found — check dist/ output."
+    );
     if (mode === "ci") process.exit(1);
     return;
   }
 
-  console.log(`[check-urls-external] Found ${uniqueUrls.length} unique external URLs.`);
+  console.log(
+    `[check-urls-external] Found ${uniqueUrls.length} unique external URLs.`
+  );
 
   // 2. Probe each URL
-  const probeResults = await runProbePool(uniqueUrls, { concurrency, timeoutMs });
+  const probeResults = await runProbePool(uniqueUrls, {
+    concurrency,
+    timeoutMs,
+    retryMax,
+    retryBackoffMs,
+    maxDurationMs,
+  });
+  const retriedCount = [...probeResults.values()].filter(
+    result => (result.retryCount ?? 0) > 0
+  ).length;
+  if (retriedCount > 0) {
+    console.log(
+      `[check-urls-external] retried=${retriedCount} (maxRetries=${retryMax})`
+    );
+  }
 
   // 3. Classify results
-  const classifiedResults = uniqueUrls.map((url) => {
+  const classifiedResults = uniqueUrls.map(url => {
     const link = linkMap.get(url);
     const probe = probeResults.get(url);
     return classifyExternalResult(link, probe);
@@ -100,11 +119,21 @@ async function main() {
   console.log("");
 
   // 6. Evaluate gate
-  const blockingFailures = classifiedResults.filter((r) => r.blocking);
-  const hardFails = classifiedResults.filter((r) => r.classification === "hard_fail" && r.blocking);
-  const soft404s = classifiedResults.filter((r) => r.classification === "soft_404" && r.blocking);
+  const blockingFailures = classifiedResults.filter(r => r.blocking);
+  const hardFails = classifiedResults.filter(
+    r => r.classification === "hard_fail" && r.blocking
+  );
+  const soft404s = classifiedResults.filter(
+    r => r.classification === "soft_404" && r.blocking
+  );
   const mismatches = classifiedResults.filter(
-    (r) => (r.classification === "host_mismatch" || r.classification === "redirect_mismatch") && r.blocking
+    r =>
+      (r.classification === "host_mismatch" ||
+        r.classification === "redirect_mismatch") &&
+      r.blocking
+  );
+  const transients = classifiedResults.filter(
+    r => r.classification === "transient_http"
   );
 
   console.log(
@@ -112,10 +141,19 @@ async function main() {
       `blocking=${blockingFailures.length} ` +
       `hard_fail=${hardFails.length} ` +
       `soft_404=${soft404s.length} ` +
-      `host_mismatch=${mismatches.length}`
+      `host_mismatch=${mismatches.length} ` +
+      `transient=${transients.length}`
   );
 
   if (mode === "audit") {
+    if (transients.length > 0) {
+      console.log(
+        "[check-urls-external] transient hosts (tracked in external-transient.json):"
+      );
+      for (const r of transients) {
+        console.log(`  - ${r.source_url} (HTTP ${r.status})`);
+      }
+    }
     console.log("[check-urls-external] Audit mode complete (non-blocking).");
     return;
   }
@@ -135,7 +173,9 @@ async function main() {
     );
   }
 
-  console.log("[check-urls-external] OK. No blocking external failures detected.");
+  console.log(
+    "[check-urls-external] OK. No blocking external failures detected."
+  );
 }
 
 // ---- Canary mode ----
@@ -174,6 +214,7 @@ async function runCanary() {
     const probeResults = await runProbePool(uniqueUrls, {
       concurrency: 4,
       timeoutMs: 5_000,
+      retryMax: 0,
       allowPrivateHosts: true,
     });
 
@@ -181,7 +222,7 @@ async function runCanary() {
     // so it will be classified as "unknown" (non-blocking by default).
     // We override blocking for canary assertions: hard_fail and soft_404 are
     // expected to be DETECTED regardless of blocking flag.
-    const classified = uniqueUrls.map((url) => {
+    const classified = uniqueUrls.map(url => {
       const link = linkMap.get(url);
       const probe = probeResults.get(url);
       return classifyExternalResult(link, probe);
@@ -189,7 +230,9 @@ async function runCanary() {
 
     // Assert expected detections
     assertCanaryExpectations(classified, baseUrl);
-    console.log("[check-urls-external] Canary passed. All expected failures detected.");
+    console.log(
+      "[check-urls-external] Canary passed. All expected failures detected."
+    );
   } finally {
     server.close();
   }
@@ -212,7 +255,7 @@ function buildCanaryLinkMap(baseUrl) {
 }
 
 function assertCanaryExpectations(classified, baseUrl) {
-  const byUrl = new Map(classified.map((r) => [r.source_url, r]));
+  const byUrl = new Map(classified.map(r => [r.source_url, r]));
 
   const hardFail = byUrl.get(`${baseUrl}/hard-404`);
   if (!hardFail || hardFail.classification !== "hard_fail") {
@@ -282,8 +325,8 @@ function createCanaryServer(port) {
 async function waitForServer(url, attempts = 40) {
   const { default: http } = await import("node:http");
   for (let i = 0; i < attempts; i += 1) {
-    const ok = await new Promise((resolve) => {
-      const req = http.get(url, (res) => {
+    const ok = await new Promise(resolve => {
+      const req = http.get(url, res => {
         res.resume();
         resolve(true);
       });
@@ -294,7 +337,7 @@ async function waitForServer(url, attempts = 40) {
       });
     });
     if (ok) return;
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
   throw new Error(`canary_server_not_ready:${url}`);
 }
@@ -309,7 +352,7 @@ async function assertDistExists(distDir) {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(`[check-urls-external] FAIL: ${error.message}`);
   process.exit(1);
 });

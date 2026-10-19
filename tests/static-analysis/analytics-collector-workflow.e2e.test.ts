@@ -18,17 +18,20 @@ const WORKFLOW_PATH = path.join(
   process.cwd(),
   ".github",
   "workflows",
-  "deploy-analytics-collector.yml",
+  "deploy-analytics-collector.yml"
 );
 const source = fs.readFileSync(WORKFLOW_PATH, "utf8");
 const packageJson = JSON.parse(
-  fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8"),
+  fs.readFileSync(path.join(process.cwd(), "package.json"), "utf8")
 ) as { devDependencies?: Record<string, string> };
 const workspaceConfig = load(
   fs.readFileSync(path.join(process.cwd(), "pnpm-workspace.yaml"), "utf8"),
-  { schema: JSON_SCHEMA },
+  { schema: JSON_SCHEMA }
 ) as { overrides?: Record<string, string> };
-const pnpmLock = fs.readFileSync(path.join(process.cwd(), "pnpm-lock.yaml"), "utf8");
+const pnpmLock = fs.readFileSync(
+  path.join(process.cwd(), "pnpm-lock.yaml"),
+  "utf8"
+);
 const workflow = load(source, { schema: JSON_SCHEMA }) as {
   on: Record<string, unknown>;
   permissions: Record<string, string>;
@@ -66,22 +69,24 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
     expect(workflow.concurrency["cancel-in-progress"]).toBe(false);
   });
 
-  it("corre en ubuntu-latest con timeout acotado (runner self-hosted retirado)", () => {
+  it("corre en el runner self-hosted con timeout acotado", () => {
     const deploy = workflow.jobs["deploy"];
-    expect(deploy["runs-on"]).toBe("ubuntu-latest");
+    expect(deploy["runs-on"]).toBe(
+      "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}"
+    );
     // 30 min: pasos de deploy (~5 min) + ventana completa del verifier
     // (hasta 15 min de polling de propagación del cron) con holgura. Un tope
     // menor cortaría el job antes de agotar la ventana de propagación.
     expect(deploy["timeout-minutes"]).toBeLessThanOrEqual(30);
-    expect(source).not.toContain("ACTIONS_RUNNER_LABEL");
+    expect(source).toContain("ACTIONS_RUNNER_LABEL");
   });
 
   it("pinea toda action de terceros a un SHA inmutable", () => {
     const usesLines = source
       .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => line.startsWith("uses:"))
-      .map((line) => line.replace(/^uses:\s*/, ""));
+      .map(line => line.trim())
+      .filter(line => line.startsWith("uses:"))
+      .map(line => line.replace(/^uses:\s*/, ""));
 
     expect(usesLines.length).toBeGreaterThan(0);
 
@@ -90,10 +95,12 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
         continue; // actions locales del repo, no pinnables
       }
       // Formato: owner/repo@<sha40> [# vX.Y.Z]
-      const match = /^[\w.-]+\/[\w.-]+@([0-9a-f]{40})(?:\s+#\s+v[\d.]+)?$/.exec(uses);
+      const match = /^[\w.-]+\/[\w.-]+@([0-9a-f]{40})(?:\s+#\s+v[\d.]+)?$/.exec(
+        uses
+      );
       expect(
         match,
-        `la action "${uses}" debe usar un SHA inmutable de 40 caracteres`,
+        `la action "${uses}" debe usar un SHA inmutable de 40 caracteres`
       ).not.toBeNull();
     }
   });
@@ -117,23 +124,25 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
 
   it("usa la config explícita del worker en dry-run y deploy", () => {
     const runCommands = jobSteps("deploy")
-      .map((step) => step.run ?? "")
+      .map(step => step.run ?? "")
       .join("\n");
 
     expect(runCommands).toContain(
-      "wrangler deploy --dry-run --config workers/analytics-collector/wrangler.toml",
+      "wrangler deploy --dry-run --config workers/analytics-collector/wrangler.toml"
     );
     expect(runCommands).toContain(
-      "wrangler deploy --config workers/analytics-collector/wrangler.toml",
+      "wrangler deploy --config workers/analytics-collector/wrangler.toml"
     );
   });
 
   it("ejecuta el dry-run de wrangler antes del deploy", () => {
     const steps = jobSteps("deploy");
     const dryRunIndex = steps.findIndex(
-      (step) => step.name === "🧪 Wrangler dry run (antes de desplegar)",
+      step => step.name === "🧪 Wrangler dry run (antes de desplegar)"
     );
-    const deployIndex = steps.findIndex((step) => step.name === "🚀 Desplegar worker");
+    const deployIndex = steps.findIndex(
+      step => step.name === "🚀 Desplegar worker"
+    );
 
     expect(dryRunIndex).toBeGreaterThan(-1);
     expect(deployIndex).toBeGreaterThan(dryRunIndex);
@@ -142,9 +151,11 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
   it("corre los tests enfocados del worker antes de desplegar", () => {
     const steps = jobSteps("deploy");
     const testsIndex = steps.findIndex(
-      (step) => step.name === "🧪 Tests enfocados del worker",
+      step => step.name === "🧪 Tests enfocados del worker"
     );
-    const deployIndex = steps.findIndex((step) => step.name === "🚀 Desplegar worker");
+    const deployIndex = steps.findIndex(
+      step => step.name === "🚀 Desplegar worker"
+    );
 
     expect(testsIndex).toBeGreaterThan(-1);
     expect(deployIndex).toBeGreaterThan(testsIndex);
@@ -153,12 +164,12 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
   it("nunca interpola secretos dentro de una URL", () => {
     const urlLines = source
       .split("\n")
-      .filter((line) => /https?:\/\//.test(line));
+      .filter(line => /https?:\/\//.test(line));
 
     for (const line of urlLines) {
       expect(
         line,
-        `la línea con URL no debe interpolar secretos: ${line.trim()}`,
+        `la línea con URL no debe interpolar secretos: ${line.trim()}`
       ).not.toMatch(/\$\{\{\s*secrets\./);
     }
 
@@ -167,7 +178,7 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
       if (line.includes("curl") || line.includes("wget")) {
         expect(
           line,
-          `el comando de red no debe llevar secretos: ${line.trim()}`,
+          `el comando de red no debe llevar secretos: ${line.trim()}`
         ).not.toMatch(/secrets\./);
       }
     }
@@ -175,8 +186,8 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
 
   it("verifica la paridad post-deploy con el verifier y el cron exacto", () => {
     const steps = jobSteps("deploy");
-    const verifySteps = steps.filter((step) =>
-      step.run?.includes("verify-analytics-worker-deployment.mjs"),
+    const verifySteps = steps.filter(step =>
+      step.run?.includes("verify-analytics-worker-deployment.mjs")
     );
 
     expect(verifySteps.length).toBeGreaterThanOrEqual(2);
@@ -186,9 +197,13 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
     }
 
     // El smoke autenticado solo corre con EXPORT_SECRET configurado.
-    const fullVerify = verifySteps.find((step) => step.run?.includes("--smoke-export"));
+    const fullVerify = verifySteps.find(step =>
+      step.run?.includes("--smoke-export")
+    );
     expect(fullVerify?.if).toBe("env.EXPORT_SECRET != ''");
-    const readOnly = verifySteps.find((step) => !step.run?.includes("--smoke-export"));
+    const readOnly = verifySteps.find(
+      step => !step.run?.includes("--smoke-export")
+    );
     expect(readOnly?.if).toBe("env.EXPORT_SECRET == ''");
   });
 

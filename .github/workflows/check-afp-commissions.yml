@@ -17,7 +17,7 @@ permissions:
 jobs:
   check-afp-commissions:
     name: Validate AFP commission rates against Previred
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     timeout-minutes: 10
 
     steps:

@@ -1,8 +1,9 @@
 /**
  * E2E tests for the Refresh Volatile Data Snapshots workflow safety guard.
  *
- * Verifies that `.github/workflows/refresh-economic-snapshot.yml` delegates to
- * the shared safe auto-merge action instead of maintaining bespoke merge logic.
+ * Editorial refresh PRs must stay open for human review while the workflow
+ * `add-paths` includes `src/data/blog`: the review-policy generator must not
+ * manufacture freshness or human-review dates.
  *
  * Verification rows: V1, V2, V3, V4
  */
@@ -14,10 +15,10 @@ const WORKFLOW_PATH = path.join(
   process.cwd(),
   ".github",
   "workflows",
-  "refresh-economic-snapshot.yml",
+  "refresh-economic-snapshot.yml"
 );
 
-describe("refresh-economic-snapshot workflow — safe auto-merge", () => {
+describe("refresh-economic-snapshot workflow — manual review guard", () => {
   // V1: Workflow file must exist
   it("workflow file exists (V1)", () => {
     expect(fs.existsSync(WORKFLOW_PATH)).toBe(true);
@@ -34,18 +35,16 @@ describe("refresh-economic-snapshot workflow — safe auto-merge", () => {
     expect(content.split("\n").length).toBeGreaterThan(10);
   });
 
-  // V2: The workflow must delegate to the shared safe auto-merge action.
-  it("Enable auto-merge step uses the shared action (V2)", () => {
+  // V2/V3: The workflow must not auto-merge PRs that can touch src/data/blog.
+  it("does not auto-merge editorial refresh PRs (V2/V3)", () => {
     const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
-    expect(content).toContain("uses: ./.github/actions/enable-safe-automerge");
-  });
-
-  // V3: The workflow must pass the created PR number to the shared action.
-  it("workflow passes the created PR number to the shared action (V3)", () => {
-    const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
-    expect(content).toContain(
-      "pull-request: ${{ steps.create-pr.outputs.pull-request-number }}",
+    expect(content).not.toContain(
+      "uses: ./.github/actions/enable-safe-automerge"
     );
+    expect(content).not.toContain(
+      "pull-request: ${{ steps.create-pr.outputs.pull-request-number }}"
+    );
+    expect(content).toContain("Refresh PRs stay open for manual review");
   });
 
   // V4: The workflow should no longer maintain bespoke merge shell commands.

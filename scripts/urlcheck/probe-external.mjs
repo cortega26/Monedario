@@ -6,6 +6,12 @@ import { isPrivateHostname } from "./host-registry.mjs";
  */
 const BODY_READ_LIMIT = 65_536; // 64 KiB
 
+/** Statuses worth retrying: throttle or transient server failure. */
+const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
+
+/** Network error codes worth retrying. Guard failures are not retried. */
+const RETRYABLE_ERRORS = new Set(["timeout", "network", "dns"]);
+
 /** Browsers-style User-Agent so well-behaved servers don't block the checker. */
 const UA =
   "Mozilla/5.0 (compatible; MonedarioLinkChecker/1.0; +https://monedario.cl)";
@@ -20,6 +26,7 @@ const UA =
  * @property {string|null} h1        – first <h1> content, or null
  * @property {string|null} bodySnippet – first 2 KiB of text-node content, or null
  * @property {string|null} error     – error code string, or null
+ * @property {number} [retryCount]   – number of retries performed by the pool
  */
 
 /**
@@ -35,7 +42,10 @@ const UA =
  * @param {{ timeoutMs: number, allowPrivateHosts?: boolean }} opts
  * @returns {Promise<ProbeResult>}
  */
-export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = false } = {}) {
+export async function probeUrl(
+  url,
+  { timeoutMs = 12_000, allowPrivateHosts = false } = {}
+) {
   // Validate scheme before any network I/O
   let parsed;
   try {
@@ -62,13 +72,15 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
     // Only http/https schemes are accepted (validated above). The hostname is checked
     // against private ranges both before the request (ssrf_guard_private_host) and
     // again after following redirects (ssrf_guard_private_redirect).
-    const response = await fetch(url, { // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf
+    const response = await fetch(url, {
+      // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf
       method: "GET",
       redirect: "follow",
       signal: controller.signal,
       headers: {
         "User-Agent": UA,
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        Accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "es-CL,es;q=0.9,en;q=0.8",
       },
     });
@@ -96,14 +108,19 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
       };
     }
 
-    const contentType = (response.headers.get("content-type") ?? "").toLowerCase();
+    const contentType = (
+      response.headers.get("content-type") ?? ""
+    ).toLowerCase();
     const status = response.status;
 
     let title = null;
     let h1 = null;
     let bodySnippet = null;
 
-    if (contentType.includes("text/html") || contentType.includes("application/xhtml")) {
+    if (
+      contentType.includes("text/html") ||
+      contentType.includes("application/xhtml")
+    ) {
       const snippetResult = await readBoundedBody(response, BODY_READ_LIMIT);
       if (snippetResult) {
         title = extractTitle(snippetResult);
@@ -115,7 +132,16 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
       await response.body?.cancel();
     }
 
-    return { url, finalUrl, status, contentType, title, h1, bodySnippet, error: null };
+    return {
+      url,
+      finalUrl,
+      status,
+      contentType,
+      title,
+      h1,
+      bodySnippet,
+      error: null,
+    };
   } catch (err) {
     return errorResult(url, classifyNetworkError(err));
   } finally {
@@ -124,31 +150,95 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
 }
 
 /**
- * Probes a batch of URLs with bounded concurrency.
+ * Returns true when a probe result is worth retrying: throttle, transient
+ * server failure, or a transient network error. Security guards and
+ * deterministic client errors are never retried.
+ *
+ * @param {ProbeResult} result
+ * @returns {boolean}
+ */
+export function isRetryableProbeResult(result) {
+  if (!result) return false;
+  if (result.status !== null && RETRYABLE_STATUSES.has(result.status)) {
+    return true;
+  }
+  return result.error !== null && RETRYABLE_ERRORS.has(result.error);
+}
+
+/**
+ * Probes a batch of URLs with bounded concurrency and bounded retries.
+ *
+ * `maxDurationMs` is a global budget for the whole batch: once exhausted, no
+ * further retries are attempted (in-flight probes still finish). This keeps
+ * the total runtime under the CI job timeout even when many hosts are down.
  *
  * @param {string[]} urls
- * @param {{ concurrency?: number, timeoutMs?: number, allowPrivateHosts?: boolean }} opts
+ * @param {{
+ *   concurrency?: number,
+ *   timeoutMs?: number,
+ *   retryMax?: number,
+ *   retryBackoffMs?: number,
+ *   maxDurationMs?: number,
+ *   allowPrivateHosts?: boolean
+ * }} opts
  * @returns {Promise<Map<string, ProbeResult>>}
  */
 export async function runProbePool(
   urls,
-  { concurrency = 6, timeoutMs = 12_000, allowPrivateHosts = false } = {}
+  {
+    concurrency = 6,
+    timeoutMs = 12_000,
+    retryMax = 0,
+    retryBackoffMs = 0,
+    maxDurationMs = null,
+    allowPrivateHosts = false,
+  } = {}
 ) {
   const results = new Map();
   const queue = [...urls];
+  const deadline =
+    Number.isFinite(maxDurationMs) && maxDurationMs > 0
+      ? Date.now() + maxDurationMs
+      : null;
+
+  async function probeWithRetry(url) {
+    let attempt = 0;
+    let result = await probeUrl(url, { timeoutMs, allowPrivateHosts });
+
+    while (
+      attempt < retryMax &&
+      isRetryableProbeResult(result) &&
+      (deadline === null || Date.now() < deadline)
+    ) {
+      attempt += 1;
+      const delay = retryBackoffMs * attempt;
+      if (delay > 0) {
+        await sleep(delay);
+      }
+      result = await probeUrl(url, { timeoutMs, allowPrivateHosts });
+    }
+
+    return { ...result, retryCount: attempt };
+  }
 
   async function worker() {
     while (queue.length > 0) {
       const url = queue.shift();
       if (!url) break;
-      const result = await probeUrl(url, { timeoutMs, allowPrivateHosts });
-      results.set(url, result);
+      results.set(url, await probeWithRetry(url));
     }
   }
 
-  const workers = Array.from({ length: Math.min(concurrency, urls.length || 1) }, worker);
+  const workers = Array.from(
+    { length: Math.min(concurrency, urls.length || 1) },
+    worker
+  );
   await Promise.all(workers);
   return results;
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // ---- Private helpers ----
