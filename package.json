@@ -133,28 +133,28 @@
     "test:edge-guard": "node --test tests/scripts/edge-csp-monitor.test.mjs"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^7.3.1",
-    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/mdx": "^8.0.3",
     "@astrojs/react": "^6.0.6",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
     "@kindspells/astro-shield": "^1.7.1",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.2",
-    "astro": "^7.3.3",
+    "astro": "^7.3.8",
     "date-fns": "^4.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "satori": "^0.33.4",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "slugify": "^1.6.9",
     "tailwindcss": "^4.3.2",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "^4.13.0",
-    "@cloudflare/workers-types": "^5.20260907.1",
+    "@cloudflare/workers-types": "^5.20261012.1",
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.63.0",
@@ -173,14 +173,14 @@
     "lint-staged": "^17.5.0",
     "openai": "^7.10.0",
     "pagefind": "^1.5.2",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.0.0",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0",
     "vitest": "^4.1.11",
-    "wrangler": "4.138.0"
+    "wrangler": "4.149.0"
   },
   "lint-staged": {
     "{scripts/hero-images/{prompts,manifest}.json,scripts/hero-images/prompt-plan.mjs,src/data/blog/*.md}": [

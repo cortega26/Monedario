@@ -20,22 +20,39 @@ overrides:
   js-yaml@^3.13.1: 4.3.2
   js-yaml@^4.1.1: 4.3.2
   uuid: '>=11.1.1'
+  # Seguridad (2026-10-19): advisories abiertas en dependencias transitivas.
+  # - source-map-js <1.2.2: event-loop DoS por section offsets (alerta #210).
+  # - proxy-addr <2.0.8: IP spoofing vía IPv4-mapped IPv6 (alerta #209, dev).
+  # - compression <1.8.2: DoS por memory leak al cerrar respuesta (alerta #208, dev).
+  # - postcss-selector-parser <7.1.6: CPU exhaustion en selectores planos
+  #   (alerta #207, build-time vía @tailwindcss/typography).
+  source-map-js: '>=1.2.2'
+  proxy-addr: '>=2.0.8'
+  compression: '>=1.8.2'
+  postcss-selector-parser: '>=7.1.6'
+  # Astro 7.3.8 ya pide devalue/smol-toml parcheados, pero @astrojs/react 6
+  # mantiene copias viejas de internal-helpers. Se fuerzan aquí hasta D2
+  # (@astrojs/react 7) y se revisan en el próximo bump.
+  devalue: '>=5.9.4'
+  smol-toml: '>=1.9.0'
+  http-cache-semantics: '>=4.2.1'
+  # El root y miniflare ya usan sharp 0.35.5; el optional dep de astro pedía
+  # 0.35.4. Forzar el parcheado elimina la alerta #212.
+  sharp: '>=0.35.5'
+  # basic-ftp 6.x mantiene la API Client/access/list que usa get-uri 6.0.5.
+  # Solo llega por LHCI/puppeteer (dev); el override elimina la alerta #189.
+  basic-ftp: '>=6.2.3'
   # Seguridad (2026-09-13): pines transitivos con CVE cuyo padre no publica
   # release que los corrija — se fuerzan al parcheado.
   # - fflate <0.7.5→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
   #   satori@0.33.4 (último publicado) pinea 0.7.3 exacto.
   #   remove-when: satori publique release que resuelva fflate >=0.7.5.
-  # - sharp <0.35.4→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
-  #   (alerta #113, libheif); lo pinea miniflare vía wrangler@4.127.1.
-  #   remove-when: wrangler/miniflare publique release que resuelva sharp
-  #   >=0.35.4.
+  # - sharp: el pin <0.35.4→0.35.4 se retira el 2026-10-19 porque
+  #   wrangler@4.149/miniflare ya resuelve sharp 0.35.5 y el root sube a
+  #   sharp 0.35.5. Si `pnpm why sharp` muestra una versión menor, re-evaluar.
   # Revisar al subir satori/wrangler: quitar la línea cuyo padre ya resuelva
   # el parcheado, correr `pnpm install` y conservar si el lockfile queda limpio.
-  # Aserción lockfile: lo resuelto debe seguir siendo fflate 0.7.5 y
-  # sharp 0.35.4 (`pnpm why fflate sharp`); si un bump paterno mueve la
-  # resolución, re-evaluar el pin en vez de asumir que sigue cubriendo.
   fflate@<0.7.5: 0.7.5
-  sharp@<0.35.4: 0.35.4
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
