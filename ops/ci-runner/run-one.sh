@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # Dedicated disposable CI slot for cortega26/Monedario.
-# Reuses the already verified pcp-ci-isolated image; NEVER uses the trusted pcp-local runner.
+# Derived from the verified pcp-ci-isolated image plus Chromium/Playwright system
+# libraries required by the non-blocking a11y job; NEVER uses the trusted pcp-local runner.
 set -Eeuo pipefail
 
 readonly repository=cortega26/Monedario
 readonly label=monedario-ci-isolated
-readonly image=pcp-ci-isolated:2.338.0
+readonly image=monedario-ci-isolated:2.338.0-a11y
 readonly network=monedario-ci-isolated
 name="monedario-ci-isolated-$(date -u +%s)-$$"
 
