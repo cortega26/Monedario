@@ -1,0 +1,199 @@
+{
+  "fetchedAt": "2026-10-19T20:58:39Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W41",
+  "window": {
+    "from": "2026-10-05",
+    "to": "2026-10-11"
+  },
+  "data": [
+    {
+      "clsP75": 0.003,
+      "count": 920,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 1056,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0.007,
+      "count": 310,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 936,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 70,
+      "inpP75Ms": 104,
+      "lcpP75Ms": 564,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 70,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 1130,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 70,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 1420,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 50,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 1176,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 50,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 1392,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 120,
+      "lcpP75Ms": 816,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 749,
+      "path": "/calculadoras/actualizador-inflacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 3008,
+      "path": "/calculadoras/reajuste-arriendo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 1088,
+      "path": "/posts/utm-chile-que-es-como-funciona/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 36,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": null,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 156,
+      "path": "/calculadoras/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 848,
+      "path": "/"
+    },
+    {
+      "clsP75": 0.017,
+      "count": 20,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 2388,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 700,
+      "path": "/posts/deposito-a-plazo-uf-vs-pesos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 1544,
+      "path": "/posts/cae-costo-real-credito-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 672,
+      "path": "/guias/impuestos-personas/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 860,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 322,
+      "path": "/calculadoras/tarjeta-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 508,
+      "path": "/posts/seguro-de-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 660,
+      "path": "/calculadoras/interes-compuesto/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 1984,
+      "path": "/calculadoras/simulador-renegociacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 868,
+      "path": "/guias/bancos-fintech/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/posts/el-poder-del-interes-compuesto/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 26,
+    "keptRoutes": 25,
+    "discardedRoutes": 1,
+    "discarded": [
+      {
+        "path": "/glosario/afp/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}
