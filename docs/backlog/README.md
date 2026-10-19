@@ -60,7 +60,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | 2 | Gate D semanal (W39–W43) | `utility-led-ops.json` sigue `INPUT_REQUIRED`; sin registro no se decide expansión el 2026-11-02 |
 | 3 | F2 B2B: 10 conversaciones antes del 2026-11-02 | Tracker sembrado con 10 candidatos en `docs/reports/B2B-DISCOVERY-MEMO-2026-09-16.md`; sin memo completo, la opción D no es elegible |
 | 4 | Distribución: semana 1 de siembra + corrida mensual de citación (sesión owner) | F1 ejecutada (3/25 evaluables, 0/20 temáticas); canales 1–2 activos |
-| 5 | Firmar (editor humano) el lote 0 de `impuestos-personas` | Los cuatro SLA vencidos ya se remediaron y verificaron (compliance adversarial en múltiples rondas): `CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes. `check:editorial-timeliness` ya no los reporta como stale. Falta solo la firma humana en `07-publish-packet.md` y decidir el merge de PR #423. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md` §18 |
+| 5 | Auditoría del corpus, lotes 1–5 | El lote 0 ya está mergeado en #423 y no quedan SLA vencidos de ese lote. Faltan los lotes 1–5 del resto del corpus. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md`. |
 | 6 | Post-W40: instrumentación UTM landing + F3 citation-ready | No tocar superficies antes por ventanas de medición activas |
 
 ### Pendiente — implementación por código
@@ -94,20 +94,19 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Distribución sin presupuesto | `PLAN-zero-cost-distribution-2026-09-25.md` (+ 3 canales) | Canales 1–2 manuales activables ya; canal 4 (embeds) gated a 2026-11-02 con excepción + ADR |
 | Estrategia SEO/SERP (investigación externa 2026-09-29) | `SEO-SERP-STRATEGY-2026-09-29.md` | Docs-only: la matriz query×page, los audits y los títulos sueldo/APV ya existen en repo; N1–N7 con gates. Validado con GSC W32–W39 (plan 128, §8): glosario 37/54 sin impresiones, sueldo/APV fuera de rango on-page, `/archives/` con evidencia para decisión. Ejecución condicionada a freeze (~2026-10-14), ventanas y FOCO hasta 2026-11-02 |
 
-### Pendiente — auditorías adversariales (lote 2026-09-28)
+### Auditorías adversariales (lote 2026-09-28)
 
-Briefs entregados el 2026-09-28; **no ejecutados**. Carpeta:
+Briefs entregados el 2026-09-28. Estado vigente en cada caso; detalle en la carpeta:
 [`auditorias-pendientes-2026-09-28/`](auditorias-pendientes-2026-09-28/README.md).
 
 | Orden | Brief | Estado |
 |-------|-------|--------|
 | 01 | Correctitud, consistencia y freshness | **RESULTADO RECIBIDO** (`docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`; plan 115) |
 | 02 | SEO técnico y descubrimiento | **RESULTADO RECIBIDO** (`docs/reports/AUDIT-SEO-2026-09-28.md`; plan por definir) |
-| 03 | Privacidad y seguridad pasiva | PENDIENTE |
-| 04 | Resiliencia y performance observable | PENDIENTE |
+| 03 | Privacidad y seguridad pasiva | **REMEDIADO + VERIFICADO 2026-10-03** — informe en `docs/reports/AUDIT-PRIVACY-2026-09-29.md`; plan 121 DONE (PRIV-01/02/03; `test:privacy` + invariante). Reverificación 2026-10-03: suite 12/12 verde y headers defensivos confirmados en producción |
+| 04 | Resiliencia y performance observable | **REMEDIADO** — informe en `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`; plan 122 DONE (`test:resilience` + invariantes). Sin reverificación posterior al 2026-09-29 |
 
-Bloqueador: prerequisito previo indicado por el mantenedor el 2026-09-28 (por
-confirmar). No iniciar hasta resolverlo.
+Bloqueador: resuelto el 2026-09-29 (ver carpeta de auditorías: las 03/04 podían correr en paralelo a E-E-A-T).
 
 ### Bloqueado — requiere acción humana
 
