@@ -37,6 +37,26 @@ gh api repos/cortega26/Monedario/actions/runners --jq \
 systemctl --user status monedario-isolated-ci.service --no-pager
 ```
 
+## Chromium dependencies for the a11y job
+
+The base `pcp-ci-isolated` image does not include the shared libraries Chromium
+needs (`libnss3`, `libatk`, `libgbm`, `libxkbcommon`, etc.). Playwright installs
+the browser but it crashes at launch with `browserType.launch`.
+
+Build the derived image **before** installing or restarting the launcher:
+
+```bash
+docker build -t monedario-ci-isolated:2.338.0-a11y ops/ci-runner
+docker run --rm -v "$HOME/.cache/ms-playwright/chromium-1243/chrome-linux64:/chrome:ro" \
+  --entrypoint sh monedario-ci-isolated:2.338.0-a11y -lc \
+  'ldd /chrome/chrome | grep "not found" | sort -u'
+```
+
+The `ldd` command must print nothing. Then run `bash ops/ci-runner/run-one.sh --verify`
+and restart the service. The CI workflow keeps `PLAYWRIGHT_BROWSERS_PATH` inside
+`${{ github.workspace }}` so the browser does not fill the 512 MiB
+`/home/runner` tmpfs.
+
 ## Routing / live acceptance
 
 Do NOT set the label until a JIT runner is verified online. Then:
