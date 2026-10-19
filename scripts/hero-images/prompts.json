@@ -1711,13 +1711,13 @@
       "targetImagePath": "/images/hero/liquidacion-de-sueldo.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
-      "briefHash": "2a70bb8b90cb3a1075bbae4fb460343b5f69102aa7908a3cf3d4d963ee8f7477",
+      "sourceContentHash": "6e7746cc84d64be5351f43c86e85a4bdb33ee6266a5027eb0969035f759184fa",
+      "briefHash": "bee90375a776b2bb731e2467336f3db8f46bc9404b1dfab75c6f2a958cbca3ad",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       },
       "template": "B",
       "promptTrack": "B",
@@ -2113,13 +2113,13 @@
       "targetImagePath": "/images/hero/que-es-la-cuenta-2-afp.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
-      "briefHash": "cf03711655e8d2d17e3e0f7a8b3bb26a77ebac501054419838a5f6a071a1824f",
+      "sourceContentHash": "3d7bb10594b604509747f7cdad1205210fc1c3cc2609a273adab0626c7fc309f",
+      "briefHash": "a267c46c844c0b6f0815260dc8e8741df60981eb5a98dd373e0f0fdf3dfaba42",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       },
       "template": "B",
       "promptTrack": "B",
@@ -2513,13 +2513,13 @@
       "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "714e68e726c73f7ce55233141d3dc2e71e6949a64a18519b2a84cf9374465757",
-      "briefHash": "2287f0f349ded957d516469256b46b540ba919ca787538d72e63610c99875a39",
+      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
+      "briefHash": "15a796f884f093fef86d93576cd26518cbca592bf11deff339b887bc21e87027",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       },
       "template": "B",
       "promptTrack": "B",
