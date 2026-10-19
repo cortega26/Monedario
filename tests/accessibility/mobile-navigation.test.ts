@@ -17,10 +17,10 @@ test.describe("Navegación móvil compacta", () => {
     );
 
     const mainItems = [
-      page.locator("#guias-dropdown-button"),
-      page.locator('[data-analytics-label="Calculadoras"]'),
-      page.locator('[data-analytics-label="Glosario"]'),
-      page.locator('[data-analytics-label="Metodología"]'),
+      menu.locator("#guias-dropdown-button"),
+      menu.locator('[data-analytics-label="Calculadoras"]'),
+      menu.locator('[data-analytics-label="Glosario"]'),
+      menu.locator('[data-analytics-label="Metodología"]'),
     ];
     const rectangles = await Promise.all(
       mainItems.map(item => item.boundingBox())
