@@ -360,8 +360,9 @@ jobs:
     continue-on-error: true
     env:
       # /home/runner is a 512 MiB tmpfs; the Chromium download exceeds it.
-      # Keep the browser cache on the 5 GiB /runner tmpfs.
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/ms-playwright
+      # github.workspace is on the 5 GiB /runner tmpfs on the self-hosted
+      # runner and remains writable on the hosted fallback.
+      PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.playwright-browsers
 
     steps:
       - name: "☁️ Checkout repository"
