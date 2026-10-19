@@ -1,4 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { dump, load } from "js-yaml";
@@ -7,11 +8,29 @@ import {
   loadEditorialTimelinessPolicy,
   resolveEditorialTimelinessPolicy,
 } from "./lib/editorial-timeliness-policy.mjs";
+import {
+  articleHasChangedTrigger,
+  detectChangedDatasetIds,
+} from "./lib/editorial-volatile-changes.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = path.resolve(
+  process.env.COMPUTE_REVIEW_POLICIES_ROOT || path.resolve(__dirname, "..")
+);
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
-const POLICY_PATH = path.join(REPO_ROOT, "src", "config", "editorial-timeliness-policy.json");
+const POLICY_PATH = path.join(
+  REPO_ROOT,
+  "src",
+  "config",
+  "editorial-timeliness-policy.json"
+);
+const VOLATILE_SNAPSHOT_PATH = path.join(
+  REPO_ROOT,
+  "src",
+  "infrastructure",
+  "editorial",
+  "editorial-volatile-data.snapshot.json"
+);
 
 function cadenceLabelFor(maxDays, dataTriggers) {
   if (dataTriggers.length > 0 && maxDays <= 1) return "on_data_change";
@@ -22,7 +41,11 @@ function cadenceLabelFor(maxDays, dataTriggers) {
 }
 
 function deriveReviewPolicy(frontmatter, body, slug, policy) {
-  const effectivePolicy = resolveEditorialTimelinessPolicy(frontmatter, slug, policy);
+  const effectivePolicy = resolveEditorialTimelinessPolicy(
+    frontmatter,
+    slug,
+    policy
+  );
   let maxDays = effectivePolicy.cadenceDays;
   const dataTriggers = new Set();
   const derivationFactors = [`registry:${effectivePolicy.policySource}`];
@@ -80,8 +103,10 @@ function reviewPolicyChanged(existing, computed) {
   return (
     existing.cadenceLabel !== computed.cadenceLabel ||
     existing.maxDays !== computed.maxDays ||
-    JSON.stringify(existing.dataTriggers) !== JSON.stringify(computed.dataTriggers) ||
-    JSON.stringify(existing.derivationFactors) !== JSON.stringify(computed.derivationFactors)
+    JSON.stringify(existing.dataTriggers) !==
+      JSON.stringify(computed.dataTriggers) ||
+    JSON.stringify(existing.derivationFactors) !==
+      JSON.stringify(computed.derivationFactors)
   );
 }
 
@@ -94,7 +119,13 @@ function stripField(yamlStr, fieldName) {
   return yamlStr.replace(re, "");
 }
 
-function injectReviewPolicy(content, yamlStr, end, reviewPolicy, newUpdatedDate) {
+function injectReviewPolicy(
+  content,
+  yamlStr,
+  end,
+  reviewPolicy,
+  newUpdatedDate
+) {
   let modified = stripReviewPolicy(yamlStr).trimEnd();
 
   if (newUpdatedDate) {
@@ -125,8 +156,63 @@ function findMdFiles(dir) {
   return result;
 }
 
+function readJson(filePath) {
+  return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
+function toIsoDate(value) {
+  if (!value) return null;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime())
+    ? null
+    : parsed.toISOString().slice(0, 10);
+}
+
+/**
+ * Reads the volatile-data snapshot as it exists in HEAD. The refresh workflow
+ * writes the new snapshot into the working tree before this script runs, so
+ * HEAD is the previous value. A git failure (e.g. running outside a checkout)
+ * yields null, which the comparator treats as "no baseline" and therefore as
+ * "nothing changed".
+ */
+function loadPreviousVolatileSnapshot() {
+  const override = process.env.EDITORIAL_PREVIOUS_VOLATILE_SNAPSHOT;
+  if (override) {
+    try {
+      return readJson(override);
+    } catch {
+      return null;
+    }
+  }
+
+  try {
+    const relativePath = path.relative(REPO_ROOT, VOLATILE_SNAPSHOT_PATH);
+    const raw = execFileSync("git", ["show", `HEAD:${relativePath}`], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
 async function main() {
   const policy = loadEditorialTimelinessPolicy(POLICY_PATH);
+  const currentVolatileSnapshot = readJson(VOLATILE_SNAPSHOT_PATH);
+  const previousVolatileSnapshot = loadPreviousVolatileSnapshot();
+  const changedDatasetIds = detectChangedDatasetIds(
+    previousVolatileSnapshot,
+    currentVolatileSnapshot
+  );
+
+  if (changedDatasetIds.size > 0) {
+    console.log(
+      `[compute-review-policies] changed volatile datasets: ${[...changedDatasetIds].sort().join(", ")}`
+    );
+  }
+
   const files = findMdFiles(BLOG_DIR);
   let updated = 0;
   let skipped = 0;
@@ -135,7 +221,9 @@ async function main() {
     const content = readFileSync(filePath, "utf-8");
     const parsed = parseFrontmatter(content);
     if (!parsed) {
-      console.warn(`[compute-review-policies] No frontmatter in ${path.relative(process.cwd(), filePath)}`);
+      console.warn(
+        `[compute-review-policies] No frontmatter in ${path.relative(process.cwd(), filePath)}`
+      );
       continue;
     }
 
@@ -146,32 +234,42 @@ async function main() {
     }
 
     const slug =
-      typeof data?.slug === "string" ? data.slug.trim() : path.basename(filePath, path.extname(filePath));
+      typeof data?.slug === "string"
+        ? data.slug.trim()
+        : path.basename(filePath, path.extname(filePath));
     const body = content.slice(end);
     const computed = deriveReviewPolicy(data ?? {}, body, slug, policy);
-    const hasDataTriggers = computed.dataTriggers.length > 0;
 
-    // Bump updatedDate for articles with economic data triggers (UF, UTM, IPC, etc.)
-    // so Google receives a freshness signal when volatile data refreshes.
+    // Only a real value change in a dataset this article consumes justifies a
+    // fresh `dateModified`. A new observation date with the same value is not a
+    // content change and must not manufacture freshness.
     const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-    const currentDateStr =
-      data?.updatedDate && typeof data.updatedDate === "string"
-        ? data.updatedDate.slice(0, 10)
-        : null;
-    const bumpUpdatedDate = hasDataTriggers && currentDateStr !== todayStr;
+    const bumpUpdatedDate = articleHasChangedTrigger(
+      computed.dataTriggers,
+      changedDatasetIds
+    );
 
-    if (!reviewPolicyChanged(data?.reviewPolicy, computed) && !bumpUpdatedDate) {
+    if (
+      !reviewPolicyChanged(data?.reviewPolicy, computed) &&
+      !bumpUpdatedDate
+    ) {
       continue;
     }
 
-    // computedAt feeds ArticleJsonLd's public `lastReviewed`/`reviewedBy` fields,
-    // which assert that a human reviewed the article on that date. Only stamp
-    // today when a volatile data trigger actually changed (a real automated
-    // check event) or this is the article's first computation — a cadence
-    // policy refactor alone must not manufacture a review date.
+    // `computedAt` feeds ArticleJsonLd's public `lastReviewed`/`reviewedBy`
+    // fields, which assert that a human reviewed the article on that date.
+    // Automated refreshes must preserve it; a first computation falls back to
+    // the article's own review anchors, never to today's date.
     const previousComputedAt =
-      typeof data?.reviewPolicy?.computedAt === "string" ? data.reviewPolicy.computedAt : null;
-    computed.computedAt = previousComputedAt && !bumpUpdatedDate ? previousComputedAt : todayStr;
+      typeof data?.reviewPolicy?.computedAt === "string"
+        ? data.reviewPolicy.computedAt
+        : null;
+    const fallbackReviewDate =
+      toIsoDate(data?.articleLead?.validAsOf) ??
+      toIsoDate(data?.updatedDate) ??
+      toIsoDate(data?.pubDate) ??
+      todayStr;
+    computed.computedAt = previousComputedAt ?? fallbackReviewDate;
 
     const updatedDateValue = bumpUpdatedDate ? `${todayStr}T00:00:00Z` : null;
     const rawContent = injectReviewPolicy(
