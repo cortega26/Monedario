@@ -25,10 +25,10 @@ articleLead:
   calculatorLabel: "Cruzar con la calculadora"
   nextStepHref: "/posts/descuentos-de-sueldo/"
   nextStepLabel: "Revisar descuentos legales"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-10-19
   officialSources:
-    - label: "Dirección del Trabajo — artículo 54"
-      href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
+    - label: "BCN — Código del Trabajo, art. 54"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
     - label: "Dirección del Trabajo — artículo 54 bis"
       href: "https://www.dt.gob.cl/legislacion/1624/w3-article-119939.html"
   covers:
@@ -50,15 +50,15 @@ reviewPolicy:
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
-  computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+  computedAt: "2026-10-19"
+updatedDate: 2026-10-19T00:00:00Z
 ---
 
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.
 
 Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/).
 
-> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Información vigente al 2026-10-19.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
 Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/). Para entender por qué la base imponible es la que es, lee sobre el [sueldo imponible en Chile](/posts/sueldo-imponible-chile/).
 
