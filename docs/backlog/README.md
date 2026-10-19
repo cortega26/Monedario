@@ -28,6 +28,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
+| Saneamiento CI/billing + freshness editorial | `PLAN-ci-runner-billing-2026-10-19.md` | En ejecución (rama `ops/ci-runner-billing-20261019`); los 2 stale y el drift de `sueldo-imponible` requieren revisión editorial humana |
 | Auditoría del corpus publicado vs. estándares vigentes | `PLAN-auditoria-corpus-publicado-2026-08-12.md` | Lote 0 ejecutado y en PR #423 (`CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes); pendiente firma humana y decisión de merge. Lotes 1-5 (resto del corpus) sin iniciar |
 | Validación utility-led, días 1–30 | `PLAN-utility-led-validation-2026-08-02.md` | Cierre parcial: CSP validada en producción (TD-0099) y guardrail LCP UTM cerrado (TD-0101); queda el contraste con RUM tras merge. Los nueve SLA editoriales se cerraron el 2026-08-03 (`TD-0098` resuelto) |
 | Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 quedó parcial; W28 es la primera semana post-fix válida. Consolidar evidencia multiweek y aplicar el gate del plan antes de PR-03 |

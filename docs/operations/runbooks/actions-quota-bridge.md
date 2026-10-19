@@ -1,17 +1,39 @@
 # GitHub Actions quota bridge runbook
 
-Status: retired 2026-09-04 (old persistent bridge); **new disposable bridge prepared 2026-10-16 but not yet activated**, see `monedario-isolated-ci.md`. History: added 2026-07-16 (minutes exhausted),
-retired 2026-08-01, reactivated 2026-08-19/20 (PR #433/#434, minutes
-exhausted again within 3 weeks of the prior reset), retired again 2026-09-04
-after the user confirmed the September hosted-minute allowance had reset.
+Status: active again 2026-10-19. The scheduled fleet moved to the isolated
+self-hosted runner `monedario-ci-isolated`; see
+`docs/adr/ADR-20261019-isolated-self-hosted-runner.md` and
+`docs/operations/runbooks/monedario-isolated-ci.md` for host installation and
+routing. The historical notes below describe the 2026-07/08 bridge and its old
+`monedario-local-bridge` label. Current live configuration:
+
+- Repository variable: `ACTIONS_RUNNER_LABEL=monedario-ci-isolated`
+- Fallback: `ubuntu-24.04` (pinned; do not use `ubuntu-latest`, which migrates
+  to Ubuntu 26 from 2026-10-19)
+- Runner: `monedario-ci-isolated-*`
+- Job routing: every workflow job, enforced by
+  `tests/static-analysis/actions-runner-portability.e2e.test.ts`
+
+History: added 2026-07-16 (minutes exhausted), retired 2026-08-01, reactivated
+2026-08-19/20 (PR #433/#434, minutes exhausted again within 3 weeks of the
+prior reset), retired again 2026-09-04 after the user confirmed the September
+hosted-minute allowance had reset, reactivated 2026-10-19 after billing blocked
+scheduled jobs again.
 **This retirement is manual, not automatic — there is no scheduled job that
 reverts `ACTIONS_RUNNER_LABEL` on the monthly reset.** If minutes run out
 again, re-run the reactivation steps this doc used to describe (see PR #433's
 diff for the exact restore pattern) and update this Status line again.
 
 Authority: `docs/adr/ADR-20260716-temporary-self-hosted-actions-bridge.md`
+and `docs/adr/ADR-20261019-isolated-self-hosted-runner.md`
 
-## Live configuration
+## Current configuration (2026-10-19)
+
+See `docs/operations/runbooks/monedario-isolated-ci.md` for the disposable JIT
+container launcher, host prerequisites, and online verification. The
+authoritative live values are the four bullets in the Status block above.
+
+## Historical configuration (retired 2026-09-04)
 
 - Repository: `cortega26/Monedario`
 - Repository variable: `ACTIONS_RUNNER_LABEL=monedario-local-bridge`

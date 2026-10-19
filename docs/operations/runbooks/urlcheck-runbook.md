@@ -17,6 +17,7 @@ Core artifacts written on each run:
 - `output/validation/urlcheck/external-soft-404.json`
 - `output/validation/urlcheck/external-host-mismatch.json`
 - `output/validation/urlcheck/external-non-blocking.json`
+- `output/validation/urlcheck/external-transient.json`
 - `output/validation/urlcheck/external-summary.json`
 - `output/validation/urlcheck/external-full.csv`
 
@@ -69,11 +70,32 @@ Core artifacts written on each run:
 
 ### external blocking failures
 
-- Meaning: an `official_source` or `trusted_reference` URL now returns `hard_fail`, `soft_404`, or `host_mismatch`.
+- Meaning: an `official_source` or `trusted_reference` URL now returns a
+  content-level failure (`404`, `410`, `soft_404`, or `host_mismatch`).
 - Response:
   1. Inspect `external-summary.json` and the class-specific JSON files to isolate the failing URL family.
   2. Verify the source page still exists and choose a stable official replacement before editing content.
   3. Re-run `pnpm run check:urls:external:ci` after every replacement batch until `blocking_failures: 0`.
+
+### transient_http failures (429/5xx)
+
+- Meaning: an official/trusted host returned `429`, `500`, `502`, `503`, or
+  `504` after the probe pool exhausted its retries. These are **not blocking**
+  for PRs: a momentary outage must not block a content merge.
+- Evidence: `external-transient.json` and the `transient=` counter in the run
+  summary.
+- Response:
+  1. Do not edit content on the first failure.
+  2. Check the scheduled external audit (`urlcheck-artifacts-external-audit`)
+     for the same URL/host on consecutive nights.
+  3. If the URL stays transient for **3 consecutive audits**, open an ops issue,
+     verify whether the official page moved, and replace it or accept the
+     outage with an explicit note.
+  4. If the URL changes from `5xx` to `404/410`, the PR gate becomes blocking
+     again; treat it as a content-level failure.
+- Note: retries use `retryMax`/`retryBackoffMs` from `scripts/urlcheck/constants.mjs`
+  with a global `maxDurationMs` budget so a large number of down hosts cannot
+  exhaust the 15-minute CI job.
 
 ### external canary failure
 - Meaning: the external checker no longer detects known-good / known-bad local fixtures.
