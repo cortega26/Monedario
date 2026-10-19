@@ -105,3 +105,38 @@ addendum, registry entry, hero entries, R7/R8 reports) for a redo or an
 explicit override. This branch now carries F22 + rentas only (registry: 11
 entries). A browser refetch note supplementing R10's fetch limits was
 appended to the rentas packet without touching the article, R10, or gates.
+
+### Compliance source follow-up
+
+Fresh Compliance round 11 independently rendered the four named sources in
+Chrome and confirmed that the rentas article matches the visible Línea 23
+PDF, TGR product accordion, and the bounded AT2027 observation. It found no
+contradiction or new defect; R10 remains PASS, 9.58/10, without a full rescore.
+The follow-up is recorded in the rentas packet and
+`06-compliance-round11-followup.md`. No article or publication gate changed.
+
+## Reconciliación final — 2026-10-03
+
+Esta actualización supersede los estados de ronda anteriores descritos arriba;
+los informes y checklists históricos permanecen intactos.
+
+| Pieza | Revisión vigente | Estado de correcciones |
+|---|---|---|
+| Operación Renta F22 | Compliance R6: **PASS, 9.605/10** | R5-01 a R5-05 resueltos; el artículo y el registro material fueron verificados. |
+| Devolución de impuestos | Compliance R10: **PASS, 9.56/10** | R8/R9 quedan como historial; R10 revisó el refix y confirmó FAQ 0516/3095 y el alcance fechado de AT2027; sin MUST abierto. |
+| Rentas mixtas | MathAudit R4: **PASS, 25/25** grupos numéricos; Compliance R12: FAIL antes del último fix; Compliance R13: **PASS, 9.71/10** | APV B/F22, registry AT2027 y estado del packet fueron corregidos/reconciliados. R4 cubre los claims numéricos sin cambios; R13 validó en vivo el texto APV actualizado y el alcance temporal. |
+
+Tras la reparación final se ejecutaron con exit 0 `check:frontmatter` (54
+artículos), `check:links` (277 enlaces, cero rotos; una advertencia existente
+de artículo huérfano), `check:correcciones` (12 entradas), `format:check` y
+`git diff --check`. No se ejecutaron tests adicionales. El ajuste del artículo
+Rentas mueve `updatedDate`, `articleLead.validAsOf` y “revisado el” a
+2026-10-03 tras refetch de las afirmaciones temporales; preserva el IGC
+`$11.265.804`, el bloque y límites APV, la tasa 14,5% solo para boletas 2025 /
+AT2026, la tabla, title, slug, H1 y canonical.
+
+No se marcó ninguna casilla, no se añadió firma de agente ni se hizo commit.
+La versión actual del packet Rentas queda para revalidación de HumanEditor
+después de los addenda y cambios del 2026-10-03. Los sign-offs humanos
+anteriores se conservan como registros de sus versiones; no se atribuyen a
+esta versión actualizada.

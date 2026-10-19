@@ -198,3 +198,81 @@ in `07-publish-packet.md`.
 This supplements the R10 fetch limitations with successful browser-rendered
 verification. It does not alter the article, freshness dates, or protected
 metadata, and does not change the R10 report. No gate was marked or signed.
+
+An independent Compliance round 11 follow-up repeated the Chrome navigation
+and confirmed that the article matches the visible PDF, TGR accordion, and
+page-bounded AT2027 observation; see `06-compliance-round11-followup.md`.
+It found no contradiction or new defect and retained R10's historical PASS,
+9.58/10, without rescoring the full article. The article remains unchanged.
+
+## Packet status reconciliation — 2026-10-03
+
+The packet's original HOLD rationale says `05-math-audit.md` does not exist.
+The file is present, but is still marked DRAFT and its historical FAIL concerns
+the APV wording in an earlier article version. The article was later corrected;
+R10 reviewed its current content and R11 confirmed the named live sources.
+Neither report replaces a fresh MathAudit of the current version. The HOLD
+therefore remains until that independent audit and its subsequent Compliance
+review; the packet addendum records this distinction without changing its
+historical gate list. No gate was marked and no sign-off was added.
+
+## Remediation after Compliance round 12 — 2026-10-03
+
+Compliance R12 (fresh, independent) returned **FAIL, 9.40/10** for the
+version it reviewed. MathAudit round 4 independently covered the current
+article and passed 25/25 numerical claim groups, with 0 TODO and 0 ERROR.
+The R12 findings were:
+
+1. The APV B paragraph said all Regime B users had to file F22 and could not
+   simply accept the proposal. It now distinguishes employer monthly
+   discounts, whose reduction applies through monthly IUSC and is not entered
+   again in code 765, from direct contributions that may use the annual
+   reliquidation route. It tells readers to review the proposal and correct it
+   only if information is missing. Sources: SII Línea 23 AT2026 §§23.2 and
+   23.7, with §23.4 retained for the 600 UF aggregate limit and allocation
+   order; SII APV FAQ 001.140.5883.011.
+2. The existing corrections entry did not record that the broad AT2027
+   statement had been bounded to two named SII pages and a dated consultation.
+   The existing entry was expanded, not duplicated, and its date aligned to
+   2026-10-03.
+3. The packet showed a prior `[x] HumanEditor sign-off` while later notes said
+   sign-off was pending and the MathAudit hold remained. The packet now says
+   explicitly that the pre-existing sign-off belongs to an earlier snapshot;
+   the current version remains on HOLD pending fresh Compliance and HumanEditor
+   revalidation. The historical checkbox was not changed, no gate was marked,
+   and no signature was added.
+
+The Línea 23 PDF was fetched live on 2026-10-03; its complete five-page,
+274-line, 3,228-word extraction was byte-identical to the prior source
+extract. Compliance R12 independently refetched the portal Operación Renta
+2026 and SII news index the same day, along with the IGC, withholding, APV,
+SPensiones, and TGR claims it reviewed. The AT2027 observation is now dated
+2026-10-03 and explicitly limited to those two pages.
+
+These are substantive article changes under NORMA_YMYL §5.1, so
+`updatedDate`, `articleLead.validAsOf`, and “revisado el” were advanced to
+2026-10-03 after rechecking the time-sensitive claims. The public title, slug,
+H1, canonical, date table, IGC figure, APV limits, and 14.5% scope were
+preserved. No calculation was derived (`requires_calculation=false`); R4
+remains the independent numerical audit for the current article. A new fresh
+Compliance review must verify this remediation. No gate or sign-off was
+changed, and no commit was made.
+
+## Compliance closeout after the R12 remediation — 2026-10-03
+
+Fresh independent Compliance round 13 (`06-compliance-round13.md`) rechecked
+the APV B application method, registry scope for AT2027, packet status, key
+claims, and DoD structure. It returned **PASS, 9.71/10**, with no open MUST.
+It refetched the official SII Línea 23 PDF in Chrome and verified §§23.2,
+23.4 and 23.7; its web fetch of the portal and news index was approximately
+04:37 UTC on 2026-10-03 (the exact time was not recorded). The complete stored
+PDF extraction supports the §23.4 and §23.7 cross-check. R13 also rechecked
+the SII APV FAQ, the SPensiones Capítulo XII, the official AT2026 threshold,
+and the exact TGR product.
+
+R13 clarifies the audit boundary: MathAudit R4 passed 25/25 numerical groups
+before the 2026-10-03 text/date edits; those numerical values and the calendar
+table were unchanged. R13 separately checked the changed APV B wording and
+AT2027 scope. The article remains in HOLD only for HumanEditor revalidation of
+the current packet version. No gate was marked, no agent signature was added,
+and no commit was made.

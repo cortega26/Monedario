@@ -5,7 +5,7 @@ description: "Con sueldo y boletas de honorarios, revisa cuándo debes presentar
 slug: rentas-mixtas-sueldo-honorarios
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-10-02T00:00:00Z
+updatedDate: 2026-10-03T00:00:00Z
 tags:
   - impuestos
   - rentas-mixtas
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Simular resultado Operación Renta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-10-02
+  validAsOf: 2026-10-03
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"
@@ -93,13 +93,13 @@ Cuando combinas sueldo y honorarios, los agentes informan por separado sus pagos
 
 **Respuesta rápida:** Tener sueldo y emitir boletas en el mismo año no vuelve obligatorio el F22 en todos los casos. Para AT2026, el SII indica que las personas naturales deben presentar declaración cuando sus rentas afectas al IGC superan 13,5 UTA ($11.265.804); en o bajo el umbral, pueden presentarla voluntariamente para solicitar devolución de retenciones, PPM u otros créditos. Otras circunstancias legales pueden generar una obligación distinta. ([SII FAQ 001.140.0972.009](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0972.htm); [SII, Guía Práctica de Declaración de Renta AT2026](https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf)).
 
-**Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si estabas obligado y no presentaste, revisa el [checklist de Operación Renta F22](/posts/operacion-renta-f22-checklist/) para tus opciones fuera de plazo. Si no estabas obligado, puedes revisar si te conviene presentar para pedir devolución de retenciones u otros créditos. En la consulta del sitio de Operación Renta y del índice de noticias del SII realizada el 2 de octubre de 2026, no encontré publicado un calendario AT2027.
+**Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si estabas obligado y no presentaste, revisa el [checklist de Operación Renta F22](/posts/operacion-renta-f22-checklist/) para tus opciones fuera de plazo. Si no estabas obligado, puedes revisar si te conviene presentar para pedir devolución de retenciones u otros créditos. En la consulta del sitio de Operación Renta y del índice de noticias del SII realizada el 3 de octubre de 2026, no encontré publicado un calendario AT2027.
 
 **Umbral exento AT2026:** las rentas imponibles anuales iguales o inferiores a 13,5 UTA ($11.265.804) quedan en el tramo exento del IGC. El SII señala que las personas bajo o en ese umbral no están obligadas a presentar por esa regla, aunque pueden declarar para solicitar la devolución de retenciones o PPM. ([SII, información AT2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html); [SII, Guía Práctica de Declaración de Renta AT2026](https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf)).
 
 **Ejemplo orientativo (AT2026):** si tus rentas imponibles anuales antes de deducciones son exactamente $11.265.804 (13,5 UTA), quedan en el tramo exento; no estás obligado por el umbral general descrito arriba, pero puedes declarar para pedir la devolución de retenciones. La retención de 14,5% publicada para boletas emitidas en 2025 no permite conocer por sí sola el resultado individual. Este ejemplo aplica cifras y reglas publicadas; no calcula impuesto ni devolución. ([SII, información AT2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html); [SII FAQ 001.140.0972.009](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0972.htm); [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/)).
 
-**Vigencia:** Los umbrales, tasas y calendario de esta página corresponden al Año Tributario 2026 (ingresos enero–diciembre 2025), revisado el 2026-10-02. La obligación de presentar depende de la normativa y de la situación tributaria de cada persona.
+**Vigencia:** Los umbrales, tasas y calendario de esta página corresponden al Año Tributario 2026 (ingresos enero–diciembre 2025), revisado el 2026-10-03. La obligación de presentar depende de la normativa y de la situación tributaria de cada persona.
 
 **Fuentes:** [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/); [SII — Información AT 2026 Personas Naturales](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html); [SII — Calendario Operación Renta AT2026](https://www.sii.cl/noticias/2026/310326noti01pcr.htm).
 
@@ -222,9 +222,11 @@ No necesariamente. Para AT2026, la FAQ del SII indica que la obligación por hon
 Si realizaste aportes a APV durante 2025:
 
 - **Régimen A:** Puedes recibir una bonificación estatal equivalente al 15% del ahorro previsional voluntario que destines a anticipar o incrementar tu pensión, con tope de 6 UTM anuales. La Tesorería General de la República la deposita directamente en tu cuenta de ahorro previsional; no reduce tu base imponible ni aparece como crédito en el F22. Para acceder a la bonificación, los aportes elegibles del año están sujetos al límite de 10 veces tus cotizaciones obligatorias de ese mismo año, conforme a los números 5 a 7 del [Capítulo XII del Compendio de la Superintendencia de Pensiones](https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2909.html).
-- **Régimen B:** El aporte reduce tu base imponible del IGC (se descuenta de la renta gravada antes de aplicar los tramos). Si se aporta mediante descuento mensual por el empleador, ese mecanismo tiene un sublímite de 50 UF por mes. El tope agregado para aportes acogidos a los regímenes A o B es de 600 UF: el SII imputa primero el APV B descontado mensualmente, luego el APV B directo y, por último, el APV A; el exceso no se acoge a ninguno de esos regímenes. ([Instrucciones F22 AT2026, Línea 23, §23.4](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf)).
+- **Régimen B:** El aporte reduce la base imponible del IUSC o del IGC, según corresponda. El APV descontado mensualmente por el empleador puede rebajar la base del IUSC hasta 50 UF por mes. El tope agregado para aportes acogidos a los regímenes A o B es de 600 UF: el SII imputa primero el APV B descontado mensualmente, luego el APV B directo y, por último, el APV A; el exceso no se acoge a ninguno de esos regímenes. ([Instrucciones F22 AT2026, Línea 23, §§23.2 y 23.4](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf)).
 
-Para el Régimen B, debes declarar (no sirve solo aceptar la propuesta) para que la rebaja se refleje en el impuesto determinado del F22. El bono del Régimen A se calcula y paga aparte, a partir de la información que reporta tu AFP o institución autorizada, y no depende de tu declaración de renta. Si tienes APV y rentas mixtas, el simulador puede ayudarte a estimar cuánto baja tu impuesto antes de declarar: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
+La forma de aplicar el beneficio del Régimen B depende de cómo hiciste los aportes. Si el empleador descontó el APV mensualmente, la rebaja ya operó en el IUSC de esos meses y el SII indica que no debes volver a registrar esos mismos ahorros en el código 765 del F22. Los aportes directos pueden acogerse a la rebaja anual mediante la reliquidación que corresponda; revisa la propuesta y corrígela solo si falta información. Esto no significa que toda persona con APV B deba presentar F22 por la misma razón: también pueden aplicar otras obligaciones. ([Instrucciones F22 AT2026, Línea 23, §§23.2 y 23.7](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf); [SII FAQ sobre regímenes APV](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_5883.htm)).
+
+El bono del Régimen A se calcula y paga aparte, a partir de la información que reporta tu AFP o institución autorizada, y no depende de tu declaración de renta. Si tienes APV y rentas mixtas, el simulador puede ayudarte a estimar cuánto baja tu impuesto antes de declarar: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
 
 ## Cuándo esperar devolución y cuándo pagar
 
@@ -283,8 +285,8 @@ Los criterios y cifras de obligación tributaria, tramo exento y tabla citados e
 - [SII — Guía para trabajadores independientes AT2026](https://www.sii.cl/destacados/renta/2026/documents/pr_independiente.pdf): datos usados en la propuesta F22, revisión de rentas y opción de modificarla.
 - [SII — Impuesto Único de Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm): tabla oficial usada como referencia para los tramos tributarios anuales.
 - [SII — Regímenes tributarios del APV, artículo 42 bis de la LIR](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_5883.htm): tratamiento de los regímenes A y B y referencia al artículo 20 L del DL N.º 3.500.
-- [SII — Instrucciones F22 AT2026, Línea 23, §23.4](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf): límite agregado de 600 UF, orden de imputación y sublímite mensual de 50 UF para APV B por descuento del empleador.
+- [SII — Instrucciones F22 AT2026, Línea 23, §§23.2, 23.4 y 23.7](https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf): rebaja mensual y anual, límite agregado de 600 UF, orden de imputación, sublímite mensual de 50 UF para APV B por descuento del empleador y tratamiento en el código 765 del F22.
 - [Superintendencia de Pensiones — Compendio, Capítulo XII, APV general](https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2909.html): bonificación fiscal, tope y condición relacionada con cotizaciones obligatorias.
 - [Superintendencia de Pensiones — Compendio, Capítulo XI, APVC](https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2929.html): reglas aplicables al ahorro previsional voluntario colectivo.
 - [TGR — Convenio para deudas vencidas de Impuestos Fiscales y Aduaneros](https://tgr.gob.cl/convenios-de-pago/): cuotas y pie aplicables al producto descrito en esta guía.
-- [SII — Índice de noticias 2026](https://www.sii.cl/noticias/2026/index.html): página revisada para comprobar la publicación de un calendario AT2027 al 2026-10-02.
+- [SII — Índice de noticias 2026](https://www.sii.cl/noticias/2026/index.html): página revisada junto al [portal Operación Renta 2026](https://www.sii.cl/destacados/renta/2026/) para comprobar si publicaba un calendario AT2027; consulta realizada el 2026-10-03.

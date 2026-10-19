@@ -369,7 +369,7 @@
     "devolucion-impuestos-fechas-compensaciones": {
       "slug": "devolucion-impuestos-fechas-compensaciones",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
+      "sourceContentHash": "75e95b2ee143016dbcb3a83715d8abbf7416cd8b4a34ee2585595d541e46e1b1",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Saber por qué una devolución no llegó y qué estado revisar.\nEditorial promise: Separar revisión de declaración, autorización, pago y compensaciones sin prometer una fecha futura.\nVisual message: Una devolución pendiente requiere seguimiento, no una expectativa de dinero automático.\nScene: An adult man with short dark hair at a side table checks a neutral phone beside a tax filing receipt and a small closed payment envelope. His index finger points to a pending unlettered status mark on the paper, while an unnumbered calendar is a quiet secondary object. The envelope remains closed and money is not flowing into the scene.\nEssential elements: Declaración presentada; Consulta de estado; Pago todavía pendiente.\nAvoid these interpretations: Declaración aceptada significa depósito inmediato; El calendario2026 sigue abierto; Siempre llega devolución completa.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "4a861005c1b7f60fd1f68d4cf46f6bc69e0921d24011cbf37535d85ed471a623",
       "source": {
@@ -393,10 +393,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
-        "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
+        "method": "Content-correction revalidation: the article text/sources changed, but the visual brief, scene and image bytes are unchanged. The existing visual review remains valid; no image was regenerated.",
+        "note": "Sin regeneración. La revisión visual previa sigue vigente porque el cambio fue de fuentes/redacción, no del mensaje visual."
       }
     },
     "liquidacion-de-sueldo": {
@@ -1637,7 +1637,7 @@
     "rentas-mixtas-sueldo-honorarios": {
       "slug": "rentas-mixtas-sueldo-honorarios",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "887886d4826f3b404c1196db48429885dfbad246551671c55f4fac41001b214e",
+      "sourceContentHash": "dcf65562e80bcdec571ff62c7cf3ff57735bc344bb35147da5b0090dc4caed74",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Reunir sueldo y honorarios para revisar el resultado tributario anual.\nEditorial promise: Distinguir rentas y retenciones que se consolidan en la declaración.\nVisual message: Dos fuentes separadas durante el año deben mirarse juntas al declarar.\nScene: Two natural hands align a payslip and a freelance invoice side by side over one annual tax folder. Small detached retention slips remain visible with each source. The sheets meet at the folder without merging into an illegible pile; a quiet blank calendar page anchors the annual context.\nEssential elements: Sueldo y boleta distintos; Carpeta anual común; Retenciones identificables.\nAvoid these interpretations: Dos retenciones cierran siempre el impuesto; Rentas mixtas garantizan devolución; Se usa cualquier tasa sin mirar el año.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "2cf3106c8a026da64c9f3a01d8d153bd3700f8c29de3e764f6f1fbfd69e53812",
       "source": {
@@ -1661,10 +1661,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-10-12",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief and at 300 px. Not a YMYL compliance or human publication signoff.",
-        "note": "Contrastada con la versión publicada en origin/main (00d372c8): documentos de sueldo y honorarios convergen en la revisión anual; legible a 300 px, sin texto/datos fabricados ni promesas financieras."
+        "method": "Content-correction revalidation: the article text/sources changed, but the visual brief, scene and image bytes are unchanged. The existing visual review remains valid; no image was regenerated.",
+        "note": "Sin regeneración. La revisión visual previa sigue vigente porque el cambio fue de fuentes/redacción, no del mensaje visual."
       }
     },
     "sueldo-imponible-chile": {
