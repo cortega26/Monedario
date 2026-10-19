@@ -22,7 +22,7 @@ articleLead:
   answer: "La Cuenta 2 AFP es una cuenta de ahorro voluntario (CAV) que puedes usar libremente: depositas lo que quieras, eliges fondo y puedes hacer hasta 24 giros al año."
   nextStepHref: "/posts/que-es-el-apv/"
   nextStepLabel: "APV: beneficio tributario complementario"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-10-19
   officialSources:
     - label: "Superintendencia de Pensiones - Cuenta 2"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html"
@@ -39,8 +39,8 @@ reviewPolicy:
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:slugOverrides.que-es-la-cuenta-2-afp
-  computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+  computedAt: "2026-10-19"
+updatedDate: 2026-10-19T00:00:00Z
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).

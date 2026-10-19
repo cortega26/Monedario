@@ -1177,7 +1177,7 @@
     },
     {
       "slug": "liquidacion-de-sueldo",
-      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
+      "sourceContentHash": "6e7746cc84d64be5351f43c86e85a4bdb33ee6266a5027eb0969035f759184fa",
       "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
       "tags": [
         "sueldo",
@@ -1193,7 +1193,7 @@
       "leadParagraphs": [
         "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.",
         "Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/).",
-        "> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo."
+        "> **Información vigente al 2026-10-19.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo."
       ],
       "headings": [
         "Qué es y para qué sirve la liquidación",
@@ -1205,7 +1205,7 @@
         "Otros descuentos",
         "Cuándo pedir respaldo y cómo pedirlo"
       ],
-      "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la . Para entender por qué la base imponible es la que es, lee sobre el . ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el form",
+      "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-10-19.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la . Para entender por qué la base imponible es la que es, lee sobre el . ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el form",
       "wordCount": 1174,
       "sourceFile": "liquidacion-de-sueldo.md"
     },
@@ -1450,7 +1450,7 @@
     },
     {
       "slug": "que-es-la-cuenta-2-afp",
-      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
+      "sourceContentHash": "3d7bb10594b604509747f7cdad1205210fc1c3cc2609a273adab0626c7fc309f",
       "title": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos",
       "tags": [
         "afp",
@@ -1727,7 +1727,7 @@
     },
     {
       "slug": "sueldo-imponible-chile",
-      "sourceContentHash": "714e68e726c73f7ce55233141d3dc2e71e6949a64a18519b2a84cf9374465757",
+      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1740,9 +1740,9 @@
       "cluster": "sueldo-remuneraciones",
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 09 12. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "summary": "Información vigente al 2026 10 19. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
       "leadParagraphs": [
-        "> **Información vigente al 2026-09-12.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
+        "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
         "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.",
         "Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/). Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/)."
       ],
@@ -1755,7 +1755,7 @@
         "APV y reducción de la base imponible",
         "Ejemplo numérico orientativo"
       ],
-      "bodyExcerpt": "> **Información vigente al 2026-09-12.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
+      "bodyExcerpt": "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
       "wordCount": 1243,
       "sourceFile": "sueldo-imponible-chile.md"
     },

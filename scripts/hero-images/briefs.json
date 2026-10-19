@@ -967,15 +967,15 @@
         "Un sello prueba exactitud"
       ],
       "alt": "",
-      "sourceContentHash": "6035429760ba47b58e22dca64fbf231fb6cff2ad6a6bf17e5af917bd1131be9e",
+      "sourceContentHash": "6e7746cc84d64be5351f43c86e85a4bdb33ee6266a5027eb0969035f759184fa",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       }
     },
     {
@@ -1191,15 +1191,15 @@
         "Cuenta2 y APV son intercambiables"
       ],
       "alt": "",
-      "sourceContentHash": "013fc6903b632547f3dbe0866f13cf2788bc7db1f9d40dfa9922811c41f54edb",
+      "sourceContentHash": "3d7bb10594b604509747f7cdad1205210fc1c3cc2609a273adab0626c7fc309f",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       }
     },
     {
@@ -1416,15 +1416,15 @@
         "Todos los descuentos comparten idéntica base"
       ],
       "alt": "",
-      "sourceContentHash": "714e68e726c73f7ce55233141d3dc2e71e6949a64a18519b2a84cf9374465757",
+      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
       }
     },
     {

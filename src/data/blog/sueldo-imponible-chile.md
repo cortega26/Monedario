@@ -24,7 +24,7 @@ articleLead:
   answer: "La remuneración imponible es la base sobre la que se calculan las cotizaciones previsionales (AFP, salud, AFC) y el Impuesto de Segunda Categoría. No es lo mismo que el sueldo bruto: algunos componentes como la asignación de colación o movilización están excluidos."
   nextStepHref: "/posts/como-calcular-sueldo-liquido/"
   nextStepLabel: "Calcular tu sueldo líquido completo"
-  validAsOf: 2026-09-12
+  validAsOf: 2026-10-19
   officialSources:
     - label: "BCN — Código del Trabajo, art. 41"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
@@ -44,7 +44,7 @@ articleLead:
 volatileData:
   - id: economic.utm.value
     sync: strict
-    expectedValue: 71721
+    expectedValue: 72151
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
@@ -53,11 +53,11 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
     - template:utm
-  computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+  computedAt: "2026-10-19"
+updatedDate: 2026-10-19T00:00:00Z
 ---
 
-> **Información vigente al 2026-09-12.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
+> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.
 
