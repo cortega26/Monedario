@@ -28,7 +28,7 @@ permissions:
 jobs:
   refresh:
     name: Refresh volatile data snapshots and open PR
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     timeout-minutes: 10
 
     steps:
@@ -72,9 +72,6 @@ jobs:
             src/infrastructure/editorial/editorial-volatile-data.snapshot.json
             src/data/blog
 
-      - name: "🔀 Attempt safe auto-merge"
-        if: steps.create-pr.outputs.pull-request-number != ''
-        uses: ./.github/actions/enable-safe-automerge
-        with:
-          pull-request: ${{ steps.create-pr.outputs.pull-request-number }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # Refresh PRs stay open for manual review while `add-paths` includes
+      # src/data/blog. Re-enable auto-merge only after the review-policy
+      # generator is proven to leave human-review dates untouched.

@@ -21,15 +21,22 @@ describe("supply-chain configuration", () => {
 
     for (const filePath of listYamlFiles(GITHUB_DIR)) {
       const source = fs.readFileSync(filePath, "utf8");
-      for (const match of source.matchAll(/^\s*uses:\s*([^\s#]+)/gmu)) {
+      for (const match of source.matchAll(
+        /^\s*(?:-\s+)?uses:\s*([^\s#]+)/gmu
+      )) {
         const action = match[1];
-        if (!action || action.startsWith("./") || action.startsWith("docker://")) continue;
+        if (
+          !action ||
+          action.startsWith("./") ||
+          action.startsWith("docker://")
+        )
+          continue;
 
         const separator = action.lastIndexOf("@");
         const reference = separator === -1 ? "" : action.slice(separator + 1);
         if (!/^[0-9a-f]{40}$/iu.test(reference)) {
           mutableReferences.push(
-            `${path.relative(REPO_ROOT, filePath)}: ${action}`,
+            `${path.relative(REPO_ROOT, filePath)}: ${action}`
           );
         }
       }
@@ -40,7 +47,7 @@ describe("supply-chain configuration", () => {
 
   it("applies a seven-day cooldown to every Dependabot ecosystem", () => {
     const config = load(
-      fs.readFileSync(path.join(GITHUB_DIR, "dependabot.yml"), "utf8"),
+      fs.readFileSync(path.join(GITHUB_DIR, "dependabot.yml"), "utf8")
     ) as {
       updates?: Array<{
         "package-ecosystem"?: string;
@@ -52,18 +59,18 @@ describe("supply-chain configuration", () => {
     for (const update of config.updates ?? []) {
       expect(
         EXPECTED_DEPENDABOT_ECOSYSTEMS.has(update["package-ecosystem"] ?? ""),
-        `${update["package-ecosystem"]} is not a supported ecosystem for this repository`,
+        `${update["package-ecosystem"]} is not a supported ecosystem for this repository`
       ).toBe(true);
       expect(
         update.cooldown?.["default-days"],
-        `${update["package-ecosystem"]} must wait at least seven days`,
+        `${update["package-ecosystem"]} must wait at least seven days`
       ).toBeGreaterThanOrEqual(7);
     }
   });
 
   it("prevents pnpm from resolving packages younger than seven days", () => {
     const config = load(
-      fs.readFileSync(path.join(REPO_ROOT, "pnpm-workspace.yaml"), "utf8"),
+      fs.readFileSync(path.join(REPO_ROOT, "pnpm-workspace.yaml"), "utf8")
     ) as {
       minimumReleaseAge?: number;
       minimumReleaseAgeExclude?: string[];
