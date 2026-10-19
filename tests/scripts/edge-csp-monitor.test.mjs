@@ -4,7 +4,7 @@ import {
   TARGETS, classifyHtml, classifyBatch, extractHtml, makeComment,
   parseLatestMonitorComment, shouldComment,
 } from "../../workers/edge-csp-monitor/src/check.mjs";
-import edgeMonitor, { runScheduled, QUICK_ACTION_SPACING_MS } from "../../workers/edge-csp-monitor/src/index.mjs";
+import edgeMonitor, { GITHUB_USER_AGENT, runScheduled, QUICK_ACTION_SPACING_MS } from "../../workers/edge-csp-monitor/src/index.mjs";
 
 const good = '<!DOCTYPE html><html><head><script src="/_astro/client.js"></script><script src="https://static.cloudflareinsights.com/beacon.min.js"></script></head><body><main id="main-content"><input id="utm-input"/></main></body></html>';
 const utm = TARGETS.find(target => target.path.includes("utm"));
@@ -75,7 +75,7 @@ test("active mode comments only on existing incident and never leaks token", asy
   const savedFetch = globalThis.fetch;
   const calls = [];
   globalThis.fetch = async (url, opts = {}) => {
-    calls.push({ url: String(url), method: opts.method || "GET", body: opts.body || "" });
+    calls.push({ url: String(url), method: opts.method || "GET", body: opts.body || "", headers: opts.headers || {} });
     return new Response(JSON.stringify(opts.method === "POST" ? { id: 123 } : []));
   };
   try {
@@ -89,7 +89,9 @@ test("active mode comments only on existing incident and never leaks token", asy
     assert.equal(result.notified, true);
     assert.equal(calls.length, 2);
     assert.match(calls[0].url, /\/issues\/675\/comments/);
+    assert.equal(calls[0].headers["User-Agent"], GITHUB_USER_AGENT);
     assert.equal(calls[1].method, "POST");
+    assert.equal(calls[1].headers["User-Agent"], GITHUB_USER_AGENT);
     assert.ok(!calls[1].body.includes("not-a-real-secret"));
   } finally {
     globalThis.fetch = savedFetch;

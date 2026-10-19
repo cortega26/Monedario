@@ -11,6 +11,10 @@ export const QUICK_ACTION_SPACING_MS = 11_000;
 
 const defaultSleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36";
+// GitHub REST API rejects requests without a User-Agent header with HTTP 403
+// "Request forbidden by administrative rules". Cloudflare Workers fetch does
+// not guarantee one, so set it explicitly.
+export const GITHUB_USER_AGENT = "Monedario-Edge-CSP-Monitor/1.0";
 
 async function githubRequest(env, url, options = {}) {
   const response = await fetch(url, {
@@ -18,6 +22,7 @@ async function githubRequest(env, url, options = {}) {
     headers: {
       Accept: "application/vnd.github+json",
       Authorization: "Bearer " + env.EDGE_MONITOR_GITHUB_TOKEN,
+      "User-Agent": GITHUB_USER_AGENT,
       "X-GitHub-Api-Version": "2022-11-28",
       ...(options.body ? { "Content-Type": "application/json" } : {}),
     },
