@@ -102,12 +102,12 @@ const isActive = (path: string) => {
       <ul
         id="menu-items"
         class:list={[
-          "mt-4 flex w-full flex-col gap-2",
+          "mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-1 border-t border-border/60 pt-2",
           "hidden",
-          "lg:mt-0 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-x-5 lg:gap-y-0",
+          "lg:mt-0 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-x-5 lg:gap-y-0 lg:border-t-0 lg:pt-0",
         ]}
       >
-        <li class="col-span-2">
+        <li class="col-span-2 rounded-lg transition-colors hover:bg-accent/5 focus-within:bg-accent/5 lg:rounded-none lg:hover:bg-transparent lg:focus-within:bg-transparent">
           <Dropdown
             id="guias-dropdown"
             label="Guías"
@@ -125,7 +125,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/calculadoras/")}
             class:list={[
-              "header-nav-item block px-4 py-[14px] text-center lg:px-2 lg:py-1",
+              "header-nav-item block w-full rounded-lg px-4 py-[14px] text-left transition-colors hover:bg-accent/5 focus-visible:bg-accent/5 lg:w-auto lg:rounded-none lg:px-2 lg:py-1 lg:hover:bg-transparent lg:focus-visible:bg-transparent",
               { "active-nav text-foreground": isActive("/calculadoras") },
             ]}
             data-analytics-cta="hub-route"
@@ -139,7 +139,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/glosario/")}
             class:list={[
-              "header-nav-item block px-4 py-[14px] text-center lg:px-2 lg:py-1",
+              "header-nav-item block w-full rounded-lg px-4 py-[14px] text-left transition-colors hover:bg-accent/5 focus-visible:bg-accent/5 lg:w-auto lg:rounded-none lg:px-2 lg:py-1 lg:hover:bg-transparent lg:focus-visible:bg-transparent",
               { "active-nav text-foreground": isActive("/glosario") },
             ]}
             data-analytics-cta="hub-route"
@@ -153,7 +153,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/metodologia/")}
             class:list={[
-              "header-nav-item block px-4 py-[14px] text-center lg:px-2 lg:py-1",
+              "header-nav-item block w-full rounded-lg px-4 py-[14px] text-left transition-colors hover:bg-accent/5 focus-visible:bg-accent/5 lg:w-auto lg:rounded-none lg:px-2 lg:py-1 lg:hover:bg-transparent lg:focus-visible:bg-transparent",
               { "active-nav text-foreground": isActive("/metodologia") },
             ]}
             data-analytics-cta="hub-route"
@@ -163,7 +163,7 @@ const isActive = (path: string) => {
             Metodología
           </a>
         </li>
-        <li class="col-span-2 flex items-center">
+        <li class="col-span-1 flex items-center justify-start border-t border-border/60 pt-3 lg:border-t-0 lg:pt-0">
           <a
             href={getPath("/buscar/")}
             class:list={[
@@ -183,7 +183,7 @@ const isActive = (path: string) => {
           </a>
         </li>
         {SITE.lightAndDarkMode && (
-          <li class="col-span-1 flex items-center justify-center">
+          <li class="col-span-1 flex items-center justify-end border-t border-border/60 pt-3 lg:justify-center lg:border-t-0 lg:pt-0">
             <button
               id="theme-btn"
               class="focus-outline relative size-12 p-4 lg:size-11 hover:[&>svg]:stroke-accent"
