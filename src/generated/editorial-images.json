@@ -548,35 +548,35 @@
     },
     "descuentos-de-sueldo": {
       "sourcePath": "scripts/hero-images/sources/descuentos-de-sueldo.webp",
-      "sourceHash": "06ced5a771162b10684b7064c72f3ee96e887c4673c2ad054a929e66ad516945",
+      "sourceHash": "d94776365742b60300293c2965972849a4d1da5f633f5238251498366097be40",
       "assets": {
         "hero": {
-          "src": "/images/editorial/descuentos-de-sueldo/c97591501016dbd1a7a39f21f469f9a19fdae4c400a9df5e39df7efad1f548bf.avif",
-          "hash": "c97591501016dbd1a7a39f21f469f9a19fdae4c400a9df5e39df7efad1f548bf",
+          "src": "/images/editorial/descuentos-de-sueldo/33ba849512b0fc8aebcb3780a4b30c5f92ca315aecbf797c514848c4f7a0926b.avif",
+          "hash": "33ba849512b0fc8aebcb3780a4b30c5f92ca315aecbf797c514848c4f7a0926b",
           "width": 1200,
           "height": 630,
-          "bytes": 51597
+          "bytes": 47068
         },
         "tablet": {
-          "src": "/images/editorial/descuentos-de-sueldo/b0619eaae0fedb2391a3616feb55ca48945d1bb80c15c57280bb4b404bc56609.avif",
-          "hash": "b0619eaae0fedb2391a3616feb55ca48945d1bb80c15c57280bb4b404bc56609",
+          "src": "/images/editorial/descuentos-de-sueldo/3fe07a70a7f348ff46964f2f6a1304a8917edd69ac1b2cbb7dad891d1349c155.avif",
+          "hash": "3fe07a70a7f348ff46964f2f6a1304a8917edd69ac1b2cbb7dad891d1349c155",
           "width": 800,
           "height": 420,
-          "bytes": 26633
+          "bytes": 25997
         },
         "mobile": {
-          "src": "/images/editorial/descuentos-de-sueldo/4d2de4d7607083869d04f464eb9fe0390e3d4fb2f42aa2f43e7cff897480c475.avif",
-          "hash": "4d2de4d7607083869d04f464eb9fe0390e3d4fb2f42aa2f43e7cff897480c475",
+          "src": "/images/editorial/descuentos-de-sueldo/e266d4c511020c6af662c2a5d8abf7a217a8c2ca1761f04484b7c15d5823db57.avif",
+          "hash": "e266d4c511020c6af662c2a5d8abf7a217a8c2ca1761f04484b7c15d5823db57",
           "width": 600,
           "height": 315,
-          "bytes": 18920
+          "bytes": 18745
         },
         "og": {
-          "src": "/images/editorial/descuentos-de-sueldo/b2a69dd45630294ba9fd642303a98ae61013d7242377225173c6cff05272daf1.jpg",
-          "hash": "b2a69dd45630294ba9fd642303a98ae61013d7242377225173c6cff05272daf1",
+          "src": "/images/editorial/descuentos-de-sueldo/92277b8dfa7851212261e50a5ab00d75a17d3a635bbb1c32444c7023464813e6.jpg",
+          "hash": "92277b8dfa7851212261e50a5ab00d75a17d3a635bbb1c32444c7023464813e6",
           "width": 1200,
           "height": 630,
-          "bytes": 102020
+          "bytes": 99995
         }
       }
     },
@@ -718,35 +718,35 @@
     },
     "finanzas-para-migrantes-chile": {
       "sourcePath": "scripts/hero-images/sources/finanzas-para-migrantes-chile.webp",
-      "sourceHash": "65a3151689f5c7bb8cdf944a0c85dc394bf3438f7c36091b5193e0fe46d0a452",
+      "sourceHash": "b745c31d5f05c8f1044ffd6ae3b82976ca93559ec42dbaa83509bb055326f99e",
       "assets": {
         "hero": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/ca268b49fa7e4dda2758ee1ecefb3dfa21c9467dac61d614c5a062cc2f218ca7.avif",
-          "hash": "ca268b49fa7e4dda2758ee1ecefb3dfa21c9467dac61d614c5a062cc2f218ca7",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/b302cf8368bea1a891249f12ad7afc01cadc1ce921c18678cd29fa36b91d5d48.avif",
+          "hash": "b302cf8368bea1a891249f12ad7afc01cadc1ce921c18678cd29fa36b91d5d48",
           "width": 1200,
           "height": 630,
-          "bytes": 71560
+          "bytes": 74450
         },
         "tablet": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/3c815a423257f9613b34d82a417ae29ee916840848eef4ea6eaa91cab9648eee.avif",
-          "hash": "3c815a423257f9613b34d82a417ae29ee916840848eef4ea6eaa91cab9648eee",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/17ddf8b895c2628594b8cccc85d1e077fdfe8f7681dbe7390481963238f42bc1.avif",
+          "hash": "17ddf8b895c2628594b8cccc85d1e077fdfe8f7681dbe7390481963238f42bc1",
           "width": 800,
           "height": 420,
-          "bytes": 36398
+          "bytes": 37503
         },
         "mobile": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/02c45070eb24bb2ae3461c96fe5a89e68c15c8780a724211c0ea598d1f620590.avif",
-          "hash": "02c45070eb24bb2ae3461c96fe5a89e68c15c8780a724211c0ea598d1f620590",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/7fe0146c4c8fd9dcc9accedd4d0c59b9b08fc356e227ef06bef430f09135f2cc.avif",
+          "hash": "7fe0146c4c8fd9dcc9accedd4d0c59b9b08fc356e227ef06bef430f09135f2cc",
           "width": 600,
           "height": 315,
-          "bytes": 25348
+          "bytes": 26271
         },
         "og": {
-          "src": "/images/editorial/finanzas-para-migrantes-chile/f78d9cea6ce0095e5bfade0c5fa762afa335509910dccae1a67c1c7bd54a09b3.jpg",
-          "hash": "f78d9cea6ce0095e5bfade0c5fa762afa335509910dccae1a67c1c7bd54a09b3",
+          "src": "/images/editorial/finanzas-para-migrantes-chile/6dc9a282d5e2bb7316a9febf0c484177f0b434bad5f40d1cb7080eec697d03f9.jpg",
+          "hash": "6dc9a282d5e2bb7316a9febf0c484177f0b434bad5f40d1cb7080eec697d03f9",
           "width": 1200,
           "height": 630,
-          "bytes": 122437
+          "bytes": 126998
         }
       }
     },
@@ -922,69 +922,69 @@
     },
     "fraude-tarjeta-que-hacer": {
       "sourcePath": "scripts/hero-images/sources/fraude-tarjeta-que-hacer.webp",
-      "sourceHash": "f461bacbe4ffee22aebf1042dc8b0cf0cca609f0e7bbdea472c2cf5b2bbd1d28",
+      "sourceHash": "7296d0eb6114d6d4392d4d7c6b9e4a99dd652b9a3c9830dd4634d7516699f6a5",
       "assets": {
         "hero": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/0caff38b2d2ad7f8e16e9564c7933336f4496eb85adaf1b2c612b0f800c5bdd4.avif",
-          "hash": "0caff38b2d2ad7f8e16e9564c7933336f4496eb85adaf1b2c612b0f800c5bdd4",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/4fd2229c9a5a7571a6312a89ef2e7558e5cc650d8155a1b46807221d59aa1da1.avif",
+          "hash": "4fd2229c9a5a7571a6312a89ef2e7558e5cc650d8155a1b46807221d59aa1da1",
           "width": 1200,
           "height": 630,
-          "bytes": 55956
+          "bytes": 55153
         },
         "tablet": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/42b09118905d6943e229b4c1f5c41c73d9d5a97bde50281668ce1af3d15585cf.avif",
-          "hash": "42b09118905d6943e229b4c1f5c41c73d9d5a97bde50281668ce1af3d15585cf",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/ac334386bd04571c52df913613deaecf5b2af4e2e56ae76c36265add2499e186.avif",
+          "hash": "ac334386bd04571c52df913613deaecf5b2af4e2e56ae76c36265add2499e186",
           "width": 800,
           "height": 420,
-          "bytes": 28537
+          "bytes": 28681
         },
         "mobile": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/3bbdee92fa47cd8b9ce7873d54e6f3c14ac4e65a71e98e0a929de83dd070b7d8.avif",
-          "hash": "3bbdee92fa47cd8b9ce7873d54e6f3c14ac4e65a71e98e0a929de83dd070b7d8",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/56043b4564223d6faa24ae2bed1aade2e2521f813c9b41aed956732263ed0037.avif",
+          "hash": "56043b4564223d6faa24ae2bed1aade2e2521f813c9b41aed956732263ed0037",
           "width": 600,
           "height": 315,
-          "bytes": 20312
+          "bytes": 20657
         },
         "og": {
-          "src": "/images/editorial/fraude-tarjeta-que-hacer/41f8fd616bd4c11f6eb63f603b370b8e968372d10d515cee23807375c5821732.jpg",
-          "hash": "41f8fd616bd4c11f6eb63f603b370b8e968372d10d515cee23807375c5821732",
+          "src": "/images/editorial/fraude-tarjeta-que-hacer/312263ff058e0ffa0783c63390f407747eaefae05dc7481c42aea2ec591e6af2.jpg",
+          "hash": "312263ff058e0ffa0783c63390f407747eaefae05dc7481c42aea2ec591e6af2",
           "width": 1200,
           "height": 630,
-          "bytes": 102229
+          "bytes": 100769
         }
       }
     },
     "gratificacion-legal-chile": {
       "sourcePath": "scripts/hero-images/sources/gratificacion-legal-chile.webp",
-      "sourceHash": "8cf730a61b02fc642d9ccdb0c0ceb57e3447683a8377411c047debc19a903a45",
+      "sourceHash": "987d05f944e84e95fa465ef50c3b395eeaa4c2f5fff7b5c4aa3e02a72c394768",
       "assets": {
         "hero": {
-          "src": "/images/editorial/gratificacion-legal-chile/36d0a9162f86da4334e9bfee4241c48042d7c5639111acee6641ba52e94cdb0f.avif",
-          "hash": "36d0a9162f86da4334e9bfee4241c48042d7c5639111acee6641ba52e94cdb0f",
+          "src": "/images/editorial/gratificacion-legal-chile/ed738978999a028e260f907c19519f4396f6babf7abd933aedbba2d9f50ef3bf.avif",
+          "hash": "ed738978999a028e260f907c19519f4396f6babf7abd933aedbba2d9f50ef3bf",
           "width": 1200,
           "height": 630,
-          "bytes": 56100
+          "bytes": 47521
         },
         "tablet": {
-          "src": "/images/editorial/gratificacion-legal-chile/4000b698736531c777c9e0875c09cb3c20937fa2bb5666d54c33a1495efea6fd.avif",
-          "hash": "4000b698736531c777c9e0875c09cb3c20937fa2bb5666d54c33a1495efea6fd",
+          "src": "/images/editorial/gratificacion-legal-chile/f996481fa7b769d202f53d1d02d9bfa16f4ffb3046b6d970816c2691cb486fa3.avif",
+          "hash": "f996481fa7b769d202f53d1d02d9bfa16f4ffb3046b6d970816c2691cb486fa3",
           "width": 800,
           "height": 420,
-          "bytes": 27095
+          "bytes": 25206
         },
         "mobile": {
-          "src": "/images/editorial/gratificacion-legal-chile/4c5914daa929bb6769355ea241745eea8f44ea86d7267cd13342803b9dac56d4.avif",
-          "hash": "4c5914daa929bb6769355ea241745eea8f44ea86d7267cd13342803b9dac56d4",
+          "src": "/images/editorial/gratificacion-legal-chile/3e98da371fb311179db3d2af6c129147995710f2e9d1d22d159ec24a16bca139.avif",
+          "hash": "3e98da371fb311179db3d2af6c129147995710f2e9d1d22d159ec24a16bca139",
           "width": 600,
           "height": 315,
-          "bytes": 18727
+          "bytes": 18017
         },
         "og": {
-          "src": "/images/editorial/gratificacion-legal-chile/c8059731b338b320c8e7fe498ce71fe0c7e80bb5b9eeb70ede07ea0b70843389.jpg",
-          "hash": "c8059731b338b320c8e7fe498ce71fe0c7e80bb5b9eeb70ede07ea0b70843389",
+          "src": "/images/editorial/gratificacion-legal-chile/ffaf1e976a5c089e0caaed0454bbb24cf95e44f123a66cb9f6d06b4a43a7da2e.jpg",
+          "hash": "ffaf1e976a5c089e0caaed0454bbb24cf95e44f123a66cb9f6d06b4a43a7da2e",
           "width": 1200,
           "height": 630,
-          "bytes": 108231
+          "bytes": 101012
         }
       }
     },
@@ -1602,35 +1602,35 @@
     },
     "rentas-mixtas-sueldo-honorarios": {
       "sourcePath": "scripts/hero-images/sources/rentas-mixtas-sueldo-honorarios.webp",
-      "sourceHash": "88bc9ed26867571b7c180e1c8b35facccb68ec94ee6ce4c0398a9ac6f4e253be",
+      "sourceHash": "19940560d59e2f50d8ac485ee1e7eb7bffdbf62a74dd5939ae8c4893b673bfb7",
       "assets": {
         "hero": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/690b5d4b3293fc090c38f9ba284564643ac31e2e55ffe6208640433dbe899ca5.avif",
-          "hash": "690b5d4b3293fc090c38f9ba284564643ac31e2e55ffe6208640433dbe899ca5",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/3aa791494fc92f1bf30e12c0217cd327e11c0fb0bb7a9d277caaa37adbaeb505.avif",
+          "hash": "3aa791494fc92f1bf30e12c0217cd327e11c0fb0bb7a9d277caaa37adbaeb505",
           "width": 1200,
           "height": 630,
-          "bytes": 59187
+          "bytes": 52519
         },
         "tablet": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/4af4df624ada735b42757cf995e899dcebee4865a116459e564bbb640efbc9be.avif",
-          "hash": "4af4df624ada735b42757cf995e899dcebee4865a116459e564bbb640efbc9be",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/5d628297725a737102e3081556dbd9d9d86b9b06c565df082624e7d8d7716d2e.avif",
+          "hash": "5d628297725a737102e3081556dbd9d9d86b9b06c565df082624e7d8d7716d2e",
           "width": 800,
           "height": 420,
-          "bytes": 29211
+          "bytes": 28238
         },
         "mobile": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/265137fa00060e0909a42eea204eb018a714a33b12fdafa4531e4278e0903536.avif",
-          "hash": "265137fa00060e0909a42eea204eb018a714a33b12fdafa4531e4278e0903536",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/bdb757ccea5e6d23c2a0f24aa80332954ed59d05c903a4e46071855af74c3d78.avif",
+          "hash": "bdb757ccea5e6d23c2a0f24aa80332954ed59d05c903a4e46071855af74c3d78",
           "width": 600,
           "height": 315,
-          "bytes": 20426
+          "bytes": 19948
         },
         "og": {
-          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/58fdebb2506a2fd5622e553c6515e9b56c0c4dfc0f60ae5d36cf797ffef31884.jpg",
-          "hash": "58fdebb2506a2fd5622e553c6515e9b56c0c4dfc0f60ae5d36cf797ffef31884",
+          "src": "/images/editorial/rentas-mixtas-sueldo-honorarios/672e2f0060e814ec6cb826546c241c22522e784bdbd8df79054d2da5a300c9a8.jpg",
+          "hash": "672e2f0060e814ec6cb826546c241c22522e784bdbd8df79054d2da5a300c9a8",
           "width": 1200,
           "height": 630,
-          "bytes": 107126
+          "bytes": 103798
         }
       }
     },
@@ -1704,69 +1704,69 @@
     },
     "sueldo-imponible-chile": {
       "sourcePath": "scripts/hero-images/sources/sueldo-imponible-chile.webp",
-      "sourceHash": "0db927651cb2e8a1bc10a28d527cbbb3cf16f98aed390575862153965d7a0cf1",
+      "sourceHash": "70c21fac8d6fbfd2fa0a4594a07f9df54935d651f817bd2838ffa79054b50c7f",
       "assets": {
         "hero": {
-          "src": "/images/editorial/sueldo-imponible-chile/52f0a180e057099f518ed9631e4afcd0a1eb9cea5cd7f52c729432638c1fe672.avif",
-          "hash": "52f0a180e057099f518ed9631e4afcd0a1eb9cea5cd7f52c729432638c1fe672",
+          "src": "/images/editorial/sueldo-imponible-chile/c247110f18887b7cb981bc372822f7e8b05f437d4f799105e4a16241a3aa0abe.avif",
+          "hash": "c247110f18887b7cb981bc372822f7e8b05f437d4f799105e4a16241a3aa0abe",
           "width": 1200,
           "height": 630,
-          "bytes": 59608
+          "bytes": 52510
         },
         "tablet": {
-          "src": "/images/editorial/sueldo-imponible-chile/8a1c5059ca2f7ae442502efff44f322954046274d49b87f2a7d75a0905cd8f6e.avif",
-          "hash": "8a1c5059ca2f7ae442502efff44f322954046274d49b87f2a7d75a0905cd8f6e",
+          "src": "/images/editorial/sueldo-imponible-chile/859424995876aa2ac4ef1788bff7d765de81e40072d60d15612c80a311c65e72.avif",
+          "hash": "859424995876aa2ac4ef1788bff7d765de81e40072d60d15612c80a311c65e72",
           "width": 800,
           "height": 420,
-          "bytes": 26731
+          "bytes": 26479
         },
         "mobile": {
-          "src": "/images/editorial/sueldo-imponible-chile/dc0153599f54edd04353b680b537e4b1d987cbeaa93be7ba184692d90b66724a.avif",
-          "hash": "dc0153599f54edd04353b680b537e4b1d987cbeaa93be7ba184692d90b66724a",
+          "src": "/images/editorial/sueldo-imponible-chile/51f8896861c553787f1680c9c062870c689d2433f395487832915a210a1edd6f.avif",
+          "hash": "51f8896861c553787f1680c9c062870c689d2433f395487832915a210a1edd6f",
           "width": 600,
           "height": 315,
-          "bytes": 18446
+          "bytes": 18459
         },
         "og": {
-          "src": "/images/editorial/sueldo-imponible-chile/c47b2f5faf2080fca57c4847a7337d1ae602c004f47f78faf46a651335fb8b87.jpg",
-          "hash": "c47b2f5faf2080fca57c4847a7337d1ae602c004f47f78faf46a651335fb8b87",
+          "src": "/images/editorial/sueldo-imponible-chile/6a020bcc21b43672a3a3b7e90b425e2c33cdcb596fe72086f54efc9170e5bdea.jpg",
+          "hash": "6a020bcc21b43672a3a3b7e90b425e2c33cdcb596fe72086f54efc9170e5bdea",
           "width": 1200,
           "height": 630,
-          "bytes": 105625
+          "bytes": 102853
         }
       }
     },
     "suplantacion-identidad-creditos-no-reconocidos": {
       "sourcePath": "scripts/hero-images/sources/suplantacion-identidad-creditos-no-reconocidos.webp",
-      "sourceHash": "c0108696709e96acea66c3c993a70ec6499b08af93a69adbe61b585adde66efb",
+      "sourceHash": "faa7d2730340f7b20b3df8835bfe251ffcea7c7c2dbfc2c96d221ead3fb6e454",
       "assets": {
         "hero": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/63d04c467421cf78670410c5c434020cf1c45c205c85f8ce38deb22fc6feac54.avif",
-          "hash": "63d04c467421cf78670410c5c434020cf1c45c205c85f8ce38deb22fc6feac54",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/7b7e7c7f26079ccde04e5ad9f547d0b294729a18cf85c0fbd8b995fc88fd7301.avif",
+          "hash": "7b7e7c7f26079ccde04e5ad9f547d0b294729a18cf85c0fbd8b995fc88fd7301",
           "width": 1200,
           "height": 630,
-          "bytes": 63167
+          "bytes": 57156
         },
         "tablet": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/4a93ad6859973ac6ab2c238b1ce925df3b277fcb76d70deb29bf70fd70940f74.avif",
-          "hash": "4a93ad6859973ac6ab2c238b1ce925df3b277fcb76d70deb29bf70fd70940f74",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/45cd3c5edce711ec1a3e42683dcdc4373f2e29603fd5c10e5fc5a72290b82286.avif",
+          "hash": "45cd3c5edce711ec1a3e42683dcdc4373f2e29603fd5c10e5fc5a72290b82286",
           "width": 800,
           "height": 420,
-          "bytes": 32071
+          "bytes": 30459
         },
         "mobile": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/c611cf628bb09a32afd6566f027533e39735d774ed0af446a67141288b2111ea.avif",
-          "hash": "c611cf628bb09a32afd6566f027533e39735d774ed0af446a67141288b2111ea",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/eb2739f88d48fd660ca11071931c0796bf7c514d418a587647f18361d2347fd5.avif",
+          "hash": "eb2739f88d48fd660ca11071931c0796bf7c514d418a587647f18361d2347fd5",
           "width": 600,
           "height": 315,
-          "bytes": 22476
+          "bytes": 22008
         },
         "og": {
-          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/d89aa4b1128f40f65db36d0ead644f24a5b02c54ae47349d40720c3be0449212.jpg",
-          "hash": "d89aa4b1128f40f65db36d0ead644f24a5b02c54ae47349d40720c3be0449212",
+          "src": "/images/editorial/suplantacion-identidad-creditos-no-reconocidos/6f27e6da0a25cec77ed394c993875adaa0a355940a92541a228455665e36b3d4.jpg",
+          "hash": "6f27e6da0a25cec77ed394c993875adaa0a355940a92541a228455665e36b3d4",
           "width": 1200,
           "height": 630,
-          "bytes": 114301
+          "bytes": 110616
         }
       }
     },
