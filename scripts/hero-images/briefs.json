@@ -451,7 +451,7 @@
       "readerNeed": "Entender el origen y respaldo de una línea descontada del sueldo.",
       "editorialPromise": "Clasificar descuentos legales, autorizados y cuestionables antes de impugnarlos.",
       "visualMessage": "Cada descuento necesita una razón verificable.",
-      "scene": "A worker's hands compare one highlighted line in a payslip with a small written-authorization sheet and a neutral rules folder. The finger pauses on the line in question. The scene is investigative and calm, with no judge, red punishment stamp or arithmetic flowchart.",
+      "scene": "Use Image 1 as the exact visual reference and recreate this editorial cover with the same framing, desk, hands, payslip, authorization sheet, folder, lighting and v5 palette. On the small authorization sheet at left, remove the signature-like scribble and leave only clean blank rules. Preserve the document and hand shapes; add no marks that look like handwriting.",
       "requiredElements": [
         "Línea de descuento en revisión",
         "Respaldo de autorización",
@@ -460,7 +460,8 @@
       "avoidInterpretations": [
         "Todo descuento es ilegal",
         "Toda línea de descuento está validada",
-        "Clasificar equivale a recalcular líquido"
+        "Clasificar equivale a recalcular líquido",
+        "No signature, handwriting, letters, numbers or pseudo-legible marks."
       ],
       "alt": "",
       "sourceContentHash": "acf43262a5316a3a3ed6d4466bce66c291ea9298b8d9b7e1b4d1d91f2e0acecf",
@@ -469,9 +470,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -591,7 +592,7 @@
       "readerNeed": "Organizar identidad, acceso bancario y vivienda al llegar a Chile.",
       "editorialPromise": "Orientar trámites y requisitos según la situación migratoria sin prometer acceso universal.",
       "visualMessage": "Ordenar documentos facilita avanzar hacia la vida cotidiana.",
-      "scene": "An adult in a bright but modest new home arranges an identity document, a neutral bank card and a house key on a small table, with a partly unpacked bag nearby. Their posture is capable and focused. No flags, nationality stereotypes, border checkpoints or institutional logos.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same calm scene: the woman organizing an identity card, a plain payment card, keys and a partly unpacked bag at a table. Change only the payment card: remove the red and orange overlapping circles and leave its navy face completely unbranded, with only its existing chip. Keep the identity card neutral and all personal details unreadable.",
       "requiredElements": [
         "Identidad",
         "Cuenta bancaria",
@@ -600,7 +601,8 @@
       "avoidInterpretations": [
         "Toda persona necesita un nuevo RUT",
         "Una cuenta o arriendo está garantizado",
-        "Migración equivale a precariedad"
+        "Migración equivale a precariedad",
+        "No payment-network mark, logo, brand, flag or readable personal data."
       ],
       "alt": "",
       "sourceContentHash": "9b0dfa1e23c770e8299dd69eb37f4410a911cf107a1dd1b329cb8cc9dabec51f",
@@ -609,9 +611,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -759,7 +761,7 @@
       "readerNeed": "Contener un cargo no reconocido y conservar evidencia.",
       "editorialPromise": "Separar aviso y bloqueo, reclamo formal y denuncia en el proceso de fraude.",
       "visualMessage": "La primera acción es recuperar control y documentar lo ocurrido.",
-      "scene": "A person at a small table makes a focused phone call while setting a plain payment card face down beside a notebook. Their other hand records a short unlettered mark as evidence of the call. The gesture is urgent but composed; the scene shows action rather than fear, with no money being magically returned.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same calm phone-call scene, person, notebook, laptop, table, card position, lighting and v5 palette. Change only the payment card: place it face down so its plain back is visible; no chip, number, logo or network mark may show. Preserve the focused, composed gesture.",
       "requiredElements": [
         "Llamada de contención",
         "Tarjeta apartada",
@@ -768,7 +770,8 @@
       "avoidInterpretations": [
         "Bloquear completa todo el reclamo",
         "Devolución automática garantizada",
-        "Culpa o vergüenza de la víctima"
+        "Culpa o vergüenza de la víctima",
+        "The payment card is face down; no visible chip, card number, logo or network mark."
       ],
       "alt": "",
       "sourceContentHash": "3b86d5940328e2700b41f6e0f15e21b4ab73b0f9140de6374ce705d8849fbcd4",
@@ -777,9 +780,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -787,7 +790,7 @@
       "readerNeed": "Identificar la gratificación en la remuneración y entender su modalidad.",
       "editorialPromise": "Explicar cálculo y topes según la modalidad aplicable sin presentarla como regalo.",
       "visualMessage": "Una línea de ingreso tiene reglas y respaldo.",
-      "scene": "An open payslip shows one additional unlettered teal earnings band. A natural hand aligns it with a small employment conditions note, while a subtle horizontal boundary mark suggests a limit without numerical precision. Keep the earnings document dominant; no gift box, bonus confetti or employer generosity imagery.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same close-up of an open payslip, highlighted teal earnings band, hand, employment-conditions note, desk and v5 palette. On the side note, replace the orange circled minus and dashed connector with one short, neutral horizontal terracotta boundary line. Do not use a plus, minus, arrow, badge or deduction symbol.",
       "requiredElements": [
         "Línea de haberes",
         "Condiciones laborales",
@@ -796,7 +799,8 @@
       "avoidInterpretations": [
         "Es regalo discrecional del empleador",
         "La modalidad la elige siempre el trabajador",
-        "Monto universal"
+        "Monto universal",
+        "No minus sign, deduction mark, plus sign, arrow, gift box or bonus imagery."
       ],
       "alt": "",
       "sourceContentHash": "c5056c90d0e06e360d83acb9f69cc9421cc20b93ce860cb1d86ec8d5dca7a6a5",
@@ -805,9 +809,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -1320,7 +1324,7 @@
       "readerNeed": "Reunir sueldo y honorarios para revisar el resultado tributario anual.",
       "editorialPromise": "Distinguir rentas y retenciones que se consolidan en la declaración.",
       "visualMessage": "Dos fuentes separadas durante el año deben mirarse juntas al declarar.",
-      "scene": "Two natural hands align a payslip and a freelance invoice side by side over one annual tax folder. Small detached retention slips remain visible with each source. The sheets meet at the folder without merging into an illegible pile; a quiet blank calendar page anchors the annual context.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same overhead comparison of a payslip and freelance invoice meeting at one annual folder, with the same hands, calendar, desk, lighting and v5 palette. Change only the two small detached retention slips: remove their repeated bank-building emblems and replace each emblem with plain unlettered horizontal bands. Keep the two main income documents distinct.",
       "requiredElements": [
         "Sueldo y boleta distintos",
         "Carpeta anual común",
@@ -1329,7 +1333,8 @@
       "avoidInterpretations": [
         "Dos retenciones cierran siempre el impuesto",
         "Rentas mixtas garantizan devolución",
-        "Se usa cualquier tasa sin mirar el año"
+        "Se usa cualquier tasa sin mirar el año",
+        "No bank, government or institutional emblems on the detached retention slips; no logos or readable text."
       ],
       "alt": "",
       "sourceContentHash": "dcf65562e80bcdec571ff62c7cf3ff57735bc344bb35147da5b0090dc4caed74",
@@ -1340,7 +1345,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Content-correction revalidation for the 2026-10-03 editorial fixes: official sources, APV/F22 wording and AT2027 scope were corrected. The reader need, visual message and scene remain valid; the existing hero image is unchanged. Human editor sign-off is tracked in the editorial PR; this is visual source alignment, not a YMYL audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -1404,7 +1409,7 @@
       "readerNeed": "Distinguir la base imponible de otras partes de la remuneración.",
       "editorialPromise": "Identificar componentes que forman la base sin confundirla con bruto o líquido.",
       "visualMessage": "Separar conceptos permite entender sobre qué se calcula.",
-      "scene": "A payslip lies open with two clearly separated groups of unlettered earnings bands. A hand moves a small meal-and-transport allowance slip slightly aside while pointing to the main navy calculation base. The composition is a close editorial detail, not a numeric formula or a final deposit illustration.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same close-up payslip, pointing hand, allowance card, desk and v5 palette. The small allowance card must contain only meal and transit pictograms with neutral unlettered lines. Remove the gift-box pictogram and its row; rebalance the two remaining rows evenly. Do not imply a gift, reward or bonus.",
       "requiredElements": [
         "Base principal diferenciada",
         "Asignaciones separadas",
@@ -1413,7 +1418,8 @@
       "avoidInterpretations": [
         "Bruto e imponible son iguales",
         "Imponible equivale al depósito final",
-        "Todos los descuentos comparten idéntica base"
+        "Todos los descuentos comparten idéntica base",
+        "No gift-box, reward or bonus pictogram; only meal and transit allowance cues."
       ],
       "alt": "",
       "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
@@ -1424,7 +1430,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
@@ -1432,7 +1438,7 @@
       "readerNeed": "Actuar ante un crédito o producto financiero que no solicitó.",
       "editorialPromise": "Ordenar bloqueo, reclamo y evidencia cuando otra persona usa sus datos.",
       "visualMessage": "Un documento inesperado exige verificar el origen y dejar registro.",
-      "scene": "A person holds their own neutral identity card while studying an unexpected loan notice on the table. A faint offset duplicate-card silhouette behind the notice suggests misuse of identity without a villain caricature. Their free hand collects the notice into an evidence folder. No readable personal data, official seals or debt-payment gesture.",
+      "scene": "Use Image 1 as the exact visual reference and recreate the same woman checking her identity card and unexpected loan notice, with the same evidence folder, table, lighting and v5 palette. Remove the large shadowy cap-wearing person completely. Keep only a faint offset duplicate-card silhouette behind the notice to suggest identity misuse; no human or villain silhouette.",
       "requiredElements": [
         "Identidad propia",
         "Crédito inesperado",
@@ -1441,7 +1447,8 @@
       "avoidInterpretations": [
         "Corresponde pagar para regularizar",
         "La víctima causó el fraude",
-        "Reclamar borra todo de inmediato"
+        "Reclamar borra todo de inmediato",
+        "No shadow person, masked figure, cap-wearing suspect, villain or criminal caricature."
       ],
       "alt": "",
       "sourceContentHash": "a5e1bd5cbde148afd61181c1c6ed921a0fae1f2357ce5d01575bf75b48084c38",
@@ -1450,9 +1457,9 @@
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
       }
     },
     {
