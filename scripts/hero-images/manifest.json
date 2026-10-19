@@ -592,7 +592,7 @@
     },
     {
       "slug": "devolucion-impuestos-fechas-compensaciones",
-      "sourceContentHash": "060639f108d67e8568aa2c11b8658599df26f0c54174cae5e47cf173eb35e532",
+      "sourceContentHash": "75e95b2ee143016dbcb3a83715d8abbf7416cd8b4a34ee2585595d541e46e1b1",
       "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
       "tags": [
         "impuestos",
@@ -604,9 +604,9 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/devolucion-impuestos-fechas-compensaciones.md",
       "heroImage": "/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
-      "summary": "Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró. El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el...",
+      "summary": "Estado del ciclo AT2026 (revisado el 3 de octubre de 2026): el calendario ordinario ya cerró. El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el...",
       "leadParagraphs": [
-        "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).",
+        "**Estado del ciclo AT2026 (revisado el 3 de octubre de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).",
         "El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación:",
         "**Si declaraste dentro de AT2026 y nunca te llegó el depósito:**"
       ],
@@ -619,8 +619,8 @@
         "Fuentes y referencias primarias",
         "Información de vigencia"
       ],
-      "bodyExcerpt": "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027). ## Ciclo AT2026 cerrado: qué hacer hoy El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación: **Si declaraste dentro de AT2026 y nunca te llegó el depósito:** 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compe",
-      "wordCount": 1685,
+      "bodyExcerpt": "**Estado del ciclo AT2026 (revisado el 3 de octubre de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027). ## Ciclo AT2026 cerrado: qué hacer hoy El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación: **Si declaraste dentro de AT2026 y nunca te llegó el depósito:** 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compe",
+      "wordCount": 1982,
       "sourceFile": "devolucion-impuestos-fechas-compensaciones.md"
     },
     {
@@ -1624,7 +1624,7 @@
     },
     {
       "slug": "rentas-mixtas-sueldo-honorarios",
-      "sourceContentHash": "887886d4826f3b404c1196db48429885dfbad246551671c55f4fac41001b214e",
+      "sourceContentHash": "dcf65562e80bcdec571ff62c7cf3ff57735bc344bb35147da5b0090dc4caed74",
       "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
       "tags": [
         "impuestos",
@@ -1654,7 +1654,7 @@
         "Paso a paso para declarar con rentas mixtas"
       ],
       "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, revisa que la propuesta del SII incluya la información reportada por todas tus fuentes. La obligación de presentar el F22 depende de tus rentas imponibles y de las demás condiciones legales; también puedes declarar voluntariamente para solicitar la devolución de retenciones. Esta guía explica cómo revisar las rentas y créditos, y qué determina si recibes devolución o pagas más. ## Qué es y qué cambia con las rentas mixtas Cuando combinas sueldo y honorarios, los agentes informan por separado sus pagos y retenciones, mientras el F22 determina el impuesto anual sobre las bases imponibles aplicables y lo compara con los créditos y pagos provisionales. Por eso, sumar los montos brutos no basta para saber si tendrás devolución o un saldo por pagar. ( ; ). ## Cuándo presentar F22 con rentas mixtas **Respuesta rápida:** Tener sueldo y emitir boletas en el mismo año no vuelve obligatorio el F22 en todos los casos. Para AT2026, el SII indica que las personas naturales deben presentar declaración cuando sus rentas afectas al IGC superan 13,5 UTA ($11.265.804); en o bajo el umbral, pueden presentarla voluntariamente para solicitar ",
-      "wordCount": 3123,
+      "wordCount": 3204,
       "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
     {

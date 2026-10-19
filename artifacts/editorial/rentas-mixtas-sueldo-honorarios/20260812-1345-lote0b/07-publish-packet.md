@@ -8,9 +8,29 @@
   (verdicto FAIL 7,225/10, R5 exactitud confirmado + R2 vigencia)
 - Autor de este paquete: DraftAgent (Claude Code), sesión `20260812-1345-lote0b`
 - TODO:SOURCE no resueltos: 0
-- Decisión de este paquete: HOLD (bloqueado por `05-math-audit.md`; ver sección de bloqueo abajo)
+- Decisión inicial del paquete: HOLD (estado del run al 2026-08-12; véase la reconciliación vigente más abajo)
 
-## BLOQUEADO: requiere 05-math-audit.md antes de Fase C
+## Estado vigente — 2026-10-03
+
+- `05-math-audit-round4.md` revisa la versión actual del artículo y obtuvo
+  **PASS: 25/25 grupos VERIFIED, 0 TODO y 0 ERROR**. El HOLD matemático de
+  contenido quedó resuelto; el `05-math-audit.md` anterior se conserva como
+  antecedente de una versión previa.
+- `06-compliance-round12.md` revisó la versión previa a los fixes y dio
+  **FAIL, 9,40/10**. La Compliance fresca R13 revisó las correcciones y dio
+  **PASS, 9,71/10**, sin MUST abierto; su informe distingue lo que cubre
+  MathAudit R4 de los cambios textuales posteriores.
+- El `[x] HumanEditor sign-off` que aparece en el checklist histórico registra
+  la aprobación de una versión anterior del packet. No cubre las modificaciones
+  posteriores ni este estado; la revalidación humana queda pendiente.
+- Estado de publicación: **HOLD** hasta que HumanEditor revalide esta versión.
+  No se cambió ninguna casilla ni se añadió una firma.
+
+La sección de bloqueo y su checklist inmediatamente posteriores documentan el
+estado inicial del run; se preservan como historial y quedan supersedidos por
+esta reconciliación.
+
+## Bloqueo inicial del run (2026-08-12; estado supersedido)
 
 `01-brief.yaml` declara `requires_calculation=true` porque este run corrige
 una cifra calculada (tramo exento IGC = 13,5 UTA × valor UTA dic-2025 =
@@ -28,7 +48,7 @@ en estado `BLOCKED` hasta que:
 2. `ComplianceAgent` (sesión fresca, Fase C) produzca `06-compliance.md`.
 3. `HumanEditor` firme este `07-publish-packet.md`.
 
-## Estado del paquete
+## Checklist histórico del estado inicial
 
 - [x] Brief listo (`01-brief.yaml`)
 - [x] Dossier listo (`02-dossier.md`)
@@ -406,3 +426,56 @@ Este refetch resuelve las limitaciones de acceso a Línea 23 y TGR para esta
 comprobación, y mejora la evidencia de la búsqueda AT2027 acotada. No modifica
 el artículo, sus fechas, el informe R10, ni gates; no se marcó `[X]` ni se
 firmó.
+
+Compliance round 11 follow-up, en `06-compliance-round11-followup.md`, repitió
+de forma independiente la navegación Chrome de las cuatro fuentes. Confirmó
+que el artículo coincide con lo visible y que la afirmación AT2027 está
+limitada a las dos páginas consultadas. No encontró contradicción ni defecto
+nuevo; conserva R10 **PASS, 9,58/10** sin recalcular su evaluación integral.
+
+## Reconciliación del estado — 2026-10-03
+
+La sección histórica de bloqueo debe leerse con esta actualización: el archivo
+`05-math-audit.md` sí existe. Sigue marcado `DRAFT` y registra `FAIL` por el
+bloque APV de la versión anterior del artículo. Ese bloque se corrigió después
+y R10 revisó el artículo actual; R11 confirmó por separado las fuentes SII,
+TGR y la observación acotada de AT2027. Ninguno de esos informes reemplaza ni
+actualiza el artefacto de MathAudit. Por ello, el HOLD permanece hasta que una
+sesión fresca de MathAudit revise la versión actual y luego se complete la
+revisión Compliance correspondiente. La frase histórica «no existe» y el
+estado de VERIFIED carry-forward quedan supersedidos por esta nota; las listas
+históricas de gates se conservan sin cambios. No se marca ningún gate ni se
+registra firma en esta actualización.
+
+## Reconciliación tras Compliance R12 — 2026-10-03
+
+El estado de MathAudit anterior quedó supersedido: `05-math-audit-round4.md`
+audita el artículo vigente y pasa 25/25 grupos, sin errores ni fuentes
+pendientes. Compliance R12 (`06-compliance-round12.md`) evaluó la versión
+anterior a este fix y dejó FAIL por tres puntos: la instrucción general sobre
+APV B/F22, la omisión del cambio de alcance AT2027 en el registro material y
+la discordancia entre el sign-off previo y el estado del packet. Se corrigió
+la distinción APV B mensual/directo; el registro existente se amplió y fecha
+al 2026-10-03; el artículo, `articleLead.validAsOf` y el texto visible de
+revisión quedaron alineados a esa fecha tras refetch de las fuentes
+temporales.
+
+La casilla `[x] HumanEditor sign-off` ya estaba presente y corresponde a una
+versión anterior del packet; no se modifica ni se presenta como aprobación de
+esta versión. El packet actual permanece en HOLD hasta una nueva revisión
+Compliance y la revalidación de HumanEditor. Esta nota preserva los checklists
+anteriores; no se marcó ninguna casilla ni se añadió una firma.
+
+## Reconciliación tras Compliance R13 — 2026-10-03
+
+Compliance R13 (`06-compliance-round13.md`) revisó las correcciones a los
+hallazgos R12 y obtuvo **PASS, 9,71/10**, sin MUST abierto. MathAudit R4
+(`05-math-audit-round4.md`) cubre los 25 grupos numéricos que permanecieron
+sin cambios: su reporte se produjo antes de la redacción APV B y actualización
+de fecha del 2026-10-03. R13 verificó esas adiciones textuales y el alcance de
+AT2027 por separado, además de confirmar que no cambiaron cifras ni tabla.
+
+El HOLD vigente es solo para la revalidación humana de esta versión. La casilla
+`[x] HumanEditor sign-off` queda como registro del snapshot anterior; no se
+interpretó como firma del packet actualizado. No se cambió ninguna casilla ni
+se añadió una firma.

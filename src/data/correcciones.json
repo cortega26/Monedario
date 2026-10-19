@@ -21,6 +21,62 @@
       "prevention": "Verificar que cada enlace oficial abra la norma citada y no una consulta relacionada; el gate de fuentes debe contrastar título y contenido, no solo el dominio."
     },
     {
+      "id": "devolucion-impuestos-fechas-sanciones-atraso",
+      "date": "2026-10-03",
+      "title": "Devolución de impuestos: multas por atraso y calendario AT2027",
+      "pages": [
+        {
+          "href": "/posts/devolucion-impuestos-fechas-compensaciones/",
+          "label": "Devolución de impuestos en Chile"
+        }
+      ],
+      "wrong": [
+        "La guía remitía a revisar el caso individual sin resumir las sanciones generales que el SII publica para declaraciones fuera de plazo, pese a que la FAQ distingue los resultados con pago, devolución o sin pago.",
+        "La afirmación de que una devolución por rectificatoria se paga alrededor de tres semanas después de la autorización a TGR no citaba la FAQ del SII que publica ese plazo aproximado.",
+        "La guía atribuía al SII, en general, que aún no había publicado un calendario AT2027, aunque la verificación cubría páginas concretas."
+      ],
+      "fixed": [
+        "La guía resume que una declaración con pago tiene reajuste por IPC, multa de 10% si el atraso no supera cinco meses y, después, un aumento de 2% por mes o fracción hasta 30%, más interés penal diario vigente por semestre; para devolución o sin pago, la FAQ regula la multa entre 1 UTM y 1 UTA.",
+        "La regla de alrededor de tres semanas para devoluciones por rectificatoria cita la FAQ SII 001.140.0516.011 junto a la afirmación.",
+        "No se calcula ni promete el monto de una sanción individual.",
+        "La guía precisa que no encontró un calendario general de fechas AT2027 en tres recursos SII consultados el 2026-10-03: el portal Operación Renta 2026, los datos informativos AT2026 y el índice de noticias 2026. Aclara que este resultado acotado no es una declaración expresa del SII sobre otros recursos."
+      ],
+      "affected": "Personas que presentan fuera de plazo una declaración de Renta con pago, devolución o sin pago, quienes esperan una devolución generada por una rectificatoria y quienes buscan el calendario de fechas AT2027.",
+      "sources": "SII FAQ 001.140.3095.025 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm); SII FAQ 001.140.0516.011 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0516.htm); portal SII Operación Renta 2026 (https://www.sii.cl/destacados/renta/2026/); datos informativos AT2026 (https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html); índice de noticias SII 2026 (https://www.sii.cl/noticias/2026/index.html).",
+      "prevention": "Refetchear las páginas oficiales y citar junto a cada afirmación temporal; separar las reglas generales del SII del monto individual, que no se calcula en el artículo; acotar los hallazgos negativos a los recursos efectivamente consultados."
+    },
+    {
+      "id": "rentas-mixtas-apv-y-convenios",
+      "date": "2026-10-03",
+      "title": "Obligación F22, límites del APV, calendario AT2027 y convenios TGR en rentas mixtas",
+      "pages": [
+        {
+          "href": "/posts/rentas-mixtas-sueldo-honorarios/",
+          "label": "Rentas mixtas: sueldo y honorarios"
+        }
+      ],
+      "wrong": [
+        "La descripción del APV no reunía en un mismo lugar el límite agregado de 600 UF, el orden de imputación entre regímenes ni el sublímite mensual de 50 UF del APV B por descuento del empleador; tampoco explicitaba la condición de 10 veces las cotizaciones obligatorias ni el destino previsional requerido para la bonificación A. La tabla resumía a un decimal tasas efectivas máximas que la tabla SII publica con dos decimales.",
+        "El rango de pie de 10% a 30% del convenio TGR podía entenderse como regla general para todos sus productos.",
+        "La guía afirmaba que todas las personas con sueldo y boletas debían presentar F22 y que el IGC se aplicaba directamente a la suma bruta, sin distinguir el umbral de obligación ni la base imponible del F22.",
+        "La guía decía que la propuesta del SII excluía automáticamente las boletas, aunque el SII la prepara con los antecedentes de agentes retenedores e informantes.",
+        "La guía afirmaba de forma general que aún no había calendario AT2027 publicado por el SII, sin identificar las páginas consultadas ni fechar la búsqueda; además, decía que toda persona con APV B debía declarar y que aceptar la propuesta no bastaba, sin distinguir los aportes descontados mensualmente por el empleador de los aportes directos con rebaja anual."
+      ],
+      "fixed": [
+        "La guía incorpora el límite agregado de 600 UF, la imputación APV B mensual, APV B directo y APV A, el tratamiento del exceso, el sublímite mensual de 50 UF, la condición de 10 veces las cotizaciones obligatorias y que el ahorro A elegible debe destinarse a anticipar o incrementar la pensión. La tabla conserva los tramos y las tasas marginales oficiales; se retiró el resumen de tasas efectivas máximas redondeadas a un decimal.",
+        "El rango de pie y su criterio de garantía quedan atribuidos al convenio para deudas vencidas de Impuestos Fiscales y Aduaneros, sin extenderlo a otros productos.",
+        "Las menciones a la retención de 14,5% quedan acotadas a boletas emitidas en 2025 para AT2026.",
+        "La obligación de presentar F22 queda condicionada por el umbral de rentas imponibles y otras obligaciones aplicables; bajo el tramo exento se explica la presentación voluntaria para recuperar retenciones.",
+        "La propuesta se describe como construida con la información reportada y revisable si faltan datos; la explicación del IGC distingue honorarios brutos de la base imponible tras los gastos permitidos.",
+        "Se añadió un ejemplo orientativo con la tasa oficial de retención de 2025 y el umbral publicado, sin derivar un impuesto o monto individual.",
+        "La instrucción APV B distingue el descuento mensual por empleador, cuya rebaja ya opera en el IUSC y no se vuelve a registrar en el código 765 del F22, de los aportes directos que pueden considerarse en la reliquidación anual; se indica revisar la propuesta y corregirla solo si faltan datos.",
+        "La observación sobre AT2027 queda acotada a la consulta fechada del portal Operación Renta 2026 y el índice de noticias SII 2026, en los que no se encontró un calendario al 2026-10-03."
+      ],
+      "affected": "Personas con sueldo y honorarios que revisan si deben presentar F22, cómo se integra la propuesta, cómo se determina la base imponible, qué beneficios APV pueden solicitar y qué convenio TGR corresponde a deudas fiscales vencidas.",
+      "sources": "SII FAQ 001.140.0972.009 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0972.htm); SII FAQ 001.140.2772.027 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2772.htm); SII FAQ 001.140.5883.011 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_5883.htm); Guía Práctica de Declaración de Renta AT2026 (https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf); Formulario 22 AT2026 (https://www.sii.cl/ayudas/formularios/f22_at2026.pdf); guía para trabajadores independientes AT2026 (https://www.sii.cl/destacados/renta/2026/documents/pr_independiente.pdf); SII Instrucciones F22 AT2026 Línea 23 §§23.2, 23.4 y 23.7 (https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf); Superintendencia de Pensiones, Compendio Capítulo XII (https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2909.html) y Capítulo XI para APVC (https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2929.html); TGR (https://tgr.gob.cl/convenios-de-pago/); SII boletas de honorarios (https://www.sii.cl/destacados/boletas_honorarios/); portal Operación Renta 2026 (https://www.sii.cl/destacados/renta/2026/) e índice de noticias SII 2026 (https://www.sii.cl/noticias/2026/index.html), consultados para el estado AT2027 al 2026-10-03.",
+      "prevention": "Contrastar obligación y base imponible con la guía y formulario F22 del año, verificar de qué datos se compone la propuesta, revisar topes APV con la instrucción anual, citar el capítulo previsional del producto y acotar cada condición TGR al convenio que la publica."
+    },
+    {
       "id": "operacion-renta-f22-multas-reliquidacion",
       "date": "2026-10-02",
       "title": "Multas por atraso y reliquidación por empleadores simultáneos",
@@ -42,34 +98,6 @@
       "affected": "Personas que presentaron tarde una declaración con devolución o sin pago, y trabajadores con más de un empleador que necesitaban saber si correspondía reliquidar el IUSC.",
       "sources": "SII FAQ 001.140.3095.025 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm); SII FAQ 001.140.2712.022 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2712.htm); SII p7renta.htm (https://www.sii.cl/contribuyentes/p7renta.htm).",
       "prevention": "Citas primarias junto a cada regla, separación de las sanciones por resultado de F22 y condición IUSC explícita en la tabla y el cuerpo."
-    },
-    {
-      "id": "rentas-mixtas-apv-y-convenios",
-      "date": "2026-10-02",
-      "title": "Obligación F22, límites del APV y alcance de convenios TGR en rentas mixtas",
-      "pages": [
-        {
-          "href": "/posts/rentas-mixtas-sueldo-honorarios/",
-          "label": "Rentas mixtas: sueldo y honorarios"
-        }
-      ],
-      "wrong": [
-        "La descripción del APV no reunía en un mismo lugar el límite agregado de 600 UF, el orden de imputación entre regímenes ni el sublímite mensual de 50 UF del APV B por descuento del empleador; tampoco explicitaba la condición de 10 veces las cotizaciones obligatorias ni el destino previsional requerido para la bonificación A. La tabla resumía a un decimal tasas efectivas máximas que la tabla SII publica con dos decimales.",
-        "El rango de pie de 10% a 30% del convenio TGR podía entenderse como regla general para todos sus productos.",
-        "La guía afirmaba que todas las personas con sueldo y boletas debían presentar F22 y que el IGC se aplicaba directamente a la suma bruta, sin distinguir el umbral de obligación ni la base imponible del F22.",
-        "La guía decía que la propuesta del SII excluía automáticamente las boletas, aunque el SII la prepara con los antecedentes de agentes retenedores e informantes."
-      ],
-      "fixed": [
-        "La guía incorpora el límite agregado de 600 UF, la imputación APV B mensual, APV B directo y APV A, el tratamiento del exceso, el sublímite mensual de 50 UF, la condición de 10 veces las cotizaciones obligatorias y que el ahorro A elegible debe destinarse a anticipar o incrementar la pensión. La tabla conserva los tramos y las tasas marginales oficiales; se retiró el resumen de tasas efectivas máximas redondeadas a un decimal.",
-        "El rango de pie y su criterio de garantía quedan atribuidos al convenio para deudas vencidas de Impuestos Fiscales y Aduaneros, sin extenderlo a otros productos.",
-        "Las menciones a la retención de 14,5% quedan acotadas a boletas emitidas en 2025 para AT2026.",
-        "La obligación de presentar F22 queda condicionada por el umbral de rentas imponibles y otras obligaciones aplicables; bajo el tramo exento se explica la presentación voluntaria para recuperar retenciones.",
-        "La propuesta se describe como construida con la información reportada y revisable si faltan datos; la explicación del IGC distingue honorarios brutos de la base imponible tras los gastos permitidos.",
-        "Se añadió un ejemplo orientativo con la tasa oficial de retención de 2025 y el umbral publicado, sin derivar un impuesto o monto individual."
-      ],
-      "affected": "Personas con sueldo y honorarios que revisan si deben presentar F22, cómo se integra la propuesta, cómo se determina la base imponible, qué beneficios APV pueden solicitar y qué convenio TGR corresponde a deudas fiscales vencidas.",
-      "sources": "SII FAQ 001.140.0972.009 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0972.htm); SII FAQ 001.140.2772.027 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2772.htm); Guía Práctica de Declaración de Renta AT2026 (https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf); Formulario 22 AT2026 (https://www.sii.cl/ayudas/formularios/f22_at2026.pdf); guía para trabajadores independientes AT2026 (https://www.sii.cl/destacados/renta/2026/documents/pr_independiente.pdf); SII Instrucciones F22 AT2026 Línea 23 §23.4 (https://www.sii.cl/servicios_online/renta/2026/archivos/l23_instruccion.pdf); Superintendencia de Pensiones, Compendio Capítulo XII (https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2909.html) y Capítulo XI para APVC (https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-2929.html); TGR (https://tgr.gob.cl/convenios-de-pago/); SII boletas de honorarios (https://www.sii.cl/destacados/boletas_honorarios/).",
-      "prevention": "Contrastar obligación y base imponible con la guía y formulario F22 del año, verificar de qué datos se compone la propuesta, revisar topes APV con la instrucción anual, citar el capítulo previsional del producto y acotar cada condición TGR al convenio que la publica."
     },
     {
       "id": "finiquito-indemnizacion",
