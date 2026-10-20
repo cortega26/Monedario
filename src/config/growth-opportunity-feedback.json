@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-01",
+  "updated": "2026-10-20",
   "note": "Memoria de calibración del Growth Engine (Fase 0). Editable por el owner vía PR; la automatización solo la lee. `dismissed` suprime IDs exactos ya revisados; `dismissedPatterns` suprime por dominio + regex sobre el path o la query del candidato (domain null aplica a todos); `promoted` registra candidatos convertidos en experimento.",
   "dismissed": [],
   "dismissedPatterns": [
@@ -20,7 +20,10 @@
       "id": "ctr_gap_page:https://monedario.cl/calculadoras/actualizador-inflacion/",
       "experiment": "exp-ipc-reajuste-cluster-2026-10",
       "status": "proposed",
-      "at": "2026-10-01"
+      "at": "2026-10-01",
+      "specVersion": 3,
+      "updatedAt": "2026-10-20",
+      "note": "v3: métrica primaria corregida a calculadora ipc; calculadora ipc arriendo descartada por volumen; ejecución después de W43."
     }
   ]
 }
