@@ -119,30 +119,50 @@
         "id": "serp-diagnosis",
         "tier": "A0",
         "owner": "carlos",
-        "status": "pending",
+        "status": "partial",
         "queries": [
           "calculadora ipc",
+          "ipc arriendo",
+          "reajuste arriendo ipc",
           "calculadora ipc arriendo",
           "calculo ipc arriendo"
         ],
-        "note": "Captura manual; Google bloquea la verificación automatizada (captcha)."
+        "note": "Semrush 5/5 y Keywords Everywhere 1/5 el 2026-10-20. AIO presente en calculadora ipc e ipc arriendo; Monedario ausente del top 10 en el cluster. calculadora ipc arriendo no tiene datos en Semrush. Evidencia en #652."
       },
       "phaseB": {
-        "metric": "ctr_cluster_ipc_arriendo",
-        "threshold": 0.015,
+        "metric": "ctr_query_calculadora_ipc",
+        "threshold": 0.004,
         "secondary": {
-          "positionQuery": "calculadora ipc arriendo",
-          "positionMax": 6,
-          "baselinePosition": 8.28,
-          "clusterClicksBaseline": 0
+          "positionQuery": "calculadora ipc",
+          "positionMax": 6.5,
+          "baselinePosition": 5.9,
+          "pageClicksWeeklyBaseline": 7,
+          "reajusteCalculatorClicks": "observational"
         },
-        "nMin": 199,
+        "nMin": 8000,
+        "unit": "impressions_per_period",
         "windowDays": 28,
+        "startAfter": "2026-W43",
         "decision": "keep|extend|revert",
-        "requiresOwnerApproval": true
+        "requiresOwnerApproval": true,
+        "note": "No ejecutar antes de leer W43. AIO y calculadora oficial del INE son confounders; el objetivo es mejora incremental de CTR, no liderazgo ni snippet."
       },
       "createdAt": "2026-10-01",
-      "revisedAt": "2026-10-01"
+      "revisedAt": "2026-10-20",
+      "specVersion": 3,
+      "baseline": {
+        "week": "2026-W42",
+        "query": "calculadora ipc",
+        "impressions": 2009,
+        "clicks": 2,
+        "ctr": 0.001,
+        "position": 5.9,
+        "page": "/calculadoras/actualizador-inflacion/",
+        "pageImpressions": 6777,
+        "pageClicks": 7,
+        "pageCtr": 0.001,
+        "pagePosition": 6.9
+      }
     }
   ]
 }

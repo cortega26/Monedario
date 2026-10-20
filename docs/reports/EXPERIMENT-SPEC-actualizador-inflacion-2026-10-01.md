@@ -1,106 +1,153 @@
-# Spec de experimento — Captura de intención «IPC + reajuste»
+# Spec de experimento — Captura de intención IPC
 
-Estado: **propuesto** · v2 (2026-10-01) — reemplaza la hipótesis de snippet de cabeza
+Estado: **propuesto** · **v3 (2026-10-20)** — reemplaza v2 (2026-10-01).
 Candidato origen: `ctr_gap_page:/calculadoras/actualizador-inflacion/` (W39)
 Tier Fase B: A2 (reversible, medible) · WIP: 1 (F5 cerrado; F2 UF no iniciado)
+**No ejecutar antes de leer W43 (2026-10-26).**
 
-## 0. Pivote y por qué
+## 0. Qué cambió respecto de v2
 
-La v1 proponía un experimento de snippet sobre `calculadora ipc` (705
-impresiones, 0 clics, posición 5,7). La evidencia ampliada lo desaconseja:
+La v2 asumía que `calculadora ipc arriendo` era la intención capturable y que
+el cluster rendía ~240 impresiones/semana. Los datos de GSC W42 y la captura
+SERP del 2026-10-20 muestran otra cosa:
 
-| Query (W39) | Impresiones | CTR | Posición |
-|---|---:|---:|---:|
-| `calculadora ipc` | 705 | 0% | 5,7 |
-| `calculadora ipc arriendo` | 86 | 0% | 8,3 |
-| `calculo ipc arriendo` | 85 | 0% | 7,6 |
-| `calcular ipc arriendo` | 39 | 0% | 9,9 |
-| `reajuste ipc calculadora` | 21 | 0% | 8,0 |
+| Query (W42) | Impresiones | Clics | CTR | Posición | Página |
+|---|---:|---:|---:|---:|---|
+| `calculadora ipc` | 2.009 | 2 | 0,10% | 5,9 | `/calculadoras/actualizador-inflacion/` |
+| `calculadora ipc chile` | 141 | 0 | 0% | 7,7 | actualizador |
+| `calculo ipc arriendo` | 56 | 0 | 0% | 9,6 | `/calculadoras/reajuste-arriendo/` |
+| `calculadora ipc arriendo` | 37 | 0 | 0% | 9,9 | reajuste-arriendo |
+| `reajuste ipc calculadora` | 16 | 0 | 0% | 10,4 | actualizador |
+| `ipc arriendo` / `reajuste arriendo ipc` | sin fila GSC | 0 | — | — | Monedario ausente |
 
-~940 impresiones con 0% de CTR entre posiciones 5 y 9 es firma de **zero-click**
-(widget/AIO) y de una SERP dominada por la calculadora oficial del INE
-(`calculadoraipc.ine.cl`), una EMD exacta (`calculadoraipc.cl`) y competidores
-aplicados (`calcular.cl`, `tomcontable.cl`). El título no es el cuello de
-botella de la cabeza.
+Páginas relevantes (W42):
 
-La intención **capturable** es «IPC + arriendo/sueldo»: tiene parámetros
-(contrato, período) que un widget no resuelve, y ya tenemos el activo que
-convierte: `/calculadoras/reajuste-arriendo/` (731 impresiones, 10 clics,
-CTR 1,37%, posición 7,35). `calcular.cl` demuestra el patrón: página aplicada
-con tablas y FAQ.
+| Página | Impresiones | Clics | CTR | Posición |
+|---|---:|---:|---:|---:|
+| `/calculadoras/actualizador-inflacion/` | 6.777 | 7 | 0,10% | 6,9 |
+| `/calculadoras/reajuste-arriendo/` | 419 | 1 | 0,24% | 7,5 |
+| `/posts/reajuste-arriendo-uf-ipc-chile/` | 65 | 1 | 1,54% | 9,0 |
 
-## 1. Fase A — Diagnóstico SERP (A0, owner, ~15 min)
+Hallazgos de la captura gratuita (Semrush 5/5, Keywords Everywhere 1/5,
+Chile, desktop):
 
-Captura manual (incógnito, `hl=es-CL&gl=cl`) de:
+- `calculadora ipc`: **#1 calculadora oficial del INE**, AI Overview presente;
+  Monedario no aparece en el top 9.
+- `ipc arriendo`: **AI Overview presente**; top 10 dominado por INE,
+  learninggroup, ayudaarriendo, bluehome, assetplan, bi-rent, tomcontable,
+  finclaro y YouTube. Monedario ausente.
+- `reajuste arriendo ipc`: top 10 con INE y portales inmobiliarios/financieros;
+  PAA presente; Monedario ausente.
+- `calculadora ipc arriendo` y `calculadora reajuste arriendo`: **sin datos**
+  en Semrush; el volumen es demasiado bajo para una métrica primaria.
 
-- `calculadora ipc`
-- `calculadora ipc arriendo`
-- `calculo ipc arriendo`
+**Conclusión:** la query exacta `calculadora ipc arriendo` queda descartada
+como métrica primaria. `calculadora ipc` es la única query con volumen
+suficiente, pero Monedario ya está en posición 5,9 y el CTR está deprimido por
+la calculadora oficial del INE y el AI Overview. El experimento debe medir un
+mejora realista de CTR, no prometer snippet ni captura de AIO.
 
-Registrar: AI Overview, widget de calculadora de Google, presencia del
-resultado oficial, y forma de Monedario (título/sitelinks). La verificación
-automatizada no es posible: Google bloquea con captcha.
+## 1. Fase A — Diagnóstico SERP (parcial, suficiente para v3)
 
-**Salida de fase:**
-- Con widget/AIO en las queries aplicadas → Fase B se ejecuta como
-  «cross-link + GEO» (sin promesa de snippet).
-- Sin widget/AIO → Fase B puede incluir además el snippet aplicado.
+Estado: **parcial**. No se completó la captura manual incógnito; se usaron
+herramientas gratuitas con ubicación Chile y se registró la evidencia en #652.
+
+- Semrush SERP Checker: 5/5 consultas.
+- Keywords Everywhere: 1/5; su autocomplete de ubicación dejó de resolver Chile
+  y bloqueó el resto.
+- SerpDino: Turnstile manual, no se saltó.
+- Spyglass: no se usó.
+
+La evidencia alcanza para **rechazar la métrica primaria de v2**, no para
+declarar aprobada la Fase B.
 
 ## 2. Fase B — Experimento A2 (requiere firma del owner)
 
-**Hipótesis:** el actualizador IPC no declara la intención aplicada ni empuja
-al conversor de reajuste que ya convierte; alinearlo captura clics del cluster
-«IPC + arriendo/sueldo» y refuerza el siguiente paso.
+**Hipótesis:** el actualizador IPC puede mejorar el CTR de `calculadora ipc`
+si el título, el H1 y la primera respuesta declaran exactamente qué resuelve
+(“IPC oficial del INE + cálculo/reajuste”) y ofrecen un siguiente paso claro
+hacia el conversor de reajuste. El techo está limitado por el AIO y la
+calculadora oficial; por eso la métrica es incremental, no de liderazgo.
 
 **Cambios propuestos (sin tocar motor, ruta, JSON-LD ni calculadora):**
 
-- Título (63 caracteres):
-  `Calculadora IPC Chile: reajusta arriendos y sueldos | Monedario`
-- Descripción meta (140 caracteres):
-  `Reajusta arriendos, sueldos y cualquier monto por la inflación oficial del INE: ingresa el monto y el período, y obtén el valor actualizado.`
-- H1 alineado a la query: `Calculadora IPC` (hoy "Actualizador por Inflación IPC").
-- Sección visible «¿Vas a reajustar un arriendo o un sueldo?» con enlace
-  interno fuerte a `/calculadoras/reajuste-arriendo/` y la explicación del
-  período (mes anterior al inicio → último mes publicado).
+- Título: `Calculadora IPC Chile: valor oficial y reajuste | Monedario`.
+- Descripción meta: `Calcula la variación del IPC oficial del INE y reajusta
+  arriendos, sueldos o cualquier monto. Ingresa el monto y el período y obtén
+  el valor actualizado.`
+- H1: `Calculadora IPC`.
+- Bloque answer-first: “¿Cuánto ha subido el IPC?” con la última cifra oficial,
+  fecha de publicación y enlace a la fuente INE.
+- Sección “¿Vas a reajustar un arriendo o un sueldo?” con enlace interno fuerte
+  a `/calculadoras/reajuste-arriendo/` y al artículo de reajuste.
 
 **Medición pre-registrada:**
 
-- Primaria: CTR del cluster `ipc+arriendo` / `reajuste+ipc` (lista de §0) ≥ 1,5%.
-- Secundaria: posición media de `calculadora ipc arriendo` ≤ 6 (base 8,28);
-  clics del cluster (base 0); `next_step_click` de la página si el panel F4 lo instrumenta.
-- `n_min`: 199 impresiones para p=1,5% (95%); el cluster visible rinde
-  ~240/semana (≈960 en 28 días) → muestra suficiente.
-- Guardas: CTR de página no cae; posición de la página no empeora >1;
-  RUM sin regresión (LCP p75 ≤ 1.700 ms).
-- Ventana: 28 días; lectura intermedia a 14 días solo observación.
+- **Primaria:** CTR de la query exacta `calculadora ipc` (GSC) desde **0,10%**
+  a **≥0,40%** a 28 días.
+- **n_min:** **8.000 impresiones por periodo** (28 días pre vs 28 días post).
+  La query rinde ~2.009/semana; 28 días ≈ 8.036. Si el volumen cae, extender a
+  14 días adicionales; no reducir el umbral.
+- **Secundarias:** posición media de `calculadora ipc` ≤ 6,5 (base 5,9);
+  clics semanales de la página no inferiores a 7; clics de salida hacia
+  `/calculadoras/reajuste-arriendo/`; CTR de página del actualizador.
+- **Cualitativa:** presencia de AIO y citas a Monedario en `calculadora ipc`,
+  `ipc arriendo` y `reajuste arriendo ipc`, registrada semanalmente con las
+  herramientas gratuitas. No es KPI de CTR.
+- **Guardas:** sin regresión RUM (LCP p75 ≤ 1.700 ms); sin cambios en
+  `conversor-utm` ni `conversor-uf`; sin tocar rutas ni slugs.
+- **Ventana:** 28 días; lectura intermedia a 14 días solo observación.
 
-**Confounders:** publicación del IPC de octubre (INE), AIO/widget, fin de mes,
-y la lectura F5 de UTM en curso (páginas distintas; no interfiere).
+**Confounders:** AIO, widget/calculadora oficial del INE, publicación del IPC
+de octubre, estacionalidad de fin de mes y la lectura de #709 en UTM/UF
+(páginas distintas). Se documentan, no se controlan.
 
 **Reglas de decisión:**
-- **Keep:** CTR del cluster ≥ 1,5% y guardas OK a 28 días.
-- **Extender:** mejora direccional bajo umbral → 14 días más.
-- **Revert:** CTR del cluster < 0,5% con posición estable, o posición cae
-  >2 puestos → restaurar strings y quitar la sección.
 
-## 3. Rollback
+- **Keep:** CTR `calculadora ipc` ≥ 0,40% y guardas OK a 28 días.
+- **Extender:** 0,20–0,40% con posición estable → 14 días más.
+- **Revert:** CTR < 0,20%, posición > 7,5 o caída de clics de página → restaurar
+  strings y quitar el bloque nuevo.
 
-Título: `Calculadora IPC Chile — Actualiza pesos por inflación | Monedario`.
-Descripción: `Calcula cuánto valen hoy tus pesos de antes con el IPC oficial
-del INE: ingresa cualquier monto histórico y actualízalo por inflación al
-instante.` H1: `Actualizador por Inflación IPC`. La sección nueva se elimina
-completa.
+## 3. Track GEO paralelo (sin cambio de código)
 
-## 4. Registro
+- Queries: `ipc arriendo` y `reajuste arriendo ipc`.
+- Frecuencia: semanal, con Keywords Everywhere/Spyglass/Semrush.
+- Registrar: AIO sí/no, citas, presencia de Monedario, top 3.
+- Si el AIO sigue presente, priorizar answer-first, citas al INE y datos
+  estructurados en `/calculadoras/reajuste-arriendo/` y en el artículo; no
+  prometer snippet.
 
-- `experiments` en `src/config/growth-opportunity-registry.json`:
-  `exp-ipc-reajuste-cluster-2026-10` (proposed, con `phaseA` y `phaseB`).
-- `promoted` en `src/config/growth-opportunity-feedback.json`: candidato
-  `ctr_gap_page:/calculadoras/actualizador-inflacion/` ligado al nuevo id.
-- Aprobación: firma del owner tras la Fase A. Al ejecutar: `status: "running"`
-  con fecha de inicio; al cerrar, veredicto y datos W40–W43.
+## 4. Experimento separado (no mezclar)
 
-## 5. No-objetivos
+`/calculadoras/reajuste-arriendo/` tiene 419 impresiones, 0,24% CTR y posición
+7,5. Un refresh de title/meta para el cluster `reajuste arriendo` es un
+experimento distinto; requiere su propia spec y su propio baseline. No se
+ejecuta dentro de este.
 
-- No perseguir el snippet de la cabeza como apuesta principal.
-- No tocar `conversor-uf` (F2 diferido) ni `conversor-utm` (lectura post-revert).
+## 5. Rollback
+
+Título actual: `Calculadora IPC Chile — Actualiza pesos por inflación | Monedario`.
+Descripción actual: `Calcula cuánto valen hoy tus pesos de antes con el IPC
+oficial del INE: ingresa cualquier monto histórico y actualízalo por inflación
+al instante.`
+H1 actual: `Actualizador por Inflación IPC`.
+El bloque answer-first y la sección de reajuste se eliminan completos.
+
+## 6. Registro y aprobación
+
+- `src/config/growth-opportunity-registry.json`:
+  `exp-ipc-reajuste-cluster-2026-10`, `status: proposed`,
+  `phaseA.status: partial`, `phaseB` v3, `requiresOwnerApproval: true`.
+- `src/config/growth-opportunity-feedback.json`: se mantiene el candidato
+  promovido, con nota de la revisión v3.
+- **Aprobación:** firma del owner después de W43. Antes de eso no se modifica
+  contenido, título, meta, H1 ni calculadora.
+
+## 7. No-objetivos
+
+- No perseguir el snippet de `calculadora ipc` como apuesta principal.
+- No usar `calculadora ipc arriendo` como métrica primaria ni prometer
+  `n_min=199` con ese volumen.
+- No tocar `conversor-uf` (F2 diferido) ni `conversor-utm` (#709 en lectura).
+- No convertir el track GEO en una promesa de CTR.
