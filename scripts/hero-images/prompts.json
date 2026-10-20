@@ -1611,25 +1611,25 @@
       "targetImagePath": "/images/hero/interes-compuesto-nota-metodologica.avif",
       "generationMethod": "data-render",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "b23e21cccb48f77324a5947439d18b53eddb7b0deaddc342e25f751eb1e57ccd",
-      "briefHash": "c706c144c99a9a1bd68ec4b9257ae5e329bde4583fb50137e48571f809ff705c",
+      "sourceContentHash": "3664bc5e776591ff7e86dd7a58c21d4572736d2170cd1da25d58020d3f01504f",
+      "briefHash": "f56185ac81eaa3bd4d5159cc99d4d6f67a20d6f08d11478881175ae839f87244",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Brief revised after the independent data-render audit: seven documented checkpoints, no monthly interpolation, price-return label and final result verified against the accessible table. Not an Imagegen cover."
       },
       "template": "C",
       "promptTrack": "C",
       "promptTrackLabel": "Objeto o comparación",
       "approvedModelId": "reviewed-brief",
       "sceneId": "C:reviewed-brief:interes-compuesto-nota-metodologica",
-      "readerSituation": "Inspeccionar supuestos y datos del ejercicio histórico de interés compuesto.",
+      "readerSituation": "Inspeccionar los hitos verificables y los límites del ejercicio histórico de interés compuesto.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
       "visualEvidence": [
-        "Exponer una simulación reproducible con fuentes, período y limitaciones.",
-        "Los resultados se explican desde datos verificables y sus supuestos."
+        "Exponer los siete hitos documentados del ejercicio y sus límites, sin inventar una trayectoria mensual.",
+        "El resultado se explica desde siete checkpoints documentados; la curva mensual no es reconstruible."
       ],
       "alt": "",
       "palette": {
@@ -1646,8 +1646,8 @@
         "quality": "curated",
         "size": "1200x630"
       },
-      "prompt": "Production note only: render this methodological cover with the reproducible data-chart script, not an image generator. Use the verified simulation series, clear axes, a date of data cutoff and separate contribution and portfolio series. Labels and values must come directly from the same dataset used for the accessible table.",
-      "promptHash": "12ae850582c4624b55f34dd45bee27bba4661b64ca2bedbe427dc3c693dd47d2",
+      "prompt": "Production note only: render this methodological cover with a reproducible data-chart script, not an image generator. Show the seven documented checkpoints from 1995 to 2025 as separate bars: 770, 4.702, 4.537, 8.124, 20.258, 62.846 and 129.495 USD. Do not interpolate or draw a monthly curve. Use the accessible table as the sole data source. Include the aggregate contributions: 408 months with contributions and 24 gaps, and state that the gap distribution is unknown. Label the series as NDX price return, state the 2025-12-31 cutoff and the 911,18 CLP/USD conversion. The final bar is USD 129.495 / approximately CLP 118,0 million; the y-axis must reach USD 160.000. Do not use the Total Return label unless an XNDX series is documented.",
+      "promptHash": "730f6113a9a7847fc99a614bd57402b95ad547ca78535fd86a10bc3b747fe23f",
       "selectors": {
         "ruleId": "explicit-reviewed-brief",
         "category": "ahorro-inversion",

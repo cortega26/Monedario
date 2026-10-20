@@ -1,6 +1,26 @@
 {
   "corrections": [
     {
+      "id": "interes-compuesto-portada-hitos-documentados",
+      "date": "2026-10-20",
+      "title": "Portada de interés compuesto: reemplazo del gráfico desactualizado por hitos documentados",
+      "pages": [
+        {
+          "href": "/posts/interes-compuesto-nota-metodologica/",
+          "label": "Nota metodológica: interés compuesto"
+        }
+      ],
+      "wrong": [
+        "La portada mostraba USD 104.018 / ≈CLP 100,9 millones, el resultado anterior al ajuste del 2026-03-07, y etiquetaba la serie como Total Return sin acreditar una serie XNDX."
+      ],
+      "fixed": [
+        "Se reemplazó por un gráfico de siete hitos documentados (1995–2025), sin interpolación mensual, con USD 129.495 / ≈CLP 118,0 millones, eje hasta USD 160.000 y etiqueta price return."
+      ],
+      "affected": "Lectores de la nota metodológica y de la portada del ejercicio de interés compuesto.",
+      "sources": "Artículo https://monedario.cl/posts/interes-compuesto-nota-metodologica/; checkpoints de la tabla accesible; Nasdaq NDX (price return) vs XNDX (total return); SII, tipo de cambio observado de diciembre de 2025 (911,18 CLP/USD).",
+      "prevention": "Verificar que el callout, el punto final, el eje y la etiqueta de serie coincidan con la tabla accesible; no reutilizar una imagen anterior a una corrección numérica ni afirmar Total Return sin la serie XNDX."
+    },
+    {
       "id": "tramo-exento-impuesto-unico-octubre-2026",
       "date": "2026-10-19",
       "title": "Tramo exento del impuesto único de segunda categoría: actualización a octubre de 2026",

@@ -5,7 +5,7 @@ description: "Supuestos, fórmulas, fuentes y cálculos corregidos del ejercicio
 slug: interes-compuesto-nota-metodologica
 author: "Equipo Monedario"
 pubDate: 2026-03-06T15:00:00Z
-updatedDate: 2026-09-17T00:00:00Z
+updatedDate: 2026-10-20T00:00:00Z
 tags:
   - ahorro
   - interes-compuesto
@@ -19,7 +19,7 @@ unlisted: true
 featured: false
 draft: false
 heroImage: /images/hero/interes-compuesto-nota-metodologica.avif
-heroImageAlt: "Gráfico histórico del ejercicio de ahorro e inversión descrito en esta nota metodológica."
+heroImageAlt: "Gráfico de barras con siete hitos documentados del ejercicio de ahorro e inversión en NASDAQ-100, 1995-2025."
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
@@ -36,6 +36,8 @@ Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo
 **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 118,0 millones**.
 
 **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores.
+
+> **Corrección de portada 2026-10-20:** se reemplazó el gráfico por siete hitos documentados (1995–2025), sin interpolación mensual. El resultado final es USD 129.495 / CLP 117.993.254 y la serie se identifica como price return.
 
 ## 1. Período y estructura de la simulación
 
