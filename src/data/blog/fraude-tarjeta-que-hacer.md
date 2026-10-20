@@ -3,7 +3,7 @@ title: "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)"
 seoTitle: "Fraude con Tarjeta: Qué Hacer en Chile | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T13:00:00Z
-updatedDate: 2026-04-22T00:00:00Z
+updatedDate: 2026-10-19T00:00:00Z
 slug: fraude-tarjeta-que-hacer
 featured: true
 lang: es-CL
@@ -31,11 +31,14 @@ articleLead:
   answer: "Si ves un cargo que no hiciste, avisa de inmediato a tu banco y haz la denuncia formal —no solo la constancia— en la comisaría o Fiscalía. La Ley 20.009 obliga al banco a restituir los montos no autorizados cuando cumples los pasos y plazos: guarda el comprobante de la denuncia y entrégalo dentro del plazo."
   nextStepHref: "/guias/seguridad-financiera/"
   nextStepLabel: "Ver la guía de seguridad financiera"
+  validAsOf: 2026-10-19
   officialSources:
     - label: "CMF — Reclamos contra entidades supervisadas"
       href: "https://www.cmfchile.cl/portal/principal/623/w4-propertyvalue-48790.html"
     - label: "SERNAC — Especial Ley de Fraude"
       href: "https://www.sernac.cl/portal/604/w3-propertyname-791.html"
+    - label: "BCN — Ley 20.009 (texto vigente)"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=236736"
   covers:
     - "Qué hacer en las primeras 24 horas tras un cargo no reconocido."
     - "Cómo funciona la restitución de la Ley 20.009 y sus plazos."
@@ -49,7 +52,7 @@ Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de un
 
 En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama **[Ley N° 20.009](/leyes/ley-20009-tarjetas-fraude/)** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos.
 
-> **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa.
+> **Revisión editorial 2026-10-19:** se revalidaron los plazos de aviso, reclamo, denuncia y restitución contra la Ley 20.009, SERNAC y CMF. Se precisó que la suspensión judicial debe solicitarse dentro de los 3 días hábiles siguientes al vencimiento del plazo de restitución, no desde una comunicación de rechazo del banco.
 
 ## Tabla de contenidos
 
@@ -139,7 +142,7 @@ Este es el escenario más temido — y el más importante de entender.
 
 La ley establece que el banco **solo puede eximirse de devolverte el dinero** si demuestra ante un juez que actuaste con **dolo** (participaste deliberadamente en el fraude) o **culpa grave** (negligencia extrema, como entregarle tu clave a un tercero a sabiendas de que la iban a usar).
 
-Lo crucial: **esa determinación la hace un juez, no el banco.** El banco no puede simplemente decidir que "fue culpa tuya" y negarse a pagar. Para hacerlo, debe presentar una solicitud de suspensión ante un **Juzgado de Policía Local dentro de 3 días hábiles** desde que resuelve tu solicitud.
+Lo crucial: **esa determinación la hace un juez, no el banco.** El banco no puede simplemente decidir que "fue culpa tuya" y negarse a pagar. Para hacerlo, debe presentar una solicitud de suspensión ante un **Juzgado de Policía Local dentro de los 3 días hábiles siguientes al vencimiento del plazo de restitución** (10 días hábiles, o 15 si fue un giro o avance en efectivo). No es desde que el banco te comunica un rechazo: el plazo legal se cuenta desde ese vencimiento.
 
 Si el banco intenta rechazar tu reclamo sin ir al tribunal, tiene la razón al revés. Puedes escalar el caso al SERNAC o a la CMF.
 

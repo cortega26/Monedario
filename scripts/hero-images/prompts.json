@@ -1361,13 +1361,13 @@
       "targetImagePath": "/images/hero/fraude-tarjeta-que-hacer.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "3b86d5940328e2700b41f6e0f15e21b4ab73b0f9140de6374ce705d8849fbcd4",
-      "briefHash": "46f9eef583e42b0940ce2e27b41f67fdeaa6d42ecee1e553ca46cf5c1b863bb3",
+      "sourceContentHash": "dbfee4c9360eb2f2d849b396737666c109c0f19a51a0a14a0fe66515ce13592b",
+      "briefHash": "47d228c37e53267d32375990bcc7c9863ff87221a571a84e61a89990fd2536fb",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-19",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit. Revalidación editorial 2026-10-19: contenido actualizado; el brief visual sigue vigente; no se regeneró la imagen."
       },
       "template": "A",
       "promptTrack": "A",

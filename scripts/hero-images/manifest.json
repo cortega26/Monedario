@@ -938,7 +938,7 @@
     },
     {
       "slug": "fraude-tarjeta-que-hacer",
-      "sourceContentHash": "3b86d5940328e2700b41f6e0f15e21b4ab73b0f9140de6374ce705d8849fbcd4",
+      "sourceContentHash": "dbfee4c9360eb2f2d849b396737666c109c0f19a51a0a14a0fe66515ce13592b",
       "title": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)",
       "tags": [
         "fraude",
@@ -955,7 +955,7 @@
       "leadParagraphs": [
         "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.",
         "En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama **[Ley N° 20.009](/leyes/ley-20009-tarjetas-fraude/)** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos.",
-        "> **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa."
+        "> **Revisión editorial 2026-10-19:** se revalidaron los plazos de aviso, reclamo, denuncia y restitución contra la Ley 20.009, SERNAC y CMF. Se precisó que la suspensión judicial debe solicitarse dentro de los 3 días hábiles siguientes al vencimiento del plazo de restitución, no desde una comunicación de rechazo del banco."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -967,8 +967,8 @@
         "Paso 3 — Haz la denuncia y entrega el comprobante (tienes 30 días corridos)",
         "Los plazos para que te devuelvan el dinero"
       ],
-      "bodyExcerpt": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama ** ** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos. > **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa. ## Tabla de contenidos ## Lo que tienes que hacer ahora mismo Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero: **1. Llama a tu banco o entra a la app y bloquea todo.** Pide el bloqueo inmediato de tu tarjeta y cualquier producto asociado. Hazlo ahora. Cada minuto que pasa sin bloquear es un minuto en que pueden seguir usando tus medios de pago. **2. Anota el número de atención y la hora exacta de tu llamado.** El banco tiene obligación de entregarte un número de recepción con fecha y hora. Si no lo hacen, guarda el registro de tu llamada desde el teléfono — sirve igual. **3. Respira. Tienes plazo.** La ley te d",
-      "wordCount": 1582,
+      "bodyExcerpt": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama ** ** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos. > **Revisión editorial 2026-10-19:** se revalidaron los plazos de aviso, reclamo, denuncia y restitución contra la Ley 20.009, SERNAC y CMF. Se precisó que la suspensión judicial debe solicitarse dentro de los 3 días hábiles siguientes al vencimiento del plazo de restitución, no desde una comunicación de rechazo del banco. ## Tabla de contenidos ## Lo que tienes que hacer ahora mismo Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero: **1. Llama a tu banco o entra a la app y bloquea todo.** Pide el bloqueo inmediato de tu tarjeta y cualquier producto asociado. Hazlo ahora. Cada minuto que pasa sin bloquear es un minuto en que pueden seguir usando tus medios de pago. **2. Anota el número de atención y la hora exacta de tu llamado.** ",
+      "wordCount": 1649,
       "sourceFile": "fraude-tarjeta-que-hacer.md"
     },
     {

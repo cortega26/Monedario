@@ -41,6 +41,26 @@
       "prevention": "Citar el texto legal/CMF sin agregar 'hábiles' cuando la norma no lo hace; verificar el reglamento interno para el plazo exacto de cada fondo y serie."
     },
     {
+      "id": "fraude-tarjeta-suspension-plazo-tres-dias",
+      "date": "2026-10-19",
+      "title": "Suspensión judicial del fraude: el plazo de 3 días corre desde el vencimiento de la restitución",
+      "pages": [
+        {
+          "href": "/posts/fraude-tarjeta-que-hacer/",
+          "label": "Fraude con tarjeta: qué hacer"
+        }
+      ],
+      "wrong": [
+        "La guía formulaba el plazo de 3 días hábiles \"desde que resuelve tu solicitud\", una referencia ambigua que no coincide con el artículo 5 bis de la Ley 20.009: el plazo corre desde el vencimiento del plazo de restitución."
+      ],
+      "fixed": [
+        "La guía precisa que la solicitud de suspensión debe presentarse dentro de los 3 días hábiles siguientes al vencimiento del plazo de restitución (10 días hábiles, o 15 en giros y avances en efectivo), conforme al artículo 5 bis de la Ley 20.009."
+      ],
+      "affected": "Usuarios que reciben un rechazo o una suspensión del banco y necesitan entender cuándo puede judicializarse el caso.",
+      "sources": "Ley 20.009, artículo 5 bis (https://www.bcn.cl/leychile/navegar?idNorma=236736).",
+      "prevention": "Distinguir el plazo de restitución (10 o 15 días hábiles) del plazo para solicitar la suspensión judicial (3 días hábiles posteriores a su vencimiento); no usar la fecha de una comunicación del banco como inicio del plazo legal."
+    },
+    {
       "id": "liquidacion-sueldo-fuente-articulo-54",
       "date": "2026-10-19",
       "title": "Liquidación de sueldo: enlace oficial del artículo 54",
