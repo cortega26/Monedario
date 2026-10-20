@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10",
+  "updated": "2026-10-20",
   "horizon_end": "2026-11-02",
   "notes": "Fuente única de pendientes con fecha del programa activo (distribución + monetización + F5/Gate D). Lo leen scripts/ops_reminders.py (local) y .github/workflows/ops-reminders.yml (issue semanal). Las tareas sin fecha viven en 'undated'; el backlog completo está en docs/backlog/README.md.",
   "items": [
@@ -242,6 +242,13 @@
       "title": "Revisar PR mensual de ingesta IPC (refresh-ipc-history)",
       "detail": "El workflow corre los días 8–12; verificar el PR o el issue data-freshness, cotejar el valor nuevo contra la publicación del INE y mergear (sin auto-merge).",
       "cadence": "monthly",
+      "owner": "carlos"
+    },
+    {
+      "id": "free-data-research",
+      "title": "Radar diario de datos públicos (15-20 min)",
+      "detail": "Rotar un tema por día (AIO/citas, oficial/EMD, indexación, CWV, decay, features). Usar los cupos gratuitos de Keywords Everywhere, Semrush, SerpDino, Spyglass y GSC; registrar en docs/operations/FREE_DATA_RESEARCH_LOG.md y dejar máximo una acción.",
+      "cadence": "daily",
       "owner": "carlos"
     }
   ]
