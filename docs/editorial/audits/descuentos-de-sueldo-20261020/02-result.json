@@ -1,0 +1,425 @@
+{
+  "auditId": "descuentos-de-sueldo-20261020",
+  "protocolVersion": "v1",
+  "scope": {
+    "commit": "56f15110a0558dd6a23ed83076488d2578ec3294",
+    "scopeCommit": "38418c0841e7ad28e69c825537976aed32531485",
+    "branch": "fix/descuentos-de-sueldo-art58-2026-10-20",
+    "files": [
+      "src/data/blog/descuentos-de-sueldo.md",
+      "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "src/data/blog/como-calcular-sueldo-liquido.md",
+      "src/data/blog/liquidacion-de-sueldo.md",
+      "src/data/laws/codigo-del-trabajo.md",
+      "src/data/laws/dl-3500-sistema-afp.md",
+      "src/data/correcciones.json",
+      "tests/static-analysis/descuentos-clasificacion-guard.test.ts",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/02-dossier.md",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/sources.yaml",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/07-publish-packet.md"
+    ],
+    "vectors": ["V1", "V2", "V3", "V4", "V5", "V6"]
+  },
+  "auditor": {
+    "role": "MathAuditAgent",
+    "model": "DeepSeek V4.1 Flash (opencode/deepseek-v4.1-flash-free)",
+    "session": "descuentos-de-sueldo-20261020-math-audit",
+    "date": "2026-10-20"
+  },
+  "method": {
+    "environment": {
+      "os": "Linux 7.0.0-38-generic x86_64",
+      "node": "v24.19.0",
+      "pnpm": "11.7.0",
+      "python": "3.13.12",
+      "arithmetic": "Python Decimal, prec=50; CLP rounded half-up only for presentation",
+      "worktree": "/tmp/claude-1000/wt-descuentos"
+    },
+    "commands": [
+      "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/recalc_audit.py > /tmp/recalc_rerun.txt",
+      "diff -u docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/03-recalc-vectors-and-edges.txt /tmp/recalc_rerun.txt",
+      "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/04-fetch-source-extracts.py",
+      "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+      "pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts",
+      "pnpm run check:correcciones",
+      "pnpm run check:audit-artifacts"
+    ],
+    "edgeCases": [
+      "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
+      "Imponible 135,2 UF -> 7% (el tope de salud no sigue al de cesantía)",
+      "Imponible 120 UF y 150 UF -> AFC 0,6% (tope propio de 135,2 UF)",
+      "Imponible 150 UF -> AFP/salud sobre 90 UF (45,2 UF fuera de base)",
+      "IUSC RLI $974.038,50 y $974.038,51 (borde exento y continuidad)",
+      "IUSC RLI $2.164.530 (límite 4%->8% por ambas ramas de la tabla)",
+      "No aditividad 15% + 30% y 15% + 45%",
+      "Base bruto vs imponible para el 15%",
+      "Cooperativas 15% + 25% y 15% + 30% + 25% (tope conjunto 45%)",
+      "Comisión AFP mínima vs máxima sobre $1.000.000 y $1.350.000",
+      "Reconstrucción de las 7 rebajas de la tabla SII desde el tramo anterior"
+    ],
+    "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "vector": "V1",
+      "claim": "El 7% de salud sobre el tope de 90 UF es 6,3 UF mensuales.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html",
+        "quote": "el tope imponible mensual para calcular las cotizaciones obligatorias del sistema de AFP, de salud y de ley de accidentes del trabajo será de 90,0 UF",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "90 x 0,07 = 6,30 UF",
+      "engineValue": "6,3 UF",
+      "status": "OK"
+    },
+    {
+      "id": "C2",
+      "vector": "V2",
+      "claim": "El tramo exento de octubre 2026 es 13,5 UTM = $974.038,50 con UTM $72.151.",
+      "source": {
+        "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+        "quote": "MENSUAL | -.- | $ 974.038,50 | Exento",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "13,5 x 72.151 = 974.038,50",
+      "engineValue": "$974.038,50",
+      "status": "OK"
+    },
+    {
+      "id": "C3",
+      "vector": "V2",
+      "claim": "La rebaja del tramo 4% es $38.961,54 y el límite superior del tramo es 30 UTM = $2.164.530.",
+      "source": {
+        "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+        "quote": "$ 974.038,51 | $ 2.164.530,00 | 0,04 | $ 38.961,54",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "0,04 x 974.038,50 = 38.961,54; 30 x 72.151 = 2.164.530",
+      "engineValue": "$38.961,54; $2.164.530,00",
+      "status": "OK"
+    },
+    {
+      "id": "C4",
+      "vector": "V3",
+      "claim": "La cotización de cesantía del trabajador es 0,6% del imponible: 0,6% de $800.000 = $4.800.",
+      "source": {
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+        "quote": "El trabajador aporta 0,6% para su Cuenta Individual.",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "800.000 x 0,006 = 4.800",
+      "engineValue": "$4.800",
+      "status": "OK"
+    },
+    {
+      "id": "C5",
+      "vector": "V4",
+      "claim": "Los topes de descuentos convenidos son 15% general ($150.000 sobre $1.000.000) y 45% conjunto ($450.000), con 30% adicional para vivienda/educación ($300.000); no son sumables.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html",
+        "quote": "las deducciones a que se refiere este inciso, no podrán exceder del quince por ciento de la remuneración total del trabajador ... en ningún caso aquéllas podrán exceder, en conjunto, del 45% de la remuneración total del trabajador",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "1.000.000 x 0,15 = 150.000; x 0,30 = 300.000; x 0,45 = 450.000; 15%+30% tope 450.000 (no 60%)",
+      "engineValue": "$150.000 / $300.000 / $450.000",
+      "status": "OK"
+    },
+    {
+      "id": "C6",
+      "vector": "V5",
+      "claim": "La cesantía tiene tope propio de 135,2 UF, distinto del tope previsional de 90 UF; 0,6% del tope = 0,8112 UF.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html",
+        "quote": "en el caso del seguro de cesantía, quedará en 135,2 UF",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "135,2 x 0,006 = 0,8112 UF = $33.412,71 (UF 41.189,24)",
+      "engineValue": "135,2 UF / 0,8112 UF",
+      "status": "OK"
+    },
+    {
+      "id": "C7",
+      "vector": "V5",
+      "claim": "El límite de 11 años por relación laboral se describe en la fuente como cumplido con la cotización N°133.",
+      "source": {
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+        "quote": "11 años por cada relación laboral, cumplido con la cotización N°133",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "11 x 12 = 132 meses; la fuente rotula el hito como cotización N°133",
+      "engineValue": "11 años (cotización N°133)",
+      "status": "OK"
+    },
+    {
+      "id": "C8",
+      "vector": "V6",
+      "claim": "La multa del reglamento es hasta 25% de la remuneración diaria, equivalente exacto a 1/4.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html",
+        "quote": "multa de hasta el veinticinco por ciento de la remuneración diaria",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "0,25 = 1/4; sobre $1.000.000/mes: diaria 33.333,33, multa 8.333,33",
+      "engineValue": "25% / \"cuarta parte\"",
+      "status": "OK"
+    },
+    {
+      "id": "C9",
+      "claim": "El tope de gratificación legal es 4,75 IMM; con el IMM vigente desde 01-05-2026 ($553.553) equivale a $2.629.376,75, no a $2.560.250.",
+      "source": {
+        "url": "https://www.dt.gob.cl/portal/1628/w3-article-60141.html",
+        "quote": "A contar del 01 de mayo de 2026 el Ingreso Mínimo Mensual es de: $553.553 para trabajadores mayores de 18 años y de hasta 65 años.",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "4,75 x 553.553 = 2.629.376,75",
+      "engineValue": "$539.000 x 4,75 = $2.560.250 (codigo-del-trabajo.md:54)",
+      "status": "DIVERGENT",
+      "defect": "D1"
+    },
+    {
+      "id": "C10",
+      "claim": "El rango de comisiones AFP vigente es 0,46%–1,45% (Uno–Provida); Capital 1,44%, Modelo 0,58%.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-2810.html",
+        "quote": "AFP Capital: 1,44% | AFP Cuprum: 1,44% | AFP Habitat: 1,27% | AFP Modelo: 0,58% | AFP Planvital: 1,16% | AFP Provida: 1,45% | AFP Uno: 0,46%",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "mínimo 0,46% (Uno), máximo 1,45% (Provida)",
+      "engineValue": "descuentos-de-sueldo.md y como-calcular:123 usan 0,46%–1,45%; dl-3500-sistema-afp.md:31 usa 0,58%–1,45%",
+      "status": "DIVERGENT",
+      "defect": "D7"
+    },
+    {
+      "id": "C11",
+      "claim": "La tasa SIS vigente desde agosto de 2026 es 1,78%.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "Desde agosto de 2026, la tasa vigente del SIS para empleadores, afiliadas y afiliados independientes y voluntarios es de 1,78% de las remuneraciones y rentas imponibles, tanto para mujeres como hombres.",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "1,78% (antes 1,54% desde enero 2026, Circular SP N°2409)",
+      "engineValue": "1,87% (primer-empleo-chile-guia-completa.md:134)",
+      "status": "DIVERGENT",
+      "defect": "D4"
+    },
+    {
+      "id": "C12",
+      "claim": "La comisión de AFP Capital es 1,44%; el ejemplo de sueldo líquido la rotula con 0,58% (tasa de Modelo).",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-2810.html",
+        "quote": "AFP Capital: 1,44%",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "1.350.000 x 1,44% = 19.440; líquido con IUSC abril = 1.236.981,66",
+      "engineValue": "1.350.000 x 0,58% = 7.830; líquido publicado = 1.248.127,26 (sobrestimado en 11.145,60)",
+      "status": "DIVERGENT",
+      "defect": "D2"
+    },
+    {
+      "id": "C13",
+      "claim": "En el contrato a plazo fijo el 3% de cesantía se reparte en 2,8% Cuenta Individual + 0,2% Fondo de Cesantía Solidario.",
+      "source": {
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+        "quote": "Cuenta Individual ... 2,8% ... Fondo de Cesantía Solidario ... 0,2%",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "2,8% CIC + 0,2% FCS = 3,0%",
+      "engineValue": "\"3% al FCS\" (primer-empleo-chile-guia-completa.md:194)",
+      "status": "DIVERGENT",
+      "defect": "D3"
+    },
+    {
+      "id": "C14",
+      "claim": "Quien se afilia por primera vez debe permanecer 24 meses en la AFP de menor comisión, no 12.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "deben ingresar a la administradora que cobra la menor comisión y permanecer en ella por un período de 24 meses",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "24 meses",
+      "engineValue": "12 meses (primer-empleo-chile-guia-completa.md:142,267)",
+      "status": "DIVERGENT",
+      "defect": "D8"
+    },
+    {
+      "id": "C15",
+      "claim": "El 10,5% rotulado como \"ahorro previsional\" mezcla 10% de ahorro con 0,46–1,45 pp de comisión; la carga sin IUSC va de 18,06% a 19,05%.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-2810.html",
+        "quote": "AFP Capital: 1,44% | AFP Cuprum: 1,44% | AFP Habitat: 1,27% | AFP Modelo: 0,58% | AFP Planvital: 1,16% | AFP Provida: 1,45% | AFP Uno: 0,46%",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "10 + 7 + 0,6 + comisión = 18,06% (Uno) a 19,05% (Provida)",
+      "engineValue": "\"AFP (ahorro previsional) 10,5%\" y total 18,1% (primer-empleo-chile-guia-completa.md:110,222,225)",
+      "status": "DIVERGENT",
+      "defect": "D6"
+    },
+    {
+      "id": "C16",
+      "claim": "La tabla SII de octubre 2026 es internamente consistente: las 7 rebajas se reconstruyen desde el tramo anterior y el impuesto es continuo en cada límite.",
+      "source": {
+        "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+        "quote": "$ 2.164.530,00 | 0,04 | $ 38.961,54 | 2,20% | $ 2.164.530,01 | $ 3.607.550,00 | 0,08 | $ 125.542,74",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
+        "output": "evidence/06-independent-recalc.txt"
+      },
+      "independentValue": "rebaja_i = (tasa_i - tasa_{i-1}) x límite_i + rebaja_{i-1}; 7/7 coinciden; IUSC continuo en $2.164.530 ($47.619,66 por ambas ramas)",
+      "engineValue": "tabla SII 2026",
+      "status": "OK"
+    },
+    {
+      "id": "C17",
+      "claim": "El idNorma 30053 citado como Ley 18.833 corresponde a la Ley 18.667 (Código de Justicia Militar); la Ley 18.833 es idNorma 30209.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=30209",
+        "quote": "LEY-18833 ... ESTABLECE UN NUEVO ESTATUTO GENERAL PARA LAS CAJAS DE COMPENSACIÓN",
+        "retrievedAt": "2026-10-20"
+      },
+      "reproduction": {
+        "command": "curl -s -A 'Mozilla/5.0' 'https://www.bcn.cl/leychile/navegar?idNorma=30053&idParte=&idVersion=' | grep -o 'LEY-[0-9]*'",
+        "output": "evidence/07-inherited-evidence-verification.txt"
+      },
+      "independentValue": "30053 -> LEY-18667; 30209 -> LEY-18833",
+      "engineValue": "00-scope.json:103 y 02-primary-sources.txt:118-125 rotulan 30053 como Ley 18.833",
+      "status": "DIVERGENT",
+      "defect": "D5"
+    }
+  ],
+  "defects": [
+    {
+      "id": "D1",
+      "severity": "media",
+      "surface": "product",
+      "description": "Tope de gratificación calculado con un IMM vencido: codigo-del-trabajo.md:54 usa $539.000 y publica $2.560.250, pero el IMM vigente desde 01-05-2026 es $553.553, por lo que el tope correcto es $2.629.376,75 (subestimación de $69.126,75, 2,63%). Contradice gratificacion-legal-chile.md:108 y el IMM del motor.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt", "evidence/06-independent-recalc.txt"],
+      "status": "open"
+    },
+    {
+      "id": "D2",
+      "severity": "media",
+      "surface": "product",
+      "description": "El ejemplo de sueldo líquido rotula a AFP Capital con la comisión de Modelo (0,58%) en como-calcular-sueldo-liquido.md:180,186; Capital cobra 1,44% (misma página, línea 123). Comisión publicada $7.830 vs real $19.440; el líquido queda sobrestimado en $11.145,60 tras el ajuste de IUSC.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "supportingEvidence": ["evidence/06-independent-recalc.txt"],
+      "status": "open"
+    },
+    {
+      "id": "D3",
+      "severity": "baja",
+      "surface": "product",
+      "description": "primer-empleo-chile-guia-completa.md:194 dice que en plazo fijo el empleador cotiza \"3% al FCS\"; el 3% se reparte en 2,8% Cuenta Individual + 0,2% Fondo de Cesantía Solidario. No cambia montos, cambia el fondo de destino y contradice la línea 191 del mismo artículo.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "status": "open"
+    },
+    {
+      "id": "D4",
+      "severity": "baja",
+      "surface": "product",
+      "description": "primer-empleo-chile-guia-completa.md:134 publica SIS \"1,87%\"; la tasa vigente desde agosto de 2026 es 1,78% (SP). Diferencia 0,09 pp; es costo del empleador y no altera el líquido.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "status": "open"
+    },
+    {
+      "id": "D5",
+      "severity": "media",
+      "surface": "audit-package",
+      "description": "El paquete de auditoría rotula idNorma=30053 como Ley 18.833 en 00-scope.json:103 y evidence/02-primary-sources.txt:118-125; 30053 es la Ley 18.667 (Código de Justicia Militar) y la Ley 18.833 es idNorma=30209. La cita del art. 22 es correcta y no contamina el texto publicado, pero rompe la trazabilidad del paquete.",
+      "evidence": "evidence/07-inherited-evidence-verification.txt",
+      "status": "open"
+    },
+    {
+      "id": "D6",
+      "severity": "baja",
+      "surface": "product",
+      "description": "primer-empleo-chile-guia-completa.md:110,222,225 rotula 10,5% como \"ahorro previsional\" cuando son 10% de ahorro + comisión (0,46–1,45 pp). El total 18,1% solo es exacto para la AFP más barata; el rango completo es 18,06%–19,05%.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "status": "open"
+    },
+    {
+      "id": "D7",
+      "severity": "baja",
+      "surface": "product",
+      "description": "dl-3500-sistema-afp.md:31 da el rango de comisiones como 0,58%–1,45%; el mínimo vigente es 0,46% (AFP Uno), por lo que el rango correcto es 0,46%–1,45%. Subestima el diferencial máximo en 0,12 pp ($1.200/mes por cada $1.000.000).",
+      "evidence": "evidence/10-surface-sweep.txt",
+      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "status": "open"
+    },
+    {
+      "id": "D8",
+      "severity": "media",
+      "surface": "product",
+      "description": "primer-empleo-chile-guia-completa.md:142,267 afirma 12 meses para cambiarse de AFP; la SP exige 24 meses de permanencia para quien se afilia por primera vez a la AFP de menor comisión (salvo alza de comisión o aparición de una AFP más barata). El plazo publicado es la mitad del vigente.",
+      "evidence": "evidence/09-defects-evidence.txt",
+      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "status": "open"
+    }
+  ],
+  "verdict": "CONDITIONAL",
+  "humanSignoff": null
+}

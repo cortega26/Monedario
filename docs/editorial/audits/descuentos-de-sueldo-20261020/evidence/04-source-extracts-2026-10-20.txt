@@ -1,0 +1,74 @@
+=== PRIMARY SOURCE EXTRACTS (verbatim anchors) ===
+RetrievedAt: 2026-10-20T23:24:59Z
+Method: urllib GET with browser User-Agent; HTML stripped; anchors below are literal page text.
+Caveat: AFC pages embed per-request tokens, so their SHA256 changes between fetches; the text anchors do not.
+
+=== S1 ===
+URL: https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html
+HTTP: 200 | Bytes: 51839 | SHA256: 515d0975544bdac20f2e3144d32e509dc8b268b1848007cc7e41da6cc877c4b0
+Note: Topes 2026: 90,0 UF pensiones/salud; 135,2 UF cesantia; desde remuneraciones de febrero de 2026.
+ANCHOR MATCH "tope imponible mensual para calcular las cotizaciones obligatorias":
+   (INE), en el período noviembre 2024-noviembre 2025, el Índice de Remuneraciones Reales fue de 2,5%. Por esta razón, el tope imponible mensual para calcular las cotizaciones obligatorias del sistema de AFP, de salud y de ley de accidentes del trabajo será de 90,0 UF, mientras que, en el caso del seguro de cesantía, quedará en 135,2 UF. | Los valores informados se aplicarán a partir del pago de las cotizaciones previsionales correspondientes a las remuneraciones de febrero de 2026 y tendrán vigencia durante todo este año. | La legislación vigente establece que los topes imponibles para calcular las cotizaciones en el sistema pensiones y el seguro de cesantía deben reajustarse anualmente, cuando se registre una variación positiva del Índice de Remuneraciones Reales informado por el INE y que, cuando dicha variación es negativa, los valores deben mantenerse. | Santiago, 10/02/2026.- | La Superintendencia de Pensiones (SP) informa que el valor del tope imponible mensual para calcular las cotizaciones obligatorias del
+
+=== S2 ===
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+HTTP: 200 | Bytes: 76244 | SHA256: 75bf72a32b19f2dedfec920572bdc556789806b04d30c7237309d299c1bd2658
+Note: 11 anos por relacion laboral, cumplido con la cotizacion N.133; 0,8% FCS despues.
+ANCHOR MATCH "período máximo de pago de cotizaciones":
+  día y la persona podrá acceder a los beneficios de cesantía cuando así lo necesite y cumpla los requisitos. | ¿Cuál es el período máximo de pago de cotizaciones? | 11 años por cada relación laboral, cumplido con la cotización N°133. Después de ese período, usted debe continuar aportando un 0,8% de la renta imponible al Fondo de Cesantía Solidario mientras el contrato esté vigente. | Recuerde que las cotizaciones al Seguro de Cesantía tienen carácter previsional y están exentas del impuesto a la renta. | ¡Importante! | Si tiene trabajadores que cumplen 11 años de relación laboral, debe informar a AFC para realizar el ajuste en el pago de las cotizaciones y evitar pagos en exceso. | Inicie sesión como empleador | con su ClaveÚnica y en “Mis trámites” acceda a “Servicio”: Regularización de cuentas del trabajador, “Motivo”: Cumplimiento de 11 años de trabajador. También puede informarlo | en cualquiera de nuestras sucursales. | ¿Cuál es el siguiente paso? | Necesito aclarar o regularizar cotizaciones | Ver más | Regularice su mora p
+
+=== S2b ===
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+HTTP: 200 | Bytes: 76244 | SHA256: 42aff9e923c867fbca38a1c525705c5b652eccc6a967904ab505e1f892450c94
+Note: Aporte empleador: indefinido CIC 1,6% + FCS 0,8%; plazo fijo CIC 2,8% + FCS 0,2%.
+ANCHOR MATCH "Cuenta Individual":
+  un tope de | 135,2 UF | para el 2026 | . | Este 3% proviene de aportes del empleador y del trabajador, distribuyéndose entre la Cuenta Individual de Cesantía y el Fondo de Cesantía Solidario, según el tipo de contrato del trabajador. | Aportes del empleador | Aportes | Tipo de contrato | Contratos | indefinidos | Contratos a | plazo fijo | o por obra | Trabajadores de | casa particular | Cuenta Individual | 1,6%* | 2,8% | 2,2% | Fondo de Cesantía Solidario | 0,8% | 0,2% | 0,8% | Cuenta de Ahorro de Indemnización | (CAI) de la AFP | – | – | 1,11% | *El trabajador aporta 0,6% para su Cuenta Individual. | Cotizaciones de trabajadores pensionados | Si usted como empleador tiene en su empresa personas pensionadas trabajando, debe informarles que, por Ley no pueden ser beneficiarios activos del Seguro de Cesantía. | Esta situación significa que usted, como empleador, no debe realizar cotizaciones a una persona en esta situación y así evitar pagos inconsistentes. Revise más información | en caso de que necesite regularizar este tema | . | Existe una única excepción a lo anterior
+
+=== S3 ===
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+HTTP: 200 | Bytes: 80923 | SHA256: 3df619596e327cf29052aa5d20e7dcad243f739264c5f66d43384d56e43e4406
+Note: Tabla IUSC octubre 2026: exento hasta 974.038,50; tramo 4% rebaja 38.961,54.
+ANCHOR MATCH "Octubre 2026":
+  4 | $ 42.981,13 | 15,57% | $ 289.760,41 | $ 748.547,70 | 0,35 | $ 56.310,10 | 27,48% | $ 748.547,71 | Y MÁS | 0,4 | $ 93.737,49 | MÁS DE 27,48% | Octubre 2026 | Monto de Cálculo del Impuesto Único de Segunda Categoría | Períodos | Monto de la renta líquida imponible | Factor | Cantidad a rebajar | Tasa de Impuesto Efectiva, máxima por cada tramo de Renta | Desde | Hasta | MENSUAL | -.- | $ 974.038,50 | Exento | -.- | Exento | $ 974.038,51 | $ 2.164.530,00 | 0,04 | $ 38.961,54 | 2,20% | $ 2.164.530,01 | $ 3.607.550,00 | 0,08 | $ 125.542,74 | 4,52% | $ 3.607.550,01 | $ 5.050.570,00 | 0,135 | $ 323.957,99 | 7,09% | $ 5.050.570,01 | $ 6.493.590,00 | 0,23 | $ 803.762,14 | 10,62% | $ 6.493.590,01 | $ 8.658.120,00 | 0,304 | $ 1.284.287,80 | 15,57% | $ 8.658.120,01 | $ 22.366.810,00 | 0,35 | $ 1.682.561,32 | 27,48% | $ 22.366.810,01 | Y MÁS | 0,4 | $ 2.800.901,82 | MÁS DE 27,48% | QUINCENAL | -.- | $ 487.019,25 | Exento | -.- | Exento | $ 487.019,26 | $ 1.082.265,00 | 0,04 | $ 19.480,77 | 2,20% | $ 1.082.265,01 | $ 1.803.775,00 | 0,08 | $ 62.771,37 | 4,52% | $ 1.803.775,01 | $ 2.525.285,00 | 0,135 | $ 161.979,00 | 7,09% | $ 2.525.285,01 | $ 3.246.795,00 | 0,23 | $ 401.881,07 | 10,62% | $
+
+=== S3b ===
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+HTTP: 200 | Bytes: 80923 | SHA256: 3df619596e327cf29052aa5d20e7dcad243f739264c5f66d43384d56e43e4406
+Note: Tabla IUSC abril 2026: exento hasta 943.501,50; tramo 4% rebaja 37.740,06.
+ANCHOR MATCH "Abril 2026":
+  4 | $ 41.882,15 | 15,57% | $ 282.351,61 | $ 729.408,30 | 0,35 | $ 54.870,33 | 27,48% | $ 729.408,31 | Y MÁS | 0,4 | $ 91.340,74 | MÁS DE 27,48% | Abril 2026 | Monto de Cálculo del Impuesto Único de Segunda Categoría | Períodos | Monto de la renta líquida imponible | Factor | Cantidad a rebajar | Tasa de Impuesto Efectiva, máxima por cada tramo de Renta | Desde | Hasta | MENSUAL | -.- | $ 943.501,50 | Exento | -.- | Exento | $ 943.501,51 | $ 2.096.670,00 | 0,04 | $ 37.740,06 | 2,20% | $ 2.096.670,01 | $ 3.494.450,00 | 0,08 | $ 121.606,86 | 4,52% | $ 3.494.450,01 | $ 4.892.230,00 | 0,135 | $ 313.801,61 | 7,09% | $ 4.892.230,01 | $ 6.290.010,00 | 0,23 | $ 778.563,46 | 10,62% | $ 6.290.010,01 | $ 8.386.680,00 | 0,304 | $ 1.244.024,20 | 15,57% | $ 8.386.680,01 | $ 21.665.590,00 | 0,35 | $ 1.629.811,48 | 27,48% | $ 21.665.590,01 | Y MÁS | 0,4 | $ 2.713.090,98 | MÁS DE 27,48% | QUINCENAL | -.- | $ 471.750,75 | Exento | -.- | Exento | $ 471.750,76 | $ 1.048.335,00 | 0,04 | $ 18.870,03 | 2,20% | $ 1.048.335,01 | $ 1.747.225,00 | 0,08 | $ 60.803,43 | 4,52% | $ 1.747.225,01 | $ 2.446.115,00 | 0,135 | $ 156.900,81 | 7,09% | $ 2.446.115,01 | $ 3.145.005,00 | 0,23 | $ 389.281,73 | 10,62% | $ 3
+
+=== S3c ===
+URL: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+HTTP: 200 | Bytes: 8079 | SHA256: 236071689c479d38a37ecdaaf5ab67b2501b391e62390a12c7c60d0214c136e7
+Note: UTM octubre 2026 = 72.151; marzo y abril 2026 = 69.889.
+ANCHOR MATCH "Octubre":
+  71.649 | 859.788 | 112,45 | 0,1 | 2,9 | 3,5 | Agosto | 71.649 | 859.788 | 113,15 | 0,6 | 3,6 | 4,1 | Septiembre | 71.721 | 860.652 | 113,59 | 0,4 | 4,0 | 4,1 | Octubre | 72.151 | 865.812 | Noviembre | 72.440 | 869.280 | Diciembre | (1) UTM | = Unidad Tributaria Mensual | (2) UTA | = Unidad Tributaria Anual (UTM x 12) | (3) Variación mensual : | Corresponde a la publicada oficialmente por el INE en cada mes. | (4) Variación acumulada 2026 : | Corresponde a la acumulada a la fecha respecto del mes de Diciembre del año anterior. | (5) Variación Ultimos 12 meses : | Corresponde a la variación de los últimos doce meses. | (6) IPC Valor en Puntos : | A partir del mes de enero 2024, el INE ha procedido a recalcular los IPC, tomando como base anual 2023=100. La serie empalmada de IPC desde diciembre 2009 hasta la fecha, puede ser consultada en | www.ine.cl | .
+
+=== S11 ===
+URL: https://www.spensiones.cl/portal/institucional/594/w3-article-2810.html
+HTTP: 200 | Bytes: 48822 | SHA256: ee87626ee526877316ff64b5622cda3baf6f1b281f9acbbdde0665ebdf738955
+Note: Comisiones vigentes por AFP: Capital 1,44; Modelo 0,58; Provida 1,45; Uno 0,46.
+ANCHOR MATCH "comisiones mensuales que actualmente cobran":
+  e octubre de 2025, AFP Uno tiene la comisión más baja, de 0,46% de la remuneración o renta imponible de la persona. | Las comisiones mensuales que actualmente cobran las administradoras son las siguientes: | AFP Capital: 1,44% | AFP Cuprum: 1,44% | AFP Habitat: 1,27% | AFP Modelo: 0,58% | AFP Planvital: 1,16% | AFP Provida: 1,45% | AFP Uno: 0,46% | Dato útil sobre comisiones | Para saber cuánto le cobra su AFP por administrar sus ahorros previsionales use la | Calculadora del Costo Previsional | . | Para comparar la comisión, servicio y temas como la rentabilidad que ofrecen las AFP use el | Infórmate y Decide | . | Otras preguntas relacionadas | ¿Puedo elegir cualquier tipo de fondo? | ¿Qué cotizaciones se registran en las cuentas de capitalización individual? | ¿Qué es la licitación de la administración de cuentas de nuevas y nuevos afiliados? | ¿Quiénes no tienen obligación de cotizar como trabajadora o trabajador independiente? | ¿Una persona pensionada del antiguo sistema, hoy afiliada a una AFP, puede retirar sus fondos? | ¿Puedo retirar el d
+
+=== S12 ===
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html
+HTTP: 200 | Bytes: 119014 | SHA256: 0b8aa75fbdec69c21a28d6cd2ec5f1608e29532d9286a6f107a80466c694024f
+Note: SIS 1,78% desde agosto de 2026; rango de comisiones 0,46% a 1,45%.
+ANCHOR MATCH "tasa vigente del SIS":
+  sona, más otro porcentaje adicional para acceder al Seguro de Invalidez y Sobrevivencia (SIS). | Desde agosto de 2026, la tasa vigente del SIS para empleadores, afiliadas y afiliados independientes y voluntarios es de 1,78% de las remuneraciones y rentas imponibles, tanto para mujeres como hombres. | Afiliación y comisiones | Para cotizar de manera obligatoria en una cuenta de capitalización individual obligatoria una persona debe estar afiliada a una administradora de fondos de pensiones (AFP). | En la actualidad, existen siete AFP, las que se diferencian por las comisiones que cobran, el servicio que entregan, su red de atención a lo largo país y las rentabilidades que obtienen los fondos de pensiones que gestionan. | Las personas son libres de elegir la AFP en la que depositarán sus ahorros previsionales, pero en el caso de trabajadoras y trabajadores que se afilian al sistema por primera vez deben ingresar a la administradora que cobra la menor comisión y permanecer en ella por un período de 24 meses, salvo que
+
+=== S13 ===
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60141.html
+HTTP: 200 | Bytes: 69472 | SHA256: d6dcef222bdab257b0a03bc4c6abc544004167330f4f11cb56160c07b0e658ae
+Note: IMM 553.553 desde 01/05/2026, Ley 21.830 (D.O. 22.06.2026).
+ANCHOR MATCH "A contar del 01 de mayo de 2026":
+  ON, INGRESO MINIMO | Compartir | icono compartir | REMUNERACION, INGRESO MINIMO | ¿Cuál es el valor del ingreso mínimo mensual? | A contar del 01 de mayo de 2026 el Ingreso Mínimo Mensual es de: $553.553 para trabajadores mayores de 18 años y de hasta 65 años. $412.938 para trabajadores menores de 18 años y mayores de 65 años. $356.815 para fines no remuneracionales. | REMUNERACION, INGRESO MINIMO | REMUNERACION, INGRESO MINIMO | De acuerdo con lo establecido por la Ley N°21.830 (Diario Oficial de fecha 22.06.2026), a partir del 1 de mayo de 2026, el ingreso mínimo para trabajadores mayores de 18 años y de hasta 65 años es de $553.553. | A contar de la misma fecha (1 de mayo de 2026), el monto del ingreso mínimo para trabajadores menores de 18 años y mayores de 65 años es de $412.938. | A contar del 1 de mayo de 2026 el ingreso mínimo para fines no remuneracionales queda fijado en $356.815. | (VER: | Ley N°21.830 | , Diario Oficial de 22.06.2026) | REMUNERACION, INGRESO MINIMO | REMUNERACION, INGRESO MINIMO | Consultas: | Remuneración | Ing
+
+=== BCN metadata (title of each idNorma) ===
+S10-wrong idNorma=30053 | HTTP 200 | LEY-18667 | MODIFICA EL CODIGO DE JUSTICIA MILITAR Y EL CODIGO
+DE PROCEDIMIENTO PENAL
+  note: URL usada por 00-scope.json/02-primary-sources.txt para 'Ley 18.833'
+S10 idNorma=30209 | HTTP 200 | LEY-18833 | ESTABLECE UN NUEVO ESTATUTO GENERAL PARA LAS CAJAS DE COMPENSACION DE ASIGNACION FAMILIAR (C.C.A.F.), SUSTITUTIVO DEL ACTUAL CONTENIDO EN EL DECRETO CON FUERZA DE LEY N° 42, DE 1978, DEL MINISTERIO DEL TRABAJO Y PREVISION SOCIAL
+  note: Norma que realmente corresponde a la Ley 18.833 (art. 22)

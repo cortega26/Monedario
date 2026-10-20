@@ -1,0 +1,121 @@
+=== INDEPENDENT RECALCULATION (Decimal prec=50) ===
+UF=41189.24 UTM_oct=72151 UTM_mar_abr=69889 cap_prev=90 UF cap_afc=135.2 UF IMM=553553
+
+--- V1 | Salud 7% sobre tope de 90 UF ---
+[MATCH] V1 90 UF * 7% (UF): computed=6.30 | published=6.30
+[MATCH] V1 6,3 UF en CLP: computed=259492 | published=259492
+[INFO] V1 borde imponible=89.99 UF -> base 7%=89.99 UF -> 7%=6.2993 UF: computed=6.2993
+[INFO] V1 borde imponible=90 UF -> base 7%=90 UF -> 7%=6.30 UF: computed=6.30
+[INFO] V1 borde imponible=90.01 UF -> base 7%=90 UF -> 7%=6.30 UF: computed=6.30
+[INFO] V1 borde imponible=120 UF -> base 7%=90 UF -> 7%=6.30 UF: computed=6.30
+[INFO] V1 borde imponible=135.2 UF -> base 7%=90 UF -> 7%=6.30 UF: computed=6.30
+[INFO] V1 borde imponible=150 UF -> base 7%=90 UF -> 7%=6.30 UF: computed=6.30
+[MATCH] V1 linealidad (7% de 90 UF en CLP == 7% del tope en CLP): computed=259492 | published=259492
+
+--- V2 | Tramo exento IUSC octubre 2026 ---
+[MATCH] V2 13,5 * 72.151: computed=974038.5 | published=974038.50
+[MATCH] V2 30 * 72.151 (limite superior tramo 4%): computed=2164530 | published=2164530.00
+[MATCH] V2 rebaja 4% == 0,04 * 974.038,50: computed=38961.540 | published=38961.54
+  V2 consistencia interna de la tabla SII (rebaja = (tasa_i - tasa_prev)*limite_i + rebaja_prev):
+[MATCH]   V2 rebaja implicita en 974038.50 (0.04): computed=38961.5400 | published=38961.54
+[MATCH]   V2 rebaja implicita en 2164530.00 (0.08): computed=125542.7400 | published=125542.74
+[MATCH]   V2 rebaja implicita en 3607550.00 (0.135): computed=323957.99000 | published=323957.99
+[MATCH]   V2 rebaja implicita en 5050570.00 (0.23): computed=803762.14000 | published=803762.14
+[MATCH]   V2 rebaja implicita en 6493590.00 (0.304): computed=1284287.80000 | published=1284287.80
+[MATCH]   V2 rebaja implicita en 8658120.00 (0.35): computed=1682561.32000 | published=1682561.32
+[MATCH]   V2 rebaja implicita en 22366810.00 (0.40): computed=2800901.8200 | published=2800901.82
+[INFO] V2 IUSC octubre RLI=974038.50 (exacto): computed=0 | CLP=0
+[INFO] V2 IUSC octubre RLI=974038.51 (exacto): computed=0.0004 | CLP=0
+[INFO] V2 IUSC octubre RLI=1000000 (exacto): computed=1038.46 | CLP=1038
+[INFO] V2 IUSC octubre RLI=2164530 (exacto): computed=47619.66 | CLP=47620
+[MATCH] V2 continuidad 4%->8% en 2.164.530: computed=47619.66 | published=47619.66
+[MATCH] V2 13,5 * 69.889 (marzo/abril 2026): computed=943501.5 | published=943501.50
+[MATCH] V2 30 * 69.889 (marzo/abril 2026): computed=2096670 | published=2096670
+
+--- V3 | Cesantia trabajador 0,6% de $800.000 ---
+[MATCH] V3 800.000 * 0,6%: computed=4800.000 | published=4800
+[MATCH] V3 anualizado si se aplica por error a plazo fijo: computed=57600.000 | published=57600
+[MATCH] V3 empleador indefinido 2,4% (1,6 CIC + 0,8 FCS): computed=19200.000 | published=19200
+[MATCH] V3 empleador plazo fijo 3,0% (2,8 CIC + 0,2 FCS): computed=24000.000 | published=24000
+[MATCH] V3 brecha trabajador == 0,6%: computed=4800.000 | published=4800.000
+[MATCH] V3 0,6% de 135,2 UF (UF): computed=0.8112 | published=0.8112
+[MATCH] V3 0,6% de 135,2 UF (CLP): computed=33413 | published=33413
+
+--- V4 | Topes art. 58 sobre remuneracion total ---
+[MATCH] V4 15% de 1.000.000: computed=150000.00 | published=150000
+[MATCH] V4 30% de 1.000.000: computed=300000.00 | published=300000
+[MATCH] V4 45% de 1.000.000: computed=450000.00 | published=450000
+[MATCH] V4 no aditividad: 15% + 30% = 45% (no 60%): computed=450000.00 | published=450000.00
+[MATCH] V4 suma ingenua 15% + 45% = 60% excede el tope conjunto: computed=600000.00 | published=600000 | 600.000 > 450.000: no son sumables
+[MATCH] V4 15% sobre bruto (1.500.000): computed=225000.00 | published=225000
+[MATCH] V4 15% sobre imponible (1.350.000): computed=202500.00 | published=202500
+[MATCH] V4 diferencia de base 15%: computed=22500.00 | published=22500
+[MATCH] V4 45% sobre bruto: computed=675000.00 | published=675000
+[MATCH] V4 cooperativas 15% + 25% (convenido): computed=400000.00 | published=400000
+[MATCH] V4 cooperativas + vivienda 15+30+25 = 70% -> tope 45%: computed=450000.00 | published=450000
+
+--- V5 | AFC 135,2 UF vs tope previsional 90 UF ---
+[MATCH] V5 tope AFP/salud en CLP: computed=3707032 | published=3707032
+[MATCH] V5 tope AFC en CLP: computed=5568785 | published=5568785
+[MATCH] V5 diferencia de topes (UF): computed=45.2 | published=45.2
+[MATCH] V5 diferencia de topes (CLP): computed=1861754 | published=1861754
+[MATCH] V5 11 anios * 12 meses: computed=132 | published=132 | AFC declara 'cumplido con la cotizacion N.133'
+[INFO] V5 borde imponible=90 UF -> AFP/salud=90 UF, AFC=90 UF, 0,6% AFC=0.540 UF: computed=0.540
+[INFO] V5 borde imponible=120 UF -> AFP/salud=90 UF, AFC=120 UF, 0,6% AFC=0.720 UF: computed=0.720
+[INFO] V5 borde imponible=135.2 UF -> AFP/salud=90 UF, AFC=135.2 UF, 0,6% AFC=0.8112 UF: computed=0.8112
+[INFO] V5 borde imponible=150 UF -> AFP/salud=90 UF, AFC=135.2 UF, 0,6% AFC=0.8112 UF: computed=0.8112
+
+--- V6 | Multa 25% diaria vs topes convenidos ---
+[MATCH] V6 25% == 1/4: computed=0.25 | published=0.25
+[INFO] V6 remuneracion diaria de 1.000.000/30: computed=33333.333333333333333333333333333333333333333333333 | CLP=33333
+[INFO] V6 multa maxima 25% de la diaria: computed=8333.3333333333333333333333333333333333333333333332 | CLP=8333
+[INFO] V6 multa como fraccion del tope 15% mensual: computed=0.055555555555555555555555555555555555555555555555555 | 5,56% del tope mensual
+
+--- Cross-surface: comisiones AFP ---
+[MATCH] CS spread 1,45% - 0,46% (pp): computed=0.9900 | published=0.99
+[MATCH] CS spread sobre 1.000.000: computed=9900.0000 | published=9900
+[MATCH] CS spread anual (12 meses): computed=118800.0000 | published=118800
+[MATCH] CS spread sobre 1.350.000: computed=13365.0000 | published=13365
+[MATCH] CS spread anual sobre 1.350.000: computed=160380.0000 | published=160380
+
+--- Cross-surface: ejemplo completo como-calcular-sueldo-liquido.md ---
+[MATCH] CS cotizacion 10%: computed=135000.00 | published=135000
+[MATCH] CS comision 0,58%: computed=7830.0000 | published=7830
+[MATCH] CS comision 1,44% (Capital real): computed=19440.0000 | published=19440
+[MATCH] CS sobrecosto de la comision mal rotulada: computed=11610.0000 | published=11610
+[MATCH] CS salud 7%: computed=94500.00 | published=94500
+[MATCH] CS cesantia 0,6%: computed=8100.000 | published=8100
+[MATCH] CS total cotizaciones con 0,58%: computed=245430.0000 | published=245430
+[MATCH] CS total cotizaciones con 1,44%: computed=257040.0000 | published=257040
+[MATCH] CS RLI con 0,58%: computed=1104570.0000 | published=1104570
+[MATCH] CS RLI con 1,44%: computed=1092960.0000 | published=1092960
+[MATCH] CS IUSC abril con 0,58%: computed=6443 | published=6443 | exacto=6442.740000
+[MATCH] CS IUSC abril con 1,44%: computed=5978 | published=5978 | exacto=5978.340000
+[MATCH] CS liquido con 0,58%: computed=1248127 | published=1248127 | publicado ~$1.248.000
+[MATCH] CS liquido con 1,44%: computed=1236982 | published=1236982
+[MATCH] CS efecto neto en el liquido (incluye menor IUSC): computed=11145 | published=11145
+[MATCH] CS descuentos totales con 0,58%: computed=251873 | published=251873 | publicado ~$252.000
+[MATCH] CS total AFP declarado 10,58% == 10% + 0,58%: computed=10.58 | published=10.58
+[MATCH] CS total AFP correcto para Capital 11,44%: computed=11.44 | published=11.44
+
+--- Cross-surface: primer-empleo, suma de descuentos ---
+[MATCH] CS 10,5 + 7,0 + 0,6 (publicado 18,1%): computed=18.1 | published=18.1
+[MATCH] CS rango real con comision minima: computed=18.06 | published=18.06
+[MATCH] CS rango real con comision maxima: computed=19.05 | published=19.05
+[MATCH] CS desviacion maxima vs 18,1% (pp): computed=0.95 | published=0.95
+[INFO] CS carga total con IUSC sobre imponible 1500000: computed=18.82159600 | CLP impuesto=11424
+[INFO] CS carga total con IUSC sobre imponible 2000000: computed=19.45059700 | CLP impuesto=27812
+[INFO] CS carga total con IUSC sobre imponible 3000000: computed=20.56163800 | CLP impuesto=75049
+[INFO] CS carga total con IUSC sobre imponible 5000000: computed=22.845867800 | CLP impuesto=239293
+
+--- Cross-surface: tope de gratificacion (art. 50) ---
+[MATCH] CS 4,75 * 539.000 (publicado): computed=2560250.00 | published=2560250
+[MATCH] CS 4,75 * 553.553 (IMM vigente): computed=2629376.75 | published=2629376.75
+[MATCH] CS subestimacion absoluta: computed=69126.75 | published=69126.75
+[INFO] CS subestimacion % del valor correcto: computed=2.6290165530671859785783836416747809152872444011685 | 2.6290%
+[INFO] CS subestimacion % del valor publicado: computed=2.700 | 2.7000%
+[MATCH] CS 4,75 == cuatro y tres cuartos: computed=4.75 | published=4.75
+
+=== SUMMARY ===
+checks=94 mismatches=0
+{"checks": 94, "mismatches": 0, "failed": [], "params": {"UF": "41189.24", "UTM_oct": "72151", "UTM_mar_abr": "69889", "cap_prev_uf": "90", "cap_afc_uf": "135.2", "imm_2026": "553553"}}

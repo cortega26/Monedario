@@ -1,0 +1,19 @@
+=== STATIC GATES RELEVANT TO THE CORRECTION (read-only) ===
+GeneratedAt: 2026-10-20T23:27:55Z
+
+--- vitest: descuentos-clasificacion-guard.test.ts ---
+
+ RUN  v4.1.11 /tmp/claude-1000/wt-descuentos
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  20:27:56
+   Duration  137ms (transform 17ms, setup 0ms, import 27ms, tests 7ms, environment 0ms)
+
+exit=0
+
+--- pnpm run check:correcciones ---
+$ node scripts/check-correcciones.mjs
+[check-correcciones] OK. 18 entradas válidas en el registro.
+exit=0

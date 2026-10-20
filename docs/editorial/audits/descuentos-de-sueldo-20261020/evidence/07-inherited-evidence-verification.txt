@@ -1,0 +1,68 @@
+=== INHERITED EVIDENCE VERIFICATION ===
+GeneratedAt: 2026-10-20T23:27:37Z
+
+--- 1. Rerun of inherited recalc_audit.py vs stored 03-recalc-vectors-and-edges.txt ---
+Note: recalc_audit.py opens the snapshot with a repo-root-relative path, so it must run from the repo root.
+Command: cd <repo-root> && python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/recalc_audit.py > /tmp/recalc_rerun.txt && diff -u docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/03-recalc-vectors-and-edges.txt /tmp/recalc_rerun.txt
+python_exit=0
+diff_exit=0
+diff_bytes=0 (0 = byte-identical)
+stderr_bytes=0
+
+SHA256 (stored 03): c0dd6c7f90bb5b25ad2a04b671fdd1fcb3e708efc31ccf731264000e782969b9
+SHA256 (rerun):     c0dd6c7f90bb5b25ad2a04b671fdd1fcb3e708efc31ccf731264000e782969b9
+SHA256 (script):    71c23e0581099f410ff123e6c83cd7aae48e6489516c77fb84d9803b65cd0555
+
+--- 2. Inherited 02-primary-sources.txt: S10 idNorma label check ---
+Claim in file: 'S10_html/json: BCN Ley 18.833' at idNorma=30053
+Observed via get_norma_json (see 04-source-extracts-2026-10-20.txt):
+  idNorma=30053 -> LEY-18667 'MODIFICA EL CODIGO DE JUSTICIA MILITAR...'
+  idNorma=30209 -> LEY-18833 'ESTABLECE UN NUEVO ESTATUTO GENERAL PARA LAS CAJAS DE COMPENSACION...'
+  The art. 22 quote is already present in 02b-source-quotes.txt line 145, fetched from idNorma=30209.
+Conclusion: idNorma=30053 is NOT Ley 18.833; the correct id is 30209. Label defect in the audit package
+  (00-scope.json S10 URL and 02-primary-sources.txt S10 rows).
+
+--- 3. Environment ---
+date_utc: 2026-10-20T23:27:37Z
+uname: Linux 7.0.0-38-generic x86_64 GNU/Linux
+node: v24.19.0
+pnpm: 11.7.0
+python3: Python 3.13.12
+decimal_prec: 50 (set explicitly in both recalc scripts)
+
+--- 4. Git state ---
+repo_root: /tmp/claude-1000/wt-descuentos
+HEAD: 38418c0841e7ad28e69c825537976aed32531485
+branch: fix/descuentos-de-sueldo-art58-2026-10-20
+status_porcelain:
+  ?? docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/
+
+--- 5. Snapshot parameters used ---
+uf = 41189.24
+utm = 72151
+uta = 834504
+ipc = 0.4
+tmc = 3.49
+dolar = 981.86
+imm = 553553
+immEffectiveDate = 2026-05-01
+afcTopes.monthlyTaxableCapUf = 135.2
+previsionalTopes.pensionAndHealthMonthlyTaxableCapUf = 90
+indicatorUpdatedAt.uf = 2026-10-20
+indicatorUpdatedAt.utm = 2026-10-01
+indicatorUpdatedAt.uta = 2025-12-01
+indicatorUpdatedAt.ipc = 2026-09-01
+indicatorUpdatedAt.dolar = 2026-10-20
+lastUpdated = 2026-10-20
+capturedAt = 2026-10-20T10:15:29.825Z
+source = mindicador.cl/api
+provenance.utm.primarySource = SII
+provenance.utm.sourceUrl = https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+provenance.utm.status = primary
+provenance.utm.verifiedAt = 2026-10-20T10:15:29.825Z
+prev.uf.valor = 41183.94
+prev.uf.fecha = 2026-10-19
+prev.utm.valor = 71721
+prev.utm.fecha = 2026-09-01
+prev.dolar.valor = 981.65
+prev.dolar.fecha = 2026-10-19

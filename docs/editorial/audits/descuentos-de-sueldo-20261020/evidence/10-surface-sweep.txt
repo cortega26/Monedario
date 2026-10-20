@@ -1,0 +1,64 @@
+=== SURFACE SWEEP (AI_AUDIT_PROTOCOL §5) ===
+GeneratedAt: 2026-10-20T23:29:47Z
+Scope: src/ + root llms*.txt (cuerpo, metadatos, JSON-LD, catalogo/LLM, contenido relacionado).
+
+--- pattern: 539\.000
+src/data/laws/codigo-del-trabajo.md:54:- **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (equivale a aproximadamente $539.000 × 4,75 = $2.560.250 al año con el IMM vigente a mayo de 2026). Se puede pagar mensualmente de forma proporcional.
+
+--- pattern: 539000
+
+--- pattern: 2\.560\.250
+src/data/laws/codigo-del-trabajo.md:54:- **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (equivale a aproximadamente $539.000 × 4,75 = $2.560.250 al año con el IMM vigente a mayo de 2026). Se puede pagar mensualmente de forma proporcional.
+
+--- pattern: 0,58%
+src/data/laws/dl-3500-sistema-afp.md:31:**Regla general:** como trabajador dependiente, cotizas el **10% de tu remuneración imponible** mensual a tu AFP, más la **comisión** de la AFP (varía entre 0,58% y 1,45% aproximadamente según AFP). Ese 10% + comisión sale de tu bolsillo y se muestra como descuento en tu liquidación.
+src/data/blog/como-calcular-sueldo-liquido.md:180:**Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 0,58%, total AFP 10,58%) y Fonasa.
+src/data/blog/como-calcular-sueldo-liquido.md:186:| (-) AFP comisión 0,58%           | $1.350.000 × 0,58%    | -$7.830         |
+
+--- pattern: 0,58 %
+
+--- pattern: 1,87
+src/data/blog/primer-empleo-chile-guia-completa.md:134:El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** de aproximadamente 1,87 % de la remuneración, pero ese costo lo asume él, no tú.
+
+--- pattern: 974\.038
+src/data/correcciones.json:77:        "La guía usa el tramo de octubre de 2026 ($974.038,50), explicita que equivale a 13,5 UTM y advierte que debe verificarse la tabla del mes de la liquidación."
+src/data/blog/descuentos-de-sueldo.md:106:**Impuesto único de segunda categoría:** aplica solo si tu renta líquida imponible mensual supera el primer tramo exento de la tabla del SII. Esa renta resulta de restar de tus remuneraciones brutas las cotizaciones previsionales y de salud que te retiene el empleador ([SII](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm)), incluida la parte del seguro de cesantía a cargo del trabajador ([SII](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1166.htm)). En octubre de 2026 ese tramo llega hasta $974.038,50 (13,5 UTM). La tabla se actualiza cada mes, así que verifica el mes de tu liquidación. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
+
+--- pattern: 6,3 UF
+src/data/correcciones.json:37:        "Se explican el límite de 11 años y las exclusiones del seguro de cesantía, y el tope de 90 UF de la cotización de salud (máximo de 6,3 UF). El tope de 90 UF se agregó también a la guía de liquidación de sueldo."
+src/data/blog/descuentos-de-sueldo.md:102:**Salud:** el 7% mínimo de la remuneración imponible, destinado a Fonasa o Isapre. Ese 7% se calcula hasta el mismo tope de 90 UF que rige para las AFP desde las remuneraciones de febrero de 2026 ([Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html)), de modo que el 7% legal llega como máximo a 6,3 UF al mes. Si estás en Fonasa, el descuento es ese 7% calculado hasta el tope. Si estás en Isapre y el precio de tu plan supera el 7% legal, la diferencia es el precio adicional del plan que pactaste con la Isapre y también se descuenta de tu liquidación; no forma parte del 7% mínimo legal.
+src/data/blog/descuentos-de-sueldo.md:151:| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                        |
+
+--- pattern: 135,2
+src/data/glossary/renta-imponible.md:28:Para el seguro de cesantía el tope es distinto y más alto (135,2 UF).
+src/data/correcciones.json:28:        "Se afirmaba que todos los descuentos legales se calculan sobre la remuneración imponible, sin distinguir las bases y topes de cada uno: 90 UF para AFP y salud, 135,2 UF para cesantía, renta líquida imponible para el impuesto único y remuneración total bruta para los descuentos convenidos.",
+src/data/blog/descuentos-de-sueldo.md:104:**Seguro de cesantía:** el 0,6% del imponible, con un tope de 135,2 UF en 2026, si tu contrato es indefinido y estás afiliado. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Hay dos matices. Primero, tu 0,6% se paga como máximo durante 11 años por cada relación laboral (cotización N°133); pasado ese plazo, el empleador debe seguir aportando el 0,8% al Fondo de Cesantía Solidario mientras el contrato esté vigente ([AFC](https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/)). Segundo, la ley deja fuera de la cobertura a ciertos grupos, como las personas pensionadas, salvo las excepciones legales ([AFC, preguntas frecuentes](https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/)). Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar. Si quedas sin trabajo, ese fondo se cobra ante la AFC — la [guía del seguro de cesantía](/posts/seguro-de-cesantia/) explica cuándo y cuánto.
+src/data/blog/descuentos-de-sueldo.md:152:| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años                        |
+src/data/blog/descuentos-de-sueldo.md:159:Fuentes de la tabla: [Superintendencia de Pensiones, topes imponibles 2026](https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html) (90 UF y 135,2 UF); [AFC](https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/) (11 años); [SII, tabla del impuesto único](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm) y [SII, base del impuesto](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm); [DT, ORD. N°826/2024](https://www.dt.gob.cl/legislacion/1624/w3-article-127125.html) (el artículo 42 N°1 de la Ley de Impuesto a la Renta excluye de la base las cotizaciones obligatorias de previsión y salud); [DT, ORD. N°3456/37](https://dt.gob.cl/legislacion/1624/w3-article-102449.html) y [ORD. N°262/4](https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html) (topes del artículo 58).
+src/data/blog/sueldo-imponible-chile.md:111:**Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que se gana por sobre el tope no cotiza — lo que también significa que no genera pensión sobre esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
+src/data/blog/como-calcular-sueldo-liquido.md:107:Esto también tiene un límite superior: existe un **[tope imponible](/glosario/tope-imponible/)** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **90 [UF](/guias/uf-costo-de-vida/)** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
+src/data/blog/como-calcular-sueldo-liquido.md:230:No a todos. Como referencia 2026, AFP y salud usan 90 UF y el seguro de cesantía usa 135,2 UF. El impuesto único opera con su propia tabla mensual y no con esos topes previsionales.
+
+--- pattern: 4,75
+src/utils/sueldo-liquido/resultRenderer.ts:320:        `25% de ${fmt(baseBruto)} = ${fmt(grati25)} — tope ${fmt(graticap)} (4,75 IMM/12)`
+src/utils/sueldo-liquido/resultRenderer.ts:335:      ? ` ② Tope gratificación = 25% bruto o ${fmt(graticap)}/mes (4,75 × IMM ${fmt(economicParameters.imm)} ÷ 12).`
+src/data/laws/codigo-del-trabajo.md:54:- **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (equivale a aproximadamente $539.000 × 4,75 = $2.560.250 al año con el IMM vigente a mayo de 2026). Se puede pagar mensualmente de forma proporcional.
+src/data/glossary/gratificacion.md:30:Se paga el 25% de las utilidades líquidas del año, distribuido entre los trabajadores a prorrata de los sueldos pagados durante el ejercicio. El tope por trabajador es de **4,75 ingresos mínimos mensuales anuales**.
+src/data/glossary/gratificacion.md:33:La empresa paga mensualmente o en el mes acordado el equivalente al **25% de la remuneración mensual** del trabajador, con un tope de **4,75 IMM / 12** al mes. Este sistema es más frecuente porque simplifica la administración sin necesidad de esperar el balance anual.
+src/data/blog/gratificacion-legal-chile.md:5:description: "Qué es la gratificación legal, sus dos modalidades del Código del Trabajo, cómo calcular el 25% con tope de 4,75 IMM y cuándo recibirla."
+src/data/blog/gratificacion-legal-chile.md:24:  answer: "La gratificación legal es la participación obligatoria que el empleador debe pagar a los trabajadores. La modalidad más común es el 25% de las remuneraciones imponibles anuales, con un tope máximo de 4,75 veces el Ingreso Mínimo Mensual (IMM) vigente."
+src/data/blog/gratificacion-legal-chile.md:37:    - "La fórmula exacta y el tope de 4,75 IMM."
+src/data/blog/gratificacion-legal-chile.md:65:La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas.
+src/data/blog/gratificacion-legal-chile.md:85:El empleador paga el 25% de las remuneraciones imponibles que el trabajador devengó durante el año, con un tope máximo de **4,75 veces el Ingreso Mínimo Mensual (IMM) vigente**. Esta modalidad subsiste aunque la empresa haya tenido pérdidas.
+src/data/blog/gratificacion-legal-chile.md:95:Tope anual                 = IMM mensual vigente × 4,75
+src/data/blog/gratificacion-legal-chile.md:108:- Tope legal: $553.553 × 4,75 = **$2.629.377**
+
+--- pattern: 18,1 %
+src/data/blog/primer-empleo-chile-guia-completa.md:225:| **Total descuentos legales**    | **~18,1 %**       |
+
+--- pattern: 118\.800
+src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md:158:La diferencia entre una comisión de 0.46% y otra de 1.45% puede parecer menor en porcentaje, pero en un sueldo imponible de $1.000.000 son **$9.900 mensuales**, o cerca de **$118.800 al año**.
+src/data/blog/como-calcular-sueldo-liquido.md:127:En un imponible de $1.000.000, la diferencia entre la AFP más barata y la más cara hoy es de **$9.900 al mes**, o cerca de **$118.800 al año**. No define toda tu jubilación, pero sí cambia tu descuento mensual real.
+
+--- pattern: 26\.50250
+
