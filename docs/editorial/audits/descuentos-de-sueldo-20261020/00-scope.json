@@ -1,0 +1,115 @@
+{
+  "auditId": "descuentos-de-sueldo-20261020",
+  "protocolVersion": "v1",
+  "createdAt": "2026-10-20",
+  "status": "READY_FOR_AUDIT",
+  "scope": {
+    "description": "Math audit of the descuentos-de-sueldo correction (F01–F08) and its arithmetic, caps, bases and cross-surface consistency. Does not cover compliance or human signoff.",
+    "commit": "56f15110",
+    "branch": "fix/descuentos-de-sueldo-art58-2026-10-20",
+    "files": [
+      "src/data/blog/descuentos-de-sueldo.md",
+      "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "src/data/blog/como-calcular-sueldo-liquido.md",
+      "src/data/blog/liquidacion-de-sueldo.md",
+      "src/data/laws/codigo-del-trabajo.md",
+      "src/data/correcciones.json",
+      "tests/static-analysis/descuentos-clasificacion-guard.test.ts",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/02-dossier.md",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/sources.yaml",
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/07-publish-packet.md"
+    ],
+    "vectors": [
+      {
+        "id": "V1",
+        "claim": "Tope de salud: 7% de 90 UF = 6,3 UF mensuales",
+        "test": "Recalcular 90 × 0,07 con Decimal; contrastar con el texto publicado."
+      },
+      {
+        "id": "V2",
+        "claim": "Tramo exento de octubre 2026: 13,5 UTM = $974.038,50 con UTM $72.151",
+        "test": "Recalcular 13,5 × 72.151 y contrastar con la tabla SII."
+      },
+      {
+        "id": "V3",
+        "claim": "Cesantía trabajador: 0,6% de $800.000 = $4.800",
+        "test": "Recalcular 800.000 × 0,006 y contrastar con el ejemplo publicado."
+      },
+      {
+        "id": "V4",
+        "claim": "Topes de descuentos convenidos: 15% de $1.000.000 = $150.000; 45% = $450.000",
+        "test": "Recalcular ambos porcentajes y verificar que no se presenten como sumables."
+      },
+      {
+        "id": "V5",
+        "claim": "AFC: tope imponible 135,2 UF y límite de 11 años por relación laboral",
+        "test": "Contrastar el tope y el límite con AFC/SP; verificar que no se confunda con el tope previsional de 90 UF."
+      },
+      {
+        "id": "V6",
+        "claim": "Multa del reglamento: hasta 25% de la remuneración diaria; descuentos convenidos: 15% general, hasta 30% vivienda/educación y 45% conjunto",
+        "test": "Contrastar los topes con DT/BCN y verificar que la tabla no mezcle bases ni límites."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "label": "Superintendencia de Pensiones — topes imponibles 2026",
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html"
+      },
+      {
+        "id": "S2",
+        "label": "AFC — cotizaciones, tope 135,2 UF y límite de 11 años",
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/"
+      },
+      {
+        "id": "S3",
+        "label": "SII — tabla del Impuesto Único de Segunda Categoría 2026",
+        "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
+      },
+      {
+        "id": "S4",
+        "label": "DT — ORD. N°680, art. 58, 154 y 157",
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html"
+      },
+      {
+        "id": "S5",
+        "label": "DT — ORD. N°3456/37, topes del art. 58",
+        "url": "https://dt.gob.cl/legislacion/1624/w3-article-102449.html"
+      },
+      {
+        "id": "S6",
+        "label": "DT — ORD. N°262/4, crédito social CCAF",
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html"
+      },
+      {
+        "id": "S7",
+        "label": "DT — ORD. N°1578, tiempo no trabajado",
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html"
+      },
+      {
+        "id": "S8",
+        "label": "DT — ORD. N°2000-44737/2026, atrasos justificados",
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html"
+      },
+      {
+        "id": "S9",
+        "label": "BCN — Código del Trabajo, arts. 58, 154 y 157",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436"
+      },
+      {
+        "id": "S10",
+        "label": "BCN — Ley 18.833, art. 22",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=30053"
+      }
+    ],
+    "recommendedCommands": [
+      "python3 - <<'PY' ... Decimal checks ... PY",
+      "pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts",
+      "pnpm run check:correcciones",
+      "pnpm run check:frontmatter",
+      "pnpm run check:hero-images",
+      "pnpm run check:hero-prompts"
+    ]
+  }
+}
