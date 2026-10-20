@@ -19,7 +19,7 @@ describe("Monedario disposable CI boundary", () => {
   it("registers JIT for Monedario only, not the trusted PCP runner", () => {
     expect(source).toContain("readonly repository=cortega26/Monedario");
     expect(source).toContain("readonly label=monedario-ci-isolated");
-    expect(source).toContain("readonly image=pcp-ci-isolated:2.338.0");
+    expect(source).toContain("readonly image=monedario-ci-isolated:2.338.0-a11y");
     expect(source).toContain("generate-jitconfig");
     expect(source).toContain("pcp-i5-12600K");
     expect(source).not.toContain("readonly repository=cortega26/portfolio-control-plane");
