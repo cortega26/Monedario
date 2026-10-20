@@ -59,7 +59,7 @@ El empleador está obligado a entregar una liquidación de remuneraciones junto 
 
 ### Descuentos permitidos (art. 58)
 
-El empleador solo puede descontar del sueldo lo que la ley autoriza expresamente o lo que el trabajador haya autorizado por escrito. Descuentos legales: cotizaciones previsionales (AFP, salud, cesantía), impuesto único de segunda categoría y cuotas sindicales. Descuentos con autorización escrita del trabajador: dividendo hipotecario, seguros de vida, cuotas de caja de compensación, APV, préstamos. Cualquier otro descuento no autorizado es ilegal.
+El empleador solo puede descontar del sueldo lo que la ley autoriza expresamente o lo que el trabajador haya autorizado por escrito. Descuentos legales: cotizaciones previsionales (AFP, salud, cesantía), impuesto único de segunda categoría, cuotas sindicales y lo adeudado por crédito social a una caja de compensación. Descuentos con autorización escrita del trabajador: dividendo hipotecario, seguros de vida, APV, préstamos. Los descuentos convenidos por escrito tienen topes: 15% de la remuneración total en general y 45% en conjunto. Cualquier otro descuento no autorizado es ilegal.
 
 ### Causales de término (arts. 159–168)
 

@@ -100,7 +100,7 @@ Después revisa si los haberes no imponibles están correctamente separados. Si 
 
 **AFP:** busca el porcentaje total y sepáralo en cotización (10%) y comisión (el resto). La comisión depende de tu AFP. Si el porcentaje no coincide con lo publicado por la Superintendencia de Pensiones para tu administradora, hay un error.
 
-**Salud:** el mínimo es 7% del imponible. Si estás en Fonasa, debería ser exactamente eso. Si estás en Isapre, puede ser más — pero ese exceso debería estar identificado como descuento adicional, no mezclado con el 7% base.
+**Salud:** el mínimo es 7% del imponible, calculado hasta el tope de 90 UF. Si estás en Fonasa, debería ser exactamente eso. Si estás en Isapre, puede ser más — pero ese exceso debería estar identificado como descuento adicional, no mezclado con el 7% base.
 
 **Cesantía:** 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo y aparece este descuento al trabajador, el cálculo está mal.
 

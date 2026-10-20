@@ -203,7 +203,7 @@ Tu liquidación tiene tres secciones que siempre aparecen:
 
 **Descuentos legales:** AFP, salud, cesantía, impuesto único. Estos los exige la ley.
 
-**Descuentos varios:** Préstamos de caja de compensación, anticipos, seguros voluntarios. Estos son opcionales y los autorizaste tú.
+**Descuentos varios:** Anticipos, seguros voluntarios y otros pagos que autorizaste por escrito. Estos son opcionales. La cuota sindical y el crédito social de una caja de compensación también pueden aparecer aquí, pero son obligatorios: la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica la diferencia.
 
 El **total haberes menos total descuentos** es tu líquido. Si los números no cuadran, puedes pedirle a tu empleador que te explique cada línea — es tu derecho.
 

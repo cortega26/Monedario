@@ -109,7 +109,7 @@ Una liquidación bien emitida tiene al menos cuatro bloques:
 
 **Descuentos legales:** AFP (~10,5 %), salud (7 %), seguro de cesantía (0,6 % trabajador). Estos son fijos e inamovibles — el empleador no puede eliminarlos ni reducirlos.
 
-**Descuentos voluntarios o autorizados por ti:** sindicato, caja de compensación, créditos de consumo retenidos en nómina. Para cada uno debiste firmar una autorización. Si aparece un descuento que no reconoces, pregunta antes de aceptar.
+**Descuentos voluntarios o autorizados por ti:** créditos de consumo retenidos en nómina y otros pagos que pediste al empleador. Para cada uno debiste firmar una autorización. La cuota sindical (si estás afiliado) y el crédito social de una caja de compensación son distintos: son descuentos obligatorios y no dependen de una autorización mensual; la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica por qué. Si aparece un descuento que no reconoces, pregunta antes de aceptar.
 
 El monto depositado debe coincidir con el total de haberes menos el total de descuentos. Si no coincide, exige aclaración escrita.
 

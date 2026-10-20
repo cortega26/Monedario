@@ -26,18 +26,28 @@ articleLead:
   calculatorLabel: "Ver impacto en el líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar el comprobante"
-  validAsOf: 2026-10-19
+  validAsOf: 2026-10-20
   officialSources:
-    - label: "Dirección del Trabajo — artículo 58"
-      href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
+    - label: "Dirección del Trabajo — ORD. N°680/2017 (artículo 58 y multas del reglamento interno)"
+      href: "https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html"
+    - label: "Dirección del Trabajo — ORD. N°262/4 (créditos sociales de cajas de compensación)"
+      href: "https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html"
+    - label: "Dirección del Trabajo — ORD. N°4184/70 (cuota sindical)"
+      href: "https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html"
     - label: "BCN — Ley 19.728 (cotizaciones de cesantía)"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
+    - label: "AFC — Cotizaciones: cuánto y cómo se paga"
+      href: "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/"
     - label: "SII — Impuesto Único de Segunda Categoría 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
     - label: "Superintendencia de Pensiones — Cotización previsional obligatoria"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+    - label: "Superintendencia de Pensiones — Topes imponibles 2026"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html"
   covers:
     - "Clasificación entre descuentos legales, autorizados y prohibidos."
+    - "Base de cálculo y topes de cada descuento."
+    - "Descuento por tiempo no trabajado frente a multas del reglamento interno."
     - "Excepciones típicas por tipo de contrato o sistema de salud."
     - "Cómo usar la clasificación para leer mejor la liquidación."
   limits:
@@ -51,23 +61,31 @@ volatileData:
   - id: "pensions.afp.uno_commission"
     sync: strict
     expectedValue: 0.46
+  - id: "pensions.previsional.monthly_taxable_cap_uf"
+    sync: strict
+    expectedValue: 90
+  - id: "economic.afc.monthly_taxable_cap_uf"
+    sync: strict
+    expectedValue: 135.2
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
   dataTriggers:
+    - economic.afc.monthly_taxable_cap_uf
     - pensions.afp.uno_commission
     - pensions.afp.worker_mandatory_contribution
+    - pensions.previsional.monthly_taxable_cap_uf
   derivationFactors:
     - registry:slugOverrides.descuentos-de-sueldo
   computedAt: "2026-10-04"
-updatedDate: 2026-10-19T00:00:00Z
+updatedDate: 2026-10-20T00:00:00Z
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.
 
 Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.
 
-> **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación.
+> **Revisión editorial 2026-10-20:** se corrigió la clasificación de la cuota sindical y del crédito social de las cajas de compensación (son descuentos obligatorios, no voluntarios), la regla sobre atrasos y las bases de cálculo, y se agregaron los topes de cada descuento. El detalle está en el [registro de correcciones](/correcciones/). Verifica siempre la tabla del SII y los topes vigentes en el mes de tu liquidación.
 
 Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la [guía de liquidación de sueldo](/posts/liquidacion-de-sueldo/). Si necesitas reconstruir el número completo de principio a fin, usa la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/).
 
@@ -75,67 +93,109 @@ Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar su
 
 ### Descuentos legales — los que el empleador debe practicar
 
-Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu [remuneración imponible](/posts/sueldo-imponible-chile/), no sobre el sueldo bruto total — por eso conviene saber primero qué entra en esa base.
+Estos descuentos no dependen de tu autorización mensual. El artículo 58 del Código del Trabajo dispone que el empleador "deberá deducir de las remuneraciones los impuestos que las graven, las cotizaciones de seguridad social, las cuotas sindicales en conformidad a la legislación respectiva y las obligaciones con instituciones de previsión o con organismos públicos" (inciso 1, según el texto reproducido en la [Dirección del Trabajo, ORD. N°680](https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html)). No todos se calculan sobre la misma base ni tienen el mismo tope: la tabla de bases de más abajo los separa. Para la base previsional, conviene saber primero qué entra en tu [remuneración imponible](/posts/sueldo-imponible-chile/).
 
 Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) explica contrato, AFP y Fonasa desde cero.
 
-**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP: a septiembre de 2026 va de 0,46% a 1,45% sobre el imponible, según la Superintendencia de Pensiones. Verifica la comisión vigente de tu AFP antes de calcular.
+**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora, ambas sobre la remuneración imponible, que para pensiones tiene un tope de 90 UF. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP: a septiembre de 2026 va de 0,46% a 1,45% sobre el imponible, según la Superintendencia de Pensiones. Verifica la comisión vigente de tu AFP antes de calcular.
 
-**Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
+**Salud:** el 7% mínimo de la remuneración imponible, destinado a Fonasa o Isapre. Ese 7% se calcula hasta el mismo tope de 90 UF que rige para las AFP desde las remuneraciones de febrero de 2026 ([Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html)), de modo que el 7% legal llega como máximo a 6,3 UF al mes. Si estás en Fonasa, el descuento es ese 7% calculado hasta el tope. Si estás en Isapre y el precio de tu plan supera el 7% legal, la diferencia es el precio adicional del plan que pactaste con la Isapre y también se descuenta de tu liquidación; no forma parte del 7% mínimo legal.
 
-**Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar. Si quedas sin trabajo, ese fondo se cobra ante la AFC — la [guía del seguro de cesantía](/posts/seguro-de-cesantia/) explica cuándo y cuánto.
+**Seguro de cesantía:** el 0,6% del imponible, con un tope de 135,2 UF en 2026, si tu contrato es indefinido y estás afiliado. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Hay dos matices. Primero, tu 0,6% se paga como máximo durante 11 años por cada relación laboral (cotización N°133); pasado ese plazo, el empleador debe seguir aportando el 0,8% al Fondo de Cesantía Solidario mientras el contrato esté vigente ([AFC](https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/)). Segundo, la ley deja fuera de la cobertura a ciertos grupos, como las personas pensionadas, salvo las excepciones legales ([AFC, preguntas frecuentes](https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/)). Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar. Si quedas sin trabajo, ese fondo se cobra ante la AFC — la [guía del seguro de cesantía](/posts/seguro-de-cesantia/) explica cuándo y cuánto.
 
-**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En octubre de 2026 ese tramo llega hasta $974.038,50 (13,5 UTM). La tabla se actualiza cada mes, así que verifica el mes de tu liquidación. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
+**Impuesto único de segunda categoría:** aplica solo si tu renta líquida imponible mensual supera el primer tramo exento de la tabla del SII. Esa renta resulta de restar de tus remuneraciones brutas las cotizaciones previsionales y de salud que te retiene el empleador ([SII](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm)), incluida la parte del seguro de cesantía a cargo del trabajador ([SII](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1166.htm)). En octubre de 2026 ese tramo llega hasta $974.038,50 (13,5 UTM). La tabla se actualiza cada mes, así que verifica el mes de tu liquidación. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
 
-Todos estos descuentos se calculan sobre el **sueldo imponible**, no sobre el bruto total. La diferencia importa cuando tienes asignaciones no imponibles como colación o movilización.
+**Cuota sindical:** si estás afiliado a un sindicato, la cuota ordinaria también es un descuento obligatorio para el empleador, no una autorización que tú otorgas. La Dirección del Trabajo precisa que, "una vez requerido por la respectiva organización sindical para efectuar los descuentos de la cuota ordinaria mensual de sus afiliados, el empleador se encuentra obligado a efectuar dichas deducciones" ([DT, ORD. N°4184/70, 2010](https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html)). Avisarle al empleador que renunciaste al sindicato "no resulta suficiente, por sí sola, para dejar sin efecto el descuento de cuotas sindicales", y al empleador no le corresponde cuestionar la afiliación o la desafiliación; esa controversia se resuelve según la ley y los estatutos del sindicato y, si hay conflicto, ante los tribunales ([DT, ORD. N°443/2026](https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html)).
+
+**Crédito social de una caja de compensación (CCAF):** el crédito lo contratas tú, pero una vez otorgado, el descuento por planilla deja de ser un permiso que puedas retirar mes a mes. Según el texto del artículo 22 de la Ley 18.833 que cita la DT, lo adeudado por crédito social "deberá ser deducido de la remuneración por la entidad empleadora afiliada, retenido y remesado a la Caja acreedora, y se regirá por las mismas normas de pago y de cobro que las cotizaciones previsionales". La DT concluye que estos descuentos "son de aquellos obligatorios comprendidos en el inciso 1º del artículo 58" ([DT, ORD. N°262/4, 2012](https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html)). Tu consentimiento es para endeudarte; la retención en la liquidación sigue las reglas de una cotización. Si tienes dudas sobre el saldo o quieres renegociar la deuda, el interlocutor es la caja que otorgó el crédito.
 
 ### Descuentos autorizados — los que dependen de tu consentimiento
 
-Estos no son obligatorios por ley. Existen porque tú los autorizaste — por contrato, por afiliación o por una instrucción escrita. El artículo 58 del Código del Trabajo enumera las categorías que el empleador puede practicar con tu acuerdo: cuotas de dividendo hipotecario, seguros de vida, cuotas sindicales, aportes a fondos de pensiones voluntarios (APV), préstamos de caja de compensación, entre otros.
+Estos no son obligatorios por ley. Existen porque tú los autorizaste por escrito. El artículo 58 del Código del Trabajo permite descontar, con acuerdo escrito entre el empleador y tú, cuotas para adquirir una vivienda, depósitos en una cuenta de ahorro para la vivienda y sumas para la educación tuya, de tu cónyuge, de tu conviviente civil o de tus hijos (inciso 2), y "sumas o porcentajes determinados, destinados a efectuar pagos de cualquier naturaleza" (inciso 3). En la práctica, aquí aparecen cuotas de dividendo hipotecario, seguros, aportes a fondos de pensiones voluntarios (APV) y préstamos del empleador, entre otros.
 
-La distinción que vale la pena tener clara: un descuento de esta categoría puede ser completamente legítimo aunque no sea obligatorio. Lo que lo distingue es que debe tener un respaldo: tu firma en el contrato colectivo, la ficha de afiliación a la caja, el formulario de autorización del APV.
+**La autorización escrita no elimina los topes.** Los límites del artículo 58 se calculan sobre tu remuneración total bruta, sin descontar antes los descuentos obligatorios ([DT, consulta sobre el cálculo del 15%](https://dt.gob.cl/portal/1628/w3-article-60214.html); [DT, ORD. N°3456/37, 2013](https://dt.gob.cl/legislacion/1624/w3-article-102449.html)):
 
-Si aparece un descuento de esta categoría y no recuerdas haberlo autorizado, tienes derecho a pedir el respaldo documental.
+- **15% general.** Las deducciones por pagos de cualquier naturaleza "no podrán exceder del quince por ciento de la remuneración total del trabajador".
+- **Hasta 30% para vivienda o educación.** Si el empleador te otorga un mutuo o crédito sin interés para esos fines, puede descontar hasta el 30% del total de la remuneración mensual, pero solo si paga directamente la cuota a la institución financiera o al servicio educacional.
+- **45% en conjunto.** Cualquiera sea el fundamento de las deducciones, "en ningún caso aquéllas podrán exceder, en conjunto, del 45% de la remuneración total del trabajador". Según la DT, ese 45% rige solo para los descuentos convenidos de los incisos 2 y 3 del artículo 58; la cuota sindical y el crédito de una caja de compensación, que son obligatorios, no cuentan para ese tope ([DT, ORD. N°262/4](https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html)).
+
+Con una remuneración total de $1.000.000, por ejemplo, el tope general es de $150.000 y el tope conjunto de todos los descuentos convenidos es de $450.000. Son límites que se aplican a la vez, no cifras que se suman. Las cooperativas de consumo y de ahorro y crédito tienen una regla adicional que igualmente respeta el 45% ([DT, ORD. N°3456/37](https://dt.gob.cl/legislacion/1624/w3-article-102449.html)).
+
+La distinción que vale la pena tener clara: un descuento de esta categoría puede ser completamente legítimo aunque no sea obligatorio. Lo que lo distingue es que debe tener un respaldo: tu firma en el contrato o en un documento aparte, la solicitud del dividendo o del seguro, el formulario de autorización del APV.
+
+Si aparece un descuento de esta categoría y no recuerdas haberlo autorizado, tienes derecho a pedir el respaldo documental. Con la cuota sindical y el crédito social de una caja de compensación el respaldo es otro: el requerimiento del sindicato o el contrato del crédito.
 
 ### Descuentos prohibidos — lo que el empleador no puede cargar
 
-El artículo 58 también establece un límite claro: el empleador no puede descontar del sueldo pérdidas de caja, deterioro de herramientas, mercadería dañada ni multas arbitrarias que no estén respaldadas en el reglamento interno de la empresa, debidamente registrado en la Dirección del Trabajo.
+El artículo 58 también establece un límite claro: el empleador no puede "deducir, retener o compensar suma alguna que rebaje el monto de las remuneraciones por arriendo de habitación, luz, entrega de agua, uso de herramientas, entrega de medicina, atención médica u otras prestaciones en especie, o por concepto de multas que no estén autorizadas en el reglamento interno de la empresa" (inciso 5, según el texto citado en [DT, ORD. N°2453/187](https://dt.gob.cl/legislacion/1624/w3-article-61767.html)). La Dirección del Trabajo también ha concluido que a los trabajadores que no reciben una asignación de pérdida de caja no se les pueden descontar las pérdidas de dinero ocurridas en el desempeño de sus labores ([DT, ORD. N°4229/2015](https://www.dt.gob.cl/legislacion/1624/w3-article-107035.html)). La diferencia entre una multa y el descuento de un atraso se explica en la sección siguiente.
 
 Tampoco puede retener el sueldo completo como garantía ni practicar descuentos que no tengan respaldo legal o autorización escrita del trabajador. Cualquier descuento que no pertenezca a las categorías anteriores cae en esta zona — y corresponde impugnarlo.
 
+## Atrasos: descuento del tiempo no trabajado frente a multa
+
+Una línea de descuento por atraso puede ser de dos tipos distintos, con reglas distintas.
+
+**Descuento del tiempo no trabajado.** No es una sanción: es no pagar las horas que no se trabajaron. La Dirección del Trabajo concluye que, "si los trabajadores no hubieren laborado la totalidad de la jornada de trabajo pactada, sea a causa de atrasos u otras razones que les sean imputables, entonces el empleador se encuentra facultado para descontar el valor correspondiente al tiempo no laborado, sin perjuicio de lo que las partes pudieren haber convenido sobre el particular" ([DT, ORD. N°1578/2018](https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html); en el mismo sentido, [ORD. N°2423/2017](https://dt.gob.cl/legislacion/1624/w3-article-112152.html)). Eso significa las horas que faltaron para completar la jornada ordinaria acordada. La DT también aclara que llegar con retraso un día no puede identificarse con faltar ese día.
+
+**Multa del reglamento interno.** Es una sanción disciplinaria y solo existe si el reglamento interno de la empresa la contempla. El artículo 154 N°10 del Código del Trabajo permite "amonestación verbal o escrita y multa de hasta el veinticinco por ciento de la remuneración diaria"; el artículo 157 agrega que la multa no puede exceder de la cuarta parte de la remuneración diaria del infractor, que se puede reclamar ante la Inspección del Trabajo y que su producto se destina a fondos de bienestar, no al empleador ([DT, ORD. N°680](https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html)). El artículo 58 prohíbe descontar multas que no estén autorizadas en el reglamento interno.
+
+**Cuando la causa no es tuya.** El descuento del tiempo no laborado supone que el atraso sea imputable al trabajador. Si se debe a hechos ajenos a tu voluntad, por ejemplo cortes de caminos o suspensión del transporte durante un temporal, la DT señala que "un atraso o una inasistencia por el temporal, debidamente justificados, no son una falta del trabajador" y que no fundan sanciones. Lo que ocurre con el pago de ese tiempo depende del caso. Si quedaste a disposición del empleador y no pudiste trabajar, "ese tiempo es jornada pasiva y se paga". Si no prestaste servicios ni permaneciste a disposición y una fuerza mayor lo impidió del todo, la DT indica que "pueden suspenderse temporalmente las obligaciones de trabajar y de remunerar" mientras dure el impedimento, y aclara que un temporal no es por sí solo fuerza mayor: se examina caso a caso. La recuperación de horas es un acuerdo voluntario entre las partes: el empleador no puede imputar por su cuenta la ausencia a tu feriado, a un permiso sin goce de remuneración ni a horas futuras, porque eso requiere tu acuerdo. En todos los casos, "cualquier descuento debe ajustarse estrictamente al artículo 58 del Código del Trabajo" ([DT, ORD. N°2000-44737/2026](https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html)).
+
+## Sobre qué se calcula cada descuento
+
+No es correcto decir que todos los descuentos se calculan sobre el sueldo imponible: cada uno tiene su propia base y su propio tope.
+
+| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                      |
+| ------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF (desde las remuneraciones de febrero de 2026)                              |
+| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                        |
+| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años                        |
+| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII; tramo exento hasta 13,5 UTM                                                 |
+| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación; 45% en conjunto |
+| Cuota sindical y crédito social de una CCAF | Según el requerimiento del sindicato o el crédito contratado                   | Obligatorios: no cuentan para el tope del 45%                                                      |
+
+**Nota (resumen orientativo):** Esta síntesis simplifica la norma para fines informativos. El resultado puede variar según contrato, antigüedad exacta, topes legales y eventuales reclamaciones o interpretación administrativa/judicial. Revisa la fuente oficial o asesórate si es un caso complejo.
+
+Fuentes de la tabla: [Superintendencia de Pensiones, topes imponibles 2026](https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html) (90 UF y 135,2 UF); [AFC](https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/) (11 años); [SII, tabla del impuesto único](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm) y [SII, base del impuesto](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm); [DT, ORD. N°826/2024](https://www.dt.gob.cl/legislacion/1624/w3-article-127125.html) (el artículo 42 N°1 de la Ley de Impuesto a la Renta excluye de la base las cotizaciones obligatorias de previsión y salud); [DT, ORD. N°3456/37](https://dt.gob.cl/legislacion/1624/w3-article-102449.html) y [ORD. N°262/4](https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html) (topes del artículo 58).
+
 ## Cuándo el mismo descuento puede ser legal o no según tu contrato
 
-El tipo de contrato cambia lo que corresponde. Este es el cuadro completo de las variaciones más importantes:
+El tipo de contrato cambia lo que corresponde. Este cuadro resume las variaciones más importantes:
 
-| Descuento                  | Contrato indefinido       | Contrato a plazo fijo / obra |
-| -------------------------- | ------------------------- | ---------------------------- |
-| AFP (10% + comisión)       | Siempre                   | Siempre                      |
-| Salud (7% mínimo)          | Siempre                   | Siempre                      |
-| Cesantía trabajador (0,6%) | Sí                        | No — lo paga el empleador    |
-| Impuesto único             | Si supera el tramo exento | Si supera el tramo exento    |
+| Descuento                  | Contrato indefinido                    | Contrato a plazo fijo / obra |
+| -------------------------- | -------------------------------------- | ---------------------------- |
+| AFP (10% + comisión)       | Siempre                                | Siempre                      |
+| Salud (7% mínimo)          | Siempre                                | Siempre                      |
+| Cesantía trabajador (0,6%) | Sí, hasta 11 años por relación laboral | No — lo paga el empleador    |
+| Impuesto único             | Si supera el tramo exento              | Si supera el tramo exento    |
+
+**Nota (resumen orientativo):** Esta síntesis simplifica la norma para fines informativos. El resultado puede variar según contrato, antigüedad exacta, topes legales y eventuales reclamaciones o interpretación administrativa/judicial. Revisa la fuente oficial o asesórate si es un caso complejo.
 
 Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
 
 ## Cómo leer tu liquidación con este mapa
 
-La liquidación de sueldo tiene habitualmente dos bloques de descuentos. El primero agrupa los descuentos legales — AFP, salud, cesantía, impuesto. El segundo, generalmente llamado "otros descuentos" o similar, agrupa los autorizados.
+La liquidación de sueldo tiene habitualmente dos bloques de descuentos. El primero agrupa los descuentos legales — AFP, salud, cesantía, impuesto. El segundo, generalmente llamado "otros descuentos" o similar, agrupa los autorizados. El bloque en que aparece una línea no define su naturaleza jurídica: la cuota sindical y las cuotas de crédito social de una caja de compensación son descuentos obligatorios aunque figuren en "otros descuentos".
 
 Si ves una línea en el primer bloque que no reconoces, o una cifra que no cuadra con los porcentajes conocidos, el camino es pedir el detalle al área de remuneraciones por escrito, no verbal. La respuesta verbal no deja rastro útil si después hay que escalar.
 
-Si ves algo en el segundo bloque que no autorizaste, pide el documento de respaldo antes de aceptarlo como correcto.
+Si ves algo en el segundo bloque que no reconoces, pide el documento de respaldo antes de aceptarlo como correcto: la autorización escrita, el requerimiento del sindicato o el contrato del crédito de la caja.
 
 Para recalcular el número completo con tus datos, usa una calculadora de sueldo líquido con desglose por AFP, salud y tipo de contrato.
 
 ## Preguntas frecuentes
 
 **¿Puede el empleador descontarme si llegué tarde?**
-Solo si existe una multa por tardanza establecida en el reglamento interno de la empresa, debidamente registrado en la Dirección del Trabajo, y dentro de los topes legales. No puede inventar un descuento arbitrario.
+Depende de qué te descuenten. Si es el valor del tiempo no trabajado, sí puede cuando el atraso es imputable al trabajador: la Dirección del Trabajo lo faculta a descontar el valor correspondiente al tiempo no laborado (ORD. N°1578/2018), es decir, solo las horas que faltaron. Si el atraso se debió a hechos ajenos a tu voluntad y está justificado, como un temporal que corta caminos, la DT no lo considera una falta ni permite sancionarlo, y si quedaste a disposición del empleador sin poder trabajar, ese tiempo se paga (ORD. N°2000-44737/2026). Si en cambio es una multa, solo vale si el reglamento interno de la empresa la contempla y dentro de los topes legales (hasta el 25% de la remuneración diaria). No puede inventar un descuento arbitrario.
+
+**¿La cuota sindical es un descuento voluntario?**
+No. Si estás afiliado y el sindicato lo requiere, el empleador está obligado a descontar la cuota ordinaria y enterarla a la organización (DT, ORD. N°4184/70). Avisarle al empleador que renunciaste al sindicato no basta por sí solo para detener el descuento (ORD. N°443/2026); esa discusión se resuelve con el sindicato o ante los tribunales.
 
 **¿El descuento por crédito de la caja de compensación es obligatorio?**
-No. Es un descuento autorizado — lo tienes porque solicitaste el crédito y firmaste los documentos. Si lo pagas, aparece en la liquidación porque lo pediste.
+Sí, en las condiciones que fija la ley, una vez que el crédito está otorgado. Lo tienes porque solicitaste el crédito y firmaste los documentos, pero lo adeudado a una caja de compensación se deduce de la remuneración, se retiene y se remesa a la caja con las mismas normas de pago y de cobro que las cotizaciones previsionales (artículo 22 de la Ley 18.833; DT, ORD. N°262/4). Si tienes dudas sobre el saldo o quieres renegociar, el interlocutor es la caja.
 
 **¿Puede el empleador retener el sueldo si tengo una deuda con la empresa?**
-No puede retener el sueldo completo. Solo puede descontar lo que específicamente autoriza la ley o lo que tú hayas autorizado por escrito, dentro de los límites del artículo 58.
+No puede retener el sueldo completo. Solo puede descontar lo que específicamente autoriza la ley o lo que tú hayas autorizado por escrito, dentro de los límites del artículo 58 (15% en general y 45% en conjunto para los descuentos convenidos).
 
 **¿La cotización adicional del empleador por la reforma previsional me baja el líquido?**
 No. Ese aporte es cargo exclusivo del empleador sobre el costo total de tu contrato. No se descuenta de tu remuneración ni debe aparecer como descuento en tu liquidación.
@@ -148,5 +208,5 @@ No se descuenta — es un beneficio adicional al que tienes derecho si la empres
 
 ## Información de vigencia
 
-- Revisado el: 2026-10-19.
-- Puede quedar desactualizado cuando: cambie la tabla mensual del SII, las comisiones de AFP o las reglas de descuentos del Código del Trabajo.
+- Revisado el: 2026-10-20.
+- Puede quedar desactualizado cuando: cambie la tabla mensual del SII, las comisiones de AFP, los topes imponibles de la Superintendencia de Pensiones y de la AFC, las reglas de descuentos del Código del Trabajo o los criterios de la Dirección del Trabajo.

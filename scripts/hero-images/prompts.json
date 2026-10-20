@@ -211,13 +211,13 @@
       "targetImagePath": "/images/hero/como-calcular-sueldo-liquido.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "40f4979bf3b81491f19163c04552cd49681580b44b095df1ac340be78707bd3b",
-      "briefHash": "b22699bd37432bba4ae14c689f8373c2f57209d7df1f1673d1aea35527ecd8da",
+      "sourceContentHash": "c582a6628232c3b0ff0f9bdac06c3f9117cc43f41c7a8a6e8eefe82ccdfe219a",
+      "briefHash": "747df5eaa88d25ab2a2ec435ddee3da60d92028677caa64b9c7af30001ce224e",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -811,13 +811,13 @@
       "targetImagePath": "/images/hero/descuentos-de-sueldo.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "c104c7b7ab631e257fd93f3cf85382ecf32bbc2f694ecf22a552a324504583cf",
-      "briefHash": "646075f4d4c6763ee8e3772a2d4b02b50c0fbe36d738840d0bc3d9d9537787b3",
+      "sourceContentHash": "6f8dab228cf34f397ed81fefa083fc1d121998975505d09f16c7fc106588eb42",
+      "briefHash": "3a5d42aa8736f90798e641e8a0f08df57bab821296f22a9a6e16a7d62e1fad89",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-19",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
+        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1711,13 +1711,13 @@
       "targetImagePath": "/images/hero/liquidacion-de-sueldo.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6e7746cc84d64be5351f43c86e85a4bdb33ee6266a5027eb0969035f759184fa",
-      "briefHash": "bee90375a776b2bb731e2467336f3db8f46bc9404b1dfab75c6f2a958cbca3ad",
+      "sourceContentHash": "69b6f829d422d906b9649d1b0f927d7b03784e97c43ffb513659b86bf8934e20",
+      "briefHash": "987b9561ed9cbe14b96ba1efd2c368e86d8f29d763afa54d53e87e7c8723bbc3",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-19",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696."
+        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1963,13 +1963,13 @@
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "54a05c77220afe7d63cd334c8a3caa507c8d1657c2aac9a482a20e8b058a0ef9",
-      "briefHash": "5747d21eaa982f5c14264fe8992b08461e8954534f1efb0eb05e338be686b0de",
+      "sourceContentHash": "843abfb5e0ca642399f2f405de39542a9725e01b43c37f5a1cb9cb5aba84b441",
+      "briefHash": "3c50e098394a3737dea8eef857d46501fbce9d871c13856e9b1167e843e0e124",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Scoped preservation edit authorized for the existing illustration: extend background only; original reference retained with its content hash. No financial claim change."
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Scoped preservation edit authorized for the existing illustration: extend background only; original reference retained with its content hash. No financial claim change. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",

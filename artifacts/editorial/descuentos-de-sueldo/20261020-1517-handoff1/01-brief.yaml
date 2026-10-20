@@ -1,0 +1,28 @@
+slug: descuentos-de-sueldo
+query_anchor: "descuentos de sueldo en Chile legales voluntarios prohibidos"
+ymyl: true
+requires_calculation: true
+regulatory_sensitivity: alta
+target_audience: "Trabajador dependiente en Chile que revisa su liquidación y duda si una línea de descuento (cuota sindical, crédito de una caja de compensación, atraso, base de cálculo) es obligatoria, voluntaria o improcedente."
+cut_off_date: 2026-10-20
+origin: "docs/backlog/PLAN-handoff-descuentos-sueldo-2026-10-20.md (hallazgos F01-F08) sobre el informe externo 2026-10-19-0200-descuentos-de-sueldo.md, calibración CAL-04. Los hallazgos se trataron como leads: cada uno se verificó contra la fuente primaria (ver 02-dossier.md)."
+remediation_type: sustantiva
+scope:
+  in:
+    - "F01-F05 (P1) y F06-F08 (P2) en src/data/blog/descuentos-de-sueldo.md."
+    - "Metadatos: articleLead (officialSources, covers, validAsOf), volatileData (topes 90 UF y 135,2 UF), updatedDate y 'Revisado el'."
+    - "Recurrencias de F02/F03 en contenido relacionado: primer-empleo-chile-guia-completa, como-calcular-sueldo-liquido y src/data/laws/codigo-del-trabajo.md."
+    - "Entrada nueva en src/data/correcciones.json y guarda de regresión tests/static-analysis/descuentos-clasificacion-guard.test.ts."
+  out:
+    - "No se cambia slug, URL, canonical, title, seoTitle, description ni topicRole."
+    - "No se crean URLs nuevas ni se tocan #652, #536 ni el experimento IPC."
+    - "No se toca seguro-de-cesantia ni liquidacion-de-sueldo (recurrencias del 0,6% AFC y del 'exactamente 7%'): pasan a la causa AFC."
+    - "No se genera 05-math-audit.md ni 06-compliance.md ni se marca ningún gate en 07-publish-packet.md (separación de funciones)."
+benchmarkSet:
+  - "N/A — corrección de conformidad sobre pieza ya publicada, sin benchmark externo."
+patternHypothesis: "N/A"
+localDelta: "N/A — no es adaptación competitiva; el delta es la corrección de la clasificación jurídica (cuota sindical y CCAF obligatorias), la distinción atraso/multa y la tabla de bases y topes."
+nonCopyBoundaries:
+  - "N/A"
+ownerTarget: "descuentos-de-sueldo sigue siendo owner de canonicalTopic: clasificacion-descuentos-sueldo (cluster sueldo-remuneraciones); no cambia."
+successSignal: "Un lector que revisa una cuota sindical, un crédito de caja de compensación o un descuento por atraso entiende en la primera lectura si es obligatorio, voluntario o improcedente, con la cita de la DT, y sabe sobre qué base y con qué tope se calcula cada descuento."
