@@ -1,6 +1,6 @@
 # PLAN — Reconciliación de auditorías externas (2026-10-20)
 
-**Estado:** EN CURSO — paso 0 ejecutado; calibración 12/15 (11 confirmados + 1 conflicto; 3 fuentes bloqueadas).
+**Estado:** EN CURSO — paso 0 ejecutado; calibración 15/15 (14 confirmados + 1 conflicto).
 **Origen:** 46 informes adversariales externos depositados en la carpeta
 `Monedario-Audit-Inbox` de Google Drive.
 **Autoridad:** Constitución > `AGENTS.md` > `context/` > código.

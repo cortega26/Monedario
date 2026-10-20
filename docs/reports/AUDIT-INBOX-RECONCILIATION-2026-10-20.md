@@ -1,6 +1,6 @@
 # AUDIT-INBOX — Reconciliación y manifiesto (2026-10-20)
 
-**Estado:** paso 0 completado; calibración 12/15 (11 confirmados + 1 conflicto; 3 fuentes bloqueadas).
+**Estado:** paso 0 completado; calibración 15/15 (14 confirmados + 1 conflicto).
 **Fuente:** carpeta externa `Monedario-Audit-Inbox` (Google Drive).
 **Plan:** `docs/backlog/PLAN-audit-inbox-reconciliation-2026-10-20.md`.
 **Manifiesto:** `docs/reports/AUDIT-INBOX-MANIFEST-2026-10-20.csv`.
@@ -123,16 +123,16 @@ La hoja de trabajo contiene la afirmación, la fuente primaria propuesta y las
 columnas de verificación. No se completa con una segunda pasada del mismo
 auditor: se completa con fuente y recálculo.
 
-**Primer lote (12/15):** CAL-01 a CAL-07 y CAL-10 a CAL-14 quedaron
-**verificados** con fuente oficial o secundaria identificada (11 errores
-confirmados + 1 conflicto normativo): AFC 10/5, DT seis
-meses, DT cuota sindical obligatoria, SII 30 UTM, Ley 20.009 vs SERNAC, CC art.
-1956, AFC 0,6% con excepción de 11 años, SP 600 UF anuales, SP SIS 1,78%,
-Superdesalud CAEC y DT DICOM. Quedan 3 pendientes: UF, Nasdaq y CCS.
+**Muestra completa (15/15):** CAL-01 a CAL-15 quedaron **verificados** con
+fuente oficial o secundaria identificada (14 errores confirmados + 1 conflicto
+normativo): AFC 10/5, DT seis meses, DT cuota sindical obligatoria, SII 30 UTM,
+Ley 20.009 vs SERNAC, CC art. 1956, AFC 0,6% con excepción de 11 años, SP 600
+UF anuales, SP SIS 1,78%, Superdesalud CAEC, DT DICOM, BCCh UF, Nasdaq XNDX
++21,02% y CCS/SERNAC para cheques y letras.
 
 ### 6.1 Causas candidatas y orden propuesto
 
-Con 12/12 hallazgos verificados (11 errores confirmados y 1 conflicto), el corpus no parece ruido. El
+Con 15/15 hallazgos verificados (14 errores confirmados y 1 conflicto), el corpus no parece ruido. El
 orden propuesto respeta el WIP máximo de 2 causas:
 
 1. **`descuentos-de-sueldo`** — 5 P1 confirmados en una sola página, fuentes DT
