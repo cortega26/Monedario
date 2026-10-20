@@ -162,10 +162,10 @@
       "plan": "PLAN-growth-utm-ctr-2026-09-16.md"
     },
     {
-      "id": "w42-export",
+      "id": "gate-d-w42",
       "date": "2026-10-19",
-      "title": "Export W42 + ritual semanal + Gate D W42",
-      "detail": "Bundle W42 + inputs de Gate D.",
+      "title": "Gate D W42 (inputs owner)",
+      "detail": "Export/ritual W42 completado y #689 cerrado. Faltan weeklyHours, weeklyCostClp y burnoutLevel1To5 en output/operations/weekly-search-performance/2026-W42/utility-led-ops.json.",
       "owner": "carlos",
       "plan": "backlog #2"
     },
