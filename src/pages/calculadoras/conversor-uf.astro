@@ -71,6 +71,19 @@ const calculatorNextStepItems = [
 // fechadas; la página se regenera cuando el snapshot se actualiza.
 const ufToClp = (ufAmount: number) =>
   "$" + Math.round(ufAmount * economicParameters.uf).toLocaleString("es-CL");
+const ufTitle = `Valor UF hoy: $${ufDisplay} — Convertir UF a pesos | Monedario`;
+const ufDescription = `Valor UF hoy: $${ufDisplay} (${ufDateDisplay}). Convierte 1, 10, 50, 100, 500, 600 o 1.000 UF a pesos chilenos al valor oficial del Banco Central, con tabla de referencia.`;
+const ufRefs = [
+  { label: "1 UF", uf: 1 },
+  { label: "10 UF", uf: 10 },
+  { label: "50 UF (tope Ley fraude)", uf: 50 },
+  { label: "80 UF (mínimo Superir)", uf: 80 },
+  { label: "100 UF", uf: 100 },
+  { label: "500 UF", uf: 500 },
+  { label: "600 UF (tope APV anual)", uf: 600 },
+  { label: "1.000 UF", uf: 1000 },
+  { label: "2.000 UF (precio aprox. depto. chico)", uf: 2000 },
+];
 const ufFaqs = [
   {
     question: "¿Cuánto es 1.000 UF en pesos chilenos?",
@@ -89,16 +102,25 @@ const ufFaqs = [
     answer:
       "La UF se reajusta a diario repartiendo la inflación (IPC) del mes anterior en incrementos diarios. Por eso sube de forma gradual cuando hay inflación positiva y se mantiene o baja levemente cuando el IPC es negativo.",
   },
+  {
+    question: "¿Cuánto es 10 UF en pesos chilenos?",
+    answer: `Al ${ufDateDisplay}, 10 UF equivalen a ${ufToClp(10)} (UF = $${ufDisplay}). Para cualquier otro monto, multiplica la cantidad de UF por el valor vigente del día o usa el conversor de arriba.`,
+  },
+  {
+    question: "¿Cuánto es 600 UF en pesos chilenos?",
+    answer: `Al ${ufDateDisplay}, 600 UF equivalen a ${ufToClp(600)}. El valor de la UF cambia a diario; confirma la fecha de vigencia antes de usarlo en un contrato, un arriendo o un aporte APV.`,
+  },
+  {
+    question: "¿Cuánto es 100 UF en pesos chilenos?",
+    answer: `Al ${ufDateDisplay}, 100 UF equivalen a ${ufToClp(100)}. La tabla de referencia de esta página muestra también 1, 10, 50, 500, 1.000 y 2.000 UF con el mismo valor oficial.`,
+  },
 ];
 ---
 
-<Layout
-  title="Conversor UF a Pesos Chilenos: valor oficial de hoy | Monedario"
-  description="Convierte cualquier monto en UF a pesos chilenos al valor oficial del Banco Central de hoy: 500 UF, 1.000 UF o el que necesites. Con tabla de referencia para arriendos y créditos."
->
+<Layout title={ufTitle} description={ufDescription}>
   <CalculatorJsonLd
     name="Conversor UF a Pesos Chilenos"
-    description="Convierte cualquier monto en UF a pesos chilenos al valor oficial del Banco Central de hoy: 500 UF, 1.000 UF o el que necesites. Con tabla de referencia para arriendos y créditos."
+    description={ufDescription}
     faqs={ufFaqs}
     dateModified={ufLastUpdated}
   />
@@ -197,10 +219,43 @@ const ufFaqs = [
 
         <!-- TABLA DE REFERENCIA RÁPIDA -->
         <div class="rounded-xl border border-border p-6">
-          <h2 class="mb-4 text-base font-semibold">
-            Valores de referencia rápidos
+          <h2 class="mb-2 text-base font-semibold">
+            Valor UF hoy y conversión a pesos
           </h2>
-          <div id="tabla-ref" class="space-y-2 text-sm"></div>
+          <p class="mb-3 text-sm text-secondary">
+            Al {ufDateDisplay}, 1 UF = ${ufDisplay}; 10 UF = {ufToClp(10)}; 600
+            UF = {ufToClp(600)}.
+          </p>
+          <table class="w-full text-sm">
+            <caption class="sr-only">
+              Conversión de UF a pesos chilenos al{ufDateDisplay}
+            </caption>
+            <thead>
+              <tr class="border-b border-border">
+                <th scope="col" class="py-1.5 text-left font-medium">
+                  Monto en UF
+                </th>
+                <th scope="col" class="py-1.5 text-right font-medium">
+                  Equivalente en CLP
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {ufRefs.map(reference => (
+                <tr class="border-b border-border last:border-0">
+                  <th
+                    scope="row"
+                    class="py-1.5 text-left font-normal text-secondary"
+                  >
+                    {reference.label}
+                  </th>
+                  <td class="py-1.5 text-right font-mono font-semibold">
+                    {ufToClp(reference.uf)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <CalculatorDataFreshness
             source={economicParameters.source}
             updatedDate={ufDateDisplay}
@@ -478,38 +533,6 @@ const ufFaqs = [
       : "";
     ufInput.dispatchEvent(new Event("input"));
   });
-
-  // Tabla de referencia
-  const refs = [
-    { label: "1 UF", uf: 1 },
-    { label: "10 UF", uf: 10 },
-    { label: "50 UF (tope Ley fraude)", uf: 50 },
-    { label: "80 UF (mínimo Superir)", uf: 80 },
-    { label: "100 UF", uf: 100 },
-    { label: "500 UF", uf: 500 },
-    { label: "600 UF (tope APV anual)", uf: 600 },
-    { label: "1.000 UF", uf: 1000 },
-    { label: "2 mil UF (precio aprox. depto. chico)", uf: 2_000 },
-  ];
-
-  const tablaEl = document.getElementById("tabla-ref")!;
-  const tableRows = refs.map(reference => {
-    const row = document.createElement("div");
-    row.className =
-      "flex justify-between border-b border-border py-1.5 last:border-0";
-
-    const label = document.createElement("span");
-    label.className = "text-secondary";
-    label.textContent = reference.label;
-
-    const value = document.createElement("span");
-    value.className = "font-mono font-semibold";
-    value.textContent = fmt(reference.uf * economicContext.uf);
-
-    row.append(label, value);
-    return row;
-  });
-  tablaEl.replaceChildren(...tableRows);
 
   // Rango del dataset (inyectado en SSR vía min/max del input); el valor
   // por fecha se resuelve contra el endpoint de rango, un fetch por candidata.

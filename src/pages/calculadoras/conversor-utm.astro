@@ -67,8 +67,21 @@ const utmDisplay = economicParameters.utm.toLocaleString("es-CL", {
 });
 const utmDateDisplay = formatEconomicDate(utmLastUpdated);
 
-const conversorUtmTitle = `UTM hoy: $${utmDisplay} — Convierte UTM a pesos | Monedario`;
-const conversorUtmDescription = `Valor de la UTM hoy: $${utmDisplay}. Convierte cualquier cantidad de UTM a pesos chilenos y consulta valores históricos actualizados.`;
+const utmToClp = (utmAmount: number) =>
+  "$" + Math.round(utmAmount * economicParameters.utm).toLocaleString("es-CL");
+const conversorUtmTitle = `Valor UTM hoy: $${utmDisplay} — Convertir UTM a pesos | Monedario`;
+const conversorUtmDescription = `Valor UTM hoy: $${utmDisplay} (${utmDateDisplay}). Convierte 1, 2, 5, 10, 20, 50 o 100 UTM a pesos chilenos al valor oficial del SII, con tabla de referencia.`;
+const utmRefs = [
+  { label: "1 UTM", utm: 1 },
+  { label: "2 UTM (multa de tránsito común)", utm: 2 },
+  { label: "5 UTM", utm: 5 },
+  { label: "10 UTM", utm: 10 },
+  { label: "13,5 UTM (tope exención 2ª categoría)", utm: 13.5 },
+  { label: "20 UTM", utm: 20 },
+  { label: "30 UTM (tope 2º tramo 4%)", utm: 30 },
+  { label: "50 UTM (tope 3er tramo 8%)", utm: 50 },
+  { label: "100 UTM", utm: 100 },
+];
 
 const utaDisplay = economicParameters.uta
   ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
@@ -129,13 +142,21 @@ const conversorUtmFaqs = [
     answer:
       "La UTM (Unidad Tributaria Mensual) se usa para multas, impuestos y trámites, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
   },
+  {
+    question: "¿Cuánto es 10 UTM en pesos chilenos?",
+    answer: `Al ${utmDateDisplay}, 10 UTM equivalen a ${utmToClp(10)} (UTM = $${utmDisplay}). Para cualquier otro monto, multiplica la cantidad de UTM por el valor vigente del mes o usa el conversor de arriba.`,
+  },
+  {
+    question: "¿Cuánto es 100 UTM en pesos chilenos?",
+    answer: `Al ${utmDateDisplay}, 100 UTM equivalen a ${utmToClp(100)}. La tabla de referencia de esta página muestra también 1, 2, 5, 20, 30, 50 y 13,5 UTM con el mismo valor oficial del SII.`,
+  },
 ];
 ---
 
 <Layout title={conversorUtmTitle} description={conversorUtmDescription}>
   <CalculatorJsonLd
     name="Conversor UTM a Pesos Chilenos"
-    description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
+    description={conversorUtmDescription}
     faqs={conversorUtmFaqs}
     dateModified={utmLastUpdated}
   />
@@ -251,10 +272,43 @@ const conversorUtmFaqs = [
 
         <!-- TABLA DE REFERENCIA RÁPIDA -->
         <div class="rounded-xl border border-border p-6">
-          <h2 class="mb-4 text-base font-semibold">
-            Valores de referencia rápidos
+          <h2 class="mb-2 text-base font-semibold">
+            Valor UTM hoy y conversión a pesos
           </h2>
-          <div id="tabla-ref" class="space-y-2 text-sm"></div>
+          <p class="mb-3 text-sm text-secondary">
+            Al {utmDateDisplay}, 1 UTM = ${utmDisplay}; 10 UTM = {utmToClp(10)};
+            100 UTM = {utmToClp(100)}.
+          </p>
+          <table class="w-full text-sm">
+            <caption class="sr-only">
+              Conversión de UTM a pesos chilenos al{utmDateDisplay}
+            </caption>
+            <thead>
+              <tr class="border-b border-border">
+                <th scope="col" class="py-1.5 text-left font-medium">
+                  Monto en UTM
+                </th>
+                <th scope="col" class="py-1.5 text-right font-medium">
+                  Equivalente en CLP
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {utmRefs.map(reference => (
+                <tr class="border-b border-border last:border-0">
+                  <th
+                    scope="row"
+                    class="py-1.5 text-left font-normal text-secondary"
+                  >
+                    {reference.label}
+                  </th>
+                  <td class="py-1.5 text-right font-mono font-semibold">
+                    {utmToClp(reference.utm)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <CalculatorDataFreshness
             source={economicParameters.source}
             updatedDate={utmDateDisplay}
@@ -511,36 +565,4 @@ const conversorUtmFaqs = [
 
     resultado.classList.add("hidden");
   });
-
-  // Tabla de referencia
-  const refs = [
-    { label: "1 UTM", utm: 1 },
-    { label: "2 UTM (multa de tránsito común)", utm: 2 },
-    { label: "5 UTM", utm: 5 },
-    { label: "10 UTM", utm: 10 },
-    { label: "13,5 UTM (tope exención 2ª categoría)", utm: 13.5 },
-    { label: "20 UTM", utm: 20 },
-    { label: "30 UTM (tope 2º tramo 4%)", utm: 30 },
-    { label: "50 UTM (tope 3er tramo 8%)", utm: 50 },
-    { label: "100 UTM", utm: 100 },
-  ];
-
-  const tablaEl = document.getElementById("tabla-ref")!;
-  const tableRows = refs.map(reference => {
-    const row = document.createElement("div");
-    row.className =
-      "flex justify-between border-b border-border py-1.5 last:border-0";
-
-    const label = document.createElement("span");
-    label.className = "text-secondary";
-    label.textContent = reference.label;
-
-    const value = document.createElement("span");
-    value.className = "font-mono font-semibold";
-    value.textContent = fmt(reference.utm * economicContext.utm);
-
-    row.append(label, value);
-    return row;
-  });
-  tablaEl.replaceChildren(...tableRows);
 </script>
