@@ -1,18 +1,27 @@
 # HANDOFF — Auditoría independiente de la portada data-render de interés compuesto
 
-**Estado:** DEL EGADO a la sesión abierta de ChatGPT (opción 2).
-**No modificar la imagen ni el registro en este repositorio hasta recibir el veredicto.**
+**Estado:** FAIL — candidato data-render de siete hitos integrado; pendiente firma humana.
+**No publicar la nueva portada sin revisión y firma humana.**
 **Artículo:** `src/data/blog/interes-compuesto-nota-metodologica.md`
 **Portada actual:** `public/images/hero/interes-compuesto-nota-metodologica.avif`
 **Assets de delivery:** `public/images/editorial/interes-compuesto-nota-metodologica/`
 
+## Resultado de la auditoría independiente (2026-10-20)
+
+- **Veredicto:** FAIL de la portada original. El callout mostraba USD 104.018 / ≈CLP 100,9 millones (cifra anterior al ajuste 2026-03-07), el punto final no representaba el cierre corregido, el eje no cubría USD 129.495 y la etiqueta “Total Return” no estaba respaldada por una serie XNDX.
+- **Candidato integrado:** gráfico de siete hitos documentados (1995–2025), sin interpolación mensual, con 408 meses con aporte / 24 lagunas como agregado, resultado USD 129.495 / ≈CLP 118,0 millones, eje hasta USD 160.000 y etiqueta price return.
+- **Evidencia:** https://chatgpt.com/share/6ad6dee3-71d8-83e9-8bf7-6ec818019014
+- **Límite:** el candidato está verificado contra los siete checkpoints de la tabla accesible, pero no equivale a una simulación mensual auditada. Requiere firma humana antes de publicarse.
+
 ## Por qué es una excepción
 
-Es la única de las 54 portadas sin entrada en `scripts/hero-images/asset-reviews.json`.
-El brief exige `generationMethod: data-render` y prohíbe Imagegen. La imagen debe
-ser un gráfico reproducible derivado de la serie verificada, no una ilustración.
-El `PLAN-renovacion-visual-editorial-2026-09-29.md` la deja explícitamente en
-espera de auditoría independiente (53/54 aceptadas).
+Era la única de las 54 portadas sin entrada en `scripts/hero-images/asset-reviews.json`.
+La auditoría independiente del 2026-10-20 cerró esa excepción: la nueva portada
+usa siete hitos documentados y queda pendiente de firma humana. El brief exige
+`generationMethod: data-render` y prohíbe Imagegen; la imagen debe ser un gráfico
+reproducible derivado de la tabla verificada, no una ilustración.
+El `PLAN-renovacion-visual-editorial-2026-09-29.md` la dejaba en espera de
+auditoría independiente (53/54 aceptadas).
 
 ## Contexto del artículo
 

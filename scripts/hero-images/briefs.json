@@ -900,30 +900,32 @@
     },
     {
       "slug": "interes-compuesto-nota-metodologica",
-      "readerNeed": "Inspeccionar supuestos y datos del ejercicio histórico de interés compuesto.",
-      "editorialPromise": "Exponer una simulación reproducible con fuentes, período y limitaciones.",
-      "visualMessage": "Los resultados se explican desde datos verificables y sus supuestos.",
-      "scene": "Production note only: render this methodological cover with the reproducible data-chart script, not an image generator. Use the verified simulation series, clear axes, a date of data cutoff and separate contribution and portfolio series. Labels and values must come directly from the same dataset used for the accessible table.",
+      "readerNeed": "Inspeccionar los hitos verificables y los límites del ejercicio histórico de interés compuesto.",
+      "editorialPromise": "Exponer los siete hitos documentados del ejercicio y sus límites, sin inventar una trayectoria mensual.",
+      "visualMessage": "El resultado se explica desde siete checkpoints documentados; la curva mensual no es reconstruible.",
+      "scene": "Production note only: render this methodological cover with a reproducible data-chart script, not an image generator. Show the seven documented checkpoints from 1995 to 2025 as separate bars: 770, 4.702, 4.537, 8.124, 20.258, 62.846 and 129.495 USD. Do not interpolate or draw a monthly curve. Use the accessible table as the sole data source. Include the aggregate contributions: 408 months with contributions and 24 gaps, and state that the gap distribution is unknown. Label the series as NDX price return, state the 2025-12-31 cutoff and the 911,18 CLP/USD conversion. The final bar is USD 129.495 / approximately CLP 118,0 million; the y-axis must reach USD 160.000. Do not use the Total Return label unless an XNDX series is documented.",
       "requiredElements": [
-        "Serie y aportes desde datos",
-        "Fecha de corte",
-        "Descripción y tabla accesibles"
+        "Siete hitos 1995–2025",
+        "408 meses con aporte / 24 lagunas",
+        "Resultado final USD 129.495 / CLP 118,0M",
+        "Etiqueta price return y corte 2025-12-31"
       ],
       "avoidInterpretations": [
-        "Una imagen generativa es evidencia numérica",
-        "Resultados proyectados como promesa",
-        "Cambiar una etiqueta sin reconciliar la serie"
+        "Curva mensual interpolada",
+        "Total Return sin serie XNDX",
+        "Cifra anterior USD 104.018",
+        "Datos de crisis no comprobables"
       ],
       "alt": "",
-      "sourceContentHash": "b23e21cccb48f77324a5947439d18b53eddb7b0deaddc342e25f751eb1e57ccd",
+      "sourceContentHash": "3664bc5e776591ff7e86dd7a58c21d4572736d2170cd1da25d58020d3f01504f",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "C",
       "generationMethod": "data-render",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Brief revised after the independent data-render audit: seven documented checkpoints, no monthly interpolation, price-return label and final result verified against the accessible table. Not an Imagegen cover."
       }
     },
     {

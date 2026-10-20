@@ -1091,36 +1091,36 @@
       }
     },
     "interes-compuesto-nota-metodologica": {
-      "sourcePath": "public/images/hero/interes-compuesto-nota-metodologica.avif",
-      "sourceHash": "b0072e8e73c3b4e46acc57216ac149813adf8a3e52227e428a9f2ac998bd5580",
+      "sourcePath": "scripts/hero-images/sources/interes-compuesto-nota-metodologica.webp",
+      "sourceHash": "24b999ebd60bb2dded09fc7ff498b4cbfda0e867fda58fce8afeca856f82cd7c",
       "assets": {
         "hero": {
-          "src": "/images/editorial/interes-compuesto-nota-metodologica/b0072e8e73c3b4e46acc57216ac149813adf8a3e52227e428a9f2ac998bd5580.avif",
-          "hash": "b0072e8e73c3b4e46acc57216ac149813adf8a3e52227e428a9f2ac998bd5580",
+          "src": "/images/editorial/interes-compuesto-nota-metodologica/8936c58c8b7fcabad3f1be7c37dfb1f0ebda1d84e27a50941b4881f4aaa097d6.avif",
+          "hash": "8936c58c8b7fcabad3f1be7c37dfb1f0ebda1d84e27a50941b4881f4aaa097d6",
           "width": 1200,
           "height": 630,
-          "bytes": 19157
+          "bytes": 25518
         },
         "tablet": {
-          "src": "/images/editorial/interes-compuesto-nota-metodologica/5d503164dd35d89e30b65e005f28783b701f147f9027f81a530f756a14ea3c9b.avif",
-          "hash": "5d503164dd35d89e30b65e005f28783b701f147f9027f81a530f756a14ea3c9b",
+          "src": "/images/editorial/interes-compuesto-nota-metodologica/ef50e6d08a78300a2a0932b75e73a976f8d376695ad5fc3cb133bc7dbf58a7e9.avif",
+          "hash": "ef50e6d08a78300a2a0932b75e73a976f8d376695ad5fc3cb133bc7dbf58a7e9",
           "width": 800,
           "height": 420,
-          "bytes": 13724
+          "bytes": 17175
         },
         "mobile": {
-          "src": "/images/editorial/interes-compuesto-nota-metodologica/ead073799680020a7b5e36b6d620f450ae06c953fa1a94bdc6d60af735de0c77.avif",
-          "hash": "ead073799680020a7b5e36b6d620f450ae06c953fa1a94bdc6d60af735de0c77",
+          "src": "/images/editorial/interes-compuesto-nota-metodologica/6206ea365d2ce7b8350c795fd1ffb0ccb9bb28f5e9fe6692d7bb73efd736329b.avif",
+          "hash": "6206ea365d2ce7b8350c795fd1ffb0ccb9bb28f5e9fe6692d7bb73efd736329b",
           "width": 600,
           "height": 315,
-          "bytes": 8895
+          "bytes": 11152
         },
         "og": {
-          "src": "/images/editorial/interes-compuesto-nota-metodologica/3fcf3c12fb284d75de8d004c2ebcd3f80df6e7ad580c14e7f6c1fdd11dc88b65.jpg",
-          "hash": "3fcf3c12fb284d75de8d004c2ebcd3f80df6e7ad580c14e7f6c1fdd11dc88b65",
+          "src": "/images/editorial/interes-compuesto-nota-metodologica/b9574cab57e2887c412f7153edf57baf2ecf69ec5c9f68f8ab4be372a13556f4.jpg",
+          "hash": "b9574cab57e2887c412f7153edf57baf2ecf69ec5c9f68f8ab4be372a13556f4",
           "width": 1200,
           "height": 630,
-          "bytes": 48378
+          "bytes": 67611
         }
       }
     },

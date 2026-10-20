@@ -1821,6 +1821,41 @@
         "method": "Built-in imagegen; inspection of image against the reviewed article brief and at 300 px. Not a YMYL compliance or human publication signoff.",
         "note": "Situación y gesto concuerdan con el brief; imagen legible en miniatura y sin texto/datos fabricados ni promesas financieras engañosas."
       }
+    },
+    "interes-compuesto-nota-metodologica": {
+      "slug": "interes-compuesto-nota-metodologica",
+      "styleVersion": "monedario-editorial-v5",
+      "sourceContentHash": "3664bc5e776591ff7e86dd7a58c21d4572736d2170cd1da25d58020d3f01504f",
+      "prompt": "Production note only: render this methodological cover with a reproducible data-chart script, not an image generator. Show the seven documented checkpoints from 1995 to 2025 as separate bars: 770, 4.702, 4.537, 8.124, 20.258, 62.846 and 129.495 USD. Do not interpolate or draw a monthly curve. Use the accessible table as the sole data source. Include the aggregate contributions: 408 months with contributions and 24 gaps, and state that the gap distribution is unknown. Label the series as NDX price return, state the 2025-12-31 cutoff and the 911,18 CLP/USD conversion. The final bar is USD 129.495 / approximately CLP 118,0 million; the y-axis must reach USD 160.000. Do not use the Total Return label unless an XNDX series is documented.",
+      "promptHash": "730f6113a9a7847fc99a614bd57402b95ad547ca78535fd86a10bc3b747fe23f",
+      "source": {
+        "path": "scripts/hero-images/sources/interes-compuesto-nota-metodologica.webp",
+        "hash": "24b999ebd60bb2dded09fc7ff498b4cbfda0e867fda58fce8afeca856f82cd7c"
+      },
+      "asset": {
+        "path": "public/images/hero/interes-compuesto-nota-metodologica.avif",
+        "hash": "8936c58c8b7fcabad3f1be7c37dfb1f0ebda1d84e27a50941b4881f4aaa097d6"
+      },
+      "preparation": {
+        "width": 1200,
+        "height": 630,
+        "fit": "cover",
+        "position": "centre",
+        "sourceEncoding": "lossless-webp"
+      },
+      "review": {
+        "status": "accepted",
+        "reviewedAt": "2026-10-20",
+        "reviewedBy": "chatgpt/data-render-review",
+        "method": "Data-render verification against the seven published checkpoints and the accessible table; no Imagegen; no monthly interpolation.",
+        "note": "Sustituye la portada FAIL que mostraba USD 104.018 / ≈CLP 100,9M. El nuevo gráfico usa siete hitos documentados (1995–2025), 408 meses con aporte / 24 lagunas como agregado, resultado USD 129.495 / ≈CLP 118,0M, eje hasta USD 160.000 y etiqueta price return. Auditoría independiente: https://chatgpt.com/share/6ad6dee3-71d8-83e9-8bf7-6ec818019014 (2026-10-20). Candidate pending human publication sign-off."
+      },
+      "generation": {
+        "method": "data-render",
+        "tool": "chatgpt/data-render",
+        "audit": "https://chatgpt.com/share/6ad6dee3-71d8-83e9-8bf7-6ec818019014",
+        "auditedAt": "2026-10-20"
+      }
     }
   },
   "history": [
