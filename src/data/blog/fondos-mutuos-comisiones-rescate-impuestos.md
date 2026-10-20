@@ -5,7 +5,7 @@ description: "Guía práctica para entender costos reales, plazos de rescate y t
 slug: fondos-mutuos-comisiones-rescate-impuestos
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:20:00Z
-updatedDate: 2026-04-22T00:00:00Z
+updatedDate: 2026-10-19T00:00:00Z
 tags:
   - fondos-mutuos
   - inversiones
@@ -20,12 +20,15 @@ featured: false
 draft: false
 heroImage: /images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif
 articleLead:
-  answer: "Antes de invertir en un fondo mutuo revisa tres cosas: la remuneración de administración, la comisión y el plazo de rescate (hasta 10 días hábiles según el reglamento interno), y el tratamiento tributario del mayor valor al rescatar. El reglamento interno del fondo es la fuente vinculante."
+  answer: "Antes de invertir en un fondo mutuo revisa tres cosas: la remuneración de administración, la comisión y el plazo de rescate (hasta 10 días según el reglamento interno), y el tratamiento tributario del mayor valor al rescatar. El reglamento interno del fondo es la fuente vinculante."
   nextStepHref: "/guias/ahorro-e-inversion/"
   nextStepLabel: "Ver la guía de ahorro e inversión"
+  validAsOf: 2026-10-19
   officialSources:
     - label: "CMF Educa — Fondos mutuos"
       href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-504.html"
+    - label: "Ley 20.712 — Artículo 28"
+      href: "https://www.cmfchile.cl/transparencia/documentos/ley_20712.pdf"
     - label: "SII — Rentas de capitales mobiliarios"
       href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm"
     - label: "SII — Fondos mutuos no rescatados"
@@ -48,7 +51,7 @@ reviewPolicy:
 
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.
 
-> **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor.
+> **Revisión editorial 2026-10-19:** se revalidaron la regla de rescate, la exigencia de reglamento interno y la orientación tributaria base del SII. Se corrigió el plazo de rescate a "10 días" (no "10 días hábiles"), conforme a la Ley 20.712 y la CMF; el resto de las reglas citadas no cambió.
 
 Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
 
@@ -69,7 +72,7 @@ La CMF exige que todas estas condiciones queden establecidas en el reglamento in
 
 ## Cómo funciona el rescate
 
-Por definición regulatoria de la CMF, un fondo mutuo debe permitir el rescate total y permanente de cuotas con pago en un plazo igual o inferior a 10 días hábiles. Sin embargo —y esto es lo que muchos pasan por alto— el plazo exacto y la comisión que corresponde dependen del reglamento interno y de la serie en la que estás invertido.
+Por definición regulatoria de la CMF, un fondo mutuo debe permitir el rescate total y permanente de cuotas con pago en un plazo igual o inferior a 10 días. Sin embargo —y esto es lo que muchos pasan por alto— el plazo exacto y la comisión que corresponde dependen del reglamento interno y de la serie en la que estás invertido.
 
 En algunas series, la comisión de rescate disminuye o desaparece si cumples una permanencia mínima. Verificarlo antes de salir puede evitarte un costo innecesario.
 
@@ -125,7 +128,7 @@ Si tu situación es compleja, la asesoría tributaria profesional es el camino.
 <details>
 <summary>¿Todos los fondos mutuos pagan en 24 horas?</summary>
 
-No. La norma regulatoria establece un plazo máximo de 10 días hábiles, pero el tiempo exacto depende de cada fondo y serie.
+No. La norma regulatoria establece un plazo máximo de 10 días, pero el tiempo exacto depende de cada fondo y serie.
 
 </details>
 
@@ -164,6 +167,7 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 ## Fuentes y referencias primarias
 
 - CMF Educa, Fondos mutuos (definición, rescate, costos, regulación): https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html
+- Ley 20.712, artículo 28 (definición de fondo mutuo y plazo de rescate): https://www.cmfchile.cl/transparencia/documentos/ley_20712.pdf
 - CMF Educa, Cuotas de fondos mutuos (liquidez, comisiones, reglamento interno): https://www.cmfchile.cl/educa/621/w3-propertyvalue-504.html
 - SII FAQ, fondos mutuos no rescatados y mayor valor en rescate: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1428.htm
 - SII FAQ, asistente de enajenación (acciones/cuotas): <https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm>
@@ -171,5 +175,5 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 
 ## Información de vigencia
 
-- Revisado el: 2026-04-22.
+- Revisado el: 2026-10-19.
 - Puede quedar desactualizado cuando: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.

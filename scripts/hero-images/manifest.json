@@ -6,7 +6,7 @@
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
-      "sourceContentHash": "28f745478810cd032cf0376dd09f1a61121740a5f3d2abccb62b413c9896d66d",
+      "sourceContentHash": "271f0ab807f06f770ac460e10ded646c3b8b4a96750fd87c054c103aa110554f",
       "title": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)",
       "tags": [
         "ahorro",
@@ -21,7 +21,7 @@
       "summary": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según...",
       "leadParagraphs": [
         "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.",
-        "> **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico.",
+        "> **Revisión editorial 2026-10-19:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. No se identificaron cambios materiales en las reglas citadas. Antes de invertir, confirma las comisiones y el reglamento del producto específico.",
         "Para que la comparación sea útil, partimos de cuatro supuestos básicos:"
       ],
       "headings": [
@@ -34,8 +34,8 @@
         "Perfil balanceado",
         "Perfil agresivo"
       ],
-      "bodyExcerpt": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026. > **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico. ## Antes de comparar: lo que esta guía asume Para que la comparación sea útil, partimos de cuatro supuestos básicos: - Ya tienes un separado del dinero que vas a invertir. - Tu horizonte de inversión es de al menos 3 meses. - Entiendes que mayor retorno esperado implica mayor riesgo. - Vas a comparar costos reales —no solo rentabilidad histórica. - Revisarás el tratamiento tributario antes de ejecutar rescates o ventas, no después. Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento. ## Tres instrumentos, tres lógicas distintas No todos los instrument",
-      "wordCount": 823,
+      "bodyExcerpt": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026. > **Revisión editorial 2026-10-19:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. No se identificaron cambios materiales en las reglas citadas. Antes de invertir, confirma las comisiones y el reglamento del producto específico. ## Antes de comparar: lo que esta guía asume Para que la comparación sea útil, partimos de cuatro supuestos básicos: - Ya tienes un separado del dinero que vas a invertir. - Tu horizonte de inversión es de al menos 3 meses. - Entiendes que mayor retorno esperado implica mayor riesgo. - Vas a comparar costos reales —no solo rentabilidad histórica. - Revisarás el tratamiento tributario antes de ejecutar rescates o ventas, no después. Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento. ## Tres ins",
+      "wordCount": 832,
       "sourceFile": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md"
     },
     {
@@ -558,7 +558,7 @@
     },
     {
       "slug": "descuentos-de-sueldo",
-      "sourceContentHash": "acf43262a5316a3a3ed6d4466bce66c291ea9298b8d9b7e1b4d1d91f2e0acecf",
+      "sourceContentHash": "c104c7b7ab631e257fd93f3cf85382ecf32bbc2f694ecf22a552a324504583cf",
       "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
       "tags": [
         "sueldo",
@@ -575,7 +575,7 @@
       "leadParagraphs": [
         "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.",
         "Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.",
-        "Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la [guía de liquidación de sueldo](/posts/liquidacion-de-sueldo/). Si necesitas reconstruir el número completo de principio a fin, usa la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/)."
+        "> **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación."
       ],
       "headings": [
         "Tres categorías, tres orígenes distintos",
@@ -584,10 +584,11 @@
         "Descuentos prohibidos — lo que el empleador no puede cargar",
         "Cuándo el mismo descuento puede ser legal o no según tu contrato",
         "Cómo leer tu liquidación con este mapa",
-        "Preguntas frecuentes"
+        "Preguntas frecuentes",
+        "Información de vigencia"
       ],
-      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu , no sobre el sueldo bruto total — por eso conviene saber primero qué entra en esa base. Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la explica contrato, AFP y Fonasa desde cero. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre ",
-      "wordCount": 1162,
+      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. > **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu , no sobre el sueldo bruto total — p",
+      "wordCount": 1284,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
@@ -903,7 +904,7 @@
     },
     {
       "slug": "fondos-mutuos-comisiones-rescate-impuestos",
-      "sourceContentHash": "dbd5dfb80884655a66abf90a19fec7d710868b303080610024d8770e3f1cbf09",
+      "sourceContentHash": "ee35cef1f6c9665e928fd3114113944389247d6d5e95343817f58a146b94ce51",
       "title": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
       "tags": [
         "fondos-mutuos",
@@ -918,7 +919,7 @@
       "summary": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Est...",
       "leadParagraphs": [
         "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.",
-        "> **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor.",
+        "> **Revisión editorial 2026-10-19:** se revalidaron la regla de rescate, la exigencia de reglamento interno y la orientación tributaria base del SII. Se corrigió el plazo de rescate a \"10 días\" (no \"10 días hábiles\"), conforme a la Ley 20.712 y la CMF; el resto de las reglas citadas no cambió.",
         "Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/)."
       ],
       "headings": [
@@ -931,8 +932,8 @@
         "Cómo encaja esto según tu perfil",
         "Los 6 errores más frecuentes"
       ],
-      "bodyExcerpt": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos. > **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor. Para una mirada más amplia de instrumentos, parte por . ## Lo que esta guía asume Que ya definiste tu horizonte: corto, mediano o largo plazo. Que entiendes que un fondo mutuo no garantiza rentabilidad futura. Y que vas a revisar el reglamento interno y el folleto informativo antes de aportar, no después. Si aún no tienes eso claro, ese es el primer paso. ## Los cuatro tipos de costo que debes conocer | Costo | Qué significa | Dónde se valida | | ------------------------------ | --------------------------------------------- | ------------------------------- | | Remuneración de administración | Cobro periódico por gestionar el fondo | Reglamento interno (CMF) | | Comisión de re",
-      "wordCount": 1163,
+      "bodyExcerpt": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos. > **Revisión editorial 2026-10-19:** se revalidaron la regla de rescate, la exigencia de reglamento interno y la orientación tributaria base del SII. Se corrigió el plazo de rescate a \"10 días\" (no \"10 días hábiles\"), conforme a la Ley 20.712 y la CMF; el resto de las reglas citadas no cambió. Para una mirada más amplia de instrumentos, parte por . ## Lo que esta guía asume Que ya definiste tu horizonte: corto, mediano o largo plazo. Que entiendes que un fondo mutuo no garantiza rentabilidad futura. Y que vas a revisar el reglamento interno y el folleto informativo antes de aportar, no después. Si aún no tienes eso claro, ese es el primer paso. ## Los cuatro tipos de costo que debes conocer | Costo | Qué significa | Dónde se valida | | ------------------------------ | --------------------------------------------- | ------------------------------- | | Remuneración de administr",
+      "wordCount": 1194,
       "sourceFile": "fondos-mutuos-comisiones-rescate-impuestos.md"
     },
     {

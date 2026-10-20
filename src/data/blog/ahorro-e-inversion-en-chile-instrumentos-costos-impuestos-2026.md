@@ -4,7 +4,7 @@ description: "Cómo elegir entre ETF, DAP y fondos mutuos en Chile: criterios de
 slug: ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:00:00Z
-updatedDate: 2026-04-22T00:00:00Z
+updatedDate: 2026-10-19T00:00:00Z
 tags:
   - ahorro
   - inversiones
@@ -30,6 +30,7 @@ articleLead:
   answer: "Elige el instrumento según tu objetivo y plazo: DAP para dinero que necesitas pronto con tasa conocida, fondos mutuos para diversificar sin decidir cada compra, y ETFs para exposición amplia con costos bajos. Compara el costo total —comisiones, custodia y tributación— y no solo la rentabilidad pasada."
   nextStepHref: "/guias/ahorro-e-inversion/"
   nextStepLabel: "Ver la guía de ahorro e inversión"
+  validAsOf: 2026-10-19
   officialSources:
     - label: "CMF Educa — Fondos Mutuos"
       href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html"
@@ -46,7 +47,7 @@ articleLead:
 
 Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.
 
-> **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico.
+> **Revisión editorial 2026-10-19:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. No se identificaron cambios materiales en las reglas citadas. Antes de invertir, confirma las comisiones y el reglamento del producto específico.
 
 ## Antes de comparar: lo que esta guía asume
 
@@ -184,5 +185,5 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 
 ## Información de vigencia
 
-- Revisado el: 2026-04-22.
+- Revisado el: 2026-10-19.
 - Puede quedar desactualizado cuando: cambios regulatorios CMF, instrucciones de renta del SII o cambios metodológicos oficiales de UF en Banco Central.
