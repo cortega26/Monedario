@@ -18,7 +18,7 @@
         "Rentabilidades futuras aseguradas"
       ],
       "alt": "",
-      "sourceContentHash": "28f745478810cd032cf0376dd09f1a61121740a5f3d2abccb62b413c9896d66d",
+      "sourceContentHash": "271f0ab807f06f770ac460e10ded646c3b8b4a96750fd87c054c103aa110554f",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
@@ -26,7 +26,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-09-30",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged. Revalidación editorial 2026-10-19: contenido actualizado; el brief visual sigue vigente; no se regeneró la imagen."
       }
     },
     {
@@ -464,7 +464,7 @@
         "No signature, handwriting, letters, numbers or pseudo-legible marks."
       ],
       "alt": "",
-      "sourceContentHash": "acf43262a5316a3a3ed6d4466bce66c291ea9298b8d9b7e1b4d1d91f2e0acecf",
+      "sourceContentHash": "c104c7b7ab631e257fd93f3cf85382ecf32bbc2f694ecf22a552a324504583cf",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -745,7 +745,7 @@
         "Rentabilidad garantizada"
       ],
       "alt": "",
-      "sourceContentHash": "dbd5dfb80884655a66abf90a19fec7d710868b303080610024d8770e3f1cbf09",
+      "sourceContentHash": "ee35cef1f6c9665e928fd3114113944389247d6d5e95343817f58a146b94ce51",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -753,7 +753,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-09-30",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged."
+        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Rechecked concurrent commits34ce40a6/c4920bce: articleLead additions and AFP transfer timing preserve this visual message; prompt unchanged. Revalidación editorial 2026-10-19: contenido actualizado; el brief visual sigue vigente; no se regeneró la imagen."
       }
     },
     {

@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Ver impacto en el líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar el comprobante"
-  validAsOf: 2026-04-22
+  validAsOf: 2026-10-19
   officialSources:
     - label: "Dirección del Trabajo — artículo 58"
       href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
@@ -34,6 +34,8 @@ articleLead:
       href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
     - label: "SII — Impuesto Único de Segunda Categoría 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
+    - label: "Superintendencia de Pensiones — Cotización previsional obligatoria"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
   covers:
     - "Clasificación entre descuentos legales, autorizados y prohibidos."
     - "Excepciones típicas por tipo de contrato o sistema de salud."
@@ -58,12 +60,14 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.descuentos-de-sueldo
   computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+updatedDate: 2026-10-19T00:00:00Z
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.
 
 Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.
+
+> **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación.
 
 Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la [guía de liquidación de sueldo](/posts/liquidacion-de-sueldo/). Si necesitas reconstruir el número completo de principio a fin, usa la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/).
 
@@ -75,13 +79,13 @@ Estos descuentos no dependen de tu autorización. La ley obliga al empleador a a
 
 Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) explica contrato, AFP y Fonasa desde cero.
 
-**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible con cifras verificadas al 2026-04-22.
+**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP: a septiembre de 2026 va de 0,46% a 1,45% sobre el imponible, según la Superintendencia de Pensiones. Verifica la comisión vigente de tu AFP antes de calcular.
 
 **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
 
 **Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar. Si quedas sin trabajo, ese fondo se cobra ante la AFC — la [guía del seguro de cesantía](/posts/seguro-de-cesantia/) explica cuándo y cuánto.
 
-**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En abril de 2026 ese tramo llega hasta $943.501,50. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
+**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En octubre de 2026 ese tramo llega hasta $974.038,50 (13,5 UTM). La tabla se actualiza cada mes, así que verifica el mes de tu liquidación. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
 
 Todos estos descuentos se calculan sobre el **sueldo imponible**, no sobre el bruto total. La diferencia importa cuando tienes asignaciones no imponibles como colación o movilización.
 
@@ -141,3 +145,8 @@ Primero ante el empleador o el área de remuneraciones, por escrito con acuse de
 
 **¿La gratificación también se descuenta del sueldo?**
 No se descuenta — es un beneficio adicional al que tienes derecho si la empresa cumple las condiciones legales. Revisa cómo calcular y cuándo aplica la [gratificación legal en Chile](/posts/gratificacion-legal-chile/) y estima tu monto con la [calculadora de gratificación legal](/calculadoras/gratificacion-legal/).
+
+## Información de vigencia
+
+- Revisado el: 2026-10-19.
+- Puede quedar desactualizado cuando: cambie la tabla mensual del SII, las comisiones de AFP o las reglas de descuentos del Código del Trabajo.
