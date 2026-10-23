@@ -1,10 +1,10 @@
 {
-  "uf": 41199.85,
+  "uf": 41205.16,
   "utm": 72151,
   "uta": 834504,
   "ipc": 0.4,
   "tmc": 3.49,
-  "dolar": 976.82,
+  "dolar": 986.58,
   "imm": 553553,
   "immEffectiveDate": "2026-05-01",
   "afcTopes": {
@@ -14,35 +14,35 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "indicatorUpdatedAt": {
-    "uf": "2026-10-22",
+    "uf": "2026-10-23",
     "utm": "2026-10-01",
     "uta": "2025-12-01",
     "ipc": "2026-09-01",
-    "dolar": "2026-10-22"
+    "dolar": "2026-10-23"
   },
-  "lastUpdated": "2026-10-22",
-  "capturedAt": "2026-10-22T18:15:23.441Z",
+  "lastUpdated": "2026-10-23",
+  "capturedAt": "2026-10-23T10:15:29.735Z",
   "source": "mindicador.cl/api",
   "provenance": {
     "utm": {
       "primarySource": "SII",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "status": "primary",
-      "verifiedAt": "2026-10-22T18:15:23.441Z"
+      "verifiedAt": "2026-10-23T10:15:29.735Z"
     }
   },
   "prev": {
     "uf": {
-      "valor": 41194.55,
-      "fecha": "2026-10-21"
+      "valor": 41199.85,
+      "fecha": "2026-10-22"
     },
     "utm": {
       "valor": 71721,
       "fecha": "2026-09-01"
     },
     "dolar": {
-      "valor": 978.56,
-      "fecha": "2026-10-21"
+      "valor": 976.82,
+      "fecha": "2026-10-22"
     }
   }
 }
