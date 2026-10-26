@@ -1,0 +1,277 @@
+{
+  "fetchedAt": "2026-10-26T12:36:03Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W43",
+  "window": {
+    "from": "2026-10-19",
+    "to": "2026-10-25"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 530,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 992,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 110,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 863,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 1592,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 982,
+      "path": "/"
+    },
+    {
+      "clsP75": 0,
+      "count": 80,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 1024,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 60,
+      "inpP75Ms": 288,
+      "lcpP75Ms": 1164,
+      "path": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "clsP75": 0,
+      "count": 60,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 705,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 136,
+      "lcpP75Ms": 644,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 400,
+      "path": "/calculadoras/sueldo-liquido/"
+    },
+    {
+      "clsP75": 1,
+      "count": 40,
+      "inpP75Ms": 72,
+      "lcpP75Ms": 1602,
+      "path": "/calculadoras/simulador-renegociacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 672,
+      "lcpP75Ms": 4503,
+      "path": "/calculadoras/actualizador-inflacion/"
+    },
+    {
+      "clsP75": null,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1546,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 164,
+      "path": "/calculadoras/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 1416,
+      "path": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/posts/credito-hipotecario-chile-guia-completa/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 6,
+      "path": "/guias/uf-costo-de-vida/indicadores-economicos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 824,
+      "path": "/posts/seguro-de-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 176,
+      "path": "/guias/empleo-ingresos/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/posts/liquidacion-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 48,
+      "path": "/guias/pensiones-afp/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 128,
+      "lcpP75Ms": 464,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 322,
+      "path": "/calculadoras/simulador-jubilacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 604,
+      "path": "/posts/fondos-mutuos-comisiones-rescate-impuestos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 668,
+      "path": "/calculadoras/reajuste-arriendo/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/calculadoras/finiquito-indemnizacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 996,
+      "path": "/posts/devolucion-impuestos-fechas-compensaciones/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 264,
+      "path": "/posts/como-invertir-en-etfs-desde-chile/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 120,
+      "path": "/posts/que-es-el-apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 504,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 471,
+      "path": "/guias/ahorro-e-inversion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 288,
+      "path": "/posts/operacion-renta-f22-checklist/"
+    },
+    {
+      "clsP75": 0.007,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 648,
+      "path": "/posts/renegociacion-superir/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1156,
+      "path": "/calculadoras/gratificacion-legal/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/posts/deposito-a-plazo-uf-vs-pesos/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 38,
+    "keptRoutes": 34,
+    "discardedRoutes": 4,
+    "discarded": [
+      {
+        "path": "/glosario/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/dicom/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/ctc/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/spread/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}
