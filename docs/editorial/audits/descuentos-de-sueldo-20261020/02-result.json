@@ -35,9 +35,9 @@
     "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 5",
+    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 6",
     "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
-    "session": "codex-20261027-delta-reaudit-r5",
+    "session": "codex-20261027-delta-reaudit-r6",
     "date": "2026-10-27"
   },
   "method": {
@@ -47,7 +47,9 @@
       "pnpm": "11.7.0",
       "python": "3.13.12",
       "arithmetic": "Python Decimal, prec=50; CLP rounded half-up only for presentation",
-      "worktree": "/tmp/opencode/wt-audit-descuentos-5"
+      "worktree": "/tmp/opencode/wt-audit-descuentos-6",
+      "targetSha": "332edf28b714f692e550bc2de2dec26fec4827cf",
+      "timezone": "America/Santiago"
     },
     "commands": [
       "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/recalc_audit.py > /tmp/recalc_rerun.txt",
@@ -98,7 +100,17 @@
       "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
       "git diff --check",
       "git status --short",
-      "pnpm exec vitest run --reporter=verbose tests/static-analysis/afc-casa-particular-guard.test.ts > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/27-r5-current-guard-2026-10-27.txt"
+      "pnpm exec vitest run --reporter=verbose tests/static-analysis/afc-casa-particular-guard.test.ts > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/27-r5-current-guard-2026-10-27.txt",
+      "cd /tmp/opencode/wt-audit-descuentos-6",
+      "test \"$(git rev-parse HEAD)\" = \"332edf28b714f692e550bc2de2dec26fec4827cf\"",
+      "for p in 02-result.json 06-compliance.md 11-delta-reaudit-r5.md evidence 00-scope.json; do test -e \"docs/editorial/audits/descuentos-de-sueldo-20261020/$p\" || exit 1; done",
+      "test -z \"$(git status --porcelain)\" (at audit start, before R6 evidence was created)",
+      "Fresh direct retrieval/open of BCN Ley 19.728 and AFC employer table/FAQ; evidence/28.",
+      "CodeGraph structural exploration after explicit user authorization; confirm parseContractType callers; evidence/33.",
+      "pnpm exec vitest run tests/utils/contractType.test.ts tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/SimulateOperacionRenta.test.ts tests/application/CalculateApvComparison.test.ts tests/application/CalculateNetSalary.test.ts --reporter=verbose",
+      "Temporary-copy mutation probe: change casa-particular mapping to indefinido and run tests/utils/contractType.test.ts; evidence/29.",
+      "Python Decimal recalculation of 3%, 2.4%, 2.2% + 0.8%, and separate 1.11% CAI; exact script/output in evidence/32.",
+      "Fresh direct no-cache GET of all 17 public URLs; record only as unassociated runtime observation in evidence/30."
     ],
     "edgeCases": [
       "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
@@ -132,7 +144,13 @@
       "R5: APV casa-particular explícito frente a contractType omitido; diferencia de base $9.000 en el ejemplo SSR.",
       "R5: tipo casa explícito en bruto→líquido, líquido→bruto y las 7 AFP en ambas comparaciones; AFC trabajador esperada 0.",
       "R5: salida patronal de sueldo líquido para casa particular ($24.000 calculados vs $30.000 al 3% por imponible de $1.000.000).",
-      "R5: mutación del parser APV casa→indefinido en copia temporal; verificar si la guarda la rechaza sin modificar el test."
+      "R5: mutación del parser APV casa→indefinido en copia temporal; verificar si la guarda la rechaza sin modificar el test.",
+      "D10 R6: casa particular aporta 0% trabajador y empleador paga 3%; indefinido común conserva 2,4% patronal.",
+      "D10 R6: distribución patronal casa particular 2,2% CIC + 0,8% FCS; CAI 1,11% separado.",
+      "D10 R6: SSR APV declara contractType indefinido y el selector visible SSR coincide.",
+      "D10 R6: parseContractType en sueldo líquido, APV y Operación Renta; mutación casa→indefinido en copia temporal debe fallar tests/utils/contractType.test.ts.",
+      "D10 R6: revisar otros contenidos editoriales y ejemplos de nómina para afirmaciones 0,6%, 2,4%, 2,2%, 0,8% y 3%.",
+      "D10 R6: excluir runtime público del criterio de aceptación y separar la calculadora de cobertura bajo causa 2 según directiva del owner."
     ],
     "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/",
     "complianceAudit": {
@@ -562,6 +580,51 @@
         "shaAssociation": null,
         "evidence": "evidence/23-r5-public-url-probe-2026-10-27.txt"
       }
+    },
+    "deltaReauditR6": {
+      "targetSha": "332edf28b714f692e550bc2de2dec26fec4827cf",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-6",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "auditor": {
+        "role": "ComplianceAgent (adversarial) — delta re-audit ronda 6",
+        "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+        "session": "codex-20261027-delta-reaudit-r6"
+      },
+      "independence": "Remediación declarada DeepSeek V4.1 Flash; auditor OpenAI GPT-6, familia distinta; sesión fresca.",
+      "scope": [
+        "D10"
+      ],
+      "scopeBoundary": "Superficies editoriales, calculadoras de sueldo líquido/APV/Operación Renta y sus ejemplos visibles; coverage calculator excluida y asignada a causa 2 por decisión del owner; runtime solo observación.",
+      "verdict": "PASS",
+      "openDefects": [],
+      "resolvedInTargetCheckout": [
+        "D10"
+      ],
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16"
+      ],
+      "evidence": [
+        "evidence/28-r6-primary-source-retrieval-2026-10-27.txt",
+        "evidence/29-r6-contracttype-mutation-2026-10-27.txt",
+        "evidence/30-r6-public-runtime-observation-2026-10-27.txt",
+        "evidence/31-r6-targeted-tests-2026-10-27.txt",
+        "evidence/32-r6-rate-recalculation-2026-10-27.txt",
+        "evidence/33-r6-local-surface-inventory-2026-10-27.txt",
+        "evidence/34-r6-preflight-environment-protocol-2026-10-27.txt"
+      ],
+      "runtimeObservation": "17 URLs públicas reabiertas; respuestas con contenido anterior en algunas superficies y no atribuibles al SHA R6. Solo observación, fuera del criterio D10.",
+      "humanSignoff": null
     }
   },
   "claims": [
@@ -2066,17 +2129,19 @@
       "id": "D10",
       "severity": "media",
       "surface": "product",
-      "description": "D10: la excepción de casa particular al 0,6% no está cerrada en todas las superficies de producto. R5 confirma que APV y Operación Renta interactivos ya ofrecen y transmiten casa particular, y que los caminos explícitos del motor retornan AFC trabajador 0. Persisten el ejemplo SSR de APV que omite el contrato y cae a indefinido, el ejemplo de sueldo líquido con supuesto indefinido no declarado en el copy, la tasa AFC patronal de 2,4% aplicada a casa particular en el resultado, una distribución CIC/FCS errónea en la tabla local, y runtime público reabierto con una fila que atribuye 0,6% al trabajador. La calculadora de cobertura AFC/CIC/FCS no ofrece tipo casa, aunque no descuenta AFC trabajador.",
-      "evidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2-S5",
+      "description": "D10: excepción AFC de casa particular en las superficies editoriales y calculadoras de nómina delimitadas por el owner.",
+      "evidence": "evidence/33-r6-local-surface-inventory-2026-10-27.txt",
       "supportingEvidence": [
-        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S6",
-        "evidence/24-r5-engine-probe-2026-10-27.txt",
-        "evidence/26-r5-guard-mutation-probe-2026-10-27.txt",
-        "evidence/23-r5-public-url-probe-2026-10-27.txt",
-        "evidence/27-r5-current-guard-2026-10-27.txt"
+        "evidence/28-r6-primary-source-retrieval-2026-10-27.txt",
+        "evidence/29-r6-contracttype-mutation-2026-10-27.txt",
+        "evidence/30-r6-public-runtime-observation-2026-10-27.txt",
+        "evidence/31-r6-targeted-tests-2026-10-27.txt",
+        "evidence/32-r6-rate-recalculation-2026-10-27.txt",
+        "evidence/33-r6-local-surface-inventory-2026-10-27.txt",
+        "evidence/34-r6-preflight-environment-protocol-2026-10-27.txt"
       ],
-      "status": "open",
-      "reason": "R5 reclasifica de forma independiente las reparaciones de APV y Operación Renta interactivas como correctas en el checkout: ambos selectores incluyen casa particular y el parser entrega ese tipo al motor. Los use cases prueban AFC trabajador 0 en bruto→líquido, líquido→bruto, comparación de las siete AFP en ambos sentidos, APV y estimación de sueldo para Renta, siempre que el tipo casa sea explícito. No obstante, el ejemplo SSR APV omite contractType y cae al default indefinido; la base difiere $9.000 en sus propios valores. El ejemplo SSR de sueldo líquido fija indefinido, pero la explicación visible no identifica ese supuesto. Además, el resultado de costo empleador calcula 2,4% para casa particular donde corresponde 3%, y la tabla de la ficha de Ley 19.728 asigna erróneamente 3% a CIC y 0% a FCS. La guarda estructural acepta una regresión concreta que remapea casa a indefinido y pasó 5/5 tests en la copia mutada. Finalmente, el runtime público reabierto conserva páginas sin opción casa y una fila de seguro que cobra 0,6% a casa particular; ese HTML no se asocia al SHA R5. El estimador separado de cobertura no tiene opción casa pero no calcula descuento de nómina y sus tasas/min de indefinido coinciden con casa; se registra como brecha de representación, no como origen del 0,6%. Al menos un defecto productivo D10 sigue abierto.",
+      "status": "resolved",
+      "reason": "R6 verificó en el checkout objetivo que el costo patronal AFC de casa particular es 3% y el indefinido común conserva 2,4%; la ficha local distribuye 2,2% a CIC y 0,8% a FCS, con CAI 1,11% separado; el ejemplo SSR APV declara y pasa contractType indefinido con el selector visible coincidente; parseContractType se usa en sueldo líquido, APV y Operación Renta y tests/utils/contractType.test.ts falla cuando una mutación remapea casa-particular a indefinido. El barrido de otras superficies editoriales y calculadoras delimitadas no encontró otra afirmación local de nómina que aplique 0,6% al trabajador de casa particular. La calculadora de cobertura se excluye de D10 y permanece en causa 2 por decisión del owner. Runtime público se registra como observación no asociada al SHA y no integra el criterio.",
       "roundHistory": [
         {
           "round": "R3",
@@ -2089,9 +2154,15 @@
           "status": "open-at-R5",
           "reason": "Corregidos los mapeos interactivos APV/Renta y confirmado el cero de AFC trabajador para rutas explícitas. D10 sigue abierto por APV SSR con default indefinido, costo patronal 2,4% para casa, distribución CIC/FCS errónea en ficha local y runtime público con fila falsa; guarda no detecta regresión selector→parser.",
           "evidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt"
+        },
+        {
+          "round": "R6",
+          "status": "resolved-at-R6",
+          "reason": "Los cuatro puntos abiertos por R5 quedaron cerrados en el checkout R6 dentro del alcance explícito de D10; barrido adicional sin otro defecto productivo local en las superficies delimitadas.",
+          "evidence": "evidence/33-r6-local-surface-inventory-2026-10-27.txt; evidence/34-r6-preflight-environment-protocol-2026-10-27.txt"
         }
       ],
-      "currentRoundEvidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S6"
+      "currentRoundEvidence": "evidence/33-r6-local-surface-inventory-2026-10-27.txt"
     },
     {
       "id": "D11",
@@ -2361,6 +2432,60 @@
       ],
       "newIndependentDefects": [],
       "humanSignoff": null
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit ronda 6",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit-r6",
+      "date": "2026-10-27",
+      "verdict": "PASS",
+      "scope": [
+        "D10"
+      ],
+      "scopeBoundary": "Superficies editoriales, calculadoras de sueldo líquido/APV/Operación Renta y sus ejemplos visibles; coverage calculator excluida y asignada a causa 2 por decisión del owner; runtime solo observación.",
+      "targetSha": "332edf28b714f692e550bc2de2dec26fec4827cf",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-6",
+      "independence": "Remediación declarada DeepSeek V4.1 Flash; auditor OpenAI GPT-6, familia distinta; sesión fresca.",
+      "evidence": [
+        "evidence/28-r6-primary-source-retrieval-2026-10-27.txt",
+        "evidence/29-r6-contracttype-mutation-2026-10-27.txt",
+        "evidence/30-r6-public-runtime-observation-2026-10-27.txt",
+        "evidence/31-r6-targeted-tests-2026-10-27.txt",
+        "evidence/32-r6-rate-recalculation-2026-10-27.txt",
+        "evidence/33-r6-local-surface-inventory-2026-10-27.txt",
+        "evidence/34-r6-preflight-environment-protocol-2026-10-27.txt"
+      ],
+      "openDefects": [],
+      "resolvedDefects": [
+        "D10"
+      ],
+      "confirmedCorrectInTarget": [
+        "Costo AFC patronal casa particular 3%; indefinido común 2,4%.",
+        "Ficha Ley 19.728: casa particular 2,2% CIC + 0,8% FCS; CAI 1,11% separado.",
+        "SSR APV fija contractType indefinido y el selector visible muestra ese valor.",
+        "parseContractType se usa en sueldo líquido, APV y Operación Renta; la prueba unitaria falla ante la mutación casa-particular a indefinido.",
+        "Barrido de superficies editoriales, calculadoras de nómina y ejemplos visibles sin otro error local D10."
+      ],
+      "excludedCause2": "La calculadora de cobertura AFC/CIC/FCS estima beneficios, no descuentos de nómina; su brecha de selector es de representación.",
+      "runtimeObservation": "17 URLs públicas reabiertas; respuestas con contenido anterior en algunas superficies y no atribuibles al SHA R6. Solo observación, fuera del criterio D10.",
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16"
+      ],
+      "humanSignoff": null,
+      "limitations": [
+        "No se inspeccionó un build de este SHA ni se asoció runtime público al checkout.",
+        "PASS aplica solo al D10 delimitado; el verdict global permanece CONDITIONAL por defectos fuera de alcance."
+      ]
     }
   ]
 }

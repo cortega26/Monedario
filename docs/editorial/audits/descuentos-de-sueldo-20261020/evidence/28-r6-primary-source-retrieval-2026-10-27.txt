@@ -1,0 +1,22 @@
+Method: fresh HTTP GET, direct URLs, Cache-Control: no-cache, no-store; Pragma: no-cache; User-Agent Mozilla/5.0
+RetrievedAt: 2026-10-27T18:27:31-03:00 America/Santiago
+
+URL https://www.bcn.cl/leychile/navegar?idNorma=184979
+status=200 final=https://www.bcn.cl/leychile/navegar?idNorma=184979 Date=Tue, 27 Oct 2026 20:47:48 GMT title=Ley Chile - Biblioteca del Congreso Nacional
+
+URL https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+status=200 final=https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/ Date=Tue, 27 Oct 2026 21:27:31 GMT title=Cotizaciones: ¿cuánto y cómo debo pagar? — AFC Chile
+0,6%: 2% 0,8% Cuenta de Ahorro de Indemnización (CAI) de la AFP – – 1,11% *El trabajador aporta 0,6% para su Cuenta Individual. Cotizaciones de trabajadores pensionados Si usted como empleador tiene en su empresa personas pensionadas trabajando, debe informarles que, por Ley no pueden ser 
+2,2%: atos a plazo fijo o por obra Trabajadores de casa particular Cuenta Individual 1,6%* 2,8% 2,2% Fondo de Cesantía Solidario 0,8% 0,2% 0,8% Cuenta de Ahorro de Indemnización (CAI) de la AFP – – 1,11% *El trabajador aporta 0,6% para su Cuenta Individual. Cotizaciones de trabajadores pen
+0,8%: ajadores de casa particular Cuenta Individual 1,6%* 2,8% 2,2% Fondo de Cesantía Solidario 0,8% 0,2% 0,8% Cuenta de Ahorro de Indemnización (CAI) de la AFP – – 1,11% *El trabajador aporta 0,6% para su Cuenta Individual. Cotizaciones de trabajadores pensionados Si usted como empleador 
+1,11%: e Cesantía Solidario 0,8% 0,2% 0,8% Cuenta de Ahorro de Indemnización (CAI) de la AFP – – 1,11% *El trabajador aporta 0,6% para su Cuenta Individual. Cotizaciones de trabajadores pensionados Si usted como empleador tiene en su empresa personas pensionadas trabajando, debe informarles 
+
+URL https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/
+status=200 final=https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/ Date=Tue, 27 Oct 2026 21:27:32 GMT title=Seguro de Cesantía — AFC Chile
+invalidez parcial:  de aprendizaje y personas pensionadas, salvo las excepciones permitidas por la ley, como invalidez parcial transitoria o quienes continúan trabajando como trabajador de casa particular. También se excluyen personas que participan como socias mayoritarias o igualitarias y administran o representa
+
+
+Fresh browser text retrieval (functions.web open; 2026-10-27; no prior extracts used):
+- BCN, https://www.bcn.cl/leychile/navegar?idNorma=184979, art. 5 lines 31-37 and art. 9 lines 54-57. Brief extract: “0,6% ... contrato de duración indefinida con excepción de los trabajadores de casa particular”; employer rate for casa particular is 3.0% regardless of duration. The primary text also assigns 2.2% of the house-worker employer contribution to the CIC.
+- AFC employer table, https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/, lines 151-156: casa particular CIC 2.2%, FCS 0.8%, CAI 1.11%; CAI appears in a separate row.
+- AFC FAQ, https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/, lines 162-166 and 181-183: coverage conditions and casa-particular employer-funded contributions freshly reviewed.

@@ -1,0 +1,127 @@
+Purpose: observation only; the owner excludes runtime from the D10 acceptance criterion. These responses are not associated with target SHA.
+Method: fresh direct GET; Cache-Control: no-cache, no-store; Pragma: no-cache; User-Agent Mozilla/5.0
+RetrievedAt: 2026-10-27T18:27:46-03:00 America/Santiago
+
+URL https://monedario.cl/posts/descuentos-de-sueldo/
+ status=200 final=https://monedario.cl/posts/descuentos-de-sueldo/
+ Date=Tue, 27 Oct 2026 21:27:46 GMT content-type=text/html; charset=utf-8 bytes=98970
+ title=Descuentos de Sueldo en Chile: Cuáles Son Legales | Monedario
+ 0,6%: descuento autorizado, no estrictamente legal. Seguro de cesantía : el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el e
+ Indefinido: guro de cesantía : el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de
+
+URL https://monedario.cl/posts/primer-empleo-chile-guia-completa/
+ status=200 final=https://monedario.cl/posts/primer-empleo-chile-guia-completa/
+ Date=Tue, 27 Oct 2026 21:27:46 GMT content-type=text/html; charset=utf-8 bytes=99103
+ title=Primer Empleo en Chile: Guía Completa | Monedario
+ Indefinido: del bruto?","acceptedAnswer":{"@type":"Answer","text":"En un contrato indefinido típico, los descuentos legales suman entre un 20 % y un 22 % del sueldo bruto: AP 10,5 %, salud (Fonasa) 7 %, seguro de cesa
+
+URL https://monedario.cl/posts/como-calcular-sueldo-liquido/
+ status=200 final=https://monedario.cl/posts/como-calcular-sueldo-liquido/
+ Date=Tue, 27 Oct 2026 21:27:47 GMT content-type=text/html; charset=utf-8 bytes=102352
+ title=Cómo Calcular tu Sueldo Líquido en Chile | Monedario
+ 0,6%: .830 (-) Salud Fonasa 7% $1.350.000 × 7% -$94.500 (-) Seguro cesantía 0,6% $1.350.000 × 0,6% -$8.100 = Renta tributable para impuesto $1.350.000 - $245.430 $1.104.570 (-) Impuesto único 2ª categoría 
+ Indefinido: ide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: Descuento Porcentaje Va a… AFP (cotización) 10% Tu cuenta de pensión AFP (comisión) 0.46%
+
+URL https://monedario.cl/posts/liquidacion-de-sueldo/
+ status=200 final=https://monedario.cl/posts/liquidacion-de-sueldo/
+ Date=Tue, 27 Oct 2026 21:27:47 GMT content-type=text/html; charset=utf-8 bytes=96776
+ title=Liquidación de Sueldo en Chile: Cómo Auditarla | Monedario
+ 0,6%: icado como descuento adicional, no mezclado con el 7% base. Cesantía: 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo y aparece este descuento al trabajador, el 
+ Indefinido: o con el 7% base. Cesantía: 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo y aparece este descuento al trabajador, el cálculo está mal. Impuesto único: si aparece un 
+
+URL https://monedario.cl/posts/seguro-de-cesantia/
+ status=200 final=https://monedario.cl/posts/seguro-de-cesantia/
+ Date=Tue, 27 Oct 2026 21:27:47 GMT content-type=text/html; charset=utf-8 bytes=94710
+ title=Seguro de cesantía: saldo, cuándo cobrar y montos | Monedario
+ casa particular: ador Total Indefinido 0.6% 2.4% 3% Plazo fijo / obra o faena 0% 3% 3% Casa particular 0.6% 2.4% 3% Si tienes contrato a plazo fijo, no te descuentan nada del sueldo para el seguro — pero igual acumulas, porque 
+ Indefinido: e contrato: Tipo de contrato Aporte trabajador Aporte empleador Total Indefinido 0.6% 2.4% 3% Plazo fijo / obra o faena 0% 3% 3% Casa particular 0.6% 2.4% 3% Si tienes contrato a plazo fijo, no te descuent
+
+URL https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/
+ status=200 final=https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/
+ Date=Tue, 27 Oct 2026 21:27:48 GMT content-type=text/html; charset=utf-8 bytes=92102
+ title=CIC vs Fondo Solidario: Seguro de Cesantía | Monedario
+ 0,6%: ase es la CIC. Cómo se financia cada uno Con contrato indefinido : el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al Fondo Solidario . En
+ 0,8%:  del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al Fondo Solidario . En total, 3% mensual sobre tu imponible. Con contrato a plazo fijo u obra : el trabajador no a
+ Indefinido: no la base. Tu base es la CIC. Cómo se financia cada uno Con contrato indefinido : el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al Fondo Soli
+
+URL https://monedario.cl/posts/sueldo-imponible-chile/
+ status=200 final=https://monedario.cl/posts/sueldo-imponible-chile/
+ Date=Tue, 27 Oct 2026 21:27:48 GMT content-type=text/html; charset=utf-8 bytes=93174
+ title=Sueldo Imponible en Chile: Qué Es y Qué Incluye | Monedario
+ 0,6%: pactada con la isapre, lo que sea mayor. AFC ( Seguro de Cesantía ) : 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía). Tope máximo imponible : las cotizaciones previsionales (A
+ 2,4%: e, lo que sea mayor. AFC ( Seguro de Cesantía ) : 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía). Tope máximo imponible : las cotizaciones previsionales (AFP y salud) se aplic
+
+URL https://monedario.cl/posts/interes-compuesto-nota-metodologica/
+ status=200 final=https://monedario.cl/posts/interes-compuesto-nota-metodologica/
+ Date=Tue, 27 Oct 2026 21:27:48 GMT content-type=text/html; charset=utf-8 bytes=87816
+ title=Interés Compuesto: Nota Metodológica | Monedario
+ 0,6%: ión) 10,0% Salud (Fonasa mínimo) 7,0% Seguro de cesantía (trabajador) 0,6% Total descuentos 17,6% El factor líquido queda así: factor_liquido = 1 - 0,176 = 0,824 aporte_CLP = sueldo_bruto x 0,824 x 0
+
+URL https://monedario.cl/glosario/afc/
+ status=200 final=https://monedario.cl/glosario/afc/
+ Date=Tue, 27 Oct 2026 21:27:49 GMT content-type=text/html; charset=utf-8 bytes=43186
+ title=Administradora de Fondos de Cesantía (AFC) | Glosario Financiero
+ Indefinido: omo porción de su imponibilidad) con costo compartido: Para contratos indefinidos, el empleador financia el 2.4% y el trabajador aporta 0.6% de su líquido. En contratos a plazo fijo el costo del mes, 3% va
+
+URL https://monedario.cl/glosario/sueldo-bruto/
+ status=200 final=https://monedario.cl/glosario/sueldo-bruto/
+ Date=Tue, 27 Oct 2026 21:27:49 GMT content-type=text/html; charset=utf-8 bytes=42919
+ title=Sueldo Bruto | Glosario Financiero
+ 0,6%: ponible Salud 7% (Fonasa) o más (Isapre) Imponible Seguro de cesantía 0,6% (contrato indefinido) Imponible Impuesto 2ª categoría Progresivo desde 13,5 UTM Renta tributable El primer tramo exento del 
+ Indefinido: % (Fonasa) o más (Isapre) Imponible Seguro de cesantía 0,6% (contrato indefinido) Imponible Impuesto 2ª categoría Progresivo desde 13,5 UTM Renta tributable El primer tramo exento del impuesto de segunda c
+
+URL https://monedario.cl/glosario/fondo-solidario/
+ status=200 final=https://monedario.cl/glosario/fondo-solidario/
+ Date=Tue, 27 Oct 2026 21:27:49 GMT content-type=text/html; charset=utf-8 bytes=43029
+ title=Fondo Solidario de Cesantía | Glosario Financiero
+ 0,6%: dinero? Del trabajador (su cuenta) Del fondo común Fuente Trabajador (0,6%) + Empleador (1,6% en contrato indefinido) Empleador (0,8%) + Estado Acceso Siempre al quedar sin trabajo Sólo si se cumplen
+ 0,8%: ntía chileno (Ley 19.728). Se financia con aportes del empleador (del 0,8% al 2,8% según tipo de contrato) y el Estado, y tiene como función entregar un beneficio de desempleo mínimo garantizado a qu
+ Indefinido: el fondo común Fuente Trabajador (0,6%) + Empleador (1,6% en contrato indefinido) Empleador (0,8%) + Estado Acceso Siempre al quedar sin trabajo Sólo si se cumplen requisitos Necesita cotizaciones 6+ meses
+
+URL https://monedario.cl/leyes/ley-19728-seguro-cesantia/
+ status=200 final=https://monedario.cl/leyes/ley-19728-seguro-cesantia/
+ Date=Tue, 27 Oct 2026 21:27:49 GMT content-type=text/html; charset=utf-8 bytes=49775
+ title=Ley 19.728: Seguro de Cesantía | Monedario
+ casa particular: s 10 cotizaciones si tu contrato era indefinido o de trabajador(a) de casa particular, o 5 cotizaciones si era a plazo fijo/obra/servicio. Para acceder al FCS además debes tener saldo CIC insuficiente, 10 cotiz
+ 0,6%:  el tipo de contrato. En contrato indefinido, ese 3% se reparte entre 0,6% del trabajador a la CIC , 1,6% del empleador a la CIC y 0,8% del empleador al FCS . En contrato a plazo fijo, por obra o ser
+ 0,8%: te entre 0,6% del trabajador a la CIC , 1,6% del empleador a la CIC y 0,8% del empleador al FCS . En contrato a plazo fijo, por obra o servicio, el trabajador no aporta y el empleador paga 2,8% a la 
+ 1,11%: ,0% 2,8% 0,2% 3,0% Trabajador(a) de casa particular 0,0% 3,0% a CIC + 1,11% a indemnización legal 0,0% 4,11% previsional pagado por empleador No conviene mezclar los fondos: la CIC es tu saldo individ
+ Indefinido:  , pero la distribución cambia según el tipo de contrato. En contrato indefinido, ese 3% se reparte entre 0,6% del trabajador a la CIC , 1,6% del empleador a la CIC y 0,8% del empleador al FCS . En contrat
+
+URL https://monedario.cl/calculadoras/sueldo-liquido/
+ status=200 final=https://monedario.cl/calculadoras/sueldo-liquido/
+ Date=Tue, 27 Oct 2026 21:27:50 GMT content-type=text/html; charset=utf-8 bytes=100643
+ title=Calculadora de Sueldo Líquido y Bruto Chile 2026 | Monedario
+ 0,6%: Answer":{"@type":"Answer","text":"Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador paga el 3% completo. En ambos cas
+ Indefinido: ?","acceptedAnswer":{"@type":"Answer","text":"Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador paga el 3% completo. En amb
+
+URL https://monedario.cl/calculadoras/apv/
+ status=200 final=https://monedario.cl/calculadoras/apv/
+ Date=Tue, 27 Oct 2026 21:27:50 GMT content-type=text/html; charset=utf-8 bytes=76294
+ title=Simulador APV Chile 2026: ¿cuánto ahorras en Régimen A o B?
+ Indefinido: 24.735.834 (600 UF) con los descuentos por planilla. Tipo de contrato Indefinido Plazo fijo / obra Cambia la cotización del trabajador al seguro de cesantía y, por lo tanto, la base para impuesto y APV. Si
+
+URL https://monedario.cl/calculadoras/operacion-renta/
+ status=200 final=https://monedario.cl/calculadoras/operacion-renta/
+ Date=Tue, 27 Oct 2026 21:27:50 GMT content-type=text/html; charset=utf-8 bytes=71994
+ title=Simulador Operación Renta 2026 Chile: ¿Te devuelven o debes pagar?
+ Indefinido: – 11.45% Uno – 10.46% Sistema de salud Fonasa Isapre Tipo de contrato Indefinido Plazo fijo Usar esta estimación Honorarios brutos anuales ($) Total de boletas emitidas en 2025. El simulador aplica automát
+
+URL https://monedario.cl/calculadoras/seguro-cesantia/
+ status=200 final=https://monedario.cl/calculadoras/seguro-cesantia/
+ Date=Tue, 27 Oct 2026 21:27:51 GMT content-type=text/html; charset=utf-8 bytes=63991
+ title=Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)
+ 0,6%: vidual es insuficiente y cumples los requisitos. Contrato indefinido: 0,6% lo aporta la persona trabajadora, 1,6% va a tu CIC y 0,8% al Fondo Solidario. Plazo fijo / obra: el empleador aporta 2,8% a 
+ 2,2%: es de la empresa. 1 Cada mes va a tu Cuenta Individual de Cesantía el 2,2% del sueldo (contrato indefinido). $800.000 × 2,2% = $17.600 2 Estima el saldo acumulado tras 24 cotizaciones. $17.600 × 24 =
+ 0,8%: indefinido: 0,6% lo aporta la persona trabajadora, 1,6% va a tu CIC y 0,8% al Fondo Solidario. Plazo fijo / obra: el empleador aporta 2,8% a tu CIC y 0,2% al Fondo Solidario. Mínimo para cobrar CIC: 
+ Indefinido: lador de Seguro de Cesantía Sueldo bruto mensual ($) Tipo de contrato Indefinido Plazo fijo / obra Meses cotizados en este trabajo Meses desde que ingresaste o desde el último cobro del seguro. Modo de cál
+
+URL https://monedario.cl/llms-full.txt
+ status=200 final=https://monedario.cl/llms-full.txt
+ Date=Tue, 27 Oct 2026 21:27:51 GMT content-type=text/plain; charset=utf-8 bytes=604489
+ title=(plain text/no title)
+ casa particular: o | 0.6% | 2.4% | 3% | | Plazo fijo / obra o faena | 0% | 3% | 3% | | Casa particular | 0.6% | 2.4% | 3% | Si tienes contrato a plazo fijo, **no te descuentan nada del sueldo** para el seguro — pero igual acumu
+ 0,6%: cuento autorizado, no estrictamente legal. **Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el e
+ 2,4%: lo que sea mayor. - **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía). **Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se ap
+ 0,8%: puesto timbres y estampillas | 0,066%/mes del monto del crédito, tope 0,8% | Al desembolso | | Gastos operacionales banco | Variable (0%–1% del crédito) | Al desembolso | | Seguro desgravamen | ~0,02
+ Indefinido: uro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de

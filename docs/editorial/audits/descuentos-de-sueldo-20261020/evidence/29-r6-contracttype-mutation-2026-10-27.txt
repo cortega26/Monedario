@@ -1,0 +1,56 @@
+R6 mutation probe (temporary copy only; target checkout sources/tests not edited)
+Target: /tmp/opencode/wt-audit-descuentos-6 @ 332edf28b714f692e550bc2de2dec26fec4827cf
+Copy: /tmp/r6-contracttype-mutation.N1SZYe (created from git archive HEAD; node_modules linked to R6 dependencies)
+Mutation: src/utils/contractType.ts: map value === "casa-particular" to "indefinido".
+Command: /tmp/opencode/wt-audit-descuentos-6/node_modules/.bin/vitest run tests/utils/contractType.test.ts --reporter=verbose (cwd=temporary copy)
+Expected: nonzero exit because regression tests reject casa-particular -> indefinido.
+Observed: 2 failed, 3 passed; exit 1.
+
+RAW TEST OUTPUT
+
+ RUN  v4.1.11 /tmp/r6-contracttype-mutation.N1SZYe
+
+ × tests/utils/contractType.test.ts > parseContractType > conserva casa-particular 7ms
+   → expected 'indefinido' to be 'casa-particular' // Object.is equality
+ ✓ tests/utils/contractType.test.ts > parseContractType > conserva plazo-fijo 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > conserva indefinido 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > cae a indefinido cuando no hay selección 0ms
+ × tests/utils/contractType.test.ts > parseContractType > no coacciona casa-particular a indefinido ante variantes del selector 1ms
+   → expected 'indefinido' not to be 'indefinido' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/utils/contractType.test.ts > parseContractType > conserva casa-particular
+AssertionError: expected 'indefinido' to be 'casa-particular' // Object.is equality
+
+Expected: "casa-particular"
+Received: "indefinido"
+
+ ❯ tests/utils/contractType.test.ts:14:50
+     12| describe("parseContractType", () => {
+     13|   it("conserva casa-particular", () => {
+     14|     expect(parseContractType("casa-particular")).toBe("casa-particular…
+       |                                                  ^
+     15|   });
+     16|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/utils/contractType.test.ts > parseContractType > no coacciona casa-particular a indefinido ante variantes del selector
+AssertionError: expected 'indefinido' not to be 'indefinido' // Object.is equality
+ ❯ tests/utils/contractType.test.ts:34:54
+     32|     // Regresión concreta de R5: cualquier rama que devolviera "indefi…
+     33|     // para casa-particular fallaría aquí.
+     34|     expect(parseContractType("casa-particular")).not.toBe("indefinido"…
+       |                                                      ^
+     35|   });
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  18:25:13
+   Duration  199ms (transform 27ms, setup 0ms, import 39ms, tests 10ms, environment 0ms)
+

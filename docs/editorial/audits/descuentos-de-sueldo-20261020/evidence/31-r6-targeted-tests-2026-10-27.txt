@@ -1,0 +1,73 @@
+R6 targeted local tests (fresh run)
+Target: /tmp/opencode/wt-audit-descuentos-6 @ 332edf28b714f692e550bc2de2dec26fec4827cf
+Command: pnpm exec vitest run tests/utils/contractType.test.ts tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/SimulateOperacionRenta.test.ts tests/application/CalculateApvComparison.test.ts tests/application/CalculateNetSalary.test.ts --reporter=verbose
+
+RAW OUTPUT
+
+ RUN  v4.1.11 /tmp/opencode/wt-audit-descuentos-6
+
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > ninguna superficie conserva las formas defectuosas conocidas 1ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > el cuerpo de la pieza principal enuncia la excepción y su fundamento 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > la tabla por tipo de contrato tiene fila propia para casa particular 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > la ficha de la Ley 19.728 menciona la excepción en su regla general 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > toda calculadora con selector de contrato ofrece casa particular 1ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > computes deductions for a typical indefinido FONASA worker (sueldo medio) 2ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > returns zero unemployment deduction for plazo-fijo contract 1ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > returns zero unemployment deduction for casa-particular even on an indefinite contract 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > caps pension-health and unemployment bases above the official UF limits 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > tests minimum wage boundary (sueldo mínimo 2026: ~$500,000 CLP) 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > applies ISAPRE additional health contribution 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > handles explicit taxableSalary (non-taxable income present) 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > throws on invalid inputs 1ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > apvRegimeB reduces incomeTaxBase by the APV amount 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > apvRegimeB that exceeds the remaining taxable base clamps incomeTaxBase to 0 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > apvRegimenB is 0 in output when apvRegimeB is not provided 0ms
+ ✓ tests/application/CalculateMonthlyPayrollBase.test.ts > calculateMonthlyPayrollBase > throws when apvRegimeB is negative 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > conserva casa-particular 2ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > conserva plazo-fijo 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > conserva indefinido 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > cae a indefinido cuando no hay selección 0ms
+ ✓ tests/utils/contractType.test.ts > parseContractType > no coacciona casa-particular a indefinido ante variantes del selector 1ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary > uses explicit taxable salary and contract type for worker deductions 3ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary > caps pension-health and unemployment bases above the official UF limits 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary — APV Régimen B > without APV: result is identical to current behavior (regression) 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary — APV Régimen B > APV Régimen B small: tax is reduced but positive 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary — APV Régimen B > APV Régimen B that eliminates the taxable base: income tax is 0 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > estimateGrossFromNet > round-trips: net salary of the estimated gross equals the target (fonasa, indefinido) 1ms
+ ✓ tests/application/CalculateNetSalary.test.ts > estimateGrossFromNet > round-trips with plazo-fijo (no unemployment deduction) 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > estimateGrossFromNet > round-trips with isapre and additional health premium 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > estimateGrossFromNet > gross salary is strictly greater than the target net salary 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > estimateGrossFromNet > throws on non-positive target net salary 1ms
+ ✓ tests/application/CalculateNetSalary.test.ts > Jornada parcial — escalado proporcional del bruto > jornada 50%: las deducciones previsionales son la mitad que a jornada completa 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > Jornada parcial — escalado proporcional del bruto > jornada 75%: las deducciones previsionales son el 75% de jornada completa 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > Jornada parcial — escalado proporcional del bruto > jornada 50% con sueldo en tramo exento: impuesto = 0 aunque jornada completa tributaría 0ms
+ ✓ tests/application/CalculateNetSalary.test.ts > calculateNetSalary — ejemplo de metodología (anti-drift) > el líquido y los descuentos reales coinciden con el ejemplo publicado 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > reproduce la rebaja SII del segundo tramo (0,54 × UTA dic-2025) 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > vector dorado SII: $18.000.000 de renta neta ⇒ IGC $269.367,84 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aísla el cálculo del año tributario de la UTM vigente 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > devuelve IGC cero bajo el tramo exento anual 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > calcula el tramo 4% (13,5–30 UTA) con la UTA congelada 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > calcula el tramo 23% (70–90 UTA) 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aplica APV Régimen B con tope de 600 UF de diciembre 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > capea APV Régimen B en 600 UF 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > genera devolución cuando los créditos superan el IGC 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aplica gastos presuntos (30%, tope 15 UTA) para honorarios 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > marca la base de sueldos como declarada o estimada 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > rechaza cuando todas las fuentes de ingreso son cero 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > rechaza una UTA inválida 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > ejemplo de metodología — anti-drift > el resultado real coincide con el ejemplo publicado 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > uses a 50 UF monthly cap for regime B payroll comparisons 2ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > keeps regime B benefit continuous below the cap and clamps it above the payroll cap 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > keeps direct annual regime B benefit continuous below the annual cap and clamps it above 600 UF 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > limits direct annual regime B room after using the monthly payroll cap 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > recommends a mixed strategy when the contribution exceeds the bonus room in low tax brackets 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > recommends regime B when the entire contribution stays in a >15% marginal bracket 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > uses the same taxable base as net salary when gross and taxable income differ 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison > caps payroll deductions before comparing APV regimes for high salaries 0ms
+ ✓ tests/application/CalculateApvComparison.test.ts > calculateApvComparison — ejemplo de metodología (anti-drift) > el bono estatal real coincide con el ejemplo publicado 0ms
+
+ Test Files  6 passed (6)
+      Tests  59 passed (59)
+   Start at  18:33:56
+   Duration  200ms (transform 200ms, setup 0ms, import 312ms, tests 37ms, environment 0ms)
+
