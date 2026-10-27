@@ -35,6 +35,16 @@ const UF_SERIES_PATH = path.join(
 // se tolera un rezago acotado para detectar solo series abandonadas.
 const UF_SERIES_MAX_LAG_DAYS = 14;
 
+// ADR-20261026: heartbeat de la ingesta de la serie UF. `actualizadoEl` es la
+// fecha (UTC) en que el ingestor escribió el archivo; si deja de avanzar, el
+// workflow semanal está caído o deshabilitado. Sin este control el fallo solo
+// se ve cuando el snapshot adelanta ~28 días a la serie (14 de anticipación de
+// la UF + 14 de umbral), demasiado tarde.
+const UF_INGEST_MAX_AGE_DAYS = 10;
+// Holgura de 1 día: `actualizadoEl` se escribe con `toISOString()` (UTC), así
+// que entre 21:00 y 24:00 de Santiago la fecha UTC ya es la del día siguiente.
+const UF_INGEST_TZ_SLACK_DAYS = 1;
+
 // Generous thresholds (days). The point is to catch a DEAD pipeline, not to
 // chase every publication lag. UF/dólar are ~daily; UTM is monthly.
 const CAPTURE_MAX_DAYS = 7; // critical pipeline: surface failure within one week
@@ -129,30 +139,69 @@ function main() {
     }
   }
 
-  // Re-auditoría 2026-09-29 (obs. 2): la serie UF ingerida no puede quedar
-  // abandonada respecto de la UF del snapshot (se publica con anticipación,
-  // así que solo se evalúa el rezago).
-  const snapshotUfDate = String(snapshot.indicatorUpdatedAt?.uf ?? "");
-  if (/^\d{4}-\d{2}-\d{2}$/.test(snapshotUfDate)) {
-    try {
-      const series = JSON.parse(readFileSync(UF_SERIES_PATH, "utf8"));
-      const lastDate = String(series.hastaFecha ?? "");
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(lastDate)) {
-        errors.push(`uf-historico.json sin hastaFecha válida: ${series.hastaFecha}`);
+  // Re-auditoría 2026-09-29 (obs. 2) + ADR-20261026: la serie UF ingerida no
+  // puede quedar abandonada respecto de la UF del snapshot. Desde ADR-20261026
+  // la comparación se ancla a la última entrada real de `serie` (igual que la
+  // rama IPC): un `hastaFecha` adelantado ya no puede enmascarar un rezago.
+  let ufSeries = null;
+  try {
+    ufSeries = JSON.parse(readFileSync(UF_SERIES_PATH, "utf8"));
+  } catch (err) {
+    if (err.code !== "ENOENT") {
+      errors.push(`no se pudo leer uf-historico.json: ${err.message}`);
+    }
+  }
+
+  if (ufSeries) {
+    const entries = Array.isArray(ufSeries.serie) ? ufSeries.serie : [];
+    const lastEntryDate = String(entries.at(-1)?.fecha ?? "");
+    const metadataDate = String(ufSeries.hastaFecha ?? "");
+    let lastDate;
+    if (entries.length > 0) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(lastEntryDate)) {
+        lastDate = lastEntryDate;
       } else {
-        const lagDays =
-          (new Date(snapshotUfDate).getTime() -
-            new Date(lastDate).getTime()) /
-          86_400_000;
-        if (lagDays > UF_SERIES_MAX_LAG_DAYS) {
-          errors.push(
-            `uf-historico.json llega a ${lastDate} (rezago ${lagDays.toFixed(1)}d vs snapshot ${snapshotUfDate}) — corre \`pnpm run fetch:economic-history --solo=uf\``
-          );
-        }
+        errors.push(
+          `uf-historico.json con última entrada inválida: ${lastEntryDate || "(vacía)"}`
+        );
       }
-    } catch (err) {
-      if (err.code !== "ENOENT") {
-        errors.push(`no se pudo leer uf-historico.json: ${err.message}`);
+    } else {
+      lastDate = metadataDate;
+    }
+
+    if (lastDate !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(lastDate)) {
+      errors.push(
+        `uf-historico.json sin última fecha válida: serie=${lastEntryDate || "(vacía)"} hastaFecha=${metadataDate || "(vacía)"}`
+      );
+    }
+
+    // Heartbeat: la ingesta semanal debe haber escrito el archivo hace poco,
+    // aunque la serie siga "adelantada" respecto del snapshot.
+    const actualizadoEl = String(ufSeries.actualizadoEl ?? "");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(actualizadoEl)) {
+      errors.push(
+        `uf-historico.json sin actualizadoEl válido: ${ufSeries.actualizadoEl}`
+      );
+    } else {
+      const ingestAge =
+        (ref.getTime() - new Date(`${actualizadoEl}T00:00:00Z`).getTime()) /
+        86_400_000;
+      if (ingestAge > UF_INGEST_MAX_AGE_DAYS + UF_INGEST_TZ_SLACK_DAYS) {
+        errors.push(
+          `uf-historico.json actualizadoEl=${actualizadoEl} (${ingestAge.toFixed(1)}d, max ${UF_INGEST_MAX_AGE_DAYS}d + ${UF_INGEST_TZ_SLACK_DAYS}d) — la ingesta semanal parece caída; revisa refresh-uf-history.yml`
+        );
+      }
+    }
+
+    const snapshotUfDate = String(snapshot.indicatorUpdatedAt?.uf ?? "");
+    if (/^\d{4}-\d{2}-\d{2}$/.test(snapshotUfDate) && lastDate !== undefined) {
+      const lagDays =
+        (new Date(snapshotUfDate).getTime() - new Date(lastDate).getTime()) /
+        86_400_000;
+      if (lagDays > UF_SERIES_MAX_LAG_DAYS) {
+        errors.push(
+          `uf-historico.json llega a ${lastDate} (rezago ${lagDays.toFixed(1)}d vs snapshot ${snapshotUfDate}) — corre \`pnpm run fetch:economic-history --solo=uf\``
+        );
       }
     }
   }

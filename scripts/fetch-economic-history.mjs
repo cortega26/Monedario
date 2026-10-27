@@ -22,6 +22,7 @@ import {
   findMissingDates,
   parseBcchIpcObservations,
 } from "./economic-history-ipc.mjs";
+import { findChangedValues } from "./economic-history-guards.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -77,6 +78,11 @@ const SOLO = args.solo
 // publicar IPC y la extensión BCCh falla: la serie mindicador-only borraría los
 // meses oficiales). --allow-series-shrink habilita encogimientos intencionales.
 const ALLOW_SERIES_SHRINK = args["allow-series-shrink"] === true;
+// ADR-20261026: `findMissingDates` solo compara fechas. El script re-descarga
+// 2000→presente y reescribe el archivo completo, así que una revisión o un
+// redondeo aguas arriba reescribiría valores ya publicados sin que ningún gate
+// lo note. --allow-value-revision habilita revisiones intencionales.
+const ALLOW_VALUE_REVISION = args["allow-value-revision"] === true;
 
 function incluyeIndicador(indicador) {
   return !SOLO || SOLO.includes(indicador);
@@ -98,6 +104,27 @@ function findSeriesRegression(indicador, serie) {
   }
   const missing = findMissingDates(previous.serie, serie);
   return missing.length > 0 ? { filePath, missing } : null;
+}
+
+/**
+ * ADR-20261026 — detecta valores ya ingestados que cambiarían en la nueva
+ * serie. Complementa `findSeriesRegression`, que solo mira el conjunto de
+ * fechas. Devuelve null si no hay archivo previo, si no se puede parsear o si
+ * no hay valores alterados.
+ */
+function findValueRevisions(indicador, serie) {
+  const filePath = join(OUT_DIR, `${indicador}-historico.json`);
+  if (!existsSync(filePath)) return null;
+  let previous;
+  try {
+    previous = JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(previous?.serie)) return null;
+
+  const revised = findChangedValues(previous.serie, serie);
+  return revised.length > 0 ? { filePath, revised } : null;
 }
 
 // --- Utilidades -----------------------------------------------------------
@@ -272,6 +299,19 @@ for (const { name, data } of files) {
       `\n✗ ${name}: la nueva serie perdería ${regression.missing.length} fecha(s) ya ingestada(s) ` +
         `(${sample}). Se aborta para no regresar el dataset; si el encogimiento es ` +
         `intencional, repite con --allow-series-shrink.`
+    );
+    process.exit(1);
+  }
+  const revision = findValueRevisions(data.indicador, data.serie);
+  if (revision && !ALLOW_VALUE_REVISION) {
+    const sample = revision.revised
+      .slice(0, 3)
+      .map(r => `${r.fecha} (${r.previo} → ${r.nuevo})`)
+      .join(", ");
+    console.error(
+      `\n✗ ${name}: la nueva serie cambiaría el valor de ${revision.revised.length} ` +
+        `fecha(s) ya publicada(s) (${sample}). Se aborta para no reescribir historia ` +
+        `sin revisión; si la revisión es intencional, repite con --allow-value-revision.`
     );
     process.exit(1);
   }
