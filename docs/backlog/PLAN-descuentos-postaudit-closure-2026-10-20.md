@@ -36,6 +36,18 @@ auditoría: `84051b05`.
 | D7 | baja | product | `src/data/laws/dl-3500-sistema-afp.md:31` | rango comisiones 0,58–1,45% vs 0,46–1,45% |
 | D5 | media | audit-package | `00-scope.json` | idNorma Ley 18.833: corregido 30053→30209 post-audit; defecto queda registrado open |
 
+### Disposición ComplianceAgent (2026-10-27)
+
+Los siete defectos de producto del math audit (D1, D2, D3, D4, D6, D7 y D8)
+se difieren a este backlog y permanecen `open`. No se corrigen en el PR #719 ni
+en la auditoría de compliance: la solicitud de compliance limita los cambios a
+artefactos de auditoría, y los defectos afectan páginas o resúmenes legales
+fuera de F01–F08. Corregirlos juntos aquí ampliaría el alcance de la corrección
+editorial ya revisada; cada uno requiere una remediación de contenido acotada y
+su propia verificación de cifras y regresiones. Ninguno queda despejado por el
+veredicto de compliance. D5 sigue como `audit-package` abierto y no bloquea por
+sí solo según AI_AUDIT_PROTOCOL v1.
+
 D2, D3, D4, D6, D8 alimentan directamente la **causa 2 (AFC / seguro de
 cesantía)** planificada después de cerrar causa 1. D1 y D7 son del resumen de
 leyes, en el mismo radio de la causa laboral.

@@ -2,7 +2,7 @@
   "auditId": "descuentos-de-sueldo-20261020",
   "protocolVersion": "v1",
   "scope": {
-    "commit": "56f15110a0558dd6a23ed83076488d2578ec3294",
+    "commit": "1444958a7604510495481b6caa39e86e1d7161d7",
     "scopeCommit": "38418c0841e7ad28e69c825537976aed32531485",
     "branch": "fix/descuentos-de-sueldo-art58-2026-10-20",
     "files": [
@@ -16,15 +16,29 @@
       "tests/static-analysis/descuentos-clasificacion-guard.test.ts",
       "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/02-dossier.md",
       "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/sources.yaml",
-      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/07-publish-packet.md"
+      "artifacts/editorial/descuentos-de-sueldo/20261020-1517-handoff1/07-publish-packet.md",
+      "src/components/ArticleJsonLd.astro",
+      "src/config/calculatorPortfolio.ts",
+      "src/pages/llms.txt.ts",
+      "src/pages/llms-full.txt.ts"
     ],
-    "vectors": ["V1", "V2", "V3", "V4", "V5", "V6"]
+    "vectors": [
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6"
+    ],
+    "contentCommit": "56f15110a0558dd6a23ed83076488d2578ec3294",
+    "complianceBaseCommit": "1444958a7604510495481b6caa39e86e1d7161d7",
+    "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "MathAuditAgent",
-    "model": "DeepSeek V4.1 Flash (opencode/deepseek-v4.1-flash-free)",
-    "session": "descuentos-de-sueldo-20261020-math-audit",
-    "date": "2026-10-20"
+    "role": "ComplianceAgent (adversarial)",
+    "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+    "session": "codex-20261027-compliance",
+    "date": "2026-10-27"
   },
   "method": {
     "environment": {
@@ -42,7 +56,13 @@
       "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/05-independent-recalc.py",
       "pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts",
       "pnpm run check:correcciones",
-      "pnpm run check:audit-artifacts"
+      "pnpm run check:audit-artifacts",
+      "git rev-parse HEAD",
+      "git status --short --branch",
+      "pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts",
+      "git diff --check",
+      "pnpm run check:audit-artifacts",
+      "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json"
     ],
     "edgeCases": [
       "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
@@ -55,9 +75,32 @@
       "Base bruto vs imponible para el 15%",
       "Cooperativas 15% + 25% y 15% + 30% + 25% (tope conjunto 45%)",
       "Comisión AFP mínima vs máxima sobre $1.000.000 y $1.350.000",
-      "Reconstrucción de las 7 rebajas de la tabla SII desde el tramo anterior"
+      "Reconstrucción de las 7 rebajas de la tabla SII desde el tramo anterior",
+      "Art. 322: persona no afiliada que acepta extensión de beneficios y cuota ordinaria acordada",
+      "Art. 323: exafiliado que sigue afecto a instrumento colectivo vigente",
+      "AFC Ley 19.728 arts. 2 y 5: aprendiz, menor de 18, pensionado y trabajador de casa particular",
+      "AFC Ley 19.728 art. 7: pluriempleo; cotización por remuneración y registros separados por empleador",
+      "Art. 57: embargo judicial por exceso de 56 UF y supuestos de hasta 50%, incluida pensión alimenticia",
+      "ORD. 1578: no descuento inmediato por atraso sin verificar incumplimiento imputable al término de la semana",
+      "Art. 58: base total bruta para topes convencionales 15%, 30% especial y 45% conjunto",
+      "Metadatos/frontmatter y JSON-LD: computedAt, lastReviewed, reviewedBy y fecha de revisión visible",
+      "Seis superficies: cuerpo, metadatos, datos estructurados, catálogo/LLM, contenido relacionado, motor/tests"
     ],
-    "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/"
+    "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/",
+    "complianceAudit": {
+      "independence": "Distinct families verified from the authoring dossier and math-audit result: Claude Sonnet 5.5 (Claude Code, session 20261020-1517-handoff1); DeepSeek V4.1 Flash (opencode/deepseek-v4.1-flash-free, session descuentos-de-sueldo-20261020-math-audit); OpenAI GPT-6 (Codex runtime, exact model ID exposed as GPT-6). No separate GPT-6 build/revision identifier is exposed.",
+      "session": "codex-20261027-compliance",
+      "retrievedAt": "2026-10-27",
+      "scope": "Normative compliance, source provenance, metadata, related pages, structured data, catalog/LLM, and static guards. No arithmetic re-audit, build, Playwright, or accessibility audit.",
+      "officialSourceEvidence": "evidence/11-compliance-primary-sources-2026-10-27.txt",
+      "surfaceEvidence": "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+      "defectEvidence": "evidence/14-compliance-defects-2026-10-27.txt",
+      "limitations": [
+        "Source-level structured-data inspection only; no generated build output was inspected.",
+        "The current checkout is one commit behind its remote ref; no pull or rebase was performed.",
+        "No statement is made about external availability of repository or audit files."
+      ]
+    }
   },
   "claims": [
     {
@@ -347,6 +390,344 @@
       "engineValue": "00-scope.json:103 y 02-primary-sources.txt:118-125 rotulan 30053 como Ley 18.833",
       "status": "DIVERGENT",
       "defect": "D5"
+    },
+    {
+      "id": "C18",
+      "surface": "product",
+      "claim": "F01: la distinción entre descuento del tiempo no trabajado y multa disciplinaria está respaldada; la exposición de la pieza omite la verificación al final de la semana exigida por ORD. 1578.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html",
+        "quote": "“...no autoriza al empleador para proceder de inmediato al descuento de sus remuneraciones, debiendo verificarse al término de la respectiva semana ... si aquél ha incumplido la jornada laboral convenida por causas que le sean imputables.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D12"
+      },
+      "independentValue": "DT permite descontar solo el tiempo no trabajado imputable y exige esa comprobación semanal en ORD. 1578.",
+      "engineValue": "La pieza diferencia multa y tiempo no trabajado, pero no explica la comprobación semanal.",
+      "status": "DIVERGENT",
+      "defect": "D12",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S2]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C19",
+      "surface": "product",
+      "claim": "F02: el descuento ordinario se hace obligatorio al requerirlo el sindicato, pero la descripción solo menciona afiliados y omite la cuota por extensión aceptada y la obligación que puede continuar tras la desafiliación bajo un instrumento vigente.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "“No obstante el cambio de afiliación sindical o desafiliación, el trabajador se mantendrá afecto al instrumento colectivo ... debiendo pagar el total de la cuota mensual ordinaria ... durante toda la vigencia de dicho instrumento colectivo.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D9"
+      },
+      "independentValue": "Arts. 322–323 establecen excepciones específicas para no afiliados que aceptan extensión y exafiliados sujetos al instrumento.",
+      "engineValue": "La pieza cubre afiliados y ORD. 443, no estas dos condiciones legales.",
+      "status": "DIVERGENT",
+      "defect": "D9",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S3]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C20",
+      "surface": "product",
+      "claim": "F03: el descuento por crédito social constituido es obligatorio y no depende de una autorización mensual revocable; ORD. 4527/93 confirma que el empleador actual no necesita estar afiliado si el crédito se formalizó con un empleador anterior afiliado.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=30209",
+        "quote": "“Lo adeudado por prestaciones de crédito social ... deberá ser deducido de la remuneración por la entidad empleadora afiliada, retenido y remesado a la Caja acreedora...”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/11-compliance-primary-sources-2026-10-27.txt [S4]"
+      },
+      "independentValue": "Art. 22 y DT ORD. 262/4 clasifican la retención como obligatoria; ORD. 4527/93 confirma continuidad al cambiar de empleador.",
+      "engineValue": "La pieza sostiene la obligatoriedad después de contratar el crédito y explica que el consentimiento es para endeudarse.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S4]"
+      ]
+    },
+    {
+      "id": "C21",
+      "surface": "product",
+      "claim": "F04: las bases no son uniformes; el IUSC parte de remuneraciones brutas menos cotizaciones previsionales y de salud del trabajador, mientras los topes previsionales y las deducciones convencionales tienen reglas propias.",
+      "source": {
+        "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+        "quote": "“Las remuneraciones afectas al Impuesto Único constituyen la renta imponible que se determina deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador...”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/11-compliance-primary-sources-2026-10-27.txt [S7, S8, S11]"
+      },
+      "independentValue": "La fuente del SII confirma la base tributaria; la tabla de la pieza diferencia 90 UF, 135,2 UF, tabla mensual y remuneración total bruta.",
+      "engineValue": "La tabla de la pieza expresa bases distintas para AFP/salud, AFC, IUSC y descuentos convenidos.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S7, S8, S11]"
+      ]
+    },
+    {
+      "id": "C22",
+      "surface": "product",
+      "claim": "F05: ORD. N°680 es una fuente DT pertinente para Art. 58 y multas; el enlace del artículo no apunta a la consulta distinta sobre indemnización por años de servicio.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html",
+        "quote": "La ficha oficial identifica “ORD. N°680”, de 08-feb-2017, y su materia como “Remuneraciones; Descuentos; Legalidad; Poder sancionatorio; Reglamento interno...”.",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/11-compliance-primary-sources-2026-10-27.txt [S11]"
+      },
+      "independentValue": "El dictamen listado en officialSources es el ORD. N°680 de descuentos y reglamento interno.",
+      "engineValue": "La fuente principal del Art. 58 en la pieza es ORD. N°680.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt [OfficialSources]"
+      ]
+    },
+    {
+      "id": "C23",
+      "surface": "product",
+      "claim": "F06: el 0,6% del trabajador, el máximo de 11 años y el 0,8% patronal posterior están respaldados para el esquema correspondiente, pero la pieza omite la excepción de trabajadores de casa particular y las páginas relacionadas generalizan demasiado la cobertura.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "“Un 0,6% ... de cargo del trabajador con contrato de duración indefinida con, excepción de los trabajadores de casa particular.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D10"
+      },
+      "independentValue": "Ley 19.728 Art. 5 y AFC verifican los porcentajes y 11 años; casa particular no aporta el 0,6%.",
+      "engineValue": "La pieza dice 0,6% para contrato indefinido y solo alude genéricamente a grupos excluidos.",
+      "status": "DIVERGENT",
+      "defect": "D10",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S5, S6]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C24",
+      "surface": "product",
+      "claim": "F07: 7% legal y tope de salud de 90 UF están verificados; la fuente SP citada por la pieza acredita el tope, pero la tasa de 7% requiere la Superintendencia de Salud, ausente de officialSources.",
+      "source": {
+        "url": "https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/",
+        "quote": "“La cotización legal para salud corresponde al 7% de la remuneración o renta imponible de la persona afiliada.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D17"
+      },
+      "independentValue": "Superintendencia de Salud confirma el 7%; SP confirma el tope de 90 UF.",
+      "engineValue": "El valor de la pieza es correcto pero su cadena de fuentes no apunta al organismo que establece la tasa.",
+      "status": "DIVERGENT",
+      "defect": "D17",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S7]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C25",
+      "surface": "product",
+      "claim": "F08: 15% general para deducciones convenidas, 30% solo bajo el supuesto especial de crédito sin interés y pago directo, y 45% conjunto están correctamente expuestos; ORD. 3456/37 confirma la regla cooperativa especial dentro del 45%.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "“...no podrán exceder del quince por ciento de la remuneración total del trabajador.” / “...en ningún caso aquéllas podrán exceder, en conjunto, del 45% de la remuneración total del trabajador.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S9]"
+      },
+      "independentValue": "Art. 58 incisos 2–4 y DT ORD. 3456/37 corroboran los límites y condiciones.",
+      "engineValue": "La pieza describe 15%, 30% condicionado y 45% conjunto, y separa los descuentos obligatorios de los convencionales.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S9]"
+      ]
+    },
+    {
+      "id": "C26",
+      "surface": "product",
+      "claim": "Reclasificación independiente Art. 58: legales son las deducciones del inciso 1; convencionales son las permitidas por incisos 2–3 con acuerdo escrito y límites; prohibidas son las categorías expresamente vetadas y las multas sin reglamento. La pieza amplía indebidamente la zona prohibida a todo descuento no enumerado, sin exceptuar embargos legales.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Art. 57 permite embargar la remuneración que exceda 56 UF y hasta 50% en casos enumerados, incluidas pensiones alimenticias decretadas judicialmente.",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D11"
+      },
+      "independentValue": "La clasificación legal/convencional/prohibida se reconstruyó desde Arts. 57–58; hay excepciones judiciales fuera de la lista del artículo.",
+      "engineValue": "La pieza afirma que cualquier descuento no enumerado es prohibido e impugnable.",
+      "status": "DIVERGENT",
+      "defect": "D11",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C27",
+      "surface": "product",
+      "claim": "F05/procedencia: el conjunto de officialSources del frontmatter apunta al tema rotulado; sin embargo, una cita inline para la prohibición de Art. 58 enlaza a ORD. 2453/187, cuyo asunto es una deducción permitida por consumo de agua y no la lista de prohibiciones.",
+      "source": {
+        "url": "https://dt.gob.cl/legislacion/1624/w3-article-61767.html",
+        "quote": "El resumen oficial de ORD. Nº2453/187 trata de “metros cúbicos de agua consumidos en exceso” y requiere pacto escrito con límite del 15%.",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D15"
+      },
+      "independentValue": "La URL corresponde al dictamen correcto para agua excedente, no a la prohibición citada en el mismo párrafo.",
+      "engineValue": "Descuentos-de-sueldo.md:130 cita ese dictamen para la prohibición del Art. 58.",
+      "status": "DIVERGENT",
+      "defect": "D15",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S11]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C28",
+      "surface": "product",
+      "claim": "Coherencia del radio: la guía de sueldo líquido afirma que todos los descuentos van sobre el imponible, contradiciendo Art. 58 y la pieza principal, que usan remuneración total bruta para las deducciones convencionales.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "“...las deducciones ... no podrán exceder del quince por ciento de la remuneración total del trabajador.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D13"
+      },
+      "independentValue": "La base de deducciones convenidas es total bruta antes de las obligatorias, conforme a DT y Código.",
+      "engineValue": "Como-calcular-sueldo-liquido.md:104, 245, 252 generaliza la base imponible a todos los descuentos.",
+      "status": "DIVERGENT",
+      "defect": "D13",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C29",
+      "surface": "product",
+      "claim": "Registro de correcciones: la entrada sí describe los cambios F01–F08 principales, pero omite el estrechamiento material de la afirmación previa sobre pérdidas de caja, daños a herramientas y mercadería.",
+      "source": {
+        "url": "src/data/correcciones.json#descuentos-sueldo-clasificacion-bases-atrasos",
+        "quote": "La entrada enumera cambios de afiliación, atrasos, bases/topes, fuente Art. 58 y límites AFC/salud, sin mencionar la rectificación de la sección de descuentos prohibidos.",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D16"
+      },
+      "independentValue": "La comparación del artículo anterior y el actual muestra una diferencia material que no está en wrong/fixed.",
+      "engineValue": "El registro resume los cambios de F01–F08 y no exagera, pero su descripción queda incompleta.",
+      "status": "DIVERGENT",
+      "defect": "D16",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C30",
+      "surface": "product",
+      "claim": "Metadatos editoriales: validAsOf y updatedDate del artículo principal coinciden en 2026-10-20, pero reviewPolicy.computedAt sigue en 2026-10-04 y el pie dice revisado 2026-10-20; la ficha de leyes conserva lastVerified 2026-05-25.",
+      "source": {
+        "url": "src/data/blog/descuentos-de-sueldo.md#frontmatter",
+        "quote": "articleLead.validAsOf: 2026-10-20; updatedDate: 2026-10-20; reviewPolicy.computedAt: 2026-10-04; “Revisado el: 2026-10-20”.",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D18"
+      },
+      "independentValue": "La fecha de vigencia y actualización concuerda con el corte de la corrección; la fecha de cálculo de revisión y la fecha visible no concuerdan.",
+      "engineValue": "La política de publicación mantiene las fechas de related pages y lastVerified para la firma/publicación; esa espera está documentada en el plan.",
+      "status": "DIVERGENT",
+      "defect": "D18",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/13-compliance-reproducibility-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C31",
+      "surface": "product",
+      "claim": "Datos estructurados: el generador convierte computedAt en lastReviewed y author en reviewedBy de tipo Person; en esta pieza da Equipo Monedario como Persona y fecha 2026-10-04 aunque el pie visible dice revisado 2026-10-20. El FAQ no genera FAQPage porque las preguntas son párrafos en negrita y no existe faqs frontmatter.",
+      "source": {
+        "url": "src/components/ArticleJsonLd.astro#53-62",
+        "quote": "lastReviewed: new Date(reviewPolicy.computedAt).toISOString(), reviewedBy: { @type: Person, name: author }",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/14-compliance-defects-2026-10-27.txt#D18"
+      },
+      "independentValue": "El código produciría esos campos; la inspección fue de fuente y no de un build.",
+      "engineValue": "La pieza tiene author Equipo Monedario, computedAt 2026-10-04 y footer Revisado el 2026-10-20.",
+      "status": "DIVERGENT",
+      "defect": "D18",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C32",
+      "surface": "product",
+      "claim": "Catálogo/LLM/motor/tests: calculatorPortfolio no contiene los hechos de Art. 58/AFC; llms.txt solo lista el catálogo, mientras llms-full concatena íntegro el cuerpo del artículo. No existe motor específico para Art. 58. El guard estático pasó 8 tests, pero no cubre las excepciones y contradicciones de D9–D18.",
+      "source": {
+        "url": "src/pages/llms-full.txt.ts#buildLlmsFullTxt",
+        "quote": "const articles = posts.map(... bodyToPlainMarkdown(post.body ?? \"\"));",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Open the cited official URL and inspect the named repository excerpt",
+        "output": "evidence/12-compliance-local-surfaces-2026-10-27.txt [Six-surface scope and test output]"
+      },
+      "independentValue": "Las salidas LLM reproducen el cuerpo por diseño; el guard de regresión existente comprueba subconjunto de frases/topes.",
+      "engineValue": "El test objetivo terminó exit 0: 1 archivo y 8 tests pasaron.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "id": "C33",
+      "surface": "product",
+      "claim": "Borde F06 de pluriempleo: la Ley 19.728 ordena cotizar cada remuneración, cada una hasta su tope, y mantener registros AFC separados por empleador; el límite de 11 años se aplica a cada relación laboral.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "“Si un trabajador desempeñare dos o más empleos, se deberán efectuar cotizaciones por cada una de las remuneraciones y, en cada una, hasta el tope a que se refiere el artículo precedente. La Sociedad Administradora deberá llevar saldos y registros separados ... en relación con cada uno de los empleadores del trabajador.”",
+        "retrievedAt": "2026-10-27"
+      },
+      "reproduction": {
+        "command": "Consulta directa de Ley 19.728, Art. 7, en BCN LeyChile",
+        "output": "evidence/11-compliance-primary-sources-2026-10-27.txt [S12]"
+      },
+      "independentValue": "Cotización y tope aplican por cada remuneración; saldo/registros se separan por empleador. DT confirma 11 años por relación laboral (S6).",
+      "engineValue": "La pieza ya limita los 11 años a cada relación laboral y no afirma un tope agregado para todos los empleadores.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S6, S12]"
+      ]
     }
   ],
   "defects": [
@@ -356,7 +737,10 @@
       "surface": "product",
       "description": "Tope de gratificación calculado con un IMM vencido: codigo-del-trabajo.md:54 usa $539.000 y publica $2.560.250, pero el IMM vigente desde 01-05-2026 es $553.553, por lo que el tope correcto es $2.629.376,75 (subestimación de $69.126,75, 2,63%). Contradice gratificacion-legal-chile.md:108 y el IMM del motor.",
       "evidence": "evidence/09-defects-evidence.txt",
-      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt", "evidence/06-independent-recalc.txt"],
+      "supportingEvidence": [
+        "evidence/04-source-extracts-2026-10-20.txt",
+        "evidence/06-independent-recalc.txt"
+      ],
       "status": "open"
     },
     {
@@ -365,7 +749,9 @@
       "surface": "product",
       "description": "El ejemplo de sueldo líquido rotula a AFP Capital con la comisión de Modelo (0,58%) en como-calcular-sueldo-liquido.md:180,186; Capital cobra 1,44% (misma página, línea 123). Comisión publicada $7.830 vs real $19.440; el líquido queda sobrestimado en $11.145,60 tras el ajuste de IUSC.",
       "evidence": "evidence/09-defects-evidence.txt",
-      "supportingEvidence": ["evidence/06-independent-recalc.txt"],
+      "supportingEvidence": [
+        "evidence/06-independent-recalc.txt"
+      ],
       "status": "open"
     },
     {
@@ -382,7 +768,9 @@
       "surface": "product",
       "description": "primer-empleo-chile-guia-completa.md:134 publica SIS \"1,87%\"; la tasa vigente desde agosto de 2026 es 1,78% (SP). Diferencia 0,09 pp; es costo del empleador y no altera el líquido.",
       "evidence": "evidence/09-defects-evidence.txt",
-      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "supportingEvidence": [
+        "evidence/04-source-extracts-2026-10-20.txt"
+      ],
       "status": "open"
     },
     {
@@ -407,7 +795,9 @@
       "surface": "product",
       "description": "dl-3500-sistema-afp.md:31 da el rango de comisiones como 0,58%–1,45%; el mínimo vigente es 0,46% (AFP Uno), por lo que el rango correcto es 0,46%–1,45%. Subestima el diferencial máximo en 0,12 pp ($1.200/mes por cada $1.000.000).",
       "evidence": "evidence/10-surface-sweep.txt",
-      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "supportingEvidence": [
+        "evidence/04-source-extracts-2026-10-20.txt"
+      ],
       "status": "open"
     },
     {
@@ -416,10 +806,147 @@
       "surface": "product",
       "description": "primer-empleo-chile-guia-completa.md:142,267 afirma 12 meses para cambiarse de AFP; la SP exige 24 meses de permanencia para quien se afilia por primera vez a la AFP de menor comisión (salvo alza de comisión o aparición de una AFP más barata). El plazo publicado es la mitad del vigente.",
       "evidence": "evidence/09-defects-evidence.txt",
-      "supportingEvidence": ["evidence/04-source-extracts-2026-10-20.txt"],
+      "supportingEvidence": [
+        "evidence/04-source-extracts-2026-10-20.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D9",
+      "severity": "media",
+      "surface": "product",
+      "description": "descuentos-de-sueldo.md:108 circunscribe la cuota ordinaria a afiliados y no informa los supuestos de los Arts. 322–323: trabajadores no afiliados que aceptan extensión de beneficios y exafiliados que siguen sujetos a un instrumento colectivo deben pagar la cuota acordada/ordinaria en esos casos.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D9",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S3]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D10",
+      "severity": "media",
+      "surface": "product",
+      "description": "La pieza y el radio AFC omiten la excepción de trabajadores de casa particular al 0,6% a cargo del trabajador; primer-empleo también generaliza cobertura a todo contrato y entrega el 0,6% como descuento fijo. La Ley 19.728 excluye otras categorías y asigna el 3% doméstico completo al empleador.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D10",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S5, S6]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D11",
+      "severity": "media",
+      "surface": "product",
+      "description": "descuentos-de-sueldo.md:132 afirma que cualquier descuento fuera de sus categorías es prohibido y debe impugnarse; el Art. 57 permite embargos legales, incluida pensión alimenticia decretada judicialmente, en los límites que fija el Código.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D11",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D12",
+      "severity": "media",
+      "surface": "product",
+      "description": "descuentos-de-sueldo.md:138 omite la condición de ORD. 1578 de verificar al término de la semana si se incumplió la jornada acordada por causa imputable antes del descuento. La pieza no informa que ese dictamen usa el límite semanal previo de 45 horas; desde el 26-04-2026 la DT confirma 42 horas.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D12",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S2]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D13",
+      "severity": "media",
+      "surface": "product",
+      "description": "como-calcular-sueldo-liquido.md:104,245,252 dice que todos los descuentos van sobre imponible, aunque Art. 58 calcula el 15% convenido sobre remuneración total bruta antes de descuentos obligatorios; contradice la guía principal.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D13",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D14",
+      "severity": "baja",
+      "surface": "product",
+      "description": "como-calcular-sueldo-liquido.md:133 declara que Fonasa descuenta exactamente 7% del imponible sin expresar el tope de 90 UF, en contradicción con sus líneas 106–107; además llama “copago” al precio adicional del plan Isapre.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D14",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S7]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D15",
+      "severity": "baja",
+      "surface": "product",
+      "description": "descuentos-de-sueldo.md:130 cita DT ORD. 2453/187 para la lista de prohibiciones del Art. 58, pero el dictamen trata una deducción permitida por consumo de agua con pacto escrito y límite del 15%.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D15",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D16",
+      "severity": "baja",
+      "surface": "product",
+      "description": "La entrada descuentos-sueldo-clasificacion-bases-atrasos de correcciones.json no consigna el cambio material que eliminó la prohibición categórica previa sobre pérdidas de caja, daños de herramientas y mercadería; la descripción de wrong/fixed queda incompleta.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D16",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D17",
+      "severity": "baja",
+      "surface": "product",
+      "description": "El artículo cita la página de topes de SP para el 7% de salud; esa fuente acredita 90 UF, no la tasa. articleLead.officialSources no incluye la fuente primaria de Superintendencia de Salud que confirma el 7%.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D17",
+      "supportingEvidence": [
+        "evidence/11-compliance-primary-sources-2026-10-27.txt [S7]",
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D18",
+      "severity": "baja",
+      "surface": "product",
+      "description": "La fecha visible de revisión (2026-10-20) difiere de reviewPolicy.computedAt (2026-10-04); ArticleJsonLd convierte computedAt en lastReviewed y el byline Equipo Monedario en reviewedBy de tipo Person, sin identificar a una persona revisora. La auditoría no puede verificar que no ocurriera revisión humana: el registro solo es insuficiente y semánticamente inconsistente.",
+      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D18",
+      "supportingEvidence": [
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/13-compliance-reproducibility-2026-10-27.txt"
+      ],
       "status": "open"
     }
   ],
   "verdict": "CONDITIONAL",
-  "humanSignoff": null
+  "humanSignoff": null,
+  "passes": [
+    {
+      "role": "MathAuditAgent",
+      "model": "DeepSeek V4.1 Flash (opencode/deepseek-v4.1-flash-free)",
+      "session": "descuentos-de-sueldo-20261020-math-audit",
+      "date": "2026-10-20",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "role": "ComplianceAgent (adversarial)",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-compliance",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL"
+    }
+  ]
 }

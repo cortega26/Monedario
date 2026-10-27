@@ -1,0 +1,68 @@
+AI_AUDIT_PROTOCOL v1 — compliance defect evidence
+Consulted/retrieved: 2026-10-27
+No source, test, metadata, article, or corrections record was repaired.
+
+D9 — product / media — union fee applicability
+Local: src/data/blog/descuentos-de-sueldo.md:108 says “si estás afiliado a un sindicato” and frames the ordinary fee as applicable to affiliates.
+BCN Code Art. 322: a non-affiliated worker who accepts an agreed extension of benefits must undertake to pay all or part of ordinary dues as fixed by the agreement.
+BCN Code Art. 323: a worker who changes union or leaves the union remains subject to the union’s collective instrument and owes the full ordinary monthly fee for the duration of that instrument.
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S3].
+Impact: an employee may wrongly treat these dues as unlawful because they are not currently affiliated or because they resigned.
+
+D10 — product / media — AFC exceptions
+Local: descontos-de-sueldo.md:104 states employee 0.6% for indefinite contracts and only generally mentions groups such as pensioners; primer-empleo...md:110 says 0.6% is fixed/inamovible; primer-empleo...md:189 says the insurance is mandatory for every worker with a current employment contract; liquidacion...md:105 says 0.6% only when indefinite.
+BCN Law 19.728 Arts. 2 and 5: apprentices and under-18 workers are excluded; pensioners have specified exceptions; the worker’s 0.6% applies to indefinite contracts except household employees; household workers’ full 3.0% contribution is employer-paid regardless of contract duration.
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S5, S6].
+Impact: a household worker on an indefinite contract could be told that 0.6% must be deducted; related pages state broader mandatory coverage than the law.
+
+D11 — product / media — lawful judicial attachments misclassified as prohibited
+Local: descontos-de-sueldo.md:132 says any deduction outside the preceding categories belongs in “descuentos prohibidos” and should be challenged.
+BCN Code Art. 57 expressly permits attachment of the part exceeding 56 UF and, in specified cases including court-ordered child support, attachment up to 50% of remuneration.
+Official extract: evidence/11-compliance-primary-sources-2026-10-27.txt [S1].
+Impact: a reader could wrongly dispute a deduction made under lawful judicial enforcement. The article should distinguish unlisted employer-imposed charges from court-ordered attachments.
+
+D12 — product / media — missing safeguard for time-not-worked deductions
+Local: descontos-de-sueldo.md:138 says an employer can deduct the corresponding time not worked and that a late arrival is not a full-day absence; it does not state that the calculation must be checked at the end of the week.
+DT ORD. N°1578, 27-mar-2018: “la sola circunstancia de que el dependiente no cumpla en su integridad su jornada diaria, no autoriza al empleador para proceder de inmediato al descuento ... debiendo verificarse al término de la respectiva semana ... si aquél ha incumplido la jornada laboral convenida por causas que le sean imputables.”
+DT ORD. N°2423, 05-jun-2017 supports deduction only for time not worked when the agreed shift was not completed for a cause attributable to the worker.
+DT guidance confirms the general weekly limit became 42 hours on 26-apr-2026. ORD. 1578’s excerpt still refers to the former 45-hour limit.
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S2].
+Impact: without the week-end check, an employee could infer that any late arrival by itself warrants an immediate deduction. A current interpretation should confirm the rule under the current weekly limit.
+
+D13 — product / media — related guide states a false single calculation base
+Local: como-calcular-sueldo-liquido.md:104, 245 and 252 says discounts are calculated on imponible and that all deductions use that base.
+BCN Code Art. 58 inc. 3 and DT query 60214 say the 15% conventional-deduction ceiling uses gross total remuneration without prior mandatory deductions. descontos-de-sueldo.md:116-120 states that correctly.
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11]; local excerpts in evidence/12-compliance-local-surfaces-2026-10-27.txt.
+Impact: the related guide contradicts the primary article on the basis a reader should use for voluntary deductions.
+
+D14 — product / media — health cap missing in related guidance
+Local: como-calcular-sueldo-liquido.md:133 says “Fonasa ... exactamente el 7% de tu imponible. Punto.” It does not repeat the 90-UF cap in that paragraph, despite having mentioned the cap earlier at lines 106-107. It labels the extra Isapre plan amount “copago de Isapre.”
+Superintendencia de Salud says the legal amount is 7% of taxable remuneration/income. SP says the 2026 health base is capped at 90 UF. Superintendencia de Salud describes a plan above the legal contribution as “un costo adicional.”
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S7].
+Impact: internal contradiction can cause a high-income Fonasa reader to use the uncapped imponible; “copago” can confuse the nature of the Isapre premium difference.
+
+D15 — product / baja — wrong inline authority for prohibited-deduction list
+Local: descontos-de-sueldo.md:130 cites DT ORD. Nº2453/187 immediately after quoting the prohibited-deduction list and labels it as the source for Art. 58.
+Official DT abstract for ORD. 2453/187 concerns deductions for excess household water consumption under a written agreement and the 15% limit. The prohibition list itself is in BCN Code Art. 58 and is reproduced in the appropriate ORD. N°680.
+Official extracts: evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11].
+Impact: the reader following the link reaches an order about a permitted written deduction, not the prohibition the paragraph asserts.
+
+D16 — product / baja — correction log omits a material narrowing
+The prior article said Art. 58 prohibited deductions for “pérdidas de caja, deterioro de herramientas, mercadería dañada” without conditions.
+Current article narrows this: it quotes the actual Art. 58 list and cites DT ORD. 4229 for cash losses when no cash-loss allowance is paid.
+The correction entry descontos-sueldo-clasificacion-bases-atrasos records several other material changes but does not record this narrowing. It therefore underreports the actual correction.
+Source comparison and registry excerpt: evidence/12-compliance-local-surfaces-2026-10-27.txt; source ORD. 4229 extract: evidence/11-compliance-primary-sources-2026-10-27.txt [S11].
+
+D17 — product / baja — health-rate source absent from article source list
+The main article’s 7% rate is factually confirmed by Superintendencia de Salud, but the body links the claim to SP’s 90-UF cap page. articleLead.officialSources contains the SP cap and pension-contribution sources but no Superintendencia de Salud source for the 7% legal health rate.
+Official rate extract: evidence/11-compliance-primary-sources-2026-10-27.txt [S7].
+Impact: a correct rate is not traceable to the primary source cited by the article. Add the health authority source in the later correction.
+
+D18 — product / media — review metadata does not identify a verifiable human reviewer
+Local main article metadata: validAsOf=2026-10-20, updatedDate=2026-10-20, reviewPolicy.computedAt=2026-10-04, author=Equipo Monedario; visible footer says “Revisado el: 2026-10-20.”
+ArticleJsonLd.astro maps computedAt to JSON-LD lastReviewed and maps author to reviewedBy schema type Person. Thus the page source emits reviewer name “Equipo Monedario” as a Person and a lastReviewed date of 2026-10-04, while visible text says reviewed 2026-10-20.
+The dossier/result keep humanSignoff null; this proves no human signoff is recorded in the audit package, but does not prove that no human review occurred. No independent reviewer identity or review record was available in this audit.
+The three related pages changed in the Oct. 20 correction commit but retain earlier validAsOf/computedAt/update metadata; the closure plan explicitly holds those dates until human signoff/publication.
+Evidence: evidence/12-compliance-local-surfaces-2026-10-27.txt and evidence/13-compliance-reproducibility-2026-10-27.txt.
+Impact: the audit cannot substantiate a human review, and generated review metadata does not match the visible date. This finding is a traceability inconsistency; it is not a claim that an unrecorded human review definitely did not occur.
+
