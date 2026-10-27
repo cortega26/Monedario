@@ -35,9 +35,9 @@
     "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "ComplianceAgent (adversarial) — delta re-audit",
+    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 2",
     "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
-    "session": "codex-20261027-delta-reaudit",
+    "session": "codex-20261027-delta-reaudit-r2",
     "date": "2026-10-27"
   },
   "method": {
@@ -176,6 +176,108 @@
       "evidence": [
         "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/15-delta-reaudit-primary-sources-2026-10-27.txt",
         "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    "deltaReauditR2": {
+      "targetSha": "4fd605b8eef33cf08eb34ed3a7499ba98c932f84",
+      "targetParent": "0498e8abd5bb5cd23c9a96ed4f51d587f7dd8976",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-2",
+      "branch": "detached by design",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "auditor": {
+        "role": "ComplianceAgent (adversarial)",
+        "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+        "session": "codex-20261027-delta-reaudit-r2"
+      },
+      "independence": "Remediation model declared by the user: DeepSeek V4.1 Flash. Auditor: OpenAI GPT-6; different model family.",
+      "scope": [
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D19"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 cause 2",
+        "D18 pending signature"
+      ],
+      "preservedResolved": [
+        "D15",
+        "D17"
+      ],
+      "surfaces": [
+        "article body",
+        "frontmatter/FAQ metadata",
+        "tables",
+        "FAQ and JSON-LD",
+        "catalog/LLM",
+        "related content/glossary",
+        "calculator UI and motor",
+        "use-case test",
+        "public HTML runtime (not attributable to target SHA)"
+      ],
+      "edgeCases": [
+        "non-affiliate accepting benefit extension",
+        "ex-affiliate under in-force instrument",
+        "casa particular",
+        "pensioner",
+        "apprentice",
+        "under-18 worker",
+        "multiple employment relationships and per-employer records",
+        "56 UF threshold",
+        "three art. 57 grounds and exact worker/employer condition",
+        "court-ordered alimony",
+        "end-of-week verification under ORD. 1578",
+        "45-hour historical limit vs 42 hours from 2026-04-26"
+      ],
+      "officialSourceEvidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1-S6",
+      "reopenedUrlsEvidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S7 (27 URLs reopened on 2026-10-27; prior extracts not reused)",
+      "localSurfaceEvidence": [
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D9",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D10",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D11",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D12",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D19"
+      ],
+      "publicRuntimeEvidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#RUNTIME PÚBLICO",
+      "commands": [
+        "cd /tmp/opencode/wt-audit-descuentos-2",
+        "git rev-parse HEAD",
+        "git status --short --branch",
+        "git log -2 --format=%H\\ %P\\ %s",
+        "rg -n targeted D9-D12/D19/AFC literals in current source files",
+        "Open each of 27 source URLs directly on 2026-10-27; see evidence #S7",
+        "GET public routes with Cache-Control: no-cache, no-store; record HTTP Date and extracted text",
+        "pnpm exec vitest run tests/application/CalculateMonthlyPayrollBase.test.ts",
+        "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
+        "git diff --check",
+        "pnpm run check:audit-artifacts"
+      ],
+      "testExecution": "pnpm exec vitest run tests/application/CalculateMonthlyPayrollBase.test.ts: 1 file passed, 12 tests passed, exit 0. Static use-case test; no calculator E2E.",
+      "verdict": "CONDITIONAL",
+      "openDefects": [
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "resolvedInTargetCheckout": [
+        "D12",
+        "D19"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null,
+      "limitations": [
+        "Public HTML returned HTTP 200 with no-cache headers, but the response could not be associated with target SHA; it serves pre-remediation content on inspected surfaces.",
+        "Motor call paths were inspected statically and the specific use case test was run; no build, browser E2E, or Playwright run.",
+        "D11 third art. 57 ground remains open because two statutory qualifiers are not explicit in target prose.",
+        "D15/D17 and deferred IDs were not reaudited; their existing dispositions were preserved."
+      ],
+      "evidence": [
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt"
       ]
     }
   },
@@ -1242,60 +1344,52 @@
       "severity": "media",
       "surface": "product",
       "description": "descuentos-de-sueldo.md:108 circunscribe la cuota ordinaria a afiliados y no informa los supuestos de los Arts. 322–323: trabajadores no afiliados que aceptan extensión de beneficios y exafiliados que siguen sujetos a un instrumento colectivo deben pagar la cuota acordada/ordinaria en esos casos.",
-      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D9",
+      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D9",
       "supportingEvidence": [
-        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S3]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
-        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1-S3",
-        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D9"
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D9"
       ],
       "status": "open",
-      "reason": "El cuerpo principal ya cubre correctamente arts. 322–323 y no crea una cuota para quien no acepta extensión ni para un exafiliado fuera de la vigencia; siguen copias abreviadas solo para afiliados en descuentos-de-sueldo.md:195–196 y primer-empleo-chile-guia-completa.md:112."
+      "reason": "El cuerpo principal y su FAQ ya distinguen arts. 322–323 y reflejan aceptación, cuota total/parcial según acuerdo y duración del instrumento vigente. Continúa la copia corta de primer-empleo-chile-guia-completa.md:112 “cuota sindical (si estás afiliado)” sin ambos supuestos; el texto largo tampoco hace explícito el criterio objetivo, general y no arbitrario del acuerdo de extensión (art. 322)."
     },
     {
       "id": "D10",
       "severity": "media",
       "surface": "product",
       "description": "La pieza y el radio AFC omiten la excepción de trabajadores de casa particular al 0,6% a cargo del trabajador; primer-empleo también generaliza cobertura a todo contrato y entrega el 0,6% como descuento fijo. La Ley 19.728 excluye otras categorías y asigna el 3% doméstico completo al empleador.",
-      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D10",
+      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D10",
       "supportingEvidence": [
-        "evidence/11-compliance-primary-sources-2026-10-27.txt [S5, S6]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
-        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4-S7",
-        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S2-S4",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D10"
       ],
       "status": "open",
-      "reason": "La excepción y exclusiones se añadieron al cuerpo/FAQ, pero quedan tablas y superficies relacionadas que atribuyen 0,6% al trabajador sin excepción o lo atribuyen expresamente a casa particular: descuentos-de-sueldo.md:156,173; primer-empleo-chile-guia-completa.md:110,191,224; liquidacion-de-sueldo.md:105; seguro-de-cesantia.md:77; sueldo-imponible-chile.md:96,109,156. La calculadora de cobertura también omite esa variante en su explicación; el motor CalculateMonthlyPayrollBase aplica 0,6% a todo indefinido sin un tipo casa particular."
+      "reason": "La excepción doméstica está corregida en la pieza principal, la tabla de AFC, la tabla de seguro-de-cesantia.md, la prosa de liquidacion-de-sueldo.md, el selector/motor y la prueba. Quedan usos de 0,6% sin excepción en sueldo-imponible (fórmula/ejemplo), como-calcular-sueldo-liquido, seguro-cesantia-cuenta-individual-vs-fondo-solidario, glosarios sueldo-bruto/fondo-solidario y FAQ/JSON-LD/metodología de la calculadora de sueldo líquido. La tabla de primer empleo expresa 0% doméstico pero mantiene total ~18,1%, y la misma guía afirma que el seguro es obligatorio para todo trabajador con contrato vigente, sin acotar aprendices, menores ni pensionados. El HTML público y llms-full.txt también siguen mostrando contenido anterior; se distinguen del estado de este HEAD en la evidencia."
     },
     {
       "id": "D11",
       "severity": "media",
       "surface": "product",
       "description": "descuentos-de-sueldo.md:132 afirma que cualquier descuento fuera de sus categorías es prohibido y debe impugnarse; el Art. 57 permite embargos legales, incluida pensión alimenticia decretada judicialmente, en los límites que fija el Código.",
-      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D11",
+      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D11",
       "supportingEvidence": [
-        "evidence/11-compliance-primary-sources-2026-10-27.txt [S1]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
-        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
-        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D11"
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D11"
       ],
       "status": "open",
-      "reason": "Se agregó el umbral de 56 UF y la referencia judicial, pero “en supuestos como” deja abierta la lista; el texto omite la condición de que defraudación/hurto/robo sean del trabajador contra el empleador en ejercicio del cargo y el caso de remuneraciones adeudadas a quienes trabajaron para él."
+      "reason": "El texto incorpora los tres grupos y la condición para defraudación/hurto/robo del trabajador contra su empleador en ejercicio del cargo. En el tercer grupo solo dice “remuneraciones adeudadas a personas que hayan estado al servicio del deudor”; omite que las adeuda el trabajador y que las personas estuvieron a su servicio en calidad de trabajador, límites expresos del art. 57. La lista no queda completa bajo el criterio adversarial solicitado."
     },
     {
       "id": "D12",
       "severity": "media",
       "surface": "product",
       "description": "descuentos-de-sueldo.md:138 omite la condición de ORD. 1578 de verificar al término de la semana si se incumplió la jornada acordada por causa imputable antes del descuento. La pieza no informa que ese dictamen usa el límite semanal previo de 45 horas; desde el 26-04-2026 la DT confirma 42 horas.",
-      "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D12",
+      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D12",
       "supportingEvidence": [
-        "evidence/11-compliance-primary-sources-2026-10-27.txt [S2]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
-        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8-S9",
-        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S5-S6",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D12"
       ],
-      "status": "open",
-      "reason": "El párrafo principal incorporó la verificación al término de la semana y el paso 45→42 horas, pero la FAQ descuentos-de-sueldo.md:192–193 aún presenta el descuento como posible cuando el atraso es imputable sin decir que no es inmediato ni repetir la verificación semanal."
+      "status": "resolved",
+      "resolution": "En este HEAD, descuentos-de-sueldo.md:142 y FAQ :192–193 explican que no hay descuento inmediato y que debe verificarse al término de la semana un incumplimiento imputable, limitando el descuento al tiempo faltante. El cuerpo separa las 45 horas históricas del ORD. 1578 de las 42 horas vigentes desde 2026-04-26. El HTML público no está asociado a este SHA y conserva contenido anterior; esta resolución se limita al checkout auditado."
     },
     {
       "id": "D13",
@@ -1379,12 +1473,13 @@
       "severity": "baja",
       "surface": "product",
       "description": "La cita directa del art. 58, inciso 5, en src/data/blog/descuentos-de-sueldo.md:134 usa el sustantivo sobre medicamentos en singular; la transcripción de BCN lo pone en plural. La fuente y el inciso ya son correctos (D15 resuelto), pero una palabra no reproduce literalmente la norma.",
-      "evidence": "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15",
+      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D19",
       "supportingEvidence": [
-        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
-        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15"
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1",
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D19"
       ],
-      "status": "open"
+      "status": "resolved",
+      "resolution": "Comparación directa en este HEAD entre descuentos-de-sueldo.md:134 y el art. 58 inc. 5 de BCN: el fragmento local contiene “entrega de medicinas” (plural) y coincide literalmente con el texto oficial en el inciso comprobado. La página pública no está asociada a este SHA y no demuestra despliegue."
     }
   ],
   "verdict": "CONDITIONAL",
@@ -1421,6 +1516,24 @@
       "evidence": [
         "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt",
         "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      ]
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit ronda 2",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit-r2",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL",
+      "scope": [
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D19"
+      ],
+      "targetSha": "4fd605b8eef33cf08eb34ed3a7499ba98c932f84",
+      "evidence": [
+        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt"
       ]
     }
   ]
