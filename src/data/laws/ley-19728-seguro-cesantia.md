@@ -22,7 +22,7 @@ La Ley 19.728 creó el Seguro de Cesantía en Chile (vigente desde octubre 2002)
 
 ## Respuesta rápida
 
-**Regla general:** el Seguro de Cesantía sigue financiándose con un **3% de la remuneración imponible**, pero la distribución cambia según el tipo de contrato. En contrato indefinido, ese 3% se reparte entre **0,6% del trabajador a la CIC**, **1,6% del empleador a la CIC** y **0,8% del empleador al FCS**. En contrato a plazo fijo, por obra o servicio, el trabajador no aporta y el empleador paga **2,8% a la CIC** y **0,2% al FCS**.
+**Regla general:** el Seguro de Cesantía sigue financiándose con un **3% de la remuneración imponible**, pero la distribución cambia según el tipo de contrato. En contrato indefinido, ese 3% se reparte entre **0,6% del trabajador a la CIC**, **1,6% del empleador a la CIC** y **0,8% del empleador al FCS**. En contrato a plazo fijo, por obra o servicio, el trabajador no aporta y el empleador paga **2,8% a la CIC** y **0,2% al FCS**. En casa particular el trabajador tampoco aporta el 0,6%: el 3% completo es de cargo del empleador (art. 5).
 
 **Excepciones o condiciones comunes:** para cobrar con cargo a tu **CIC** debes estar cesante y tener al menos **10 cotizaciones** si tu contrato era indefinido o de trabajador(a) de casa particular, o **5 cotizaciones** si era a plazo fijo/obra/servicio. Para acceder al **FCS** además debes tener saldo CIC insuficiente, **10 cotizaciones pagadas en los 24 meses previos al despido**, las **3 últimas continuas y con el mismo empleador**, y una causal de término habilitada por la ley.
 

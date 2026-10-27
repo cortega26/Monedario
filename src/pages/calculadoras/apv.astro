@@ -194,6 +194,18 @@ const calculatorNextStepItems = [
                 Plazo fijo / obra
               </span>
             </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="tipo-contrato"
+                value="casa-particular"
+                data-profile-bind="contratoTipo"
+                class="peer sr-only"
+              />
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                Casa particular
+              </span>
+            </label>
           </div>
           <p class="mt-1 text-xs text-muted">
             Cambia la cotización del trabajador al seguro de cesantía y, por lo
@@ -726,14 +738,17 @@ const calculatorNextStepItems = [
       )?.value === "isapre"
         ? "isapre"
         : "fonasa";
+    const contractTypeValue = (
+      document.querySelector(
+        "input[name='tipo-contrato']:checked"
+      ) as HTMLInputElement
+    )?.value;
     const contractType =
-      (
-        document.querySelector(
-          "input[name='tipo-contrato']:checked"
-        ) as HTMLInputElement
-      )?.value === "plazo-fijo"
+      contractTypeValue === "plazo-fijo"
         ? "plazo-fijo"
-        : "indefinido";
+        : contractTypeValue === "casa-particular"
+          ? "casa-particular"
+          : "indefinido";
     const isapreAdicionalPercent =
       parseFloat(
         (document.getElementById("isapre-adicional") as HTMLInputElement).value

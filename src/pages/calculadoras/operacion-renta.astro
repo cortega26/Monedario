@@ -201,6 +201,11 @@ const operacionRentaFaqs = [
                     value: "plazo-fijo",
                     label: "Plazo fijo",
                   },
+                  {
+                    id: "est-casa-particular",
+                    value: "casa-particular",
+                    label: "Casa particular",
+                  },
                 ]}
               />
               <button
@@ -604,14 +609,17 @@ const operacionRentaFaqs = [
         )?.value === "isapre"
           ? "isapre"
           : "fonasa";
+      const contractTypeValue = (
+        document.querySelector(
+          "input[name='est-contrato']:checked"
+        ) as HTMLInputElement | null
+      )?.value;
       const contractType =
-        (
-          document.querySelector(
-            "input[name='est-contrato']:checked"
-          ) as HTMLInputElement | null
-        )?.value === "plazo-fijo"
+        contractTypeValue === "plazo-fijo"
           ? "plazo-fijo"
-          : "indefinido";
+          : contractTypeValue === "casa-particular"
+            ? "casa-particular"
+            : "indefinido";
 
       try {
         const payroll = calculateNetSalary({
