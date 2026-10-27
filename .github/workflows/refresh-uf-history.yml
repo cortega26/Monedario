@@ -14,9 +14,10 @@ name: Refresh UF history
 # sirve aquí.
 #
 # Por qué un workflow separado y no extender el del IPC: el del IPC depende de
-# los secretos BCCh y falla en el primer paso si faltan; la UF no los necesita.
-# Mezclar cadencias exigiría pasos condicionales en un workflow que hoy
-# funciona.
+# los secretos BCCh y falla en el primer paso si faltan; la UF también los
+# necesita desde ADR-20261027 (el emisor oficial de la UF es el BCCh), pero su
+# cadencia es semanal y no mensual. Mezclar cadencias exigiría pasos
+# condicionales en un workflow que hoy funciona.
 #
 # Sin auto-merge (fase 1). El PR es revisable, como en el IPC. El ADR contempla
 # auto-merge condicionado a un cross-check automático contra la tabla oficial
@@ -63,9 +64,40 @@ jobs:
           echo "before=$BEFORE" >> "$GITHUB_OUTPUT"
           echo "Serie en HEAD termina en: ${BEFORE:-<vacío>}"
 
-      - name: "📈 Refresh UF history"
+      - name: "🔑 Verify BCCh credentials"
+        # Sin esto el ingestor cae al respaldo (mindicador.cl) y el workflow
+        # quedaría verde sin haber usado al emisor oficial.
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
+        run: |
+          if [ -z "$BCCH_USER" ] || [ -z "$BCCH_PASSWORD" ]; then
+            echo "::error::Faltan los secretos BCCH_USER/BCCH_PASSWORD; la UF se ingeriría desde mindicador.cl en vez del emisor oficial."
+            exit 1
+          fi
+
+      - name: "📈 Refresh UF history (BCCh oficial)"
         id: ingest
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
         run: pnpm run fetch:economic-history --solo=uf
+
+      - name: "🔎 Assert BCCh provenance"
+        id: provenance
+        # Un fallback silencioso a mindicador es el modo de falla más peligroso:
+        # mismos datos, misma forma, cero beneficio y nada que lo detecte.
+        run: |
+          set -euo pipefail
+          FUENTE=$(node -e "process.stdout.write(String(require('./src/data/economic-history/uf-historico.json').fuente??''))")
+          echo "fuente: ${FUENTE:-<vacía>}"
+          case "$FUENTE" in
+            "Banco Central de Chile"*) ;;
+            *)
+              echo "::error::La serie UF no vino del BCCh (fuente: '${FUENTE}'). Revisar credenciales o disponibilidad del Siete REST WS."
+              exit 1
+              ;;
+          esac
 
       - name: "🔒 Assert the series advanced (heartbeat)"
         id: advance
@@ -131,6 +163,7 @@ jobs:
             const title = "⚠️ Ingesta semanal de la UF — revisar serie histórica";
             const failed =
               "${{ steps.ingest.outcome }}" === "failure" ||
+              "${{ steps.provenance.outcome }}" === "failure" ||
               "${{ steps.advance.outcome }}" === "failure" ||
               "${{ steps.freshness.outcome }}" === "failure";
 
@@ -187,6 +220,6 @@ jobs:
           desired-state: ${{ steps.issue_payload.outputs.desired_state }}
           labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
-      - name: "✅ Fail workflow when ingestion, advance or freshness failed"
-        if: steps.ingest.outcome == 'failure' || steps.advance.outcome == 'failure' || steps.freshness.outcome == 'failure'
+      - name: "✅ Fail workflow when ingestion, provenance, advance or freshness failed"
+        if: steps.ingest.outcome == 'failure' || steps.provenance.outcome == 'failure' || steps.advance.outcome == 'failure' || steps.freshness.outcome == 'failure'
         run: exit 1

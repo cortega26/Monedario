@@ -46,6 +46,11 @@ describe("economic-history datasets", () => {
           // Histórico vía mindicador/INE + extensión oficial vía BCCh (TD-0112).
           expect(ds.fuente).toContain("mindicador.cl");
           expect(ds.fuente).toContain("Banco Central de Chile");
+        } else if (ds.indicador === "uf") {
+          // ADR-20261027: el emisor oficial de la UF es el BCCh; mindicador.cl
+          // queda como respaldo y control de reconciliación.
+          expect(ds.fuente).toContain("Banco Central de Chile");
+          expect(ds.fuente).toContain("F073.UFF.PRE.Z.D");
         } else {
           expect(ds.fuente).toBe("mindicador.cl");
         }
@@ -116,5 +121,35 @@ describe("ipc-historico.json — regresión de ingesta 2026-09", () => {
     const idx = fechas.indexOf("2026-09-01");
     expect(idx).toBeGreaterThan(0);
     expect(fechas[idx - 1]).toBe("2026-08-01");
+  });
+});
+
+describe("uf-historico.json — correcciones de fuente (ADR-20261027)", () => {
+  const ds = loadDataset("uf-historico.json");
+  const lookup = new Map(ds.serie.map(entry => [entry.fecha, entry.valor]));
+
+  // Estos dos valores llegaron corruptos desde mindicador.cl (608,15 y 607,38
+  // en vez de 24.627,1): un error de ~40x servido públicamente durante años.
+  // El BCCh y el SII coinciden en 24.627,1.
+  it("corrige los dos valores corruptos de diciembre 2014", () => {
+    expect(lookup.get("2014-12-29")).toBe(24627.1);
+    expect(lookup.get("2014-12-30")).toBe(24627.1);
+  });
+
+  it("rellena las dos fechas que faltaban en diciembre 2015", () => {
+    expect(lookup.get("2015-12-12")).toBe(25629.09);
+    expect(lookup.get("2015-12-31")).toBe(25629.09);
+  });
+
+  it("no tiene saltos diarios implausibles en toda la serie", () => {
+    const violations: string[] = [];
+    for (let i = 1; i < ds.serie.length; i += 1) {
+      const prev = ds.serie[i - 1];
+      const curr = ds.serie[i];
+      if (Math.abs(curr.valor / prev.valor - 1) > 0.05) {
+        violations.push(`${curr.fecha}: ${prev.valor} -> ${curr.valor}`);
+      }
+    }
+    expect(violations).toEqual([]);
   });
 });

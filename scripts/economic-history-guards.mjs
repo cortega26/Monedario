@@ -41,3 +41,25 @@ export function findChangedValues(previousSerie, nextSerie) {
 
   return changed;
 }
+
+/**
+ * Combina dos series por fecha: `primarySerie` manda y `fallbackSerie` solo
+ * rellena las fechas que la primaria no cubre. Útil para BCCh (oficial) +
+ * mindicador (respaldo) sin dejar huecos si el oficial viene incompleto.
+ *
+ * @param {Array<{fecha: string, valor: number}>} primarySerie
+ * @param {Array<{fecha: string, valor: number}>} fallbackSerie
+ * @returns {Array<{fecha: string, valor: number}>} ascendente por fecha
+ */
+export function mergeSeriesByDate(primarySerie, fallbackSerie) {
+  const byFecha = new Map();
+  for (const entry of Array.isArray(fallbackSerie) ? fallbackSerie : []) {
+    if (entry?.fecha) byFecha.set(entry.fecha, entry.valor);
+  }
+  for (const entry of Array.isArray(primarySerie) ? primarySerie : []) {
+    if (entry?.fecha) byFecha.set(entry.fecha, entry.valor);
+  }
+  return [...byFecha.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([fecha, valor]) => ({ fecha, valor }));
+}
