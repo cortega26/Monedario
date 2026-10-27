@@ -1,6 +1,34 @@
 {
   "corrections": [
     {
+      "id": "uf-dos-valores-corruptos-2014",
+      "date": "2026-10-27",
+      "title": "Serie histórica de la UF: dos valores corruptos de 2014 y dos fechas faltantes de 2015",
+      "pages": [
+        {
+          "href": "/calculadoras/conversor-uf/",
+          "label": "Conversor de UF"
+        },
+        {
+          "href": "/uf-hoy/",
+          "label": "Valor de la UF hoy"
+        }
+      ],
+      "wrong": [
+        "La UF del 29 y 30 de diciembre de 2014 estaba registrada en 608,15 y 607,38 pesos. Su valor real era 24.627,10: un error de aproximadamente 40 veces. Quien convirtió montos en UF para esas fechas obtuvo un resultado ~40 veces menor.",
+        "Faltaban por completo las fechas 12 y 31 de diciembre de 2015 (valor real 25.629,09).",
+        "Los valores se servían sin advertencia, también vía /api/uf-historico-lookup.json, porque la serie se ingería desde un agregador y ningún control la contrastaba con el emisor oficial."
+      ],
+      "fixed": [
+        "Se corrigieron los dos valores a 24.627,10 y se agregaron las dos fechas faltantes con 25.629,09, verificados contra el Banco Central de Chile y el Servicio de Impuestos Internos.",
+        "La serie pasó a ingerirse desde el Banco Central de Chile (serie F073.UFF.PRE.Z.D), su emisor oficial, con mindicador.cl solo como respaldo.",
+        "Se agregaron guardas de ingesta: se aborta si un valor ya publicado cambia sin autorización explícita, si un salto diario supera 5% o si la serie no proviene del Banco Central."
+      ],
+      "affected": "Quienes usaron el conversor de UF o la UF del día para el 29 o 30 de diciembre de 2014, y cualquier cálculo que dependiera de esas fechas.",
+      "sources": "Banco Central de Chile, serie F073.UFF.PRE.Z.D (Siete REST WS). Servicio de Impuestos Internos, https://www.sii.cl/valores_y_fechas/uf/uf2014.htm.",
+      "prevention": "Contraste permanente contra el emisor oficial, guard de inmutabilidad de valores ya publicados, guard de plausibilidad (salto diario máximo 5%) y aserción de procedencia en el workflow semanal de ingesta."
+    },
+    {
       "id": "interes-compuesto-portada-hitos-documentados",
       "date": "2026-10-20",
       "title": "Portada de interés compuesto: reemplazo del gráfico desactualizado por hitos documentados",
