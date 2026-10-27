@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-19T20:58:58Z",
+  "fetchedAt": "2026-10-22T11:07:43Z",
   "schemaVersion": 1,
   "source": "gsc",
   "week": "2026-W42",
@@ -9,32 +9,32 @@
   },
   "data": [
     {
-      "clicks": 381,
+      "clicks": 421,
       "ctr": 0.0019,
-      "impressions": 204980,
+      "impressions": 225816,
       "key": "chl",
-      "position": 8.93
+      "position": 8.95
     },
     {
       "clicks": 2,
-      "ctr": 0.0071,
-      "impressions": 282,
+      "ctr": 0.0059,
+      "impressions": 339,
       "key": "esp",
-      "position": 8.5
+      "position": 8.14
     },
     {
       "clicks": 2,
-      "ctr": 0.0185,
-      "impressions": 108,
+      "ctr": 0.0159,
+      "impressions": 126,
       "key": "mex",
-      "position": 9.38
+      "position": 9.33
     },
     {
       "clicks": 1,
-      "ctr": 0.0079,
-      "impressions": 127,
+      "ctr": 0.0065,
+      "impressions": 155,
       "key": "bra",
-      "position": 16.94
+      "position": 17.03
     },
     {
       "clicks": 1,
@@ -45,10 +45,10 @@
     },
     {
       "clicks": 1,
-      "ctr": 0.0079,
-      "impressions": 127,
+      "ctr": 0.0071,
+      "impressions": 141,
       "key": "per",
-      "position": 7.69
+      "position": 7.83
     },
     {
       "clicks": 0,
@@ -74,9 +74,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 165,
+      "impressions": 189,
       "key": "arg",
-      "position": 7.92
+      "position": 8.58
     },
     {
       "clicks": 0,
@@ -95,7 +95,7 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 55,
+      "impressions": 62,
       "key": "aus",
       "position": 7.35
     },
@@ -109,9 +109,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 17,
+      "impressions": 18,
       "key": "bel",
-      "position": 10.76
+      "position": 10.44
     },
     {
       "clicks": 0,
@@ -123,9 +123,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 15,
+      "impressions": 17,
       "key": "bgd",
-      "position": 27
+      "position": 28.59
     },
     {
       "clicks": 0,
@@ -137,9 +137,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 32,
+      "impressions": 38,
       "key": "bol",
-      "position": 8.16
+      "position": 7.97
     },
     {
       "clicks": 0,
@@ -151,37 +151,37 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 65,
+      "impressions": 79,
       "key": "can",
-      "position": 7.38
+      "position": 7.47
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 19,
+      "impressions": 25,
       "key": "che",
-      "position": 7.53
+      "position": 7.52
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 89,
+      "impressions": 100,
       "key": "col",
-      "position": 9.87
+      "position": 11.6
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 10,
+      "impressions": 12,
       "key": "cri",
-      "position": 8.6
+      "position": 8.33
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "key": "cub",
-      "position": 7
+      "position": 4
     },
     {
       "clicks": 0,
@@ -193,9 +193,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "key": "cyp",
-      "position": 8.5
+      "position": 6.67
     },
     {
       "clicks": 0,
@@ -207,9 +207,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 65,
+      "impressions": 69,
       "key": "deu",
-      "position": 6.95
+      "position": 7.09
     },
     {
       "clicks": 0,
@@ -221,23 +221,23 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 11,
       "key": "dom",
-      "position": 9
+      "position": 8.73
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "key": "dza",
-      "position": 27
+      "position": 17
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 32,
+      "impressions": 35,
       "key": "ecu",
-      "position": 7.19
+      "position": 7.51
     },
     {
       "clicks": 0,
@@ -256,9 +256,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 52,
+      "impressions": 54,
       "key": "fra",
-      "position": 8.9
+      "position": 8.8
     },
     {
       "clicks": 0,
@@ -270,9 +270,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 32,
+      "impressions": 37,
       "key": "gbr",
-      "position": 10.56
+      "position": 9.86
     },
     {
       "clicks": 0,
@@ -333,23 +333,23 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
+      "impressions": 13,
       "key": "idn",
-      "position": 14.27
+      "position": 15.46
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 22,
+      "impressions": 26,
       "key": "ind",
-      "position": 11.77
+      "position": 13.04
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 9,
+      "impressions": 10,
       "key": "irl",
-      "position": 9.89
+      "position": 9.8
     },
     {
       "clicks": 0,
@@ -361,16 +361,16 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "key": "isr",
-      "position": 10.75
+      "position": 10
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 22,
+      "impressions": 25,
       "key": "ita",
-      "position": 8.36
+      "position": 8.08
     },
     {
       "clicks": 0,
@@ -382,9 +382,16 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
+      "impressions": 2,
+      "key": "jor",
+      "position": 9.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 13,
       "key": "jpn",
-      "position": 12.18
+      "position": 11.23
     },
     {
       "clicks": 0,
@@ -396,9 +403,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "key": "ken",
-      "position": 12
+      "position": 9.67
     },
     {
       "clicks": 0,
@@ -438,6 +445,20 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "key": "mda",
+      "position": 50
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "key": "mdv",
+      "position": 10
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "key": "mlt",
       "position": 9
@@ -466,9 +487,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 6,
       "key": "mys",
-      "position": 7
+      "position": 6.17
     },
     {
       "clicks": 0,
@@ -480,30 +501,30 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 13,
+      "impressions": 18,
       "key": "nld",
-      "position": 6.08
+      "position": 6.67
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "key": "nor",
-      "position": 5.75
+      "position": 5.4
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "key": "npl",
-      "position": 12
+      "position": 24.5
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 15,
+      "impressions": 17,
       "key": "nzl",
-      "position": 7.73
+      "position": 7.53
     },
     {
       "clicks": 0,
@@ -515,23 +536,23 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 6,
       "key": "pak",
-      "position": 16.2
+      "position": 16.83
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 15,
+      "impressions": 16,
       "key": "pan",
-      "position": 7.33
+      "position": 7.38
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 7,
       "key": "phl",
-      "position": 20.2
+      "position": 15.86
     },
     {
       "clicks": 0,
@@ -557,9 +578,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 15,
+      "impressions": 20,
       "key": "pry",
-      "position": 8
+      "position": 7.85
     },
     {
       "clicks": 0,
@@ -585,9 +606,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 13,
+      "impressions": 22,
       "key": "rus",
-      "position": 23.69
+      "position": 20.59
     },
     {
       "clicks": 0,
@@ -606,16 +627,16 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 9,
+      "impressions": 11,
       "key": "sgp",
-      "position": 11.11
+      "position": 10.64
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 8,
       "key": "slv",
-      "position": 4.14
+      "position": 4.63
     },
     {
       "clicks": 0,
@@ -634,9 +655,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 23,
+      "impressions": 26,
       "key": "swe",
-      "position": 6.91
+      "position": 6.73
     },
     {
       "clicks": 0,
@@ -655,9 +676,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 7,
       "key": "tha",
-      "position": 9.8
+      "position": 9
     },
     {
       "clicks": 0,
@@ -669,30 +690,37 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "key": "tur",
-      "position": 10
+      "position": 12.4
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 1,
+      "key": "tza",
+      "position": 62
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
       "key": "ukr",
-      "position": 3
+      "position": 2.33
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
+      "impressions": 13,
       "key": "ury",
-      "position": 7.91
+      "position": 7.62
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 458,
+      "impressions": 526,
       "key": "usa",
-      "position": 8.73
+      "position": 8.66
     },
     {
       "clicks": 0,
@@ -704,9 +732,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 33,
+      "impressions": 39,
       "key": "ven",
-      "position": 10.76
+      "position": 11.13
     },
     {
       "clicks": 0,
@@ -718,9 +746,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 9,
       "key": "zaf",
-      "position": 17.86
+      "position": 21.56
     },
     {
       "clicks": 0,

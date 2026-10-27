@@ -32,12 +32,17 @@ function writeIpcSeries(
   );
 }
 
-function writeUfSeries(root: string, hastaFecha: string) {
+function writeUfSeries(
+  root: string,
+  hastaFecha: string,
+  serie: Array<{ fecha: string; valor: number }> = [],
+  actualizadoEl = "2026-06-18"
+) {
   const dir = path.join(root, "src", "data", "economic-history");
   mkdirSync(dir, { recursive: true });
   writeFileSync(
     path.join(dir, "uf-historico.json"),
-    JSON.stringify({ hastaFecha, serie: [] })
+    JSON.stringify({ hastaFecha, serie, actualizadoEl })
   );
 }
 
@@ -183,6 +188,41 @@ describe("check-economic-snapshot-freshness", () => {
   it("passes when the UF series is current or published ahead", () => {
     const root = writeSnapshot(fresh);
     writeUfSeries(root, "2026-07-09"); // la UF se publica con anticipación
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(0);
+  });
+
+  // ADR-20261026: la serie puede ir "adelantada" y aun así estar abandonada.
+  // Sin heartbeat, un ingestor que dejó de correr solo se detecta ~28 días
+  // después (14 de anticipación de la UF + 14 de umbral).
+  it("fails when the weekly UF ingestion stalled even if the series is ahead (heartbeat)", () => {
+    const root = writeSnapshot(fresh);
+    writeUfSeries(root, "2026-07-09", [], "2026-03-01");
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("ingesta semanal");
+    expect(r.stderr).toContain("refresh-uf-history.yml");
+  });
+
+  it("passes the heartbeat inside the 10d + 1d UTC grace window", () => {
+    const root = writeSnapshot(fresh);
+    writeUfSeries(root, "2026-07-09", [], "2026-06-09"); // 10d
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(0);
+  });
+
+  it("fails when the real UF serie trails the snapshot even if hastaFecha is advanced (metadata drift)", () => {
+    const root = writeSnapshot(fresh); // uf snapshot = 2026-06-17
+    writeUfSeries(root, "2026-06-17", [{ fecha: "2026-04-01", valor: 40000 }]);
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("uf-historico.json llega a 2026-04-01");
+    expect(r.stderr).toContain("--solo=uf");
+  });
+
+  it("passes when the real UF serie is current even if hastaFecha lags", () => {
+    const root = writeSnapshot(fresh);
+    writeUfSeries(root, "2026-04-01", [{ fecha: "2026-06-17", valor: 40000 }]);
     const r = run(root, "2026-06-19T00:00:00.000Z");
     expect(r.status).toBe(0);
   });

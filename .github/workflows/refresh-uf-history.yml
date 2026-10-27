@@ -1,0 +1,225 @@
+name: Refresh UF history
+
+# ADR-20261026-weekly-uf-ingestion.
+#
+# La serie histórica diaria de la UF (`src/data/economic-history/uf-historico.json`)
+# no tenía ningún ingestor programado: solo se refrescaba a mano. El gate
+# `check:economic-snapshot-freshness` la compara contra el snapshot (que sí se
+# refresca a diario vía Worker) con un umbral de 14 días, así que el rezago era
+# cuestión de tiempo, no de suerte. Pasó el 2026-10-26 (17 días de rezago).
+#
+# Por qué semanal: la UF se publica ~14 días por anticipación, así que una
+# corrida semanal mantiene el rezago muy por debajo del umbral y cuesta ~1
+# corrida corta. La cadencia mensual del IPC (`refresh-ipc-history.yml`) no
+# sirve aquí.
+#
+# Por qué un workflow separado y no extender el del IPC: el del IPC depende de
+# los secretos BCCh y falla en el primer paso si faltan; la UF también los
+# necesita desde ADR-20261027 (el emisor oficial de la UF es el BCCh), pero su
+# cadencia es semanal y no mensual. Mezclar cadencias exigiría pasos
+# condicionales en un workflow que hoy funciona.
+#
+# Sin auto-merge (fase 1). El PR es revisable, como en el IPC. El ADR contempla
+# auto-merge condicionado a un cross-check automático contra la tabla oficial
+# del SII; mientras ese check no exista, la condición no se cumple y el merge
+# queda en manos humanas. El heartbeat de abajo evita que la latencia humana se
+# convierta en silencio: si el PR no se mergea, `actualizadoEl` deja de avanzar
+# y el CI programado se pone rojo.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1" # lunes 13:00 UTC, después del gate programado de las 05:00
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-uf-history-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  refresh-uf:
+    name: Refresh UF history and open reviewable PR
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+    timeout-minutes: 30
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "📅 Capture current series end (stagnation baseline)"
+        id: baseline
+        run: |
+          set -euo pipefail
+          BEFORE=$(git show HEAD:src/data/economic-history/uf-historico.json \
+            | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{const s=JSON.parse(d);process.stdout.write(String((s.serie??[]).at(-1)?.fecha??s.hastaFecha??''))})")
+          echo "before=$BEFORE" >> "$GITHUB_OUTPUT"
+          echo "Serie en HEAD termina en: ${BEFORE:-<vacío>}"
+
+      - name: "🔑 Verify BCCh credentials"
+        # Sin esto el ingestor cae al respaldo (mindicador.cl) y el workflow
+        # quedaría verde sin haber usado al emisor oficial.
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
+        run: |
+          if [ -z "$BCCH_USER" ] || [ -z "$BCCH_PASSWORD" ]; then
+            echo "::error::Faltan los secretos BCCH_USER/BCCH_PASSWORD; la UF se ingeriría desde mindicador.cl en vez del emisor oficial."
+            exit 1
+          fi
+
+      - name: "📈 Refresh UF history (BCCh oficial)"
+        id: ingest
+        env:
+          BCCH_USER: ${{ secrets.BCCH_USER }}
+          BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
+        run: pnpm run fetch:economic-history --solo=uf
+
+      - name: "🔎 Assert BCCh provenance"
+        id: provenance
+        # Un fallback silencioso a mindicador es el modo de falla más peligroso:
+        # mismos datos, misma forma, cero beneficio y nada que lo detecte.
+        run: |
+          set -euo pipefail
+          FUENTE=$(node -e "process.stdout.write(String(require('./src/data/economic-history/uf-historico.json').fuente??''))")
+          echo "fuente: ${FUENTE:-<vacía>}"
+          case "$FUENTE" in
+            "Banco Central de Chile"*) ;;
+            *)
+              echo "::error::La serie UF no vino del BCCh (fuente: '${FUENTE}'). Revisar credenciales o disponibilidad del Siete REST WS."
+              exit 1
+              ;;
+          esac
+
+      - name: "🔒 Assert the series advanced (heartbeat)"
+        id: advance
+        # Un ingestor que devuelve la misma serie sale con código 0, no produce
+        # diff y cerraría su propio issue como verde. Esta aserción lo convierte
+        # en rojo.
+        env:
+          BEFORE: ${{ steps.baseline.outputs.before }}
+        run: |
+          set -euo pipefail
+          AFTER=$(node -e "const s=require('./src/data/economic-history/uf-historico.json');process.stdout.write(String((s.serie??[]).at(-1)?.fecha??''))")
+          echo "Serie nueva termina en: ${AFTER:-<vacío>}"
+          if [ -z "$AFTER" ]; then
+            echo "::error::La serie ingerida no tiene última fecha."
+            exit 1
+          fi
+          if [ -n "$BEFORE" ] && [ ! "$AFTER" \> "$BEFORE" ]; then
+            echo "::error::La serie no avanzó (antes ${BEFORE}, ahora ${AFTER}). La fuente no publicó días nuevos o la ingesta está rota."
+            exit 1
+          fi
+
+      - name: "🕰️ Economic snapshot freshness (always after ingestion)"
+        id: freshness
+        if: always()
+        run: pnpm run check:economic-snapshot-freshness
+
+      - name: "📬 Create pull request"
+        id: create-pr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        env:
+          HUSKY: "0"
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(data): refresh UF history from official source"
+          title: "chore(data): refresh UF history from official source"
+          body: |
+            Automated weekly refresh of the UF historical series.
+
+            - Trigger: `${{ github.event_name }}` from `refresh-uf-history.yml`.
+            - Source: mindicador.cl, cross-checked against the official SII table
+              during review (`sii.cl/valores_y_fechas/uf/`).
+            - Expected change: append-only. New daily entries plus
+              `actualizadoEl`/`hastaFecha`/`totalEntradas` metadata, and the
+              `uf-rango`/`uf-mensual` sidecars.
+            - Review before merge: no existing date may change value and none may
+              disappear. `pnpm run fetch:economic-history --solo=uf` aborts on
+              both unless explicitly overridden.
+          branch: chore/refresh-uf-history
+          delete-branch: true
+          labels: data-freshness
+          add-paths: |
+            src/data/economic-history/uf-historico.json
+            src/data/economic-history/uf-rango.json
+            src/data/economic-history/uf-mensual.json
+
+      - name: "📝 Build UF freshness issue payload"
+        if: always()
+        id: issue_payload
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            const title = "⚠️ Ingesta semanal de la UF — revisar serie histórica";
+            const failed =
+              "${{ steps.ingest.outcome }}" === "failure" ||
+              "${{ steps.provenance.outcome }}" === "failure" ||
+              "${{ steps.advance.outcome }}" === "failure" ||
+              "${{ steps.freshness.outcome }}" === "failure";
+
+            core.setOutput("title", title);
+            core.setOutput("labels_json", JSON.stringify(["data-freshness"]));
+
+            if (!failed) {
+              core.setOutput("desired_state", "closed");
+              core.setOutput("body", "Serie UF al día; issue cerrado automáticamente.");
+              return;
+            }
+
+            let seriesEnd = "?";
+            let actualizadoEl = "?";
+            try {
+              const series = JSON.parse(
+                fs.readFileSync("src/data/economic-history/uf-historico.json", "utf8")
+              );
+              const entries = Array.isArray(series.serie) ? series.serie : [];
+              seriesEnd = String(entries.at(-1)?.fecha ?? series.hastaFecha ?? "?");
+              actualizadoEl = String(series.actualizadoEl ?? "?");
+            } catch (_) {}
+
+            const body = [
+              "## La ingesta semanal de la UF falló o la serie no avanzó",
+              "",
+              `- **Serie histórica hasta:** \`${seriesEnd}\``,
+              `- **actualizadoEl:** \`${actualizadoEl}\``,
+              `- **Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              "",
+              "### Acciones requeridas",
+              "",
+              "1. Revisar el run: distinguir fallo de red/fuente de fallo de la aserción de avance.",
+              "2. Reproducir localmente: `pnpm run fetch:economic-history --solo=uf`.",
+              "3. Cotejar los valores nuevos contra la tabla oficial del SII antes de mergear el PR.",
+              "4. Si el PR se mergeó, el issue se cierra solo en la próxima corrida verde.",
+              "",
+              "**Nota:** si el PR semanal queda sin mergear, `actualizadoEl` deja de avanzar y",
+              "`check:economic-snapshot-freshness` se pondrá rojo en el CI programado a los ~11 días.",
+              "",
+              `**Triggered by:** \`${context.eventName}\` — run \`${context.runId}\``,
+            ].join("\n");
+
+            core.setOutput("desired_state", "open");
+            core.setOutput("body", body);
+
+      - name: "📝 Sync UF freshness issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}
+
+      - name: "✅ Fail workflow when ingestion, provenance, advance or freshness failed"
+        if: steps.ingest.outcome == 'failure' || steps.provenance.outcome == 'failure' || steps.advance.outcome == 'failure' || steps.freshness.outcome == 'failure'
+        run: exit 1
