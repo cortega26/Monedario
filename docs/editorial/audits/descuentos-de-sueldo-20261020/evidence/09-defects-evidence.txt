@@ -1,0 +1,75 @@
+=== DEFECT EVIDENCE (file:line excerpts + computed impact) ===
+
+--- D1 stale IMM in gratification cap | src/data/laws/codigo-del-trabajo.md ---
+54: - **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (equivale a aproximadamente $539.000 × 4,75 = $2.560.250 al año con el IMM vigente a mayo de 2026). Se puede pagar mensualmente de forma proporcional.
+
+
+Computed (Decimal):
+  4.75 * 539000        = 2560250.00
+  4.75 * 553553        = 2629376.75
+  difference           = 69126.75
+  understatement % of correct = 2.6290
+
+--- D2 Capital labelled 0,58% | src/data/blog/como-calcular-sueldo-liquido.md ---
+123: | Capital   | 1.44%         |
+
+180: **Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 0,58%, total AFP 10,58%) y Fonasa.
+
+186: | (-) AFP comisión 0,58%           | $1.350.000 × 0,58%    | -$7.830         |
+
+
+Computed (Decimal), imponible 1.350.000:
+  1.350.000 * 0,58% = 7830
+  1.350.000 * 1,44% = 19440
+  difference        = 11610
+  net effect after 4% IUSC offset = 11146
+
+--- D3 plazo fijo 3% 'al FCS' | src/data/blog/primer-empleo-chile-guia-completa.md ---
+191: - **Cuenta Individual de Cesantía (CIC):** dinero que solo es tuyo. Se financia con el **0,6 % de tu sueldo imponible** (aporte trabajador) más **2,4 % adicional del empleador** si tienes contrato indefinido. Total: 3 % mensual sobre imponible.
+
+192: - **Fondo de Cesantía Solidario (FCS):** fondo colectivo. Solo el empleador aporta (0,8 % en contrato indefinido). Puede complementar tu CIC si cumples criterios de acceso.
+
+194: Si tienes contrato a plazo fijo, solo cotiza el empleador (3 % al FCS) y tú recibes la CIC cuando termina el contrato.
+
+
+AFC table (04-source-extracts-2026-10-20.txt S2b): plazo fijo CIC 2,8% + FCS 0,2% = 3,0%.
+Computed on $800.000: CIC = 22400 | FCS = 1600
+
+--- D4 SIS 1,87% vs 1,78% | src/data/blog/primer-empleo-chile-guia-completa.md ---
+134: El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** de aproximadamente 1,87 % de la remuneración, pero ese costo lo asume él, no tú.
+
+
+Computed on $1.000.000: 1,87% = 18700 | 1,78% = 17800 | delta = 900
+Employer-borne: no effect on the worker's net pay.
+
+--- D5 idNorma=30053 mislabelled Ley 18.833 | docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/02-primary-sources.txt ---
+118: === S10_html: BCN Ley 18.833 (navegar HTML) ===
+119: URL: https://www.bcn.cl/leychile/navegar?idNorma=30053
+120: HTTP: 200 | Bytes: 9602 | SHA256: 4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131
+123: === S10_json: BCN Ley 18.833 (get_norma_json) ===
+124: URL: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=30053
+125: HTTP: 200 | Bytes: 8786 | SHA256: 4d59098da25890bad453874414c98c30e38f64fc07760fa61e2616afff6182e1
+
+
+--- D5 same wrong URL in scope S10 | docs/editorial/audits/descuentos-de-sueldo-20261020/00-scope.json ---
+101:         "id": "S10",
+
+102:         "label": "BCN — Ley 18.833, art. 22",
+
+103:         "url": "https://www.bcn.cl/leychile/navegar?idNorma=30053"
+
+
+Observed (04-source-extracts-2026-10-20.txt): 30053 -> LEY-18667 (Codigo de Justicia Militar); 30209 -> LEY-18833.
+
+--- D6 AFP 10,5% labelled 'ahorro previsional' / total 18,1% | src/data/blog/primer-empleo-chile-guia-completa.md ---
+110: **Descuentos legales:** AFP (~10,5 %), salud (7 %), seguro de cesantía (0,6 % trabajador). Estos son fijos e inamovibles — el empleador no puede eliminarlos ni reducirlos.
+
+222: | AFP (ahorro previsional)        | 10,5 %            |
+
+225: | **Total descuentos legales**    | **~18,1 %**       |
+
+227: Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
+
+
+Computed ranges: 10,46%..11,45% AFP; +7,0% salud +0,6% AFC = 18,06%..19,05%.
+On $1.000.000 imponible the spread is 9500 CLP/month vs the published 18,1%.

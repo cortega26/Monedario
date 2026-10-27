@@ -201,6 +201,11 @@ const operacionRentaFaqs = [
                     value: "plazo-fijo",
                     label: "Plazo fijo",
                   },
+                  {
+                    id: "est-casa-particular",
+                    value: "casa-particular",
+                    label: "Casa particular",
+                  },
                 ]}
               />
               <button
@@ -518,6 +523,7 @@ const operacionRentaFaqs = [
 <script>
   import "@/scripts/calculator-prefill";
   import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
+  import { parseContractType } from "@/utils/contractType";
   import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
   import { getTaxYearParameters } from "@/domain/taxation/TaxYearRegistry";
   import { trackAnalyticsEvent } from "@/utils/analytics";
@@ -604,14 +610,13 @@ const operacionRentaFaqs = [
         )?.value === "isapre"
           ? "isapre"
           : "fonasa";
-      const contractType =
+      const contractType = parseContractType(
         (
           document.querySelector(
             "input[name='est-contrato']:checked"
           ) as HTMLInputElement | null
-        )?.value === "plazo-fijo"
-          ? "plazo-fijo"
-          : "indefinido";
+        )?.value
+      );
 
       try {
         const payroll = calculateNetSalary({

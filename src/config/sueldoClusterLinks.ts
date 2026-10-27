@@ -103,7 +103,7 @@ const unemploymentLawCard: LinkCard = {
   kind: "Ley",
   title: "Ley del Seguro de Cesantía",
   description:
-    "Explica quién aporta el 0,6% y cuándo aplica el seguro de cesantía.",
+    "Explica quién aporta el 0,6% —y quién no, como en casa particular— y cuándo aplica el seguro de cesantía.",
   href: "/leyes/ley-19728-seguro-cesantia/",
   cta: "Ver ficha legal",
 };

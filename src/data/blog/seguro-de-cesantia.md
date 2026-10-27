@@ -74,9 +74,9 @@ El aporte mensual al seguro varía según el tipo de contrato:
 | ------------------------- | ----------------- | ---------------- | ----- |
 | Indefinido                | 0.6%              | 2.4%             | 3%    |
 | Plazo fijo / obra o faena | 0%                | 3%               | 3%    |
-| Casa particular           | 0.6%              | 2.4%             | 3%    |
+| Casa particular           | 0%                | 3%               | 3%    |
 
-Si tienes contrato a plazo fijo, **no te descuentan nada del sueldo** para el seguro — pero igual acumulas, porque el empleador pone el 3% completo.
+Si tienes contrato a plazo fijo, **no te descuentan nada del sueldo** para el seguro — pero igual acumulas, porque el empleador pone el 3% completo. Lo mismo ocurre en casa particular: la Ley 19.728 excluye a estos trabajadores del 0,6% a su cargo y el 3% es íntegramente del empleador.
 
 El **tope imponible** para el cálculo se actualiza anualmente. Si ganas más que ese tope, los aportes se calculan solo sobre ese límite — no sobre tu sueldo completo. Para el valor vigente del año en curso consulta directamente en [afc.cl](https://www.afc.cl).
 
@@ -216,7 +216,7 @@ El seguro se activa por cada relación laboral en la que estés afiliado. Si per
 <details>
 <summary>¿Puedo cobrar el seguro si soy trabajador de casa particular?</summary>
 
-Sí. Desde el 1 de octubre de 2020 las trabajadoras y trabajadores de casa particular son afiliados obligatorios al Seguro de Cesantía. Las reglas son las mismas que para contrato indefinido.
+Sí. Desde el 1 de octubre de 2020 las trabajadoras y trabajadores de casa particular son afiliados obligatorios al Seguro de Cesantía. Para cobrar, las reglas de acceso y beneficios son las mismas que para contrato indefinido. En el aporte hay una diferencia: tú no pagas el 0,6%; el 3% completo lo paga el empleador.
 
 </details>
 

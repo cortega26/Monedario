@@ -93,7 +93,7 @@ Sueldo bruto
   = Remuneración imponible
   − Cotización AFP (~10,5 % + comisión AFP)
   − Cotización salud (7 % isapre/Fonasa)
-  − Cotización AFC (0,6 % trabajador)
+  − Cotización AFC (0,6 % trabajador; 0 % en casa particular)
   − Impuesto de Segunda Categoría (tramo marginal)
   = Sueldo líquido
 ```
@@ -106,7 +106,7 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 
 - **Cotización AFP**: aproximadamente 10,5% de la base imponible más la comisión de tu AFP (varía por institución).
 - **Cotización de salud**: 7% mínimo legal (Ley 18.469 Fonasa / Ley 18.933 Isapres) o la prima pactada con la isapre, lo que sea mayor.
-- **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía).
+- **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía). En casa particular el trabajador no aporta: el 3% es del empleador.
 
 **Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que se gana por sobre el tope no cotiza — lo que también significa que no genera pensión sobre esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
@@ -153,7 +153,7 @@ Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles 
 1. Remuneración imponible: $1.200.000
 2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000
-4. AFC (0,6%): $7.200
+4. AFC (0,6%; $0 en casa particular): $7.200
 5. ISC (tramo del 4%: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], rebaja [[utm * 0.54 | clp]]): **[[1200000 * 0.04 - utm * 0.54 | clp]]** → $1.200.000 × 0,04 − [[utm * 0.54 | clp]] ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
 6. **Sueldo líquido orientativo: ~[[934800 + utm * 0.54 | clp]]** ($1.200.000 − $126.000 − $84.000 − $7.200 − [[1200000 * 0.04 - utm * 0.54 | clp]]). La comisión AFP no está incluida — varía por institución.
 

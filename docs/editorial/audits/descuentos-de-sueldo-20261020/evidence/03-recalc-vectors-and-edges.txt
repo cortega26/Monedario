@@ -1,0 +1,59 @@
+=== MATH AUDIT INDEPENDENT RECALCULATION (Decimal prec=50) ===
+Snapshot parameters (2026-10-20): UF=41189.24, UTM_oct=72151, UTM_sep=71721, cap_prev=90 UF, cap_afc=135.2 UF
+
+--- V1: Tope de salud (7% de 90 UF) ---
+90 UF * 0.07 = 6.30 UF | Published: 6.3 UF | Exact match: True
+90 UF in CLP (UF=41189.24): 3707031.60 (rounded CLP: 3707032)
+6.3 UF in CLP (UF=41189.24): 259492.21 (rounded CLP: 259492)
+  Edge V1: imponible=50 UF -> base_efectiva=50 UF -> 7% legal=3.50 UF
+  Edge V1: imponible=89.99 UF -> base_efectiva=89.99 UF -> 7% legal=6.2993 UF
+  Edge V1: imponible=90 UF -> base_efectiva=90 UF -> 7% legal=6.30 UF
+  Edge V1: imponible=90.01 UF -> base_efectiva=90 UF -> 7% legal=6.30 UF
+  Edge V1: imponible=135.2 UF -> base_efectiva=90 UF -> 7% legal=6.30 UF
+  Edge V1: imponible=150 UF -> base_efectiva=90 UF -> 7% legal=6.30 UF
+
+--- V2: Tramo exento IUSC octubre 2026 (13,5 UTM * $72.151) ---
+13.5 * 72151 = 974038.50 | Published & SII table: 974038.50 | Exact match: True
+Tramo 2 (13.5 to 30 UTM) upper bound: 30 * 72151 = 2164530.00 | Rebaja 4%: 38961.54
+  Edge V2 (Oct 2026): RLI=$974038.50 -> IUSC=$0.0000 (rounded CLP: $0)
+  Edge V2 (Oct 2026): RLI=$974038.51 -> IUSC=$0.0004 (rounded CLP: $0)
+  Edge V2 (Oct 2026): RLI=$1000000 -> IUSC=$1038.4600 (rounded CLP: $1038)
+  Edge V2 (Mar/Apr 2026, UTM=69889): 13.5 UTM = $943501.50 | 30 UTM = $2096670.00 | Rebaja 4% = $37740.06
+
+--- V3: Cesantía trabajador (0,6% de $800.000) ---
+800000 * 0.006 = 4800.00 | Published: 4800.00 | Exact match: True
+Annualized over-deduction if wrongly applied to plazo fijo: 12 * 4800 = $57600
+Employer contribution on $800.000: indefinido (2.4%)=$19200 (1.6% CIC + 0.8% FCS); plazo fijo (3.0%)=$24000
+
+--- V4: Topes de descuentos convenidos sobre $1.000.000 ---
+15% = $150000.00 (published: $150.000) | 30% = $300000.00 | 45% = $450000.00 (published: $450.000)
+Exact match 15% & 45%: True
+  Edge V4 (non-additivity): max general ($150.000) + max housing/education ($300.000) = $450.000 <= joint cap $450.000 (not $150k + $450k = $600k)
+  Edge V4 (cooperatives ORD. 3456/37): 15% + 25% additional = 40% ($400.000); if combined with 30% housing ($300.000), capped at 45% ($450.000), not 70% ($700.000)
+
+--- V5: AFC tope 135,2 UF y límite 11 años vs 90 UF ---
+AFC cap=135.2 UF vs AFP/Salud cap=90 UF | Diff=45.2 UF
+Max worker AFC (0.6% of 135.2 UF) = 0.8112 UF = $33412.71 (rounded CLP: $33413)
+11 years * 12 months = 132 monthly contributions; ceiling fulfilled at contribution N°133 (after which worker=0%, employer=0.8% FCS)
+  Edge V5: imponible=90 UF -> AFP/Salud base=90 UF, AFC base=90 UF, AFC 0.6%=0.540 UF
+  Edge V5: imponible=120 UF -> AFP/Salud base=90 UF, AFC base=120 UF, AFC 0.6%=0.720 UF
+  Edge V5: imponible=135.2 UF -> AFP/Salud base=90 UF, AFC base=135.2 UF, AFC 0.6%=0.8112 UF
+  Edge V5: imponible=150 UF -> AFP/Salud base=90 UF, AFC base=135.2 UF, AFC 0.6%=0.8112 UF
+
+--- V6: Multa reglamento interno (25% remuneración diaria) vs descuentos convenidos ---
+25% == 1/4: True
+Example on $1.000.000/month (30 days): daily remuneration=$33333.33, max fine per day (25%)=$8333.33 (vs 15% monthly=$150000.00)
+
+--- Cross-surface numerical checks ---
+AFP commission range: 0.46% (Uno) to 1.45% (ProVida)
+como-calcular-sueldo-liquido.md: spread on $1.000.000 = $9900/mes (published: $9.900), annual = $118800/año (published: $118.800)
+Worked example como-calcular-sueldo-liquido.md:
+  AFP 10%=135000, Com 0.58%=7830, Salud 7%=94500, AFC 0.6%=8100
+  Total cotizaciones=245430 (published: $245.430) | RLI=1104570 (published: $1.104.570)
+  IUSC Apr 2026 exact=6442.74, rounded=6443 (published: $6.443)
+  Total descuentos=251873.0000 (published: ~$252.000) | Liquido exact=1248127.0000 (published: ~$1.248.000)
+  [DEFECT CHECK] If Capital AFP (1.44%) were actually used: com=$19440 (diff +$11610)
+APV B tax saving ($200.000 at 8% marginal rate): $16000 (published: $16.000)
+primer-empleo table sum: 10.5% + 7.0% + 0.6% = 18.1% (published: ~18,1%)
+codigo-del-trabajo.md 4.75 * $539.000 = $2560250 (published: $2.560.250)
+  [STALENESS CHECK] Snapshot IMM from 2026-05-01 (Ley 21.830) is $553553: 4.75 * $553553 = $2629376.75

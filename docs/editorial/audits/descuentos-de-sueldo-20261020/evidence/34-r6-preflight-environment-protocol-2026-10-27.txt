@@ -1,0 +1,35 @@
+R6 preflight, environment, scope, and protocol record
+Date: 2026-10-27, America/Santiago
+Target worktree: /tmp/opencode/wt-audit-descuentos-6
+Target SHA: 332edf28b714f692e550bc2de2dec26fec4827cf
+
+Required preflight at audit start: PASS
+- git rev-parse HEAD matched the required SHA.
+- All required files existed: 02-result.json, 06-compliance.md, 11-delta-reaudit-r5.md, evidence/, 00-scope.json.
+- git status --porcelain was empty before creating R6 evidence.
+- pnpm run check:image-curation passed: [image-curation] Reviewed prompts, article fingerprints and asset bytes match.
+- The exact checkout remained the R6 worktree throughout; no R1-R5 or main worktree was used.
+
+Environment observed at closeout: Linux 7.0.0-38-generic x86_64; Node v24.19.0; pnpm 11.7.0; Python 3.13.12; timezone America/Santiago (UTC-03:00).
+
+Model independence: user-declared remediation model DeepSeek V4.1 Flash; auditor OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed). Different model families. Session: codex-20261027-delta-reaudit-r6.
+
+User-approved structural indexing: after the user explicitly approved initializing CodeGraph in R6, CodeGraph indexed 949 files (11,061 nodes; 27,989 edges). Structural result used only to confirm the three parser call paths; local code and tests were then inspected in this same checkout.
+
+Scope decision applied exactly as directed:
+- D10 includes editorial surfaces, payroll calculators (sueldo líquido, APV, Operación Renta), and visible examples.
+- The AFC/CIC/FCS coverage estimator is excluded from D10 and recorded as cause 2 because it estimates benefit coverage, not payroll deductions; its rates coincide and the remaining issue is representation.
+- Public runtime is an observation only and is not attributed to this SHA or used as a D10 acceptance failure.
+- D9, D11, D12, D15, D17 remain resolved. D1-D8, D13, D14, D16 were not reopened.
+
+Applicable R1-R8 record:
+- R1: employer percentages and CLP values independently recomputed using Python Decimal; raw command and output in evidence/32.
+- R2: BCN Ley 19.728 and AFC employer table/FAQ freshly retrieved and reopened; URLs, excerpts, dates, and response metadata in evidence/28.
+- R3: D10 contribution allocation was independently reconstructed from the primary text and AFC table, then compared with the local law sheet, payroll engine, and examples; see evidence/28 and evidence/33.
+- R4: each conclusion below links to current R6 evidence or exact source lines; test outputs and runtime responses are preserved in evidence/29-33.
+- R5: tested employer-rate contrast, CIC/FCS sum, CAI separation, parser use and a temporary mapping regression; see evidence/29, evidence/32, and evidence/33.
+- R6: explicit PASS is limited to D10 at the exact local SHA; root 02-result.json remains CONDITIONAL because other findings remain outside this R6 scope.
+- R7: SHA, environment, commands, URLs, timestamps, and outputs are recorded in this file and evidence/28-33.
+- R8: no source, product, or test file was edited; no commit or push was made; humanSignoff remains null. The only new/changed tracked-path artifacts are the requested R6 report, 02-result.json, and R6 evidence files.
+
+No R5 evidence/11-27 extract was used as proof for this R6 result. R5 material was treated only as the defect list/round history provided by the owner; sources and all 17 public URLs were independently reopened for R6. The public responses are recorded only in evidence/30.

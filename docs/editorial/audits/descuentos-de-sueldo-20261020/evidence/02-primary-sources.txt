@@ -1,0 +1,131 @@
+RetrievedAt: 2026-10-20T19:07:08Z
+
+=== S1: SP topes imponibles 2026 ===
+URL: https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html
+HTTP: 200 | Bytes: 51839 | SHA256: 515d0975544bdac20f2e3144d32e509dc8b268b1848007cc7e41da6cc877c4b0
+Clean text len: 6272
+
+=== S1b: SP cotizacion obligatoria / comisiones AFP ===
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html
+HTTP: 200 | Bytes: 69376 | SHA256: 7fa57e13009ff9c4159c936dd215c28ec036266227a3c6d15b700162b426c094
+Clean text len: 18611
+
+=== S2: AFC cotizaciones cuanto y como se paga ===
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+HTTP: 200 | Bytes: 76244 | SHA256: ba09200b1ad1d98232e63a1cdc8add193b001297f98412b72ae22643d666f1b8
+Clean text len: 6335
+
+=== S2b: AFC FAQ seguro de cesantia ===
+URL: https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/
+HTTP: 200 | Bytes: 96778 | SHA256: be5ef7138e22b010ed840adc40a8a2bc30cfabfac13e031f43223dc0b3a00ceb
+Clean text len: 21433
+
+=== S3: SII tabla IUSC 2026 ===
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+HTTP: 200 | Bytes: 80923 | SHA256: 3df619596e327cf29052aa5d20e7dcad243f739264c5f66d43384d56e43e4406
+Clean text len: 21185
+
+=== S3b: SII UTM 2026 ===
+URL: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+HTTP: 200 | Bytes: 8079 | SHA256: 236071689c479d38a37ecdaaf5ab67b2501b391e62390a12c7c60d0214c136e7
+Clean text len: 1586
+
+=== S3c: SII FAQ 001_140_3545 (base IUSC) ===
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm
+HTTP: 200 | Bytes: 3747 | SHA256: 4839e9c8e16d08dd4aa6369b62e0e30c1db92ef11f7595a2d4212369457b0590
+Clean text len: 797
+
+=== S3d: SII FAQ 001_140_1166 (seguro cesantia base IUSC) ===
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1166.htm
+HTTP: 200 | Bytes: 3576 | SHA256: 427681e98711824b92ad287defff46dacd821c25c8ba445a0f3a95296baafb79
+Clean text len: 647
+
+=== S4: DT ORD. N°680 (art. 58, 154, 157) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html
+HTTP: 200 | Bytes: 119835 | SHA256: 17862723ca75d93c4ee8275f11ad5bd2a70fe523fa22b74bb7f92e58cae76070
+Clean text len: 20894
+
+=== S5: DT ORD. N°3456/37 (topes art. 58) ===
+URL: https://dt.gob.cl/legislacion/1624/w3-article-102449.html
+HTTP: 200 | Bytes: 128898 | SHA256: bfe049aa4bf353a8750b82b22fd4828f7d98d0131aba3577ae1d03e0948974ae
+Clean text len: 27424
+
+=== S5b: DT consulta 60214 (base 15% art. 58) ===
+URL: https://dt.gob.cl/portal/1628/w3-article-60214.html
+HTTP: 200 | Bytes: 70767 | SHA256: 299048a187ea10df9758e9924c093b2834b34c82de795ceae764fd348897723e
+Clean text len: 4597
+
+=== S5c: DT consulta 60593 (indemnizacion anos servicio) ===
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60593.html
+HTTP: 200 | Bytes: 70419 | SHA256: 4b5bcbd89917a4c8ecf53b3f2c0ec7525a83447f0cbd69fd6b05244918823694
+Clean text len: 4961
+
+=== S6: DT ORD. N°262/4 (credito social CCAF) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html
+HTTP: 200 | Bytes: 110398 | SHA256: b81b20e4b542a7a4cea1a0b0e20444dd6edf912e98f5f730e1d40f50a3f64314
+Clean text len: 16603
+
+=== S6b: DT ORD. N°4184/70 (cuota sindical) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html
+HTTP: 200 | Bytes: 142810 | SHA256: 804af41edf8b657a6d5e9524824b23d3a39fa3ac17746e8e28ea4e4b707e25f4
+Clean text len: 23102
+
+=== S6c: DT ORD. N°443/2026 (renuncia sindicato) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html
+HTTP: 200 | Bytes: 113310 | SHA256: 37d1ae33cd90f790d916d5d87ffb66359d333a43779529642c28022b4897a7a2
+Clean text len: 10159
+
+=== S6d: DT ORD. N°2453/187 (inciso 5 art. 58) ===
+URL: https://dt.gob.cl/legislacion/1624/w3-article-61767.html
+HTTP: 200 | Bytes: 93592 | SHA256: 6a1d173e879d2274a55d93d2c69def43fe912516dc896e68dd5651c2f9e0c920
+Clean text len: 14381
+
+=== S6e: DT ORD. N°4229/2015 (perdida de caja) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-107035.html
+HTTP: 200 | Bytes: 120169 | SHA256: 29bd66ba6d035dd7913000a774d4b3435c41b24a67ab7059907964ba916fefc8
+Clean text len: 17183
+
+=== S6f: DT ORD. N°826/2024 (base IUSC art. 42 N°1) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-127125.html
+HTTP: 200 | Bytes: 106694 | SHA256: 25cb11b4cd4f7446b3762ebae1f1ad615df133a87f8b1af23b76b636f853f3b5
+Clean text len: 16391
+
+=== S7: DT ORD. N°1578 (tiempo no trabajado) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html
+HTTP: 200 | Bytes: 113090 | SHA256: e8a4bfe39f75064a961d944c5accbbf317c6f9899a7e7d4ea7f3d289c6c18656
+Clean text len: 13558
+
+=== S7b: DT ORD. N°2423 (tiempo no trabajado) ===
+URL: https://dt.gob.cl/legislacion/1624/w3-article-112152.html
+HTTP: 200 | Bytes: 136827 | SHA256: 1ee43b29dad0ae53786928c3341df977ce4f9c12e14de269c3aa22ba391984de
+Clean text len: 18126
+
+=== S8: DT ORD. N°2000-44737/2026 (atrasos justificados) ===
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html
+HTTP: 200 | Bytes: 94526 | SHA256: 09110a876a7bbf4fef7c5ccb55483b7cd00b3bc297b1f75884621aa130ede461
+Clean text len: 14778
+
+=== S9_html: BCN Codigo del Trabajo (navegar HTML) ===
+URL: https://www.bcn.cl/leychile/navegar?idNorma=207436
+HTTP: 200 | Bytes: 9602 | SHA256: 4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131
+Clean text len: 234
+
+=== S9_json: BCN Codigo del Trabajo (get_norma_json) ===
+URL: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=207436
+HTTP: 200 | Bytes: 1505290 | SHA256: 1a2ae22a5333e60d2cc6b4ee22829c27d14ca641a992b6b40183f88889801dc0
+JSON keys: ['html', 'proyectos', 'otrosSistemas', 'jurisprudencia', 'doctrina', 'metadatos', 'alertas', 'alerta_global', 'estructura'] | Clean len: 1189994
+
+=== S10_html: BCN Ley 18.833 (navegar HTML) ===
+URL: https://www.bcn.cl/leychile/navegar?idNorma=30053
+HTTP: 200 | Bytes: 9602 | SHA256: 4ff75cdc3dade5550d6eee84a015e513a646a920e50ffce12cdea8cf379e9131
+Clean text len: 234
+
+=== S10_json: BCN Ley 18.833 (get_norma_json) ===
+URL: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=30053
+HTTP: 200 | Bytes: 8786 | SHA256: 4d59098da25890bad453874414c98c30e38f64fc07760fa61e2616afff6182e1
+JSON keys: ['html', 'proyectos', 'otrosSistemas', 'jurisprudencia', 'doctrina', 'metadatos', 'alertas', 'alerta_global', 'estructura'] | Clean len: 7210
+
+=== S11_json: BCN Ley 19.728 (get_norma_json) ===
+URL: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=184979
+HTTP: 200 | Bytes: 185196 | SHA256: 06e1d3ec86f724a5d9c9128f1697bd7e2e53f94dee200e814d7e4afee672d78d
+JSON keys: ['html', 'proyectos', 'otrosSistemas', 'jurisprudencia', 'doctrina', 'metadatos', 'alertas', 'alerta_global', 'estructura'] | Clean len: 138662

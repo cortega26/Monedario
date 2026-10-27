@@ -1,0 +1,22 @@
+R1 independent Decimal recalculation
+Command: python3 - <<'PY' (script reproduced below)
+Target: /tmp/opencode/wt-audit-descuentos-6 @ 332edf28b714f692e550bc2de2dec26fec4827cf
+
+from decimal import Decimal, getcontext
+getcontext().prec = 50
+base = Decimal("1000000")
+house_rate = Decimal("3.0") / Decimal("100")
+indefinite_rate = Decimal("2.4") / Decimal("100")
+cic_house = Decimal("2.2")
+fcs_house = Decimal("0.8")
+cai_house = Decimal("1.11")
+print(f"casa-particular: employer_rate={house_rate * 100:.2f}% employer_AFC_on_{base}={base * house_rate:.2f}")
+print(f"indefinido-comun: employer_rate={indefinite_rate * 100:.3f}% employer_AFC_on_{base}={base * indefinite_rate:.3f}")
+print(f"casa CIC+FCS: {cic_house}% + {fcs_house}% = {cic_house + fcs_house}% Seguro de Cesantia")
+print(f"CAI separate: {cai_house}% (not included in the {cic_house + fcs_house}% CIC+FCS total)")
+
+RAW OUTPUT
+casa-particular: employer_rate=3.00% employer_AFC_on_1000000=30000.00
+indefinido-comun: employer_rate=2.400% employer_AFC_on_1000000=24000.000
+casa CIC+FCS: 2.2% + 0.8% = 3.0% Seguro de Cesantia
+CAI separate: 1.11% (not included in the 3.0% CIC+FCS total)

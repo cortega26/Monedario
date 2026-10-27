@@ -1,0 +1,135 @@
+AI_AUDIT_PROTOCOL v1 — DELTA RE-AUDIT RONDA 2
+Fecha de verificación: 2026-10-27 (fuentes web abiertas hoy; runtime consultado con Cache-Control: no-cache, no-store).
+
+IDENTIDAD, INDEPENDENCIA Y CHECKOUT
+- Auditor: ComplianceAgent (adversarial), OpenAI GPT-6 (Codex runtime; no se expuso un identificador de revisión/build).
+- La remediación fue declarada por el usuario como DeepSeek V4.1 Flash. Familia distinta de la del auditor; no es autoauditoría.
+- Worktree autorizado: /tmp/opencode/wt-audit-descuentos-2.
+- HEAD: 4fd605b8eef33cf08eb34ed3a7499ba98c932f84; padre: 0498e8abd5bb5cd23c9a96ed4f51d587f7dd8976; detached HEAD por diseño.
+- Preflight de este checkout: HEAD coincide; los archivos de auditoría requeridos existen; el worktree estaba limpio antes de crear los artefactos R2.
+- CodeGraph se inicializó aquí tras autorización explícita del usuario (946 archivos, 11.046 nodos, 27.952 aristas). No se usó su índice como evidencia; la verificación de esta ronda fue lectura directa.
+- No se consultaron los extractos de evidence/11–16 para probar afirmaciones. Sus URL se usaron únicamente para reconstruir la lista de destinos, y cada destino se volvió a abrir directamente el 2026-10-27.
+
+FUENTES PRIMARIAS: EXTRACTOS REVERIFICADOS
+Fecha de recuperación de cada URL: 2026-10-27. Las citas son fragmentos breves; el resto se parafrasea.
+
+S1. BCN, Código del Trabajo, arts. 57, 58, 322 y 323
+URL: https://www.bcn.cl/leychile/navegar?idNorma=207436
+- Art. 322, líneas 4612–4614: la persona sin afiliación que recibe extensión debe aceptarla y pagar toda o parte de la cuota según el acuerdo; la extensión debe fijar criterios objetivos, generales y no arbitrarios. Fragmento: “aceptar la extensión y obligarse a pagar todo o parte”.
+- Art. 323, líneas 4618–4620: el cambio o desafiliación no libera a quien sigue afecto al instrumento colectivo vigente; paga la cuota ordinaria completa mientras dure ese instrumento. Fragmento: “cuota mensual ordinaria ... durante toda la vigencia”.
+- Art. 57, líneas 836–839: inembargabilidad general; es embargable el exceso de 56 UF; hasta 50% en tres casos: alimentos debidos por ley y decretados judicialmente; defraudación/hurto/robo del trabajador contra el empleador en ejercicio del cargo; remuneraciones que el trabajador debe a quienes estuvieron a su servicio en calidad de trabajador.
+- Art. 58, líneas 851–852: la prohibición enumera entrega de agua, herramientas, medicinas, atención médica y otras prestaciones. Fragmento exacto para D19: “entrega de medicinas”.
+
+S2. BCN, Ley 19.728, arts. 2, 5, 7 y 9
+URL: https://www.bcn.cl/leychile/navegar?idNorma=184979
+- Art. 2, líneas 17–21: quedan fuera del seguro aprendices, menores de 18 y pensionados; excepciones para pensión por invalidez parcial o trabajador de casa particular.
+- Art. 5, líneas 30–42: el 0,6% es del trabajador con contrato indefinido, “con excepción de los trabajadores de casa particular”; el empleador paga 3% en casa particular, cualquiera sea la duración del contrato.
+- Art. 7, líneas 50–51: con dos o más empleos hay cotizaciones por cada remuneración, cada una con su tope, y registros CIC separados por empleador.
+- Art. 9, líneas 54–59: cotizaciones hasta 11 años por relación laboral; el componente del empleador al FCS continúa mientras siga vigente la relación.
+
+S3. AFC Chile, cotizaciones y distribución
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+- Líneas 139–156: 3% total, tope 135,2 UF para 2026; identifica una columna separada para trabajadores de casa particular y señala el 0,6% trabajador en el esquema de contrato indefinido.
+- Líneas 162–167: excepción para persona pensionada que sigue trabajando como casa particular; el 0,6% no se extiende a otras categorías pensionadas; el aporte del empleador al FCS continúa después de 11 años.
+
+S4. AFC Chile, FAQ de elegibilidad/exclusiones
+URL: https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/
+- Líneas 162–167: cobertura para mayores de 18 con contrato pertinente, incluidas personas trabajadoras de casa particular; excluye menores, aprendices y pensionados salvo excepciones legales.
+- Línea 182: para casa particular, la cotización completa del seguro la paga el empleador.
+
+S5. Dirección del Trabajo, ORD. N°1578 (2018)
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html
+- Líneas 185–188: bajo el límite semanal de 45 horas vigente al dictamen, no procede el descuento inmediato por una jornada diaria incompleta; debe verificarse al término de la semana el incumplimiento imputable. Fragmento: “al término de la respectiva semana”. Solo se descuentan las horas faltantes de la jornada acordada.
+
+S6. Dirección del Trabajo, minisitio Ley 40 horas
+URL: https://www.dt.gob.cl/portal/1626/w3-propertyname-2556.html
+- Líneas 66–69: la jornada baja a 42 horas desde el 26 de abril de 2026; la fase final a 40 horas rige desde el 26 de abril de 2028.
+
+S7. AFC, BCN, Dirección del Trabajo y fuentes restantes: reapertura de URL
+Se volvieron a abrir los 27 destinos distintos encontrados en los sets anteriores. Cada apertura devolvió título y página HTML (respuesta “Crawled: today”); las URL sin www se conservaron separadas cuando eran destinos distintos. Las consultas sobre D15/D17 y otros defectos diferidos fueron reaperturas de URL, no una reauditoría de esos defectos.
+1. https://www.bcn.cl/leychile/navegar?idNorma=207436
+2. https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html
+3. https://www.dt.gob.cl/legislacion/1624/w3-article-112152.html
+4. https://www.dt.gob.cl/portal/1626/w3-propertyname-2556.html
+5. https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html
+6. https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html
+7. https://www.bcn.cl/leychile/navegar?idNorma=30209
+8. https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html
+9. https://dt.gob.cl/legislacion/1624/w3-article-100008.html
+10. https://www.bcn.cl/leychile/navegar?idNorma=184979
+11. https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+12. https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/
+13. https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/
+14. https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/
+15. https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html
+16. https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+17. https://dt.gob.cl/legislacion/1624/w3-article-102449.html
+18. https://www71.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html
+19. https://www.dt.gob.cl/portal/1628/w3-article-60141.html
+20. https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html
+21. https://dt.gob.cl/legislacion/1624/w3-article-61767.html
+22. https://www.dt.gob.cl/legislacion/1624/w3-article-107035.html
+23. https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html
+24. https://www.dt.gob.cl/portal/1628/w3-article-60214.html
+25. https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm
+26. https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1166.htm
+27. https://dt.gob.cl/legislacion/1624/w3-article-112152.html
+
+SUPERFICIES DEL CHECKOUT TARGET (LECTURA DIRECTA)
+D9 — cuota sindical
+- src/data/blog/descuentos-de-sueldo.md:112 y FAQ :195–196: el cuerpo principal y FAQ distinguen afiliación; incluyen a quien no está afiliado solo si aceptó extensión (art. 322), y al exafiliado/cambio de sindicato solo durante el instrumento vigente, cuota completa (art. 323).
+- Límite de precisión: el texto no menciona el criterio legal objetivo, general y no arbitrario que debe regir la extensión (art. 322).
+- src/data/blog/primer-empleo-chile-guia-completa.md:112 mantiene la copia corta “La cuota sindical (si estás afiliado)”; no conserva ni enlaza ahí las excepciones de arts. 322–323. La búsqueda literal en contenido blog/glosario/páginas encontró esa copia y la frase explicativa completa del artículo principal.
+- Structured data source: ArticleJsonLd.astro:100–145 emits FAQPage from H3 question blocks or frontmatter `faqs`; the descuentos article has no frontmatter `faqs` and its body questions are bold paragraphs, so that body FAQ is not emitted as FAQPage. Primer empleo’s frontmatter FAQ is passed into that schema and its AFC answer includes the house exception. This is source-level only; no build output was generated.
+
+
+D10 — cotización AFC de casa particular, exclusions y 0,6%
+- Correcto en el artículo principal: src/data/blog/descuentos-de-sueldo.md:108, tabla :156 y tabla por contrato :169–173; la FAQ no trata AFC.
+- Primer empleo: FAQ metadata :46 y cuerpo :110/:191 sí dicen que casa particular no aporta el 0,6%; fila :224 expresa 0% en casa particular, pero el total de la misma tabla queda fijo en ~18,1%, que incluye el 0,6% y no se corrige para casa particular. :189 aún afirma que el seguro es obligatorio “para todo trabajador con contrato de trabajo vigente”; no limita aprendices, menores de 18 ni pensionados según art. 2.
+- Liquidación de sueldo: :105 indica que el 0,6% solo procede en contrato indefinido y dice expresamente que no corresponde a plazo fijo ni casa particular. La sección FAQ :133 en adelante no formula una regla de aporte AFC.
+- Sueldo imponible: :109 ya incluye la excepción; fórmula :96 (“Cotización AFC (0,6 % trabajador)”) y ejemplo :151–158 (AFC 0,6% = $7.200) no condicionan el cálculo a contrato ni exceptúan casa particular.
+- Seguro de cesantía: tabla :73–79 es correcta (casa particular 0% persona / 3% empleador). La FAQ :217–219 responde sobre cobertura y afiliación; “las reglas son las mismas que para contrato indefinido” queda sin acotar a elegibilidad/beneficios y puede leerse como regla de cotización en el contexto de esta página.
+- Calculadora seguro de cesantía: src/pages/calculadoras/seguro-cesantia.astro:357–367 muestra expresamente que casa particular no aporta y empleador cubre el 3%. Su FAQ y JSON-LD :57–89 son de cobertura/beneficios, no de la distribución del 0,6%.
+- Calculadora sueldo líquido: el selector :286–296 incluye “casa-particular” y advierte 0% de cargo del trabajador; sin embargo, la FAQ fuente :98–100, su representación visual :841–844 y JSON-LD (misma lista en CalculatorJsonLd :164–168) dicen solo “indefinido = 0,6%” frente a plazo fijo/obra. La explicación visible :714–716 y notes de MethodologyBlock :1025 tampoco expresan la excepción doméstica.
+- Otras copias relacionadas con tasa sin excepción: src/data/blog/como-calcular-sueldo-liquido.md:84–88, :139–150 y :188; src/data/blog/seguro-cesantia-cuenta-individual-vs-fondo-solidario.md:70; src/data/glossary/sueldo-bruto.md:27; src/data/glossary/fondo-solidario.md:14. La metodología de ejemplo en CalculateNetSalary.methodology.ts:61–63 sí está limitada explícitamente a un escenario indefinido. src/data/blog/interes-compuesto-nota-metodologica.md está marcada unlisted y no fue contada como superficie publicada.
+- Motor: CalculateMonthlyPayrollBase.ts:93–115 calcula 0,6 solo para contractType “indefinido”; “casa-particular” recibe 0. formController.ts:139–159 mapea la radio de casa particular al valor propio; bruto→líquido pasa contractType a calculateNetSalary y a renderAfpComparison (aprox. :368–376 y :401–409); líquido→bruto lo pasa a estimateGrossFromNet y renderAfpComparisonInverso (aprox. :260–267 y :291–298). afpComparison.ts:18/:62 y :147/:194 reenvía el tipo a los cálculos comparados. La opción UI por defecto es indefinido, por lo que una persona debe seleccionar casa particular para que se aplique la excepción.
+- Prueba: tests/application/CalculateMonthlyPayrollBase.test.ts:62–76 afirma cero en casa particular aun con contrato indefinido. Reproducido: `pnpm exec vitest run tests/application/CalculateMonthlyPayrollBase.test.ts` → 1 archivo, 12 pruebas aprobadas. Es prueba del use case; no es E2E del DOM ni de todos los adaptadores.
+
+D11 — embargo art. 57
+- src/data/blog/descuentos-de-sueldo.md:136 ahora enumera 56 UF y los tres grupos: alimentos judiciales; fraude/hurto/robo del trabajador contra su empleador en ejercicio del cargo; remuneraciones adeudadas a quienes sirvieron al deudor.
+- El segundo supuesto incluye la condición exigida. El tercero no conserva expresamente las condiciones “por el trabajador” y “en calidad de trabajador” del art. 57; el lector debe inferirlas del contexto. Bajo el criterio adversarial de completar los tres supuestos sin ampliar categorías, D11 permanece abierto por esa omisión.
+
+D12 — atrasos/ORD. 1578
+- src/data/blog/descuentos-de-sueldo.md:142 explica que no hay descuento inmediato y que se verifica al término de la semana por causa imputable; identifica las 45 horas del dictamen como contexto histórico y 42 horas desde el 26-04-2026.
+- FAQ :192–193 repite no inmediatez, verificación semanal, imputabilidad y límite del tiempo faltante. Resuelto en el checkout.
+
+D19 — cita art. 58 inc. 5
+- src/data/blog/descuentos-de-sueldo.md:134 se comparó directamente con BCN art. 58 líneas 851–852. El fragmento discrepante anterior está corregido: el texto local usa “entrega de medicinas” y la cita coincide literalmente con BCN en ese punto y en el resto del inciso comprobado. Resuelto en el checkout.
+
+R5 — casos adversariales
+- No afiliado: extensión solo después de aceptar beneficios y deber de pagar según el acuerdo; criterios de extensión objetivos/generales/no arbitrarios en la ley. Exafiliado: solo queda sujeto al instrumento vigente y cuota completa durante su vigencia. D9 persiste por copia corta y por no mencionar criterio del acuerdo.
+- Casa particular: texto de tasas corregido en varias superficies, pero hay copias de tasa general, total 18,1% incongruente con 0% trabajador, FAQs de la calculadora de sueldo, página pública previa y LLM completo público con contenido anterior. Motor local trata 0% al seleccionar casa particular.
+- Pensionado/aprendiz/menor: art. 2 y AFC verifican las exclusiones y excepciones; descuento principal incorpora estas salvedades, pero primer-empleo aún dice “todo trabajador con contrato vigente”. Mantenido dentro de D10.
+- Pluriempleo: Ley 19.728 art. 7 exige cotización por empleo/remuneración con topes por empleo y registros separados por empleador. No se encontró un cálculo multipuesto dentro de los caminos de esta calculadora mensual; no se atribuye una falla nueva fuera de D10.
+- Embargo: art. 57 está actualizado a 56 UF y tres supuestos; queda abierta la precisión del tercer supuesto descrita en D11.
+
+RUNTIME PÚBLICO — GET DIRECTO CON CABECERAS NO-CACHE
+Revisado el 2026-10-27 entre 17:58:42 y 18:00:49 UTC; las respuestas incluyeron Date y fueron HTTP 200. No se pudo asociar el HTML público al SHA target.
+- https://monedario.cl/posts/descuentos-de-sueldo/ — 98.520 bytes; el HTML aún dice 0,6% si contrato indefinido y plazo fijo sin 0,6%; en la búsqueda del HTML no aparecen “56 UF”, “medicinas”, “ORD. N°1578” ni verificación al término de semana. No contiene la revisión R2 del checkout.
+- https://monedario.cl/posts/primer-empleo-chile-guia-completa/ — 98.609 bytes; HTTP 200, HTML servido no vinculado al SHA target.
+- https://monedario.cl/posts/liquidacion-de-sueldo/ — 96.311 bytes; HTML conserva 0,6% solo para indefinido, sin la excepción doméstica en el fragmento servido.
+- https://monedario.cl/posts/sueldo-imponible-chile/ — 92.748 bytes; HTML muestra 0,6% trabajador y 2,4% empleador sin la excepción en el fragmento servido.
+- https://monedario.cl/posts/seguro-de-cesantia/ — 94.323 bytes; la fila de casa particular servida es 0,6% trabajador / 2,4% empleador / 3% total, contraria a la Ley 19.728 vigente.
+- https://monedario.cl/posts/como-calcular-sueldo-liquido/ — 101.862 bytes; tablas y ejemplo servidos continúan mostrando 0,6% general.
+- https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/ — 91.786 bytes; HTML muestra el 0,6% de contrato indefinido sin excepción doméstica en ese pasaje.
+- https://monedario.cl/calculadoras/seguro-cesantia/ — 63.705 bytes; explicación servida muestra solo indefinido y plazo fijo/obra, sin fila doméstica.
+- https://monedario.cl/calculadoras/sueldo-liquido/ — 100.006 bytes; FAQ servida da 0,6% para indefinido y 0% para plazo fijo/obra, sin mención de casa particular en el pasaje.
+- https://monedario.cl/llms-full.txt — 593.854 bytes; contenido completo servido aún incluye casa particular como 0,6% trabajador / 2,4% empleador / 3% total y la versión antigua de descuentos.
+- https://monedario.cl/llms.txt — 11.248 bytes; índice de navegación, sin la regla 0,6% del alcance.
+
+REPRODUCIBILIDAD Y LÍMITES
+- Prueba específica ejecutada en el worktree target: `pnpm exec vitest run tests/application/CalculateMonthlyPayrollBase.test.ts` (1 archivo, 12 pruebas, 0 fallos).
+- Fuentes primarias se volvieron a abrir en esta sesión; las citas de artículos y dictámenes son de las páginas oficiales listadas, con fecha de recuperación 2026-10-27.
+- Revisión estática de fuente local; no se generó build ni se ejecutó Playwright/E2E. La captura pública es HTML actual sin vínculo comprobable con el SHA target.
+- Los defectos diferidos D1–D8, D13, D14, D16 (causa 2), D18 no se reabrieron. D15 y D17 permanecen resolved sin revisión de contenido en esta ronda.
+- No se encontró un defecto independiente nuevo que requiera D20. Hallazgos de contenido relacionados con AFC permanecen agrupados en D10; el matiz restante del embargo permanece en D11.

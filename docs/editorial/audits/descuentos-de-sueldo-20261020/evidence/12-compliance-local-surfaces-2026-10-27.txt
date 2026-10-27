@@ -1,0 +1,75 @@
+AI_AUDIT_PROTOCOL v1 — local surface sweep and metadata evidence
+Audit date: 2026-10-27
+Worktree: /tmp/claude-1000/wt-descuentos
+Branch: fix/descuentos-de-sueldo-art58-2026-10-20
+Audited base HEAD: 1444958a7604510495481b6caa39e86e1d7161d7
+
+[Body and related content: exact source lines]
+src/data/blog/descuentos-de-sueldo.md:108
+“Cuota sindical: si estás afiliado a un sindicato...” (then explains ordinary dues after union request and cites ORD. 4184/70 and ORD. 443/2026).
+Article does not mention Code Arts. 322–323 extension / ex-affiliate cases.
+src/data/blog/descuentos-de-sueldo.md:104
+The main text says the worker pays 0.6% for indefinite contracts, then says the law excludes “ciertos grupos, como las personas pensionadas”, but does not identify household employees’ no-worker-contribution exception or all exclusions.
+src/data/blog/descuentos-de-sueldo.md:130
+The citation after the statement about Art. 58 prohibitions links to DT ORD. 2453/187.
+src/data/blog/descuentos-de-sueldo.md:132
+“Cualquier descuento que no pertenezca a las categorías anteriores cae en esta zona — y corresponde impugnarlo.”
+src/data/blog/descuentos-de-sueldo.md:138
+The article calls non-worked time a proportional non-disciplinary discount, quotes DT ORD. 1578/2018 and ORD. 2423/2017, and says a one-day late arrival is not the same as absence that day. It omits ORD. 1578’s instruction to check at the end of the respective week whether the agreed schedule was missed for an imputable cause.
+src/data/blog/descuentos-de-sueldo.md:102
+Health 7% and cap 90 UF: the article links the SP 2026 cap source after that statement. No Superintendencia de Salud 7% source appears in articleLead.officialSources or next to the 7% assertion.
+src/data/blog/descuentos-de-sueldo.md:209-212
+Footer says “Revisado el: 2026-10-20.”
+Frontmatter: articleLead.validAsOf=2026-10-20; updatedDate=2026-10-20; reviewPolicy.computedAt=2026-10-04; author=Equipo Monedario.
+src/data/laws/codigo-del-trabajo.md and src/data/laws/dl-3500-sistema-afp.md both set lastVerified=2026-05-25.
+src/components/ArticleJsonLd.astro:53-62
+dateModified is sourced from updatedDate; when reviewPolicy.computedAt exists, lastReviewed is built from computedAt and reviewedBy is emitted as schema.org Person with name=author.
+For this post, source metadata therefore feeds dateModified=2026-10-20, lastReviewed=2026-10-04, reviewedBy Person “Equipo Monedario”.
+src/components/ArticleJsonLd.astro:83-120
+FAQPage questions are extracted only from H3 headings under a “Preguntas frecuentes” H2; otherwise faqs frontmatter is used.
+Main article FAQ uses bold paragraph questions (not H3), and has no faqs frontmatter. Source-level inspection predicts BlogPosting without FAQPage. No build/rendered schema was inspected.
+
+[Other articles in user-defined radio]
+src/data/blog/primer-empleo-chile-guia-completa.md:110
+“Descuentos legales: AFP (~10,5 %), salud (7 %), seguro de cesantía (0,6 % trabajador). Estos son fijos e inamovibles...”
+src/data/blog/primer-empleo-chile-guia-completa.md:112
+Cuota sindical only described “si estás afiliado”; CCAF debt is described as mandatory.
+src/data/blog/primer-empleo-chile-guia-completa.md:142 and 267
+AFP-change period says 12 months.
+src/data/blog/primer-empleo-chile-guia-completa.md:189-194
+“...obligatorio para todo trabajador con contrato de trabajo vigente en Chile”; fixed-term paragraph says “3 % al FCS”.
+src/data/blog/como-calcular-sueldo-liquido.md:104,245,252
+“los descuentos no se calculan sobre tu sueldo bruto total, sino sobre el sueldo imponible”; final checklist says all discounts go on imponible.
+src/data/blog/como-calcular-sueldo-liquido.md:133-137
+Fonasa is called “exactamente el 7% de tu imponible” without repeating the 90 UF cap; the additional Isapre plan amount is labeled “copago de Isapre.”
+src/data/blog/liquidacion-de-sueldo.md:103-105
+Health paragraph includes 90 UF cap, but its AFC rule says worker 0.6% “solo si tu contrato es indefinido”; it does not name household employees or other legal exclusions.
+
+[Correction record and prior wording]
+src/data/correcciones.json id=descuentos-sueldo-clasificacion-bases-atrasos:
+wrong and fixed describe union/CCAF classification, arrears, bases, caps, principal Art. 58 source, AFC 11-year limit/exclusions, and 90 UF health cap. They do not describe removal/narrowing of the earlier blanket claim about cash losses, tool deterioration and damaged goods.
+git show 56f15110^:src/data/blog/descuentos-de-sueldo.md lines 100–104:
+“The artículo 58 también establece un límite claro: el empleador no puede descontar del sueldo pérdidas de caja, deterioro de herramientas, mercadería dañada ni multas arbitrarias que no estén respaldadas en el reglamento interno de la empresa, debidamente registrado en la Dirección del Trabajo.”
+Current line 130 narrows that statement to the actual statutory list and DT ORD. 4229/2015 rule for workers without a cash-loss allowance. The current correction entry does not record that material narrowing.
+
+[OfficialSources and inline-link inventory]
+The articleLead.officialSources list has eight entries: DT ORD. 680/2017, DT ORD. 262/4, DT ORD. 4184/70, BCN Ley 19.728, AFC contributions, SII 2026 IUSC, SP mandatory pension contribution, SP 2026 caps. Each URL resolves to the labeled document/topic. The SP cap URL supports 90/135.2 UF, not the 7% health rate; the SP mandatory-pension URL supports 10% AFP and commission, not 7% health.
+Inline sources checked include DT ORD. 443/2026, 1578, 2423, 2000-44737/2026, 3456/37, 2453/187, 4229/2015, DT 15%-base query, SII tax base/worker contribution, AFC 11-year page, and SP. Correctly labeled sources map to their subject except ORD. 2453/187: its official abstract concerns a written/limited deduction for excess water consumption, not the Art. 58 prohibited-deduction list cited beside it.
+
+[Six-surface scope]
+1. Body: inspected primary article and three radio articles above.
+2. Metadata: frontmatter dates, article footer, ArticleJsonLd source examined.
+3. Structured data: generator code confirms BlogPosting metadata fields and FAQ extraction conditions; no runtime build performed.
+4. Catalog/LLM: calculatorPortfolio.ts has no Art. 58 or worker AFC deduction entry; it has an unrelated, correct “25% ... topado a 4,75 IMM” gratification calculator description. llms.txt.ts lists calculators but not post content. llms-full.txt.ts concatenates each full published article body, so body defects would propagate there. No generated llms-full.txt output/build was made.
+5. Related content: three user-specified pages and both user-specified law summaries inspected. The related-page discrepancies are listed above.
+6. Engine/tests: no calculator engine for Art. 58 found in the requested catalog path; static guard inspected. It checks ORD. 680 link, core categories, caps 90/135.2/15/30/45/11 and stale phrases. It does not assert Art. 322/323, AFC household exception, week-end verification, court-ordered embargo, the 90 UF cap in the liquid-salary guide, or the latter guide’s blanket-imponible statement.
+
+[Static test output]
+Command: pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts
+Exit: 0
+RUN v4.1.11 /tmp/claude-1000/wt-descuentos
+Test Files 1 passed (1)
+Tests 8 passed (8)
+Start at 12:59:15
+Duration 112ms (transform 18ms, setup 0ms, import 25ms, tests 3ms, environment 0ms)
+

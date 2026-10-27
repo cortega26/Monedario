@@ -79,13 +79,13 @@ Aquí el foco es el cálculo completo del líquido. No es la guía principal par
 
 Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos:
 
-| Descuento                   | Porcentaje    | Va a...                |
-| --------------------------- | ------------- | ---------------------- |
-| AFP (cotización)            | 10%           | Tu cuenta de pensión   |
-| AFP (comisión)              | 0.46% – 1.45% | La AFP por administrar |
-| Salud (Fonasa o Isapre)     | 7% mínimo     | Tu cobertura médica    |
-| Seguro de cesantía          | 0.6%          | Tu fondo de cesantía   |
-| Impuesto único 2ª categoría | Variable      | El Fisco               |
+| Descuento                   | Porcentaje                | Va a...                |
+| --------------------------- | ------------------------- | ---------------------- |
+| AFP (cotización)            | 10%                       | Tu cuenta de pensión   |
+| AFP (comisión)              | 0.46% – 1.45%             | La AFP por administrar |
+| Salud (Fonasa o Isapre)     | 7% mínimo                 | Tu cobertura médica    |
+| Seguro de cesantía          | 0.6% (0% casa particular) | Tu fondo de cesantía   |
+| Impuesto único 2ª categoría | Variable                  | El Fisco               |
 
 El porcentaje exacto depende de tu AFP, si estás en [Fonasa o Isapre](/posts/fonasa-vs-isapre-comparativa/), y cuánto ganas.
 
@@ -136,7 +136,7 @@ Si estás en **Isapre**, el 7% es el mínimo legal, pero el plan que elegiste pr
 
 Ejemplo: si tu plan Isapre cuesta el equivalente al 9% de tu imponible, el descuento total de salud será 9%, no 7%.
 
-### 3. Seguro de cesantía: 0.6%
+### 3. Seguro de cesantía: 0.6% (0% en casa particular)
 
 Este descuento va a la **Administradora de Fondos de Cesantía (AFC)**. Acumula un fondo individual a tu nombre que puedes usar si te quedas sin trabajo.
 
@@ -146,8 +146,9 @@ Lo importante: el porcentaje cambia según el tipo de contrato.
 | ------------------------- | -------------------- | ---------------- |
 | Indefinido                | 0.6%                 | 2.4%             |
 | Plazo fijo / obra o faena | 0%                   | 3%               |
+| Casa particular           | 0%                   | 3%               |
 
-Si tienes contrato a plazo fijo, **no te descuentan** el seguro de cesantía — pero igual acumulas porque el empleador paga el 3%. Cuando quedes sin trabajo, puedes cobrar ese fondo. La [guía del seguro de cesantía](/posts/seguro-de-cesantia/) detalla cuándo y cuánto te pagan.
+Si tienes contrato a plazo fijo o trabajas en casa particular, **no te descuentan** el seguro de cesantía — pero igual acumulas porque el empleador paga el 3%. Cuando quedes sin trabajo, puedes cobrar ese fondo. La [guía del seguro de cesantía](/posts/seguro-de-cesantia/) detalla cuándo y cuánto te pagan.
 
 Fuente: [Dirección del Trabajo](https://www.dt.gob.cl/portal/1628/w3-article-95306.html)
 
@@ -179,17 +180,17 @@ Si antes estabas en Fonasa (7% fijo) y te cambiaste a una Isapre con un plan de 
 
 **Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 0,58%, total AFP 10,58%) y Fonasa.
 
-| Concepto                         | Cálculo               | Monto           |
-| -------------------------------- | --------------------- | --------------- |
-| Sueldo bruto                     | —                     | $1.500.000      |
-| (-) AFP cotización 10%           | $1.350.000 × 10%      | -$135.000       |
-| (-) AFP comisión 0,58%           | $1.350.000 × 0,58%    | -$7.830         |
-| (-) Salud Fonasa 7%              | $1.350.000 × 7%       | -$94.500        |
-| (-) Seguro cesantía 0,6%         | $1.350.000 × 0,6%     | -$8.100         |
-| = Renta tributable para impuesto | $1.350.000 - $245.430 | $1.104.570      |
-| (-) Impuesto único 2ª categoría  | Tramo 4% abril 2026   | -$6.443         |
-| (+) Ingresos no imponibles       | Colación              | +$150.000       |
-| **= Sueldo líquido**             | Bruto - Descuentos    | **~$1.248.000** |
+| Concepto                                      | Cálculo               | Monto           |
+| --------------------------------------------- | --------------------- | --------------- |
+| Sueldo bruto                                  | —                     | $1.500.000      |
+| (-) AFP cotización 10%                        | $1.350.000 × 10%      | -$135.000       |
+| (-) AFP comisión 0,58%                        | $1.350.000 × 0,58%    | -$7.830         |
+| (-) Salud Fonasa 7%                           | $1.350.000 × 7%       | -$94.500        |
+| (-) Seguro cesantía 0,6% (0% casa particular) | $1.350.000 × 0,6%     | -$8.100         |
+| = Renta tributable para impuesto              | $1.350.000 - $245.430 | $1.104.570      |
+| (-) Impuesto único 2ª categoría               | Tramo 4% abril 2026   | -$6.443         |
+| (+) Ingresos no imponibles                    | Colación              | +$150.000       |
+| **= Sueldo líquido**                          | Bruto - Descuentos    | **~$1.248.000** |
 
 De $1.500.000 brutos a **~$1.248.000 líquidos**. La diferencia final de **~$252.000** se explica solo por los descuentos: las cotizaciones legales por **$245.430** y el impuesto único del mes por **~$6.443**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
 
@@ -203,7 +204,7 @@ Tu liquidación tiene tres secciones que siempre aparecen:
 
 **Descuentos legales:** AFP, salud, cesantía, impuesto único. Estos los exige la ley.
 
-**Descuentos varios:** Préstamos de caja de compensación, anticipos, seguros voluntarios. Estos son opcionales y los autorizaste tú.
+**Descuentos varios:** Anticipos, seguros voluntarios y otros pagos que autorizaste por escrito. Estos son opcionales. La cuota sindical y el crédito social de una caja de compensación también pueden aparecer aquí, pero son obligatorios: la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica la diferencia.
 
 El **total haberes menos total descuentos** es tu líquido. Si los números no cuadran, puedes pedirle a tu empleador que te explique cada línea — es tu derecho.
 

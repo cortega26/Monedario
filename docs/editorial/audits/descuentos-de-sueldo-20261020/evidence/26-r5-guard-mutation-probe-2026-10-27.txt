@@ -1,0 +1,17 @@
+mutation=APV home selection now falls through to indefinido
+selectorStillContainsCasaParticular=True
+mutatedGuardExitCode=0
+
+ RUN  v4.1.11 /tmp/r5-afc-guard-lnzhfryv
+
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > ninguna superficie conserva las formas defectuosas conocidas 2ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > el cuerpo de la pieza principal enuncia la excepción y su fundamento 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > la tabla por tipo de contrato tiene fila propia para casa particular 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > la ficha de la Ley 19.728 menciona la excepción en su regla general 0ms
+ ✓ tests/static-analysis/afc-casa-particular-guard.test.ts > casa particular en el 0,6% del seguro de cesantía > toda calculadora con selector de contrato ofrece casa particular 1ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  17:58:06
+   Duration  126ms (transform 19ms, setup 0ms, import 29ms, tests 5ms, environment 0ms)
+finding=FALSE_NEGATIVE: guard passed with broken APV mapping

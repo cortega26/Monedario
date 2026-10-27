@@ -37,6 +37,9 @@ const exampleResult = calculateApvComparison({
   monthlyApvContribution: 100_000,
   afpRatePercent: 11.44,
   healthSystem: "fonasa",
+  // Explícito: omitirlo hace que el motor aplique el default indefinido y la
+  // base del ejemplo no coincida con el supuesto que declara el texto.
+  contractType: "indefinido",
   economicParameters,
 });
 const apvFaqs = [
@@ -192,6 +195,18 @@ const calculatorNextStepItems = [
               />
               <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
                 Plazo fijo / obra
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="tipo-contrato"
+                value="casa-particular"
+                data-profile-bind="contratoTipo"
+                class="peer sr-only"
+              />
+              <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                Casa particular
               </span>
             </label>
           </div>
@@ -610,6 +625,7 @@ const calculatorNextStepItems = [
 <script>
   import "@/scripts/calculator-prefill";
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
+  import { parseContractType } from "@/utils/contractType";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { emitApvError, resetApvErrorDedupe } from "@/utils/apvErrorTelemetry";
   import { formatCLP } from "@/utils/formatCLP";
@@ -726,14 +742,13 @@ const calculatorNextStepItems = [
       )?.value === "isapre"
         ? "isapre"
         : "fonasa";
-    const contractType =
+    const contractType = parseContractType(
       (
         document.querySelector(
           "input[name='tipo-contrato']:checked"
         ) as HTMLInputElement
-      )?.value === "plazo-fijo"
-        ? "plazo-fijo"
-        : "indefinido";
+      )?.value
+    );
     const isapreAdicionalPercent =
       parseFloat(
         (document.getElementById("isapre-adicional") as HTMLInputElement).value

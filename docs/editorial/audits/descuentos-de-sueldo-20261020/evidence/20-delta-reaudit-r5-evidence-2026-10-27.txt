@@ -1,0 +1,82 @@
+# Evidencia fresca R5 — D10
+
+Fecha de obtención: 2026-10-27. Checkout: `/tmp/opencode/wt-audit-descuentos-5`, HEAD `da2277aefe05b0ce16197b39369379999f1277ed`. Alcance: exclusivamente D10. Esta evidencia fue tomada desde R5; `evidence/11–19` no se usó como prueba.
+
+## S1. Fuentes primarias reabiertas
+
+1. **BCN, Ley 19.728**, <https://www.bcn.cl/leychile/navegar?idNorma=184979>, arts. 5 y 9; reabierta el 2026-10-27 (vista web y GET directo con parámetro anti-caché, HTTP 200; fecha HTTP 21:05:03 GMT, ver [S5](#S5)). Art. 5, frase literal: “excepción de los trabajadores de casa particular.” La letra b) asigna a cargo del empleador 3,0% para casa particular, sin distinguir duración. Art. 9 especifica que 2,2% de ese aporte financia la CIC.
+2. **AFC Chile, cotizaciones**, <https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/>, tabla “Aportes del empleador”; reabierta el 2026-10-27 (HTTP 200, fecha HTTP 21:05:00 GMT, [S5](#S5)). Para casa particular: CIC 2,2%; FCS 0,8%; CAI AFP 1,11%. La nota de 0,6% al pie refiere al aporte de trabajador de contrato indefinido. La FAQ AFC <https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/> se reabrió también (HTTP 200, fecha HTTP 21:05:02 GMT).
+
+**Resultado normativo:** el aporte de la persona trabajadora de casa particular a AFC es 0%; el empleador paga AFC 3% (2,2% CIC + 0,8% FCS), además del 1,11% CAI según el cuadro de AFC. La fila local que adjudica 3% a CIC y 0% a FCS no coincide con BCN art. 9/AFC.
+
+## S2. Superficies locales y flujo del tipo de contrato
+
+- **APV, interacción:** `src/pages/calculadoras/apv.astro:197-207` ofrece `casa-particular`; `:741-769` preserva esa literal en `contractType` y la pasa a `calculateApvComparison`. No se convierte a `undefined` ni al default en este flujo.
+- **APV, ejemplo SSR:** `apv.astro:35-41` llama al mismo motor sin `contractType`; el tipo es opcional en `CalculateApvComparison.ts:17` y `CalculateMonthlyPayrollBase.ts:109` aplica `indefinido` si falta. El copy visible `apv.astro:334-336` no identifica el contrato. La prueba de motor reproduce base imponible $1.223.400 con casa explícita y $1.214.400 si se omite el tipo: diferencia de $9.000 (= $1.500.000 × 0,6%). Véase [S3](24-r5-engine-probe-2026-10-27.txt).
+- **Operación Renta, interacción:** `operacion-renta.astro:189-209` incluye casa; `:612-634` mapea el valor y lo pasa a `calculateNetSalary`; `:635-641` anualiza la base por 12. El motor usado en ese tramo no descuenta AFC de trabajador con tipo explícito. El posterior `simulateOperacionRenta` recibe rentas/retenes anuales y no calcula una segunda nómina AFC.
+- **Sueldo líquido:** el selector local incluye casa y explica el 0% trabajador (`sueldo-liquido.astro:280-296`). `formController.ts:139-159` la conserva; `:260-267` la pasa a líquido→bruto y `:367-376` a bruto→líquido. La comparación AFP pasa el tipo en ambas direcciones (`afpComparison.ts:56-65,189-198`). El ejemplo SSR, en cambio, fija `indefinido` explícitamente (`sueldo-liquido.astro:49-56`) y el copy visible `:590-594` no indica ese supuesto.
+- **Costo AFC del empleador en sueldo líquido:** `src/utils/sueldo-liquido/resultRenderer.ts:300-308` aplica 2,4% a cualquier contrato salvo plazo fijo. Para casa particular el resultado exhibido queda en $24.000 por base imponible $1.000.000, en vez de $30.000 al 3% AFC patronal. No es un descuento del trabajador, pero sí una salida de nómina/AFC errónea dentro de D10.
+- **Cobertura AFC/CIC:** `seguro-cesantia.astro:132-158` solo permite indefinido/plazo fijo y `EstimateUnemploymentCoverage.ts:35-44` solo tipa esos dos. Calcula aportes CIC/FCS, elegibilidad y pagos (`:93-121`), no el descuento AFC de nómina del 0,6%. Usa las tasas y mínimo de indefinido (2,2% CIC + 0,8% FCS, 10 cotizaciones), que coinciden numéricamente con casa particular; no representa el contrato, pero su ausencia de opción no produce por sí misma un 0,6% descontado al trabajador.
+- **Ficha local de Ley 19.728:** la regla rápida de `src/data/laws/ley-19728-seguro-cesantia.md:25` ya incluye explícitamente la excepción del trabajador. La tabla de `:41` aún dice 3,0% a CIC y 0,0% FCS, y mezcla 1,11% de indemnización legal en esa fila; contradice la distribución oficial indicada en S1.
+
+Barrido estructural adicional: `rg -n "calculateNetSalary|estimateGrossFromNet|calculateApvComparison|estimateUnemploymentCoverage|unemploymentInsurance|AFC" src/pages/calculadoras src/utils/sueldo-liquido src/application/use-cases`. Encontré cuatro superficies interactivas de cálculo: sueldo líquido (dos sentidos y comparación AFP), APV, estimación de sueldos en Operación Renta y cobertura AFC/CIC. El motor compartido `CalculateMonthlyPayrollBase.ts:93-115` retorna cero trabajador para tipo explícito casa, pero aplica `indefinido` cuando el parámetro está ausente.
+
+## S3. Reproducción del motor con tipo casa particular explícito
+
+Comando: `pnpm exec vitest run --config docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/20-r5-vitest.config.ts --reporter=verbose --silent=false docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/21-r5-engine-probe.test.ts`.
+
+Resultado: 1 archivo / 1 prueba pasó. Con parámetros económicos del snapshot local al 2026-10-27:
+
+- Bruto→líquido: imponible/bruto $1.000.000, AFP 11,44%, Fonasa; AFC trabajador $0 y líquido $815.600. Cálculo independiente: $1.000.000 − $114.400 − $70.000 − $0 AFC − $0 impuesto = $815.600; la base queda bajo 13,5 UTM ($974.038,50).
+- Líquido→bruto: objetivo $900.000, AFP 11,44%; AFC trabajador $0, bruto $1.103.482,10 y líquido calculado $900.000 (salida flotante $899.999,9999999998).
+- Comparación AFP bruto→líquido: Capital, Cuprum, Habitat, Modelo, PlanVital, ProVida y Uno; AFC trabajador $0 en las siete. Líquidos: $815.600, $815.600, $817.300, $824.200, $818.400, $815.500 y $825.400, respectivamente.
+- Comparación AFP líquido→bruto: mismas siete AFP y AFC trabajador $0 en las siete.
+- APV explícito: tipo de salida `casa-particular`, AFC incorporada a la base $0, base imponible $1.223.400.
+- Operación Renta, fase “estimar desde sueldo bruto”: tipo casa, AFC trabajador $0, base mensual $1.223.400, anualizada $14.680.800.
+
+Límite del resultado: esto valida el motor con el tipo casa transmitido. No cubre el ejemplo SSR de APV que omite el tipo ni el contenido/HTML público servido.
+
+## S4. Revisión de guarda y regresión concreta
+
+La guarda `tests/static-analysis/afc-casa-particular-guard.test.ts` dice ser estructural. Sus cinco aserciones fijan formas exactas antiguas en tres artículos, presencia de excepción en el cuerpo y fila de la pieza principal, mención de excepción en regla rápida legal y literal `casa-particular` en tres páginas selectoras. No prueba el mapeo entre selección y llamada al motor, ni el tipo que recibe el motor, ni la tasa AFC del empleador o la distribución CIC/FCS.
+
+Regresión propuesta: quitar en `apv.astro` solo el brazo que convierte la selección `casa-particular` a `casa-particular`, dejando el radio con ese valor. Al elegir casa, la selección cae a `indefinido` y se descuenta 0,6%; el test ve que la página todavía contiene el literal y no comprueba el flujo.
+
+Reproducción no destructiva: la guarda intacta también pasó **5/5** en R5 sin mutación; salida base en [27](27-r5-current-guard-2026-10-27.txt). `25-r5-guard-mutation-probe.py` copia a un directorio temporal solo el test y los archivos que lee, cambia únicamente la copia de `apv.astro` y ejecuta la misma guarda. Resultado: **5/5 tests passed** pese a la regresión; salida completa en [26](26-r5-guard-mutation-probe-2026-10-27.txt). La copia temporal se eliminó al cerrar el script; el test y el árbol R5 quedaron intactos. La guarda protege la forma concreta de texto ya observada, no el defecto de flujo real.
+
+## S5. Reapertura del runtime público
+
+Se abrieron de nuevo las 19 URLs enumeradas al cierre. El log [23](23-r5-public-url-probe-2026-10-27.txt) registra una petición HTTP individual por URL con `Cache-Control: no-cache, no-store`, `Pragma: no-cache` y parámetro de caché R5 único. Resultado: 19/19 HTTP 200; respuestas fechadas entre 21:04:53 y 21:05:03 GMT del 2026-10-27. AFC no informa `Cache-Control`; BCN informa `max-age=86400`. El log conserva indicadores de presencia —no cuerpos copiados— para casa particular, 0,6%, 2,4% y tipos indefinido/plazo fijo. Las URLs base también se reabrieron mediante navegación web el mismo día. Los extractos públicos breves que sustentan los hallazgos se registran abajo.
+
+Hallazgos actuales del runtime público:
+
+- APV y Operación Renta solo presentan Indefinido/Plazo fijo; sueldo líquido solo Indefinido/Plazo fijo, aunque su explicación pública atribuye 0,6% al trabajador sin desarrollar la excepción; cobertura AFC también carece de casa particular.
+- `/posts/seguro-de-cesantia/` conserva la fila: “Casa particular 0.6% 2.4% 3%”. Es una atribución errónea de 0,6% al trabajador.
+- La ficha pública de Ley 19.728 omite la excepción en la respuesta rápida y asigna 3,0% a CIC y 0,0% a FCS en su fila casa particular.
+- Las páginas públicas de sueldo imponible, liquidación, cálculo de sueldo líquido, primer empleo y glosario de sueldo bruto mantienen explicaciones del 0,6% vinculadas a contrato indefinido sin presentar de forma uniforme la excepción. Las respuestas/extractos están preservados por URL en [23](23-r5-public-url-probe-2026-10-27.txt).
+
+Reaperturas textuales focales (todas del 2026-10-27): APV muestra “Indefinido / Plazo fijo / obra”; Operación Renta, “Indefinido / Plazo fijo”; sueldo líquido, “Indefinido / Plazo fijo / obra”; y cobertura AFC, “Indefinido / Plazo fijo”. El artículo de seguro conserva la fila falsa ya citada arriba. El contenido abierto en navegador aporta los extractos; [23](23-r5-public-url-probe-2026-10-27.txt) respalda URL, status, fecha HTTP e indicadores por página.
+
+El HTML público no acredita qué SHA lo generó. Es observación de producto/runtime a 2026-10-27, no prueba de que el target SHA R5 esté desplegado.
+
+## S6. URLs abiertas
+
+1. <https://monedario.cl/calculadoras/apv/>
+2. <https://monedario.cl/calculadoras/operacion-renta/>
+3. <https://monedario.cl/calculadoras/seguro-cesantia/>
+4. <https://monedario.cl/calculadoras/sueldo-liquido/>
+5. <https://monedario.cl/glosario/afc/>
+6. <https://monedario.cl/glosario/fondo-solidario/>
+7. <https://monedario.cl/glosario/sueldo-bruto/>
+8. <https://monedario.cl/leyes/ley-19728-seguro-cesantia/>
+9. <https://monedario.cl/posts/como-calcular-sueldo-liquido/>
+10. <https://monedario.cl/posts/descuentos-de-sueldo/>
+11. <https://monedario.cl/posts/interes-compuesto-nota-metodologica/>
+12. <https://monedario.cl/posts/liquidacion-de-sueldo/>
+13. <https://monedario.cl/posts/primer-empleo-chile-guia-completa/>
+14. <https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/>
+15. <https://monedario.cl/posts/seguro-de-cesantia/>
+16. <https://monedario.cl/posts/sueldo-imponible-chile/>
+17. <https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/>
+18. <https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/>
+19. <https://www.bcn.cl/leychile/navegar?idNorma=184979>

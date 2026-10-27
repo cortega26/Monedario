@@ -1,0 +1,8 @@
+2026-10-20T19:06:31Z
+Linux i5-12600K 7.0.0-38-generic #38~24.04.4-Ubuntu SMP PREEMPT_DYNAMIC Mon Sep 14 16:37:11 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+38418c0841e7ad28e69c825537976aed32531485
+56f15110a0558dd6a23ed83076488d2578ec3294
+?? docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/
+v24.19.0
+11.7.0
+Python 3.13.12

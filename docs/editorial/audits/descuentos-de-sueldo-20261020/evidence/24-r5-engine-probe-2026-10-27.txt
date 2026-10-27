@@ -1,0 +1,128 @@
+
+ RUN  v4.1.11 /tmp/opencode/wt-audit-descuentos-5
+
+{
+  "grossToNet": {
+    "contractType": "casa-particular",
+    "workerAfc": 0,
+    "netSalary": 815600
+  },
+  "netToGross": {
+    "contractType": "casa-particular",
+    "workerAfc": 0,
+    "grossSalary": 1103482.0990681704,
+    "netSalary": 899999.9999999998
+  },
+  "afpForward": [
+    {
+      "afp": "Capital",
+      "rate": 11.44,
+      "workerAfc": 0,
+      "net": 815600
+    },
+    {
+      "afp": "Cuprum",
+      "rate": 11.44,
+      "workerAfc": 0,
+      "net": 815600
+    },
+    {
+      "afp": "Habitat",
+      "rate": 11.27,
+      "workerAfc": 0,
+      "net": 817300
+    },
+    {
+      "afp": "Modelo",
+      "rate": 10.58,
+      "workerAfc": 0,
+      "net": 824200
+    },
+    {
+      "afp": "PlanVital",
+      "rate": 11.16,
+      "workerAfc": 0,
+      "net": 818400
+    },
+    {
+      "afp": "ProVida",
+      "rate": 11.45,
+      "workerAfc": 0,
+      "net": 815500
+    },
+    {
+      "afp": "Uno",
+      "rate": 10.46,
+      "workerAfc": 0,
+      "net": 825400
+    }
+  ],
+  "afpInverse": [
+    {
+      "afp": "Capital",
+      "rate": 11.44,
+      "workerAfc": 0,
+      "gross": 1103482.0990681704
+    },
+    {
+      "afp": "Cuprum",
+      "rate": 11.44,
+      "workerAfc": 0,
+      "gross": 1103482.0990681704
+    },
+    {
+      "afp": "Habitat",
+      "rate": 11.27,
+      "workerAfc": 0,
+      "gross": 1101186.8346996205
+    },
+    {
+      "afp": "Modelo",
+      "rate": 10.58,
+      "workerAfc": 0,
+      "gross": 1091967.9689395777
+    },
+    {
+      "afp": "PlanVital",
+      "rate": 11.16,
+      "workerAfc": 0,
+      "gross": 1099706.744868035
+    },
+    {
+      "afp": "ProVida",
+      "rate": 11.45,
+      "workerAfc": 0,
+      "gross": 1103617.412630288
+    },
+    {
+      "afp": "Uno",
+      "rate": 10.46,
+      "workerAfc": 0,
+      "gross": 1090380.421613763
+    }
+  ],
+  "apv": {
+    "explicitHome": {
+      "contractType": "casa-particular",
+      "taxableBase": 1223400
+    },
+    "omittedContractDefaults": {
+      "contractType": "indefinido",
+      "taxableBase": 1214400
+    },
+    "baseDifference": 9000
+  },
+  "renta": {
+    "contractType": "casa-particular",
+    "workerAfc": 0,
+    "monthlyTaxableBase": 1223400,
+    "annualizedBase": 14680800
+  }
+}
+ ✓ docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/21-r5-engine-probe.test.ts > casa particular has no worker AFC in every payroll path probed 6ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  17:57:28
+   Duration  209ms (transform 52ms, setup 0ms, import 71ms, tests 8ms, environment 0ms)
+

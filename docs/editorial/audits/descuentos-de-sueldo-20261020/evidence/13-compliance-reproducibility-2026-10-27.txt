@@ -1,0 +1,45 @@
+AI_AUDIT_PROTOCOL v1 — reproducibility record
+Date: 2026-10-27
+Session label: codex-20261027-compliance
+Model: OpenAI GPT-6 (Codex; runtime build/version identifier not exposed)
+Independence check: three distinct model families verified from their package records. Redaction: Claude Sonnet 5.5 (Claude Code, session 20261020-1517-handoff1). Math: DeepSeek V4.1 Flash (opencode/deepseek-v4.1-flash-free, session descuentos-de-sueldo-20261020-math-audit). Compliance: OpenAI GPT-6 (Codex runtime; exact exposed model ID GPT-6; no separate build/revision identifier exposed), session codex-20261027-compliance.
+
+Audit base
+Worktree: /tmp/claude-1000/wt-descuentos
+Branch: fix/descuentos-de-sueldo-art58-2026-10-20
+HEAD: 1444958a7604510495481b6caa39e86e1d7161d7
+Math content commit from dossier/result: 56f15110a0558dd6a23ed83076488d2578ec3294
+Math scope commit: 38418c0841e7ad28e69c825537976aed32531485
+Branch state at start: clean, behind origin by 1; no pull/rebase performed.
+
+Environment
+pwd: /tmp/claude-1000/wt-descuentos
+uname -srmo: Linux 7.0.0-38-generic x86_64 GNU/Linux
+node --version: v24.19.0
+pnpm --version: 11.7.0
+python3 --version: Python 3.13.12
+
+Reproducibility commands and results
+1. git rev-parse HEAD
+   Output: 1444958a7604510495481b6caa39e86e1d7161d7
+   Exit: 0
+2. git rev-parse --abbrev-ref HEAD
+   Output: fix/descuentos-de-sueldo-art58-2026-10-20
+   Exit: 0
+3. git status --short --branch (at final artifact-writing stage)
+   Output begins: ## fix/descuentos-de-sueldo-art58-2026-10-20...origin/fix/descuentos-de-sueldo-art58-2026-10-20 [behind 1]
+   Expected local changes are confined to this backlog disposition note and new docs/editorial/audits/... files.
+4. uname -srmo; node --version; pnpm --version; python3 --version
+   Output as listed above.
+5. pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts
+   Exit: 0; Test Files 1 passed; Tests 8 passed; duration 112ms.
+6. git diff --check
+   Exit: 0; no whitespace errors.
+7. No build, Playwright, accessibility, route, or RSS check was run.
+8. pnpm run check:audit-artifacts
+   Exit: 0; 3 audit artifacts valid; target result accepted as verdict=CONDITIONAL.
+
+Official-source method
+Opened primary-source URLs directly on official BCN, DT, AFC, SP, Superintendencia de Salud and SII sites on 2026-10-27. Exact verified excerpts and URL/date records are in evidence/11-compliance-primary-sources-2026-10-27.txt. Local source excerpts and the six-surface source-level sweep are in evidence/12-compliance-local-surfaces-2026-10-27.txt.
+No inherited legal extract from evidence/02-primary-sources.txt or evidence/02b-source-quotes.txt was used without verification. No arithmetic was repeated.
+

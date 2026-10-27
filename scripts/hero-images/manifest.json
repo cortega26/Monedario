@@ -143,7 +143,7 @@
     },
     {
       "slug": "como-calcular-sueldo-liquido",
-      "sourceContentHash": "40f4979bf3b81491f19163c04552cd49681580b44b095df1ac340be78707bd3b",
+      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
       "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
       "tags": [
         "sueldo",
@@ -168,12 +168,12 @@
         "Los descuentos uno por uno",
         "1. AFP: el 10% + comisión",
         "2. Salud: el 7% (o más)",
-        "3. Seguro de cesantía: 0.6%",
+        "3. Seguro de cesantía: 0.6% (0% en casa particular)",
         "4. Impuesto único de segunda categoría",
         "Por qué te subieron el sueldo y te bajó el líquido"
       ],
-      "bodyExcerpt": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo. ## La diferencia entre sueldo bruto y sueldo líquido Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante. **Sueldo bruto** es lo que acordaste con tu empleador. **Sueldo líquido** es lo que realmente llega a tu cuenta. Entre uno y otro hay una serie de descuentos obligatorios que establece la ley — no los decide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: | Descuento | Porcentaje | Va a... | | --------------------------- | ------------- | ---------------------- | | AFP (cotización) | 10% | Tu cuenta de pensión | | AFP (comisión) | 0.46% – 1.45% | La AFP po",
-      "wordCount": 1793,
+      "bodyExcerpt": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo. ## La diferencia entre sueldo bruto y sueldo líquido Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante. **Sueldo bruto** es lo que acordaste con tu empleador. **Sueldo líquido** es lo que realmente llega a tu cuenta. Entre uno y otro hay una serie de descuentos obligatorios que establece la ley — no los decide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: | Descuento | Porcentaje | Va a... | | --------------------------- | ------------------------- | ---------------------- | | AFP (cotización) | 10% | Tu cuenta de pensión | | AFP (comisión) | 0.46% – 1.45%",
+      "wordCount": 1837,
       "sourceFile": "como-calcular-sueldo-liquido.md"
     },
     {
@@ -558,7 +558,7 @@
     },
     {
       "slug": "descuentos-de-sueldo",
-      "sourceContentHash": "c104c7b7ab631e257fd93f3cf85382ecf32bbc2f694ecf22a552a324504583cf",
+      "sourceContentHash": "f1f3f8a10be847cf4eb0a7ea593a24f9f1b5666d91f5a3b48e9fe0357409fa88",
       "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
       "tags": [
         "sueldo",
@@ -575,20 +575,20 @@
       "leadParagraphs": [
         "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.",
         "Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.",
-        "> **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación."
+        "> **Revisión editorial 2026-10-20:** se corrigió la clasificación de la cuota sindical y del crédito social de las cajas de compensación (son descuentos obligatorios, no voluntarios), la regla sobre atrasos y las bases de cálculo, y se agregaron los topes de cada descuento. El detalle está en el [registro de correcciones](/correcciones/). Verifica siempre la tabla del SII y los topes vigentes en el mes de tu liquidación."
       ],
       "headings": [
         "Tres categorías, tres orígenes distintos",
         "Descuentos legales — los que el empleador debe practicar",
         "Descuentos autorizados — los que dependen de tu consentimiento",
         "Descuentos prohibidos — lo que el empleador no puede cargar",
+        "Atrasos: descuento del tiempo no trabajado frente a multa",
+        "Sobre qué se calcula cada descuento",
         "Cuándo el mismo descuento puede ser legal o no según tu contrato",
-        "Cómo leer tu liquidación con este mapa",
-        "Preguntas frecuentes",
-        "Información de vigencia"
+        "Cómo leer tu liquidación con este mapa"
       ],
-      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. > **Revisión editorial 2026-10-19:** se revalidaron los descuentos legales, el artículo 58 del Código del Trabajo y las comisiones de AFP contra la Dirección del Trabajo, la Superintendencia de Pensiones y la tabla del SII. El tramo exento del impuesto único se actualizó a la tabla de octubre de 2026; verifica siempre la tabla del mes de tu liquidación. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu , no sobre el sueldo bruto total — p",
-      "wordCount": 1284,
+      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. > **Revisión editorial 2026-10-20:** se corrigió la clasificación de la cuota sindical y del crédito social de las cajas de compensación (son descuentos obligatorios, no voluntarios), la regla sobre atrasos y las bases de cálculo, y se agregaron los topes de cada descuento. El detalle está en el . Verifica siempre la tabla del SII y los topes vigentes en el mes de tu liquidación. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización mensual. El artículo 58 del Código del Trabajo dispone que el empleador \"deberá deducir de las remuneraciones l",
+      "wordCount": 3592,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
@@ -1110,7 +1110,7 @@
     },
     {
       "slug": "interes-compuesto-nota-metodologica",
-      "sourceContentHash": "3664bc5e776591ff7e86dd7a58c21d4572736d2170cd1da25d58020d3f01504f",
+      "sourceContentHash": "b2e3f96dbe83604a0f62e124636fbd874be7c498a25a134b06704149b3e7a931",
       "title": "Nota metodológica: simulación de interés compuesto 1990-2025",
       "tags": [
         "ahorro",
@@ -1138,7 +1138,7 @@
         "8. Cálculo de la mensualidad de retiro"
       ],
       "bodyExcerpt": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. **Fecha de corte del ejercicio:** **2025-12-31**. **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 118,0 millones**. **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores. > **Corrección de portada 2026-10-20:** se reemplazó el gráfico por siete hitos documentados (1995–2025), sin interpolación mensual. El resultado final es USD 129.495 / CLP 117.993.254 y la serie se identifica como price return. ## 1. Período y estructura de la simulación - **Período:** enero de 1990 a diciembre de 2025 (**432 meses = 36 años**). - **Meses con aporte:** **408**. - **Meses sin aporte (lagunas):** **24**, distribu",
-      "wordCount": 1594,
+      "wordCount": 1621,
       "sourceFile": "interes-compuesto-nota-metodologica.md"
     },
     {
@@ -1178,7 +1178,7 @@
     },
     {
       "slug": "liquidacion-de-sueldo",
-      "sourceContentHash": "6e7746cc84d64be5351f43c86e85a4bdb33ee6266a5027eb0969035f759184fa",
+      "sourceContentHash": "2fb2e536618f01e6ed4e256c72b1d319c2adfa3cb9e57caaed915723a0e2c939",
       "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
       "tags": [
         "sueldo",
@@ -1207,7 +1207,7 @@
         "Cuándo pedir respaldo y cómo pedirlo"
       ],
       "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-10-19.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la . Para entender por qué la base imponible es la que es, lee sobre el . ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el form",
-      "wordCount": 1174,
+      "wordCount": 1186,
       "sourceFile": "liquidacion-de-sueldo.md"
     },
     {
@@ -1347,7 +1347,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
-      "sourceContentHash": "54a05c77220afe7d63cd334c8a3caa507c8d1657c2aac9a482a20e8b058a0ef9",
+      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
       "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "tags": [
         "primer-empleo",
@@ -1377,7 +1377,7 @@
         "Qué es la AFP y para qué sirve"
       ],
       "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
-      "wordCount": 2074,
+      "wordCount": 2184,
       "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {
@@ -1660,7 +1660,7 @@
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
-      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
+      "sourceContentHash": "3ba2dfcc2e27d84e3aa2112f80a7bdb9ce4af978db3245da2a7366cdd1970b82",
       "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
       "tags": [
         "cesantia",
@@ -1688,12 +1688,12 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir. ## Las dos capas del seguro **La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones. **El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu saldo en la CIC es insuficiente para los pagos del seguro y, además, cumples todos los filtros que exige la ley. No es automático. No es universal. Y no entra si tu CIC alcanza. ## Por qué el orden importa en la práctica La CIC siempre va primero. Esto tiene una consecuencia directa: si tu saldo individual alcanza pa",
-      "wordCount": 1049,
+      "wordCount": 1063,
       "sourceFile": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md"
     },
     {
       "slug": "seguro-de-cesantia",
-      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "sourceContentHash": "cfa3f21b3ae450d2a0d32f6bc72bd5da86943c6299441b0479a10018452f9bf0",
       "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
       "tags": [
         "cesantia",
@@ -1723,12 +1723,12 @@
         "Si cobras por la CIC"
       ],
       "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fondo de Cesantía Solidario (FCS):** Es un fondo común financiado principalmente por los empleadores y el Estado. No es tuyo en particular, pero puedes acceder a él si cumples ciertos requisitos y tu cuenta individual no tiene saldo suficiente. Tiene montos mínimos y máximos definidos por ley. Si tu confusión principal ",
-      "wordCount": 1612,
+      "wordCount": 1661,
       "sourceFile": "seguro-de-cesantia.md"
     },
     {
       "slug": "sueldo-imponible-chile",
-      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
+      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1757,7 +1757,7 @@
         "Ejemplo numérico orientativo"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
-      "wordCount": 1243,
+      "wordCount": 1259,
       "sourceFile": "sueldo-imponible-chile.md"
     },
     {

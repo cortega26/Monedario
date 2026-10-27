@@ -1,0 +1,83 @@
+DELTA RE-AUDIT — EXTRACTOS PRIMARIOS RE-VERIFICADOS
+Consulta directa de cada URL: 2026-10-27 (America/Santiago).
+Los extractos literales son breves; los demás detalles son reconstrucción/paráfrasis tras abrir las fuentes. No se reutilizaron evidence/11–14.
+
+[S1] BCN, Código del Trabajo, arts. 57, 58, 322 y 323
+URL: https://www.bcn.cl/leychile/navegar?idNorma=207436
+Consultado: 2026-10-27.
+Extractos literales: Art. 322, “aceptar la extensión” y “pagar todo o parte”; Art. 323, “cuota mensual ordinaria”; Art. 57, “cincuenta y seis” y “cincuenta por ciento”; Art. 58, “deberá deducir”, “por escrito”, “30%”, “15%”, “45%” e inciso 5, “medicinas”.
+Reconstrucción cotejada en el texto abierto: Art. 322 ata la cuota del no afiliado a que acepte la extensión, en todo o parte según el acuerdo, que debe fijar criterios objetivos, generales y no arbitrarios. Art. 323 mantiene al trabajador afecto al instrumento colectivo vigente del sindicato al que pertenecía y requiere la cuota completa mientras dure ese instrumento. Art. 262 regula el descuento sindical previa solicitud del dirigente sindical o autorización escrita del afiliado.
+Art. 57: remuneraciones inembargables como regla; puede embargarse el exceso sobre 56 UF. El máximo de 50% se limita a alimentos legales decretados judicialmente; defraudación, hurto o robo del trabajador contra el empleador en ejercicio del cargo; y remuneraciones que el trabajador adeude a quienes estuvieron a su servicio como trabajadores.
+Art. 58: inciso 1 obliga a retener impuestos, cotizaciones, cuotas sindicales conforme a ley y obligaciones previsionales/públicas. Inciso 2 permite acuerdo escrito para vivienda, ahorro vivienda y educación familiar; el crédito sin interés para esos fines tiene límite propio de 30% y pago directo a la institución. Inciso 3 habilita pagos de cualquier naturaleza por escrito, con 15%. Inciso 4 dispone 45% conjunto; DT ORD. 262/4 (S11) precisa que recae en los descuentos facultativos/permitidos de incisos 2–3, no los obligatorios. Inciso 5 prohíbe deducciones por habitación, luz, agua, herramientas, medicinas, atención médica, especies y multas no autorizadas. Los párrafos siguientes tratan efectos de comercio, autorización escrita/procedimientos y pérdidas causadas por terceros sin responsabilidad del trabajador.
+
+[S2] Dirección del Trabajo, ORD. N°4184/70
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html
+Consultado: 2026-10-27.
+Extracto literal: “el empleador se encuentra obligado a efectuar dichas deducciones”.
+Contexto de la oración abierta: obligación para la cuota ordinaria mensual de afiliados, una vez requerido por la organización sindical.
+
+[S3] Dirección del Trabajo, ORD. N°443/2026
+URL: https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html
+Consultado: 2026-10-27; ficha fechada 24-sep-2026.
+Extractos literales: “no resulta suficiente, por sí sola, para dejar sin efecto”; “sin que le corresponda cuestionar o calificar”.
+La conclusión completa trata la comunicación de renuncia cuando existe un requerimiento sindical vigente y la obligación de descontar cuotas de afiliados. No se usa para extender el pago de los arts. 322–323.
+
+[S4] BCN, Ley 19.728, arts. 2, 5, 6 y 7
+URL: https://www.bcn.cl/leychile/navegar?idNorma=184979
+Consultado: 2026-10-27.
+Extractos literales: Art. 2, “aprendizaje”, “menores de 18 años”, “pensionados”, “invalidez parcial”, “casa particular”; Art. 5, “0,6%”, “de duración indefinida”, “3,0%”, “cargo del empleador”; Art. 7, “cada una de las remuneraciones”, “registros separados”.
+Art. 2 excluye a quienes están sujetos a aprendizaje, menores de 18 hasta cumplirlos y pensionados, con excepciones por invalidez parcial o trabajador de casa particular. Art. 5 pone 0,6% a cargo del trabajador indefinido salvo casa particular; a casa particular asigna 3% a cargo del empleador cualquiera sea la duración. Art. 6 fija el tope legal; el valor anual 2026 de cesantía se verifica en SP S7. Art. 7 exige cotizar cada remuneración hasta su tope y llevar registros separados por empleador.
+
+[S5] AFC Chile, “Cotizaciones: ¿cuánto y cómo debo pagar?”
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+Consultado: 2026-10-27.
+Extractos literales: “3% de la remuneración imponible”; “tope de 135,2 UF para el 2026”; “El trabajador aporta 0,6%”; “11 años por cada relación laboral”; “cotización N°133”.
+La tabla abierta distribuye indefinido: 1,6% empleador a CIC y 0,8% empleador a FCS; plazo fijo/obra: 2,8% a CIC y 0,2% a FCS, todo empleador; casa particular: 2,2% a CIC y 0,8% a FCS, todo empleador, además de 1,11% a cuenta legal de indemnización. Tras el hito de 11 años, AFC mantiene el aporte patronal 0,8% al FCS. La misma fuente explica el caso de pensionado que sigue como trabajador/a de casa particular.
+
+[S6] AFC Chile, preguntas frecuentes — Seguro de Cesantía
+URL: https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/
+Consultado: 2026-10-27.
+Extractos literales: “menores de 18 años”, “contrato de aprendizaje”, “personas pensionadas”, “invalidez parcial transitoria”, “trabajador de casa particular”.
+La página enumera otras categorías administrativas además de las del art. 2; no se atribuyen esas categorías adicionales a la Ley 19.728.
+
+[S7] Superintendencia de Pensiones, topes imponibles definitivos 2026
+URL: https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html
+Consultado: 2026-10-27; ficha fechada 10-02-2026.
+Extractos literales: “90,0 UF”; “135,2 UF”; “remuneraciones de febrero de 2026”; “todo este año”.
+La ficha asigna 90 UF a AFP, salud y accidentes del trabajo; 135,2 UF a cesantía.
+
+[S8] Dirección del Trabajo, ORD. N°1578
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html
+Consultado: 2026-10-27; dictamen fechado 27-03-2018.
+Extractos literales: “no autoriza al empleador”; “debiendo verificarse al término de la respectiva semana”; “45 horas”.
+El pasaje niega el descuento inmediato por incumplimiento de jornada diaria y exige comprobar al terminar la semana si la jornada convenida se incumplió por causa imputable.
+
+[S9] Dirección del Trabajo, Minisitio 40 horas
+URL: https://www.dt.gob.cl/portal/1626/w3-propertyname-2556.html
+Consultado: 2026-10-27.
+Extractos literales: “Desde el 26 de abril de 2026”; “42 horas”; “26 de abril de 2028”.
+La jornada ordinaria baja a 42 horas en abril de 2026 y a 40 en abril de 2028.
+
+[S10] Dirección del Trabajo, ORD. N°3456/37
+URL: https://dt.gob.cl/legislacion/1624/w3-article-102449.html
+Consultado: 2026-10-27.
+Extractos literales: “hasta el 30% del total de la remuneración mensual”; “del quince por ciento de la remuneración total”; “45% de la remuneración total”.
+El dictamen vincula el 30% a crédito sin interés de vivienda/educación pagado directamente a la institución; el 15% a pagos generales pactados por escrito; y el 45% al conjunto de descuentos facultativos/permitidos.
+
+[S11] Dirección del Trabajo, ORD. N°262/4
+URL: https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html
+Consultado: 2026-10-27.
+Extractos literales: “son de aquellos obligatorios comprendidos en el inciso 1º”; “únicamente para el conjunto de los descuentos facultativos o permitidos”.
+El dictamen clasifica crédito social CCAF como obligatorio y fuera del tope conjunto del 45% que aplica a los incisos 2–3.
+
+[S12] Superintendencia de Salud, “Cotizaciones de salud”
+URL: https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/
+Consultado: 2026-10-27.
+Extractos literales: “7% de la remuneración o renta imponible”; “tope mensual de UF 90”; “UF 6,3 al mes”.
+El tope se aplica a remuneraciones y pensiones devengadas desde febrero de 2026 y la página atribuye el tope a Superintendencia de Pensiones.
+
+[S13] Dirección del Trabajo, ORD. N°2423
+URL: https://dt.gob.cl/legislacion/1624/w3-article-112152.html
+Consultado: 2026-10-27.
+Extracto literal: “atrasos u otras razones que les sean imputables”.
+La fuente apoya la imputabilidad del tiempo no trabajado; la verificación semanal se atribuye a ORD. 1578 (S8).

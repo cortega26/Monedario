@@ -49,6 +49,46 @@
       "prevention": "Verificar que el callout, el punto final, el eje y la etiqueta de serie coincidan con la tabla accesible; no reutilizar una imagen anterior a una corrección numérica ni afirmar Total Return sin la serie XNDX."
     },
     {
+      "id": "descuentos-sueldo-clasificacion-bases-atrasos",
+      "date": "2026-10-20",
+      "title": "Descuentos de sueldo: cuota sindical y crédito de caja de compensación son obligatorios; atrasos, bases y topes",
+      "pages": [
+        {
+          "href": "/posts/descuentos-de-sueldo/",
+          "label": "Descuentos de sueldo en Chile"
+        },
+        {
+          "href": "/posts/primer-empleo-chile-guia-completa/",
+          "label": "Guía del primer empleo en Chile"
+        },
+        {
+          "href": "/posts/como-calcular-sueldo-liquido/",
+          "label": "Cómo calcular el sueldo líquido"
+        },
+        {
+          "href": "/posts/liquidacion-de-sueldo/",
+          "label": "Liquidación de sueldo en Chile"
+        }
+      ],
+      "wrong": [
+        "La guía clasificaba la cuota sindical y el crédito social de las cajas de compensación como descuentos voluntarios que dependen de la autorización del trabajador. La Dirección del Trabajo los trata como descuentos obligatorios del artículo 58, inciso 1, del Código del Trabajo.",
+        "La FAQ de atrasos decía que un atraso solo se puede descontar como multa del reglamento interno, sin distinguir la multa del descuento del valor del tiempo no trabajado, que la DT permite cuando el atraso es imputable al trabajador.",
+        "Se afirmaba que todos los descuentos legales se calculan sobre la remuneración imponible, sin distinguir las bases y topes de cada uno: 90 UF para AFP y salud, 135,2 UF para cesantía, renta líquida imponible para el impuesto único y remuneración total bruta para los descuentos convenidos.",
+        "La fuente principal rotulada como artículo 58 era una consulta de la DT sobre indemnización por años de servicio. La entrada del 2026-10-19 sobre el tramo exento citaba esa misma consulta como fuente del artículo 58.",
+        "El 0,6% de cesantía se presentaba sin el límite de 11 años por relación laboral ni los grupos excluidos, el 7% de salud sin el tope de 90 UF, y la autorización escrita sin los topes legales de 15%, 30% y 45%."
+      ],
+      "fixed": [
+        "La cuota sindical y el crédito social de una caja de compensación pasan a descuentos obligatorios, con la cita de la DT (ORD. N°4184/70, N°443/2026 y N°262/4) y la advertencia de que avisar la renuncia al sindicato no basta por sí solo para detener el descuento.",
+        "Se separa el descuento del tiempo no trabajado (permitido si el atraso es imputable al trabajador) de la multa del reglamento interno (hasta el 25% de la remuneración diaria, artículos 154 y 157). Cuando la causa es ajena a la voluntad del trabajador, el atraso justificado no es una falta y el tiempo a disposición del empleador se paga; solo una fuerza mayor que impide del todo la prestación suspende las obligaciones de trabajar y remunerar, caso a caso.",
+        "Se agregó una tabla con la base y el tope de cada descuento, y los topes de 15%, 30% y 45% de los descuentos convenidos, con el ejemplo de $1.000.000 de remuneración total. Se alineó también el resumen del artículo 58 en la página del Código del Trabajo (sección Leyes) y las menciones de cuota sindical y crédito de caja de compensación en las guías del primer empleo y del sueldo líquido.",
+        "La fuente principal del artículo 58 es ahora la DT, ORD. N°680, que reproduce los incisos 1 a 4 del artículo 58 y los artículos 154 y 157. Esta entrada corrige además la fuente citada en la entrada del 2026-10-19, que se conserva sin reescribir.",
+        "Se explican el límite de 11 años y las exclusiones del seguro de cesantía, y el tope de 90 UF de la cotización de salud (máximo de 6,3 UF). El tope de 90 UF se agregó también a la guía de liquidación de sueldo."
+      ],
+      "affected": "Trabajadores dependientes que revisan los descuentos de su liquidación, en especial quienes tienen cuota sindical, un crédito de una caja de compensación o descuentos por atrasos.",
+      "sources": "Dirección del Trabajo: ORD. N°680 (https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html), ORD. N°4184/70 (https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html), ORD. N°443/2026 (https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html), ORD. N°262/4 (https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html), ORD. N°1578 (https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html), ORD. N°2000-44737/2026 (https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html), ORD. N°3456/37 (https://dt.gob.cl/legislacion/1624/w3-article-102449.html); Superintendencia de Pensiones, topes imponibles 2026 (https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html); AFC, cotizaciones (https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/); SII, base del impuesto único (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm).",
+      "prevention": "Clasificar cada descuento con la fuente primaria de la DT antes de rotularlo voluntario u obligatorio, indicar la base y el tope de cada uno en lugar de una regla única, y comprobar que cada enlace rotulado como artículo 58 abra el texto del artículo y no otra consulta."
+    },
+    {
       "id": "tramo-exento-impuesto-unico-octubre-2026",
       "date": "2026-10-19",
       "title": "Tramo exento del impuesto único de segunda categoría: actualización a octubre de 2026",
@@ -260,36 +300,6 @@
       "prevention": "Pruebas de la tabla en cada límite de tramo y una prueba de navegador que verifica qué tramo se resalta para rentas a ambos lados de 310 UTM."
     },
     {
-      "id": "operacion-renta-at2026",
-      "date": "2026-09-28",
-      "dateEnd": "2026-09-29",
-      "title": "Parámetros y base del simulador de Operación Renta 2026",
-      "pages": [
-        {
-          "href": "/calculadoras/operacion-renta/",
-          "label": "Simulador de Operación Renta"
-        },
-        {
-          "href": "/posts/impuesto-global-complementario-chile/",
-          "label": "Artículo sobre el impuesto global complementario"
-        }
-      ],
-      "wrong": [
-        "Calculaba el año tributario 2026 con la UTA derivada de la UTM vigente (UTM actual × 12), en lugar de la UTA de diciembre de 2025, que corresponde a las rentas de 2025.",
-        "Pedía sueldos brutos como base, cuando el cálculo parte de la renta neta pagada que informa el empleador.",
-        "Indicaba una retención de honorarios del 15,25% para el año tributario 2026; esa tasa corresponde a las boletas emitidas en 2026, que se declaran en el año tributario 2027. En algunos artículos, además, se hablaba de «año tributario 2025» para rentas de 2025.",
-        "Durante la corrección, la UF de cierre de 2025 quedó por un día con un valor erróneo ($39.643,59 en vez de $39.727,96), que se usa para el tope de 600 UF del APV."
-      ],
-      "fixed": [
-        "Los parámetros del año tributario 2026 quedan fijos: UTA de diciembre de 2025, UF al 31 de diciembre de 2025 ($39.727,96) y retención de honorarios del 14,5%.",
-        "La entrada principal es la renta neta pagada por sueldos; también se puede estimar desde el sueldo bruto, y en ese caso el resultado se marca como estimado.",
-        "Los artículos relacionados distinguen año comercial (rentas de 2025) y año tributario (declaración de 2026)."
-      ],
-      "affected": "Quienes usaron el simulador o leyeron los artículos relacionados para preparar la declaración de renta 2026.",
-      "sources": "SII: tabla del impuesto global complementario, valores de UTM/UTA y tasas de retención de honorarios; Banco Central y SII para la UF al 31-12-2025.",
-      "prevention": "Un registro de parámetros por año tributario, con período de vigencia y fuente, que falla si falta un año. Una prueba automática impide que el cálculo tributario lea indicadores vigentes. Además, se comprueba contra un caso de referencia del SII (renta de $18.000.000 ⇒ impuesto de $269.368) y otra guarda detecta la tasa de honorarios fuera de su año."
-    },
-    {
       "id": "deposito-a-plazo-retencion",
       "date": "2026-09-29",
       "title": "Supuesta retención del 4% en depósitos a plazo",
@@ -415,6 +425,36 @@
       "affected": "Quienes actualizaron montos por inflación con períodos de 2026.",
       "sources": "INE, Índice de Precios al Consumidor.",
       "prevention": "Un control de vigencia que falla de forma visible, en vez de presentar datos atrasados como actuales."
+    },
+    {
+      "id": "operacion-renta-at2026",
+      "date": "2026-09-28",
+      "dateEnd": "2026-09-29",
+      "title": "Parámetros y base del simulador de Operación Renta 2026",
+      "pages": [
+        {
+          "href": "/calculadoras/operacion-renta/",
+          "label": "Simulador de Operación Renta"
+        },
+        {
+          "href": "/posts/impuesto-global-complementario-chile/",
+          "label": "Artículo sobre el impuesto global complementario"
+        }
+      ],
+      "wrong": [
+        "Calculaba el año tributario 2026 con la UTA derivada de la UTM vigente (UTM actual × 12), en lugar de la UTA de diciembre de 2025, que corresponde a las rentas de 2025.",
+        "Pedía sueldos brutos como base, cuando el cálculo parte de la renta neta pagada que informa el empleador.",
+        "Indicaba una retención de honorarios del 15,25% para el año tributario 2026; esa tasa corresponde a las boletas emitidas en 2026, que se declaran en el año tributario 2027. En algunos artículos, además, se hablaba de «año tributario 2025» para rentas de 2025.",
+        "Durante la corrección, la UF de cierre de 2025 quedó por un día con un valor erróneo ($39.643,59 en vez de $39.727,96), que se usa para el tope de 600 UF del APV."
+      ],
+      "fixed": [
+        "Los parámetros del año tributario 2026 quedan fijos: UTA de diciembre de 2025, UF al 31 de diciembre de 2025 ($39.727,96) y retención de honorarios del 14,5%.",
+        "La entrada principal es la renta neta pagada por sueldos; también se puede estimar desde el sueldo bruto, y en ese caso el resultado se marca como estimado.",
+        "Los artículos relacionados distinguen año comercial (rentas de 2025) y año tributario (declaración de 2026)."
+      ],
+      "affected": "Quienes usaron el simulador o leyeron los artículos relacionados para preparar la declaración de renta 2026.",
+      "sources": "SII: tabla del impuesto global complementario, valores de UTM/UTA y tasas de retención de honorarios; Banco Central y SII para la UF al 31-12-2025.",
+      "prevention": "Un registro de parámetros por año tributario, con período de vigencia y fuente, que falla si falta un año. Una prueba automática impide que el cálculo tributario lea indicadores vigentes. Además, se comprueba contra un caso de referencia del SII (renta de $18.000.000 ⇒ impuesto de $269.368) y otra guarda detecta la tasa de honorarios fuera de su año."
     }
   ]
 }

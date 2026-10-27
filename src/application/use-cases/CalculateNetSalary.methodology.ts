@@ -44,7 +44,7 @@ export const netSalaryWorkedExample: {
   },
   example: {
     scenario:
-      "Un trabajador con contrato indefinido y sueldo bruto de $1.000.000, afiliado a una AFP con tasa total de 11,44% y a Fonasa (7%).",
+      "Un trabajador con contrato indefinido y sueldo bruto de $1.000.000, afiliado a una AFP con tasa total de 11,44% y a Fonasa (7%). El ejemplo supone que no es trabajador de casa particular: en ese caso el 0,6% de cesantía no se descuenta.",
     steps: [
       {
         label: "Descuenta la AFP (11,44% del imponible).",
@@ -58,7 +58,7 @@ export const netSalaryWorkedExample: {
       },
       {
         label:
-          "Descuenta el seguro de cesantía del trabajador (0,6% en contrato indefinido).",
+          "Descuenta el seguro de cesantía del trabajador (0,6% en contrato indefinido que no sea casa particular).",
         expression: "$1.000.000 × 0,6%",
         result: "$6.000",
       },
