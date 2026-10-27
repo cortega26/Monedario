@@ -1,0 +1,225 @@
+# Evidencia de re-auditoría delta R4 — D10
+
+Fecha: 2026-10-27 (America/Santiago)  
+Checkout exigido: `/tmp/opencode/wt-audit-descuentos-4`  
+HEAD observado: `d3897fad94b8d18f190c9da3db2ab17f4bfe94fa`  
+Alcance: solo D10.  
+Auditor: ComplianceAgent adversarial, OpenAI GPT-6. Remediación declarada por el solicitante: DeepSeek V4.1 Flash; familias distintas.  
+R1–R8: evidencia primaria directa, cálculo independiente ejecutado, contraste con motor, trazabilidad en este archivo, prueba adversarial de la guarda, veredicto explícito, SHA/comandos reproducibles y ningún cambio de código.
+
+## S1. Fuentes primarias abiertas de nuevo
+
+Reabiertas directamente el 2026-10-27; no se reutilizan extractos de evidence/11–18.
+
+- BCN, Ley 19.728, art. 5: https://www.bcn.cl/leychile/navegar?idNorma=184979 — art. 5(a), líneas 31–37: “Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.” La letra b dispone que casa particular se financia con 3,0% de cargo del empleador sin distinguir duración.
+- AFC, cotizaciones: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/ — tabla abierta en líneas 143–156: para casa particular, empleador aporta 2,2% a CIC, 0,8% a FCS y 1,11% a CAI; la nota del 0,6% del trabajador acompaña el caso indefinido. La regla expresa de la ley BCN fundamenta la excepción.
+- AFC, preguntas frecuentes: https://www.afc.cl/que-es-el-seguro-de-cesantia/preguntas-frecuentes/seguro-de-cesantia/ — URL abierta de nuevo; no se usa para contradecir la regla específica del art. 5.
+
+## S2. Nota metodológica y aritmética R1/R3
+
+Fuente local: `src/application/use-cases/CalculateNetSalary.methodology.ts:45-68`; se renderiza mediante `src/pages/calculadoras/sueldo-liquido.astro:1023-1025`.
+
+El escenario dice expresamente: “El ejemplo supone que no es trabajador de casa particular: en ese caso el 0,6% de cesantía no se descuenta.” El paso del 0,6% lo delimita como “contrato indefinido que no sea casa particular”. Es visible, comprensible y suficiente para no atribuir el ejemplo a casa particular.
+
+Se ejecutó el ejemplo importando la misma función de cálculo y se reimplementó la resta en JavaScript independiente:
+
+`1.000.000 - 114.400 - 70.000 - 6.000 = 809.600`
+
+Salida cruda del probe:
+
+```
+R4_ENGINE_PROBE {"methodologyExample":{"independentNet":809600,"engineNet":809600,"afp":114400,"health":70000,"unemploymentInsurance":6000,"tax":0},"casaParticularPayroll":{"contractType":"casa-particular","afc":0,"afcPercent":0},"casaParticularNet":{"contractType":"casa-particular","afc":0,"afcPercent":0},"casaParticularReverse":{"contractType":"casa-particular","afc":0,"afcPercent":0},"casaParticularApv":{"contractType":"casa-particular","taxableBase":815600},"omittedContractTypeDefault":{"contractType":"indefinido","afc":6000,"afcPercent":0.6}}
+```
+
+La metodología da $809.600 bajo el supuesto explícito indicado. Esto no demuestra que todos los flujos de producto manejen la excepción: el mismo probe confirma que omitir `contractType` aplica el default indefinido y descuenta $6.000.
+
+## S3. Barrido local de la excepción y caminos de producto
+
+El barrido de `src/data/blog`, `src/data/glossary`, `src/pages/calculadoras`, `src/application/use-cases`, `src/config` y `src/data/laws` encontró correcciones explícitas en la pieza principal, otras guías, glosarios, respuestas FAQ/JSON-LD y la calculadora de sueldo líquido. Muestras verificadas:
+
+- `src/data/blog/descuentos-de-sueldo.md:108,156,173,178` delimita el 0,6% y su excepción; su tabla añade fila de casa particular.
+- `src/data/blog/seguro-de-cesantia.md:79,219` excluye el aporte del trabajador en casa particular, incluso en la respuesta FAQ.
+- `src/data/glossary/afc.md:21`, `fondo-solidario.md:14`, `sueldo-bruto.md:27` y `src/config/sueldoClusterLinks.ts:106` contienen el límite.
+- `src/pages/calculadoras/sueldo-liquido.astro:100,284-295,841-842,1025` expone la excepción en texto/FAQ, permite elegir `casa-particular` y la envía por `src/utils/sueldo-liquido/formController.ts:141-149`.
+
+Quedan dos caminos de calculadora que no permiten expresar el tipo de contrato:
+
+1. APV: `src/pages/calculadoras/apv.astro:171-196` ofrece solo “Indefinido” y “Plazo fijo / obra”. En líneas 729–736 convierte cualquier valor distinto de plazo fijo —incluido el caso no seleccionable casa particular— en `indefinido`; luego pasa ese valor a `calculateApvComparison` en líneas 742–752.
+2. Operación Renta: `src/pages/calculadoras/operacion-renta.astro:189-205` ofrece solo indefinido y plazo fijo. En 607–614 convierte cualquier valor distinto de plazo fijo en `indefinido`; en 617–625 ejecuta `calculateNetSalary` con esa tasa.
+
+Por tanto, una persona de casa particular que use la opción indefinida recibe una deducción de trabajador que legalmente no corresponde. La regla del motor sí está bien cuando recibe explícitamente `casa-particular`: `CalculateMonthlyPayrollBase.ts:93-100,109,114-115` devuelve 0%; `CalculateNetSalary`, `estimateGrossFromNet` y `CalculateApvComparison` propagan ese tipo al cálculo compartido. El problema observado está en las superficies que no ofrecen ese tipo y terminan enviando indefinido.
+
+La ficha local de ley conserva otra ambigüedad D10: `src/data/laws/ley-19728-seguro-cesantia.md:25` llama “Regla general” al 0,6% de todo indefinido, sin hacer inmediata la excepción de casa particular. La tabla posterior en línea 41 sí especifica 0,0% trabajador para casa particular. La respuesta rápida puede leerse antes de esa tabla y deja el límite incompleto; se considera parte del mismo D10, sin crear identificador nuevo.
+
+## S4. Reapertura de URLs públicas
+
+Las siguientes 18 URLs fueron abiertas directamente de nuevo el 2026-10-27. Estos resultados describen el runtime consultado y no demuestran qué SHA lo sirve:
+
+- https://monedario.cl/posts/descuentos-de-sueldo/
+- https://monedario.cl/posts/como-calcular-sueldo-liquido/
+- https://monedario.cl/posts/liquidacion-de-sueldo/
+- https://monedario.cl/posts/seguro-de-cesantia/
+- https://monedario.cl/posts/primer-empleo-chile-guia-completa/
+- https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/
+- https://monedario.cl/posts/sueldo-imponible-chile/
+- https://monedario.cl/posts/interes-compuesto-nota-metodologica/
+- https://monedario.cl/glosario/afc/
+- https://monedario.cl/glosario/sueldo-bruto/
+- https://monedario.cl/glosario/fondo-solidario/
+- https://monedario.cl/calculadoras/sueldo-liquido/
+- https://monedario.cl/calculadoras/seguro-cesantia/
+- https://monedario.cl/calculadoras/apv/
+- https://monedario.cl/calculadoras/operacion-renta/
+- https://monedario.cl/leyes/ley-19728-seguro-cesantia/
+- https://www.bcn.cl/leychile/navegar?idNorma=184979
+- https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+
+Extractos frescos relevantes:
+
+- `/posts/seguro-de-cesantia/`, líneas 70–74: tabla pública dice “Casa particular | 0.6% | 2.4% | 3%”; FAQ en línea 193 afirma que las reglas son las mismas que para indefinido. Es incorrecto respecto del aporte del trabajador.
+- `/posts/descuentos-de-sueldo/`, líneas 86–91: tabla contempla solo indefinido y plazo fijo/obra; línea 90 asigna “Cesantía trabajador (0,6%) | Sí” a indefinido, sin fila de casa particular.
+- `/posts/como-calcular-sueldo-liquido/`, líneas 147–154: el ejemplo indefinido descuenta $8.100 a 0,6%, sin delimitar casa particular.
+- `/posts/liquidacion-de-sueldo/`, línea 93: “0,6% del imponible solo si tu contrato es indefinido”, sin la excepción.
+- `/posts/primer-empleo-chile-guia-completa/`, líneas 152 y 174–181: describe aporte de 0,6% del indefinido de forma general.
+- `/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/`, línea 66, y `/glosario/afc/`, línea 30: 0,6% del trabajador para indefinido sin excepción contigua.
+- `/posts/sueldo-imponible-chile/`, línea 92, y `/posts/interes-compuesto-nota-metodologica/`, líneas 69–76, presentan 0,6% de forma general.
+- Las páginas de calculadoras fueron abiertas también; su extracción inicial muestra la nota de JavaScript, así que no se afirma aquí haber probado sus controles cargados en navegador.
+
+El runtime público mantiene texto desactualizado y una contradicción legal, pero sus respuestas no se pueden asociar al HEAD objetivo. La prueba local de este hallazgo proviene de las fuentes del checkout descritas en S3.
+
+## S5. Guarda estática: falso negativo reproducido
+
+Archivo inspeccionado: `tests/static-analysis/afc-casa-particular-guard.test.ts:19-45,62-78`.
+
+La cobertura añadida de `src/application/use-cases/*.ts` y `src/config/*.ts` es real. Aun así, la guarda solo evalúa líneas que contienen simultáneamente la expresión 0,6% y un término de contexto `cesant|afc|CIC|FCS`. Si la etiqueta AFC está en el encabezado/sección y el porcentaje en una celda separada, omite el candidato. La vecindad ±3 líneas y `tableHeaderFor` aceptan cualquier aparición de “casa particular” sin vincularla a la misma afirmación o columna; no evalúan polaridad/contradicción. El patrón tampoco cubre variantes como “0,6 por ciento” o `0.006`. La guarda no barre `src/data/laws/*.md`, aunque allí está la respuesta rápida mencionada en S3.
+
+Caso adversarial, temporal y retirado tras la prueba: `src/config/r4-afc-guard-probe.ts` contenía la afirmación falsa `Cesantía AFC para trabajador de casa particular: aporte trabajador 0,6%.`. La presencia literal de “casa particular” autoriza el falso valor. Resultado del comando exacto:
+
+```
+pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts --reporter=dot
+
+Test Files  1 passed (1)
+Tests  3 passed (3)
+```
+
+El guard test no falla pese al caso falso. El archivo temporal fue eliminado; no se modificó el test ni el código.
+
+Contenido exacto del archivo temporal:
+
+```ts
+export const falseClaim = "Cesantía AFC para trabajador de casa particular: aporte trabajador 0,6%.";
+```
+
+## S6. Registro de portadas: juicio explícito
+
+`pnpm run check:image-curation` valida que el hash de artículo del registro coincide con prompts, que el prompt/estilo coincide, que `review.status` sea `accepted` y que los bytes del source/asset coincidan con sus hashes. No valida que `reviewedAt` sea posterior a cada edición de texto ni acredita una nueva inspección visual.
+
+El commit de texto `b87d151b79fe20141d6b3df34c407ae874314fac` es del 2026-10-27 15:33:26 -03. El commit `153e0f7709e22f4adf2eba86f39a7cb69dc80ac9`, del 16:50:24 -03, incluye los cambios de `asset-reviews.json`, pero no archivos de imagen fuente ni entregables AVIF. El registro conserva hashes anteriores en `history`; ejemplos:
+
+| Artículo | Hash actual | Hash histórico | reviewedAt actual |
+|---|---|---|---|
+| descuentos-de-sueldo | f1f3f8a10be847cf4eb0a7ea593a24f9f1b5666d91f5a3b48e9fe0357409fa88 | 6f8dab228cf34f397ed81fefa083fc1d121998975505d09f16c7fc106588eb42 | 2026-10-13 |
+| como-calcular-sueldo-liquido | 298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d | c582a6628232c3b0ff0f9bdac06c3f9117cc43f41c7a8a6e8eefe82ccdfe219a | 2026-10-12 |
+| seguro-de-cesantia | cfa3f21b3ae450d2a0d32f6bc72bd5da86943c6299441b0479a10018452f9bf0 | bc644155df112c0ff5452bcd7d063b9e77a815804f809364a339b4add9490f95 | 2026-10-10 |
+
+La revisión aceptada registra inspección/revalidación hasta el 2026-10-20, no esta actualización de contenido del 27. Juicio: el registro es aceptable como ledger de huellas e historial; no es evidencia suficiente de revisión visual actual de los artículos editados el 27. Mantener `accepted` sin una inspección/revalidación registrada para ese cambio equivale operativamente a aprobar la versión de contenido actual sin documentar esa revisión. Esto no prueba que las imágenes necesiten regeneración. No se regeneró ni se cambió imagen.
+
+## S7. Reproducción, resultados y límites
+
+Preflight exigido: SHA exacto y archivos requeridos presentes; worktree limpio; `pnpm run check:image-curation` pasó con `[image-curation] Reviewed prompts, article fingerprints and asset bytes match.`.
+
+Pruebas focales:  
+`pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts tests/application/CalculateApvComparison.test.ts --reporter=dot`  
+Resultado: 4 archivos y 38 tests pasaron. Esto no cubre UI de APV/Operación Renta; por eso se dejó constancia del cableado estático y del runtime del motor.
+
+Probe temporal R1/R3: se ejecutó un Vitest temporal que importó `netSalaryWorkedExample`, `calculateMonthlyPayrollBase`, `calculateNetSalary`, `estimateGrossFromNet` y `calculateApvComparison`, e imprimió la salida de S2. Pasó 1/1; archivo eliminado. El experimento de falso negativo de S5 pasó la guarda; archivo temporal eliminado. Ningún archivo de `src/` o `tests/` quedó modificado.
+
+El cuerpo reproducible del probe del motor, una vez creado como `tests/application/r4-afc-runtime-probe.test.ts`, fue:
+
+```ts
+import { it } from "vitest";
+import { calculateMonthlyPayrollBase } from "@/application/use-cases/CalculateMonthlyPayrollBase";
+import { calculateNetSalary, estimateGrossFromNet } from "@/application/use-cases/CalculateNetSalary";
+import { netSalaryWorkedExample } from "@/application/use-cases/CalculateNetSalary.methodology";
+import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
+
+it("prints independent R4 calculations", () => {
+  const economicParameters = {
+    uf: 40000,
+    utm: 68923,
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 87.8 },
+  };
+  const input = {
+    grossSalary: 1000000,
+    afpRatePercent: 11.44,
+    healthSystem: "fonasa" as const,
+    contractType: "casa-particular" as const,
+    economicParameters,
+  };
+  const base = calculateMonthlyPayrollBase(input);
+  const net = calculateNetSalary(input);
+  const reverse = estimateGrossFromNet({
+    targetNetSalary: 800000,
+    afpRatePercent: 11.44,
+    healthSystem: "fonasa",
+    contractType: "casa-particular",
+    economicParameters,
+  });
+  const apv = calculateApvComparison({
+    grossSalary: 1000000,
+    monthlyApvContribution: 100000,
+    afpRatePercent: 11.44,
+    healthSystem: "fonasa",
+    contractType: "casa-particular",
+    economicParameters,
+  });
+  const omittedContractType = calculateNetSalary({
+    grossSalary: 1000000,
+    afpRatePercent: 11.44,
+    healthSystem: "fonasa",
+    economicParameters,
+  });
+  const methodology = calculateNetSalary(netSalaryWorkedExample.input);
+  const independentMethodology =
+    1000000 - (1000000 * 11.44 / 100) - (1000000 * 7 / 100) - (1000000 * 0.6 / 100);
+  console.log("R4_ENGINE_PROBE " + JSON.stringify({
+    methodologyExample: {
+      independentNet: independentMethodology,
+      engineNet: methodology.netSalary,
+      afp: methodology.deductions.afp,
+      health: methodology.deductions.health,
+      unemploymentInsurance: methodology.deductions.unemploymentInsurance,
+      tax: methodology.deductions.tax,
+    },
+    casaParticularPayroll: {
+      contractType: base.contractType,
+      afc: base.deductions.unemploymentInsurance,
+      afcPercent: base.effectiveRates.unemploymentInsurancePercent,
+    },
+    casaParticularNet: {
+      contractType: net.contractType,
+      afc: net.deductions.unemploymentInsurance,
+      afcPercent: net.effectiveRates.unemploymentInsurancePercent,
+    },
+    casaParticularReverse: {
+      contractType: reverse.contractType,
+      afc: reverse.deductions.unemploymentInsurance,
+      afcPercent: reverse.effectiveRates.unemploymentInsurancePercent,
+    },
+    casaParticularApv: {
+      contractType: apv.contractType,
+      taxableBase: apv.taxableBase,
+    },
+    omittedContractTypeDefault: {
+      contractType: omittedContractType.contractType,
+      afc: omittedContractType.deductions.unemploymentInsurance,
+      afcPercent: omittedContractType.effectiveRates.unemploymentInsurancePercent,
+    },
+  }));
+});
+```
+
+Comando: `pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot`.
+
+Limitaciones: no se ejecutó build ni E2E/Playwright; no se atribuye runtime público a este SHA. D9, D11, D12, D15 y D17 se preservan sin reabrir; D1–D8, D13, D14, D16 (causa 2) y D18 no se reabren. No hubo corrección, commit, push ni humanSignoff.

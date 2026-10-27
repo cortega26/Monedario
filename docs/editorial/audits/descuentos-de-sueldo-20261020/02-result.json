@@ -35,9 +35,9 @@
     "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 2",
+    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 4",
     "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
-    "session": "codex-20261027-delta-reaudit-r2",
+    "session": "codex-20261027-delta-reaudit-r4",
     "date": "2026-10-27"
   },
   "method": {
@@ -74,7 +74,17 @@
       "Open URLs enumerated in evidence/18 directly on 2026-10-27; compare page excerpts in evidence/18#P1.",
       "Fetch https://monedario.cl/llms-full.txt with Cache-Control: no-cache and Pragma: no-cache; record HTTP status and matching lines in evidence/18#P2.",
       "pnpm run build (attempted; stopped at check:image-curation before Astro build; evidence/18#P3).",
-      "Fresh direct GET of each public HTML URL with Python urllib.request and User-Agent Mozilla/5.0, Cache-Control: no-cache, Pragma: no-cache; all 14 returned HTTP 200, Date 2026-10-27 19:40:34–19:40:40 GMT; focal GETs repeated 19:41:11–19:41:12 GMT. Extracts: evidence/18#P1."
+      "Fresh direct GET of each public HTML URL with Python urllib.request and User-Agent Mozilla/5.0, Cache-Control: no-cache, Pragma: no-cache; all 14 returned HTTP 200, Date 2026-10-27 19:40:34–19:40:40 GMT; focal GETs repeated 19:41:11–19:41:12 GMT. Extracts: evidence/18#P1.",
+      "cd /tmp/opencode/wt-audit-descuentos-4",
+      "git rev-parse HEAD",
+      "pnpm run check:image-curation",
+      "rg -n -i '0[.,]6\\s*%|0\\.006|casa particular|casa-particular' src/data/blog src/data/glossary src/pages/calculadoras src/application/use-cases src/config src/data/laws",
+      "Open the 18 URLs listed in evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4 directly on 2026-10-27",
+      "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts tests/application/CalculateApvComparison.test.ts --reporter=dot",
+      "pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot (temporary probe removed after execution)",
+      "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts --reporter=dot (temporary false-claim fixture removed after execution)",
+      "pnpm run check:audit-artifacts",
+      "git diff --check"
     ],
     "edgeCases": [
       "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
@@ -375,6 +385,77 @@
         "retrievedAt": "2026-10-27 19:40:34–19:41:12 UTC",
         "httpStatus": "200 for all 14 HTML URLs and focal repeat GETs",
         "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1"
+      }
+    },
+    "deltaReauditR4": {
+      "targetSha": "d3897fad94b8d18f190c9da3db2ab17f4bfe94fa",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-4",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "auditor": {
+        "role": "ComplianceAgent (adversarial) — delta re-audit ronda 4",
+        "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+        "session": "codex-20261027-delta-reaudit-r4"
+      },
+      "independence": "Remediación declarada por el solicitante: DeepSeek V4.1 Flash; auditor: OpenAI GPT-6, familia distinta.",
+      "scope": [
+        "D10"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 causa 2",
+        "D18 pending signature"
+      ],
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "surfaces": [
+        "nota metodológica y calculadora de sueldo líquido",
+        "blogs, glosarios, FAQ estructurada y ficha local de Ley 19.728",
+        "calculadoras APV y Operación Renta",
+        "motor de nómina, neto, neto inverso y comparación APV",
+        "guarda estática AFC/casa particular",
+        "runtime público reabierto y no atribuible al SHA",
+        "registro de revisión de portadas"
+      ],
+      "officialSourceEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1",
+      "localSurfaceEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S2",
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S3"
+      ],
+      "publicRuntimeEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4",
+      "guardEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S5",
+      "assetReviewEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6",
+      "testExecution": "Cuatro archivos focales/38 tests pasaron. Probe temporal del motor 1/1 pasó e imprimió la resta independiente y rutas casa particular. Probe adversarial de guarda: 3/3 pasaron pese al falso reclamo temporal.",
+      "buildExecution": "No se ejecutó build ni Playwright/E2E.",
+      "verdict": "CONDITIONAL",
+      "openDefects": [
+        "D10"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null,
+      "limitations": [
+        "Las páginas públicas abiertas no se pudieron asociar con el SHA del checkout.",
+        "Los controles dinámicos de calculadoras no se validaron en navegador; los caminos APV/Operación Renta se localizaron estáticamente y se cotejaron con el motor.",
+        "La respuesta rápida de la ficha de ley se considera dentro de D10; no se crea un ID nuevo.",
+        "No se reabrieron D9, D11, D12, D15, D17 ni los diferidos."
+      ],
+      "evidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt"
+      ],
+      "publicFetch": {
+        "method": "Apertura directa y búsqueda de términos sobre cada URL listada en S4; extractos reobtenidos el 2026-10-27.",
+        "retrievedAt": "2026-10-27",
+        "urlsOpened": 18,
+        "httpStatus": "No se midió HTTP status desde el checkout; el navegador devolvió contenido para las páginas abiertas.",
+        "shaAssociation": null,
+        "evidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4"
       }
     }
   },
@@ -1447,6 +1528,153 @@
         "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4",
         "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L5-L6"
       ]
+    },
+    {
+      "id": "C53",
+      "vector": "DELTA-R4-D10-METHODOLOGY",
+      "surface": "product",
+      "claim": "La nota metodológica visible excluye expresamente a casa particular; para su supuesto indefinido estándar, la resta independiente y calculateNetSalary coinciden en $809.600.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S2,S7"
+      },
+      "independentValue": "1000000 - 114400 - 70000 - 6000 = 809600, ejecutado en JavaScript.",
+      "engineValue": "netSalary=809600; afp=114400; health=70000; unemploymentInsurance=6000; tax=0.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C54",
+      "vector": "DELTA-R4-D10-ENGINE",
+      "surface": "product",
+      "claim": "Con contractType=casa-particular explícito, el motor devuelve AFC trabajador 0 en payroll, cálculo neto, neto inverso y comparación APV.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S2,S7"
+      },
+      "independentValue": "0% de cargo del trabajador por art. 5(a) y 5(b) de Ley 19.728.",
+      "engineValue": "AFC=0 y afcPercent=0 en las cuatro rutas explícitas del probe.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C55",
+      "vector": "DELTA-R4-D10-UI-PATHS",
+      "surface": "product",
+      "claim": "APV y Operación Renta no ofrecen casa particular y remapean la selección restante a indefinido, por lo que a personas de casa particular que usen esos flujos se les descuenta 0,6%.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "nl -ba src/pages/calculadoras/apv.astro | sed -n '171,196p;729,752p'; nl -ba src/pages/calculadoras/operacion-renta.astro | sed -n '189,205p;607,625p'; pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S2-S3"
+      },
+      "independentValue": "Casa particular está exenta del 0,6% del trabajador aunque el contrato sea indefinido.",
+      "engineValue": "Ambos formularios envían indefinido; el motor cobra 0,6% para ese tipo.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S3"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C56",
+      "vector": "DELTA-R4-D10-LAW-SUMMARY",
+      "surface": "product",
+      "claim": "La respuesta rápida de la ficha local de Ley 19.728 explica el 0,6% de indefinido sin la excepción de casa particular; la tabla posterior sí contiene 0,0%.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "nl -ba src/data/laws/ley-19728-seguro-cesantia.md | sed -n '23,41p'",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S3"
+      },
+      "independentValue": "La excepción debe acompañar a la regla indefinida para evitar aplicarla a trabajadores de casa particular.",
+      "engineValue": "La excepción aparece solo en una fila posterior de la tabla.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1,S3"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C57",
+      "vector": "DELTA-R4-D10-PUBLIC",
+      "surface": "product",
+      "claim": "El runtime público reabierto aún atribuye 0,6% al trabajador de casa particular y generaliza el descuento en otras páginas; la respuesta no está asociada al SHA auditado.",
+      "source": {
+        "url": "https://monedario.cl/posts/seguro-de-cesantia/",
+        "quote": "Casa particular | 0.6% | 2.4% | 3%",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "Abrir directamente las URLs de evidence/19 sección S4; buscar 'casa particular' y '0,6'.",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4"
+      },
+      "independentValue": "Casa particular: 0% trabajador; cotización previsional del seguro a cargo del empleador.",
+      "engineValue": "La tabla pública indica 0.6% para casa particular.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1,S4"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C58",
+      "vector": "DELTA-R4-D10-GUARD",
+      "surface": "audit-package",
+      "claim": "La guarda admite una afirmación falsa explícita porque trata la frase casa particular cercana como prueba suficiente y su prueba pasa con el falso valor.",
+      "reproduction": {
+        "command": "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts --reporter=dot (con fixture temporal bajo src/config)",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S5"
+      },
+      "independentValue": "La afirmación falsa debe rechazarse o requerir revisión semántica; una coincidencia textual no prueba la excepción.",
+      "engineValue": "3/3 tests pasaron aunque el fixture afirmaba 0,6% para casa particular.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S5"
+      ]
+    },
+    {
+      "id": "C59",
+      "vector": "DELTA-R4-D10-ASSET-REVIEW",
+      "surface": "audit-package",
+      "claim": "asset-reviews.json preserva huellas históricas y el registro sincronizado pasa check:image-curation, pero sus fechas/métodos no acreditan una inspección visual tras el cambio de contenido del 2026-10-27.",
+      "reproduction": {
+        "command": "pnpm run check:image-curation; inspeccionar entries/history y los commits b87d151b y 153e0f77",
+        "output": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6"
+      },
+      "independentValue": "Una aprobación visual actual requiere una revisión documentada para el contenido vigente; la huella y el estado accepted por sí solos no lo prueban.",
+      "engineValue": "La comprobación valida hashes/bytes, coincidencia de prompt y estado accepted, no actualidad visual.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6"
+      ]
     }
   ],
   "defects": [
@@ -1549,15 +1777,25 @@
       "id": "D10",
       "severity": "media",
       "surface": "product",
-      "description": "Hallazgo original: la pieza y el radio AFC omitían la excepción de trabajadores de casa particular al 0,6% y generalizaban la cobertura. En R3 esos pasajes locales se verifican corregidos; permanece un ejemplo visible en src/application/use-cases/CalculateNetSalary.methodology.ts que calcula 0,6% para un caso genérico indefinido sin delimitar casa particular. El runtime público conserva contenido anterior no asociado al SHA objetivo.",
-      "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L6",
+      "description": "D10: la excepción de casa particular al 0,6% sigue sin representarse en todos los caminos de producto. En R4 los ejemplos y la calculadora de sueldo líquido local están corregidos; APV y Operación Renta solo ofrecen indefinido/plazo fijo y convierten el caso restante en indefinido. La respuesta rápida de la ficha local de Ley 19.728 tampoco expresa la excepción junto a la regla del 0,6%. El runtime público abierto de nuevo mantiene copias antiguas, sin asociación demostrada con este SHA.",
+      "evidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S3-S5",
       "supportingEvidence": [
-        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4-S5",
-        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L6",
-        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1-P2"
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S3",
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4",
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S5",
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6"
       ],
       "status": "open",
-      "reason": "R3 encontró un ejemplo visible residual en src/application/use-cases/CalculateNetSalary.methodology.ts: el escenario genérico de contrato indefinido descuenta 0,6% ($6.000) sin delimitar explícitamente casa particular, cuyos trabajadores pueden tener contrato indefinido. El ejemplo se inserta en MethodologyBlock de la calculadora. La guarda aprobada no analiza ese archivo; su ventana de ±3 líneas y la herencia de encabezado aceptan contexto no asociado a la afirmación. Varias URLs públicas y llms-full.txt además siguen presentando copy anterior, sin asociación al SHA objetivo."
+      "reason": "R4 confirma que el ejemplo visible de CalculateNetSalary.methodology.ts delimita casa particular y que el cálculo de $809.600 coincide con una resta independiente. El motor devuelve 0% cuando recibe contractType=casa-particular en payroll, neto, inversa y comparación APV. Sin embargo, la UI APV y Operación Renta no permiten elegir ese tipo y mapean la selección por defecto/alterna a indefinido; en ambos caminos se aplica 0,6%. Además, la respuesta rápida de src/data/laws/ley-19728-seguro-cesantia.md generaliza el 0,6% para indefinidos y deja la excepción solo en la tabla posterior. Prueba adversarial fresh del guard también demuestra un falso negativo. Por lo menos un defecto productivo D10 permanece abierto.",
+      "roundHistory": [
+        {
+          "round": "R3",
+          "status": "open-at-R3",
+          "reason": "R3 encontró un ejemplo visible residual en src/application/use-cases/CalculateNetSalary.methodology.ts: el escenario genérico de contrato indefinido descuenta 0,6% ($6.000) sin delimitar explícitamente casa particular, cuyos trabajadores pueden tener contrato indefinido. El ejemplo se inserta en MethodologyBlock de la calculadora. La guarda aprobada no analiza ese archivo; su ventana de ±3 líneas y la herencia de encabezado aceptan contexto no asociado a la afirmación. Varias URLs públicas y llms-full.txt además siguen presentando copy anterior, sin asociación al SHA objetivo.",
+          "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt"
+        }
+      ],
+      "currentRoundEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S7"
     },
     {
       "id": "D11",
@@ -1754,6 +1992,33 @@
       "resolvedInTargetCheckout": [
         "D9",
         "D11"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit ronda 4",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit-r4",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL",
+      "scope": [
+        "D10"
+      ],
+      "targetSha": "d3897fad94b8d18f190c9da3db2ab17f4bfe94fa",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-4",
+      "evidence": [
+        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt"
+      ],
+      "openDefects": [
+        "D10"
+      ],
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
       ],
       "newIndependentDefects": [],
       "humanSignoff": null
