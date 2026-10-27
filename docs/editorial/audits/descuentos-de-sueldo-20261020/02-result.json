@@ -35,9 +35,9 @@
     "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 4",
+    "role": "ComplianceAgent (adversarial) — delta re-audit ronda 5",
     "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
-    "session": "codex-20261027-delta-reaudit-r4",
+    "session": "codex-20261027-delta-reaudit-r5",
     "date": "2026-10-27"
   },
   "method": {
@@ -47,7 +47,7 @@
       "pnpm": "11.7.0",
       "python": "3.13.12",
       "arithmetic": "Python Decimal, prec=50; CLP rounded half-up only for presentation",
-      "worktree": "/tmp/claude-1000/wt-descuentos"
+      "worktree": "/tmp/opencode/wt-audit-descuentos-5"
     },
     "commands": [
       "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/recalc_audit.py > /tmp/recalc_rerun.txt",
@@ -84,7 +84,21 @@
       "pnpm exec vitest run tests/application/r4-afc-runtime-probe.test.ts --reporter=dot (temporary probe removed after execution)",
       "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts --reporter=dot (temporary false-claim fixture removed after execution)",
       "pnpm run check:audit-artifacts",
-      "git diff --check"
+      "git diff --check",
+      "cd /tmp/opencode/wt-audit-descuentos-5",
+      "test \"$(git rev-parse HEAD)\" = \"da2277aefe05b0ce16197b39369379999f1277ed\"",
+      "test -z \"$(git status --porcelain)\"",
+      "pnpm run check:image-curation",
+      "rg -n \"calculateNetSalary|estimateGrossFromNet|calculateApvComparison|estimateUnemploymentCoverage|unemploymentInsurance|AFC\" src/pages/calculadoras src/utils/sueldo-liquido src/application/use-cases",
+      "Web open de las 19 URLs de evidence/20#S6; GET anti-caché reproducible: python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/22-r5-public-url-probe.py > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/23-r5-public-url-probe-2026-10-27.txt",
+      "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts --reporter=verbose",
+      "pnpm exec vitest run --config docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/20-r5-vitest.config.ts --reporter=verbose --silent=false docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/21-r5-engine-probe.test.ts > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/24-r5-engine-probe-2026-10-27.txt",
+      "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/25-r5-guard-mutation-probe.py > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/26-r5-guard-mutation-probe-2026-10-27.txt",
+      "pnpm run check:audit-artifacts",
+      "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
+      "git diff --check",
+      "git status --short",
+      "pnpm exec vitest run --reporter=verbose tests/static-analysis/afc-casa-particular-guard.test.ts > docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/27-r5-current-guard-2026-10-27.txt"
     ],
     "edgeCases": [
       "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
@@ -114,7 +128,11 @@
       "Tasa 0,6% fuera de la superficie que la guarda escanea; ventana de vecindad de tres líneas y herencia de encabezado de tabla.",
       "Motor casa-particular en bruto→líquido, líquido→bruto y comparaciones AFP directa e inversa.",
       "Tercer supuesto art. 57 con ambas condiciones expresas: adeudada por el trabajador y servicio en calidad de trabajador.",
-      "Runtime público y endpoint llms-full contrastados con el SHA local sin atribuirlos a ese commit."
+      "Runtime público y endpoint llms-full contrastados con el SHA local sin atribuirlos a ese commit.",
+      "R5: APV casa-particular explícito frente a contractType omitido; diferencia de base $9.000 en el ejemplo SSR.",
+      "R5: tipo casa explícito en bruto→líquido, líquido→bruto y las 7 AFP en ambas comparaciones; AFC trabajador esperada 0.",
+      "R5: salida patronal de sueldo líquido para casa particular ($24.000 calculados vs $30.000 al 3% por imponible de $1.000.000).",
+      "R5: mutación del parser APV casa→indefinido en copia temporal; verificar si la guarda la rechaza sin modificar el test."
     ],
     "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/",
     "complianceAudit": {
@@ -456,6 +474,93 @@
         "httpStatus": "No se midió HTTP status desde el checkout; el navegador devolvió contenido para las páginas abiertas.",
         "shaAssociation": null,
         "evidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4"
+      }
+    },
+    "deltaReauditR5": {
+      "targetSha": "da2277aefe05b0ce16197b39369379999f1277ed",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-5",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "auditor": {
+        "role": "ComplianceAgent (adversarial) — delta re-audit ronda 5",
+        "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+        "session": "codex-20261027-delta-reaudit-r5",
+        "date": "2026-10-27"
+      },
+      "independence": "El usuario declara remediación por DeepSeek V4.1 Flash y auditoría R5 por OpenAI GPT-6; familias distintas. No se consultaron archivos de memoria ni se usaron extractos de evidence/11–19 como prueba.",
+      "scope": [
+        "D10"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 causa 2",
+        "D18 pending signature"
+      ],
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "surfaces": [
+        "selector/mapeo interactivo APV",
+        "ejemplo SSR APV con contractType omitido",
+        "Operación Renta y su estimador de sueldo",
+        "sueldo líquido en ambas direcciones y comparación de las siete AFP",
+        "costo AFC del empleador en resultadoRenderer",
+        "calculadora AFC/CIC/FCS",
+        "ficha local Ley 19.728",
+        "guarda estructural y regresión de flujo",
+        "19 URLs públicas reabiertas"
+      ],
+      "officialSourceEvidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1",
+      "localSurfaceEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2",
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S3"
+      ],
+      "guardEvidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S4",
+      "publicRuntimeEvidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S5-S6",
+      "testExecution": "Preflight check:image-curation pasó; guarda focal 1 archivo/5 tests pasó (salida evidence/27); probe del motor 1 archivo/1 test pasó; mutación APV temporal: la guarda pasó 5/5 pese a la regresión (evidence/26).",
+      "buildExecution": "No se ejecutó build ni E2E de navegador.",
+      "verdict": "CONDITIONAL",
+      "openDefects": [
+        "D10"
+      ],
+      "resolvedInTargetCheckout": [
+        "Selector y mapeo interactivo de casa particular en APV",
+        "Selector y mapeo de casa particular en estimación de Operación Renta",
+        "Cero AFC trabajador con tipo casa explícito en los caminos de motor probados"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null,
+      "limitations": [
+        "El ejemplo SSR APV omite contractType y usa el default indefinido.",
+        "El ejemplo SSR de sueldo líquido fija indefinido pero el copy no declara el contrato.",
+        "La tabla local y el costo AFC patronal contienen defectos de distribución/tasa dentro del mismo D10.",
+        "Los controles UI se trazaron en código y se cotejaron con use cases; no se ejecutó interacción DOM/E2E.",
+        "El contenido público no se pudo asociar al SHA del checkout.",
+        "La guarda es estructural y no afirma cobertura semántica."
+      ],
+      "evidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt",
+        "evidence/21-r5-engine-probe.test.ts",
+        "evidence/22-r5-public-url-probe.py",
+        "evidence/23-r5-public-url-probe-2026-10-27.txt",
+        "evidence/24-r5-engine-probe-2026-10-27.txt",
+        "evidence/25-r5-guard-mutation-probe.py",
+        "evidence/26-r5-guard-mutation-probe-2026-10-27.txt",
+        "evidence/27-r5-current-guard-2026-10-27.txt"
+      ],
+      "publicFetch": {
+        "method": "Web open de cada URL base y Python urllib GET individual con Cache-Control:no-cache,no-store, Pragma:no-cache y parámetro audit_r5 único; el HTML se analizó con HTMLParser y se guardaron conteos de marcadores, sin copiar cuerpos.",
+        "retrievedAt": "2026-10-27 21:04:53–21:05:03 UTC",
+        "urlsOpened": 19,
+        "httpStatus": "200 en las 19 URLs",
+        "shaAssociation": null,
+        "evidence": "evidence/23-r5-public-url-probe-2026-10-27.txt"
       }
     }
   },
@@ -1675,6 +1780,190 @@
       "supportingEvidence": [
         "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6"
       ]
+    },
+    {
+      "id": "C60",
+      "vector": "DELTA-R5-D10-INTERACTIVE-MAPPINGS",
+      "surface": "product",
+      "claim": "En el checkout R5 los selectores locales de APV, Operación Renta y sueldo líquido ofrecen casa particular y los parsers pasan contractType=casa-particular al motor.",
+      "reproduction": {
+        "command": "nl -ba src/pages/calculadoras/apv.astro | sed -n '197,212p;741,769p'; nl -ba src/pages/calculadoras/operacion-renta.astro | sed -n '189,209p;612,634p'; nl -ba src/utils/sueldo-liquido/formController.ts | sed -n '139,159p'",
+        "output": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      },
+      "independentValue": "La selección casa particular debe permanecer como tipo explícito en los caminos interactivos.",
+      "engineValue": "Los tres parsers pasan el literal casa-particular; no lo convierten a indefinido ni a undefined.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C61",
+      "vector": "DELTA-R5-D10-APV-DEFAULT-EXAMPLE",
+      "surface": "product",
+      "claim": "El ejemplo SSR de APV omite contractType y cae al default indefinido; la base resultante queda $9.000 por debajo del caso casa particular con los mismos datos.",
+      "reproduction": {
+        "command": "pnpm exec vitest run --config docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/20-r5-vitest.config.ts --reporter=verbose --silent=false docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/21-r5-engine-probe.test.ts",
+        "output": "evidence/24-r5-engine-probe-2026-10-27.txt"
+      },
+      "independentValue": "Casa particular no tiene AFC de cargo del trabajador.",
+      "engineValue": "APV explícito: contractType=casa-particular, base $1.223.400; tipo omitido: default indefinido, base $1.214.400.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2-S3",
+        "evidence/24-r5-engine-probe-2026-10-27.txt"
+      ],
+      "defect": "D10",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1"
+      }
+    },
+    {
+      "id": "C62",
+      "vector": "DELTA-R5-D10-EXPLICIT-ENGINE-PATHS",
+      "surface": "product",
+      "claim": "Con contractType=casa-particular explícito, los caminos probados no descuentan 0,6% en bruto→líquido, líquido→bruto, comparación AFP, APV ni estimación de sueldo para Operación Renta.",
+      "reproduction": {
+        "command": "pnpm exec vitest run --config docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/20-r5-vitest.config.ts --reporter=verbose --silent=false docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/21-r5-engine-probe.test.ts",
+        "output": "evidence/24-r5-engine-probe-2026-10-27.txt"
+      },
+      "independentValue": "Ley 19.728 art. 5 excluye a casa particular del 0,6% del trabajador.",
+      "engineValue": "AFC trabajador $0 en todos los casos explícitos; 14 combinaciones AFP forward/inverso en $0.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S3",
+        "evidence/24-r5-engine-probe-2026-10-27.txt"
+      ],
+      "defect": "D10",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "excepción de los trabajadores de casa particular",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1"
+      }
+    },
+    {
+      "id": "C63",
+      "vector": "DELTA-R5-D10-SALARY-EXAMPLE",
+      "surface": "product",
+      "claim": "El ejemplo SSR de sueldo líquido fija indefinido y calcula AFC de trabajador, pero el copy visible no declara el tipo de contrato supuesto.",
+      "reproduction": {
+        "command": "nl -ba src/pages/calculadoras/sueldo-liquido.astro | sed -n '49,56p;575,594p'",
+        "output": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      },
+      "independentValue": "Un ejemplo con 0,6% debe identificar que es contrato indefinido no casa particular.",
+      "engineValue": "contractType='indefinido' se fija en código; el texto visible enumera sueldo, Fonasa y Habitat pero no contrato.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C64",
+      "vector": "DELTA-R5-D10-EMPLOYER-AFC-RATE",
+      "surface": "product",
+      "claim": "La salida de costo AFC empleador del sueldo líquido calcula 2,4% para casa particular en vez del 3% patronal legal.",
+      "reproduction": {
+        "command": "nl -ba src/utils/sueldo-liquido/resultRenderer.ts | sed -n '300,309p'; calcular 1.000.000×2,4% y ×3%",
+        "output": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      },
+      "independentValue": "Casa particular: aporte AFC patronal 3,0%.",
+      "engineValue": "La rama reserva 3,0% solo para plazo fijo; casa cae en 2,4% (diferencia $6.000 por base de $1.000.000).",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S2"
+      ],
+      "defect": "D10",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1"
+      }
+    },
+    {
+      "id": "C65",
+      "vector": "DELTA-R5-D10-LAW-TABLE-ALLOCATION",
+      "surface": "product",
+      "claim": "La regla rápida local ya incluye la excepción, pero la fila casa particular de la tabla atribuye el 3% AFC a CIC y 0% a FCS.",
+      "reproduction": {
+        "command": "nl -ba src/data/laws/ley-19728-seguro-cesantia.md | sed -n '23,41p'",
+        "output": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      },
+      "independentValue": "La cotización patronal AFC para casa particular se distribuye 2,2% CIC y 0,8% FCS; el 1,11% CAI es separado.",
+      "engineValue": "La fila R5 suma 3% a CIC y 0% a FCS, aunque conserva el 1,11% CAI en el texto.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S2"
+      ],
+      "defect": "D10",
+      "source": {
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+        "quote": "Cuenta Individual 2,2%; Fondo de Cesantía Solidario 0,8%; Cuenta de Ahorro de Indemnización (CAI) 1,11%",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1"
+      }
+    },
+    {
+      "id": "C66",
+      "vector": "DELTA-R5-D10-COVERAGE-SURFACE",
+      "surface": "product",
+      "claim": "La calculadora local de cobertura AFC/CIC/FCS solo ofrece indefinido/plazo fijo y no representa casa particular; no calcula el descuento de nómina del 0,6%.",
+      "reproduction": {
+        "command": "nl -ba src/pages/calculadoras/seguro-cesantia.astro | sed -n '132,158p;622,629p'; nl -ba src/application/use-cases/EstimateUnemploymentCoverage.ts | sed -n '6,19p;35,44p;93,120p'",
+        "output": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      },
+      "independentValue": "El usuario debe poder identificar el contrato si la calculadora trata cobertura AFC.",
+      "engineValue": "Solo dos tipos en UI/API; no se calcula AFC trabajador. Tasas CIC/FCS y mínimo coinciden numéricamente con casa e indefinido.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C67",
+      "vector": "DELTA-R5-D10-GUARD-MAPPING-REGRESSION",
+      "surface": "product",
+      "claim": "La guarda estructural no detecta que el parser APV convierta la selección casa particular a indefinido mientras conserve el literal del selector.",
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/25-r5-guard-mutation-probe.py",
+        "output": "evidence/26-r5-guard-mutation-probe-2026-10-27.txt"
+      },
+      "independentValue": "El flujo selector→parser→motor debe conservar casa particular o el motor cobrará indebidamente 0,6%.",
+      "engineValue": "Mutación en copia temporal; guarda sin cambios terminó con 5/5 tests passed.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S4",
+        "evidence/26-r5-guard-mutation-probe-2026-10-27.txt"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C68",
+      "vector": "DELTA-R5-D10-PUBLIC-RUNTIME",
+      "surface": "product",
+      "claim": "El runtime público reabierto aún omite casa particular en las calculadoras y conserva una tabla que cobra 0,6% al trabajador de casa particular; no se asocia el HTML al SHA R5.",
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/22-r5-public-url-probe.py",
+        "output": "evidence/23-r5-public-url-probe-2026-10-27.txt"
+      },
+      "independentValue": "Casa particular: 0% trabajador y 3% AFC empleador.",
+      "engineValue": "Las URLs públicas responden con opciones/copy antiguos; una tabla de producto asigna 0,6% al trabajador.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S5-S6",
+        "evidence/23-r5-public-url-probe-2026-10-27.txt"
+      ],
+      "defect": "D10",
+      "source": {
+        "url": "https://monedario.cl/posts/seguro-de-cesantia/",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S5"
+      }
     }
   ],
   "defects": [
@@ -1777,25 +2066,32 @@
       "id": "D10",
       "severity": "media",
       "surface": "product",
-      "description": "D10: la excepción de casa particular al 0,6% sigue sin representarse en todos los caminos de producto. En R4 los ejemplos y la calculadora de sueldo líquido local están corregidos; APV y Operación Renta solo ofrecen indefinido/plazo fijo y convierten el caso restante en indefinido. La respuesta rápida de la ficha local de Ley 19.728 tampoco expresa la excepción junto a la regla del 0,6%. El runtime público abierto de nuevo mantiene copias antiguas, sin asociación demostrada con este SHA.",
-      "evidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S3-S5",
+      "description": "D10: la excepción de casa particular al 0,6% no está cerrada en todas las superficies de producto. R5 confirma que APV y Operación Renta interactivos ya ofrecen y transmiten casa particular, y que los caminos explícitos del motor retornan AFC trabajador 0. Persisten el ejemplo SSR de APV que omite el contrato y cae a indefinido, el ejemplo de sueldo líquido con supuesto indefinido no declarado en el copy, la tasa AFC patronal de 2,4% aplicada a casa particular en el resultado, una distribución CIC/FCS errónea en la tabla local, y runtime público reabierto con una fila que atribuye 0,6% al trabajador. La calculadora de cobertura AFC/CIC/FCS no ofrece tipo casa, aunque no descuenta AFC trabajador.",
+      "evidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S2-S5",
       "supportingEvidence": [
-        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S3",
-        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S4",
-        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S5",
-        "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S6"
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S6",
+        "evidence/24-r5-engine-probe-2026-10-27.txt",
+        "evidence/26-r5-guard-mutation-probe-2026-10-27.txt",
+        "evidence/23-r5-public-url-probe-2026-10-27.txt",
+        "evidence/27-r5-current-guard-2026-10-27.txt"
       ],
       "status": "open",
-      "reason": "R4 confirma que el ejemplo visible de CalculateNetSalary.methodology.ts delimita casa particular y que el cálculo de $809.600 coincide con una resta independiente. El motor devuelve 0% cuando recibe contractType=casa-particular en payroll, neto, inversa y comparación APV. Sin embargo, la UI APV y Operación Renta no permiten elegir ese tipo y mapean la selección por defecto/alterna a indefinido; en ambos caminos se aplica 0,6%. Además, la respuesta rápida de src/data/laws/ley-19728-seguro-cesantia.md generaliza el 0,6% para indefinidos y deja la excepción solo en la tabla posterior. Prueba adversarial fresh del guard también demuestra un falso negativo. Por lo menos un defecto productivo D10 permanece abierto.",
+      "reason": "R5 reclasifica de forma independiente las reparaciones de APV y Operación Renta interactivas como correctas en el checkout: ambos selectores incluyen casa particular y el parser entrega ese tipo al motor. Los use cases prueban AFC trabajador 0 en bruto→líquido, líquido→bruto, comparación de las siete AFP en ambos sentidos, APV y estimación de sueldo para Renta, siempre que el tipo casa sea explícito. No obstante, el ejemplo SSR APV omite contractType y cae al default indefinido; la base difiere $9.000 en sus propios valores. El ejemplo SSR de sueldo líquido fija indefinido, pero la explicación visible no identifica ese supuesto. Además, el resultado de costo empleador calcula 2,4% para casa particular donde corresponde 3%, y la tabla de la ficha de Ley 19.728 asigna erróneamente 3% a CIC y 0% a FCS. La guarda estructural acepta una regresión concreta que remapea casa a indefinido y pasó 5/5 tests en la copia mutada. Finalmente, el runtime público reabierto conserva páginas sin opción casa y una fila de seguro que cobra 0,6% a casa particular; ese HTML no se asocia al SHA R5. El estimador separado de cobertura no tiene opción casa pero no calcula descuento de nómina y sus tasas/min de indefinido coinciden con casa; se registra como brecha de representación, no como origen del 0,6%. Al menos un defecto productivo D10 sigue abierto.",
       "roundHistory": [
         {
           "round": "R3",
           "status": "open-at-R3",
           "reason": "R3 encontró un ejemplo visible residual en src/application/use-cases/CalculateNetSalary.methodology.ts: el escenario genérico de contrato indefinido descuenta 0,6% ($6.000) sin delimitar explícitamente casa particular, cuyos trabajadores pueden tener contrato indefinido. El ejemplo se inserta en MethodologyBlock de la calculadora. La guarda aprobada no analiza ese archivo; su ventana de ±3 líneas y la herencia de encabezado aceptan contexto no asociado a la afirmación. Varias URLs públicas y llms-full.txt además siguen presentando copy anterior, sin asociación al SHA objetivo.",
           "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt"
+        },
+        {
+          "round": "R5",
+          "status": "open-at-R5",
+          "reason": "Corregidos los mapeos interactivos APV/Renta y confirmado el cero de AFC trabajador para rutas explícitas. D10 sigue abierto por APV SSR con default indefinido, costo patronal 2,4% para casa, distribución CIC/FCS errónea en ficha local y runtime público con fila falsa; guarda no detecta regresión selector→parser.",
+          "evidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt"
         }
       ],
-      "currentRoundEvidence": "evidence/19-delta-reaudit-r4-evidence-2026-10-27.txt#S1-S7"
+      "currentRoundEvidence": "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt#S1-S6"
     },
     {
       "id": "D11",
@@ -2019,6 +2315,49 @@
         "D12",
         "D15",
         "D17"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit ronda 5",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit-r5",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL",
+      "scope": [
+        "D10"
+      ],
+      "targetSha": "da2277aefe05b0ce16197b39369379999f1277ed",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-5",
+      "evidence": [
+        "evidence/20-delta-reaudit-r5-evidence-2026-10-27.txt",
+        "evidence/23-r5-public-url-probe-2026-10-27.txt",
+        "evidence/24-r5-engine-probe-2026-10-27.txt",
+        "evidence/26-r5-guard-mutation-probe-2026-10-27.txt",
+        "evidence/27-r5-current-guard-2026-10-27.txt"
+      ],
+      "openDefects": [
+        "D10"
+      ],
+      "confirmedCorrectInTarget": [
+        "APV interactive selector/parser path",
+        "Operación Renta selector/parser path",
+        "Explicit casa-particular worker AFC is zero in tested payroll/APV/Renta paths"
+      ],
+      "preservedResolved": [
+        "D9",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 causa 2",
+        "D18 pending signature"
       ],
       "newIndependentDefects": [],
       "humanSignoff": null
