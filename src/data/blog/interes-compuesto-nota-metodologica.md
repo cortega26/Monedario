@@ -86,6 +86,8 @@ Se aplica un descuento estándar de trabajador dependiente:
 | Seguro de cesantía (trabajador) | 0,6%       |
 | **Total descuentos**            | **17,6%**  |
 
+Ese 0,6% de cesantía no se descuenta a los trabajadores de casa particular: en su caso el 3% es del empleador y el total baja a 17,0%.
+
 El factor líquido queda así:
 
 ```text
