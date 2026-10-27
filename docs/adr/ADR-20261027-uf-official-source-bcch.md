@@ -88,14 +88,15 @@ borrado 5 años de serie de no mediar el guard anti-regresión.
 
 ### Registro en `src/data/correcciones.json`
 
-Pendiente de decisión del owner. La corrección es material en sustancia (dos
-valores publicados con error de ~40x) y `NORMA_YMYL` §5.4 dice "en caso de duda,
-se registra"; además existe precedente de una entrada por un problema de
-*dataset* (`ipc-serie-desactualizada`). El precedente de `ADR-20261010` (no
-registrar un refresh rutinario) no transfiere: aquel describía datos atrasados
-**con aviso fail-closed**, no valores numéricamente falsos servidos sin
-advertencia. Este PR **no** modifica `correcciones.json`; queda a criterio del
-owner.
+**Registrada** el 2026-10-27 como `uf-dos-valores-corruptos-2014` en
+`src/data/correcciones.json` (PR #739), visible en `/correcciones/`.
+
+La corrección es material en sustancia (dos valores publicados con error de
+~40x) y `NORMA_YMYL` §5.4 dice "en caso de duda, se registra"; además existe
+precedente de una entrada por un problema de *dataset*
+(`ipc-serie-desactualizada`). El precedente de `ADR-20261010` (no registrar un
+refresh rutinario) no transfiere: aquel describía datos atrasados **con aviso
+fail-closed**, no valores numéricamente falsos servidos sin advertencia.
 
 ## Alternatives considered
 
