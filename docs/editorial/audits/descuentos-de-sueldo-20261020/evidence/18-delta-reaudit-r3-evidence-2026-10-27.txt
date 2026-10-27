@@ -1,0 +1,261 @@
+AI_AUDIT_PROTOCOL v1 — Evidencia R3 (D9–D11)
+Consultas nuevas: 2026-10-27. Checkout: /tmp/opencode/wt-audit-descuentos-3
+HEAD: 53c7aa5d650eac411357f1a5be802e023c5e486f (detached, limpio al preflight).
+Este archivo reúne observaciones obtenidas de nuevo en R3. No contiene extractos
+copiados de evidence/11–17. Las URLs públicas son runtime y no se asocian al SHA
+local.
+
+S1 — BCN, Código del Trabajo, arts. 322–323
+URL consultada: https://www.bcn.cl/leychile/navegar?idNorma=207436&idVersion=2026-07-23
+Consulta: 2026-10-27; LeyChile mostró versión vigente desde 2026-07-23.
+Extracto art. 322: “para acceder a los beneficios dichos trabajadores deberán
+aceptar la extensión y obligarse a pagar todo o parte de la cuota ordinaria de
+la organización sindical, según lo establezca el acuerdo.”
+Extracto art. 322: “El acuerdo de extensión [...] deberá fijar criterios
+objetivos, generales y no arbitrarios”.
+Extracto art. 323: tras cambiar o dejar el sindicato, el trabajador permanece
+afecto al instrumento vigente negociado por el sindicato al que pertenecía y
+debe pagar la cuota mensual ordinaria durante toda la vigencia de ese
+instrumento.
+Consulta directa del texto consolidado, además de búsqueda oficial BCN:
+https://www.bcn.cl/leychile/navegar?idNorma=207436&idParte=9735216
+
+S2 — Dirección del Trabajo, extensión de beneficios
+URL consultada: https://www.dt.gob.cl/portal/1628/w3-article-110087.html
+Consulta: 2026-10-27; página indica última modificación 2025-03-14.
+Extracto: el acuerdo debe señalar los trabajadores no afiliados “basados en
+criterios objetivos, generales y no arbitrarios”; para acceder, el trabajador
+debe aceptar la extensión y obligarse a pagar todo o parte de la cuota que fije
+el instrumento.
+
+S3 — Dirección del Trabajo, ORD. N°308/29
+URL consultada: https://www.dt.gob.cl/legislacion/1624/w3-article-129411.html
+Consulta: 2026-10-27; ORD. de 2026-06-23.
+Extracto: quien se desafilia del sindicato con instrumento colectivo vigente y
+se afilia a otro permanece sujeto al instrumento anterior y debe pagar la cuota
+mensual ordinaria completa durante toda su vigencia.
+
+S4 — BCN, Ley 19.728, arts. 2 y 5
+URL consultada: https://www.bcn.cl/leychile/navegar?idNorma=184979&idVersion=2026-06-01
+Consulta: 2026-10-27; LeyChile mostró última versión 2026-06-01.
+Art. 2 excluye contratos de aprendizaje, menores de 18 años y pensionados,
+salvo las excepciones legales indicadas en el inciso.
+Art. 5 letra a: 0,6% de cargo del trabajador indefinido “con excepción de los
+trabajadores de casa particular”. La ley dispone que el 3,0% de casa particular
+es de cargo del empleador, sin distinguir duración del contrato.
+
+S5 — AFC Chile, proporciones de cotización
+URL consultada:
+https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+Consulta: 2026-10-27.
+Extracto de la tabla: contratos indefinidos: CIC 1,6%, FCS 0,8% y nota de que
+el trabajador aporta 0,6%; contratos a plazo: CIC 2,8% y FCS 0,2%; casa
+particular: CIC 2,2% y FCS 0,8% a cargo del empleador. La página señala además
+que el empleador continúa con 0,8% al FCS después de 11 años.
+
+S6 — BCN, Código del Trabajo, art. 57
+URL oficial consultada: https://www.bcn.cl/leychile/navegar?idNorma=207436
+Consulta: 2026-10-27; BCN mostró la última versión vigente desde 2026-07-23.
+El texto exacto se abrió en el consolidado BCN versionado al 2024-05-01:
+https://www.bcn.cl/leychile/navegar?idNorma=207436&idVersion=2024-05-01
+La búsqueda de BCN del 2026-10-27 devolvió el mismo extracto dentro del
+segmento de art. 57 de la versión actual; la apertura directa del fragmento
+actual no cargó por la aplicación del sitio.
+Extracto cotejado del art. 57: “remuneraciones adeudadas por el trabajador a
+las personas que hayan estado a su servicio en calidad de trabajador”.
+La misma enumeración conserva “pensiones alimenticias debidas por ley y
+decretadas judicialmente” y “defraudación, hurto o robo cometidos por el
+trabajador en contra del empleador en ejercicio de su cargo”.
+
+L1 — D9, texto local
+Comando: nl -ba src/data/blog/primer-empleo-chile-guia-completa.md | sed -n '106,116p'
+Salida relevante, línea 112: “La cuota sindical —que también debe quien no está
+afiliado pero aceptó la extensión de beneficios, y quien se desafilió mientras
+sigue vigente el instrumento colectivo—”.
+Comando: nl -ba src/data/blog/descuentos-de-sueldo.md | sed -n '108,114p'
+Salida relevante, línea 112: el no afiliado debe aceptar la extensión y pagar
+todo o parte según el acuerdo; ese acuerdo debe fijar criterios objetivos,
+generales y no arbitrarios (art. 322). Quien cambia o deja el sindicato sigue
+afecto al instrumento vigente y paga la cuota ordinaria completa mientras dure.
+No se afirma que el no afiliado que no acepta la extensión deba pagar.
+
+L2 — D11, texto local
+Comando: nl -ba src/data/blog/descuentos-de-sueldo.md | sed -n '132,139p'
+Salida relevante, línea 136: artículo 57; excepción sobre remuneraciones que
+“el trabajador adeude a personas que hayan estado a su servicio en calidad de
+trabajador”. También mantiene inembargabilidad, excedente de 56 UF, límite de
+50% y las otras dos hipótesis legales.
+
+L3 — Barrido local R3 de variantes 0,6% / 0.6%
+Comando: rg -n -i '0[.,]6\s*%' src --glob '!**/*.map'
+Salida: en los cuerpos y superficies estáticas editables del cluster, las
+menciones pertinentes están acompañadas por la excepción de casa particular o
+se delimitan expresamente al caso indefinido; las tablas de primer empleo,
+seguro de cesantía, artículo principal y ficha legal indican 0% trabajador
+para casa particular. La nota metodológica de interés compuesto dice que el
+0,6% no se descuenta en casa particular y que el total baja a 17,0%.
+Excepción residual encontrada:
+src/application/use-cases/CalculateNetSalary.methodology.ts:46–63 presenta un
+ejemplo de “Un trabajador con contrato indefinido” y descuenta 0,6% ($6.000)
+sin delimitarlo a una persona que no sea trabajadora de casa particular.
+src/pages/calculadoras/sueldo-liquido.astro:1023–1025 inserta ese ejemplo en
+MethodologyBlock visible de la calculadora.
+
+L4 — FAQ, JSON estructurado, datos de ley y LLM local
+src/pages/calculadoras/sueldo-liquido.astro:76–105 define sueldoLiquidoFaqs;
+la respuesta de 98–100 dice que en casa particular el trabajador no aporta y
+el empleador paga 3%. La página pasa esa lista a CalculatorJsonLd
+(líneas 164–168). La FAQ visible (841–844), ayuda del selector (294–295), nota
+de cálculo (714–716) y notas de MethodologyBlock (1025) también declaran 0% en
+casa particular y el cargo patronal.
+src/data/laws/ley-19728-seguro-cesantia.md:25 llama “Regla general” al reparto
+de indefinido y a plazo; la tabla del mismo documento, líneas 37–41, tiene fila
+propia de casa particular con 0% trabajador y 3% empleador. No se calificó como
+residuo independiente porque esa misma superficie explicita la excepción.
+src/pages/llms-full.txt.ts concatena cuerpos de artículos publicados. Los
+cuerpos locales encontrados en L3 sí incluyen la excepción. El archivo generado
+no estaba disponible: el build se detuvo antes de Astro build por el gate de
+curación de imágenes; por eso no se certifica una salida llms-full local.
+
+L5 — Guarda estática: resultado y límites estructurales
+Comando:
+pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts
+Salida: 3 archivos aprobados, 29 tests aprobados.
+La guarda tests/static-analysis/afc-casa-particular-guard.test.ts:19–29 solo
+incluye src/data/blog/*.md, src/data/glossary/*.md y src/pages/calculadoras/*.astro.
+No incluye src/application/use-cases/CalculateNetSalary.methodology.ts, aunque
+ese archivo alimenta el ejemplo visible identificado en L3; por tanto, la
+guarda pasa mientras ese defecto existe.
+Además exige que la tasa y el contexto AFC aparezcan en la misma línea
+(líneas 57–58), después acepta cualquier mención a “casa particular” dentro de
+una ventana de ±3 líneas (59–65), y agrega el encabezado completo de la tabla
+sin validar fila, columna ni celda (43–49, 61–65). Una excepción de otro
+párrafo cercano o una cabecera con “Casa particular” puede satisfacer el regex
+sin probar que la afirmación de 0,6% esté correctamente restringida. El test
+estático aprobado no es evidencia de cobertura completa.
+
+L6 — Motor, modos y comparación AFP
+src/application/use-cases/CalculateMonthlyPayrollBase.ts:92–115 calcula 0,6%
+solo para contractType === "indefinido"; “plazo-fijo” y “casa-particular”
+reciben tasa cero.
+src/utils/sueldo-liquido/formController.ts:139–159 mapea el selector a
+"casa-particular". El modo líquido→bruto pasa contractType a
+estimateGrossFromNet y renderAfpComparisonInverso (líneas 254–299); bruto→
+líquido lo pasa a calculateNetSalary y renderAfpComparison (367–410).
+src/utils/sueldo-liquido/afpComparison.ts:56–65 reenvía contractType en cada
+AFP del cálculo bruto→líquido; líneas 189–198 lo reenvían en la comparación
+líquido→bruto. CalculateNetSalary.ts:105–155 propaga el tipo a cada iteración
+inversa y al cálculo base final.
+Los tests ejecutados cubren la base con casa particular indefinida y los
+use-cases bruto→líquido/líquido→bruto. No hay test localizado de UI/DOM que
+seleccione casa particular y recorra AFP comparison; esa parte se verificó por
+flujo estático. El selector estático sí entrega el enum que consume el motor.
+
+P1 — Superficies públicas abiertas de nuevo el 2026-10-27
+URLs consultadas:
+https://monedario.cl/posts/descuentos-de-sueldo/
+https://monedario.cl/posts/primer-empleo-chile-guia-completa/
+https://monedario.cl/posts/como-calcular-sueldo-liquido/
+https://monedario.cl/posts/liquidacion-de-sueldo/
+https://monedario.cl/posts/sueldo-imponible-chile/
+https://monedario.cl/posts/seguro-de-cesantia/
+https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/
+https://monedario.cl/glosario/sueldo-bruto/
+https://monedario.cl/glosario/fondo-solidario/
+https://monedario.cl/glosario/afc/
+https://monedario.cl/calculadoras/sueldo-liquido/
+https://monedario.cl/calculadoras/seguro-cesantia/
+https://monedario.cl/leyes/ley-19728-seguro-cesantia/
+https://monedario.cl/posts/interes-compuesto-nota-metodologica/
+https://monedario.cl/llms-full.txt
+
+GET sin caché de las 14 páginas HTML en la lista: Python urllib.request con
+User-Agent Mozilla/5.0, Cache-Control no-cache y Pragma no-cache; HTMLParser de
+la biblioteca estándar para extraer texto. Los 14 GET devolvieron HTTP 200.
+Encabezado Date entre Tue, 27 Oct 2026 19:40:34 GMT y 19:40:40 GMT.
+Patrón exacto de petición usado con cada URL de la lista anterior:
+
+    import re, urllib.request
+    from html.parser import HTMLParser
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+    })
+    with urllib.request.urlopen(req, timeout=30) as response:
+        raw = response.read()
+        parser = HTMLParser()
+        parser.feed(raw.decode("utf-8", "replace"))
+        print(response.status, response.headers.get("Date"), len(raw))
+El script de inspección añadió un HTMLParser que ignora script/style y recoge
+texto visible por elemento. Los extractos resultantes se registran abajo.
+
+GETs focales sin caché repetidos el 2026-10-27 a las 19:41:11–19:41:12 GMT:
+- https://monedario.cl/posts/descuentos-de-sueldo/ — HTTP 200. Extracto:
+  “Cualquier descuento que no pertenezca a las categorías anteriores cae en
+  esta zona — y corresponde impugnarlo.” Búsqueda directa de “cuota sindical”
+  sin resultado.
+- https://monedario.cl/posts/primer-empleo-chile-guia-completa/ — HTTP 200.
+  Extracto: “Descuentos voluntarios o autorizados por ti: sindicato, caja de
+  compensación, créditos de consumo retenidos en nómina. Para cada uno debiste
+  firmar una autorización.” Búsqueda directa de “cuota sindical” sin resultado.
+
+Extractos de las páginas HTML abiertas:
+- descuentos-de-sueldo: 0,6% solo indefinido y tabla que solo compara
+  indefinido con plazo fijo/obra.
+- primer-empleo: “seguro de cesantía (0,6 % trabajador)” como descuento legal
+  fijo y aporte de 0,6% en CIC sin excepción.
+- como-calcular-sueldo-liquido: tabla distingue indefinido y plazo fijo/obra
+  (119–123), ejemplo descuenta 0,6% (146, 153) y no aparece “casa particular”.
+- liquidacion-de-sueldo: línea 93 limita el 0,6% solo a contrato indefinido,
+  sin la excepción de casa particular.
+- sueldo-imponible-chile: lista “Cotización AFC (0,6 % trabajador)” (línea
+  83) y repite 0,6% en el texto (92), sin excepción próxima.
+- seguro-de-cesantia: tabla atribuye a casa particular 0,6% trabajador y 2,4%
+  empleador (líneas 70–75); FAQ dice que las reglas son las mismas que para
+  indefinido (192–193).
+- CIC vs FCS: explica 0,6% para indefinido y cero en plazo fijo, sin mencionar
+  casa particular en la sección de financiamiento (64–68).
+- glosario sueldo bruto: tabla dice 0,6% en contrato indefinido (40), sin
+  excepción doméstica.
+- glosario fondo solidario: tabla atribuye 0,6% al trabajador (29), sin
+  excepción doméstica.
+- glosario AFC: 0,6% trabajador con indefinido y 3% empleador a plazo fijo
+  (34–36), sin casa particular.
+- calculadora sueldo líquido: presenta 0,6% como tasa, FAQ sin casa
+  particular (142–144), ejemplo resta $6.000 (183, 199–201) y nota omite la
+  excepción (217); búsqueda de “casa particular” sin resultado.
+- calculadora seguro de cesantía: explicación pública pone 0,6% trabajador en
+  indefinido y solo repartos de contrato indefinido/plazo fijo (78–80).
+- ficha de ley 19.728: la respuesta rápida presenta regla general indefinido
+  0,6%, pero la misma ficha sí contiene fila doméstica con 0% trabajador y 3%
+  empleador (33–45).
+- interés compuesto: la tabla lista el descuento estándar de 0,6% y omite la
+  excepción en el extracto HTML; la copia local sí la incluye en línea 89.
+
+P2 — Endpoint público llms-full.txt, descarga sin caché
+URL: https://monedario.cl/llms-full.txt
+Consulta directa con Cache-Control: no-cache y Pragma: no-cache el 2026-10-27
+a las 19:35:25 UTC. HTTP 200; Content-Type text/plain; cuerpo 604489 bytes.
+Extractos de líneas del cuerpo descargado:
+202: el cuerpo generaliza 0,6% al contrato indefinido sin casa particular.
+665: “Cesantía: 0,6% del imponible solo si tu contrato es indefinido” sin la
+excepción doméstica.
+876 y 923: 0,6% trabajador y ejemplo de $7.200 en AFC, sin excepción.
+6431–6433: tabla asigna a casa particular 0.6% trabajador y 2.4% empleador.
+6573–6575: FAQ de casa particular afirma que las reglas son las mismas que
+para indefinido.
+7193: explicación CIC limita el 0,6% al indefinido, sin casa particular.
+El endpoint público sirve contenido anterior al checkout auditado; no demuestra
+que los cambios locales estén desplegados.
+
+P3 — Reproducibilidad y restricciones
+Preflight del target SHA y limpieza: aprobado antes de auditar.
+Vitest exacto y salida en L5.
+Build previo del mismo checkout: pnpm run build salió con fallo en
+check:image-curation después de test:edge-guard y check:hero-prompts; se
+detuvo antes de Astro build / generación de dist/llms-full.txt. El gate señaló
+8 artículos editados que requieren revisión de imagen. No se reintentó ni se
+omitió el gate.
+No se modificó código de producto ni tests. No commit, no push, no firma
+humana.

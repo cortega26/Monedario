@@ -26,6 +26,15 @@ const SURFACES = [
   ...readdirSync("src/pages/calculadoras")
     .filter(file => file.endsWith(".astro"))
     .map(file => join("src/pages/calculadoras", file)),
+  // Superficies de código que también publican la cifra: la nota metodológica
+  // visible al lector y el copy de enlaces del clúster. La ronda 3 de auditoría
+  // demostró que la guarda original no las miraba y dejaba pasar un caso real.
+  ...readdirSync("src/application/use-cases")
+    .filter(file => file.endsWith(".ts"))
+    .map(file => join("src/application/use-cases", file)),
+  ...readdirSync("src/config")
+    .filter(file => file.endsWith(".ts"))
+    .map(file => join("src/config", file)),
 ];
 
 const AFC_RATE = /0[.,]6\s*%/;

@@ -62,7 +62,19 @@
       "pnpm exec vitest run tests/static-analysis/descuentos-clasificacion-guard.test.ts",
       "git diff --check",
       "pnpm run check:audit-artifacts",
-      "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json"
+      "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
+      "cd /tmp/opencode/wt-audit-descuentos-3",
+      "test \"$(git rev-parse HEAD)\" = \"53c7aa5d650eac411357f1a5be802e023c5e486f\"",
+      "git status --porcelain",
+      "rg -n -i '0[.,]6\\s*%' src --glob '!**/*.map'",
+      "nl -ba src/data/blog/primer-empleo-chile-guia-completa.md | sed -n '106,116p'",
+      "nl -ba src/data/blog/descuentos-de-sueldo.md | sed -n '108,114p;132,139p'",
+      "nl -ba src/application/use-cases/CalculateNetSalary.methodology.ts | sed -n '44,68p'",
+      "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts",
+      "Open URLs enumerated in evidence/18 directly on 2026-10-27; compare page excerpts in evidence/18#P1.",
+      "Fetch https://monedario.cl/llms-full.txt with Cache-Control: no-cache and Pragma: no-cache; record HTTP status and matching lines in evidence/18#P2.",
+      "pnpm run build (attempted; stopped at check:image-curation before Astro build; evidence/18#P3).",
+      "Fresh direct GET of each public HTML URL with Python urllib.request and User-Agent Mozilla/5.0, Cache-Control: no-cache, Pragma: no-cache; all 14 returned HTTP 200, Date 2026-10-27 19:40:34–19:40:40 GMT; focal GETs repeated 19:41:11–19:41:12 GMT. Extracts: evidence/18#P1."
     ],
     "edgeCases": [
       "Imponible 89,99 / 90,00 / 90,01 UF -> 7% (borde exacto del tope de salud)",
@@ -84,7 +96,15 @@
       "ORD. 1578: no descuento inmediato por atraso sin verificar incumplimiento imputable al término de la semana",
       "Art. 58: base total bruta para topes convencionales 15%, 30% especial y 45% conjunto",
       "Metadatos/frontmatter y JSON-LD: computedAt, lastReviewed, reviewedBy y fecha de revisión visible",
-      "Seis superficies: cuerpo, metadatos, datos estructurados, catálogo/LLM, contenido relacionado, motor/tests"
+      "Seis superficies: cuerpo, metadatos, datos estructurados, catálogo/LLM, contenido relacionado, motor/tests",
+      "No afiliado que no acepta extensión: no se le atribuye obligación por art. 322.",
+      "Criterios objetivos, generales y no arbitrarios del acuerdo de extensión; pago total o parcial según acuerdo.",
+      "Exafiliado o cambio de sindicato mientras rige el instrumento anterior: cuota ordinaria completa hasta su término.",
+      "Trabajador de casa particular con contrato indefinido en el ejemplo visible de metodología.",
+      "Tasa 0,6% fuera de la superficie que la guarda escanea; ventana de vecindad de tres líneas y herencia de encabezado de tabla.",
+      "Motor casa-particular en bruto→líquido, líquido→bruto y comparaciones AFP directa e inversa.",
+      "Tercer supuesto art. 57 con ambas condiciones expresas: adeudada por el trabajador y servicio en calidad de trabajador.",
+      "Runtime público y endpoint llms-full contrastados con el SHA local sin atribuirlos a ese commit."
     ],
     "evidenceDir": "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/",
     "complianceAudit": {
@@ -279,6 +299,83 @@
       "evidence": [
         "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt"
       ]
+    },
+    "deltaReauditR3": {
+      "targetSha": "53c7aa5d650eac411357f1a5be802e023c5e486f",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-3",
+      "branch": "detached by design",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "auditor": {
+        "role": "ComplianceAgent (adversarial)",
+        "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+        "session": "codex-20261027-delta-reaudit-r3"
+      },
+      "independence": "Remediation model declared by the user: DeepSeek V4.1 Flash. Auditor: OpenAI GPT-6; different model family.",
+      "scope": [
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "deferredNotReopened": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 cause 2",
+        "D18 pending signature"
+      ],
+      "preservedResolved": [
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "surfaces": [
+        "article body",
+        "metadata/FAQ",
+        "CalculatorJsonLd",
+        "related posts and glossaries",
+        "local law sheet",
+        "llms-full generator and public endpoint",
+        "calculator methodology",
+        "payroll engine",
+        "AFP comparison paths",
+        "regression guard",
+        "public runtime not attributable to target SHA"
+      ],
+      "officialSourceEvidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S1-S6",
+      "localSurfaceEvidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L1",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L2",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L6"
+      ],
+      "publicRuntimeEvidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1-P2",
+      "testExecution": "pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts: 3 files passed, 29 tests passed. UI/DOM and AFP comparison integration were inspected statically, not exercised end-to-end.",
+      "buildExecution": "pnpm run build stopped at check:image-curation before Astro build; eight edited articles require image review. No dist/llms-full.txt produced.",
+      "verdict": "CONDITIONAL",
+      "openDefects": [
+        "D10"
+      ],
+      "resolvedInTargetCheckout": [
+        "D9",
+        "D11"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null,
+      "limitations": [
+        "Public URLs return stale content not attributable to target SHA.",
+        "Generated local llms-full output unavailable because build stopped at image-curation.",
+        "No UI/DOM E2E was run for casa-particular through AFP comparison; path was statically traced and use-case tests passed.",
+        "D9 and D11 resolutions describe target checkout only, not deployment."
+      ],
+      "evidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt"
+      ],
+      "publicFetch": {
+        "method": "Fresh direct urllib GET with Cache-Control: no-cache and Pragma: no-cache; standard-library HTMLParser extracts visible text.",
+        "retrievedAt": "2026-10-27 19:40:34–19:41:12 UTC",
+        "httpStatus": "200 for all 14 HTML URLs and focal repeat GETs",
+        "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1"
+      }
     }
   },
   "claims": [
@@ -1256,6 +1353,100 @@
         "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5",
         "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
       ]
+    },
+    {
+      "id": "C49",
+      "vector": "DELTA-R3-D9",
+      "surface": "product",
+      "claim": "El resumen de primer empleo limita el pago por extensión a quien la aceptó; el cuerpo principal incluye el criterio objetivo, general y no arbitrario y la duración del instrumento de los arts. 322–323.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436&idVersion=2026-07-23",
+        "quote": "Las partes de un instrumento colectivo podrán acordar la aplicación general o parcial de sus estipulaciones a todos o parte de los trabajadores de la empresa o establecimiento de empresa sin afiliación sindical. En el caso antes señalado, para acceder a los beneficios dichos trabajadores deberán aceptar la extensión y obligarse a pagar todo o parte de la cuota ordinaria de la organización sindical, según lo establezca el acuerdo. El acuerdo de extensión de que trata el inciso anterior deberá fijar criterios objetivos, generales y no arbitrarios para extender los beneficios a trabajadores sin afiliación sindical.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "nl -ba src/data/blog/primer-empleo-chile-guia-completa.md | sed -n '106,116p'; nl -ba src/data/blog/descuentos-de-sueldo.md | sed -n '108,114p'",
+        "output": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L1"
+      },
+      "independentValue": "Solo quien acepta la extensión debe pagar lo que fija el acuerdo; el criterio debe ser objetivo, general y no arbitrario. El exafiliado paga la cuota ordinaria mientras rija el instrumento anterior.",
+      "engineValue": "Ambos pasajes locales expresan los supuestos y no imponen pago al no afiliado que no acepta.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S1-S3",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L1"
+      ]
+    },
+    {
+      "id": "C50",
+      "vector": "DELTA-R3-D10",
+      "surface": "product",
+      "claim": "La norma exceptúa casa particular del 0,6% trabajador; el ejemplo visible de metodología aún calcula ese descuento para un caso genérico indefinido sin delimitar dicha excepción.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979&idVersion=2026-06-01",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "nl -ba src/application/use-cases/CalculateNetSalary.methodology.ts | sed -n '44,68p'; pnpm exec vitest run tests/static-analysis/afc-casa-particular-guard.test.ts",
+        "output": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L5"
+      },
+      "independentValue": "Para casa particular el aporte trabajador es 0%; la excepción aplica incluso si el contrato es indefinido.",
+      "engineValue": "La explicación visible descuenta 0,6% y calcula $6.000 sin identificar que excluye a casa particular; la guarda pasa porque omite ese archivo.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4-S5",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L5",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P2"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C51",
+      "vector": "DELTA-R3-D11",
+      "surface": "product",
+      "claim": "El tercer supuesto del art. 57 exige remuneraciones adeudadas por el trabajador a personas que estuvieron a su servicio en calidad de trabajador; la prosa local mantiene ambas condiciones.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "remuneraciones adeudadas por el trabajador a las personas que hayan estado a su servicio en calidad de trabajador",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S6"
+      },
+      "reproduction": {
+        "command": "nl -ba src/data/blog/descuentos-de-sueldo.md | sed -n '132,139p'",
+        "output": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L2"
+      },
+      "independentValue": "El tercer supuesto conserva sujeto de la deuda y calidad laboral del servicio.",
+      "engineValue": "La línea local 136 contiene ambas condiciones.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S6",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L2"
+      ]
+    },
+    {
+      "id": "C52",
+      "vector": "DELTA-R3-D10-ENGINE",
+      "surface": "product",
+      "claim": "Los flujos de nómina con contractType casa-particular no aplican el 0,6% del trabajador en bruto→líquido, líquido→bruto ni en las llamadas de comparación AFP revisadas.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979&idVersion=2026-06-01",
+        "quote": "Un 0,6% de las remuneraciones imponibles, de cargo del trabajador con contrato de duración indefinida con excepción de los trabajadores de casa particular.",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "pnpm exec vitest run tests/application/CalculateMonthlyPayrollBase.test.ts tests/application/CalculateNetSalary.test.ts; revisar formController.ts y afpComparison.ts",
+        "output": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L5-L6"
+      },
+      "independentValue": "Tasa de cargo del trabajador: 0 para casa particular, cualquiera sea duración contractual.",
+      "engineValue": "La función base retorna 0 para casa-particular y ambas rutas propagan el tipo a todos los cálculos y comparaciones inspeccionados.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L5-L6"
+      ]
     }
   ],
   "defects": [
@@ -1344,39 +1535,44 @@
       "severity": "media",
       "surface": "product",
       "description": "descuentos-de-sueldo.md:108 circunscribe la cuota ordinaria a afiliados y no informa los supuestos de los Arts. 322–323: trabajadores no afiliados que aceptan extensión de beneficios y exafiliados que siguen sujetos a un instrumento colectivo deben pagar la cuota acordada/ordinaria en esos casos.",
-      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D9",
+      "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L1",
       "supportingEvidence": [
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1",
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D9"
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S1-S3",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L1",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1"
       ],
-      "status": "open",
-      "reason": "El cuerpo principal y su FAQ ya distinguen arts. 322–323 y reflejan aceptación, cuota total/parcial según acuerdo y duración del instrumento vigente. Continúa la copia corta de primer-empleo-chile-guia-completa.md:112 “cuota sindical (si estás afiliado)” sin ambos supuestos; el texto largo tampoco hace explícito el criterio objetivo, general y no arbitrario del acuerdo de extensión (art. 322)."
+      "status": "resolved",
+      "reason": "R3 en HEAD 53c7aa5d650eac411357f1a5be802e023c5e486f: primer-empleo:112 limita el supuesto a quien aceptó la extensión y menciona al exafiliado bajo instrumento vigente; el cuerpo principal fija cuota total/parcial según acuerdo y criterios objetivos, generales y no arbitrarios. No se afirma deuda para no afiliado que no aceptó. La URL pública reabierta no refleja esta redacción y queda como limitación de runtime no asociado al SHA.",
+      "resolution": "Revisión local de ambas superficies contra BCN arts. 322–323 y DT: los supuestos de extensión aceptada y continuidad del instrumento vigente están acotados, y el cuerpo explicita el estándar objetivo/general/no arbitrario. Resuelto solo en el checkout auditado; runtime público pendiente de despliegue/verificación."
     },
     {
       "id": "D10",
       "severity": "media",
       "surface": "product",
-      "description": "La pieza y el radio AFC omiten la excepción de trabajadores de casa particular al 0,6% a cargo del trabajador; primer-empleo también generaliza cobertura a todo contrato y entrega el 0,6% como descuento fijo. La Ley 19.728 excluye otras categorías y asigna el 3% doméstico completo al empleador.",
-      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D10",
+      "description": "Hallazgo original: la pieza y el radio AFC omitían la excepción de trabajadores de casa particular al 0,6% y generalizaban la cobertura. En R3 esos pasajes locales se verifican corregidos; permanece un ejemplo visible en src/application/use-cases/CalculateNetSalary.methodology.ts que calcula 0,6% para un caso genérico indefinido sin delimitar casa particular. El runtime público conserva contenido anterior no asociado al SHA objetivo.",
+      "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L6",
       "supportingEvidence": [
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S2-S4",
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D10"
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S4-S5",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L3-L6",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1-P2"
       ],
       "status": "open",
-      "reason": "La excepción doméstica está corregida en la pieza principal, la tabla de AFC, la tabla de seguro-de-cesantia.md, la prosa de liquidacion-de-sueldo.md, el selector/motor y la prueba. Quedan usos de 0,6% sin excepción en sueldo-imponible (fórmula/ejemplo), como-calcular-sueldo-liquido, seguro-cesantia-cuenta-individual-vs-fondo-solidario, glosarios sueldo-bruto/fondo-solidario y FAQ/JSON-LD/metodología de la calculadora de sueldo líquido. La tabla de primer empleo expresa 0% doméstico pero mantiene total ~18,1%, y la misma guía afirma que el seguro es obligatorio para todo trabajador con contrato vigente, sin acotar aprendices, menores ni pensionados. El HTML público y llms-full.txt también siguen mostrando contenido anterior; se distinguen del estado de este HEAD en la evidencia."
+      "reason": "R3 encontró un ejemplo visible residual en src/application/use-cases/CalculateNetSalary.methodology.ts: el escenario genérico de contrato indefinido descuenta 0,6% ($6.000) sin delimitar explícitamente casa particular, cuyos trabajadores pueden tener contrato indefinido. El ejemplo se inserta en MethodologyBlock de la calculadora. La guarda aprobada no analiza ese archivo; su ventana de ±3 líneas y la herencia de encabezado aceptan contexto no asociado a la afirmación. Varias URLs públicas y llms-full.txt además siguen presentando copy anterior, sin asociación al SHA objetivo."
     },
     {
       "id": "D11",
       "severity": "media",
       "surface": "product",
       "description": "descuentos-de-sueldo.md:132 afirma que cualquier descuento fuera de sus categorías es prohibido y debe impugnarse; el Art. 57 permite embargos legales, incluida pensión alimenticia decretada judicialmente, en los límites que fija el Código.",
-      "evidence": "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D11",
+      "evidence": "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L2",
       "supportingEvidence": [
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#S1",
-        "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt#D11"
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#S6",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#L2",
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt#P1"
       ],
-      "status": "open",
-      "reason": "El texto incorpora los tres grupos y la condición para defraudación/hurto/robo del trabajador contra su empleador en ejercicio del cargo. En el tercer grupo solo dice “remuneraciones adeudadas a personas que hayan estado al servicio del deudor”; omite que las adeuda el trabajador y que las personas estuvieron a su servicio en calidad de trabajador, límites expresos del art. 57. La lista no queda completa bajo el criterio adversarial solicitado."
+      "status": "resolved",
+      "reason": "R3 en HEAD 53c7aa5d650eac411357f1a5be802e023c5e486f: descuentos-de-sueldo.md:136 conserva que la remuneración la adeuda el trabajador y que las personas estuvieron a su servicio en calidad de trabajador. Mantiene además el límite de 50% y los otros dos supuestos del art. 57. La URL pública reabierta aún sirve contenido anterior y no refleja el cambio; runtime no asociado al SHA.",
+      "resolution": "Cotejo nuevo de descuentos-de-sueldo.md:136 con el texto BCN del art. 57 confirma las dos condiciones expresas del tercer supuesto: deuda por el trabajador y servicio prestado en calidad de trabajador. Resuelto solo en el checkout auditado; runtime público pendiente de despliegue/verificación."
     },
     {
       "id": "D12",
@@ -1535,6 +1731,32 @@
       "evidence": [
         "evidence/17-delta-reaudit-r2-evidence-2026-10-27.txt"
       ]
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit ronda 3",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit-r3",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL",
+      "scope": [
+        "D9",
+        "D10",
+        "D11"
+      ],
+      "targetSha": "53c7aa5d650eac411357f1a5be802e023c5e486f",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos-3",
+      "evidence": [
+        "evidence/18-delta-reaudit-r3-evidence-2026-10-27.txt"
+      ],
+      "openDefects": [
+        "D10"
+      ],
+      "resolvedInTargetCheckout": [
+        "D9",
+        "D11"
+      ],
+      "newIndependentDefects": [],
+      "humanSignoff": null
     }
   ]
 }

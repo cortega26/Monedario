@@ -159,3 +159,23 @@ reconstruyeron; ninguna imagen se regeneró.
 
 Verificación: 2004 tests, `astro check` 0 errores, `check:hero-prompts`,
 `check:frontmatter`, `check:editorial`, `check:docs`.
+
+### Cuarta ronda (2026-10-27, tras el delta R3)
+
+R3 cerró D9 y D11. D10 quedó abierto por dos motivos, ambos corregidos:
+
+1. `src/application/use-cases/CalculateNetSalary.methodology.ts` — el ejemplo
+   visible de metodología descontaba 0,6% a un contrato indefinido sin delimitar
+   la excepción. Se añadió el supuesto al escenario y a la etiqueta del paso.
+2. La guarda estática no examinaba archivos `.ts` y dejaba pasar ese caso. Ahora
+   cubre `src/application/use-cases/*.ts` y `src/config/*.ts`; al ampliarla
+   encontró dos superficies más (`sueldoClusterLinks.ts`, corregida).
+
+También se corrigió el registro de curaduría de imágenes
+(`scripts/hero-images/asset-reviews.json`), que bloqueaba el build en
+`check:image-curation` al cambiar los artículos: se re-sincronizaron los hashes
+de contenido conservando el historial. Las imágenes no se regeneraron.
+
+Verificación: 2007 tests, `astro check` 0 errores, `check:image-curation`,
+`check:hero-prompts`, `check:hero-images`, `check:image-delivery`,
+`check:frontmatter`, `check:editorial`, `check:docs`, `astro build` 334 páginas.
