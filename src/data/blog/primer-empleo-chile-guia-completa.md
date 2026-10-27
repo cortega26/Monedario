@@ -43,7 +43,7 @@ faqs:
   - q: "¿Cuándo me pagan el primer sueldo?"
     a: "El contrato debe especificar la fecha de pago. Por ley, las remuneraciones deben pagarse por períodos no superiores a un mes. Si ingresas a mitad de mes, el primer pago puede ser proporcional. Confirma la fecha exacta en tu contrato antes de firmar y consulta si el primer mes se paga fraccionado."
   - q: "¿Cuánto termina descontándoseme del bruto?"
-    a: "En un contrato indefinido típico, los descuentos legales suman entre un 20 % y un 22 % del sueldo bruto: AP 10,5 %, salud (Fonasa) 7 %, seguro de cesantía 0,6 %. El SIS (Seguro de Invalidez y Sobrevivencia) lo paga el empleador, no tú. Usa la calculadora de sueldo líquido para ver el número exacto."
+    a: "En un contrato indefinido típico, los descuentos legales suman entre un 20 % y un 22 % del sueldo bruto: AP 10,5 %, salud (Fonasa) 7 %, seguro de cesantía 0,6 %. Los trabajadores de casa particular no pagan ese 0,6 %: su aporte al seguro de cesantía corre completo por cuenta del empleador. El SIS (Seguro de Invalidez y Sobrevivencia) lo paga el empleador, no tú. Usa la calculadora de sueldo líquido para ver el número exacto."
   - q: "¿Debo firmar el contrato el primer día?"
     a: "No es obligatorio firmar el primer día, pero sí debes revisar el documento antes de hacerlo. Pide una copia en borrador, léela con calma y consulta dudas antes de estampar tu firma. Una vez firmado, las condiciones quedan vigentes hasta que se acuerde una modificación por escrito."
 reviewPolicy:

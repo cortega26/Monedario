@@ -95,3 +95,30 @@ leyes, en el mismo radio de la causa laboral.
   acción del owner.
 - El math audit ya hecho no se puede reutilizar como compliance: sesiones
   distintas, siempre.
+
+### Remediación del delta de compliance (2026-10-27)
+
+Sesión de redacción distinta de las tres anteriores (redacción original Claude
+Sonnet 5.5, math audit DeepSeek V4.1 Flash, compliance OpenAI GPT-6), para no
+auditar su propio trabajo.
+
+Corregido en `src/data/blog/descuentos-de-sueldo.md`:
+
+| ID | Cambio |
+|---|---|
+| D9 | La cuota sindical deja de reducirse a afiliados: se añaden el art. 322 (no afiliado que acepta extensión de beneficios) y el art. 323 (exafiliado afecto al instrumento vigente) |
+| D10 | Excepción de trabajadores de casa particular al 0,6% en la pieza y en `primer-empleo-chile-guia-completa.md`; exclusiones de la Ley 19.728 art. 2 explicitadas |
+| D11 | Se elimina la afirmación de que todo descuento no enumerado es ilícito; se incorpora el art. 57 (embargo sobre el exceso de 56 UF y hasta 50% en los supuestos enumerados) |
+| D12 | Se añade la condición de ORD. 1578 (verificar al término de la semana) y la nota de que ese dictamen razona con 45 horas, vigentes entonces; desde 2026-04-26 son 42 |
+| D15 | La lista de prohibiciones del art. 58 cita el texto legal (BCN) en vez de ORD. 2453/187, que trata otra materia |
+| D17 | El 7% de salud cita a la Superintendencia de Salud; se agrega la fuente a `articleLead.officialSources`, junto con el Código del Trabajo arts. 57–58 |
+
+Diferido con razón escrita:
+
+- **D18** — no se puede cerrar antes de la firma: alinear `computedAt` con la
+  fecha visible publicaría `lastReviewed` sin revisión humana. Se cierra en la
+  firma moviendo `computedAt`, `updatedDate` y `validAsOf` a la misma fecha. La
+  semántica de `reviewedBy` en `ArticleJsonLd` va a issue aparte.
+- **D1–D8, D13, D14, D16** — permanecen abiertos y asignados a la causa 2.
+
+Alcance del delta registrado en `00-scope.json` (`delta`).

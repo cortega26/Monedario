@@ -811,13 +811,13 @@
       "targetImagePath": "/images/hero/descuentos-de-sueldo.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6f8dab228cf34f397ed81fefa083fc1d121998975505d09f16c7fc106588eb42",
-      "briefHash": "3a5d42aa8736f90798e641e8a0f08df57bab821296f22a9a6e16a7d62e1fad89",
+      "sourceContentHash": "48e57b4bc44ac910fe9beec7cb21fb7c65e9eec38844a38c0e714fb51cdf5923",
+      "briefHash": "a5eca6f7efa8e3cbdb46b66a418d1564319c61138c3e1bca9b7949bfcdda5b4d",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-20",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 tras la remediación de compliance del PR #719 (D9 cuota sindical arts. 322-323, D10 excepción casa particular del 0,6% AFC, D11 embargo judicial del art. 57, D12 verificación semanal ORD. 1578, D15 cita del art. 58 al texto legal, D17 fuente de Superintendencia de Salud para el 7%). Los cambios son normativos y de fuentes; no alteran el mensaje visual de la portada (cada descuento necesita una razón verificable), por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",

@@ -111,5 +111,40 @@
       "pnpm run check:hero-images",
       "pnpm run check:hero-prompts"
     ]
+  },
+  "delta": {
+    "createdAt": "2026-10-27",
+    "approvedBy": "owner — directiva en chat, 2026-10-27 ('go')",
+    "rationale": "El PR #719 sólo modifica descuentos-de-sueldo.md (más referencias de una línea en tres páginas y la entrada de correcciones.json). La pasada de compliance barrió el clúster completo, lo que produjo hallazgos valiosos pero fuera del radio del PR. El gate de merge certifica la superficie que el PR cambia; los defectos del clúster se conservan abiertos y asignados a la causa 2, no se descartan.",
+    "inScope": [
+      "D9",
+      "D10",
+      "D11",
+      "D12",
+      "D15",
+      "D17"
+    ],
+    "deferred": {
+      "ids": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D13",
+        "D14",
+        "D16",
+        "D18"
+      ],
+      "destination": "causa 2 (AFC / seguro de cesantía) + backlog de remediación",
+      "status": "open — no se cierran por este delta",
+      "notes": {
+        "D18": "No se puede cerrar antes de la firma humana: alinear reviewPolicy.computedAt con la fecha visible (2026-10-20) haría que ArticleJsonLd publicara lastReviewed=2026-10-20 sin revisión humana, que es exactamente la afirmación no respaldada que el hold de fechas evita. Se cierra en la firma: computedAt, updatedDate y validAsOf pasan juntos a la fecha de firma. La parte de reviewedBy ('Equipo Monedario' como Person) es un defecto de ArticleJsonLd, no de esta pieza, y va a su propio issue."
+      }
+    },
+    "passCriterion": "0 defectos product abiertos entre D9–D18. Los diferidos quedan registrados en docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md y NO cuentan para este criterio, por decisión de alcance del owner registrada aquí."
   }
 }
