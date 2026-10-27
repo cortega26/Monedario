@@ -4,6 +4,7 @@ import {
 } from "@/application/use-cases/CalculateNetSalary";
 import { DEFAULT_IMM } from "@/domain/economic/immConstants";
 import { trackAnalyticsEvent } from "@/utils/analytics";
+import { parseContractType } from "@/utils/contractType";
 import { saveCalculatorResult } from "@/utils/resumeState";
 import {
   initScenarioPanel,
@@ -136,17 +137,13 @@ function getCommonInputs() {
       ?.value === "isapre"
       ? "isapre"
       : "fonasa";
-  const contractTypeValue = (
-    document.querySelector(
-      "input[name='tipo-contrato']:checked"
-    ) as HTMLInputElement
-  )?.value;
-  const contractType =
-    contractTypeValue === "plazo-fijo"
-      ? "plazo-fijo"
-      : contractTypeValue === "casa-particular"
-        ? "casa-particular"
-        : "indefinido";
+  const contractType = parseContractType(
+    (
+      document.querySelector(
+        "input[name='tipo-contrato']:checked"
+      ) as HTMLInputElement
+    )?.value
+  );
   const isapreAdicional =
     parseFloat(
       (document.getElementById("isapre-adicional") as HTMLInputElement).value

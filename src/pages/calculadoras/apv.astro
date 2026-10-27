@@ -37,6 +37,9 @@ const exampleResult = calculateApvComparison({
   monthlyApvContribution: 100_000,
   afpRatePercent: 11.44,
   healthSystem: "fonasa",
+  // Explícito: omitirlo hace que el motor aplique el default indefinido y la
+  // base del ejemplo no coincida con el supuesto que declara el texto.
+  contractType: "indefinido",
   economicParameters,
 });
 const apvFaqs = [
@@ -622,6 +625,7 @@ const calculatorNextStepItems = [
 <script>
   import "@/scripts/calculator-prefill";
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
+  import { parseContractType } from "@/utils/contractType";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { emitApvError, resetApvErrorDedupe } from "@/utils/apvErrorTelemetry";
   import { formatCLP } from "@/utils/formatCLP";
@@ -738,17 +742,13 @@ const calculatorNextStepItems = [
       )?.value === "isapre"
         ? "isapre"
         : "fonasa";
-    const contractTypeValue = (
-      document.querySelector(
-        "input[name='tipo-contrato']:checked"
-      ) as HTMLInputElement
-    )?.value;
-    const contractType =
-      contractTypeValue === "plazo-fijo"
-        ? "plazo-fijo"
-        : contractTypeValue === "casa-particular"
-          ? "casa-particular"
-          : "indefinido";
+    const contractType = parseContractType(
+      (
+        document.querySelector(
+          "input[name='tipo-contrato']:checked"
+        ) as HTMLInputElement
+      )?.value
+    );
     const isapreAdicionalPercent =
       parseFloat(
         (document.getElementById("isapre-adicional") as HTMLInputElement).value

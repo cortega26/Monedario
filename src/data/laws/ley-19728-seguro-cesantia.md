@@ -34,11 +34,11 @@ La Ley 19.728 creó el Seguro de Cesantía en Chile (vigente desde octubre 2002)
 
 ### Cómo se financia
 
-| Tipo de contrato                 | Aporte trabajador | Aporte empleador a CIC                   | Aporte empleador a FCS | Total                                  |
-| -------------------------------- | ----------------- | ---------------------------------------- | ---------------------- | -------------------------------------- |
-| Indefinido                       | 0,6%              | 1,6%                                     | 0,8%                   | 3,0%                                   |
-| Plazo fijo / obra / servicio     | 0,0%              | 2,8%                                     | 0,2%                   | 3,0%                                   |
-| Trabajador(a) de casa particular | 0,0%              | 3,0% a CIC + 1,11% a indemnización legal | 0,0%                   | 4,11% previsional pagado por empleador |
+| Tipo de contrato                 | Aporte trabajador | Aporte empleador a CIC | Aporte empleador a FCS | Total                                    |
+| -------------------------------- | ----------------- | ---------------------- | ---------------------- | ---------------------------------------- |
+| Indefinido                       | 0,6%              | 1,6%                   | 0,8%                   | 3,0%                                     |
+| Plazo fijo / obra / servicio     | 0,0%              | 2,8%                   | 0,2%                   | 3,0%                                     |
+| Trabajador(a) de casa particular | 0,0%              | 2,2%                   | 0,8%                   | 3,0% (+ 1,11% CAI a cargo del empleador) |
 
 No conviene mezclar los fondos: la **CIC** es tu saldo individual; el **FCS** es un fondo común con acceso condicionado. La calculadora de cesantía del sitio estima primero la parte que sí va a la CIC y deja los montos FCS referenciados a la tabla oficial vigente.
 
