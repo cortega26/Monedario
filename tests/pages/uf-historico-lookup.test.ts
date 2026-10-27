@@ -34,6 +34,12 @@ const DATASET = JSON.parse(
   )
 ) as { serie: UfSerieEntry[] };
 
+// Piso congelado del último dato: la serie solo crece, así que un `last`
+// anterior a este piso indica truncado o regresión del refresh, nunca un
+// dataset "más corto". Mismo patrón ratchet que `minEntries` en
+// tests/data/economic-history.test.ts. Se sube oportunísticamente.
+const LAST_DATE_FLOOR = "2026-11-09";
+
 async function body(res: Response): Promise<Record<string, unknown>> {
   return (await res.json()) as Record<string, unknown>;
 }
@@ -201,8 +207,10 @@ describe("uf-historico-lookup GET (dataset real)", () => {
       first: string;
       last: string;
     };
-    expect(payload.first).toBe(DATASET.serie[0]?.fecha);
-    expect(payload.last).toBe(DATASET.serie[DATASET.serie.length - 1]?.fecha);
+    expect(payload.first).toBe("2000-01-01");
+    expect(payload.last.localeCompare(LAST_DATE_FLOOR)).toBeGreaterThanOrEqual(
+      0
+    );
     expect(Object.keys(payload.lookup)).toHaveLength(DATASET.serie.length);
     expect(payload.lookup["2000-01-01"]).toBeCloseTo(15067.93, 2);
   });
