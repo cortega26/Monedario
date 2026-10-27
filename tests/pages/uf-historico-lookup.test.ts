@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import {
   buildUfHistoryResponse,
@@ -16,6 +18,21 @@ const FIXTURE: UfSerieEntry[] = [
 const BASE = "http://localhost/api/uf-historico-lookup.json";
 const SUCCESS_CACHE = "public, max-age=86400, stale-while-revalidate=604800";
 const JSON_CONTENT_TYPE = "application/json; charset=utf-8";
+
+// El dataset real se refresca con `pnpm run fetch:economic-history --solo=uf`;
+// las expectativas se derivan del archivo para que un refresco legítimo no
+// rompa el gate (misma convención que tests/data/*.test.ts).
+const DATASET = JSON.parse(
+  readFileSync(
+    fileURLToPath(
+      new URL(
+        "../../src/data/economic-history/uf-historico.json",
+        import.meta.url
+      )
+    ),
+    "utf8"
+  )
+) as { serie: UfSerieEntry[] };
 
 async function body(res: Response): Promise<Record<string, unknown>> {
   return (await res.json()) as Record<string, unknown>;
@@ -184,9 +201,9 @@ describe("uf-historico-lookup GET (dataset real)", () => {
       first: string;
       last: string;
     };
-    expect(payload.first).toBe("2000-01-01");
-    expect(payload.last).toBe("2026-10-09");
-    expect(Object.keys(payload.lookup)).toHaveLength(9777);
+    expect(payload.first).toBe(DATASET.serie[0]?.fecha);
+    expect(payload.last).toBe(DATASET.serie[DATASET.serie.length - 1]?.fecha);
+    expect(Object.keys(payload.lookup)).toHaveLength(DATASET.serie.length);
     expect(payload.lookup["2000-01-01"]).toBeCloseTo(15067.93, 2);
   });
 
