@@ -20,12 +20,12 @@ Si te ofrecieron "$1.200.000 brutos" y tu liquidación incluye $150.000 de colac
 
 Del sueldo bruto se restan:
 
-| Descuento             | Porcentaje base                | Base de cálculo  |
-| --------------------- | ------------------------------ | ---------------- |
-| AFP                   | 10% + comisión (10,46%–11,45%) | Imponible        |
-| Salud                 | 7% (Fonasa) o más (Isapre)     | Imponible        |
-| Seguro de cesantía    | 0,6% (contrato indefinido)     | Imponible        |
-| Impuesto 2ª categoría | Progresivo desde 13,5 UTM      | Renta tributable |
+| Descuento             | Porcentaje base                                   | Base de cálculo  |
+| --------------------- | ------------------------------------------------- | ---------------- |
+| AFP                   | 10% + comisión (10,46%–11,45%)                    | Imponible        |
+| Salud                 | 7% (Fonasa) o más (Isapre)                        | Imponible        |
+| Seguro de cesantía    | 0,6% (contrato indefinido; 0% en casa particular) | Imponible        |
+| Impuesto 2ª categoría | Progresivo desde 13,5 UTM                         | Renta tributable |
 
 El primer tramo exento del impuesto de segunda categoría equivale a ≈ [[utm * 13.5 | clp]] con la UTM vigente (la UTM cambia cada mes).
 

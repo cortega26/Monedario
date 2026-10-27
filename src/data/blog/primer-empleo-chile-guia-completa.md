@@ -109,7 +109,7 @@ Una liquidación bien emitida tiene al menos cuatro bloques:
 
 **Descuentos legales:** AFP (~10,5 %), salud (7 %), seguro de cesantía (0,6 % trabajador, salvo en casa particular, donde no se descuenta). Estos son fijos e inamovibles — el empleador no puede eliminarlos ni reducirlos.
 
-**Descuentos voluntarios o autorizados por ti:** créditos de consumo retenidos en nómina y otros pagos que pediste al empleador. Para cada uno debiste firmar una autorización. La cuota sindical (si estás afiliado) y el crédito social de una caja de compensación son distintos: son descuentos obligatorios y no dependen de una autorización mensual; la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica por qué. Si aparece un descuento que no reconoces, pregunta antes de aceptar.
+**Descuentos voluntarios o autorizados por ti:** créditos de consumo retenidos en nómina y otros pagos que pediste al empleador. Para cada uno debiste firmar una autorización. La cuota sindical —que también debe quien no está afiliado pero aceptó la extensión de beneficios, y quien se desafilió mientras sigue vigente el instrumento colectivo— y el crédito social de una caja de compensación son distintos: son descuentos obligatorios y no dependen de una autorización mensual; la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica por qué. Si aparece un descuento que no reconoces, pregunta antes de aceptar.
 
 El monto depositado debe coincidir con el total de haberes menos el total de descuentos. Si no coincide, exige aclaración escrita.
 
@@ -186,7 +186,7 @@ Para comparar si más adelante conviene cambiarte a una isapre, lee la [guía co
 
 ### De qué se trata
 
-El **Seguro de Cesantía** es obligatorio para todo trabajador con contrato de trabajo vigente en Chile. Lo administra la **AFC Chile (Administradora de Fondos de Cesantía)** y cubre dos fondos:
+El **Seguro de Cesantía** es obligatorio para todo trabajador con contrato de trabajo vigente en Chile, con las exclusiones legales: aprendices, menores de 18 años y personas pensionadas, salvo las excepciones que fija la ley (Ley 19.728, art. 2). Lo administra la **AFC Chile (Administradora de Fondos de Cesantía)** y cubre dos fondos:
 
 - **Cuenta Individual de Cesantía (CIC):** dinero que solo es tuyo. Se financia con el **0,6 % de tu sueldo imponible** (aporte trabajador) más **2,4 % adicional del empleador** si tienes contrato indefinido. Total: 3 % mensual sobre imponible. En casa particular no hay aporte del trabajador: el 3 % completo lo paga el empleador.
 - **Fondo de Cesantía Solidario (FCS):** fondo colectivo. Solo el empleador aporta (0,8 % en contrato indefinido). Puede complementar tu CIC si cumples criterios de acceso.
@@ -217,12 +217,12 @@ Antes de diseñar cualquier presupuesto, tienes que saber exactamente cuánto ll
 
 Con un contrato indefinido, los descuentos legales típicos son:
 
-| Descuento                       | % sobre imponible           |
-| ------------------------------- | --------------------------- |
-| AFP (ahorro previsional)        | 10,5 %                      |
-| Salud (Fonasa)                  | 7,0 %                       |
-| Seguro de cesantía (trabajador) | 0,6 % (0 % casa particular) |
-| **Total descuentos legales**    | **~18,1 %**                 |
+| Descuento                       | % sobre imponible                       |
+| ------------------------------- | --------------------------------------- |
+| AFP (ahorro previsional)        | 10,5 %                                  |
+| Salud (Fonasa)                  | 7,0 %                                   |
+| Seguro de cesantía (trabajador) | 0,6 % (0 % casa particular)             |
+| **Total descuentos legales**    | **~18,1 %** (17,5 % en casa particular) |
 
 Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
 

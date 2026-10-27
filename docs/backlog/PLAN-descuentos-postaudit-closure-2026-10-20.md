@@ -143,3 +143,19 @@ se reconstruyeron; ninguna imagen se regeneró.
 
 Verificación: 2004 tests, `astro check` 0 errores, `check:frontmatter`,
 `check:editorial` estricto, `check:hero-prompts`, `check:docs`, prettier.
+
+### Tercera ronda de remediación (2026-10-27, tras el delta R2)
+
+El delta R2 cerró D12 y D19. D11, D9 y D10 quedaron abiertos por completitud.
+
+| ID | Cambio |
+|---|---|
+| D11 | El tercer supuesto del art. 57 recupera sus dos límites: la remuneración la adeuda **el trabajador** y las personas estuvieron a **su servicio en calidad de trabajador** |
+| D9 | `primer-empleo` deja de decir "cuota sindical (si estás afiliado)" y explicita los supuestos de los arts. 322–323; el cuerpo añade que el acuerdo de extensión debe fijarse con criterios objetivos, generales y no arbitrarios |
+| D10 | Barrido completo de la regla del 0,6%: `primer-empleo` (total de la tabla reconciliado y exclusión legal del art. 2), `sueldo-imponible` (fórmula y ejemplo), `como-calcular-sueldo-liquido` (tabla y ejemplo), `seguro-de-cesantia` (FAQ de casa particular), el post CIC/FCS, los glosarios `sueldo-bruto`, `fondo-solidario`, `afc`, y la calculadora de sueldo líquido (FAQ fuente que alimenta `CalculatorJsonLd`, FAQ visual, explicación y nota metodológica) |
+
+Los seis briefs de portada afectados se revalidaron y los prompts se
+reconstruyeron; ninguna imagen se regeneró.
+
+Verificación: 2004 tests, `astro check` 0 errores, `check:hero-prompts`,
+`check:frontmatter`, `check:editorial`, `check:docs`.

@@ -67,7 +67,7 @@ El error más común es calcular la cobertura esperada usando las tablas del FCS
 
 ## Cómo se financia cada uno
 
-Con contrato **indefinido**: el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al [Fondo Solidario](/glosario/fondo-solidario/). En total, 3% mensual sobre tu imponible.
+Con contrato **indefinido**: el 0,6% que te descuentan del sueldo va a tu CIC (en casa particular no se descuenta ese 0,6%: el 3% lo paga el empleador). El empleador pone 1,6% también a la CIC y el 0,8% restante al [Fondo Solidario](/glosario/fondo-solidario/). En total, 3% mensual sobre tu imponible.
 
 Con contrato a **plazo fijo u obra**: el trabajador no aporta nada. El empleador pone 2,8% a tu CIC y 0,2% al FCS. El 3% completo es cargo del empleador.
 

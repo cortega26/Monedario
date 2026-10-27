@@ -97,7 +97,7 @@ const sueldoLiquidoFaqs = [
   {
     question: "¿El seguro de cesantía se descuenta en todos los contratos?",
     answer:
-      "Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador paga el 3% completo. En ambos casos acumulas saldo en tu Cuenta Individual de Cesantía.",
+      "Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, y también en casa particular, el trabajador no aporta nada — el empleador paga el 3% completo. En todos los casos acumulas saldo en tu Cuenta Individual de Cesantía.",
   },
   {
     question: "¿Desde qué sueldo pago impuesto de segunda categoría?",
@@ -712,8 +712,8 @@ const calculatorNextStepItems = [
         </li>
         <li>
           <strong>Seguro de cesantía (0.6%):</strong> Fondo para periodos de
-          desempleo. En contrato a plazo fijo u obra, normalmente el aporte del
-          trabajador es 0%.
+          desempleo. En contrato a plazo fijo u obra, y en casa particular, el
+          aporte del trabajador es 0%.
         </li>
         <li>
           <strong>Impuesto de segunda categoría:</strong> Solo aplica si tu
@@ -839,9 +839,9 @@ const calculatorNextStepItems = [
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a
-            plazo fijo u obra, el trabajador no aporta nada — el empleador paga
-            el 3% completo. En ambos casos acumulas saldo en tu Cuenta
-            Individual de Cesantía.
+            plazo fijo u obra, y también en casa particular, el trabajador no
+            aporta nada — el empleador paga el 3% completo. En todos los casos
+            acumulas saldo en tu Cuenta Individual de Cesantía.
           </div>
         </details>
 
@@ -1022,7 +1022,7 @@ const calculatorNextStepItems = [
     />
     <MethodologyBlock
       example={netSalaryWorkedExample.example}
-      notes="Esta calculadora aplica las tasas de cotización previsional vigentes en Chile: AFP (tasa total según administradora, que incluye 10% fondo personal + comisión), salud (7% Fonasa o cotización diferenciada Isapre), seguro de cesantía (0.6% contrato indefinido, 3% plazo fijo) e impuesto de segunda categoría por tramos UTM según tabla del SII. El sueldo mínimo legal se usa solo como referencia de validación."
+      notes="Esta calculadora aplica las tasas de cotización previsional vigentes en Chile: AFP (tasa total según administradora, que incluye 10% fondo personal + comisión), salud (7% Fonasa o cotización diferenciada Isapre), seguro de cesantía (0.6% contrato indefinido; 0% en plazo fijo, obra y casa particular, donde el 3% es del empleador) e impuesto de segunda categoría por tramos UTM según tabla del SII. El sueldo mínimo legal se usa solo como referencia de validación."
       sources={[
         {
           name: "Superintendencia de Pensiones — Comisiones AFP vigentes",

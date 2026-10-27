@@ -216,7 +216,7 @@ El seguro se activa por cada relación laboral en la que estés afiliado. Si per
 <details>
 <summary>¿Puedo cobrar el seguro si soy trabajador de casa particular?</summary>
 
-Sí. Desde el 1 de octubre de 2020 las trabajadoras y trabajadores de casa particular son afiliados obligatorios al Seguro de Cesantía. Las reglas son las mismas que para contrato indefinido.
+Sí. Desde el 1 de octubre de 2020 las trabajadoras y trabajadores de casa particular son afiliados obligatorios al Seguro de Cesantía. Para cobrar, las reglas de acceso y beneficios son las mismas que para contrato indefinido. En el aporte hay una diferencia: tú no pagas el 0,6%; el 3% completo lo paga el empleador.
 
 </details>
 

@@ -18,7 +18,7 @@ Fue creada por el Estado chileno con la Ley Nº 19.728 promulgada en mayo del a�
 ## Cuentas Administradas por la AFC
 
 1. **Cuenta Individual de Cesantía (CIC):** Cuenta personal del trabajador. Cada mes de su contrato, se deposita dinero (como porción de su imponibilidad) con costo compartido:
-   - Para contratos indefinidos, el empleador financia el 2.4% y el trabajador aporta 0.6% de su líquido.
+   - Para contratos indefinidos, el empleador financia el 2.4% y el trabajador aporta 0.6% de su líquido. En casa particular el trabajador no aporta ese 0.6%: el 3% es del empleador.
    - En contratos a plazo fijo el costo del mes, 3% va solidariamente a cargo solo del empleador.
 
 2. **Fondo de Cesantía Solidario (FCS):** Es un pozo de dinero gigante administrado por la AFC financiado parcialmente con retenciones compartidas mensuales de parte de los empleadores formales de todo Chile más financiamiento base transferido por el Fisco (Estado de Chile). Está creado como red final y permanente: si se acaba íntegramente el saldo individual de tu propia CIC (ejemplo: largo periodo cesante o fondos nulos), puedes recurrir y pedir por un par de meses sueldos compensatorios "regalados" y tomados desde este gran FCS nacional, previa verificación que fuiste despedido "por necesidades de la empresa" u otra causal no reprochable, acreditando en la AFC de que "buscas trabajo" con regularidad a través del BNE (Bolsa Nacional de Empleo).

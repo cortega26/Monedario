@@ -211,13 +211,13 @@
       "targetImagePath": "/images/hero/como-calcular-sueldo-liquido.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "c582a6628232c3b0ff0f9bdac06c3f9117cc43f41c7a8a6e8eefe82ccdfe219a",
-      "briefHash": "747df5eaa88d25ab2a2ec435ddee3da60d92028677caa64b9c7af30001ce224e",
+      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
+      "briefHash": "70d2a3cc68b4a85753bf21b1bf77cfd0d15f31f0a3df539049b92f4848784bb5",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-20",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -811,13 +811,13 @@
       "targetImagePath": "/images/hero/descuentos-de-sueldo.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6b893fd3c3df2387d94e0790f9974b03f0c241085314273aa89a9d49c934dc4e",
-      "briefHash": "61186cabefe6b9ecc874c813438d7c7e5d7af4a4590f246a802cfd36fb40b123",
+      "sourceContentHash": "f1f3f8a10be847cf4eb0a7ea593a24f9f1b5666d91f5a3b48e9fe0357409fa88",
+      "briefHash": "514ff83e0a9f1a539069150a7684a8a7441cf89b68c4b90a84cbb7a520aed77d",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1963,13 +1963,13 @@
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "fd6e0968f001ba970807be9fed8741447dcf138cdebbe241340db818e7de7bcd",
-      "briefHash": "f0a2789032eb4621cfd4ad5790b03f359fb9a725794085cce6e3564e8665972d",
+      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
+      "briefHash": "173d5692071ff031709a461889f74f8382e55004aaee95ec642a8404b9fe1f36",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -2413,13 +2413,13 @@
       "targetImagePath": "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "f50f1436d4af025f4d34a0b4e6c923e11e67cd7c5b815334d0280a9dc3d73869",
-      "briefHash": "ac70548de1f03af558f35eb7c95539fa6a3efa9a3c420b86569ca28313726dea",
+      "sourceContentHash": "3ba2dfcc2e27d84e3aa2112f80a7bdb9ce4af978db3245da2a7366cdd1970b82",
+      "briefHash": "ea096c850c03ba2773eadafcd39bd0385b7da2d39e37825a65cf7e866ed366c4",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-10",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "C",
       "promptTrack": "C",
@@ -2463,13 +2463,13 @@
       "targetImagePath": "/images/hero/seguro-de-cesantia.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "dea935326fb33fe846bcedf3f6c6057524d613708e777395cf0fa9b3743460e7",
-      "briefHash": "9473aa85047efdf6b3881451d76b12f14e840bf473fba8779f1ddbe34a0f8df3",
+      "sourceContentHash": "cfa3f21b3ae450d2a0d32f6bc72bd5da86943c6299441b0479a10018452f9bf0",
+      "briefHash": "84799adfe9d5f8a937da80e6d31101593218fe5e699cb427007f4fdd09fd56a1",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -2513,13 +2513,13 @@
       "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "0e81df9741cbb06099dfbb7a90a82634a85d76184c648cb978250b6c40ca85d2",
-      "briefHash": "7b1aebbd265160d6b860dbac141fe8004765893ec4205c003a190680ca4f52cb",
+      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
+      "briefHash": "0018b2d71735ce873f91fa9244ba11dfa6abf41ea87c981fc05fdf72e6085e59",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",
