@@ -2267,7 +2267,8 @@
         "evidence/12-compliance-local-surfaces-2026-10-27.txt",
         "evidence/13-compliance-reproducibility-2026-10-27.txt"
       ],
-      "status": "open"
+      "status": "resolved",
+      "resolution": "Resuelto por #743 el 2026-10-27: ArticleJsonLd dejó de derivar lastReviewed de reviewPolicy.computedAt y dejó de emitir reviewedBy como Person para la firma del equipo. Ahora lastReviewed/reviewedBy solo se publican si existe reviewPolicy.reviewedAt, y author se tipa Organization para 'Equipo Monedario'. Verificado en el build (dist/posts/descuentos-de-sueldo: author Organization, sin lastReviewed) y en el sitio publicado tras el despliegue. El mapeo vive en src/utils/articleStructuredData.ts con 8 pruebas. humanSignoff sigue null: lo completa el owner."
     },
     {
       "id": "D19",
