@@ -179,3 +179,16 @@ de contenido conservando el historial. Las imágenes no se regeneraron.
 Verificación: 2007 tests, `astro check` 0 errores, `check:image-curation`,
 `check:hero-prompts`, `check:hero-images`, `check:image-delivery`,
 `check:frontmatter`, `check:editorial`, `check:docs`, `astro build` 334 páginas.
+
+### Waiver del owner y estado final de la auditoría (2026-10-27)
+
+R6 emitió **PASS para D10** en el alcance delimitado sobre `332edf28`. El
+veredicto global del artefacto sigue `CONDITIONAL` porque conserva 10 defectos
+de producto abiertos en otras páginas (causa 2) y D18 (firma).
+
+El owner aprobó publicar con un waiver explícito, registrado en
+`docs/editorial/audits/descuentos-de-sueldo-20261020/13-owner-waiver-2026-10-27.md`,
+que enumera los 10 defectos diferidos por ID, su destino y las condiciones.
+
+`humanSignoff` sigue `null` y lo completa el owner. D18 se cierra en ese mismo
+commit, moviendo `computedAt`, `updatedDate` y `validAsOf` a la fecha de firma.
