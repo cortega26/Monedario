@@ -14,6 +14,7 @@ import { serializeJsonLd } from "@/utils/serializeJsonLd";
  */
 import type { CollectionEntry } from "astro:content";
 import { SITE } from "@/config";
+import { buildAuthorEntity, buildReview } from "@/utils/articleStructuredData";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -27,6 +28,8 @@ const { post, canonicalUrl, ogImageUrl, readingTime } = Astro.props;
 const readingMinutes = readingTime ? parseInt(readingTime, 10) : NaN;
 const { title, description, pubDate, updatedDate, author, reviewPolicy } =
   post.data;
+
+const reviewFields = buildReview(reviewPolicy);
 
 const AUTHOR_URL = new URL("/autor/", Astro.site ?? Astro.url.origin).href;
 const AUTHOR_IMAGE_URL = new URL(
@@ -52,24 +55,16 @@ const articleSchema = {
     : {}),
   datePublished: pubDate?.toISOString(),
   ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
-  ...(reviewPolicy?.computedAt
-    ? {
-        lastReviewed: new Date(reviewPolicy.computedAt).toISOString(),
-        reviewedBy: {
-          "@type": "Person",
-          name: author ?? SITE.authorFullName,
-          url: AUTHOR_URL,
-        },
-      }
-    : {}),
+  // lastReviewed/reviewedBy solo cuando hay una revisión humana registrada.
+  // Derivarlo de reviewPolicy.computedAt publicaba una afirmación falsa (D18).
+  ...reviewFields,
   inLanguage: "es-CL",
   author: {
-    "@type": "Person",
     "@id": AUTHOR_URL,
-    name: author ?? SITE.authorFullName,
-    url: AUTHOR_URL,
-    image: AUTHOR_IMAGE_URL,
-    sameAs: [SITE.authorLinkedIn, SITE.profile, SITE.authorPortfolio],
+    ...buildAuthorEntity(author, {
+      authorUrl: AUTHOR_URL,
+      imageUrl: AUTHOR_IMAGE_URL,
+    }),
   },
   publisher: {
     "@type": "Organization",

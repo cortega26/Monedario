@@ -160,6 +160,11 @@ const blog = defineCollection({
             dataTriggers: z.array(z.string()).default([]),
             derivationFactors: z.array(z.string()).default([]),
             computedAt: z.string(),
+            // Revisión humana efectiva. Solo con reviewedAt se publica
+            // lastReviewed/reviewedBy en JSON-LD (D18). computedAt es la fecha
+            // en que se calculó la política, no una revisión.
+            reviewedAt: z.string().optional(),
+            reviewedBy: z.string().optional(),
             _manual: z.boolean().optional(),
           })
           .optional(),
