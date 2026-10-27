@@ -1,0 +1,41 @@
+DELTA RE-AUDIT — EVIDENCIA DE SUPERFICIES LOCALES
+Checkout: /tmp/opencode/wt-audit-descuentos
+HEAD auditado: 1bcbe16c01eb37936ba48b64dc499a5b4bc38787 (detached, intencional).
+Parentes inmediatos: remediación 0114d705cddd530dfe461fd0898cdd7cfda5cc99; merge de main 3fc293ede140aaba941f5018d76dbd06f418107f.
+Lectura de fuente literal con `nl -ba`; búsquedas con `rg`. No se ejecutó la suite de tests ni un build.
+
+[D9] Sindical — cuerpo y copias
+- `src/data/blog/descuentos-de-sueldo.md:112` incorpora correctamente el no afiliado que acepta extensión y el cambio/desafiliación mientras siga vigente el instrumento; el texto de los arts. 322–323 está corroborado en evidence/15 [S1]. No inventa una cuota para quien no acepta extensión ni para un exafiliado fuera de la vigencia.
+- La FAQ del mismo artículo (`:195–196`) solo contesta sobre afiliados y requerimiento sindical; `src/data/blog/primer-empleo-chile-guia-completa.md:112` también limita la referencia a “si estás afiliado”. Esas copias aún no explican Arts. 322–323.
+
+[D10] AFC — casa particular, exclusiones y contribución
+- `descuentos-de-sueldo.md:108` identifica la excepción de casa particular al 0,6%, asigna el 3% a cargo del empleador y enumera aprendiz, menor de 18 y pensionado con excepciones; `primer-empleo-chile-guia-completa.md:46` incorpora la excepción de casa particular en la FAQ.
+- Permanecen variantes incompletas o erróneas: la tabla de `descuentos-de-sueldo.md:156,173` da 0,6% al trabajador sin excepción doméstica; `primer-empleo-chile-guia-completa.md:110,191,224` generaliza el 0,6%; `liquidacion-de-sueldo.md:105` lo atribuye a todo contrato indefinido sin excepción doméstica; `seguro-de-cesantia.md:77` afirma explícitamente casa particular 0,6% trabajador + 2,4% empleador, contradiciendo Ley 19.728 art. 5. `sueldo-imponible-chile.md:96,109,156` presenta 0,6% como descuento del trabajador sin las excepciones.
+- La explicación de `src/data/laws/ley-19728-seguro-cesantia.md:39–41` sí da 0% trabajador y 3% empleador a casa particular. La referencia oficial de art. 2 en el artículo principal no omite aprendiz, menor de 18 ni pensionado y no atribuye las categorías adicionales de la FAQ AFC al texto legal.
+- La página `src/pages/calculadoras/seguro-cesantia.astro:347–358` muestra el reparto estándar del indefinido (0,6% trabajador, 1,6% CIC y 0,8% FCS) sin exponer la variante doméstica; el estimador de cobertura no ofrece esa selección en el resumen inspeccionado.
+- El motor relacionado también carece del tipo de trabajador doméstico: `src/application/use-cases/CalculateMonthlyPayrollBase.ts:3,92–110` solo acepta `indefinido | plazo-fijo` y asigna 0,6% a todo `indefinido`; `src/pages/calculadoras/sueldo-liquido.astro:98–100,259,560–568,822–831` ofrece contrato, pero no excepción doméstica. Un caso indefinido de casa particular no se puede representar sin descontarle el 0,6%.
+- `seguro-cesantia-cuenta-individual-vs-fondo-solidario.md:70` explica el reparto del indefinido de forma genérica; no indica que cubra a casa particular. Es incompleto para ese caso, aunque no tiene la fila explícita errónea de `seguro-de-cesantia.md:77`.
+
+[D11] Art. 57 — cuerpo
+- `descuentos-de-sueldo.md:136` añade el exceso sobre 56 UF, límite de hasta 50% y mención a embargo judicial. La expresión “en supuestos como” deja la lista abierta; además no restringe defraudación/hurto/robo a hechos del trabajador contra el empleador en ejercicio del cargo y omite remuneraciones debidas a quienes trabajaron para él. Compare evidence/15 [S1].
+
+[D12] Atrasos — cuerpo, FAQ y salida LLM
+- `descuentos-de-sueldo.md:142` incorpora la verificación al fin de semana por causa imputable, reconoce las 45 horas históricas del ORD. 1578 y señala 42 horas desde 2026-04-26.
+- FAQ `descuentos-de-sueldo.md:192–193` aún permite leer el descuento como inmediato si el atraso es imputable; no repite la verificación semanal ni el marco vigente de 42 horas.
+
+[D15] Art. 58 — fuente/inciso y literalidad
+- `descuentos-de-sueldo.md:134` reemplaza la fuente anterior por BCN, Código del Trabajo, art. 58, inciso 5; la clasificación reconstruida y fuente se guardan en evidence/15 [S1]. El inciso es correcto. La cita pone “entrega de medicina”; BCN dice “entrega de medicinas”. Esa diferencia literal se registra como D19, separada de la fuente errónea ya resuelta.
+
+[D17] 7% y tope 90 UF
+- `descuentos-de-sueldo.md:47–48,106` cita e incorpora Superintendencia de Salud para la tasa 7%; `:46,106,163` conserva la fuente Superintendencia de Pensiones para 90 UF/135,2 UF. evidence/15 [S7,S12] confirma la atribución.
+
+Rastreo de superficies restantes (fuente, no build):
+- Metadatos/frontmatter: `articleLead.officialSources` de la pieza incluye Superintendencia de Salud y BCN arts. 57–58 (`descuentos-de-sueldo.md:30–50`).
+- Datos estructurados: el artículo no declara `faqs:` frontmatter; sus preguntas son párrafos en negrita, no títulos `###`. `ArticleJsonLd.astro:94–154` extrae FAQPage solo de preguntas H3 o faqs frontmatter. Por eso no se vio una copia JSON-LD de esas FAQ en fuente; no se inspeccionó salida de build.
+- Catálogo/LLM: búsqueda literal en `src/config/calculatorPortfolio.ts` no encontró las frases/tasas específicas de Art. 58, cuota sindical ni AFC. `src/pages/llms.txt.ts:56` apunta al markdown completo y `src/pages/llms-full.txt.ts:56` transforma el cuerpo entero; por ello los remanentes del cuerpo/FAQ se copian a llms-full.
+- Contenido relacionado: escaneo del contenido confirmó las rutas específicas recogidas bajo D9/D10. `codigo-del-trabajo.md:62` resume deducciones autorizadas y no afirma que un embargo judicial carezca de base legal.
+- Tests estáticos: `tests/static-analysis/descuentos-clasificacion-guard.test.ts` contiene ocho tests de frases generales, topes, clasificación y archivos relacionados. No comprueba Arts. 322–323, la excepción de casa particular ni las exclusiones de Art. 2, los supuestos completos del Art. 57, el requisito semanal/42h, ni fuente/quote de BCN para Art. 58. Se leyó el archivo; no se ejecutó.
+
+Comparación usada para separar delta de remediación: `git diff 76e8b02f8c91e31138b1cfa555c3a62b6423cb15..0114d705cddd530dfe461fd0898cdd7cfda5cc99 -- src/data/blog/descuentos-de-sueldo.md src/data/blog/primer-empleo-chile-guia-completa.md`. El comando `git diff --name-only 0114d705cddd530dfe461fd0898cdd7cfda5cc99..1bcbe16c01eb37936ba48b64dc499a5b4bc38787 -- src/data/blog/como-calcular-sueldo-liquido.md src/data/blog/liquidacion-de-sueldo.md src/components/ArticleJsonLd.astro src/config/calculatorPortfolio.ts src/pages/llms.txt.ts src/pages/llms-full.txt.ts tests/static-analysis/descuentos-clasificacion-guard.test.ts src/data/laws/codigo-del-trabajo.md` no devolvió cambios en esas superficies diferidas. Comparación Python del objeto `descuentos-sueldo-clasificacion-bases-atrasos` en `src/data/correcciones.json` frente al SHA de remediación: igual.
+
+CodeGraph, tras autorización explícita: `codegraph init -i` indexó 946 archivos (11.044 nodos y 27.942 aristas). `codegraph_explore` consultó `extractFaqItems`, `buildLlmsFullTxt`, `calculateMonthlyPayrollBase`, `resolveWorkerUnemploymentInsuranceRatePercent` y el guard estático; confirmó el tipo de contrato disponible, el 0,6% para todo indefinido, el fallback FAQ frontmatter, la concatenación del cuerpo a llms-full, callers de nómina/AFP y ausencia de tests encontrados a tres saltos de las funciones de FAQ/LLM. No se usó para cambiar archivos de producto.

@@ -35,9 +35,9 @@
     "dispositionFile": "docs/backlog/PLAN-descuentos-postaudit-closure-2026-10-20.md"
   },
   "auditor": {
-    "role": "ComplianceAgent (adversarial)",
+    "role": "ComplianceAgent (adversarial) — delta re-audit",
     "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
-    "session": "codex-20261027-compliance",
+    "session": "codex-20261027-delta-reaudit",
     "date": "2026-10-27"
   },
   "method": {
@@ -99,6 +99,83 @@
         "Source-level structured-data inspection only; no generated build output was inspected.",
         "The current checkout is one commit behind its remote ref; no pull or rebase was performed.",
         "No statement is made about external availability of repository or audit files."
+      ]
+    },
+    "deltaReaudit": {
+      "targetSha": "1bcbe16c01eb37936ba48b64dc499a5b4bc38787",
+      "targetWorktree": "/tmp/opencode/wt-audit-descuentos",
+      "branch": "detached by design",
+      "remediationCommit": "0114d705cddd530dfe461fd0898cdd7cfda5cc99",
+      "mergeParent": "3fc293ede140aaba941f5018d76dbd06f418107f",
+      "date": "2026-10-27",
+      "timezone": "America/Santiago",
+      "environment": {
+        "os": "Linux 7.0.0-38-generic x86_64",
+        "python": "3.13.12",
+        "node": "v24.19.0",
+        "pnpm": "11.7.0"
+      },
+      "independence": "The remediation model was declared as DeepSeek V4.1 Flash. Current auditor model is GPT-6, a different model family; no separate runtime build identifier is exposed.",
+      "scope": [
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "deferredCheckedWithoutReopening": [
+        "D1-D8",
+        "D13",
+        "D14",
+        "D16 cause 2",
+        "D18 pending human signature"
+      ],
+      "surfaces": [
+        "article body",
+        "frontmatter and officialSources",
+        "structured data source",
+        "catalog/LLM",
+        "related content and calculator source",
+        "static guard source"
+      ],
+      "edgeCases": [
+        "non-affiliate accepting extension",
+        "former affiliate under an in-force instrument",
+        "domestic worker",
+        "pensioner and statutory exceptions",
+        "apprentice",
+        "multiple jobs and per-employer records",
+        "court-ordered embargo",
+        "56 UF threshold",
+        "15/30/45% limits",
+        "CCAF credit outside the 45% facultative cap",
+        "45-hour ORD. 1578 context versus 42 hours from 2026-04-26"
+      ],
+      "commands": [
+        "cd /tmp/opencode/wt-audit-descuentos",
+        "git rev-parse HEAD",
+        "git status --short --branch",
+        "git log -2 --oneline --parents",
+        "git diff 76e8b02f8c91e31138b1cfa555c3a62b6423cb15..0114d705cddd530dfe461fd0898cdd7cfda5cc99 -- src/data/blog/descuentos-de-sueldo.md src/data/blog/primer-empleo-chile-guia-completa.md",
+        "nl -ba on the article, related pages, ArticleJsonLd, LLM generators, use-case and static guard listed in evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt",
+        "Open each official URL listed in evidence/15-delta-reaudit-primary-sources-2026-10-27.txt directly; retrieved 2026-10-27",
+        "python3 -m json.tool docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
+        "git diff --check",
+        "git diff --name-only 0114d705cddd530dfe461fd0898cdd7cfda5cc99..1bcbe16c01eb37936ba48b64dc499a5b4bc38787 -- src/data/blog/como-calcular-sueldo-liquido.md src/data/blog/liquidacion-de-sueldo.md src/components/ArticleJsonLd.astro src/config/calculatorPortfolio.ts src/pages/llms.txt.ts src/pages/llms-full.txt.ts tests/static-analysis/descuentos-clasificacion-guard.test.ts src/data/laws/codigo-del-trabajo.md",
+        "rg -n -i '0,6\\s?%|0\\.6\\s?%|cuota sindical|cuotas sindicales|extensión de beneficios|exafiliad|56 UF|50% de las remuneraciones|ORD\\. N°1578|término de la respectiva semana|42 horas desde el 26|90 UF' src/data/blog src/data/laws src/pages src/components src/config tests/static-analysis",
+        "codegraph init -i (explicit user authorization; indexed 946 files)",
+        "codegraph_explore extractFaqItems buildLlmsFullTxt calculateMonthlyPayrollBase resolveWorkerUnemploymentInsuranceRatePercent tests/static-analysis/descuentos-clasificacion-guard.test.ts"
+      ],
+      "testExecution": "No tests or build run. Static guard source was inspected for coverage; it was not executed.",
+      "limitations": [
+        "Structured data was reviewed at source level; generated build output and public runtime were not inspected.",
+        "The audit reports source and checkout state only; it makes no publication-readiness statement.",
+        "CodeGraph was initialized after explicit user authorization. Query was read-only; no build output or public runtime was inspected."
+      ],
+      "evidence": [
+        "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/15-delta-reaudit-primary-sources-2026-10-27.txt",
+        "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
       ]
     }
   },
@@ -728,6 +805,355 @@
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S6, S12]"
       ]
+    },
+    {
+      "id": "C34",
+      "vector": "DELTA-D9",
+      "surface": "product",
+      "claim": "El art. 322 permite extensión general o parcial a no afiliados solo mediante acuerdo; para acceder al beneficio, aceptan la extensión y se obligan a pagar todo o parte de la cuota según ese acuerdo, con criterios objetivos, generales y no arbitrarios.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "Pago limitado al monto acordado para quienes aceptaron; no nace obligación de pagar por rechazar extensión.",
+      "engineValue": "La frase principal de descuentos-de-sueldo.md:112 describe el pago ligado a aceptación y acuerdo; FAQ del mismo artículo y primer-empleo siguen abreviadas a afiliados.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      ],
+      "defect": "D9"
+    },
+    {
+      "id": "C35",
+      "vector": "DELTA-D9",
+      "surface": "product",
+      "claim": "El art. 323 mantiene al trabajador bajo el instrumento colectivo vigente del sindicato al que pertenecía pese a cambiar o desafiliarse, y exige la cuota ordinaria completa durante toda esa vigencia.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "No se extiende la obligación más allá de la vigencia del instrumento descrito por la norma.",
+      "engineValue": "El cuerpo principal de descuentos-de-sueldo.md:112 lo recoge; las FAQ breves no reproducen el supuesto.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      ],
+      "defect": "D9"
+    },
+    {
+      "id": "C36",
+      "vector": "DELTA-D9",
+      "surface": "product",
+      "claim": "Art. 262 y DT ORD. 443/2026 apoyan el descuento de cuotas sindicales tras requerimiento vigente y que el empleador no califique la afiliación; ORD. 443 trata afiliados y no se usa para extender la obligación a otros casos.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S3",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S3"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S3; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "Cita limitada al supuesto que aborda la fuente administrativa.",
+      "engineValue": "El artículo restringe la cita de ORD. 4184/70 al requerimiento por la organización y usa ORD. 443 sobre renuncia/requerimiento vigente.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S3"
+      ]
+    },
+    {
+      "id": "C37",
+      "vector": "DELTA-D10",
+      "surface": "product",
+      "claim": "El art. 2 de la Ley 19.728 excluye aprendices, menores de 18 hasta cumplirlos y pensionados, salvo invalidez parcial o trabajador de casa particular.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4,S6",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      },
+      "independentValue": "El artículo 2 no enumera como exclusiones esas otras categorías administrativas que AFC menciona en su FAQ.",
+      "engineValue": "El párrafo AFC principal de descuentos-de-sueldo.md:108 enumera estas categorías y excepciones; otros resúmenes mantienen una tasa general sin todas las condiciones.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S6",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C38",
+      "vector": "DELTA-D10",
+      "surface": "product",
+      "claim": "El art. 5 deja el 0,6% a cargo del trabajador solo para contrato indefinido y exceptúa casa particular; a casa particular asigna 3% íntegro al empleador cualquiera sea la duración.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4,S5",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      },
+      "independentValue": "La atribución correcta del 3% doméstico es al empleador; el motor y las copias cortas no modelan la excepción.",
+      "engineValue": "El párrafo principal ya recoge la excepción, pero persisten afirmaciones/tablas sin ella y una tabla relacionada que cobra al trabajador de casa particular; el motor solo distingue indefinite/fixed-term.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      ],
+      "defect": "D10"
+    },
+    {
+      "id": "C39",
+      "vector": "DELTA-D10",
+      "surface": "product",
+      "claim": "La Ley 19.728 art. 7 ordena cotizar por cada remuneración, cada una hasta su tope, y mantener registros separados por empleador.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4-S5",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      },
+      "independentValue": "Cotización/tope aplican por remuneración; los registros se separan por empleador.",
+      "engineValue": "Descuentos-de-sueldo.md:108 limita los 11 años por relación y no afirma un tope agregado entre empleadores.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      ]
+    },
+    {
+      "id": "C40",
+      "vector": "DELTA-D11",
+      "surface": "product",
+      "claim": "El art. 57 permite embargar en general el exceso sobre 56 UF; hasta 50% aplica solo a alimentos legales decretados judicialmente, defraudación/hurto/robo del trabajador contra su empleador en ejercicio del cargo, o remuneraciones adeudadas a trabajadores que le prestaron servicios.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "La lista legal de supuestos del 50% es delimitada; “como” la deja abierta.",
+      "engineValue": "Descuentos-de-sueldo.md:136 usa “supuestos como”, omite la tercera categoría y no limita los delitos a trabajador/empleador/ejercicio del cargo.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      ],
+      "defect": "D11"
+    },
+    {
+      "id": "C41",
+      "vector": "DELTA-D12",
+      "surface": "product",
+      "claim": "ORD. 1578 (27-03-2018) dice que incumplir la jornada diaria no autoriza descuento inmediato: debe verificarse al término de la semana un incumplimiento imputable. Ese dictamen cita el límite histórico de 45 horas.",
+      "source": {
+        "url": "https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
+      },
+      "independentValue": "La FAQ breve mantiene riesgo de lectura de descuento inmediato.",
+      "engineValue": "El cuerpo de descuentos-de-sueldo.md:142 incorpora verificación semanal, pero la FAQ :192–193 conserva una versión abreviada que presenta el descuento como permitido cuando el atraso es imputable.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
+      ],
+      "defect": "D12"
+    },
+    {
+      "id": "C42",
+      "vector": "DELTA-D12",
+      "surface": "product",
+      "claim": "La DT informa que la jornada ordinaria pasa a 42 horas el 26-04-2026 y a 40 horas el 26-04-2028.",
+      "source": {
+        "url": "https://www.dt.gob.cl/portal/1626/w3-propertyname-2556.html",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8-S9",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S9"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S9; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
+      },
+      "independentValue": "Las fechas y cifras son correctas en el párrafo principal.",
+      "engineValue": "El párrafo principal de descuentos-de-sueldo.md:142 lo atribuye expresamente; la FAQ corta no lo repite.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S9",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
+      ]
+    },
+    {
+      "id": "C43",
+      "vector": "DELTA-D15",
+      "surface": "product",
+      "claim": "La prohibición citada está en el art. 58, inciso 5, del Código del Trabajo; la fuente BCN y el inciso citado son correctos. La diferencia de literalidad de una palabra se registra por separado bajo D19.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15"
+      },
+      "independentValue": "Fuente/inciso correctos; diferencia literal de una palabra registrada bajo D19.",
+      "engineValue": "Descuentos-de-sueldo.md:134 ya enlaza BCN e indica inciso 5, pero la cita literal usa “medicina”, singular.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15"
+      ]
+    },
+    {
+      "id": "C44",
+      "vector": "DELTA-D17",
+      "surface": "product",
+      "claim": "La Superintendencia de Salud acredita directamente la tasa legal del 7%; la ficha Superintendencia de Pensiones acredita el tope 90 UF de salud y 135,2 UF de AFC para 2026.",
+      "source": {
+        "url": "https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7,S12",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S12"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S12; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D17"
+      },
+      "independentValue": "La asignación de tasa y tope está bien separada.",
+      "engineValue": "Descuentos-de-sueldo.md:47–48,106 enlaza Salud para tasa y Pensiones para tope.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S12",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D17"
+      ]
+    },
+    {
+      "id": "C45",
+      "vector": "DELTA-D17",
+      "surface": "product",
+      "claim": "El tope 90 UF está citado desde Superintendencia de Pensiones; la fuente distingue de forma expresa 135,2 UF para cesantía durante 2026.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D17"
+      },
+      "independentValue": "No se atribuye el tope 90 UF a la fuente de tasa.",
+      "engineValue": "El artículo mantiene SP para ambos topes y ahora usa Superintendencia de Salud para el 7%.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D17"
+      ]
+    },
+    {
+      "id": "C46",
+      "vector": "DELTA-ART58",
+      "surface": "product",
+      "claim": "La clasificación reconstruida es: obligatorio legal (inciso 1); pacto escrito vivienda/ahorro vivienda/educación y crédito sin interés con pago directo y límite especial 30% (inciso 2); pagos de cualquier naturaleza pactados por escrito con 15% (inciso 3); 45% conjunto según DT para deducciones facultativas de incisos 2–3; prohibiciones de especies/multas, efectos de comercio y pérdidas por terceros sin responsabilidad (párrafos siguientes).",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1,S10-S11",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1,S10-S11"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1,S10-S11; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "Los 15, 30 y 45% no se suman como 60%; el 45% conjunto rige las facultativas/permitidas, no las obligatorias según DT.",
+      "engineValue": "La pieza ordena la clasificación obligatoria/autorizada/prohibida, atribuye 15/30/45 a las categorías correctas y no suma 15%+30%; excluye cuota sindical y CCAF del tope conjunto conforme ORD. 262/4.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1,S10-S11"
+      ]
+    },
+    {
+      "id": "C47",
+      "vector": "DELTA-D19",
+      "surface": "product",
+      "claim": "La cita publicada de BCN art. 58, inciso 5, difiere en número gramatical respecto de la palabra correspondiente en la norma.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      },
+      "reproduction": {
+        "command": "Abrir la URL primaria directamente y comparar con las líneas locales referidas.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      },
+      "independentValue": "La fuente consultada usa la forma plural.",
+      "engineValue": "src/data/blog/descuentos-de-sueldo.md:134 usa forma singular dentro de comillas.",
+      "status": "DIVERGENT",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1"
+      ],
+      "defect": "D19"
+    },
+    {
+      "id": "C48",
+      "vector": "DELTA-D10",
+      "surface": "product",
+      "claim": "AFC fija el período máximo de aporte del trabajador en 11 años por relación laboral, cumplido con la cotización N°133; después continúa el 0,8% patronal al FCS mientras el contrato está vigente.",
+      "source": {
+        "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+        "quote": "Literal excerpt is indexed at evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5",
+        "retrievedAt": "2026-10-27",
+        "excerptRef": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5"
+      },
+      "reproduction": {
+        "command": "Abrir la URL AFC directamente y comparar con la explicación local.",
+        "output": "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5; local comparison: evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      },
+      "independentValue": "11 años por relación; después de #133, el empleador mantiene 0,8% al FCS mientras siga el contrato.",
+      "engineValue": "El artículo principal presenta ese límite por relación laboral.",
+      "status": "OK",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S5",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
+      ]
     }
   ],
   "defects": [
@@ -819,9 +1245,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D9",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S3]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1-S3",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D9"
       ],
-      "status": "open"
+      "status": "open",
+      "reason": "El cuerpo principal ya cubre correctamente arts. 322–323 y no crea una cuota para quien no acepta extensión ni para un exafiliado fuera de la vigencia; siguen copias abreviadas solo para afiliados en descuentos-de-sueldo.md:195–196 y primer-empleo-chile-guia-completa.md:112."
     },
     {
       "id": "D10",
@@ -831,9 +1260,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D10",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S5, S6]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S4-S7",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D10"
       ],
-      "status": "open"
+      "status": "open",
+      "reason": "La excepción y exclusiones se añadieron al cuerpo/FAQ, pero quedan tablas y superficies relacionadas que atribuyen 0,6% al trabajador sin excepción o lo atribuyen expresamente a casa particular: descuentos-de-sueldo.md:156,173; primer-empleo-chile-guia-completa.md:110,191,224; liquidacion-de-sueldo.md:105; seguro-de-cesantia.md:77; sueldo-imponible-chile.md:96,109,156. La calculadora de cobertura también omite esa variante en su explicación; el motor CalculateMonthlyPayrollBase aplica 0,6% a todo indefinido sin un tipo casa particular."
     },
     {
       "id": "D11",
@@ -843,9 +1275,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D11",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S1]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D11"
       ],
-      "status": "open"
+      "status": "open",
+      "reason": "Se agregó el umbral de 56 UF y la referencia judicial, pero “en supuestos como” deja abierta la lista; el texto omite la condición de que defraudación/hurto/robo sean del trabajador contra el empleador en ejercicio del cargo y el caso de remuneraciones adeudadas a quienes trabajaron para él."
     },
     {
       "id": "D12",
@@ -855,9 +1290,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D12",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S2]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S8-S9",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D12"
       ],
-      "status": "open"
+      "status": "open",
+      "reason": "El párrafo principal incorporó la verificación al término de la semana y el paso 45→42 horas, pero la FAQ descuentos-de-sueldo.md:192–193 aún presenta el descuento como posible cuando el atraso es imputable sin decir que no es inmediato ni repetir la verificación semanal."
     },
     {
       "id": "D13",
@@ -891,9 +1329,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D15",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S1, S11]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15"
       ],
-      "status": "open"
+      "status": "resolved",
+      "resolution": "En src/data/blog/descuentos-de-sueldo.md:134 se quitó la referencia errónea a ORD. 2453/187 y se cita directamente BCN, Código del Trabajo, art. 58, inciso 5. El inciso y el origen de la lista son correctos. La diferencia singular/plural de una palabra en la cita literal se registra separadamente como D19."
     },
     {
       "id": "D16",
@@ -914,9 +1355,12 @@
       "evidence": "evidence/14-compliance-defects-2026-10-27.txt#D17",
       "supportingEvidence": [
         "evidence/11-compliance-primary-sources-2026-10-27.txt [S7]",
-        "evidence/12-compliance-local-surfaces-2026-10-27.txt"
+        "evidence/12-compliance-local-surfaces-2026-10-27.txt",
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S7,S12",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D17"
       ],
-      "status": "open"
+      "status": "resolved",
+      "resolution": "src/data/blog/descuentos-de-sueldo.md:47–48 y :106 añaden la Superintendencia de Salud como fuente explícita del 7%; el tope de 90 UF sigue atribuido a la Superintendencia de Pensiones, cuya ficha 2026 confirma 90 UF para salud y 135,2 UF para cesantía."
     },
     {
       "id": "D18",
@@ -927,6 +1371,18 @@
       "supportingEvidence": [
         "evidence/12-compliance-local-surfaces-2026-10-27.txt",
         "evidence/13-compliance-reproducibility-2026-10-27.txt"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "D19",
+      "severity": "baja",
+      "surface": "product",
+      "description": "La cita directa del art. 58, inciso 5, en src/data/blog/descuentos-de-sueldo.md:134 usa el sustantivo sobre medicamentos en singular; la transcripción de BCN lo pone en plural. La fuente y el inciso ya son correctos (D15 resuelto), pero una palabra no reproduce literalmente la norma.",
+      "evidence": "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15",
+      "supportingEvidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt#S1",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt#D15"
       ],
       "status": "open"
     }
@@ -947,6 +1403,25 @@
       "session": "codex-20261027-compliance",
       "date": "2026-10-27",
       "verdict": "CONDITIONAL"
+    },
+    {
+      "role": "ComplianceAgent (adversarial) — delta re-audit",
+      "model": "OpenAI GPT-6 (Codex runtime; exact model ID exposed as GPT-6; no separate build/revision identifier exposed)",
+      "session": "codex-20261027-delta-reaudit",
+      "date": "2026-10-27",
+      "verdict": "CONDITIONAL",
+      "scope": [
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D15",
+        "D17"
+      ],
+      "evidence": [
+        "evidence/15-delta-reaudit-primary-sources-2026-10-27.txt",
+        "evidence/16-delta-reaudit-local-surfaces-2026-10-27.txt"
+      ]
     }
   ]
 }
