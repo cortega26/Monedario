@@ -1,6 +1,7 @@
 import type { EconomicParameters } from "@/domain/economic/EconomicParameters";
 
-export type PayrollContractType = "indefinido" | "plazo-fijo";
+export type PayrollContractType =
+  "indefinido" | "plazo-fijo" | "casa-particular";
 
 export interface MonthlyPayrollBaseInput {
   grossSalary: number;
@@ -92,6 +93,10 @@ function assertInput(input: MonthlyPayrollBaseInput): void {
 function resolveWorkerUnemploymentInsuranceRatePercent(
   contractType: PayrollContractType
 ): number {
+  // Ley 19.728, art. 5: el 0,6% es de cargo del trabajador con contrato
+  // indefinido, "con excepción de los trabajadores de casa particular". En casa
+  // particular el 3% es íntegramente del empleador, cualquiera sea la duración
+  // del contrato; por eso la persona trabajadora aporta 0%.
   return contractType === "indefinido" ? 0.6 : 0;
 }
 

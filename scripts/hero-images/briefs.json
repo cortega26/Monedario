@@ -464,7 +464,7 @@
         "No signature, handwriting, letters, numbers or pseudo-legible marks."
       ],
       "alt": "",
-      "sourceContentHash": "48e57b4bc44ac910fe9beec7cb21fb7c65e9eec38844a38c0e714fb51cdf5923",
+      "sourceContentHash": "6b893fd3c3df2387d94e0790f9974b03f0c241085314273aa89a9d49c934dc4e",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -472,7 +472,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 tras la remediación de compliance del PR #719 (D9 cuota sindical arts. 322-323, D10 excepción casa particular del 0,6% AFC, D11 embargo judicial del art. 57, D12 verificación semanal ORD. 1578, D15 cita del art. 58 al texto legal, D17 fuente de Superintendencia de Salud para el 7%). Los cambios son normativos y de fuentes; no alteran el mensaje visual de la portada (cada descuento necesita una razón verificable), por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       }
     },
     {
@@ -973,15 +973,15 @@
         "Un sello prueba exactitud"
       ],
       "alt": "",
-      "sourceContentHash": "69b6f829d422d906b9649d1b0f927d7b03784e97c43ffb513659b86bf8934e20",
+      "sourceContentHash": "2fb2e536618f01e6ed4e256c72b1d319c2adfa3cb9e57caaed915723a0e2c939",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-20",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Metadata-only revalidation for the 2026-10-19 timeliness pass: validAsOf/updatedDate and the official source link changed; the body claims, reader need and visual scene are unchanged. The existing hero image remains valid. Human editor signed the article revalidation in PR #696. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       }
     },
     {
@@ -1112,15 +1112,15 @@
         "Empleo equivale a riqueza inmediata"
       ],
       "alt": "",
-      "sourceContentHash": "843abfb5e0ca642399f2f405de39542a9725e01b43c37f5a1cb9cb5aba84b441",
+      "sourceContentHash": "fd6e0968f001ba970807be9fed8741447dcf138cdebbe241340db818e7de7bcd",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "image-edit",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-20",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Scoped preservation edit authorized for the existing illustration: extend background only; original reference retained with its content hash. No financial claim change. Revalidación 2026-10-20 tras la corrección de descuentos de sueldo (clasificación de cuota sindical y crédito de caja de compensación, regla de atrasos, bases y topes): el mensaje visual sigue vigente; no se regeneró la imagen. Es alineación visual, no una auditoría YMYL."
+        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       },
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc"
@@ -1395,15 +1395,15 @@
         "La persona está indefensa"
       ],
       "alt": "",
-      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "sourceContentHash": "dea935326fb33fe846bcedf3f6c6057524d613708e777395cf0fa9b3743460e7",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-10",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Interlink anchor update only (no claims or structure changed): the article now links to the calculator with the anchor 'simular tu seguro de cesantía'. Visual brief re-checked against the body; scene, elements and avoid-list unchanged."
+        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       }
     },
     {
@@ -1424,15 +1424,15 @@
         "No gift-box, reward or bonus pictogram; only meal and transit allowance cues."
       ],
       "alt": "",
-      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
+      "sourceContentHash": "0e81df9741cbb06099dfbb7a90a82634a85d76184c648cb978250b6c40ca85d2",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-19",
+        "reviewedAt": "2026-10-27",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
+        "method": "Revalidación 2026-10-27 tras la segunda ronda de compliance del PR #719: se propaga la excepción de trabajadores de casa particular al 0,6% del seguro de cesantía (Ley 19.728, art. 5) a tabla, artículos relacionados y calculadora, y se precisan tres hallazgos del delta (cuota sindical arts. 322-323 en FAQ, los tres supuestos del art. 57, y la verificación semanal del ORD. 1578 en FAQ). Son cambios normativos y de fuentes; el mensaje visual de la portada no cambia, por lo que no se regenera la imagen. Es alineación visual, no una auditoría YMYL."
       }
     },
     {

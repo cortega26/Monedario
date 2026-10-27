@@ -136,14 +136,17 @@ function getCommonInputs() {
       ?.value === "isapre"
       ? "isapre"
       : "fonasa";
+  const contractTypeValue = (
+    document.querySelector(
+      "input[name='tipo-contrato']:checked"
+    ) as HTMLInputElement
+  )?.value;
   const contractType =
-    (
-      document.querySelector(
-        "input[name='tipo-contrato']:checked"
-      ) as HTMLInputElement
-    )?.value === "plazo-fijo"
+    contractTypeValue === "plazo-fijo"
       ? "plazo-fijo"
-      : "indefinido";
+      : contractTypeValue === "casa-particular"
+        ? "casa-particular"
+        : "indefinido";
   const isapreAdicional =
     parseFloat(
       (document.getElementById("isapre-adicional") as HTMLInputElement).value

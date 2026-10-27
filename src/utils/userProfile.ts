@@ -6,7 +6,8 @@ const STORAGE_KEY = "monedario_profile";
 const SCHEMA_VERSION = 1 as const;
 
 export type SaludRegimen = "fonasa" | "isapre";
-export type ContratoTipo = "indefinido" | "plazo-fijo" | "obra";
+export type ContratoTipo =
+  "indefinido" | "plazo-fijo" | "obra" | "casa-particular";
 
 export interface UserProfileV1 {
   v: typeof SCHEMA_VERSION;

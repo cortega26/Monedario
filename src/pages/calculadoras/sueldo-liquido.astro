@@ -277,9 +277,22 @@ const calculatorNextStepItems = [
                 Plazo fijo / obra
               </span>
             </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="tipo-contrato"
+                value="casa-particular"
+                data-profile-bind="contratoTipo"
+                class="peer sr-only"
+              />
+              <span class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                Casa particular
+              </span>
+            </label>
           </div>
           <p class="mt-1 text-xs text-muted">
-            El descuento del trabajador por AFC cambia según este dato.
+            El descuento del trabajador por AFC cambia según este dato. En casa
+            particular no se descuenta el 0,6%: lo paga completo el empleador.
           </p>
         </div>
 

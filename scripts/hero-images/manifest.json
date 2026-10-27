@@ -558,7 +558,7 @@
     },
     {
       "slug": "descuentos-de-sueldo",
-      "sourceContentHash": "48e57b4bc44ac910fe9beec7cb21fb7c65e9eec38844a38c0e714fb51cdf5923",
+      "sourceContentHash": "6b893fd3c3df2387d94e0790f9974b03f0c241085314273aa89a9d49c934dc4e",
       "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
       "tags": [
         "sueldo",
@@ -588,7 +588,7 @@
         "Cómo leer tu liquidación con este mapa"
       ],
       "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. > **Revisión editorial 2026-10-20:** se corrigió la clasificación de la cuota sindical y del crédito social de las cajas de compensación (son descuentos obligatorios, no voluntarios), la regla sobre atrasos y las bases de cálculo, y se agregaron los topes de cada descuento. El detalle está en el . Verifica siempre la tabla del SII y los topes vigentes en el mes de tu liquidación. Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la . Si necesitas reconstruir el número completo de principio a fin, usa la . ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización mensual. El artículo 58 del Código del Trabajo dispone que el empleador \"deberá deducir de las remuneraciones l",
-      "wordCount": 3450,
+      "wordCount": 3576,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
@@ -1178,7 +1178,7 @@
     },
     {
       "slug": "liquidacion-de-sueldo",
-      "sourceContentHash": "69b6f829d422d906b9649d1b0f927d7b03784e97c43ffb513659b86bf8934e20",
+      "sourceContentHash": "2fb2e536618f01e6ed4e256c72b1d319c2adfa3cb9e57caaed915723a0e2c939",
       "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
       "tags": [
         "sueldo",
@@ -1207,7 +1207,7 @@
         "Cuándo pedir respaldo y cómo pedirlo"
       ],
       "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-10-19.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la . Para entender por qué la base imponible es la que es, lee sobre el . ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el form",
-      "wordCount": 1181,
+      "wordCount": 1186,
       "sourceFile": "liquidacion-de-sueldo.md"
     },
     {
@@ -1347,7 +1347,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
-      "sourceContentHash": "843abfb5e0ca642399f2f405de39542a9725e01b43c37f5a1cb9cb5aba84b441",
+      "sourceContentHash": "fd6e0968f001ba970807be9fed8741447dcf138cdebbe241340db818e7de7bcd",
       "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "tags": [
         "primer-empleo",
@@ -1377,7 +1377,7 @@
         "Qué es la AFP y para qué sirve"
       ],
       "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
-      "wordCount": 2108,
+      "wordCount": 2136,
       "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {
@@ -1693,7 +1693,7 @@
     },
     {
       "slug": "seguro-de-cesantia",
-      "sourceContentHash": "3050de1f9bd902550a8d5d23a8d47fda268a952540f3c117dc7c13da8be02c5a",
+      "sourceContentHash": "dea935326fb33fe846bcedf3f6c6057524d613708e777395cf0fa9b3743460e7",
       "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
       "tags": [
         "cesantia",
@@ -1723,12 +1723,12 @@
         "Si cobras por la CIC"
       ],
       "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fondo de Cesantía Solidario (FCS):** Es un fondo común financiado principalmente por los empleadores y el Estado. No es tuyo en particular, pero puedes acceder a él si cumples ciertos requisitos y tu cuenta individual no tiene saldo suficiente. Tiene montos mínimos y máximos definidos por ley. Si tu confusión principal ",
-      "wordCount": 1612,
+      "wordCount": 1637,
       "sourceFile": "seguro-de-cesantia.md"
     },
     {
       "slug": "sueldo-imponible-chile",
-      "sourceContentHash": "0f3242908f81e5c5278004a6da8efb49a450f4cf91099795375f880fe68ba537",
+      "sourceContentHash": "0e81df9741cbb06099dfbb7a90a82634a85d76184c648cb978250b6c40ca85d2",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1757,7 +1757,7 @@
         "Ejemplo numérico orientativo"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
-      "wordCount": 1243,
+      "wordCount": 1255,
       "sourceFile": "sueldo-imponible-chile.md"
     },
     {

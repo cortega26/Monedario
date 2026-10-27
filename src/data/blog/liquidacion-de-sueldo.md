@@ -102,7 +102,7 @@ Después revisa si los haberes no imponibles están correctamente separados. Si 
 
 **Salud:** el mínimo es 7% del imponible, calculado hasta el tope de 90 UF. Si estás en Fonasa, debería ser exactamente eso. Si estás en Isapre, puede ser más — pero ese exceso debería estar identificado como descuento adicional, no mezclado con el 7% base.
 
-**Cesantía:** 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo y aparece este descuento al trabajador, el cálculo está mal.
+**Cesantía:** 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo o trabajas en casa particular y aparece este descuento al trabajador, el cálculo está mal.
 
 **Impuesto único:** si aparece un monto de impuesto, verifica que corresponde al tramo que te toca según tu renta tributable del mes. La tabla vigente la publica el SII mensualmente. Un mes con bono puede empujarte a un tramo superior y generar impuesto que normalmente no tienes — eso es correcto. Lo incorrecto sería impuesto sin haber cruzado el tramo exento.
 

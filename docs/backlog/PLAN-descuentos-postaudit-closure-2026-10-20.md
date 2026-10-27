@@ -122,3 +122,24 @@ Diferido con razón escrita:
 - **D1–D8, D13, D14, D16** — permanecen abiertos y asignados a la causa 2.
 
 Alcance del delta registrado en `00-scope.json` (`delta`).
+
+### Segunda ronda de remediación (2026-10-27, tras el delta)
+
+El delta re-audit dejó D9–D12 abiertos porque la corrección se había aplicado
+solo al cuerpo y no al resto de las superficies. Segundo pase:
+
+| ID | Cambio |
+|---|---|
+| D9 | La FAQ de cuota sindical incorpora los supuestos de los arts. 322 (no afiliado que acepta la extensión) y 323 (exafiliado afecto al instrumento vigente) |
+| D10 | Excepción de casa particular propagada a: tablas de `descuentos-de-sueldo`, FAQ y cuerpo de `primer-empleo`, `liquidacion-de-sueldo`, `sueldo-imponible-chile`, la tabla de `seguro-de-cesantia` (que atribuía 0,6% + 2,4% y era incorrecta), la página `/calculadoras/seguro-cesantia/` y **el motor**: `PayrollContractType` gana `casa-particular`, el selector de la calculadora lo ofrece y una prueba fija 0% de aporte del trabajador |
+| D11 | Los tres supuestos del 50% del art. 57 quedan enumerados, con la condición "trabajador contra su empleador en el ejercicio de su cargo" y el tercer supuesto (remuneraciones adeudadas a personas al servicio del deudor) |
+| D12 | La FAQ de atrasos incorpora la verificación al término de la semana del ORD. 1578 |
+| D19 | La cita del art. 58 inc. 5 usa "medicinas" en plural, como el texto legal |
+
+D15 y D17 ya estaban resueltos en el delta.
+
+Los cinco briefs de portada afectados se revalidaron (2026-10-27) y los prompts
+se reconstruyeron; ninguna imagen se regeneró.
+
+Verificación: 2004 tests, `astro check` 0 errores, `check:frontmatter`,
+`check:editorial` estricto, `check:hero-prompts`, `check:docs`, prettier.

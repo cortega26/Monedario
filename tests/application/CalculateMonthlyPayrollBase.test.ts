@@ -59,6 +59,22 @@ describe("calculateMonthlyPayrollBase", () => {
     expect(result.effectiveRates.unemploymentInsurancePercent).toBe(0);
   });
 
+  // Ley 19.728, art. 5: el 0,6% es de cargo del trabajador con contrato
+  // indefinido "con excepción de los trabajadores de casa particular".
+  it("returns zero unemployment deduction for casa-particular even on an indefinite contract", () => {
+    const result = calculateMonthlyPayrollBase({
+      grossSalary: 800_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "casa-particular",
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(result.contractType).toBe("casa-particular");
+    expect(result.deductions.unemploymentInsurance).toBe(0);
+    expect(result.effectiveRates.unemploymentInsurancePercent).toBe(0);
+  });
+
   it("caps pension-health and unemployment bases above the official UF limits", () => {
     // Salary well above both caps
     const result = calculateMonthlyPayrollBase({

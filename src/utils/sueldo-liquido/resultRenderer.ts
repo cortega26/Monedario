@@ -2,6 +2,7 @@
 // Formateo de valores monetarios y porcentajes
 // ---------------------------------------------------------------------------
 
+import type { PayrollContractType } from "@/application/use-cases/CalculateMonthlyPayrollBase";
 import { formatCLP } from "@/utils/formatCLP";
 import { markResultState } from "@/utils/calculatorResultState";
 
@@ -62,7 +63,7 @@ export interface UpdateResultOptions {
     cappedBases: {
       unemploymentInsurance: number;
     };
-    contractType: "indefinido" | "plazo-fijo";
+    contractType: PayrollContractType;
   };
   modoLabel: string;
   extraNote?: string;

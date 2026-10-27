@@ -131,9 +131,9 @@ Si aparece un descuento de esta categoría y no recuerdas haberlo autorizado, ti
 
 ### Descuentos prohibidos — lo que el empleador no puede cargar
 
-El artículo 58 también establece un límite claro: el empleador no puede "deducir, retener o compensar suma alguna que rebaje el monto de las remuneraciones por arriendo de habitación, luz, entrega de agua, uso de herramientas, entrega de medicina, atención médica u otras prestaciones en especie, o por concepto de multas que no estén autorizadas en el reglamento interno de la empresa" (inciso 5 del [artículo 58 del Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436)). La Dirección del Trabajo también ha concluido que a los trabajadores que no reciben una asignación de pérdida de caja no se les pueden descontar las pérdidas de dinero ocurridas en el desempeño de sus labores ([DT, ORD. N°4229/2015](https://www.dt.gob.cl/legislacion/1624/w3-article-107035.html)). La diferencia entre una multa y el descuento de un atraso se explica en la sección siguiente.
+El artículo 58 también establece un límite claro: el empleador no puede "deducir, retener o compensar suma alguna que rebaje el monto de las remuneraciones por arriendo de habitación, luz, entrega de agua, uso de herramientas, entrega de medicinas, atención médica u otras prestaciones en especie, o por concepto de multas que no estén autorizadas en el reglamento interno de la empresa" (inciso 5 del [artículo 58 del Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436)). La Dirección del Trabajo también ha concluido que a los trabajadores que no reciben una asignación de pérdida de caja no se les pueden descontar las pérdidas de dinero ocurridas en el desempeño de sus labores ([DT, ORD. N°4229/2015](https://www.dt.gob.cl/legislacion/1624/w3-article-107035.html)). La diferencia entre una multa y el descuento de un atraso se explica en la sección siguiente.
 
-Tampoco puede retener el sueldo completo como garantía ni practicar descuentos que no tengan respaldo legal o autorización escrita del trabajador. Ahora, que un descuento no encaje en las categorías anteriores no lo vuelve automáticamente ilícito: el artículo 57 declara inembargables las remuneraciones, pero permite embargar la parte que exceda 56 UF y, en supuestos como pensiones alimenticias decretadas judicialmente, defraudación, hurto o robo, hasta el 50% ([Código del Trabajo, art. 57](https://www.bcn.cl/leychile/navegar?idNorma=207436)). Un embargo lo ordena un tribunal con fundamento propio; no es una decisión del empleador. Lo que queda prohibido es que el empleador invente descuentos fuera de esas categorías: si aparece uno sin respaldo legal ni autorización escrita, corresponde impugnarlo.
+Tampoco puede retener el sueldo completo como garantía ni practicar descuentos que no tengan respaldo legal o autorización escrita del trabajador. Ahora, que un descuento no encaje en las categorías anteriores no lo vuelve automáticamente ilícito: el artículo 57 declara inembargables las remuneraciones, pero permite embargar la parte que exceda 56 UF y, hasta el 50%, en tres supuestos: pensiones alimenticias debidas por ley y decretadas judicialmente; defraudación, hurto o robo cometidos por el trabajador contra su empleador en el ejercicio de su cargo; y remuneraciones adeudadas a personas que hayan estado al servicio del deudor ([Código del Trabajo, art. 57](https://www.bcn.cl/leychile/navegar?idNorma=207436)). Un embargo lo ordena un tribunal con fundamento propio; no es una decisión del empleador. Lo que queda prohibido es que el empleador invente descuentos fuera de esas categorías: si aparece uno sin respaldo legal ni autorización escrita, corresponde impugnarlo.
 
 ## Atrasos: descuento del tiempo no trabajado frente a multa
 
@@ -149,14 +149,14 @@ Una línea de descuento por atraso puede ser de dos tipos distintos, con reglas 
 
 No es correcto decir que todos los descuentos se calculan sobre el sueldo imponible: cada uno tiene su propia base y su propio tope.
 
-| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                      |
-| ------------------------------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF (desde las remuneraciones de febrero de 2026)                              |
-| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                        |
-| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años                        |
-| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII; tramo exento hasta 13,5 UTM                                                 |
-| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación; 45% en conjunto |
-| Cuota sindical y crédito social de una CCAF | Según el requerimiento del sindicato o el crédito contratado                   | Obligatorios: no cuentan para el tope del 45%                                                      |
+| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                                             |
+| ------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF (desde las remuneraciones de febrero de 2026)                                                     |
+| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                                               |
+| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años. No aplica en casa particular (0% trabajador) |
+| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII; tramo exento hasta 13,5 UTM                                                                        |
+| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación; 45% en conjunto                        |
+| Cuota sindical y crédito social de una CCAF | Según el requerimiento del sindicato o el crédito contratado                   | Obligatorios: no cuentan para el tope del 45%                                                                             |
 
 **Nota (resumen orientativo):** Esta síntesis simplifica la norma para fines informativos. El resultado puede variar según contrato, antigüedad exacta, topes legales y eventuales reclamaciones o interpretación administrativa/judicial. Revisa la fuente oficial o asesórate si es un caso complejo.
 
@@ -166,16 +166,16 @@ Fuentes de la tabla: [Superintendencia de Pensiones, topes imponibles 2026](http
 
 El tipo de contrato cambia lo que corresponde. Este cuadro resume las variaciones más importantes:
 
-| Descuento                  | Contrato indefinido                    | Contrato a plazo fijo / obra |
-| -------------------------- | -------------------------------------- | ---------------------------- |
-| AFP (10% + comisión)       | Siempre                                | Siempre                      |
-| Salud (7% mínimo)          | Siempre                                | Siempre                      |
-| Cesantía trabajador (0,6%) | Sí, hasta 11 años por relación laboral | No — lo paga el empleador    |
-| Impuesto único             | Si supera el tramo exento              | Si supera el tramo exento    |
+| Descuento                  | Contrato indefinido                    | Contrato a plazo fijo / obra | Casa particular                 |
+| -------------------------- | -------------------------------------- | ---------------------------- | ------------------------------- |
+| AFP (10% + comisión)       | Siempre                                | Siempre                      | Siempre                         |
+| Salud (7% mínimo)          | Siempre                                | Siempre                      | Siempre                         |
+| Cesantía trabajador (0,6%) | Sí, hasta 11 años por relación laboral | No — lo paga el empleador    | No — el 3% lo paga el empleador |
+| Impuesto único             | Si supera el tramo exento              | Si supera el tramo exento    | Si supera el tramo exento       |
 
 **Nota (resumen orientativo):** Esta síntesis simplifica la norma para fines informativos. El resultado puede variar según contrato, antigüedad exacta, topes legales y eventuales reclamaciones o interpretación administrativa/judicial. Revisa la fuente oficial o asesórate si es un caso complejo.
 
-Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
+Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. Tampoco corresponde ese descuento a un trabajador de casa particular. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
 
 ## Cómo leer tu liquidación con este mapa
 
@@ -190,10 +190,10 @@ Para recalcular el número completo con tus datos, usa una calculadora de sueldo
 ## Preguntas frecuentes
 
 **¿Puede el empleador descontarme si llegué tarde?**
-Depende de qué te descuenten. Si es el valor del tiempo no trabajado, sí puede cuando el atraso es imputable al trabajador: la Dirección del Trabajo lo faculta a descontar el valor correspondiente al tiempo no laborado (ORD. N°1578/2018), es decir, solo las horas que faltaron. Si el atraso se debió a hechos ajenos a tu voluntad y está justificado, como un temporal que corta caminos, la DT no lo considera una falta ni permite sancionarlo, y si quedaste a disposición del empleador sin poder trabajar, ese tiempo se paga (ORD. N°2000-44737/2026). Si en cambio es una multa, solo vale si el reglamento interno de la empresa la contempla y dentro de los topes legales (hasta el 25% de la remuneración diaria). No puede inventar un descuento arbitrario.
+Depende de qué te descuenten. Si es el valor del tiempo no trabajado, sí puede cuando el atraso es imputable al trabajador, pero no de inmediato: la Dirección del Trabajo exige verificar al término de la semana que hubo incumplimiento imputable antes de descontar, y aun así el descuento alcanza solo las horas que faltaron (ORD. N°1578/2018). Si el atraso se debió a hechos ajenos a tu voluntad y está justificado, como un temporal que corta caminos, la DT no lo considera una falta ni permite sancionarlo, y si quedaste a disposición del empleador sin poder trabajar, ese tiempo se paga (ORD. N°2000-44737/2026). Si en cambio es una multa, solo vale si el reglamento interno de la empresa la contempla y dentro de los topes legales (hasta el 25% de la remuneración diaria). No puede inventar un descuento arbitrario.
 
 **¿La cuota sindical es un descuento voluntario?**
-No. Si estás afiliado y el sindicato lo requiere, el empleador está obligado a descontar la cuota ordinaria y enterarla a la organización (DT, ORD. N°4184/70). Avisarle al empleador que renunciaste al sindicato no basta por sí solo para detener el descuento (ORD. N°443/2026); esa discusión se resuelve con el sindicato o ante los tribunales.
+No. Si estás afiliado y el sindicato lo requiere, el empleador está obligado a descontar la cuota ordinaria y enterarla a la organización (DT, ORD. N°4184/70). Tampoco es solo para afiliados: si aceptaste la extensión de beneficios del contrato colectivo, debes la cuota en los términos acordados (art. 322), y si te desafiliaste o cambiaste de sindicato sigues afecto al instrumento vigente y debes la cuota completa mientras dure (art. 323). Avisarle al empleador que renunciaste al sindicato no basta por sí solo para detener el descuento (ORD. N°443/2026); esa discusión se resuelve con el sindicato o ante los tribunales.
 
 **¿El descuento por crédito de la caja de compensación es obligatorio?**
 Sí, en las condiciones que fija la ley, una vez que el crédito está otorgado. Lo tienes porque solicitaste el crédito y firmaste los documentos, pero lo adeudado a una caja de compensación se deduce de la remuneración, se retiene y se remesa a la caja con las mismas normas de pago y de cobro que las cotizaciones previsionales (artículo 22 de la Ley 18.833; DT, ORD. N°262/4). Si tienes dudas sobre el saldo o quieres renegociar, el interlocutor es la caja.

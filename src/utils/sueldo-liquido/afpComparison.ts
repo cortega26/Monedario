@@ -2,6 +2,7 @@ import {
   calculateNetSalary,
   estimateGrossFromNet,
 } from "@/application/use-cases/CalculateNetSalary";
+import type { PayrollContractType } from "@/application/use-cases/CalculateMonthlyPayrollBase";
 
 type EconomicParams = { uf: number; utm: number; imm: number };
 type FormatCLP = (n: number) => string;
@@ -14,7 +15,7 @@ export interface AfpComparisonOptions {
   grossSalary: number;
   taxableSalary: number | undefined;
   healthSystem: "fonasa" | "isapre";
-  contractType: "indefinido" | "plazo-fijo";
+  contractType: PayrollContractType;
   isapreAdicional: number;
   currentAfpRate: number;
   formatCLP: FormatCLP;
@@ -143,7 +144,7 @@ export function renderAfpComparison(options: AfpComparisonOptions): void {
 export interface AfpInversoOptions {
   targetNetSalary: number;
   healthSystem: "fonasa" | "isapre";
-  contractType: "indefinido" | "plazo-fijo";
+  contractType: PayrollContractType;
   isapreAdicional: number;
   currentAfpRate: number;
   formatCLP: FormatCLP;
