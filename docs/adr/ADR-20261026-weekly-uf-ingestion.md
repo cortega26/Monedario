@@ -80,6 +80,23 @@ La remediación fue manual (`pnpm run fetch:economic-history --solo=uf`, PR
    Si cualquiera falla —incluido "no se pudo cotejar contra el SII"— el PR
    queda abierto para revisión humana. **Fail-closed.**
 
+### Implementación por fases
+
+**Fase 1 (este cambio):** workflow semanal, heartbeat (`actualizadoEl` + aserción
+de avance), anclaje de la rama UF a `serie.at(-1)` y guard de inmutabilidad de
+valores. El PR se abre sin auto-merge.
+
+**Fase 2 (pendiente):** cross-check automático contra la tabla oficial del SII
+y, solo entonces, auto-merge. Mientras el check no exista, la condición 4 de la
+decisión 5 no puede cumplirse y el merge queda en manos humanas — que es
+exactamente el comportamiento *fail-closed* que este ADR exige. La fase 1 ya
+elimina el modo de falla silencioso: si el PR semanal no se mergea,
+`actualizadoEl` deja de avanzar y el gate se pone rojo a los ~11 días.
+
+Separarlas es deliberado: un scraper de HTML en el camino crítico de publicación
+multiplica los modos de falla, y conviene observarlo antes de darle permiso de
+mergear.
+
 ### Por qué auto-merge aquí y no en el IPC
 
 `ADR-20261010` rechazó el auto-merge porque un humano debe cotejar el valor
