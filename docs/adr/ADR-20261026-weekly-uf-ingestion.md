@@ -87,7 +87,9 @@ de avance), anclaje de la rama UF a `serie.at(-1)` y guard de inmutabilidad de
 valores. El PR se abre sin auto-merge.
 
 **Fase 2 (pendiente):** cross-check automático contra la tabla oficial del SII
-y, solo entonces, auto-merge. Mientras el check no exista, la condición 4 de la
+y, solo entonces, auto-merge. Desde `ADR-20261027-uf-official-source-bcch` el
+primario ya es el BCCh, así que ese cross-check pasa a ser una verificación
+independiente real (dos emisores oficiales) y no un scraper contra otro. Mientras el check no exista, la condición 4 de la
 decisión 5 no puede cumplirse y el merge queda en manos humanas — que es
 exactamente el comportamiento *fail-closed* que este ADR exige. La fase 1 ya
 elimina el modo de falla silencioso: si el PR semanal no se mergea,

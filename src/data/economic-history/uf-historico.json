@@ -1,12 +1,12 @@
 {
-  "fuente": "mindicador.cl",
+  "fuente": "Banco Central de Chile (F073.UFF.PRE.Z.D)",
   "indicador": "uf",
   "granularidad": "diaria",
   "actualizadoEl": "2026-10-27",
   "desdeFecha": "2000-01-01",
   "hastaFecha": "2026-11-09",
-  "totalEntradas": 9808,
-  "nota": "Valor diario de la UF en pesos chilenos.",
+  "totalEntradas": 9810,
+  "nota": "Valor diario de la Unidad de Fomento en pesos chilenos. Fuente oficial: Banco Central de Chile (serie F073.UFF.PRE.Z.D); mindicador.cl solo como respaldo y control de reconciliación.",
   "serie": [
     {
       "fecha": "2000-01-01",
@@ -21914,11 +21914,11 @@
     },
     {
       "fecha": "2014-12-29",
-      "valor": 608.15
+      "valor": 24627.1
     },
     {
       "fecha": "2014-12-30",
-      "valor": 607.38
+      "valor": 24627.1
     },
     {
       "fecha": "2014-12-31",
@@ -23305,6 +23305,10 @@
       "valor": 25629.09
     },
     {
+      "fecha": "2015-12-12",
+      "valor": 25629.09
+    },
+    {
       "fecha": "2015-12-13",
       "valor": 25629.09
     },
@@ -23374,6 +23378,10 @@
     },
     {
       "fecha": "2015-12-30",
+      "valor": 25629.09
+    },
+    {
+      "fecha": "2015-12-31",
       "valor": 25629.09
     },
     {

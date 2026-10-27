@@ -22,7 +22,14 @@ import {
   findMissingDates,
   parseBcchIpcObservations,
 } from "./economic-history-ipc.mjs";
-import { findChangedValues } from "./economic-history-guards.mjs";
+import {
+  findChangedValues,
+  mergeSeriesByDate,
+} from "./economic-history-guards.mjs";
+import {
+  findUfPlausibilityViolations,
+  parseBcchUfDailyObservations,
+} from "./economic-history-bcch.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -38,6 +45,9 @@ const DELAY_MS = 300; // pausa entre requests para no saturar la API
 // BCCH_USER/BCCH_PASSWORD (p. ej. en .env.local); sin credenciales se omite.
 const BCCH_ENDPOINT = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx";
 const BCCH_IPC_SERIES = "G073.IPC.VAR.2023.M";
+// ADR-20261027: el emisor oficial de la UF es el BCCh. La serie `PRE.Z.D` es la
+// publicada en pesos, diaria, con 2 decimales y ~14 días de anticipación.
+const BCCH_UF_SERIES = "F073.UFF.PRE.Z.D";
 
 function loadEnvLocal() {
   const envPath = join(ROOT, ".env.local");
@@ -188,6 +198,36 @@ async function fetchBcchIpcSerie(firstDateIso, lastDateIso) {
   return parseBcchIpcObservations(data.Series.Obs);
 }
 
+/**
+ * Serie UF diaria del BCCh (Siete REST WS, Latin-1). Devuelve null si no hay
+ * credenciales. Lanza si el BCCh responde con error o sin observaciones: el
+ * llamador decide si cae al respaldo.
+ */
+async function fetchBcchUfSerie(firstDateIso, lastDateIso) {
+  const user = process.env.BCCH_USER;
+  const password = process.env.BCCH_PASSWORD;
+  if (!user || !password) return null;
+
+  const params = new URLSearchParams({
+    user,
+    pass: password,
+    function: "GetSeries",
+    timeseries: BCCH_UF_SERIES,
+    firstdate: firstDateIso,
+    lastdate: lastDateIso,
+  });
+  const res = await fetch(`${BCCH_ENDPOINT}?${params.toString()}`, {
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`BCCh HTTP ${res.status}`);
+  const text = new TextDecoder("iso-8859-1").decode(await res.arrayBuffer());
+  const data = JSON.parse(text);
+  if (data?.Codigo !== 0 || !Array.isArray(data?.Series?.Obs)) {
+    throw new Error(`BCCh Codigo ${data?.Codigo}: ${data?.Descripcion}`);
+  }
+  return parseBcchUfDailyObservations(data.Series.Obs);
+}
+
 // --- Ingesta por indicador ------------------------------------------------
 
 async function ingestIndicador(indicador, granularidad, nota) {
@@ -232,9 +272,108 @@ mkdirSync(OUT_DIR, { recursive: true });
 console.log(`Ingesta económica histórica — ${FROM_YEAR} a ${TO_YEAR}`);
 console.log(`Destino: ${OUT_DIR}`);
 
-const ufData = incluyeIndicador("uf")
-  ? await ingestIndicador("uf", "diaria", "Valor diario de la UF en pesos chilenos.")
-  : null;
+/**
+ * ADR-20261027: la UF se ingiere desde el BCCh (emisor oficial). mindicador.cl
+ * queda como respaldo y como señal de reconciliación, nunca como autoridad.
+ *
+ * - Si el BCCh responde, manda: rellena huecos con mindicador y reporta las
+ *   discrepancias sin bloquear (la evidencia de 2014 demuestra que el
+ *   agregador puede publicar valores falsos; bloquear por su culpa publicaría
+ *   datos peores).
+ * - Si el BCCh falla o viene vacío, se usa mindicador y la `fuente` lo dice.
+ *   Nunca se atribuye a BCCh un dato que no vino de BCCh.
+ */
+async function ingestUfSeries() {
+  const nota =
+    "Valor diario de la Unidad de Fomento en pesos chilenos. Fuente oficial: " +
+    "Banco Central de Chile (serie F073.UFF.PRE.Z.D); mindicador.cl solo como " +
+    "respaldo y control de reconciliación.";
+
+  let bcchSerie = null;
+  try {
+    bcchSerie = await fetchBcchUfSerie(
+      `${FROM_YEAR}-01-01`,
+      new Date(Date.now() + 30 * 86_400_000).toISOString().slice(0, 10)
+    );
+    if (bcchSerie && bcchSerie.length === 0) bcchSerie = null;
+    if (!bcchSerie) {
+      console.warn(
+        "  BCCh: sin credenciales BCCH_USER/BCCH_PASSWORD — se usa mindicador.cl"
+      );
+    }
+  } catch (err) {
+    console.warn(`  BCCh: error — ${err.message} (se intenta mindicador.cl)`);
+  }
+
+  let mindicador = null;
+  try {
+    mindicador = await ingestIndicador("uf", "diaria", nota);
+  } catch (err) {
+    console.warn(`  mindicador: error — ${err.message}`);
+  }
+
+  let serie;
+  let fuente;
+  if (bcchSerie) {
+    const gaps = mergeSeriesByDate(bcchSerie, mindicador?.serie ?? []);
+    serie = gaps;
+    const filled = gaps.length - bcchSerie.length;
+    fuente = "Banco Central de Chile (F073.UFF.PRE.Z.D)";
+    if (filled > 0) {
+      fuente += `; ${filled} fecha(s) sin dato oficial rellenadas vía mindicador.cl`;
+    }
+    console.log(
+      `  BCCh: ${bcchSerie.length} observaciones (${bcchSerie[0]?.fecha} → ${bcchSerie.at(-1)?.fecha})` +
+        (filled > 0 ? `, ${filled} rellenada(s) con mindicador` : "")
+    );
+    if (mindicador?.serie?.length) {
+      const disagreements = findChangedValues(mindicador.serie, bcchSerie);
+      if (disagreements.length > 0) {
+        const sample = disagreements
+          .slice(0, 3)
+          .map(d => `${d.fecha} (mindicador ${d.previo} vs BCCh ${d.nuevo})`)
+          .join(", ");
+        console.warn(
+          `  Reconciliación: ${disagreements.length} discrepancia(s) con mindicador — manda BCCh. ${sample}`
+        );
+      }
+    }
+  } else if (mindicador?.serie?.length) {
+    serie = mindicador.serie;
+    fuente = "mindicador.cl (respaldo: BCCh no disponible)";
+    console.warn("  ADVERTENCIA: serie UF servida desde mindicador.cl, no desde el BCCh");
+  } else {
+    throw new Error(
+      "No se pudo ingerir la UF: BCCh y mindicador.cl fallaron. No se escribe nada."
+    );
+  }
+
+  const implausible = findUfPlausibilityViolations(serie);
+  if (implausible.length > 0) {
+    const sample = implausible
+      .slice(0, 3)
+      .map(v => `${v.fecha} (${v.previo} → ${v.nuevo}, ${(v.pct * 100).toFixed(1)}%)`)
+      .join(", ");
+    throw new Error(
+      `Serie UF implausible: ${implausible.length} salto(s) diario(s) > 5% (${sample}). ` +
+        "Se aborta: parece corrupción de fuente, no una revisión real."
+    );
+  }
+
+  return {
+    fuente,
+    indicador: "uf",
+    granularidad: "diaria",
+    actualizadoEl: new Date().toISOString().slice(0, 10),
+    desdeFecha: serie[0]?.fecha ?? "",
+    hastaFecha: serie[serie.length - 1]?.fecha ?? "",
+    totalEntradas: serie.length,
+    nota,
+    serie,
+  };
+}
+
+const ufData = incluyeIndicador("uf") ? await ingestUfSeries() : null;
 
 const utmData = incluyeIndicador("utm")
   ? await ingestIndicador(

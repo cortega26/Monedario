@@ -31,6 +31,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260930-editorial-image-delivery.md` | Accepted | Sistema visual v5, procedencia y entrega de imágenes por hash, accesibilidad y medición agregada | editorial, assets, analytics |
 | `ADR-20261010-monthly-ipc-ingestion.md` | Accepted | Ingesta mensual del IPC con PR revisable, guard anti-regresión y frescura anclada al dato real | CI, data, YMYL |
 | `ADR-20261026-weekly-uf-ingestion.md` | Proposed | Ingesta semanal de la UF con heartbeat de frescura, guard de inmutabilidad de valores y auto-merge verificado por máquina | CI, data, YMYL |
+| `ADR-20261027-uf-official-source-bcch.md` | Proposed | Serie histórica de la UF desde el BCCh (fuente oficial), con parser propio, guard de plausibilidad y aserción de procedencia | data, YMYL, governance |
 
 ## Convencion minima
 
