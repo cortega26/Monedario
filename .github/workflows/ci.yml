@@ -53,7 +53,11 @@ jobs:
     name: Code standards & tests
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     # Self-hosted jobs run serially and cold caches can exceed the old 5 min.
-    timeout-minutes: 15
+    # 2026-10-27: raised 15 -> 30. Measured on the self-hosted runner: the
+    # bootstrap step (pnpm store cache restore of ~251 MB at ~0.5 MB/s, often
+    # aborted and falling back to a cold install) takes 14m23s on its own,
+    # leaving ~21s of the 15 min budget for the tests. Every run timed out.
+    timeout-minutes: 30
 
     steps:
       - name: "☁️ Checkout repository"
@@ -109,10 +113,12 @@ jobs:
   build:
     name: Code standards & build
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
-    timeout-minutes: 15
-    # Runs on PRs (blocking gate) AND on the daily schedule against the default
-    # branch, so drift that lands on main (e.g. a stale test guard) is caught
-    # within ~24h instead of going undetected. See
+    # 2026-10-27: raised 15 -> 30 for the same bootstrap cost described on
+    # lint-and-test. Observed at 10m54s under the old budget.
+    timeout-minutes: 30
+    # Runs on PRs (blocking gate) AND on the weekly schedule (Mondays 05:00
+    # UTC) against the default branch, so drift that lands on main (e.g. a
+    # stale test guard) is caught within ~7d instead of going undetected. See
     # docs/adr/ADR-20260529-repo-self-healing-maintenance.md.
 
     steps:
