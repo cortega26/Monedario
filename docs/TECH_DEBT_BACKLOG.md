@@ -41,16 +41,16 @@ _Actualizado 2026-09-30 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 
 - **P0:** 0
 - **P1:** 0
-- **P2:** 0
+- **P2:** 1
 - **P3:** 0
 - **Sin urgencia declarada:** 0
-- **Total abiertos:** 0 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Total abiertos:** 1 de 113 entradas (`TD-0001`..`TD-0113`)
 - **Cerrados/completados:** 112
 
 ### Estado de avance (2026-09-30)
 
 - **Completados/cerrados:** 112 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096`/`TD-0103`/`TD-0108` (2026-09-30).
-- **Abiertos:** ninguno.
+- **Abiertos:** `TD-0113` (2026-10-27) — bootstrap de CI agota el timeout de los jobs bloqueantes en el runner self-hosted.
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2577,3 +2577,39 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** Resuelto
 - **Fecha de creación:** 2026-09-29
 - **Última actualización:** 2026-09-29
+
+## TD-0113 — El bootstrap de CI consume 14 de los 15 min del job en el runner self-hosted
+
+- **ID:** TD-0113
+- **Título corto:** Cache restore del pnpm store degrada el job a un cold install
+- **Descripción:** En el runner self-hosted `monedario-ci-isolated`, el paso
+  `📦 Bootstrap pnpm workspace` restaura un cache de ~251 MB a ~0,5 MB/s y
+  termina abortando (`Warning: Failed to restore: The operation was aborted`),
+  tras lo cual hace un install en frío. Medido en el run 40433001957
+  (2026-10-27): bootstrap 14m23s, lint 13s, format 8s. El job tenía
+  `timeout-minutes: 15`, así que `🧪 Run tests` alcanzó 21s antes de que el job
+  fuera terminado. Resultado: todo job `lint-and-test` termina en `cancelled`
+  por timeout, en cualquier PR.
+- **Evidencia:** `gh api repos/cortega26/Monedario/actions/jobs/121954958065`
+  → step 3 (bootstrap) 01:54:36→02:08:59; step 7 (tests)
+  02:09:21→02:09:42 `cancelled`; job 15m47s. Afecta por igual a #719, #721 y
+  #729 (todos con `Code standards & tests: cancelled`).
+- **Impacto:** Ningún PR puede pasar el gate de tests. Los merges se deciden
+  sin señal de CI o contra evidencia local.
+- **Riesgo:** medio (proceso), no afecta datos publicados.
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S (mitigación) / M (causa raíz)
+- **Propuesta de solución:** mitigación aplicada el 2026-10-27 subiendo
+  `timeout-minutes` a 30 en `lint-and-test` y `build`. Causa raíz pendiente:
+  reducir o eliminar la restauración del store (p. ej. cachear `node_modules`
+  en lugar del store completo, `--prefer-offline`, o volumen persistente en el
+  runner), y recién entonces volver a bajar el timeout.
+- **Criterios de cierre (checklist verificable):**
+  - [x] Los jobs bloqueantes dejan de expirar por timeout (mitigación).
+  - [ ] El bootstrap baja de ~5 min en el runner self-hosted.
+  - [ ] `timeout-minutes` vuelve a un valor ajustado a la duración real.
+- **Owner:** Sin asignar
+- **Estado:** Abierto (mitigado)
+- **Fecha de creación:** 2026-10-27
+- **Última actualización:** 2026-10-27
