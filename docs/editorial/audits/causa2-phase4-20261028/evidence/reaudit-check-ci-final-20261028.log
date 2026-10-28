@@ -1,0 +1,280 @@
+$ pnpm run lint && pnpm run format:check && pnpm run test:coverage && pnpm run check:boundaries && pnpm run check:context && pnpm run check:policy-registry && pnpm run check:pnpm-release-age-excludes && pnpm run check:legal-constants && pnpm run check:docs && pnpm run check:audit-artifacts && pnpm run check:frontmatter && pnpm run check:legal-citations && pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:image-delivery && pnpm run check:risk-tiers && pnpm run check:correcciones && pnpm run check:payroll-consistency && pnpm run check:editorial && pnpm run check:editorial-timeliness && pnpm run check:no-postid-urls && pnpm run check:routes && pnpm run astro check && pnpm run check:workers && pnpm run check:economic-source-consistency && pnpm run check:catalog-drift && pnpm run check:article-registration && pnpm run check:official-host-registry && pnpm run check:homepage-surface-freshness && pnpm run check:small-details
+$ astro sync && eslint .
+08:38:12 [content] Syncing content
+08:38:12 [content] Synced content
+08:38:12 [types] Generated 507ms
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ vitest run --coverage
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario
+      Coverage enabled with v8
+
+
+ Test Files  211 passed (211)
+      Tests  2038 passed | 1 skipped (2039)
+   Start at  08:38:24
+   Duration  11.05s (transform 12.42s, setup 0ms, import 22.48s, tests 30.37s, environment 2.17s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   90.34 |    83.62 |   96.04 |   91.54 |                   
+ ...tion/use-cases |   91.32 |    87.73 |     100 |   91.39 |                   
+  ...Comparison.ts |    87.5 |    81.08 |     100 |    87.5 | ...09,112,118,126 
+  ...ndInterest.ts |      96 |    94.44 |     100 |   95.83 | 52                
+  ...umerCredit.ts |    93.1 |    91.66 |     100 |   92.85 | 27,30             
+  ...orariosNet.ts |    87.5 |    89.74 |     100 |   87.09 | 64,72,82,90       
+  ...Adjustment.ts |   92.59 |       90 |     100 |   95.65 | 50                
+  ...ayrollBase.ts |   88.23 |    88.88 |     100 |   88.23 | 62,71,77,86       
+  ...teMortgage.ts |      98 |    93.33 |     100 |   97.95 | 74                
+  ...eNetSalary.ts |   80.64 |    81.25 |     100 |      80 | 52,55,61,70,76,82 
+  ...ommissions.ts |   86.36 |    81.25 |     100 |   86.36 | 29,32,37          
+  ...eFiniquito.ts |   93.93 |    92.64 |     100 |   93.93 | 112,138,147,152   
+  ...ntCoverage.ts |   93.75 |    88.23 |     100 |   93.33 | 75,81,87          
+  ...storicalUf.ts |   96.77 |       95 |     100 |     100 | 48                
+  ...storicalUf.ts |    92.3 |       90 |     100 |   95.23 | 45                
+  ...itCardCost.ts |   95.65 |       95 |     100 |   95.65 | 32                
+  ...Prepayment.ts |   83.33 |       84 |     100 |   83.33 | ...,49,86,104,145 
+  ...egotiation.ts |   81.39 |    81.39 |     100 |      80 | ...72,75,78,83,86 
+  ...acionRenta.ts |   85.71 |    83.33 |     100 |   85.71 | 53,56,59,68,77    
+  ...Projection.ts |   88.46 |    75.92 |     100 |   88.15 | ...17,125,131,214 
+ ...e-cases/shared |   97.22 |    94.44 |     100 |     100 |                   
+  ...ortization.ts |   95.45 |    91.66 |     100 |     100 | 29                
+ src/contracts     |   98.18 |    98.14 |     100 |     100 |                   
+  ...ics-events.ts |   98.18 |    98.14 |     100 |     100 | 352               
+ ...domain/content |   78.57 |    63.63 |     100 |   81.81 |                   
+  path.ts          |   78.57 |    63.63 |     100 |   81.81 | 16-18             
+ ...omain/economic |   95.58 |    91.02 |     100 |   95.23 |                   
+  ...Parameters.ts |   92.85 |    88.88 |     100 |   92.68 | 82,86,90          
+ ...domain/payroll |   89.28 |    80.95 |     100 |    92.3 |                   
+  PayrollRules.ts  |   89.28 |    80.95 |     100 |    92.3 | 160,176           
+ ...privateFinance |   91.98 |     83.7 |     100 |   93.33 |                   
+  ...nancialCsv.ts |   91.98 |     83.7 |     100 |   93.33 | ...38,460-461,479 
+ ...omain/taxation |    97.5 |    88.88 |     100 |   97.43 |                   
+  TaxEngine.ts     |   96.15 |    85.71 |     100 |      96 | 105               
+ src/domain/wizard |   84.61 |    69.56 |     100 |     100 |                   
+  ...zardConfig.ts |   84.61 |    69.56 |     100 |     100 | ...19,31-50,54-63 
+ src/i18n          |    90.9 |    76.92 |     100 |    90.9 |                   
+  ui.ts            |    90.9 |    76.92 |     100 |    90.9 | 32                
+ ...cture/economic |   85.05 |    72.36 |      90 |   85.88 |                   
+  ...erProvider.ts |   85.05 |    72.36 |      90 |   85.88 | ...58-364,377-378 
+ src/integrations  |   88.59 |    90.54 |    87.5 |   88.67 |                   
+  ...nk-spacing.ts |   82.19 |    90.32 |   66.66 |   81.53 | 71,142-159        
+  sw-version.ts    |     100 |       75 |     100 |     100 | 9                 
+ src/utils         |   89.36 |    80.86 |   93.71 |   90.76 |                   
+  analytics.ts     |    92.3 |    79.31 |     100 |   97.22 | 84                
+  articleView.ts   |   81.81 |    78.12 |     100 |   84.21 | 44-46             
+  ...esultState.ts |   28.57 |    35.29 |   33.33 |   28.12 | 35-61,80-92       
+  ...rScenarios.ts |   90.74 |    89.58 |     100 |   95.55 | 40,87             
+  corrections.ts   |   93.47 |    70.58 |     100 |   95.12 | 120-121           
+  dates.ts         |      80 |      100 |      80 |      80 | 53-54             
+  ...cFreshness.ts |     100 |    95.83 |     100 |     100 | 21                
+  ...erpolation.ts |   88.05 |    76.92 |      90 |   93.22 | 41,78-79,95       
+  ...teOgImages.ts |   81.81 |      100 |      80 |   81.81 | 24-25             
+  getPath.ts       |     100 |    94.44 |     100 |     100 | 11                
+  getUniqueTags.ts |     100 |    83.33 |     100 |     100 | 47                
+  homepage.ts      |   79.71 |    59.57 |   82.35 |      80 | ...,32-35,132-143 
+  indicadores.ts   |      80 |     87.5 |   66.66 |      80 | 32,70-71          
+  ...ssaryLinks.ts |   94.73 |    80.48 |     100 |   94.28 | 64-65,137,141     
+  llmsTxt.ts       |     100 |       50 |     100 |     100 | 68                
+  ...GoogleFont.ts |   84.21 |    44.44 |     100 |   84.21 | 54,62,72          
+  metadataDate.ts  |   88.88 |    83.33 |     100 |   88.88 | 10                
+  nextBestStep.ts  |     100 |    94.11 |     100 |     100 | 34                
+  nextSteps.ts     |     100 |       50 |     100 |     100 | 22                
+  pageLastmod.ts   |      90 |    83.33 |     100 |   88.88 | 13                
+  postFilter.ts    |     100 |       75 |     100 |     100 | 10                
+  userProfile.ts   |   91.48 |       84 |     100 |    97.5 | 71                
+ ...-collector/src |   87.32 |    74.28 |   94.28 |   89.96 |                   
+  worker-v2.ts     |   87.32 |    74.28 |   94.28 |   89.96 | ...71,798,847-852 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 90.34% ( 2338/2588 )
+Branches     : 83.62% ( 1696/2028 )
+Functions    : 96.04% ( 437/455 )
+Lines        : 91.54% ( 2198/2401 )
+================================================================================
+$ node scripts/check-domain-boundaries.mjs
+Found 14 matching domain source files.
+Scanned 14 domain files from /home/carlos/VS_Code_Projects/products/monedario/src/domain
+Domain boundary check passed.
+$ node scripts/check-context.mjs
+[check-context] OK. validated=4 invariantIds=46 contractIds=29
+$ node scripts/check-policy-registry.mjs
+[check-policy-registry] Registry: docs/operations/POLICY_REGISTRY.json
+[check-policy-registry] Report: output/validation/policy-registry/report.json
+[check-policy-registry] Policies=28 ManifestGates=22 Entrypoints=7
+[check-policy-registry] OK
+$ node scripts/check-pnpm-release-age-excludes.mjs
+[check-pnpm-release-age-excludes] excludes=0 dead=0
+[check-pnpm-release-age-excludes] OK.
+$ node scripts/check-legal-constants.mjs
+[check-legal-constants] OK. 4 constantes verificadas en 16 mirrors.
+$ node scripts/check-docs-structure.mjs
+[check-docs-structure] OK. trackedMarkdown=1007 rootMarkdown=11 adrFiles=65
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/causa2-phase4-20261028/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=PASS)
+[check-audit-artifacts] OK docs/editorial/audits/visual-interest-compound-20260929/02-result.json (verdict=null)
+[check-audit-artifacts] 4 artefacto(s) válidos.
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=65 registry=21
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-hero-prompts.mjs
+[check-hero-prompts] Checked entries: 54; style: monedario-editorial-v5
+[check-hero-prompts] OK
+$ node scripts/check-image-curation.mjs
+[image-curation] Reviewed prompts, article fingerprints and asset bytes match.
+$ node scripts/hero-images/build-delivery.mjs --check
+[image-delivery] 54 articles, 0 changed (verified).
+$ node scripts/check-risk-tiers.mjs
+check-risk-tiers:r4-waiver licencia-medica-desde-que-dia-pagan: R4 sin officialSources+validAsOf (waiver hasta 2026-12-01)
+[check-risk-tiers] OK. posts=54 calculators=22 R1=0 R2=7 R3=19 R4=50 waivers=1 warnings=1
+$ node scripts/check-correcciones.mjs
+[check-correcciones] OK. 20 entradas válidas en el registro.
+$ node scripts/check-payroll-consistency.mjs
+[payroll-consistency] 128 archivos, 7 AFP en el registro
+[payroll-consistency] OK. Comisiones de AFP coherentes con el registro.
+[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).
+$ node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs && node scripts/check-prompt-injection-guardrails.mjs
+[check-editorial-structure] WARN. long_warning=2 (recommended max 155, hard max 200).
+- src/data/blog/bancos-y-fintech-chile.md: description length 160 exceeds recommended max 155 (non-blocking).
+- src/data/blog/finanzas-para-migrantes-chile.md: description length 175 exceeds recommended max 155 (non-blocking).
+[check-editorial-structure] WARN. cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 cluster_coverage_pct=100 cluster_with_value=54 validated=54 min_cluster_internal_links=1 (warning-first rollout).
+- src/data/blog/bancos-y-fintech-chile.md: has 0 intra-cluster internal links (min 1).
+- src/data/blog/finanzas-para-migrantes-chile.md: has 0 intra-cluster internal links (min 1).
+[check-editorial-structure] OK. validated=54 cluster_with_value=54 cluster_coverage_pct=100 cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 title_missing=0 title_meaningless=0 markdown_h1_present=0 title_slug_warning=0 internal_links_warning=0 skipped_internal_links=0 duplicate_titles=0 duplicate_slugs=0 missing=0 short=0 long_fail=0 long_warning=2 duplicates=0 min_h2=2 min_section_words=8 min_internal_links=1 min_cluster_internal_links=1
+[check-dialect] OK. validated=54 files skipped_by_marker=0
+[check-reader-facing-copy] scope=all diff="-" scanned=96 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+[check-editorial-artifacts] mode=warn-only enforce=0 min_sources=1 allowlist_entries=0 scope=all
+[check-editorial-artifacts] SUMMARY total_posts=54 ymyl_posts=48 compliant=48 non_compliant=0
+[check-editorial-artifacts] WARN: Gate in warn-only mode. Set EDITORIAL_ENFORCE=1 to fail on violations.
+[check-prompt-injection-guardrails] OK: 4 guardrail group(s) validated.
+$ node scripts/check-editorial-timeliness.mjs
+[check-editorial-timeliness] published=54 stale=0 drift=0 missingValidAsOf=0 report=output/validation/editorial-timeliness/report.json
+[check-editorial-timeliness] note: stale=0 no certifica veracidad: indica solo que el artículo está dentro de su cadencia de revisión. La veracidad se sostiene con datasets volátiles, articleLead.officialSources, los gates legal-constants/legal-citations/economic-source-consistency/audit-artifacts y rondas de auditoría adversarial independientes; este gate no reemplaza la firma humana.
+[check-editorial-timeliness] OK.
+$ node scripts/check-no-postid-urls.mjs
+[check-no-postid-urls] OK. Scanned 283 source files, no forbidden post.id URL patterns found.
+$ node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare
+[snapshot-routes] No route changes. Kept existing snapshot at /home/carlos/VS_Code_Projects/products/monedario/output/validation/routes_snapshot_after.json
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+[compare-routes] before=53 after=54
+$ astro check
+08:38:43 [content] Syncing content
+08:38:43 [content] Synced content
+08:38:43 [types] Generated 425ms
+08:38:43 [check] Getting diagnostics for Astro files in /home/carlos/VS_Code_Projects/products/monedario...
+Result (666 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck && pnpm run test:edge-guard
+$ npx tsc --noEmit -p workers/analytics-collector/tsconfig.json
+$ npx tsc --noEmit -p workers/economic-snapshot-refresh/tsconfig.json
+$ node --test tests/scripts/edge-csp-monitor.test.mjs
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] probe {"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"drift","results":[{"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}]}
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] Quick Action 429; retry once / 15000
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] Quick Action 429; retry once / 11000
+[edge-csp-monitor] Quick Action 429; retry once /calculadoras/conversor-utm/ 11000
+[edge-csp-monitor] probe {"path":"/","status":"inconclusive","findings":["browser-http-429"]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]}
+[edge-csp-monitor] Quick Action 429; retry once /calculadoras/sueldo-liquido/ 11000
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"inconclusive","results":[{"path":"/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}]}
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+[edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+[edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+[edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+✔ accepts Astro HTML with the legitimate Cloudflare analytics beacon (4.733336ms)
+✔ detects injected JSD bootstrap and challenge path (0.209147ms)
+✔ detects Precursor-related dynamic script paths (0.115796ms)
+✔ treats challenge pages and missing markup as inconclusive (0.145622ms)
+✔ drift wins over transport failure; failures are never healthy (0.105933ms)
+✔ deduplicates alerts, reminds daily, and reports recovery once (0.249822ms)
+✔ shadow mode checks all pages without posting to GitHub (15.873314ms)
+✔ refuses to run without notification token (0.401696ms)
+✔ active mode comments only on existing incident and never leaks token (1.365747ms)
+✔ GitHub API 403 diagnoses read scope without exposing the token (1.511333ms)
+✔ GitHub API 403 identifies comment POST separately from successful GET (1.22331ms)
+✔ paces all three Quick Actions for Workers Free without real sleeps (0.360298ms)
+✔ retries a transient 429 once after Retry-After and still paces subsequent calls (0.467223ms)
+✔ reports a persistent 429 as inconclusive, without unbounded retries (0.518298ms)
+✔ scheduled handler awaits and propagates monitor failure instead of using waitUntil (0.163328ms)
+✔ active clean baseline writes one confirmation comment, then remains silent (0.912905ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 70.839987
+$ node scripts/check-economic-source-consistency.mjs
+[check-economic-source-consistency] OK: 6 indicators aligned with ADR-20260516 (official issuer primary, mindicador.cl fallback).
+$ node scripts/check-catalog-drift.mjs
+[check-catalog-drift] OK. published=51 via_cluster=51 via_tags=0 hub_clusters=11
+$ node scripts/check-article-registration.mjs
+[check-article-registration] mode=warn-only published=54 registered_topics=48 drift=0 stale=0 blocking=0
+[check-article-registration] OK: sin drift ni entradas stale.
+$ node scripts/check-official-host-registry.mjs
+[check-official-host-registry] OK. hosts=39 suffixes=.gob.cl,.gov.cl (analytics + urlcheck derive from the canonical registry).
+$ node scripts/check-homepage-surface-freshness.mjs
+[check-homepage-surface-freshness] OK. No manual dates; 4 cluster-derived card date(s) resolve from published posts.
+$ node scripts/check-small-details.mjs
+[check-small-details] mode=warn-only calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:474 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.

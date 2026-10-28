@@ -1,0 +1,14 @@
+Recalculation evidence — 2026-10-28
+snapshot=src/infrastructure/economic/economic-parameters.snapshot.json
+snapshot.utm=72151; 13.5 UTM=$974,038.50 CLP
+D2: bruto total=1,500,000; colación=150,000; imponible=1,350,000
+D2: AFP 10%=135,000 + comisión 1.44%=19,440 + salud 7%=94,500 + AFC 0.6%=8,100
+D2: cotizaciones=257040.0000; RLI=1092960.0000
+D2: IUSC exact=5978.340000; rounded CLP=5978; líquido desde bruto total=1236982.0000
+D2 table: each deduction percentage uses taxable base 1,350,000
+D2 table: no non-taxable income row and no second +150,000
+D4: SIS 1.78% * 560,000=9968.0000
+D13 Capital: 10%=120,000; fee 1.44%=17,280; health=84,000; AFC=7,200; total=228480.0000; RLI=971520.0000; RLI < 13.5 UTM (974038.5): exempt
+D13 minimum fee: 0.46%=5,520; total deductions=216720.0000; RLI=983280.0000; ISC 4%=369.660000; net=982910.340000
+D13 macros: [[utm * 13.5 | clp]]=974038.50; 4% formula=369.66
+All asserted article text and independent Decimal calculations: PASS

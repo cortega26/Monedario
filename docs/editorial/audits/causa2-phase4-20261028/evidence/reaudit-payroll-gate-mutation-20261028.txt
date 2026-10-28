@@ -1,0 +1,19 @@
+Payroll consistency baseline and isolated mutation — 2026-10-28
+$ node scripts/check-payroll-consistency.mjs (audited checkout)
+exit=0
+[payroll-consistency] 128 archivos, 7 AFP en el registro
+[payroll-consistency] OK. Comisiones de AFP coherentes con el registro.
+[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).
+
+Temporary copy: /tmp/monedario-reaudit-payroll-* (automatically removed on exit)
+Mutation: AFP Capital registry 1.44/11.44 -> 0.58/10.58
+Fixture claim copied verbatim from the audited article: Capital AFP (comisión 1,44%, total AFP 11,44%)
+$ node scripts/check-payroll-consistency.mjs (temporary copy)
+exit=1 (expected 1)
+[payroll-consistency] 1 archivos, 7 AFP en el registro
+[payroll-consistency] FAIL: 2 afirmación(es) no coinciden con el registro:
+  - src/data/blog/d2-example.md: Capital commission publicada 1.44% vs registro 0.58%
+    "Capital AFP (comisión 1,44%"
+  - src/data/blog/d2-example.md: Capital total publicada 11.44% vs registro 10.58%
+    "Capital AFP (comisión 1,44%, total AFP 11,44%"
+PASS: mutation caused exactly two mismatches, commission and total AFP.

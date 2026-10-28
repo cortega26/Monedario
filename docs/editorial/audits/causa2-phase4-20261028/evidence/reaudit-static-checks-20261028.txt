@@ -1,0 +1,136 @@
+Static and invariant checks — 2026-10-28
+
+## HEAD / base / product and audit commits
+$ git rev-parse HEAD main a5b9dbf2 ca47a67b
+exit=0
+3286ea59c2000ee37ef86324e1ec8a9c98d02eb0
+32ac7dc76c06c71ac2de68533efdd417a43d825f
+a5b9dbf298362a225d3ff1e15a4a50d424def3b3
+ca47a67b384a86e0b5936840ca1917b87468c0fe
+
+## Product diff summary
+$ git diff --stat 7a001163..a5b9dbf2
+exit=0
+ context/published-articles-index.json              |  8 ++--
+ scripts/hero-images/asset-reviews.json             | 20 +++++-----
+ scripts/hero-images/briefs.json                    | 20 +++++-----
+ scripts/hero-images/manifest.json                  | 30 +++++++--------
+ scripts/hero-images/prompts.json                   | 28 +++++++-------
+ src/data/blog/como-calcular-sueldo-liquido.md      | 45 +++++++++++-----------
+ .../cotizacion-voluntaria-afp-independiente.md     | 16 ++++----
+ src/data/blog/primer-empleo-chile-guia-completa.md |  8 ++--
+ src/data/blog/sueldo-imponible-chile.md            | 41 +++++++++++---------
+ src/data/correcciones.json                         | 18 +++++++--
+ 10 files changed, 126 insertions(+), 108 deletions(-)
+
+## Files added by audit-artifact commit
+$ git diff --name-only a5b9dbf2..ca47a67b
+exit=0
+docs/editorial/audits/causa2-phase4-20261028/00-scope.json
+docs/editorial/audits/causa2-phase4-20261028/01-auditor-prompt.md
+docs/editorial/audits/causa2-phase4-20261028/02-result.json
+docs/editorial/audits/causa2-phase4-20261028/03-report.md
+docs/editorial/audits/causa2-phase4-20261028/evidence/R8-deviation.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/audit-source-values.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-184979-text.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-184979.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-207436-text.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-207436.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-7147-text.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-7147.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-clean-articles-2026-10-28.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-dl3500-afp-transfer-extract.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-fetch-output.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-primary-extracts.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/bcn-targeted-articles.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-audit-artifacts.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-hero-images.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-hero-prompts.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-image-curation.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-no-postid-urls.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-payroll-consistency.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-routes-under-audit.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-routes.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-rss-under-audit.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-rss.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/d16-719-extract.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/d16-719-full-diff.patch
+docs/editorial/audits/causa2-phase4-20261028/evidence/d16-correcciones-entry.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/dt_imm.html
+docs/editorial/audits/causa2-phase4-20261028/evidence/fetch_bcn_sources.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/fetch_official_sources.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/local-diff-invariants-and-cluster.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/baseline-output.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/mutated-output.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/run-output.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/run.sh
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/scripts/check-payroll-consistency.mjs
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/src/config/afpCommissions.ts
+docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/src/data/blog/d2-example.md
+docs/editorial/audits/causa2-phase4-20261028/evidence/official-source-extracts-2026-10-28.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/preflight.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/recompute-output.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/web-extracts-2026-10-28.txt
+
+## Files added by CI commit
+$ git diff --name-only ca47a67b..3286ea59
+exit=0
+.github/workflows/ci.yml
+
+## AVIF file changes in full target diff
+$ git diff --name-only 7a001163..3286ea59 -- public/images/hero
+exit=0
+(no output)
+
+## Forbidden article/packet paths in target diff
+$ git diff --name-only 7a001163..3286ea59 -- src/data/blog/descuentos-de-sueldo.md docs/editorial/audits/causa2-phase4-20261028/07-publish-packet.md
+exit=0
+(no output)
+
+## D4 stale SIS 1.62% sweep
+$ rg -n -i 1[,.]62\s*% src/data/blog src/data/laws
+exit=1
+(no matches)
+
+## D6 stale AFP saving 10.5% sweep
+$ rg -n -i 10[,.]5\s*% src/data/blog src/data/laws
+exit=1
+(no matches)
+
+## Corrected D4 metadata / rate / amount / AFP awardee
+$ rg -n validAsOf:|updatedDate:|Información vigente al|1,78%|\$9.968|AFP Uno|septiembre de 2027 src/data/blog/cotizacion-voluntaria-afp-independiente.md
+exit=0
+28:  validAsOf: 2026-10-28
+71:updatedDate: 2026-10-28T00:00:00Z
+74:> **Información vigente al 2026-10-28.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.
+113:| Seguro de Invalidez y Sobrevivencia (SIS) | 1,78% × $560.000                                               | **$9.968**     |
+127:1. **Suscribes el formulario "Solicitud de Incorporación"** en la AFP adjudicataria o asignataria de la licitación vigente (desde el 1 de octubre de 2025 y hasta el 30 de septiembre de 2027, AFP Uno) — esta es la regla general de procedimiento de afiliación, aplicable también al afiliado voluntario puro, no solo a quien se afilia por boletas.
+142:Desde agosto de 2026, la tasa vigente del SIS para empleadoras, empleadores, afiliadas y afiliados independientes y voluntarios es **1,78%** de las remuneraciones y rentas imponibles (mujeres y hombres), según la Superintendencia de Pensiones.
+177:| Tasa SIS vigente             | 1,78% (desde agosto 2026)                                           | 1,49% (año tributario 2026)                                                         |
+
+## Corrected D8 wording and conditions
+$ rg -n primera afiliación al sistema previsional obligatorio|30 de septiembre de 2027|24 meses|no hay un límite de un cambio por año|30 días para rechazarlo src/data/blog/primer-empleo-chile-guia-completa.md
+exit=0
+40:    a: "Sí. Si es tu primera afiliación al sistema previsional obligatorio —lo habitual al empezar un primer empleo formal—, el sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 y hasta el 30 de septiembre de 2027) y debes permanecer en ella **24 meses**, salvo que suba su comisión o que otra AFP ofrezca una comisión menor. Pasado ese plazo puedes cambiarte; la ley no exige esperar 12 meses entre cambios. Compara comisiones en la Superintendencia de Pensiones antes de decidir."
+138:Si es tu **primera afiliación al sistema previsional obligatorio** —lo habitual al empezar tu primer empleo formal—, el proceso es automático:
+141:2. El sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 hasta el 30 de septiembre de 2027) en los primeros días — recibirás una carta o notificación electrónica.
+142:3. Debes permanecer **24 meses** en esa AFP, salvo que suba su comisión o que otra ofrezca una comisión menor. Pasado ese plazo puedes cambiarte cuando quieras: no hay un límite de un cambio por año. Si más adelante te seleccionan en un traspaso masivo por licitación, tendrás 30 días para rechazarlo.
+268:- **¿Puedes elegir AFP?** — Sí. La primera afiliación al sistema te deja 24 meses en la AFP de menor comisión, con las excepciones de alza de comisión o de una AFP más barata; después puedes cambiarte sin límite anual.
+
+## Gate declaration and CI wiring
+$ rg -n check:payroll-consistency|Cobertura|NO CUBRE|solo comisiones de AFP package.json scripts/check-payroll-consistency.mjs .github/workflows/ci.yml
+exit=0
+package.json:39:    "check:ci": "pnpm run lint && pnpm run format:check && pnpm run test:coverage && pnpm run check:boundaries && pnpm run check:context && pnpm run check:policy-registry && pnpm run check:pnpm-release-age-excludes && pnpm run check:legal-constants && pnpm run check:docs && pnpm run check:audit-artifacts && pnpm run check:frontmatter && pnpm run check:legal-citations && pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:image-delivery && pnpm run check:risk-tiers && pnpm run check:correcciones && pnpm run check:payroll-consistency && pnpm run check:editorial && pnpm run check:editorial-timeliness && pnpm run check:no-postid-urls && pnpm run check:routes && pnpm run astro check && pnpm run check:workers && pnpm run check:economic-source-consistency && pnpm run check:catalog-drift && pnpm run check:article-registration && pnpm run check:official-host-registry && pnpm run check:homepage-surface-freshness && pnpm run check:small-details",
+package.json:129:    "check:payroll-consistency": "node scripts/check-payroll-consistency.mjs",
+scripts/check-payroll-consistency.mjs:8: * ── Cobertura (deliberadamente parcial) ─────────────────────────────────────
+scripts/check-payroll-consistency.mjs:14: * NO CUBRE, y por qué:
+scripts/check-payroll-consistency.mjs:167:      "[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera)."
+.github/workflows/ci.yml:111:        run: pnpm run check:payroll-consistency
+
+## Previously generated RSS path
+present=True
+ignored=True
+file contents were not opened or used as evidence

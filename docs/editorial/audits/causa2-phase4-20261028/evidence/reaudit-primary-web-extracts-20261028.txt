@@ -1,0 +1,48 @@
+Primary-source browser extracts — 2026-10-28
+Read date: 2026-10-28, America/Santiago. Values below were read from the official pages.
+
+Superintendencia de Pensiones — SIS
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html
+Browser extract, lines 12-14:
+Quote: “desde agosto de 2026, la tasa vigente del SIS para empleadores, afiliadas y afiliados independientes y voluntarios es de 1,78%” (20 words).
+The same passage separately gives 1.49% for independent workers whose contributions are collected through tax withholding for tax year 2026. It does not describe 1.62% as current.
+
+Superintendencia de Pensiones — Sistema de AFP
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html
+Browser extract, lines 7-9, 17-26:
+Quote: “monto equivalente al 10% de la remuneración o renta imponible” (10 words).
+The same page distinguishes AFP administration commission from the 10% saving and SIS. Its current commission table lists Capital 1.44% and Uno 0.46%. It says first-time mandatory-system entrants remain in the lowest-commission AFP for 24 months, with exceptions for a commission increase or a lower competing commission.
+
+Superintendencia de Pensiones — Traspaso a otra AFP
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html
+Browser extract, lines 31-37:
+Quote: “Sólo quienes hayan ingresado por primera vez al sistema de capitalización individual obligatoria” (12 words).
+The page specifies a 24-month stay with commission-based exceptions and AFP Uno as awardee for entrants from 2025-10-01 through 2027-09-30. It also says transfers are free and can be done virtually.
+
+Servicio de Impuestos Internos — IUSC table for 2026
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+Browser extract, lines 281-290 (April 2026 monthly table):
+Exempt through CLP 943,501.50; next bracket factor 0.04, rebate CLP 37,740.06, maximum effective rate 2.20%.
+For RLI CLP 1,092,960, independent calculation: 0.04 × 1,092,960 − 37,740.06 = CLP 5,978.34; article rounds to CLP 5,978.
+
+Servicio de Impuestos Internos — IUSC tax base
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm
+Browser extract, lines 13-14; updated 2026-04-07:
+Quote: “deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador” (14 words).
+
+Servicio de Impuestos Internos — UTM 2026
+URL: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+Browser extract, line 20: October UTM = CLP 72,151. This matches the economic snapshot used at the audited commit.
+
+AFC Chile — cotizaciones y duración
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+Browser extract, lines 139-167:
+For 2026 the unemployment-insurance cap is 135.2 UF. Employer allocation is 1.6% CIC + 0.8% FCS for indefinite contracts; 2.8% CIC + 0.2% FCS for fixed-term/work contracts; and 2.2% CIC + 0.8% FCS for house-particular workers. Employee contribution is 0.6% to CIC only in the applicable indefinite-contract case. AFC states “11 años por cada relación laboral” (6 words).
+
+Superintendencia de Salud — health contribution
+URL: https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/
+Browser extract, lines 135-140:
+Quote: “la cotización legal para salud corresponde al 7% de la remuneración o renta imponible” (14 words).
+The official page sets the monthly base cap at 90 UF and the legal maximum at 6.3 UF for remunerations/pensions accrued from February 2026.
+
+Access note: A direct Python HTTP request to the SP SIS page timed out at 20 seconds. The browser reader opened that same current official URL and returned its text, so no Wayback snapshot was needed or used. The current SIS source was read directly, not inferred from a cached historical page.

@@ -2,7 +2,7 @@
   "auditId": "causa2-phase4-20261028",
   "protocolVersion": "v1",
   "scope": {
-    "commit": "7a001163179467efef5c14f3bfd1f59141f66aad",
+    "commit": "3286ea59c2000ee37ef86324e1ec8a9c98d02eb0",
     "branch": "fix/causa2-phase4-cluster-remediation",
     "base": "main@32ac7dc76c06c71ac2de68533efdd417a43d825f",
     "files": [
@@ -44,17 +44,32 @@
       "metadata",
       "invariants",
       "cluster-coherence"
+    ],
+    "deltaCommits": {
+      "originalAudit": "7a001163179467efef5c14f3bfd1f59141f66aad",
+      "productRemediation": "a5b9dbf298362a225d3ff1e15a4a50d424def3b3",
+      "auditArtifacts": "ca47a67b384a86e0b5936840ca1917b87468c0fe",
+      "ciGate": "3286ea59c2000ee37ef86324e1ec8a9c98d02eb0"
+    },
+    "deltaPaths": [
+      "docs/editorial/audits/causa2-phase4-20261028/02-result.json",
+      "docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md",
+      "docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-*20261028*"
     ]
   },
   "auditor": {
     "role": "ComplianceAgent (adversarial)",
-    "model": "GPT-6 (OpenAI Codex; exact runtime build/minor version is not exposed)",
-    "session": "01a180a1-0cc9-7a63-96b4-fabf82f9f4d4",
+    "model": "GPT-6 Luna (gpt-6-luna; familia OpenAI/Codex)",
+    "version": "Codex CLI 0.164.0-alpha.11.1",
+    "session": "01a18236-b22c-7122-aac9-239563794c14",
+    "reasoningEffort": "xhigh",
     "date": "2026-10-28",
     "independence": {
       "draftingFamily": "DeepSeek (opencode-go/deepseek-v4.1-flash)",
-      "auditorFamily": "OpenAI GPT-6",
-      "distinct": true,
+      "auditorFamily": "OpenAI/Codex GPT-6",
+      "distinctFromDraftingFamily": true,
+      "sameFamilyAsOriginalAuditor": true,
+      "deltaReauditAllowedByUser": true,
       "evidenceRef": "evidence/preflight.txt"
     }
   },
@@ -101,8 +116,47 @@
       "The user-provided attachment path was not present; 01-auditor-prompt.md is copied from the prompt in this conversation.",
       "One earlier check:rss invocation wrote output/validation/rss_snapshot_after.json outside the requested audit directory. Its prior existence is unknown; it was not removed or overwritten again. See evidence/R8-deviation.txt.",
       "The RSS comparison used existing dist/rss.xml and no build was run; its exit 0 does not prove RSS generated from the audited commit.",
-      "The project audit-artifacts validator passed and accepted this FAIL result schema; raw output is evidence/check-audit-artifacts.txt."
-    ]
+      "The project audit-artifacts validator passed and accepted this FAIL result schema; raw output is evidence/check-audit-artifacts.txt.",
+      "La re-auditoría encontró output/validation/rss_snapshot_after.json presente e ignorado por Git. Su contenido no se abrió ni se usó como evidencia; se preservó sin modificar. La evidencia RSS de esta pasada está dentro de evidence/ y se generó tras el build del SHA objetivo.",
+      "La solicitud define el delta aunque 00-scope.json no tenga una propiedad delta; la re-auditoría permaneció dentro de los commits y superficies enumerados por la solicitud.",
+      "git diff --check 7a001163..3286ea59 reportó whitespace en artefactos históricos de auditoría ya existentes; no se alteraron ni se confundieron con defectos de producto."
+    ],
+    "deltaExecution": {
+      "retrievedAt": "2026-10-28",
+      "environment": {
+        "node": "v22.20.0 (pinned executable used by target-gate wrapper)",
+        "pnpm": "11.7.0",
+        "python": "3.13.12",
+        "timezone": "America/Santiago"
+      },
+      "commands": [
+        "git rev-parse HEAD",
+        "git diff --stat 7a001163..3286ea59",
+        "git diff 7a001163..a5b9dbf2",
+        "node scripts/check-payroll-consistency.mjs",
+        "temporary-copy Capital 1.44/11.44 -> 0.58/10.58; node scripts/check-payroll-consistency.mjs",
+        "pnpm run check:audit-artifacts",
+        "pnpm run check:correcciones",
+        "pnpm run check:frontmatter",
+        "pnpm run check:legal-citations",
+        "EDITORIAL_ENFORCE=1 EDITORIAL_SCOPE=changed EDITORIAL_DIFF_BASE_REF=main pnpm run check:editorial",
+        "pnpm run build",
+        "pnpm run check:rss",
+        "pnpm run check:routes",
+        "pnpm run check:no-postid-urls",
+        "pnpm run check:urls:ci",
+        "pnpm run check:ci"
+      ],
+      "result": "Todos los comandos de gate finalizaron con exit 0; el wrapper registró failures=0. RSS se comprobó después de un build nuevo del SHA objetivo.",
+      "evidenceRef": [
+        "evidence/reaudit-target-gates-20261028.log",
+        "evidence/reaudit-payroll-gate-mutation-20261028.txt",
+        "evidence/reaudit-recompute-output-20261028.txt",
+        "evidence/reaudit-rss_snapshot_after-20261028.json",
+        "evidence/reaudit-routes_snapshot_after-20261028.json",
+        "evidence/reaudit-check-ci-final-20261028.log"
+      ]
+    }
   },
   "claims": [
     {
@@ -543,6 +597,200 @@
         "evidence/local-diff-invariants-and-cluster.txt",
         "evidence/web-extracts-2026-10-28.txt"
       ]
+    },
+    {
+      "id": "D2-REAUDIT",
+      "claim": "El ejemplo de sueldo líquido separa bruto total, colación no imponible e imponible; cada descuento porcentual usa la base imponible y las filas suman al líquido publicado sin duplicar la colación.",
+      "source": {
+        "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+        "quote": "Tramo exento hasta $943.501,50; tramo siguiente factor 0,04 y rebaja $37.740,06.",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+          "quote": "Deducción de cotizaciones previsionales y de salud de cargo del trabajador desde remuneraciones brutas.",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-20261028.py",
+        "output": "evidence/reaudit-recompute-output-20261028.txt",
+        "evidenceRef": "evidence/reaudit-recompute-output-20261028.txt"
+      },
+      "independentValue": "Bruto $1.500.000; colación $150.000; imponible $1.350.000. AFP $135.000 + comisión $19.440 + salud $94.500 + AFC $8.100 = $257.040; RLI $1.092.960; ISC exacto $5.978,34, redondeado $5.978; líquido $1.236.982. La tabla usa $1.350.000 para cada porcentaje, no tiene fila de ingresos no imponibles y suma $1.500.000 - $257.040 - $5.978 = $1.236.982.",
+      "engineValue": "El artículo presenta las tres magnitudes por separado y no suma colación una segunda vez.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-recompute-output-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt"
+      ]
+    },
+    {
+      "id": "D4-REAUDIT",
+      "claim": "La tasa SIS vigente indicada en el artículo es 1,78% desde agosto de 2026; el ejemplo, tabla comparativa, AFP adjudicataria y fechas visibles coinciden con fuentes vigentes.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html",
+        "quote": "Desde agosto de 2026, la tasa vigente del SIS es 1,78%.",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+          "quote": "La cotización previsional obligatoria contempla ahorro equivalente al 10% de la remuneración imponible, más comisión AFP.",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-20261028.py; rg -n -i 1[,.]62\\s*% src/data/blog src/data/laws",
+        "output": "evidence/reaudit-recompute-output-20261028.txt; evidence/reaudit-static-checks-20261028.txt",
+        "evidenceRef": "evidence/reaudit-primary-web-extracts-20261028.txt"
+      },
+      "independentValue": "SP confirma 1,78% desde agosto de 2026. $560.000 x 1,78% = $9.968; la comparación informa 1,78% desde agosto 2026; AFP Uno y la ventana 2025-10-01 a 2027-09-30 coinciden. validAsOf, updatedDate y fecha visible son 2026-10-28. El barrido de src/data/blog y src/data/laws no encontró 1,62%.",
+      "engineValue": "El artículo actualizado usa la tasa y adjudicataria actuales. El reclamo histórico original D4-1.62-HISTORY sigue UNVERIFIED únicamente respecto del intervalo histórico exacto de la tasa anterior.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-static-checks-20261028.txt",
+        "evidence/reaudit-recompute-output-20261028.txt"
+      ]
+    },
+    {
+      "id": "D6-REAUDIT",
+      "claim": "El artículo separa el ahorro obligatorio AFP de 10% de la comisión de 0,46%-1,45%, explica RLI antes del ISC, distingue AFC por contrato y no conserva 10,5% como ahorro vigente en el clúster.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "Ahorro obligatorio equivalente al 10% de la renta imponible; la comisión se cobra por separado.",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+          "quote": "La parte de cargo del trabajador es 0,6% para contrato indefinido; el tope 2026 es 135,2 UF.",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "rg -n -i 10[,.]5\\s*% src/data/blog src/data/laws; revisar tabla de sueldo-imponible-chile.md",
+        "output": "evidence/reaudit-static-checks-20261028.txt",
+        "evidenceRef": "evidence/reaudit-static-checks-20261028.txt"
+      },
+      "independentValue": "Sin coincidencias 10,5%/10.5% en src/data/blog ni src/data/laws. El artículo separa ahorro 10% y comisión Capital 1,44% (tabla general 0,46%-1,45%), muestra RLI antes del impuesto y AFC por indefinido, plazo fijo y casa particular.",
+      "engineValue": "La superficie corregida y el barrido de clúster satisfacen los puntos solicitados; las reglas de AFC se cotejaron con AFC y Ley 19.728.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-static-checks-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-bcn-api-extracts-20261028.txt"
+      ]
+    },
+    {
+      "id": "D8-REAUDIT",
+      "claim": "La regla de permanencia por licitación se limita a la primera afiliación al sistema obligatorio y conserva ventana, plazo, excepciones, cambios posteriores y rechazo de traspaso masivo.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html",
+        "quote": "Sólo quienes hayan ingresado por primera vez al sistema de capitalización individual obligatoria.",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=7147",
+          "quote": "No formar parte del grupo licitado en el plazo de treinta días corridos.",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "rg -n primera afiliación al sistema previsional obligatorio|30 de septiembre de 2027|24 meses|no hay un límite de un cambio por año|30 días para rechazarlo src/data/blog/primer-empleo-chile-guia-completa.md",
+        "output": "evidence/reaudit-static-checks-20261028.txt; evidence/reaudit-bcn-api-extracts-20261028.txt",
+        "evidenceRef": "evidence/reaudit-primary-web-extracts-20261028.txt"
+      },
+      "independentValue": "SP limita la regla a primeras personas que ingresan al sistema obligatorio. El artículo indica AFP Uno 2025-10-01 a 2027-09-30, 24 meses y excepciones por alza de comisión o AFP más barata; luego no hay límite anual. BCN art.160 confirma 30 días corridos para optar por no integrar el grupo licitado. “Primer empleo formal” se mantiene como contexto habitual, no como criterio jurídico.",
+      "engineValue": "La regla y la ventana están delimitadas a primera afiliación; no se generalizan a cualquier traspaso.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-bcn-api-extracts-20261028.txt",
+        "evidence/reaudit-static-checks-20261028.txt"
+      ]
+    },
+    {
+      "id": "D13-REAUDIT",
+      "claim": "El ejemplo publicado calcula RLI antes del ISC, resuelve los macros con UTM del snapshot y no aplica impuesto al bruto.",
+      "source": {
+        "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+        "quote": "La base considera remuneración bruta menos cotizaciones previsionales y de salud de cargo del trabajador.",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+          "quote": "UTM octubre de 2026: $72.151.",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+          "quote": "Hasta 13,5 UTM mensual: exento; tramo siguiente factor 0,04 y rebaja 0,54 UTM.",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-20261028.py; inspect fresh build dist/posts/sueldo-imponible-chile/index.html",
+        "output": "evidence/reaudit-recompute-output-20261028.txt; evidence/reaudit-target-gates-20261028.log",
+        "evidenceRef": "evidence/reaudit-recompute-output-20261028.txt"
+      },
+      "independentValue": "Con Capital: $120.000 + $17.280 + $84.000 + $7.200 = $228.480; RLI $971.520, por debajo de 13,5 UTM ($974.038,50), exenta. Con comisión mínima: comisión $5.520; total $216.720; RLI $983.280; ISC exacto 4% x $983.280 - 0,54 x $72.151 = $369,66; líquido $982.910,34. Macros resueltos: $974.038,50 y $369,66; HTML de build redondea a pesos mostrados $974.039, $370 y $982.910.",
+      "engineValue": "El artículo presenta RLI como base previa al ISC; el cálculo coincide con el snapshot económico UTM $72.151 y con la tabla SII de abril 2026.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-recompute-output-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-target-gates-20261028.log"
+      ]
+    },
+    {
+      "id": "Gate-REAUDIT",
+      "claim": "El gate está declarado en check:ci y CI lint-and-test, pasa baseline y detecta dos diferencias en una copia temporal; su alcance se limita explícitamente a comisiones AFP.",
+      "source": {
+        "url": "local:package.json, .github/workflows/ci.yml, scripts/check-payroll-consistency.mjs",
+        "quote": "Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos.",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "node scripts/check-payroll-consistency.mjs; python3 evidence/reaudit-run-payroll-gate-mutation-20261028.py",
+        "output": "evidence/reaudit-payroll-gate-mutation-20261028.txt; evidence/reaudit-target-gates-20261028.log",
+        "evidenceRef": "evidence/reaudit-payroll-gate-mutation-20261028.txt"
+      },
+      "independentValue": "Baseline: exit 0, 128 archivos y 7 AFP. Copia temporal: Capital 1,44/11,44 -> 0,58/10,58; exit 1 con exactamente dos divergencias: comisión y total AFP. La copia temporal se eliminó automáticamente.",
+      "engineValue": "package.json incluye el gate en check:ci; ci.yml lo ejecuta en lint-and-test. La cabecera declara que SIS, ventana AFP, bases y tributo están fuera de alcance. No se atribuye cobertura total.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/reaudit-payroll-gate-mutation-20261028.txt",
+        "evidence/reaudit-target-gates-20261028.log",
+        "evidence/reaudit-static-checks-20261028.txt"
+      ]
+    },
+    {
+      "id": "Invariants-REAUDIT",
+      "claim": "Rutas, RSS y paquete de auditoría cumplen todas las invariantes solicitadas, incluida la ausencia del archivo output/validation/rss_snapshot_after.json.",
+      "source": {
+        "url": "local:git diff 7a001163..3286ea59; generated target-build route/RSS checks",
+        "quote": "No changes to slug/canonical/topicRole, descuentos-de-sueldo.md, publish packet, or AVIF bytes.",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "bash evidence/reaudit-run-target-gates-20261028.sh; test -e output/validation/rss_snapshot_after.json; git check-ignore output/validation/rss_snapshot_after.json",
+        "output": "evidence/reaudit-target-gates-20261028.log; evidence/reaudit-static-checks-20261028.txt; evidence/reaudit-rss_snapshot_after-20261028.json; evidence/reaudit-routes_snapshot_after-20261028.json",
+        "evidenceRef": "evidence/reaudit-static-checks-20261028.txt"
+      },
+      "independentValue": "Build del SHA objetivo y check:rss/check:routes pasan con un artefacto RSS y un snapshot de rutas frescos en evidence/. No hay cambios de slug/canonical/topicRole, descuentos-de-sueldo.md, gates [X] ni AVIF. Sin embargo, output/validation/rss_snapshot_after.json todavía existe y está ignorado por Git; no se abrió ni usó como evidencia y se preservó. Por ello el conjunto de invariantes no queda completamente satisfecho.",
+      "engineValue": "Las comprobaciones de build, RSS, rutas, no-postid y artefactos pasan. La ausencia solicitada de la ruta antigua no se cumple.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/reaudit-static-checks-20261028.txt",
+        "evidence/reaudit-target-gates-20261028.log",
+        "evidence/reaudit-rss_snapshot_after-20261028.json",
+        "evidence/reaudit-routes_snapshot_after-20261028.json"
+      ]
     }
   ],
   "defects": [
@@ -552,7 +800,12 @@
       "surface": "product",
       "description": "The worked example mixes mutually inconsistent bases: it says CLP 1,350,000 taxable includes a CLP 150,000 non-taxable allowance; it then adds that allowance as a separate row to CLP 1,500,000 gross. Summing displayed rows gives CLP 1,386,982 while the printed result is CLP 1,236,982, a CLP 150,000 mismatch. The final amount is only consistent if gross already includes the allowance and the +allowance row is not added.",
       "evidence": "evidence/recompute-output.txt; evidence/local-diff-invariants-and-cluster.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-recompute-output-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt"
+      ]
     },
     {
       "id": "P-D4-STALE-SIS-CLUSTER",
@@ -560,7 +813,13 @@
       "surface": "product",
       "description": "The linked cotizacion-voluntaria-afp-independiente article still says 1.62% is the current SIS rate since April 2026. SP's verified rate changed to 1.78% from August 2026. This contradicts the corrected page and the cluster-level closure claim.",
       "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-static-checks-20261028.txt",
+        "evidence/reaudit-recompute-output-20261028.txt"
+      ]
     },
     {
       "id": "P-D6-STALE-10_5",
@@ -568,7 +827,12 @@
       "surface": "product",
       "description": "The linked sueldo-imponible-chile article still describes mandatory AFP saving as approximately 10.5% and calculates its example with 10.5%, while stating AFP commission is additional. SP and the current registry separate 10% savings from the commission, so the cluster still contains a false/duplicative deduction description.",
       "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/recompute-output.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-static-checks-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt"
+      ]
     },
     {
       "id": "P-D8-ELIGIBILITY-WORDING",
@@ -576,7 +840,13 @@
       "surface": "product",
       "description": "The article applies first-time affiliation rules to a person's 'primer empleo formal'. SP defines the relevant group as people entering the mandatory individual capitalization system for the first time; prior independent/voluntary affiliation can make those conditions differ. The current AFP Uno award window is 2025-10-01 through 2027-09-30; the article states its start but omits the end date. The 24-month rule itself is supported for first-time system entrants, and no annual transfer cap is supported.",
       "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt; evidence/bcn-dl3500-afp-transfer-extract.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-bcn-api-extracts-20261028.txt",
+        "evidence/reaudit-static-checks-20261028.txt"
+      ]
     },
     {
       "id": "P-D13-LINKED-TAX-BASE",
@@ -584,7 +854,13 @@
       "surface": "product",
       "description": "The linked sueldo-imponible-chile article applies IUSC to gross CLP 1,200,000 without subtracting mandatory AFP, health and worker AFC. Its own listed deductions total CLP 217,200, leaving CLP 982,800 before any AFP fee. Using current 10% saving, 0.6% AFC, 7% health and current AFP fees gives RLI CLP 971,400–983,280 (CLP 971,520 at Capital 1.44%); applying the stated 4% factor to gross therefore overstates tax base by CLP 216,720–228,600 and tax by CLP 8,668.80–9,144.00.",
       "evidence": "evidence/recompute-output.txt; evidence/recompute.py; evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-recompute-output-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-target-gates-20261028.log"
+      ]
     },
     {
       "id": "P-D13-AFC-AND-CREDIT-CAVEATS",
@@ -592,7 +868,13 @@
       "surface": "product",
       "description": "The new summary table labels employee AFC as 0.6% and only excludes house-particular workers, omitting fixed-term workers' 0% share. It also summarizes the employer 30% housing/education loan limit without the statutory condition that the employer pay the instalment directly to the financial institution or education service.",
       "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/bcn-184979-text.txt; evidence/bcn-targeted-articles.txt",
-      "status": "open"
+      "status": "resolved",
+      "resolvedInPass": "delta-reaudit-20261028",
+      "resolutionEvidence": [
+        "evidence/reaudit-bcn-api-extracts-20261028.txt",
+        "evidence/reaudit-primary-web-extracts-20261028.txt",
+        "evidence/reaudit-static-checks-20261028.txt"
+      ]
     },
     {
       "id": "A-R8-OUTSIDE-DIRECTORY",
@@ -600,10 +882,43 @@
       "surface": "audit-package",
       "description": "An earlier check:rss invocation wrote output/validation/rss_snapshot_after.json outside the requested audit directory. Its pre-existing state could not be determined; it was not deleted. Subsequent route/RSS artifacts were directed into the audit directory.",
       "evidence": "evidence/R8-deviation.txt",
+      "status": "open",
+      "currentDisposition": "open: el archivo output/validation/rss_snapshot_after.json sigue presente e ignorado por Git; no fue leído ni usado como evidencia y se preservó.",
+      "currentEvidence": "evidence/reaudit-static-checks-20261028.txt"
+    },
+    {
+      "id": "A-R8-RSS-SNAPSHOT-PRESENT",
+      "severity": "baja",
+      "surface": "audit-package",
+      "description": "La invariante solicitada de que output/validation/rss_snapshot_after.json ya no exista no se cumple: la ruta sigue presente e ignorada por Git. Su contenido no se abrió ni se usó como evidencia y el archivo se preservó.",
+      "evidence": "evidence/reaudit-static-checks-20261028.txt; evidence/reaudit-target-gates-20261028.log",
       "status": "open"
     }
   ],
-  "verdict": "FAIL",
-  "verdictRationale": "Open central product defects remain. D2's worked-example rows do not sum to its displayed liquid salary, and related cluster pages contain outdated SIS, AFP savings and IUSC-base claims. The RSS comparator's current output provenance is also limited to an existing dist file.",
-  "humanSignoff": null
+  "verdict": "CONDITIONAL",
+  "verdictRationale": "Los seis defectos de producto originales están resueltos con fuentes primarias, recálculos independientes y verificación del texto. El gate declarado y el CI pasan; build, RSS y rutas frescos pasan sobre el SHA objetivo. Se mantiene CONDITIONAL porque la invariante de paquete exigía que output/validation/rss_snapshot_after.json ya no estuviera en el workspace, pero la ruta sigue presente e ignorada por Git. No se leyó ni usó el contenido y se preservó el archivo. La afirmación histórica exacta sobre el intervalo de la tasa SIS 1,62% permanece UNVERIFIED en el claim original; no impide confirmar la tasa actual 1,78% desde agosto de 2026.",
+  "humanSignoff": null,
+  "passes": [
+    {
+      "passId": "original-fail",
+      "role": "ComplianceAgent (adversarial)",
+      "model": "GPT-6 (OpenAI Codex; exact runtime build/minor version is not exposed)",
+      "session": "01a180a1-0cc9-7a63-96b4-fabf82f9f4d4",
+      "date": "2026-10-28",
+      "commit": "7a001163179467efef5c14f3bfd1f59141f66aad",
+      "verdict": "FAIL",
+      "summary": "Pasada original preservada: los seis defectos de producto y la desviación de paquete quedaron abiertos en 7a001163."
+    },
+    {
+      "passId": "delta-reaudit-20261028",
+      "role": "ComplianceAgent (adversarial)",
+      "model": "GPT-6 Luna (gpt-6-luna; familia OpenAI/Codex)",
+      "version": "Codex CLI 0.164.0-alpha.11.1",
+      "session": "01a18236-b22c-7122-aac9-239563794c14",
+      "date": "2026-10-28",
+      "commit": "3286ea59c2000ee37ef86324e1ec8a9c98d02eb0",
+      "verdict": "CONDITIONAL",
+      "summary": "Los seis defectos de producto se verificaron resueltos. La ruta output/validation/rss_snapshot_after.json sigue presente e ignorada por Git; no se leyó ni se usó como evidencia, por lo que la condición de paquete permanece abierta."
+    }
+  ]
 }
