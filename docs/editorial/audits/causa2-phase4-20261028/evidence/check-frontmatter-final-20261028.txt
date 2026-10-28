@@ -1,0 +1,16 @@
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+
+exit=0

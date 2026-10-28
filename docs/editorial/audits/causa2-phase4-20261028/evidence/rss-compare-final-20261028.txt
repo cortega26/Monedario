@@ -1,0 +1,5 @@
+[compare-rss] Added items (1) are allowed:
++ https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/
+[compare-rss] OK. baseline=52 current=53 removed=0 added=1
+
+exit=0

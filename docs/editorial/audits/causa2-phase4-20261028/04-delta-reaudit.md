@@ -1,12 +1,12 @@
 # Re-auditoría delta — causa 2, fase 4
 
-**Fecha:** 2026-10-28 (America/Santiago)  
-**Veredicto:** `CONDITIONAL`  
-**Checkout:** `fix/causa2-phase4-cluster-remediation` @ `3286ea59c2000ee37ef86324e1ec8a9c98d02eb0`  
-**Base:** `main@32ac7dc76c06c71ac2de68533efdd417a43d825f`  
-**Remediación de producto:** `a5b9dbf298362a225d3ff1e15a4a50d424def3b3`  
-**Registro de auditoría:** `ca47a67b384a86e0b5936840ca1917b87468c0fe`  
-**Gate de CI:** `3286ea59c2000ee37ef86324e1ec8a9c98d02eb0`
+- **Fecha:** 2026-10-28 (America/Santiago)
+- **Veredicto:** `CONDITIONAL`
+- **Checkout:** `fix/causa2-phase4-cluster-remediation` @ `3286ea59c2000ee37ef86324e1ec8a9c98d02eb0`
+- **Base:** `main@32ac7dc76c06c71ac2de68533efdd417a43d825f`
+- **Remediación de producto:** `a5b9dbf298362a225d3ff1e15a4a50d424def3b3`
+- **Registro de auditoría:** `ca47a67b384a86e0b5936840ca1917b87468c0fe`
+- **Gate de CI:** `3286ea59c2000ee37ef86324e1ec8a9c98d02eb0`
 
 ## Auditor e independencia
 

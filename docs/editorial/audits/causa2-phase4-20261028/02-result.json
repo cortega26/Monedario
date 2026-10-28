@@ -771,25 +771,26 @@
     },
     {
       "id": "Invariants-REAUDIT",
-      "claim": "Rutas, RSS y paquete de auditoría cumplen todas las invariantes solicitadas, incluida la ausencia del archivo output/validation/rss_snapshot_after.json.",
+      "claim": "El producto no cambió entre 3286ea59 y d9d4fbcf; el snapshot RSS fuera de evidence/ está ausente; RSS se comparó desde el build identificado de 3286ea59 con salida dentro de evidence/.",
       "source": {
-        "url": "local:git diff 7a001163..3286ea59; generated target-build route/RSS checks",
-        "quote": "No changes to slug/canonical/topicRole, descuentos-de-sueldo.md, publish packet, or AVIF bytes.",
+        "url": "local:git diff 3286ea59..d9d4fbcf; build log and RSS comparison",
+        "quote": "15 changed paths, all under docs/editorial/audits/causa2-phase4-20261028/; baseline=52 current=53 removed=0 added=1.",
         "retrievedAt": "2026-10-28"
       },
       "reproduction": {
-        "command": "bash evidence/reaudit-run-target-gates-20261028.sh; test -e output/validation/rss_snapshot_after.json; git check-ignore output/validation/rss_snapshot_after.json",
-        "output": "evidence/reaudit-target-gates-20261028.log; evidence/reaudit-static-checks-20261028.txt; evidence/reaudit-rss_snapshot_after-20261028.json; evidence/reaudit-routes_snapshot_after-20261028.json",
-        "evidenceRef": "evidence/reaudit-static-checks-20261028.txt"
+        "command": "git diff --name-status 3286ea59..d9d4fbcf; test ! -e output/validation/rss_snapshot_after.json; node scripts/rss-to-json.mjs --in dist/rss.xml --out docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after-final.json; node scripts/compare-rss.mjs docs/reports/rss_snapshot.json docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after-final.json",
+        "output": "evidence/final-diff-d9d4fbcf-20261028.txt; evidence/final-package-preflight-20261028.txt; evidence/rss-snapshot-final-command-20261028.txt; evidence/rss-compare-final-20261028.txt; evidence/final-package-end-20261028.txt",
+        "evidenceRef": "evidence/final-package-preflight-20261028.txt"
       },
-      "independentValue": "Build del SHA objetivo y check:rss/check:routes pasan con un artefacto RSS y un snapshot de rutas frescos en evidence/. No hay cambios de slug/canonical/topicRole, descuentos-de-sueldo.md, gates [X] ni AVIF. Sin embargo, output/validation/rss_snapshot_after.json todavía existe y está ignorado por Git; no se abrió ni usó como evidencia y se preservó. Por ello el conjunto de invariantes no queda completamente satisfecho.",
-      "engineValue": "Las comprobaciones de build, RSS, rutas, no-postid y artefactos pasan. La ausencia solicitada de la ruta antigua no se cumple.",
-      "status": "DIVERGENT",
+      "independentValue": "d9d4fbcf modifica/añade 15 paths, todos bajo el directorio de auditoría; no hay cambios de producto. El snapshot fuera de evidence/ estaba ausente al inicio y al final. El RSS de dist/rss.xml, producido por el build registrado sobre 3286ea59, compara baseline=52/current=53, removed=0, added=1 permitido. git diff --check sí detecta 493 avisos de whitespace en cuatro artefactos del paquete.",
+      "engineValue": "Los requisitos de producto, ausencia del snapshot y comparación RSS quedan satisfechos; permanece abierta una desviación de formato del paquete registrada por git diff --check.",
+      "status": "OK",
       "evidenceRef": [
-        "evidence/reaudit-static-checks-20261028.txt",
-        "evidence/reaudit-target-gates-20261028.log",
-        "evidence/reaudit-rss_snapshot_after-20261028.json",
-        "evidence/reaudit-routes_snapshot_after-20261028.json"
+        "evidence/final-package-preflight-20261028.txt",
+        "evidence/final-diff-d9d4fbcf-20261028.txt",
+        "evidence/rss_snapshot_after-final.json",
+        "evidence/rss-compare-final-20261028.txt",
+        "evidence/final-package-end-20261028.txt"
       ]
     }
   ],
@@ -882,9 +883,9 @@
       "surface": "audit-package",
       "description": "An earlier check:rss invocation wrote output/validation/rss_snapshot_after.json outside the requested audit directory. Its pre-existing state could not be determined; it was not deleted. Subsequent route/RSS artifacts were directed into the audit directory.",
       "evidence": "evidence/R8-deviation.txt",
-      "status": "open",
-      "currentDisposition": "open: el archivo output/validation/rss_snapshot_after.json sigue presente e ignorado por Git; no fue leído ni usado como evidencia y se preservó.",
-      "currentEvidence": "evidence/reaudit-static-checks-20261028.txt"
+      "status": "resolved",
+      "currentDisposition": "resolved: output/validation/rss_snapshot_after.json was absent at verification start and end; the fresh RSS snapshot and comparison were written under evidence/.",
+      "currentEvidence": "evidence/final-package-preflight-20261028.txt; evidence/rss-snapshot-final-command-20261028.txt; evidence/rss-compare-final-20261028.txt; evidence/final-package-end-20261028.txt"
     },
     {
       "id": "A-R8-RSS-SNAPSHOT-PRESENT",
@@ -892,11 +893,26 @@
       "surface": "audit-package",
       "description": "La invariante solicitada de que output/validation/rss_snapshot_after.json ya no exista no se cumple: la ruta sigue presente e ignorada por Git. Su contenido no se abrió ni se usó como evidencia y el archivo se preservó.",
       "evidence": "evidence/reaudit-static-checks-20261028.txt; evidence/reaudit-target-gates-20261028.log",
+      "status": "resolved",
+      "resolution": "Absent at verification start and end. RSS extraction and baseline comparison used evidence/rss_snapshot_after-final.json.",
+      "resolutionEvidence": [
+        "evidence/final-package-preflight-20261028.txt",
+        "evidence/rss_snapshot_after-final.json",
+        "evidence/rss-compare-final-20261028.txt",
+        "evidence/final-package-end-20261028.txt"
+      ]
+    },
+    {
+      "id": "A-R8-DIFF-CHECK-WHITESPACE",
+      "severity": "baja",
+      "surface": "audit-package",
+      "description": "git diff --check 3286ea59..d9d4fbcf exits 2 with 493 whitespace diagnostics across four audit-only artifacts: trailing whitespace in the delta report and raw gate logs, plus one blank line at EOF. The product paths are unaffected.",
+      "evidence": "evidence/final-diff-check-20261028.txt",
       "status": "open"
     }
   ],
   "verdict": "CONDITIONAL",
-  "verdictRationale": "Los seis defectos de producto originales están resueltos con fuentes primarias, recálculos independientes y verificación del texto. El gate declarado y el CI pasan; build, RSS y rutas frescos pasan sobre el SHA objetivo. Se mantiene CONDITIONAL porque la invariante de paquete exigía que output/validation/rss_snapshot_after.json ya no estuviera en el workspace, pero la ruta sigue presente e ignorada por Git. No se leyó ni usó el contenido y se preservó el archivo. La afirmación histórica exacta sobre el intervalo de la tasa SIS 1,62% permanece UNVERIFIED en el claim original; no impide confirmar la tasa actual 1,78% desde agosto de 2026.",
+  "verdictRationale": "No hay defectos de producto abiertos y los dos defectos R8 quedan resueltos con evidencia nueva. Se mantiene CONDITIONAL porque A-R8-DIFF-CHECK-WHITESPACE sigue abierto: git diff --check sobre el delta de d9d4fbcf reporta 493 diagnósticos de whitespace en cuatro artefactos audit-only. humanSignoff permanece null.",
   "humanSignoff": null,
   "passes": [
     {
@@ -919,6 +935,22 @@
       "commit": "3286ea59c2000ee37ef86324e1ec8a9c98d02eb0",
       "verdict": "CONDITIONAL",
       "summary": "Los seis defectos de producto se verificaron resueltos. La ruta output/validation/rss_snapshot_after.json sigue presente e ignorada por Git; no se leyó ni se usó como evidencia, por lo que la condición de paquete permanece abierta."
+    },
+    {
+      "passId": "final-package-verification-d9d4fbcf-20261028",
+      "role": "ComplianceAgent (adversarial) — final package verification",
+      "model": "GPT-6 (OpenAI Codex family)",
+      "version": "Exact runtime/build version not exposed by this API",
+      "session": "final-package-verification-d9d4fbcf-20261028 (verification run ID; platform session ID not exposed)",
+      "date": "2026-10-28",
+      "commit": "d9d4fbcf110046e05a4c022a1d87fdfd3530906b",
+      "verdict": "CONDITIONAL",
+      "summary": "Los dos hallazgos R8 se resolvieron: el snapshot fuera de evidence/ está ausente y RSS fue comparado con salida dentro de evidence/. No hubo cambios de producto entre 3286ea59 y d9d4fbcf. Permanece abierta A-R8-DIFF-CHECK-WHITESPACE por 493 diagnósticos en cuatro artefactos de auditoría. humanSignoff permanece null.",
+      "independence": {
+        "auditorFamily": "OpenAI/Codex GPT-6",
+        "sameFamilyAsPriorAudits": true,
+        "freshVerificationRun": true
+      }
     }
   ]
 }
