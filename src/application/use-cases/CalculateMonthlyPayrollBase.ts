@@ -1,7 +1,10 @@
 import type { EconomicParameters } from "@/domain/economic/EconomicParameters";
+import {
+  resolvePayrollRate,
+  type PayrollContractType,
+} from "@/domain/payroll/PayrollRules";
 
-export type PayrollContractType =
-  "indefinido" | "plazo-fijo" | "casa-particular";
+export type { PayrollContractType };
 
 export interface MonthlyPayrollBaseInput {
   grossSalary: number;
@@ -93,11 +96,9 @@ function assertInput(input: MonthlyPayrollBaseInput): void {
 function resolveWorkerUnemploymentInsuranceRatePercent(
   contractType: PayrollContractType
 ): number {
-  // Ley 19.728, art. 5: el 0,6% es de cargo del trabajador con contrato
-  // indefinido, "con excepción de los trabajadores de casa particular". En casa
-  // particular el 3% es íntegramente del empleador, cualquiera sea la duración
-  // del contrato; por eso la persona trabajadora aporta 0%.
-  return contractType === "indefinido" ? 0.6 : 0;
+  // Fuente única: src/domain/payroll/PayrollRules.ts (Ley 19.728 art. 5). La
+  // tasa y su condición por tipo de contrato viven en la regla, no acá.
+  return resolvePayrollRate("afc.worker", contractType) * 100;
 }
 
 export function calculateMonthlyPayrollBase(
@@ -110,7 +111,9 @@ export function calculateMonthlyPayrollBase(
   const afpPercent = input.afpRatePercent / 100;
   const isapreAdditionalPercent =
     input.healthSystem === "isapre" ? (input.isapreAdditionalPercent ?? 0) : 0;
-  const healthPercent = 0.07 + isapreAdditionalPercent / 100;
+  const healthPercent =
+    resolvePayrollRate("health.legal", contractType) +
+    isapreAdditionalPercent / 100;
   const unemploymentInsurancePercent =
     resolveWorkerUnemploymentInsuranceRatePercent(contractType) / 100;
   const pensionAndHealthMonthlyTaxableCapUf =

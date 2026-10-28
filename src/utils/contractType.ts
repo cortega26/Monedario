@@ -1,4 +1,7 @@
-import type { PayrollContractType } from "@/application/use-cases/CalculateMonthlyPayrollBase";
+import {
+  PAYROLL_CONTRACT_TYPES,
+  type PayrollContractType,
+} from "@/domain/payroll/PayrollRules";
 
 /**
  * Normaliza el valor de un selector de contrato al tipo que entiende el motor.
@@ -11,7 +14,8 @@ import type { PayrollContractType } from "@/application/use-cases/CalculateMonth
 export function parseContractType(
   value: string | null | undefined
 ): PayrollContractType {
-  if (value === "plazo-fijo") return "plazo-fijo";
-  if (value === "casa-particular") return "casa-particular";
+  if (PAYROLL_CONTRACT_TYPES.includes(value as PayrollContractType)) {
+    return value as PayrollContractType;
+  }
   return "indefinido";
 }

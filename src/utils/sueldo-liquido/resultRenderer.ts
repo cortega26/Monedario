@@ -2,6 +2,7 @@
 // Formateo de valores monetarios y porcentajes
 // ---------------------------------------------------------------------------
 
+import { resolvePayrollRate } from "@/domain/payroll/PayrollRules";
 import type { PayrollContractType } from "@/application/use-cases/CalculateMonthlyPayrollBase";
 import { formatCLP } from "@/utils/formatCLP";
 import { markResultState } from "@/utils/calculatorResultState";
@@ -297,11 +298,12 @@ export function updateResultDisplay(options: UpdateResultOptions): void {
     );
   }
   extraRows.append(mkInfoRow("Al año (× 12)", fmt(displayAmount * 12)));
-  // Ley 19.728, art. 5: el 3% patronal aplica a plazo fijo y a casa
-  // particular, cualquiera sea la duración. Solo el indefinido común reparte
-  // 2,4% de aporte AFC del empleador.
-  const afcEmployerRate =
-    resultado.contractType === "indefinido" ? 0.024 : 0.03;
+  // Fuente única: PayrollRules. Antes un ternario acá calculaba 2,4% para casa
+  // particular cuando la ley fija 3% (defecto D10).
+  const afcEmployerRate = resolvePayrollRate(
+    "afc.employer",
+    resultado.contractType
+  );
   const employerAfc =
     resultado.cappedBases.unemploymentInsurance * afcEmployerRate;
   extraRows.append(
