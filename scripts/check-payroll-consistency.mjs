@@ -13,8 +13,8 @@
  *
  * NO CUBRE, y por qué:
  *   - SIS: el cluster usa 1,49% (boletas/SII), 1,78% (dependientes e
- *     independientes/voluntarios desde agosto de 2026) y 2,5% (componente CEV
- *     del empleador desde agosto de 2026). Son **conceptos distintos por
+ *     independientes/voluntarios desde agosto de 2026) y 2,5% (componente SSP
+ *     SIS/CEV del empleador desde agosto de 2026). Son **conceptos distintos por
  *     régimen**, no un único número. Un registro plano de "SIS" crearía un
  *     nuevo error de fuente única; requiere modelar régimen y período.
  *   - Ventana de cambio de AFP: la regla distingue primer cambio, cambios
