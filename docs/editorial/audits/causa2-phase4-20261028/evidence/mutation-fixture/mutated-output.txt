@@ -1,0 +1,6 @@
+[payroll-consistency] 1 archivos, 7 AFP en el registro
+[payroll-consistency] FAIL: 2 afirmación(es) no coinciden con el registro:
+  - src/data/blog/d2-example.md: Capital commission publicada 0.58% vs registro 1.44%
+    "Capital: comisión de 0,58%"
+  - src/data/blog/d2-example.md: Capital total publicada 10.58% vs registro 11.44%
+    "Capital: comisión de 0,58%, total AFP 10,58%"

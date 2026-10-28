@@ -1,0 +1,42 @@
+{
+  "id": "descuentos-sueldo-clasificacion-bases-atrasos",
+  "date": "2026-10-20",
+  "title": "Descuentos de sueldo: cuota sindical y crédito de caja de compensación son obligatorios; atrasos, bases y topes",
+  "pages": [
+    {
+      "href": "/posts/descuentos-de-sueldo/",
+      "label": "Descuentos de sueldo en Chile"
+    },
+    {
+      "href": "/posts/primer-empleo-chile-guia-completa/",
+      "label": "Guía del primer empleo en Chile"
+    },
+    {
+      "href": "/posts/como-calcular-sueldo-liquido/",
+      "label": "Cómo calcular el sueldo líquido"
+    },
+    {
+      "href": "/posts/liquidacion-de-sueldo/",
+      "label": "Liquidación de sueldo en Chile"
+    }
+  ],
+  "wrong": [
+    "La guía clasificaba la cuota sindical y el crédito social de las cajas de compensación como descuentos voluntarios que dependen de la autorización del trabajador. La Dirección del Trabajo los trata como descuentos obligatorios del artículo 58, inciso 1, del Código del Trabajo.",
+    "La FAQ de atrasos decía que un atraso solo se puede descontar como multa del reglamento interno, sin distinguir la multa del descuento del valor del tiempo no trabajado, que la DT permite cuando el atraso es imputable al trabajador.",
+    "Se afirmaba que todos los descuentos legales se calculan sobre la remuneración imponible, sin distinguir las bases y topes de cada uno: 90 UF para AFP y salud, 135,2 UF para cesantía, renta líquida imponible para el impuesto único y remuneración total bruta para los descuentos convenidos.",
+    "La fuente principal rotulada como artículo 58 era una consulta de la DT sobre indemnización por años de servicio. La entrada del 2026-10-19 sobre el tramo exento citaba esa misma consulta como fuente del artículo 58.",
+    "El 0,6% de cesantía se presentaba sin el límite de 11 años por relación laboral ni los grupos excluidos, el 7% de salud sin el tope de 90 UF, y la autorización escrita sin los topes legales de 15%, 30% y 45%.",
+    "La guía afirmaba sin matices que el artículo 58 prohíbe descontar pérdidas de caja, deterioro de herramientas y mercadería dañada. El texto legal no enumera esas tres categorías en esos términos: prohíbe el uso de herramientas y otras prestaciones en especie, y la DT condiciona el descuento de pérdidas de caja a que el trabajador reciba una asignación de pérdida de caja."
+  ],
+  "fixed": [
+    "La cuota sindical y el crédito social de una caja de compensación pasan a descuentos obligatorios, con la cita de la DT (ORD. N°4184/70, N°443/2026 y N°262/4) y la advertencia de que avisar la renuncia al sindicato no basta por sí solo para detener el descuento.",
+    "Se separa el descuento del tiempo no trabajado (permitido si el atraso es imputable al trabajador) de la multa del reglamento interno (hasta el 25% de la remuneración diaria, artículos 154 y 157). Cuando la causa es ajena a la voluntad del trabajador, el atraso justificado no es una falta y el tiempo a disposición del empleador se paga; solo una fuerza mayor que impide del todo la prestación suspende las obligaciones de trabajar y remunerar, caso a caso.",
+    "Se agregó una tabla con la base y el tope de cada descuento, y los topes de 15%, 30% y 45% de los descuentos convenidos, con el ejemplo de $1.000.000 de remuneración total. Se alineó también el resumen del artículo 58 en la página del Código del Trabajo (sección Leyes) y las menciones de cuota sindical y crédito de caja de compensación en las guías del primer empleo y del sueldo líquido.",
+    "La fuente principal del artículo 58 es ahora la DT, ORD. N°680, que reproduce los incisos 1 a 4 del artículo 58 y los artículos 154 y 157. Esta entrada corrige además la fuente citada en la entrada del 2026-10-19, que se conserva sin reescribir.",
+    "Se explican el límite de 11 años y las exclusiones del seguro de cesantía, y el tope de 90 UF de la cotización de salud (máximo de 6,3 UF). El tope de 90 UF se agregó también a la guía de liquidación de sueldo.",
+    "Se reemplazó la enumeración categórica por la cita literal del inciso 5 del artículo 58 (arriendo de habitación, luz, agua, uso de herramientas, medicinas, atención médica y otras prestaciones en especie) y se añadió el criterio de la DT (ORD. N°4229/2015): las pérdidas de caja solo pueden descontarse a quien recibe una asignación de pérdida de caja."
+  ],
+  "affected": "Trabajadores dependientes que revisan los descuentos de su liquidación, en especial quienes tienen cuota sindical, un crédito de una caja de compensación o descuentos por atrasos.",
+  "sources": "Dirección del Trabajo: ORD. N°680 (https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html), ORD. N°4184/70 (https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html), ORD. N°443/2026 (https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html), ORD. N°262/4 (https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html), ORD. N°1578 (https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html), ORD. N°2000-44737/2026 (https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html), ORD. N°3456/37 (https://dt.gob.cl/legislacion/1624/w3-article-102449.html); Superintendencia de Pensiones, topes imponibles 2026 (https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html); AFC, cotizaciones (https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/); SII, base del impuesto único (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm).",
+  "prevention": "Clasificar cada descuento con la fuente primaria de la DT antes de rotularlo voluntario u obligatorio, indicar la base y el tope de cada uno en lugar de una regla única, y comprobar que cada enlace rotulado como artículo 58 abra el texto del artículo y no otra consulta."
+}

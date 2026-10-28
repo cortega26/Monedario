@@ -1,0 +1,160 @@
+{
+  "auditId": "causa2-phase4-20261028",
+  "protocolVersion": "v1",
+  "createdAt": "2026-10-28T01:16:37-03:00",
+  "status": "completed-with-open-defects",
+  "risk": "R4",
+  "scope": {
+    "repository": "https://github.com/cortega26/Monedario",
+    "branch": "fix/causa2-phase4-cluster-remediation",
+    "commit": "7a001163",
+    "fullCommit": "7a001163179467efef5c14f3bfd1f59141f66aad",
+    "base": "main",
+    "baseCommit": "32ac7dc76c06c71ac2de68533efdd417a43d825f",
+    "files": [
+      "docs/backlog/PLAN-causa2-phase4-cluster-remediation-2026-10-27.md",
+      "docs/adr/ADR-20261027-payroll-rules-single-source.md",
+      "docs/editorial/audits/descuentos-de-sueldo-20261020/13-owner-waiver-2026-10-27.md",
+      "docs/editorial/AI_AUDIT_PROTOCOL.md",
+      "docs/editorial/NORMA_YMYL.md",
+      "src/domain/payroll/PayrollRules.ts",
+      "src/config/afpCommissions.ts",
+      "src/infrastructure/economic/economic-parameters.snapshot.json",
+      "scripts/check-payroll-consistency.mjs",
+      "package.json",
+      "src/data/blog/como-calcular-sueldo-liquido.md",
+      "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "src/data/laws/codigo-del-trabajo.md",
+      "src/data/laws/dl-3500-sistema-afp.md",
+      "src/data/correcciones.json",
+      "scripts/hero-images/manifest.json",
+      "scripts/hero-images/briefs.json",
+      "scripts/hero-images/prompts.json",
+      "scripts/hero-images/asset-reviews.json",
+      "src/data/blog/cotizacion-voluntaria-afp-independiente.md",
+      "src/data/blog/sueldo-imponible-chile.md",
+      "git diff 32ac7dc7..7a001163",
+      "docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json",
+      "docs/editorial/audits/descuentos-de-sueldo-20261020/05-math-audit.md",
+      "docs/editorial/audits/descuentos-de-sueldo-20261020/06-compliance.md",
+      "docs/editorial/audits/descuentos-de-sueldo-20261020/evidence/"
+    ],
+    "vectors": [
+      {
+        "id": "D1",
+        "status": "audited"
+      },
+      {
+        "id": "D2",
+        "status": "audited"
+      },
+      {
+        "id": "D3",
+        "status": "audited"
+      },
+      {
+        "id": "D4",
+        "status": "audited"
+      },
+      {
+        "id": "D5",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D6",
+        "status": "audited"
+      },
+      {
+        "id": "D7",
+        "status": "audited"
+      },
+      {
+        "id": "D8",
+        "status": "audited"
+      },
+      {
+        "id": "D9",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D10",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D11",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D12",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D13",
+        "status": "audited"
+      },
+      {
+        "id": "D14",
+        "status": "audited"
+      },
+      {
+        "id": "D15",
+        "status": "outside-phase4-remit; not reaudited"
+      },
+      {
+        "id": "D16",
+        "status": "audited"
+      },
+      {
+        "id": "gate",
+        "status": "audited"
+      },
+      {
+        "id": "metadata",
+        "status": "audited"
+      },
+      {
+        "id": "invariants",
+        "status": "audited-with-rss-provenance-limitation"
+      },
+      {
+        "id": "cluster-coherence",
+        "status": "audited"
+      }
+    ],
+    "sources": [
+      "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=207436",
+      "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+      "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=7147",
+      "https://www.bcn.cl/leychile/navegar?idNorma=7147",
+      "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=184979",
+      "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+      "https://www.dt.gob.cl/portal/1628/w3-article-60141.html",
+      "https://www.dt.gob.cl/portal/1628/w3-article-60214.html",
+      "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html",
+      "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+      "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html",
+      "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-10404.html",
+      "https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html",
+      "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+      "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+      "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+      "https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/",
+      "https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/"
+    ],
+    "recommendedCommands": [
+      "git rev-parse HEAD && git rev-parse main",
+      "git diff --stat 32ac7dc7..7a001163 && git diff --check 32ac7dc7..7a001163",
+      "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/fetch_bcn_sources.py",
+      "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+      "bash docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/run.sh",
+      "node scripts/check-no-postid-urls.mjs",
+      "node scripts/snapshot-routes.mjs --out docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json",
+      "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json",
+      "node scripts/rss-to-json.mjs --in dist/rss.xml --out docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json",
+      "node scripts/compare-rss.mjs docs/reports/rss_snapshot.json docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json",
+      "pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:image-curation",
+      "pnpm run check:audit-artifacts",
+      "pnpm run check:audit-artifacts"
+    ]
+  }
+}

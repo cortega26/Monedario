@@ -1,0 +1,2 @@
+$ node scripts/check-image-curation.mjs
+[image-curation] Reviewed prompts, article fingerprints and asset bytes match.

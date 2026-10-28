@@ -1,0 +1,95 @@
+Primary-source literal excerpts verified on 2026-10-28 (America/Santiago). These excerpts were opened from the official URLs on the retrieval date; BCN legislation text was retrieved via the official get_norma_json API with browser User-Agent and Referer. See bcn-fetch-output.txt for HTTP status and raw JSON/text files.
+
+1. Dirección del Trabajo — IMM
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60141.html
+Lines 13, 18; retrieved 2026-10-28.
+“A contar del 01 de mayo de 2026 el Ingreso Mínimo Mensual es de: $553.553”
+“a partir del 1 de mayo de 2026, el ingreso mínimo para trabajadores mayores de 18 años y de hasta 65 años es de $553.553.”
+
+2. BCN LeyChile — Código del Trabajo, idNorma 207436
+URL: https://www.bcn.cl/leychile/navegar?idNorma=207436
+Official API: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=207436
+Retrieved 2026-10-28. Art. 50: “no excederá de cuatro y tres cuartos (4,75) ingresos mínimos mensuales.”
+Art. 58 selected fragments: “deduciendo hasta el 30% del total de la remuneración mensual”; “paga directamente la cuota del mutuo o crédito a la institución financiera o servicio educacional”; “no podrán exceder del quince por ciento de la remuneración total”; “en ningún caso aquéllas podrán exceder, en conjunto, del 45% de la remuneración total”.
+API result and extracted text: bcn-207436.json; bcn-207436-text.txt; bcn-targeted-articles.txt. The SPA view itself returned a compatibility error; the official API request returned HTTP 200.
+
+3. BCN LeyChile — DL 3.500, idNorma 7147
+URL: https://www.bcn.cl/leychile/navegar?idNorma=7147
+Official API: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=7147
+Retrieved 2026-10-28. Art. 164: “Los nuevos afiliados serán asignados a la Administradora que cobre la menor comisión”. Art. 165: “podrán traspasarse a otra Administradora en cualquier oportunidad”. Art. 160 selected fragment: “no formar parte del grupo licitado en el plazo de treinta días corridos”.
+API result and extracted text: bcn-7147.json; bcn-7147-text.txt; bcn-clean-articles-2026-10-28.txt. API returned HTTP 200.
+
+4. BCN LeyChile — Ley 19.728, idNorma 184979
+URL: https://www.bcn.cl/leychile/navegar?idNorma=184979
+Official API: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=184979
+Retrieved 2026-10-28. Art. 5 specifies 0.6% worker charge for indefinite contracts and employer 2.4% indefinite / 3% fixed-term / 3% house-particular. Art. 9 specifies the 1.6%, 2.8% and 2.2% CIC allocations, an 11-year CIC cap per labor relationship, and continued employer FCS payments.
+API result and extracted text: bcn-184979.json; bcn-184979-text.txt; bcn-clean-articles-2026-10-28.txt. API returned HTTP 200.
+
+5. Superintendencia de Pensiones — SIS
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html
+Lines 8, 12-14, 29-32; retrieved 2026-10-28.
+“The SIS es financiado por las y los empleadores”.
+“desde agosto de 2026, la tasa vigente del SIS ... es de 1,78%”.
+“Para las y los trabajadores independientes que realizan cotizaciones mediante retención de impuestos, la tasa SIS ... año tributario 2026 es de 1,49%.”
+Lines 29-32 enumerate dependent and independent/voluntary coverage groups.
+
+6. Superintendencia de Pensiones — Sistema de AFP
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html
+Lines 7-9, 17-26, 33; retrieved 2026-10-28.
+“monto equivalente al 10% de la remuneración o renta imponible”.
+“comisión ... va desde un 0,46% a un 1,45%”.
+“deben ingresar a la administradora que cobra la menor comisión y permanecer en ella por un período de 24 meses”, with commission change/lower-fee exceptions.
+AFP Capital 1.44%; AFP Uno 0.46%; AFP Provida 1.45%.
+
+7. Superintendencia de Pensiones — Traspaso a otra AFP
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html
+Lines 30-34; retrieved 2026-10-28.
+“Sólo quienes hayan ingresado por primera vez al sistema de capitalización individual obligatoria” are assigned to the lowest-commission AFP.
+“permanecer en esa administradora durante un período de 24 meses”.
+“entre el 1 de octubre de 2025 y el 30 de septiembre de 2027” first-time entrants go to AFP Uno.
+The 24-month duration is expressed as the general first-affiliation rule; the AFP Uno appointment is the award-window-specific rule.
+
+8. Superintendencia de Pensiones — Licitación pública nuevos afiliados
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-10404.html
+Lines 3-5, 10-19; retrieved 2026-10-28.
+“durante 24 meses contados a partir del 1 de octubre de 2025” and “Cronograma del Proceso de Licitación 2025-2027.”
+
+9. Servicio de Impuestos Internos — IUSC April 2026
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+Lines 281-290; retrieved 2026-10-28.
+April 2026 monthly row: “$ 943.501,51 | $ 2.096.670,00 | 0,04 | $ 37.740,06”.
+Web-retrieval excerpt: turn13view0 lines 281-290; source page opened from official SII URL.
+
+10. Servicio de Impuestos Internos — tax base
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm
+Lines 11-14; updated 07/04/2026; retrieved 2026-10-28.
+“deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador”.
+
+11. AFC Chile — cotizaciones
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+Lines 139-156, 167-169; retrieved 2026-10-28.
+The table gives employer CIC shares 1.6% / 2.8% / 2.2% and FCS shares 0.8% / 0.2% / 0.8% for indefinite / fixed-term / house-particular. It specifies 11 years per relationship and the continued 0.8% FCS payment thereafter.
+Web-retrieval excerpt: turn13view2 lines 135-169.
+
+12. Superintendencia de Pensiones — 2026 caps
+URL: https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html
+Retrieved 2026-10-28; official source states AFP/health cap 90 UF and unemployment cap 135.2 UF for 2026. See official-source-extracts-2026-10-28.txt.
+
+13. Superintendencia de Salud — cotizaciones de salud
+URL: https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/
+Lines 135-140; retrieved 2026-10-28.
+“corresponde al 7%”; “tope mensual de UF 90”; “cotización legal máxima ... UF 6,3 al mes.”
+Web-retrieval excerpt: turn14view0 lines 135-140.
+
+14. Superintendencia de Salud — FONASA or Isapre
+URL: https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/
+Lines 129, 134-145; retrieved 2026-10-28.
+If an Isapre plan exceeds the legal contribution, “deberás pagar un costo adicional”. “el copago a cancelar por cada prestación dependerá del plan contratado”.
+Web-retrieval excerpt: turn14view1 lines 129-145.
+
+15. Dirección del Trabajo — convened discount base
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60214.html
+Lines 11-19; retrieved 2026-10-28.
+“monto bruto total de las remuneraciones ... sin previa deducción de los descuentos obligatorios”.
+Web-retrieval excerpt: turn14view3 lines 11-19.
+

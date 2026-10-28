@@ -1,0 +1,9 @@
+$ node scripts/snapshot-routes.mjs --out docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json
+[snapshot-routes] Saved 54 routes to /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json
+exit=0
+
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json
+[compare-routes] before=53 after=54
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+exit=0

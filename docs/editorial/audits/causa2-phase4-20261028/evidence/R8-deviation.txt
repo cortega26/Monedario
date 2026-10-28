@@ -1,0 +1,9 @@
+# R8 procedural deviation — 2026-10-28
+
+An earlier invocation of 'pnpm run check:rss' wrote:
+'output/validation/rss_snapshot_after.json'
+
+This path is outside 'docs/editorial/audits/causa2-phase4-20261028/', contrary to the user's R8 output boundary. The prior existence of that file was not established. The file was not deleted or overwritten again because its prior state could not be established. Later snapshots/comparisons were directed to this audit's evidence/ directory.
+
+The resulting RSS comparison output also reads the existing 'dist/rss.xml'; no build was run at the audited commit. It is therefore not production/build provenance evidence.
+

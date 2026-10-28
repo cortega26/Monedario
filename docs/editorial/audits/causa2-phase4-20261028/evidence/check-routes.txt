@@ -1,0 +1,6 @@
+$ node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare
+[snapshot-routes] No route changes. Kept existing snapshot at /home/carlos/VS_Code_Projects/products/monedario/output/validation/routes_snapshot_after.json
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+[compare-routes] before=53 after=54

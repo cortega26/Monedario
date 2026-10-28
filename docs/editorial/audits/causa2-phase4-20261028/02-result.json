@@ -1,0 +1,609 @@
+{
+  "auditId": "causa2-phase4-20261028",
+  "protocolVersion": "v1",
+  "scope": {
+    "commit": "7a001163179467efef5c14f3bfd1f59141f66aad",
+    "branch": "fix/causa2-phase4-cluster-remediation",
+    "base": "main@32ac7dc76c06c71ac2de68533efdd417a43d825f",
+    "files": [
+      "src/data/blog/como-calcular-sueldo-liquido.md",
+      "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "src/data/laws/codigo-del-trabajo.md",
+      "src/data/laws/dl-3500-sistema-afp.md",
+      "src/data/correcciones.json",
+      "src/domain/payroll/PayrollRules.ts",
+      "src/config/afpCommissions.ts",
+      "src/infrastructure/economic/economic-parameters.snapshot.json",
+      "scripts/check-payroll-consistency.mjs",
+      "package.json",
+      "src/data/blog/cotizacion-voluntaria-afp-independiente.md",
+      "src/data/blog/sueldo-imponible-chile.md",
+      "scripts/hero-images/manifest.json",
+      "scripts/hero-images/briefs.json",
+      "scripts/hero-images/prompts.json",
+      "scripts/hero-images/asset-reviews.json"
+    ],
+    "vectors": [
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "D5",
+      "D6",
+      "D7",
+      "D8",
+      "D9",
+      "D10",
+      "D11",
+      "D12",
+      "D13",
+      "D14",
+      "D15",
+      "D16",
+      "gate",
+      "metadata",
+      "invariants",
+      "cluster-coherence"
+    ]
+  },
+  "auditor": {
+    "role": "ComplianceAgent (adversarial)",
+    "model": "GPT-6 (OpenAI Codex; exact runtime build/minor version is not exposed)",
+    "session": "01a180a1-0cc9-7a63-96b4-fabf82f9f4d4",
+    "date": "2026-10-28",
+    "independence": {
+      "draftingFamily": "DeepSeek (opencode-go/deepseek-v4.1-flash)",
+      "auditorFamily": "OpenAI GPT-6",
+      "distinct": true,
+      "evidenceRef": "evidence/preflight.txt"
+    }
+  },
+  "method": {
+    "environment": {
+      "operatingSystem": "Linux 7.0.0-38-generic x86_64 GNU/Linux",
+      "node": "v24.19.0",
+      "pnpm": "11.7.0",
+      "python": "3.13.12",
+      "timezone": "America/Santiago",
+      "retrievedAt": "2026-10-28"
+    },
+    "commands": [
+      "git branch --show-current",
+      "git rev-parse HEAD",
+      "git rev-parse main",
+      "git diff --stat 32ac7dc7..7a001163",
+      "git diff --check 32ac7dc7..7a001163",
+      "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/fetch_bcn_sources.py",
+      "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+      "node scripts/check-payroll-consistency.mjs",
+      "node scripts/check-no-postid-urls.mjs",
+      "node scripts/snapshot-routes.mjs --out docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json",
+      "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json docs/editorial/audits/causa2-phase4-20261028/evidence/routes_snapshot_after.json",
+      "node scripts/rss-to-json.mjs --in dist/rss.xml --out docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json",
+      "node scripts/compare-rss.mjs docs/reports/rss_snapshot.json docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json",
+      "pnpm run check:hero-images",
+      "pnpm run check:hero-prompts",
+      "pnpm run check:image-curation",
+      "git diff 1f939ae4^..1f939ae4 -- src/data/blog/descuentos-de-sueldo.md",
+      "pnpm run check:audit-artifacts"
+    ],
+    "edgeCases": [
+      "Worked example separates gross total CLP 1,500,000 from taxable base CLP 1,350,000 and CLP 150,000 meal allowance; calculate with the allowance once and compare to every displayed row.",
+      "April 2026 SII bracket and factor/rebate after AFP, health, and employee AFC deductions.",
+      "AFC fixed-term contract allocation; indefinite contract allocation; house-particular allocation.",
+      "AFP minimum and maximum commission; employee's 10% savings distinct from commission.",
+      "First system affiliation versus a person changing AFP later; current AFP Uno tender period and 30-day rejection window.",
+      "Health contribution at 89 UF, exactly 90 UF, and over cap at 100 UF.",
+      "Gross versus taxable remuneration, convened-deduction base, employer-loan 30% ceiling, 45% combined ceiling, and AFC 11-year CIC limit.",
+      "Mutation fixture reintroduces stale AFP Capital commission and verifies gate failure without modifying the working tree."
+    ],
+    "notes": [
+      "The user-provided attachment path was not present; 01-auditor-prompt.md is copied from the prompt in this conversation.",
+      "One earlier check:rss invocation wrote output/validation/rss_snapshot_after.json outside the requested audit directory. Its prior existence is unknown; it was not removed or overwritten again. See evidence/R8-deviation.txt.",
+      "The RSS comparison used existing dist/rss.xml and no build was run; its exit 0 does not prove RSS generated from the audited commit.",
+      "The project audit-artifacts validator passed and accepted this FAIL result schema; raw output is evidence/check-audit-artifacts.txt."
+    ]
+  },
+  "claims": [
+    {
+      "id": "D1",
+      "claim": "El tope de gratificación del artículo de ley coincide con IMM $553.553 × 4,75 = $2.629.376,75, identificado como monto anual.",
+      "source": {
+        "url": "https://www.dt.gob.cl/portal/1628/w3-article-60141.html",
+        "quote": "A contar del 01 de mayo de 2026 el Ingreso Mínimo Mensual es de: $553.553",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+          "quote": "no excederá de cuatro y tres cuartos (4,75) ingresos mínimos mensuales",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "553553 × 4.75 = 2629376.75 CLP",
+      "engineValue": "IMM snapshot 553553 effective 2026-05-01; article states annual cap 2,629,376.75",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/official-source-extracts-2026-10-28.txt",
+        "evidence/recompute-output.txt",
+        "evidence/local-diff-invariants-and-cluster.txt"
+      ]
+    },
+    {
+      "id": "D2",
+      "claim": "Ejemplo de sueldo líquido, comisión AFP Capital, cotizaciones, RLI, IUSC abril 2026 y suma de filas.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "AFP Capital: 1,44%",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+          "quote": "$ 943.501,51 | $ 2.096.670,00 | 0,04 | $ 37.740,06",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+          "quote": "deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "AFP 11.44%; mandatory contributions 257040; RLI 1092960; exact tax 5978.34 (rounded 5978); correct net if CLP 1500000 is gross total including allowance is 1236982. Summing all displayed rows including +150000 gives 1386982, a 150000 divergence.",
+      "engineValue": "Article prints 1236982 as final output and shows a separate +150000 colación row; parenthetical says taxable 1350000 includes the non-taxable allowance, so the base labels and displayed arithmetic conflict.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/official-source-extracts-2026-10-28.txt"
+      ]
+    },
+    {
+      "id": "D3",
+      "claim": "AFC employee/employer shares and CIC/FCS allocation for indefinite, fixed-term, and house-particular contracts.",
+      "source": {
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+        "quote": "se abonarán en una cuenta personal de propiedad de cada afiliado",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+          "quote": "Cuenta Individual | 1,6% | 2,8% | 2,2%",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+          "quote": "Fondo de Cesantía Solidario | 0,8% | 0,2% | 0,8%",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "Indefinite: worker 0.6%, employer CIC 1.6% + FCS 0.8% = 3%; fixed term: worker 0%, employer CIC 2.8% + FCS 0.2% = 3%; house particular: worker 0%, employer CIC 2.2% + FCS 0.8% = 3%.",
+      "engineValue": "PayrollRules and article allocation match. Article does not assign the whole 3% to FCS or add indefinite 2.4% twice.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/bcn-184979-text.txt",
+        "evidence/official-source-extracts-2026-10-28.txt"
+      ]
+    },
+    {
+      "id": "D4",
+      "claim": "SIS is period and regime specific; target distinguishes dependent employer-paid rate and boleta withholding rate; cluster sweep for stale claims.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html",
+        "quote": "es de 1,78% de las remuneraciones y rentas imponibles",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html",
+          "quote": "tasa SIS a considerar para el año tributario 2026 es de 1,49%",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "rg -n -C 2 '1,62%|1,78%|1,49%' src/data/blog src/data/laws",
+        "output": "evidence/local-diff-invariants-and-cluster.txt",
+        "evidenceRef": "evidence/local-diff-invariants-and-cluster.txt"
+      },
+      "independentValue": "1.78% is the current employer-funded SIS rate from August 2026; 1.49% applies to independent tax withholding for tax year 2026. The exact historical effective period for the 1.62% figure has not been verified from an official historical source.",
+      "engineValue": "The corrected first-employment page is accurate, but cotizacion-voluntaria-afp-independiente.md still labels 1.62% current since April 2026.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/official-source-extracts-2026-10-28.txt",
+        "evidence/local-diff-invariants-and-cluster.txt"
+      ]
+    },
+    {
+      "id": "D6",
+      "claim": "Mandatory AFP saving is 10% distinct from commission; total deductions and house-particular range.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "monto equivalente al 10% de la remuneración o renta imponible",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+          "quote": "va desde un 0,46% a un 1,45% de la remuneración imponible mensual",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "Indefinite range 18.06%-19.05%; house-particular range 17.46%-18.45%; 10% savings is separate from commission.",
+      "engineValue": "Correct in target; linked sueldo-imponible-chile.md still calls the saving approximately 10.5% and adds AFP commission separately.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/local-diff-invariants-and-cluster.txt"
+      ]
+    },
+    {
+      "id": "D7",
+      "claim": "Published AFP commission range is 0.46%-1.45%, with AFP Uno the minimum.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+        "quote": "AFP Uno: 0,46%",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html",
+          "quote": "AFP Provida: 1,45%",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "min 0.46% AFP Uno; max 1.45% AFP Provida.",
+      "engineValue": "afpCommissions.ts and DL 3500 guide agree.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/official-source-extracts-2026-10-28.txt"
+      ]
+    },
+    {
+      "id": "D8",
+      "claim": "First-affiliation AFP waiting period, current AFP Uno award, exceptions, transfers after the period, and 30-day opt-out.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html",
+        "quote": "ingresado por primera vez al sistema de capitalización individual obligatoria",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html",
+          "quote": "durante un período de 24 meses",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html",
+          "quote": "1 de octubre de 2025 y el 30 de septiembre de 2027",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.bcn.cl/leychile/navegar?idNorma=7147",
+          "quote": "podrán traspasarse a otra Administradora en cualquier oportunidad",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.bcn.cl/leychile/navegar?idNorma=7147",
+          "quote": "en el plazo de treinta días corridos",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "rg -n -C 2 '24 meses|no hay límite|sin límite anual|primer empleo formal|30 días' src/data/blog/primer-empleo-chile-guia-completa.md",
+        "output": "evidence/local-diff-invariants-and-cluster.txt",
+        "evidenceRef": "evidence/local-diff-invariants-and-cluster.txt"
+      },
+      "independentValue": "The 24-month rule applies to first-time mandatory system affiliates; the AFP Uno appointment is limited to the 2025-10-01 through 2027-09-30 award window. DL art.165 permits transfer at any opportunity. Art.160 gives the transferred selected group 30 days to opt out.",
+      "engineValue": "Article says first formal job and points to AFP Uno from 2025-10-01, without stating the 2027-09-30 end; broadens eligibility beyond first system affiliation. No annual cap statement is supported.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/bcn-clean-articles-2026-10-28.txt",
+        "evidence/bcn-dl3500-afp-transfer-extract.txt",
+        "evidence/official-source-extracts-2026-10-28.txt",
+        "evidence/local-diff-invariants-and-cluster.txt"
+      ]
+    },
+    {
+      "id": "D13",
+      "claim": "Deduction base/cap table and consistency of related salary-imponible guide.",
+      "source": {
+        "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm",
+        "quote": "deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.dt.gob.cl/portal/1628/w3-article-60214.html",
+          "quote": "sin previa deducción de los descuentos obligatorios",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+          "quote": "hasta el 30% del total de la remuneración mensual",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+          "quote": "durante un período máximo de once años en cada relación laboral",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/",
+          "quote": "tope mensual de UF 90",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "Target table’s broad RLI concept and 15/30/45% ceilings are generally correct. Linked sueldo-imponible example derives CLP 982800 from its own listed deductions before any AFP fee; using current 10% savings, 0.6% AFC, 7% health and current AFP fees, correct RLI ranges CLP 971400–983280 (CLP 971520 at Capital 1.44%). Gross-based tax therefore overstates base by CLP 216720–228600 and tax by CLP 8668.80–9144.00 at 4%. Target summary also omits the fixed-term employee AFC exception and direct-payment condition for the employer housing/education credit limit.",
+      "engineValue": "Target table states the right general 90 UF health cap, 135.2 UF AFC cap, 11-year CIC limit and 15/30/45% ceilings; two summary-row caveats are omitted. Related article remains inconsistent with tax-base rule.",
+      "status": "DIVERGENT",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/bcn-targeted-articles.txt",
+        "evidence/official-source-extracts-2026-10-28.txt",
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/recompute.py"
+      ]
+    },
+    {
+      "id": "D14",
+      "claim": "Fonasa legal contribution 7% is capped at a 90 UF taxable base (max 6.3 UF); Isapre plan price above 7% differs from service copay.",
+      "source": {
+        "url": "https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/",
+        "quote": "remuneración o renta imponible tiene un tope mensual de UF 90",
+        "retrievedAt": "2026-10-28"
+      },
+      "sourceRefs": [
+        {
+          "url": "https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/",
+          "quote": "deberás pagar un costo adicional",
+          "retrievedAt": "2026-10-28"
+        },
+        {
+          "url": "https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/",
+          "quote": "el copago a cancelar por cada prestación dependerá del plan contratado",
+          "retrievedAt": "2026-10-28"
+        }
+      ],
+      "reproduction": {
+        "command": "python3 docs/editorial/audits/causa2-phase4-20261028/evidence/recompute.py",
+        "output": "evidence/recompute-output.txt",
+        "evidenceRef": "evidence/recompute-output.txt"
+      },
+      "independentValue": "At 89 UF the 7% is 6.23 UF; at 90 UF and 100 UF the capped legal contribution is 6.30 UF. Article example taxable CLP 1,350,000 equals 32.746 UF in the snapshot and Fonasa 7% is CLP 94,500, below cap.",
+      "engineValue": "Target distinguishes legal contribution cap from extra Isapre plan price and usage copay.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/recompute-output.txt",
+        "evidence/official-source-extracts-2026-10-28.txt"
+      ]
+    },
+    {
+      "id": "D16",
+      "claim": "correcciones.json describes the actual #719 change concerning cash losses, tools and merchandise.",
+      "source": {
+        "url": "local:git diff 1f939ae4^..1f939ae4 -- src/data/blog/descuentos-de-sueldo.md",
+        "quote": "no puede descontar del sueldo pérdidas de caja, deterioro de herramientas, mercadería dañada",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "git diff 1f939ae4^..1f939ae4 -- src/data/blog/descuentos-de-sueldo.md",
+        "output": "evidence/d16-719-full-diff.patch; evidence/d16-correcciones-entry.json",
+        "evidenceRef": "evidence/d16-719-extract.txt"
+      },
+      "independentValue": "Correction entry accurately states the previous general prohibition and the replacement's narrower statutory/DT distinction; no understatement or overstatement found.",
+      "engineValue": "correcciones.json entries match the commit diff.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/d16-719-full-diff.patch",
+        "evidence/d16-719-extract.txt",
+        "evidence/d16-correcciones-entry.json"
+      ]
+    },
+    {
+      "id": "Gate",
+      "claim": "check:payroll-consistency is included in check:ci, passes baseline and fails a stale AFP commission mutation; stated coverage is only AFP commissions.",
+      "source": {
+        "url": "local:package.json and scripts/check-payroll-consistency.mjs",
+        "quote": "Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "node scripts/check-payroll-consistency.mjs; bash docs/editorial/audits/causa2-phase4-20261028/evidence/mutation-fixture/run.sh",
+        "output": "evidence/check-payroll-consistency.txt; evidence/mutation-fixture/run-output.txt; evidence/mutation-fixture/baseline-output.txt; evidence/mutation-fixture/mutated-output.txt",
+        "evidenceRef": "evidence/check-payroll-consistency.txt"
+      },
+      "independentValue": "Baseline exit 0; mutation changing Capital commission 1.44% to stale 0.58% and total 11.44% to 10.58% exits 1 with two mismatches. SIS, AFP window, bases and tax errors are outside coverage.",
+      "engineValue": "Gate is included in check:ci; the narrow coverage is explicitly declared and mutation test proves the intended detector.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/check-payroll-consistency.txt",
+        "evidence/mutation-fixture/baseline-output.txt",
+        "evidence/mutation-fixture/mutated-output.txt",
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/mutation-fixture/run.sh"
+      ]
+    },
+    {
+      "id": "Metadata",
+      "claim": "validAsOf, lastVerified, updatedDate, computedAt and human review fields reflect the actual source-check date without claiming a human review.",
+      "source": {
+        "url": "local:target frontmatter and source retrieval records",
+        "quote": "validAsOf: 2026-10-28; lastVerified: null; lastReviewed: null; reviewedBy: null",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "metadata frontmatter extraction from target commit",
+        "output": "evidence/local-diff-invariants-and-cluster.txt",
+        "evidenceRef": "evidence/local-diff-invariants-and-cluster.txt"
+      },
+      "independentValue": "Sources were consulted on 2026-10-28; no lastReviewed/reviewedBy is asserted. computedAt values remain prior calculation timestamps and are not presented as lastReviewed.",
+      "engineValue": "The date metadata is consistent with retrieved sources; no false human-signoff metadata observed.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/official-source-extracts-2026-10-28.txt"
+      ]
+    },
+    {
+      "id": "Invariants",
+      "claim": "No target-diff slug/canonical/topicRole change, no discounts-of-salary content edit, no gate marked [X], and route/RSS comparisons.",
+      "source": {
+        "url": "local:git diff 32ac7dc7..7a001163",
+        "quote": "Forbidden paths in target diff: []",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "git diff --stat/check; node scripts/check-no-postid-urls.mjs; route/RSS snapshots and comparisons",
+        "output": "evidence/local-diff-invariants-and-cluster.txt; evidence/check-no-postid-urls.txt; evidence/check-routes-under-audit.txt; evidence/check-rss-under-audit.txt",
+        "evidenceRef": "evidence/local-diff-invariants-and-cluster.txt"
+      },
+      "independentValue": "No forbidden target paths or metadata changes; no [X] gate change. check:no-postid-urls and route comparator pass. RSS comparator passes against existing dist/rss.xml, but no build ties that dist file to audited commit.",
+      "engineValue": "Core invariant checks pass; RSS target-build provenance remains unverified.",
+      "status": "UNVERIFIED",
+      "evidenceRef": [
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/check-no-postid-urls.txt",
+        "evidence/check-routes-under-audit.txt",
+        "evidence/check-rss-under-audit.txt"
+      ]
+    },
+    {
+      "id": "Hero-records",
+      "claim": "Hero source hashes and reviews match the current article text and image files; image bytes were not regenerated in the audited diff.",
+      "source": {
+        "url": "local:scripts/hero-images/manifest.json and asset-reviews.json",
+        "quote": "review status=accepted; reviewedAt=2026-10-28; recorded_sha256 equals actual_sha256 for both hero images",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:image-curation",
+        "output": "evidence/check-hero-images.txt; evidence/check-hero-prompts.txt; evidence/check-image-curation.txt",
+        "evidenceRef": "evidence/check-hero-images.txt"
+      },
+      "independentValue": "Article sourceContentHash, accepted review and actual AVIF SHA-256 match for both target articles; image bytes absent from diff.",
+      "engineValue": "Three image metadata/curation checks pass; visual quality not audited per scope.",
+      "status": "OK",
+      "evidenceRef": [
+        "evidence/check-hero-images.txt",
+        "evidence/check-hero-prompts.txt",
+        "evidence/check-image-curation.txt",
+        "evidence/local-diff-invariants-and-cluster.txt"
+      ]
+    },
+    {
+      "id": "D4-1.62-HISTORY",
+      "claim": "Historical status and exact effective dates of the 1.62% SIS rate claimed by the linked article.",
+      "source": {
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html",
+        "quote": "es de 1,78% de las remuneraciones y rentas imponibles",
+        "retrievedAt": "2026-10-28"
+      },
+      "reproduction": {
+        "command": "rg -n -C 2 \"1,62%|1,78%|1,49%\" src/data/blog src/data/laws; consult official SP SIS page",
+        "output": "evidence/local-diff-invariants-and-cluster.txt; evidence/web-extracts-2026-10-28.txt",
+        "evidenceRef": "evidence/local-diff-invariants-and-cluster.txt"
+      },
+      "independentValue": "UNVERIFIED: current official page proves 1.78% from August 2026 and 1.49% for tax-year-2026 withholding, but the exact historical interval for 1.62% was not established from an official archive.",
+      "engineValue": "Linked article asserts 1.62% is current since April 2026; that present-tense assertion conflicts with the current SP source.",
+      "status": "UNVERIFIED",
+      "evidenceRef": [
+        "evidence/local-diff-invariants-and-cluster.txt",
+        "evidence/web-extracts-2026-10-28.txt"
+      ]
+    }
+  ],
+  "defects": [
+    {
+      "id": "P-D2-ROW-SUM",
+      "severity": "alta",
+      "surface": "product",
+      "description": "The worked example mixes mutually inconsistent bases: it says CLP 1,350,000 taxable includes a CLP 150,000 non-taxable allowance; it then adds that allowance as a separate row to CLP 1,500,000 gross. Summing displayed rows gives CLP 1,386,982 while the printed result is CLP 1,236,982, a CLP 150,000 mismatch. The final amount is only consistent if gross already includes the allowance and the +allowance row is not added.",
+      "evidence": "evidence/recompute-output.txt; evidence/local-diff-invariants-and-cluster.txt",
+      "status": "open"
+    },
+    {
+      "id": "P-D4-STALE-SIS-CLUSTER",
+      "severity": "media",
+      "surface": "product",
+      "description": "The linked cotizacion-voluntaria-afp-independiente article still says 1.62% is the current SIS rate since April 2026. SP's verified rate changed to 1.78% from August 2026. This contradicts the corrected page and the cluster-level closure claim.",
+      "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt",
+      "status": "open"
+    },
+    {
+      "id": "P-D6-STALE-10_5",
+      "severity": "media",
+      "surface": "product",
+      "description": "The linked sueldo-imponible-chile article still describes mandatory AFP saving as approximately 10.5% and calculates its example with 10.5%, while stating AFP commission is additional. SP and the current registry separate 10% savings from the commission, so the cluster still contains a false/duplicative deduction description.",
+      "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/recompute-output.txt",
+      "status": "open"
+    },
+    {
+      "id": "P-D8-ELIGIBILITY-WORDING",
+      "severity": "media",
+      "surface": "product",
+      "description": "The article applies first-time affiliation rules to a person's 'primer empleo formal'. SP defines the relevant group as people entering the mandatory individual capitalization system for the first time; prior independent/voluntary affiliation can make those conditions differ. The current AFP Uno award window is 2025-10-01 through 2027-09-30; the article states its start but omits the end date. The 24-month rule itself is supported for first-time system entrants, and no annual transfer cap is supported.",
+      "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt; evidence/bcn-dl3500-afp-transfer-extract.txt",
+      "status": "open"
+    },
+    {
+      "id": "P-D13-LINKED-TAX-BASE",
+      "severity": "media",
+      "surface": "product",
+      "description": "The linked sueldo-imponible-chile article applies IUSC to gross CLP 1,200,000 without subtracting mandatory AFP, health and worker AFC. Its own listed deductions total CLP 217,200, leaving CLP 982,800 before any AFP fee. Using current 10% saving, 0.6% AFC, 7% health and current AFP fees gives RLI CLP 971,400–983,280 (CLP 971,520 at Capital 1.44%); applying the stated 4% factor to gross therefore overstates tax base by CLP 216,720–228,600 and tax by CLP 8,668.80–9,144.00.",
+      "evidence": "evidence/recompute-output.txt; evidence/recompute.py; evidence/local-diff-invariants-and-cluster.txt; evidence/official-source-extracts-2026-10-28.txt",
+      "status": "open"
+    },
+    {
+      "id": "P-D13-AFC-AND-CREDIT-CAVEATS",
+      "severity": "baja",
+      "surface": "product",
+      "description": "The new summary table labels employee AFC as 0.6% and only excludes house-particular workers, omitting fixed-term workers' 0% share. It also summarizes the employer 30% housing/education loan limit without the statutory condition that the employer pay the instalment directly to the financial institution or education service.",
+      "evidence": "evidence/local-diff-invariants-and-cluster.txt; evidence/bcn-184979-text.txt; evidence/bcn-targeted-articles.txt",
+      "status": "open"
+    },
+    {
+      "id": "A-R8-OUTSIDE-DIRECTORY",
+      "severity": "baja",
+      "surface": "audit-package",
+      "description": "An earlier check:rss invocation wrote output/validation/rss_snapshot_after.json outside the requested audit directory. Its pre-existing state could not be determined; it was not deleted. Subsequent route/RSS artifacts were directed into the audit directory.",
+      "evidence": "evidence/R8-deviation.txt",
+      "status": "open"
+    }
+  ],
+  "verdict": "FAIL",
+  "verdictRationale": "Open central product defects remain. D2's worked-example rows do not sum to its displayed liquid salary, and related cluster pages contain outdated SIS, AFP savings and IUSC-base claims. The RSS comparator's current output provenance is also limited to an existing dist file.",
+  "humanSignoff": null
+}

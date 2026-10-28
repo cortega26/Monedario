@@ -1,0 +1,2 @@
+$ node scripts/check-no-postid-urls.mjs
+[check-no-postid-urls] OK. Scanned 283 source files, no forbidden post.id URL patterns found.

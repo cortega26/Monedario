@@ -1,0 +1,150 @@
+$ git branch --show-current
+fix/causa2-phase4-cluster-remediation
+exit=0
+$ git rev-parse HEAD
+7a001163179467efef5c14f3bfd1f59141f66aad
+exit=0
+$ git rev-parse main
+32ac7dc76c06c71ac2de68533efdd417a43d825f
+exit=0
+$ git diff --stat 32ac7dc7..7a001163
+ context/published-articles-index.json              |  2 +-
+ package.json                                       |  2 +-
+ scripts/check-payroll-consistency.mjs              |  9 ++--
+ scripts/hero-images/asset-reviews.json             | 16 +++----
+ scripts/hero-images/briefs.json                    | 12 +++---
+ scripts/hero-images/manifest.json                  | 12 +++---
+ scripts/hero-images/prompts.json                   | 16 +++----
+ src/data/blog/como-calcular-sueldo-liquido.md      | 50 +++++++++++++---------
+ src/data/blog/primer-empleo-chile-guia-completa.md | 39 +++++++++--------
+ src/data/correcciones.json                         | 46 +++++++++++++++++++-
+ src/data/laws/codigo-del-trabajo.md                |  8 ++--
+ src/data/laws/dl-3500-sistema-afp.md               |  8 ++--
+ 12 files changed, 136 insertions(+), 84 deletions(-)
+exit=0
+$ git diff --name-status 32ac7dc7..7a001163
+M	context/published-articles-index.json
+M	package.json
+M	scripts/check-payroll-consistency.mjs
+M	scripts/hero-images/asset-reviews.json
+M	scripts/hero-images/briefs.json
+M	scripts/hero-images/manifest.json
+M	scripts/hero-images/prompts.json
+M	src/data/blog/como-calcular-sueldo-liquido.md
+M	src/data/blog/primer-empleo-chile-guia-completa.md
+M	src/data/correcciones.json
+M	src/data/laws/codigo-del-trabajo.md
+M	src/data/laws/dl-3500-sistema-afp.md
+exit=0
+$ git diff --check 32ac7dc7..7a001163
+exit=0
+Forbidden paths in target diff: []
+Metadata invariant src/data/blog/como-calcular-sueldo-liquido.md: base={'slug': 'como-calcular-sueldo-liquido', 'canonical': None, 'topicRole': 'owner'}; target={'slug': 'como-calcular-sueldo-liquido', 'canonical': None, 'topicRole': 'owner'}; unchanged=True
+Metadata invariant src/data/blog/primer-empleo-chile-guia-completa.md: base={'slug': 'primer-empleo-chile-guia-completa', 'canonical': None, 'topicRole': 'owner'}; target={'slug': 'primer-empleo-chile-guia-completa', 'canonical': None, 'topicRole': 'owner'}; unchanged=True
+Metadata invariant src/data/laws/codigo-del-trabajo.md: base={'slug': None, 'canonical': None, 'topicRole': None}; target={'slug': None, 'canonical': None, 'topicRole': None}; unchanged=True
+Metadata invariant src/data/laws/dl-3500-sistema-afp.md: base={'slug': None, 'canonical': None, 'topicRole': None}; target={'slug': None, 'canonical': None, 'topicRole': None}; unchanged=True
+package scripts: check:payroll-consistency=node scripts/check-payroll-consistency.mjs
+check:payroll-consistency in check:ci=True
+D16 diff command: git diff 1f939ae4^..1f939ae4 -- src/data/blog/descuentos-de-sueldo.md
+D16 matching diff lines captured: 10; correction id found=descuentos-sueldo-clasificacion-bases-atrasos
+
+### src/data/blog/cotizacion-voluntaria-afp-independiente.md:140-147
+140	## Tasa del Seguro de Invalidez y Sobrevivencia (SIS)
+141	
+142	Desde abril de 2026, la tasa vigente del SIS para empleadoras, empleadores, afiliadas y afiliados independientes y voluntarios es **1,62%** de las remuneraciones y rentas imponibles (mujeres y hombres), según la Superintendencia de Pensiones.
+143	
+144	Esta tasa es distinta de la que aplica a quien cotiza obligatoriamente por boletas de honorarios vía retención del SII: para ese grupo, la tasa SIS considerada para el año tributario 2026 es **1,49%**. Son dos mecanismos de pago distintos (pago directo a la AFP vs. retención + Operación Renta), así que no asumas que la tasa de un régimen aplica al otro.
+145	
+146	Verifica siempre la tasa vigente en la [Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html) antes de proyectar tu cobertura: la cifra se reajusta periódicamente y hay contenido de terceros en internet con tasas de años anteriores (1,15% y 1,53% son cifras que circulan pero que corresponden a páginas no actualizadas — no las uses).
+147	
+
+### src/data/blog/sueldo-imponible-chile.md:90-120
+90	```
+91	Sueldo bruto
+92	  − Componentes no imponibles (colación, movilización, etc.)
+93	  = Remuneración imponible
+94	  − Cotización AFP (~10,5 % + comisión AFP)
+95	  − Cotización salud (7 % isapre/Fonasa)
+96	  − Cotización AFC (0,6 % trabajador; 0 % en casa particular)
+97	  − Impuesto de Segunda Categoría (tramo marginal)
+98	  = Sueldo líquido
+99	```
+100	
+101	Este artículo se enfoca en la **remuneración imponible** — la base del cálculo. Para el cálculo completo de cuánto queda en tu cuenta, usa la guía de [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
+102	
+103	## Cómo afecta el imponible a AFP, salud y AFC
+104	
+105	Cada descuento previsional se aplica como un porcentaje de la remuneración imponible, con un tope máximo:
+106	
+107	- **Cotización AFP**: aproximadamente 10,5% de la base imponible más la comisión de tu AFP (varía por institución).
+108	- **Cotización de salud**: 7% mínimo legal (Ley 18.469 Fonasa / Ley 18.933 Isapres) o la prima pactada con la isapre, lo que sea mayor.
+109	- **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía). En casa particular el trabajador no aporta: el 3% es del empleador.
+110	
+111	**Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que se gana por sobre el tope no cotiza — lo que también significa que no genera pensión sobre esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
+112	
+113	## Cómo determina el Impuesto de Segunda Categoría
+114	
+115	El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mensual. Solo el tramo que supera cada umbral paga la tasa correspondiente — no todo el ingreso paga la tasa más alta.
+116	
+117	El ISC tiene 8 tramos expresados en UTM (1 exento + 7 afectos), con tasas desde 4% hasta 40%. UTM vigente: **[[utm | clp]]** — tramo exento hasta **[[utm * 13.5 | clp]]** (13,5 UTM).
+118	
+119	**Tabla ISC** (tramos fijos por ley; rebaja en CLP = factor × UTM del mes). Fuente: [SII — Impuesto de Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
+120	
+
+### src/data/blog/sueldo-imponible-chile.md:150-160
+150	
+151	Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles relevantes:
+152	
+153	1. Remuneración imponible: $1.200.000
+154	2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
+155	3. Salud (7%): $84.000
+156	4. AFC (0,6%; $0 en casa particular): $7.200
+157	5. ISC (tramo del 4%: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], rebaja [[utm * 0.54 | clp]]): **[[1200000 * 0.04 - utm * 0.54 | clp]]** → $1.200.000 × 0,04 − [[utm * 0.54 | clp]] ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
+158	6. **Sueldo líquido orientativo: ~[[934800 + utm * 0.54 | clp]]** ($1.200.000 − $126.000 − $84.000 − $7.200 − [[1200000 * 0.04 - utm * 0.54 | clp]]). La comisión AFP no está incluida — varía por institución.
+159	
+160	Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.
+
+### src/data/blog/como-calcular-sueldo-liquido.md:188-208
+188	
+189	## Ejemplo completo: de bruto a líquido
+190	
+191	**Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 1,44%, total AFP 11,44%) y Fonasa.
+192	
+193	| Concepto                                      | Cálculo               | Monto           |
+194	| --------------------------------------------- | --------------------- | --------------- |
+195	| Sueldo bruto                                  | —                     | $1.500.000      |
+196	| (-) AFP cotización 10%                        | $1.350.000 × 10%      | -$135.000       |
+197	| (-) AFP comisión 1,44%                        | $1.350.000 × 1,44%    | -$19.440        |
+198	| (-) Salud Fonasa 7%                           | $1.350.000 × 7%       | -$94.500        |
+199	| (-) Seguro cesantía 0,6% (0% casa particular) | $1.350.000 × 0,6%     | -$8.100         |
+200	| = Renta líquida imponible                     | $1.350.000 - $257.040 | $1.092.960      |
+201	| (-) Impuesto único 2ª categoría               | Tramo 4% abril 2026   | -$5.978         |
+202	| (+) Ingresos no imponibles                    | Colación              | +$150.000       |
+203	| **= Sueldo líquido**                          | Bruto - Descuentos    | **~$1.236.982** |
+204	
+205	De $1.500.000 brutos a **~$1.236.982 líquidos**. La diferencia final de **~$263.018** se explica solo por los descuentos: las cotizaciones legales por **$257.040** y el impuesto único del mes por **~$5.978**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
+206	
+207	---
+208	
+
+### src/data/blog/como-calcular-sueldo-liquido.md:109-117
+109	| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                                             |
+110	| ------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+111	| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF                                                                                                   |
+112	| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                                               |
+113	| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años. No aplica en casa particular (0% trabajador) |
+114	| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII                                                                                                     |
+115	| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación; 45% en conjunto                        |
+116	
+117	La base y el tope de cada línea están desarrollados en la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/).
+Metadata src/data/blog/como-calcular-sueldo-liquido.md: {'validAsOf': '2026-10-28', 'lastVerified': None, 'updatedDate': '2026-10-28T00:00:00Z', 'computedAt': '"2026-10-04"', 'lastReviewed': None, 'reviewedBy': None}
+Metadata src/data/blog/primer-empleo-chile-guia-completa.md: {'validAsOf': '2026-10-28', 'lastVerified': None, 'updatedDate': None, 'computedAt': '"2026-05-06"', 'lastReviewed': None, 'reviewedBy': None}
+Metadata src/data/laws/codigo-del-trabajo.md: {'validAsOf': None, 'lastVerified': '2026-10-28', 'updatedDate': None, 'computedAt': None, 'lastReviewed': None, 'reviewedBy': None}
+Metadata src/data/laws/dl-3500-sistema-afp.md: {'validAsOf': None, 'lastVerified': '2026-10-28', 'updatedDate': None, 'computedAt': None, 'lastReviewed': None, 'reviewedBy': None}
+Hero como-calcular-sueldo-liquido: review status=accepted; reviewedAt=2026-10-28; image path=public/images/hero/como-calcular-sueldo-liquido.avif; recorded_sha256=c2a40cb69863e456bdaa2ae57e86268c678042cea316e89585fb6a9420944c3c; actual_sha256=c2a40cb69863e456bdaa2ae57e86268c678042cea316e89585fb6a9420944c3c; equal=True; target-diff-image-bytes=False
+Hero primer-empleo-chile-guia-completa: review status=accepted; reviewedAt=2026-10-28; image path=public/images/hero/primer-empleo-chile-guia-completa.avif; recorded_sha256=bdbc81e492f89451c892ff7d2599a3ba8f35483a4f78dcb93ca603704f1dc63a; actual_sha256=bdbc81e492f89451c892ff7d2599a3ba8f35483a4f78dcb93ca603704f1dc63a; equal=True; target-diff-image-bytes=False
+
+Working tree after audit artifacts (tracked source changes must remain absent):
+## fix/causa2-phase4-cluster-remediation...origin/fix/causa2-phase4-cluster-remediation
+?? docs/editorial/audits/causa2-phase4-20261028/
+

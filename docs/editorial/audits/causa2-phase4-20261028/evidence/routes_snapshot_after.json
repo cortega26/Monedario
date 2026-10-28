@@ -1,0 +1,222 @@
+{
+  "generatedAt": "2026-10-28T04:11:07.904Z",
+  "total": 54,
+  "routes": [
+    {
+      "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
+      "route": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "file": "bancos-y-fintech-chile.md",
+      "route": "/posts/bancos-y-fintech-chile/"
+    },
+    {
+      "file": "boleta-honorarios-2026-retencion-cobertura.md",
+      "route": "/posts/boleta-honorarios-2026-retencion-cobertura/"
+    },
+    {
+      "file": "cae-costo-real-credito-chile.md",
+      "route": "/posts/cae-costo-real-credito-chile/"
+    },
+    {
+      "file": "como-calcular-sueldo-liquido.md",
+      "route": "/posts/como-calcular-sueldo-liquido/"
+    },
+    {
+      "file": "como-cambiarse-de-afp.md",
+      "route": "/posts/como-cambiarse-de-afp/"
+    },
+    {
+      "file": "como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "route": "/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/"
+    },
+    {
+      "file": "como-hacer-presupuesto-mensual-chile.md",
+      "route": "/posts/como-hacer-presupuesto-mensual-chile/"
+    },
+    {
+      "file": "como-invertir-en-etfs-desde-chile.md",
+      "route": "/posts/como-invertir-en-etfs-desde-chile/"
+    },
+    {
+      "file": "como-leer-cartola-afp-chile.md",
+      "route": "/posts/como-leer-cartola-afp-chile/"
+    },
+    {
+      "file": "como-salir-boletin-comercial-chile.md",
+      "route": "/posts/como-salir-boletin-comercial-chile/"
+    },
+    {
+      "file": "contribuciones-bienes-raices-chile.md",
+      "route": "/posts/contribuciones-bienes-raices-chile/"
+    },
+    {
+      "file": "cotizacion-voluntaria-afp-independiente.md",
+      "route": "/posts/cotizacion-voluntaria-afp-independiente/"
+    },
+    {
+      "file": "credito-hipotecario-chile-guia-completa.md",
+      "route": "/posts/credito-hipotecario-chile-guia-completa/"
+    },
+    {
+      "file": "cuanto-descuenta-la-afp-de-tu-sueldo.md",
+      "route": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+    },
+    {
+      "file": "deposito-a-plazo-uf-vs-pesos.md",
+      "route": "/posts/deposito-a-plazo-uf-vs-pesos/"
+    },
+    {
+      "file": "descuentos-de-sueldo.md",
+      "route": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "file": "devolucion-impuestos-fechas-compensaciones.md",
+      "route": "/posts/devolucion-impuestos-fechas-compensaciones/"
+    },
+    {
+      "file": "donde-ver-si-estoy-en-dicom-gratis.md",
+      "route": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
+    },
+    {
+      "file": "el-poder-del-interes-compuesto.mdx",
+      "route": "/posts/el-poder-del-interes-compuesto/"
+    },
+    {
+      "file": "estafas-financieras-chile-vishing-smishing-marketplace.md",
+      "route": "/posts/estafas-financieras-chile-vishing-smishing-marketplace/"
+    },
+    {
+      "file": "finanzas-para-migrantes-chile.md",
+      "route": "/posts/finanzas-para-migrantes-chile/"
+    },
+    {
+      "file": "finiquito-e-indemnizaciones-en-chile.md",
+      "route": "/posts/finiquito-e-indemnizaciones-en-chile/"
+    },
+    {
+      "file": "fonasa-vs-isapre-comparativa.md",
+      "route": "/posts/fonasa-vs-isapre-comparativa/"
+    },
+    {
+      "file": "fondo-emergencia-chile.md",
+      "route": "/posts/fondo-emergencia-chile/"
+    },
+    {
+      "file": "fondos-afp-a-b-c-d-e.md",
+      "route": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "file": "fondos-mutuos-comisiones-rescate-impuestos.md",
+      "route": "/posts/fondos-mutuos-comisiones-rescate-impuestos/"
+    },
+    {
+      "file": "fraude-tarjeta-que-hacer.md",
+      "route": "/posts/fraude-tarjeta-que-hacer/"
+    },
+    {
+      "file": "gratificacion-legal-chile.md",
+      "route": "/posts/gratificacion-legal-chile/"
+    },
+    {
+      "file": "impuesto-global-complementario-chile.md",
+      "route": "/posts/impuesto-global-complementario-chile/"
+    },
+    {
+      "file": "indemnizacion-anos-de-servicio-chile.md",
+      "route": "/posts/indemnizacion-anos-de-servicio-chile/"
+    },
+    {
+      "file": "informe-deudas-cmf-vs-dicom.md",
+      "route": "/posts/informe-deudas-cmf-vs-dicom/"
+    },
+    {
+      "file": "interes-compuesto-nota-metodologica.md",
+      "route": "/posts/interes-compuesto-nota-metodologica/"
+    },
+    {
+      "file": "licencia-medica-desde-que-dia-pagan.md",
+      "route": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "file": "liquidacion-de-sueldo.md",
+      "route": "/posts/liquidacion-de-sueldo/"
+    },
+    {
+      "file": "operacion-renta-centro.md",
+      "route": "/posts/operacion-renta-centro/"
+    },
+    {
+      "file": "operacion-renta-f22-checklist.md",
+      "route": "/posts/operacion-renta-f22-checklist/"
+    },
+    {
+      "file": "pgu-pension-garantizada-universal.md",
+      "route": "/posts/pgu-pension-garantizada-universal/"
+    },
+    {
+      "file": "prepago-credito-cuando-conviene-chile.md",
+      "route": "/posts/prepago-credito-cuando-conviene-chile/"
+    },
+    {
+      "file": "primer-empleo-chile-guia-completa.md",
+      "route": "/posts/primer-empleo-chile-guia-completa/"
+    },
+    {
+      "file": "que-es-el-apv.mdx",
+      "route": "/posts/que-es-el-apv/"
+    },
+    {
+      "file": "que-es-el-ipc-chile-como-se-calcula.md",
+      "route": "/posts/que-es-el-ipc-chile-como-se-calcula/"
+    },
+    {
+      "file": "que-es-la-cuenta-2-afp.md",
+      "route": "/posts/que-es-la-cuenta-2-afp/"
+    },
+    {
+      "file": "que-es-la-uf.md",
+      "route": "/posts/que-es-la-uf/"
+    },
+    {
+      "file": "reajuste-arriendo-uf-ipc-chile.md",
+      "route": "/posts/reajuste-arriendo-uf-ipc-chile/"
+    },
+    {
+      "file": "reforma-previsional-2025-que-cambia-y-como-te-afecta.md",
+      "route": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
+    },
+    {
+      "file": "renegociacion-superir.md",
+      "route": "/posts/renegociacion-superir/"
+    },
+    {
+      "file": "rentas-mixtas-sueldo-honorarios.md",
+      "route": "/posts/rentas-mixtas-sueldo-honorarios/"
+    },
+    {
+      "file": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md",
+      "route": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
+    },
+    {
+      "file": "seguro-de-cesantia.md",
+      "route": "/posts/seguro-de-cesantia/"
+    },
+    {
+      "file": "sueldo-imponible-chile.md",
+      "route": "/posts/sueldo-imponible-chile/"
+    },
+    {
+      "file": "suplantacion-identidad-creditos-no-reconocidos.md",
+      "route": "/posts/suplantacion-identidad-creditos-no-reconocidos/"
+    },
+    {
+      "file": "tarjeta-credito-costo-real-chile.md",
+      "route": "/posts/tarjeta-credito-costo-real-chile/"
+    },
+    {
+      "file": "utm-chile-que-es-como-funciona.md",
+      "route": "/posts/utm-chile-que-es-como-funciona/"
+    }
+  ]
+}

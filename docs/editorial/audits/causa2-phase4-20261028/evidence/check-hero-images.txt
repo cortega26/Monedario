@@ -1,0 +1,4 @@
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK

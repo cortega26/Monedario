@@ -1,0 +1,6 @@
+$ node scripts/rss-to-json.mjs --in dist/rss.xml --out output/validation/rss_snapshot_after.json && pnpm run rss:compare
+[rss-to-json] Saved 53 items to /home/carlos/VS_Code_Projects/products/monedario/output/validation/rss_snapshot_after.json
+$ node scripts/compare-rss.mjs docs/reports/rss_snapshot.json output/validation/rss_snapshot_after.json
+[compare-rss] Added items (1) are allowed:
++ https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/
+[compare-rss] OK. baseline=52 current=53 removed=0 added=1
