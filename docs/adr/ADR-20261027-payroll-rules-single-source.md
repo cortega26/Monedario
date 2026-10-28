@@ -82,11 +82,26 @@ viajó sin su condición"**. D3, D4, D6, D7, D13 y D14 comparten esa forma.
    pasar F01–F08. Se sigue escribiendo a mano.
 
 6. **Se verifica cada mención, no solo la fuente.** Nuevo gate
-   `check:content-consistency`: extrae de la prosa las afirmaciones numéricas
-   (porcentajes, UF, meses, años), las asocia a una regla por contexto y falla
-   si contradicen el registro u omiten su condición. Incluye una lista explícita
-   de lookalikes legítimos (costos de cierre, probabilidades, fechas) para no
-   repetir los falsos positivos que hundieron las guardas de texto.
+   `check:payroll-consistency`: contrasta las cifras publicadas en prosa contra
+   el registro que las gobierna.
+
+   **Alcance corregido tras la implementación (2026-10-27).** El diseño original
+   prometía cubrir D3/D4/D6/D7/D13/D14. Al construir el gate se comprobó que un
+   registro plano solo puede verificar los hechos que **tienen** fuente única:
+
+   | Hecho | ¿Verificable hoy? |
+   |---|---|
+   | Comisiones de AFP (D2, D7) | **Sí** — `afpCommissions.ts`, validado contra Previred |
+   | Tasas de nómina (AFC, salud) | **Sí** — `PayrollRules` |
+   | SIS (D4) | **No** — el clúster usa 1,49% (boletas/SII), 1,62% (independientes), 2,5% (CEV patronal) y 1,87% (dependiente, erróneo): son conceptos distintos por régimen, no un número |
+   | Ventana de cambio de AFP (D8) | **No** — distingue primer cambio, cambios posteriores y licitación |
+   | Bases y topes en prosa (D13, D14) | **No** — dependen del motor, no de una tabla |
+
+   Registrar "SIS" como valor único habría creado un nuevo error de fuente
+   única, exactamente el riesgo que este ADR advierte. Por eso el gate declara
+   su cobertura en la cabecera y el registro debe modelar **régimen y período**
+   antes de incorporarlos. Un exit 0 significa "las comisiones de AFP son
+   coherentes", no "el clúster es correcto".
 
 7. **Las citas legales no se centralizan.** Cada cita es un juicio sobre qué
    prueba una fuente; D15 fue exactamente una cita mal aplicada y ningún
