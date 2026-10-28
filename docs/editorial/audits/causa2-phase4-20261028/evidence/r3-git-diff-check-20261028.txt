@@ -1,0 +1,2 @@
+$ git diff --check 3286ea59..6f93938b
+exit=0

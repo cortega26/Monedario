@@ -1,0 +1,4 @@
+$ pnpm run check:correcciones
+[check-correcciones] OK. 20 entradas válidas en el registro.
+$ node scripts/check-correcciones.mjs
+exit=0

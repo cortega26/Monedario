@@ -1,0 +1,4 @@
+$ pnpm run check:legal-citations
+[check-legal-citations] OK. laws=23 blog=54 pages=65 registry=21
+$ node scripts/check-legal-citations.mjs
+exit=0
