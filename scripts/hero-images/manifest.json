@@ -143,7 +143,7 @@
     },
     {
       "slug": "como-calcular-sueldo-liquido",
-      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
+      "sourceContentHash": "cf8f1102ffcdb7677d5ba191ef8713cf91d97493952db31fb5228754d1bbab76",
       "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
       "tags": [
         "sueldo",
@@ -173,7 +173,7 @@
         "Por qué te subieron el sueldo y te bajó el líquido"
       ],
       "bodyExcerpt": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo. ## La diferencia entre sueldo bruto y sueldo líquido Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante. **Sueldo bruto** es lo que acordaste con tu empleador. **Sueldo líquido** es lo que realmente llega a tu cuenta. Entre uno y otro hay una serie de descuentos obligatorios que establece la ley — no los decide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: | Descuento | Porcentaje | Va a... | | --------------------------- | ------------------------- | ---------------------- | | AFP (cotización) | 10% | Tu cuenta de pensión | | AFP (comisión) | 0.46% – 1.45%",
-      "wordCount": 1837,
+      "wordCount": 2182,
       "sourceFile": "como-calcular-sueldo-liquido.md"
     },
     {
@@ -1347,7 +1347,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
-      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
+      "sourceContentHash": "829cb062071d73f3681746f58524ca31c7a5dd8d51251ff03d1466f9b2af11ee",
       "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "tags": [
         "primer-empleo",
@@ -1363,7 +1363,7 @@
       "summary": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo...",
       "leadParagraphs": [
         "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.",
-        "> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
+        "> **Información vigente al 2026-10-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
         "Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre [descuentos de sueldo en Chile](/posts/descuentos-de-sueldo/) para entender de entrada qué parte del bruto no llega a tu cuenta."
       ],
       "headings": [
@@ -1376,8 +1376,8 @@
         "AFP: qué es, cómo te afilian y qué hacer si el empleador no lo hace",
         "Qué es la AFP y para qué sirve"
       ],
-      "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
-      "wordCount": 2184,
+      "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-10-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
+      "wordCount": 2362,
       "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {

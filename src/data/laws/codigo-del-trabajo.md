@@ -7,7 +7,7 @@ effective: 2003-01-16
 lastAmended: 2023-05-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=207436
 description: "El Código del Trabajo regula la relación entre empleadores y trabajadores en Chile: contratos, remuneraciones, gratificaciones, descuentos, liquidaciones y causales de despido."
-lastVerified: 2026-05-25
+lastVerified: 2026-10-28
 updateTrigger: "Cambio en la jornada legal máxima (Ley 40h), modificación de causales de terminación, actualización del Ingreso Mínimo Mensual, o nuevas normas sobre remuneraciones o descuentos."
 relatedArticles:
   - gratificacion-legal-chile
@@ -34,7 +34,7 @@ El DFL N° 1-T de 2003 refunde y sistematiza el Código del Trabajo original y s
 
 **Excepciones o condiciones comunes:** las gratificaciones y las indemnizaciones dependen del tipo de causal de término, de si la empresa tuvo utilidades y del tiempo trabajado. No todos los trabajadores tienen los mismos derechos: el contrato a plazo fijo, el de trabajador de casa particular y el de aprendiz tienen reglas propias.
 
-**Vigencia / fecha de corte:** verificado al **2026-05-25**. La jornada ordinaria máxima es de **42 horas semanales** desde abril de 2026 (Ley 21.561); bajará a 40 h en 2028.
+**Vigencia / fecha de corte:** verificado al **2026-10-28**. La jornada ordinaria máxima es de **42 horas semanales** desde abril de 2026 (Ley 21.561); bajará a 40 h en 2028.
 
 **Fuentes primarias críticas:** [BCN — DFL 1-T/2003](https://www.bcn.cl/leychile/navegar?idNorma=207436), [Dirección del Trabajo](https://www.dt.gob.cl/portal/1626/w3-channel.html), [ChileAtiende](https://www.chileatiende.gob.cl).
 
@@ -51,7 +51,7 @@ Esta distinción determina sobre qué monto se calculan las cotizaciones de AFP,
 La gratificación es la parte de las utilidades que el empleador debe distribuir entre sus trabajadores. Existen dos modalidades:
 
 - **Art. 47 (30% de utilidades):** la empresa distribuye el 30% de su utilidad líquida entre todos los trabajadores en proporción a sus remuneraciones.
-- **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (equivale a aproximadamente $539.000 × 4,75 = $2.560.250 al año con el IMM vigente a mayo de 2026). Se puede pagar mensualmente de forma proporcional.
+- **Art. 50 (25% del sueldo anual con tope):** la modalidad más usada en la práctica. El empleador paga el 25% de la remuneración imponible anual de cada trabajador, con un tope de **4,75 IMM anuales** (con el IMM de $553.553 vigente desde mayo de 2026, equivale a $553.553 × 4,75 = **$2.629.376,75 al año**). Se puede pagar mensualmente de forma proporcional.
 
 ### Liquidación de sueldo (art. 54)
 
@@ -106,4 +106,4 @@ Consultas y denuncias: [Dirección del Trabajo](https://www.dt.gob.cl/portal/162
 
 ---
 
-_Última verificación: 25 de mayo de 2026. Esta ficha es educativa, no asesoría laboral._
+_Última verificación: 28 de octubre de 2026. Esta ficha es educativa, no asesoría laboral._

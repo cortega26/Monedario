@@ -1,6 +1,46 @@
 {
   "corrections": [
     {
+      "id": "causa2-phase4-tasas-bases-cluster",
+      "date": "2026-10-28",
+      "title": "Tasas de nómina, bases y topes: corrección del clúster de sueldo y primer empleo",
+      "pages": [
+        {
+          "href": "/posts/como-calcular-sueldo-liquido/",
+          "label": "Cómo calcular el sueldo líquido"
+        },
+        {
+          "href": "/posts/primer-empleo-chile-guia-completa/",
+          "label": "Guía del primer empleo en Chile"
+        },
+        {
+          "href": "/leyes/",
+          "label": "Fichas de leyes: Código del Trabajo y DL 3.500"
+        }
+      ],
+      "wrong": [
+        "La ficha del Código del Trabajo calculaba el tope de gratificación del artículo 50 con un IMM de $539.000, vencido: publicaba $2.560.250 al año en lugar de $2.629.376,75.",
+        "La guía del sueldo líquido rotulaba a AFP Capital con la comisión de AFP Modelo (0,58%, total 10,58%) y arrastraba ese error a todo el ejemplo de bruto a líquido.",
+        "La guía del primer empleo decía que el 3% patronal del seguro de cesantía en plazo fijo iba íntegro al FCS; en realidad se reparte 2,8% a la CIC y 0,2% al FCS. También presentaba el 2,4% patronal del contrato indefinido como si completo fuera a la CIC.",
+        "La misma guía publicaba un SIS de 1,87% para trabajadores dependientes; la tasa vigente desde agosto de 2026 es 1,78% y es un costo del empleador. El 1,49% de boletas y el 2,5% del componente CEV son otros regímenes, no el mismo número.",
+        "La guía del primer empleo llamaba 'ahorro previsional' al 10,5%, sumando el 10% de ahorro con una comisión; y la ficha del DL 3.500 publicaba un rango de comisiones de 0,58%–1,45%, cuando el mínimo vigente es 0,46% (AFP Uno).",
+        "La guía del primer empleo afirmaba 12 meses para cambiarse de AFP. La regla es contextual: quien se afilia por primera vez debe permanecer 24 meses en la AFP de menor comisión, salvo alza de comisión o una AFP más barata; después no hay un límite anual de cambios.",
+        "La guía del sueldo líquido afirmaba que todos los descuentos se calculan sobre el imponible y que el 7% de Fonasa no tenía tope; además llamaba 'copago' al precio adicional del plan Isapre."
+      ],
+      "fixed": [
+        "La ficha del Código del Trabajo usa el IMM de $553.553 vigente desde mayo de 2026: 4,75 × $553.553 = $2.629.376,75 al año.",
+        "La guía del sueldo líquido usa la comisión de AFP Capital del registro (1,44%, total 11,44%) y recalcula el ejemplo completo: cotizaciones $257.040, renta líquida imponible $1.092.960, impuesto $5.978 y líquido $1.236.982.",
+        "La guía del primer empleo separa el 3% patronal: 2,8% a la CIC y 0,2% al FCS en plazo fijo; 1,6% a la CIC y 0,8% al FCS en indefinido; 2,2% y 0,8% en casa particular.",
+        "La guía del primer empleo publica el SIS dependiente en 1,78% desde agosto de 2026, con nota de que el 1,49% de boletas es otro régimen.",
+        "La guía del primer empleo separa el 10% de ahorro previsional de la comisión (0,46%–1,45%) y la ficha del DL 3.500 usa el rango 0,46%–1,45%.",
+        "La guía del primer empleo explica la regla de cambio de AFP por contexto: 24 meses en la primera asignación, excepciones por alza de comisión o AFP más barata, y sin límite anual después.",
+        "La guía del sueldo líquido reemplaza la regla única por una tabla de bases y topes por descuento, agrega el tope de 90 UF a Fonasa y distingue el precio adicional del plan Isapre del copago."
+      ],
+      "affected": "Trabajadores dependientes que calculan su sueldo líquido, revisan su primera liquidación o consultan las fichas del Código del Trabajo y del DL 3.500.",
+      "sources": "Dirección del Trabajo, IMM vigente desde el 1 de mayo de 2026 (https://www.dt.gob.cl/portal/1628/w3-article-60141.html); BCN, Código del Trabajo, art. 50 (https://www.bcn.cl/leychile/navegar?idNorma=207436); BCN, DL 3.500, arts. 160, 164 y 165 (https://www.bcn.cl/leychile/navegar?idNorma=7147); BCN, Ley 19.728, arts. 5 y 9 (https://www.bcn.cl/leychile/navegar?idNorma=184979); Superintendencia de Pensiones, Sistema de AFP (https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html) y SIS (https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html); SII, Impuesto Único de Segunda Categoría, tabla de abril de 2026 (https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm); Superintendencia de Salud, cotizaciones de salud (https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/).",
+      "prevention": "Verificar cada tasa con su régimen y su fecha de vigencia antes de publicarla; recalcular los ejemplos completos cuando cambie una comisión; no reducir una regla contextual a un número único."
+    },
+    {
       "id": "uf-dos-valores-corruptos-2014",
       "date": "2026-10-27",
       "title": "Serie histórica de la UF: dos valores corruptos de 2014 y dos fechas faltantes de 2015",
@@ -75,14 +115,16 @@
         "La FAQ de atrasos decía que un atraso solo se puede descontar como multa del reglamento interno, sin distinguir la multa del descuento del valor del tiempo no trabajado, que la DT permite cuando el atraso es imputable al trabajador.",
         "Se afirmaba que todos los descuentos legales se calculan sobre la remuneración imponible, sin distinguir las bases y topes de cada uno: 90 UF para AFP y salud, 135,2 UF para cesantía, renta líquida imponible para el impuesto único y remuneración total bruta para los descuentos convenidos.",
         "La fuente principal rotulada como artículo 58 era una consulta de la DT sobre indemnización por años de servicio. La entrada del 2026-10-19 sobre el tramo exento citaba esa misma consulta como fuente del artículo 58.",
-        "El 0,6% de cesantía se presentaba sin el límite de 11 años por relación laboral ni los grupos excluidos, el 7% de salud sin el tope de 90 UF, y la autorización escrita sin los topes legales de 15%, 30% y 45%."
+        "El 0,6% de cesantía se presentaba sin el límite de 11 años por relación laboral ni los grupos excluidos, el 7% de salud sin el tope de 90 UF, y la autorización escrita sin los topes legales de 15%, 30% y 45%.",
+        "La guía afirmaba sin matices que el artículo 58 prohíbe descontar pérdidas de caja, deterioro de herramientas y mercadería dañada. El texto legal no enumera esas tres categorías en esos términos: prohíbe el uso de herramientas y otras prestaciones en especie, y la DT condiciona el descuento de pérdidas de caja a que el trabajador reciba una asignación de pérdida de caja."
       ],
       "fixed": [
         "La cuota sindical y el crédito social de una caja de compensación pasan a descuentos obligatorios, con la cita de la DT (ORD. N°4184/70, N°443/2026 y N°262/4) y la advertencia de que avisar la renuncia al sindicato no basta por sí solo para detener el descuento.",
         "Se separa el descuento del tiempo no trabajado (permitido si el atraso es imputable al trabajador) de la multa del reglamento interno (hasta el 25% de la remuneración diaria, artículos 154 y 157). Cuando la causa es ajena a la voluntad del trabajador, el atraso justificado no es una falta y el tiempo a disposición del empleador se paga; solo una fuerza mayor que impide del todo la prestación suspende las obligaciones de trabajar y remunerar, caso a caso.",
         "Se agregó una tabla con la base y el tope de cada descuento, y los topes de 15%, 30% y 45% de los descuentos convenidos, con el ejemplo de $1.000.000 de remuneración total. Se alineó también el resumen del artículo 58 en la página del Código del Trabajo (sección Leyes) y las menciones de cuota sindical y crédito de caja de compensación en las guías del primer empleo y del sueldo líquido.",
         "La fuente principal del artículo 58 es ahora la DT, ORD. N°680, que reproduce los incisos 1 a 4 del artículo 58 y los artículos 154 y 157. Esta entrada corrige además la fuente citada en la entrada del 2026-10-19, que se conserva sin reescribir.",
-        "Se explican el límite de 11 años y las exclusiones del seguro de cesantía, y el tope de 90 UF de la cotización de salud (máximo de 6,3 UF). El tope de 90 UF se agregó también a la guía de liquidación de sueldo."
+        "Se explican el límite de 11 años y las exclusiones del seguro de cesantía, y el tope de 90 UF de la cotización de salud (máximo de 6,3 UF). El tope de 90 UF se agregó también a la guía de liquidación de sueldo.",
+        "Se reemplazó la enumeración categórica por la cita literal del inciso 5 del artículo 58 (arriendo de habitación, luz, agua, uso de herramientas, medicinas, atención médica y otras prestaciones en especie) y se añadió el criterio de la DT (ORD. N°4229/2015): las pérdidas de caja solo pueden descontarse a quien recibe una asignación de pérdida de caja."
       ],
       "affected": "Trabajadores dependientes que revisan los descuentos de su liquidación, en especial quienes tienen cuota sindical, un crédito de una caja de compensación o descuentos por atrasos.",
       "sources": "Dirección del Trabajo: ORD. N°680 (https://www.dt.gob.cl/legislacion/1624/w3-article-111170.html), ORD. N°4184/70 (https://www.dt.gob.cl/legislacion/1624/w3-article-98369.html), ORD. N°443/2026 (https://www.dt.gob.cl/legislacion/1624/w3-propertyvalue-137126.html), ORD. N°262/4 (https://www.dt.gob.cl/legislacion/1624/w3-article-100110.html), ORD. N°1578 (https://www.dt.gob.cl/legislacion/1624/w3-article-115035.html), ORD. N°2000-44737/2026 (https://www.dt.gob.cl/legislacion/1624/w3-article-129461.html), ORD. N°3456/37 (https://dt.gob.cl/legislacion/1624/w3-article-102449.html); Superintendencia de Pensiones, topes imponibles 2026 (https://www.spensiones.cl/portal/institucional/594/w3-article-16921.html); AFC, cotizaciones (https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/); SII, base del impuesto único (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm).",

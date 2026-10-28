@@ -211,13 +211,13 @@
       "targetImagePath": "/images/hero/como-calcular-sueldo-liquido.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
-      "briefHash": "70d2a3cc68b4a85753bf21b1bf77cfd0d15f31f0a3df539049b92f4848784bb5",
+      "sourceContentHash": "cf8f1102ffcdb7677d5ba191ef8713cf91d97493952db31fb5228754d1bbab76",
+      "briefHash": "fad108b43e5b6f769ef91dfbe9bd702797ad43c6da540b609b968a73741dc9ce",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2): se corrigen comisiones, SIS, bases y topes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -1963,13 +1963,13 @@
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
-      "briefHash": "173d5692071ff031709a461889f74f8382e55004aaee95ec642a8404b9fe1f36",
+      "sourceContentHash": "829cb062071d73f3681746f58524ca31c7a5dd8d51251ff03d1466f9b2af11ee",
+      "briefHash": "134086a1f34b27d91468ff0bb153f13df9fbf8fc64950520084ec6cba4b864e9",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2): se corrigen comisiones, SIS, bases y topes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
