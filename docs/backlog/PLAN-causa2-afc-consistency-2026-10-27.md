@@ -68,7 +68,7 @@ Fuera de alcance: **D5** (defecto del paquete de auditoría, no bloquea) y
       representable.
 - [ ] Sin cambios de copy en esta fase.
 
-### Fase 3 — Gate `check:content-consistency`
+### Fase 3 — Gate `check:payroll-consistency` (parcial, en curso)
 
 - [ ] Extraer afirmaciones numéricas de la prosa (porcentajes, UF, meses, años).
 - [ ] Asociarlas a una regla por contexto y fallar si contradicen el valor o
@@ -78,7 +78,15 @@ Fuera de alcance: **D5** (defecto del paquete de auditoría, no bloquea) y
       texto.
 - [ ] Verificar que **falla** contra el estado actual del clúster (debe señalar
       D3, D4, D6, D7, D13, D14) y que pasa tras la remediación.
-- [ ] Integrarlo en `check:ci`.
+- [ ] Integrarlo en `check:ci` **solo después** de la Fase 4: hoy falla a
+      propósito contra el clúster (D2).
+
+**Hallazgo de implementación (2026-10-27):** el gate cubre comisiones de AFP
+(registro existente y validado contra Previred) y falla correctamente sobre D2.
+No puede cubrir SIS ni la ventana de cambio de AFP con un registro plano:
+"1,49%", "1,62%", "2,5%" y "1,87%" son conceptos distintos por régimen. Antes
+de ampliarlo hay que modelar régimen y período, o se crea un nuevo error de
+fuente única.
 
 ### Fase 4 — Remediación del clúster
 

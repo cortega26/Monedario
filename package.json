@@ -126,6 +126,7 @@
     "check:image-curation": "node scripts/check-image-curation.mjs",
     "check:risk-tiers": "node scripts/check-risk-tiers.mjs",
     "check:correcciones": "node scripts/check-correcciones.mjs",
+    "check:payroll-consistency": "node scripts/check-payroll-consistency.mjs",
     "growth:detect": "node scripts/detect-seo-opportunities.mjs",
     "growth:collect:competitors": "node scripts/collect-competitor-sitemaps.mjs",
     "growth:collect:bing": "node scripts/collect-bing-queries.mjs",
