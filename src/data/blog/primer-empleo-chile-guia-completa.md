@@ -37,7 +37,7 @@ faqs:
   - q: "¿Qué pasa si mi empleador no me hace contrato en los primeros 15 días?"
     a: "Si el empleador no escritura el contrato en el plazo legal, se presume que son estipulaciones del contrato las que declare el trabajador. Eso te da argumentos legales importantes. Puedes denunciar la infracción ante la Dirección del Trabajo sin que esto termine la relación laboral."
   - q: "¿Puedo elegir mi AFP?"
-    a: "Sí. Si es tu primer trabajo formal, el sistema te asigna la AFP de menor comisión (desde el 1 de octubre de 2025, AFP Uno) y debes permanecer en ella **24 meses**, salvo que suba su comisión o que otra AFP ofrezca una comisión menor. Pasado ese plazo puedes cambiarte; la ley no exige esperar 12 meses entre cambios. Compara comisiones en la Superintendencia de Pensiones antes de decidir."
+    a: "Sí. Si es tu primera afiliación al sistema previsional obligatorio —lo habitual al empezar un primer empleo formal—, el sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 y hasta el 30 de septiembre de 2027) y debes permanecer en ella **24 meses**, salvo que suba su comisión o que otra AFP ofrezca una comisión menor. Pasado ese plazo puedes cambiarte; la ley no exige esperar 12 meses entre cambios. Compara comisiones en la Superintendencia de Pensiones antes de decidir."
   - q: "¿Qué cubre Fonasa de partida?"
     a: "Fonasa cubre atención ambulatoria y hospitalaria en la red pública (consultas, urgencias, exámenes) desde el primer día en que cotizas. El porcentaje de cobertura depende del tramo al que pertenezcas. Con la modalidad de libre elección puedes atenderte con médicos del convenio fuera de la red pública, pero el copago es mayor."
   - q: "¿Cuándo me pagan el primer sueldo?"
@@ -135,10 +135,10 @@ El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** equi
 
 ### Cómo funciona la afiliación en el primer trabajo
 
-Si es tu **primer empleo formal**, el proceso es automático:
+Si es tu **primera afiliación al sistema previsional obligatorio** —lo habitual al empezar tu primer empleo formal—, el proceso es automático:
 
 1. El empleador te inscribe en la AFC (seguro de cesantía) desde el primer día.
-2. El sistema te asigna la AFP de menor comisión (desde el 1 de octubre de 2025, AFP Uno) en los primeros días — recibirás una carta o notificación electrónica.
+2. El sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 hasta el 30 de septiembre de 2027) en los primeros días — recibirás una carta o notificación electrónica.
 3. Debes permanecer **24 meses** en esa AFP, salvo que suba su comisión o que otra ofrezca una comisión menor. Pasado ese plazo puedes cambiarte cuando quieras: no hay un límite de un cambio por año. Si más adelante te seleccionan en un traspaso masivo por licitación, tendrás 30 días para rechazarlo.
 
 **Qué hacer:** apenas recibas la notificación, compara las comisiones actuales de todas las AFP en el sitio de la Superintendencia de Pensiones. La diferencia entre la AFP más cara y la más barata puede representar varios millones de pesos en pensión acumulada.
@@ -265,7 +265,7 @@ Las respuestas a las preguntas más comunes están en el bloque de FAQs al inici
 
 - **¿Cuándo firmar el contrato?** — Tienes hasta 15 días. No lo firmes sin leerlo.
 - **¿Qué pasa si no hay contrato escrito?** — Puedes declarar tus propias condiciones laborales en disputa.
-- **¿Puedes elegir AFP?** — Sí. La primera asignación te deja 24 meses en la AFP de menor comisión, con las excepciones de alza de comisión o de una AFP más barata; después puedes cambiarte sin límite anual.
+- **¿Puedes elegir AFP?** — Sí. La primera afiliación al sistema te deja 24 meses en la AFP de menor comisión, con las excepciones de alza de comisión o de una AFP más barata; después puedes cambiarte sin límite anual.
 - **¿Qué cubre Fonasa?** — Cobertura desde el primer día de cotización.
 - **¿Cuándo se paga el primer sueldo?** — Según el contrato; puede ser proporcional si ingresas a mitad de mes.
 

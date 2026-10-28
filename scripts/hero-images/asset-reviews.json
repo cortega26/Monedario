@@ -303,7 +303,7 @@
     "cotizacion-voluntaria-afp-independiente": {
       "slug": "cotizacion-voluntaria-afp-independiente",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
+      "sourceContentHash": "bc22d48937e10a0306c2a69ef804b8900d80a7a7244372439270f7bb462600c7",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Explorar aportes previsionales cuando no existe cotización obligatoria.\nEditorial promise: Explicar afiliación voluntaria, costo y cobertura sin confundirlos con APV, salud o PGU.\nVisual message: Una persona puede revisar cómo sostener su ahorro previsional por decisión propia.\nScene: A middle-aged man at a small workbench with a simple tool roll places a personal contribution slip into an open retirement folder. A separate health document stays clearly outside the folder. The gesture is deliberate, small and practical, with a plain unnumbered calendar in the background; no employer payroll or promised state benefit. No plants or coffee cups.\nEssential elements: Aporte elegido por la persona; Carpeta previsional; Salud separada.\nAvoid these interpretations: Es APV de un trabajador dependiente; Incluye salud automáticamente; Genera derecho garantizado a PGU.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "c392d5f477285bd0397a3f75e6468540e92310b3ac9116e49a3c89cbc0c38f86",
       "source": {
@@ -327,9 +327,9 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff.",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff. Revalidada el 2026-10-28 tras la auditoría de la fase 4; el mensaje visual no cambia y la imagen no se regenera.",
         "note": "Inspección ampliada completada: situación específica del artículo, elementos legibles sin montos ni rendimientos garantizados. Aceptada para revisión conjunta."
       }
     },
@@ -699,7 +699,7 @@
     "primer-empleo-chile-guia-completa": {
       "slug": "primer-empleo-chile-guia-completa",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "829cb062071d73f3681746f58524ca31c7a5dd8d51251ff03d1466f9b2af11ee",
+      "sourceContentHash": "fc4cce9d311d86416dc59bdbd53805c30d891013d0c4fec594b79f5fe05fdd3f",
       "prompt": "Edit the supplied original illustration: remove only the black side bars by extending the existing flat teal background edge-to-edge. Preserve the original person, doorway, briefcase, composition, proportions and flat palette. Do not restyle, add faces, objects or text.\nCanvas: 1200x630 pixels, landscape. Keep the existing subject size and position; fill only the side-bar areas with the original background. Preserve the original flat illustration style.",
       "promptHash": "1d7b5948d6f3e4522933d3d7e787fda8ef96f553d2cdd844046e7215ff3441aa",
       "source": {
@@ -725,7 +725,7 @@
         "status": "accepted",
         "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/visual-curation",
-        "method": "Local sharp preservation edit; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff. Revalidated on 2026-10-20 against the current article content (descuentos de sueldo classification, atrasos and bases/topes correction); image bytes unchanged. Revalidada el 2026-10-28 contra el texto corregido de la fase 4 de causa 2 (comisiones, SIS, bases y topes); el mensaje visual no cambia y la imagen no se regenera.",
+        "method": "Local sharp preservation edit; inspection of image against the reviewed article brief. Not a YMYL compliance or human publication signoff. Revalidated on 2026-10-20 against the current article content (descuentos de sueldo classification, atrasos and bases/topes correction); image bytes unchanged. Revalidada el 2026-10-28 contra el texto corregido de la fase 4 de causa 2 (comisiones, SIS, bases y topes); el mensaje visual no cambia y la imagen no se regenera. Revalidada el 2026-10-28 tras la auditoría de la fase 4; el mensaje visual no cambia y la imagen no se regenera.",
         "note": "Aceptada reparación reproducible de127/128px laterales con el color del fondo original. El área central conserva exactamente sus píxeles decodificados antes de la compresión de entrega. Procedimiento local autorizado al continuar tras la propuesta; imagegen no podía leer la referencia por el fallo del sandbox. No se generó una ilustración nueva. La revalidación de contenido del 2026-10-20 no cambió el mensaje visual ni requiere regeneración; la imagen existente sigue aceptada. La revalidación del 2026-10-28 no cambió el mensaje visual ni requiere regeneración."
       },
       "generation": {
@@ -911,7 +911,7 @@
     "como-calcular-sueldo-liquido": {
       "slug": "como-calcular-sueldo-liquido",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "cf8f1102ffcdb7677d5ba191ef8713cf91d97493952db31fb5228754d1bbab76",
+      "sourceContentHash": "bbbe8b02f7d6585c1c7fa170ea414b46a77bd779de215acb74f264a528381322",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Reconstruir cuánto llega al bolsillo desde la remuneración y sus descuentos.\nEditorial promise: Guiar el cálculo completo del sueldo líquido distinguiendo bases y componentes.\nVisual message: El depósito se entiende siguiendo la liquidación y sus descuentos.\nScene: An adult leans slightly over a home desk and follows a payslip from its top earnings section through several unlettered deduction bands to a final teal band. A plain bank card at the edge of the desk suggests the eventual deposit. The payslip is dominant and remains clearly present; the person uses a small calculator without a readable display.\nEssential elements: Liquidación dominante; Persona siguiendo descuentos; Indicio de depósito secundario.\nAvoid these interpretations: Eliminar el documento y reemplazarlo por diagrama; Todas las deducciones usan la misma base; El bruto es el líquido.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "31bee37674d296edb06bf92fd6ec26cb96c5b6b4a4b0a830a2cd914bbd8945e5",
       "source": {
@@ -937,7 +937,7 @@
         "status": "accepted",
         "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief and at 300 px. Not a YMYL compliance or human publication signoff. Revalidated on 2026-10-20 against the current article content (descuentos de sueldo classification, atrasos and bases/topes correction); image bytes unchanged. Revalidada el 2026-10-28 contra el texto corregido de la fase 4 de causa 2 (comisiones, SIS, bases y topes); el mensaje visual no cambia y la imagen no se regenera.",
+        "method": "Built-in imagegen; inspection of image against the reviewed article brief and at 300 px. Not a YMYL compliance or human publication signoff. Revalidated on 2026-10-20 against the current article content (descuentos de sueldo classification, atrasos and bases/topes correction); image bytes unchanged. Revalidada el 2026-10-28 contra el texto corregido de la fase 4 de causa 2 (comisiones, SIS, bases y topes); el mensaje visual no cambia y la imagen no se regenera. Revalidada el 2026-10-28 tras la auditoría de la fase 4; el mensaje visual no cambia y la imagen no se regenera.",
         "note": "Situación y gesto concuerdan con el brief; imagen legible en miniatura y sin texto/datos fabricados ni promesas financieras engañosas. La revalidación de contenido del 2026-10-20 no cambió el mensaje visual ni requiere regeneración; la imagen existente sigue aceptada. La revalidación del 2026-10-28 no cambió el mensaje visual ni requiere regeneración."
       }
     },
@@ -1710,7 +1710,7 @@
     "sueldo-imponible-chile": {
       "slug": "sueldo-imponible-chile",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
+      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Distinguir la base imponible de otras partes de la remuneración.\nEditorial promise: Identificar componentes que forman la base sin confundirla con bruto o líquido.\nVisual message: Separar conceptos permite entender sobre qué se calcula.\nScene: Use Image 1 as the exact visual reference and recreate the same close-up payslip, pointing hand, allowance card, desk and v5 palette. The small allowance card must contain only meal and transit pictograms with neutral unlettered lines. Remove the gift-box pictogram and its row; rebalance the two remaining rows evenly. Do not imply a gift, reward or bonus.\nEssential elements: Base principal diferenciada; Asignaciones separadas; Mano que clasifica.\nAvoid these interpretations: Bruto e imponible son iguales; Imponible equivale al depósito final; Todos los descuentos comparten idéntica base; No gift-box, reward or bonus pictogram; only meal and transit allowance cues..\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "01bbca983fe497efccf49e557fa3298783a35ddf446c243d26cc25b961bc38ff",
       "source": {
@@ -1734,9 +1734,9 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-10-13",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/visual-curation",
-        "method": "Built-in image edit against the pre-edit reference; inspected against the reviewed edit brief. Revalidated on 2026-10-19 against the current article content; image bytes unchanged. Not a YMYL compliance or human publication signoff.",
+        "method": "Built-in image edit against the pre-edit reference; inspected against the reviewed edit brief. Revalidated on 2026-10-19 against the current article content; image bytes unchanged. Not a YMYL compliance or human publication signoff. Revalidada el 2026-10-28 tras la auditoría de la fase 4; el mensaje visual no cambia y la imagen no se regenera.",
         "note": "Edición visual aceptada el 2026-10-13. La revalidación de contenido del 2026-10-19 no cambió el mensaje visual ni requiere regeneración; la imagen existente sigue aceptada."
       },
       "generation": {

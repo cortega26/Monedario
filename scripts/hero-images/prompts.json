@@ -211,13 +211,13 @@
       "targetImagePath": "/images/hero/como-calcular-sueldo-liquido.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "cf8f1102ffcdb7677d5ba191ef8713cf91d97493952db31fb5228754d1bbab76",
-      "briefHash": "fad108b43e5b6f769ef91dfbe9bd702797ad43c6da540b609b968a73741dc9ce",
+      "sourceContentHash": "bbbe8b02f7d6585c1c7fa170ea414b46a77bd779de215acb74f264a528381322",
+      "briefHash": "959bc1dffecbeeda37a94ce687ddbefb1268c5366130fc5f38b30a8322e41b92",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-28 (fase 4 de causa 2): se corrigen comisiones, SIS, bases y topes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -611,13 +611,13 @@
       "targetImagePath": "/images/hero/cotizacion-voluntaria-afp-independiente.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
-      "briefHash": "8d745ffbd296e35487403cdd84d67f9b408864da83c88cce10208cf414006866",
+      "sourceContentHash": "bc22d48937e10a0306c2a69ef804b8900d80a7a7244372439270f7bb462600c7",
+      "briefHash": "f1c2183536a56da1ba86ba41c19e7b1247251967538cd26e0d170726f983e471",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -1963,13 +1963,13 @@
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "829cb062071d73f3681746f58524ca31c7a5dd8d51251ff03d1466f9b2af11ee",
-      "briefHash": "134086a1f34b27d91468ff0bb153f13df9fbf8fc64950520084ec6cba4b864e9",
+      "sourceContentHash": "fc4cce9d311d86416dc59bdbd53805c30d891013d0c4fec594b79f5fe05fdd3f",
+      "briefHash": "b40f4bdab657c2fe65dce5d0047013a9d8abd0a784e9a0af3caa4c8dffad4bad",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-28 (fase 4 de causa 2): se corrigen comisiones, SIS, bases y topes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -2513,13 +2513,13 @@
       "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
-      "briefHash": "0018b2d71735ce873f91fa9244ba11dfa6abf41ea87c981fc05fdf72e6085e59",
+      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
+      "briefHash": "b4cf15cc34fd19261b5e567849f9ae9e396c71f90d362221bc4e248fe899278b",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "template": "B",
       "promptTrack": "B",

@@ -106,13 +106,13 @@ Si tu liquidación dice "sueldo bruto $1.200.000" pero el imponible es $1.050.00
 
 Esto también tiene un límite superior: existe un **[tope imponible](/glosario/tope-imponible/)** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **90 [UF](/guias/uf-costo-de-vida/)** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
 
-| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                                             |
-| ------------------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF                                                                                                   |
-| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                                               |
-| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años. No aplica en casa particular (0% trabajador) |
-| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII                                                                                                     |
-| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación; 45% en conjunto                        |
+| Descuento                                   | Base de cálculo                                                                | Tope o límite                                                                                                                                                   |
+| ------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AFP (10% + comisión)                        | Remuneración imponible                                                         | Tope imponible de 90 UF                                                                                                                                         |
+| Salud (7% mínimo)                           | Remuneración imponible                                                         | Mismo tope de 90 UF: el 7% legal llega como máximo a 6,3 UF                                                                                                     |
+| Cesantía trabajador (0,6%)                  | Remuneración imponible                                                         | Tope de 135,2 UF en 2026; el aporte del trabajador dura como máximo 11 años por relación laboral. No aplica en plazo fijo ni en casa particular (0% trabajador) |
+| Impuesto único de segunda categoría         | Renta líquida imponible: remuneraciones brutas menos cotizaciones obligatorias | Tabla mensual del SII                                                                                                                                           |
+| Descuentos convenidos por escrito (art. 58) | Remuneración total bruta, sin deducir antes los descuentos obligatorios        | 15% general; hasta 30% en mutuos o créditos sin interés para vivienda o educación, con pago directo al acreedor; 45% en conjunto                                |
 
 La base y el tope de cada línea están desarrollados en la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/).
 
@@ -188,21 +188,22 @@ Si antes estabas en Fonasa (7% fijo) y te cambiaste a una Isapre con un plan de 
 
 ## Ejemplo completo: de bruto a líquido
 
-**Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 1,44%, total AFP 11,44%) y Fonasa.
+**Supuesto:** Trabajador con contrato indefinido, sueldo bruto total $1.500.000, del cual $150.000 son colación no imponible; remuneración imponible $1.350.000. Afiliado a Capital AFP (comisión 1,44%, total AFP 11,44%) y Fonasa.
 
-| Concepto                                      | Cálculo               | Monto           |
-| --------------------------------------------- | --------------------- | --------------- |
-| Sueldo bruto                                  | —                     | $1.500.000      |
-| (-) AFP cotización 10%                        | $1.350.000 × 10%      | -$135.000       |
-| (-) AFP comisión 1,44%                        | $1.350.000 × 1,44%    | -$19.440        |
-| (-) Salud Fonasa 7%                           | $1.350.000 × 7%       | -$94.500        |
-| (-) Seguro cesantía 0,6% (0% casa particular) | $1.350.000 × 0,6%     | -$8.100         |
-| = Renta líquida imponible                     | $1.350.000 - $257.040 | $1.092.960      |
-| (-) Impuesto único 2ª categoría               | Tramo 4% abril 2026   | -$5.978         |
-| (+) Ingresos no imponibles                    | Colación              | +$150.000       |
-| **= Sueldo líquido**                          | Bruto - Descuentos    | **~$1.236.982** |
+| Concepto                        | Base                                 | Cálculo                        | Monto          |
+| ------------------------------- | ------------------------------------ | ------------------------------ | -------------- |
+| Sueldo bruto total              | —                                    | —                              | $1.500.000     |
+| (-) AFP cotización 10%          | Imponible $1.350.000                 | × 10%                          | -$135.000      |
+| (-) AFP comisión 1,44%          | Imponible $1.350.000                 | × 1,44%                        | -$19.440       |
+| (-) Salud Fonasa 7%             | Imponible $1.350.000                 | × 7%                           | -$94.500       |
+| (-) Seguro cesantía 0,6%        | Imponible $1.350.000                 | × 0,6%                         | -$8.100        |
+| = Renta líquida imponible       | Imponible menos cotizaciones         | $1.350.000 - $257.040          | $1.092.960     |
+| (-) Impuesto único 2ª categoría | RLI $1.092.960                       | Tramo 4% abril 2026            | -$5.978        |
+| **= Sueldo líquido**            | Bruto total menos cotizaciones e ISC | $1.500.000 - $257.040 - $5.978 | **$1.236.982** |
 
-De $1.500.000 brutos a **~$1.236.982 líquidos**. La diferencia final de **~$263.018** se explica solo por los descuentos: las cotizaciones legales por **$257.040** y el impuesto único del mes por **~$5.978**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
+La colación de $150.000 ya está incluida en el sueldo bruto total y no se suma otra vez: no cotiza, pero tampoco es un ingreso adicional. Las cotizaciones se calculan sobre la remuneración imponible de $1.350.000; el impuesto único, sobre la RLI de $1.092.960.
+
+De $1.500.000 brutos a **$1.236.982 líquidos**. La diferencia final de **$263.018** se explica solo por los descuentos: las cotizaciones legales por **$257.040** y el impuesto único del mes por **$5.978**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
 
 ---
 

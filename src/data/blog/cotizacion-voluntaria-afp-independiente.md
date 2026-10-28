@@ -25,7 +25,7 @@ articleLead:
   answer: "Si no ejerces actividad remunerada, tus boletas anuales no llegan a 5 ingresos mínimos mensuales brutos, o eres socio/a de tu empresa y recibes retiros o dividendos en vez de boletas, puedes afiliarte voluntariamente a una AFP y cotizar el 10% de cualquier monto mayor al ingreso mínimo mensual ($553.553 desde el 1 de mayo de 2026) — tú eliges el monto exacto sobre el que cotizas. Esto no te da PGU garantizada (es no contributiva) ni cobertura de salud automática, pero sí continuidad de pensión propia y acceso condicional al Seguro de Invalidez y Sobrevivencia (SIS)."
   nextStepHref: "/posts/boleta-honorarios-2026-retencion-cobertura/"
   nextStepLabel: "Ver cotización obligatoria por boletas"
-  validAsOf: 2026-09-17
+  validAsOf: 2026-10-28
   officialSources:
     - label: "Superintendencia de Pensiones — ¿Qué se entiende por afiliada o afiliado voluntario?"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-article-5947.html"
@@ -68,10 +68,10 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.prevision
   computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+updatedDate: 2026-10-28T00:00:00Z
 ---
 
-> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.
+> **Información vigente al 2026-10-28.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.
 
 Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente).
 
@@ -100,7 +100,7 @@ Si en cambio **ya estás obligado** a cotizar porque emites boletas de honorario
 
 **Respuesta rápida:** la tasa es 10%, igual que la cotización obligatoria. Tú eliges el monto sobre el que cotizas; la única regla es que ese monto debe ser mayor al ingreso mínimo — cita literal de la Superintendencia de Pensiones: "las afiliadas y los afiliados voluntarios pueden cotizar el 10% de cualquier monto mayor al ingreso mínimo". Esa cita no distingue explícitamente entre el ingreso mínimo mensual general y el Ingreso Mínimo para Fines No Remuneracionales (ver nota más abajo); este artículo usa el **ingreso mínimo general ($553.553)** como lectura conservadora — es la convención administrativa chilena por defecto cuando no se especifica el calificador "para fines no remuneracionales", y exige un monto mayor que la otra lectura posible, por lo que no hay riesgo de que cotices por debajo de un piso real. La misma página aclara que **la comisión que cobra la AFP se calcula sobre ese mismo monto** — es un cargo aparte del 10%, no incluido en él.
 
-Al 2026-09-17, el ingreso mínimo mensual general (18–65 años) es **$553.553**, vigente desde el 1 de mayo de 2026 (Ley N.° 21.830, Dirección del Trabajo).
+El ingreso mínimo mensual general (18–65 años) es **$553.553**, vigente desde el 1 de mayo de 2026 (Ley N.° 21.830, Dirección del Trabajo).
 
 **Ejemplo de cálculo** (el monto es una elección tuya; este es solo ilustrativo, con un monto que supera el mínimo exigido). Tu costo mensual real se compone de **tres cargos separados**, cada uno calculado sobre el mismo monto que elijas — no se restan entre sí:
 
@@ -110,7 +110,7 @@ Si eliges cotizar sobre $560.000 mensuales:
 | ----------------------------------------- | -------------------------------------------------------------- | -------------- |
 | Aporte a tu pensión                       | 10% × $560.000                                                 | **$56.000**    |
 | Comisión de tu AFP                        | Varía por administradora (consulta la tabla vigente de tu AFP) | _según tu AFP_ |
-| Seguro de Invalidez y Sobrevivencia (SIS) | 1,62% × $560.000                                               | **$9.072**     |
+| Seguro de Invalidez y Sobrevivencia (SIS) | 1,78% × $560.000                                               | **$9.968**     |
 
 Este desglose no es una cita de un ejemplo oficial ya sumado — es una composición propia a partir de dos reglas verificadas por separado en la misma fuente: la comisión "se calcula sobre ese monto" (cita literal, no incluida en el 10%) y la tasa SIS "de las remuneraciones y rentas imponibles" (misma base, no descontada del 10%). Ninguna fuente oficial fetcheada presenta las tres líneas ya combinadas en un solo total, así que si necesitas el monto final exacto para presupuestar, confirma la comisión vigente con tu AFP y suma las tres líneas tú mismo/a.
 
@@ -124,7 +124,7 @@ Este desglose no es una cita de un ejemplo oficial ya sumado — es una composic
 
 **Si nunca has estado afiliado/a a una AFP:**
 
-1. **Suscribes el formulario "Solicitud de Incorporación"** en la AFP adjudicataria o asignataria de la licitación vigente (hoy, AFP Planvital) — esta es la regla general de procedimiento de afiliación, aplicable también al afiliado voluntario puro, no solo a quien se afilia por boletas.
+1. **Suscribes el formulario "Solicitud de Incorporación"** en la AFP adjudicataria o asignataria de la licitación vigente (desde el 1 de octubre de 2025 y hasta el 30 de septiembre de 2027, AFP Uno) — esta es la regla general de procedimiento de afiliación, aplicable también al afiliado voluntario puro, no solo a quien se afilia por boletas.
 2. **Tu afiliación se hace efectiva el día en que pagas tu primera cotización** — no basta con firmar el formulario.
 3. **Plazo:** tienes hasta el último día del quinto mes siguiente a la suscripción de la solicitud para pagar esa primera cotización. Si no lo haces dentro de ese plazo, la AFP anula la incorporación y elimina el registro de afiliación.
 
@@ -139,7 +139,7 @@ En ambos casos, puedes elegir el tipo de fondo de pensiones para tus aportes vol
 
 ## Tasa del Seguro de Invalidez y Sobrevivencia (SIS)
 
-Desde abril de 2026, la tasa vigente del SIS para empleadoras, empleadores, afiliadas y afiliados independientes y voluntarios es **1,62%** de las remuneraciones y rentas imponibles (mujeres y hombres), según la Superintendencia de Pensiones.
+Desde agosto de 2026, la tasa vigente del SIS para empleadoras, empleadores, afiliadas y afiliados independientes y voluntarios es **1,78%** de las remuneraciones y rentas imponibles (mujeres y hombres), según la Superintendencia de Pensiones.
 
 Esta tasa es distinta de la que aplica a quien cotiza obligatoriamente por boletas de honorarios vía retención del SII: para ese grupo, la tasa SIS considerada para el año tributario 2026 es **1,49%**. Son dos mecanismos de pago distintos (pago directo a la AFP vs. retención + Operación Renta), así que no asumas que la tasa de un régimen aplica al otro.
 
@@ -174,7 +174,7 @@ La siguiente tabla es un **resumen orientativo**: simplifica la comparación par
 | Base de cotización           | 10% de un monto que eliges (debe superar el ingreso mínimo mensual) | ~80% de las rentas brutas anuales (renta imponible)                                 |
 | Mecanismo de pago            | Pago directo a la AFP                                               | Retención al emitir cada boleta + regularización en Operación Renta (SII/Tesorería) |
 | ¿Se puede renunciar?         | Sí, es optativo mes a mes                                           | No, es irrenunciable una vez que corresponde                                        |
-| Tasa SIS vigente             | 1,62% (desde abril 2026)                                            | 1,49% (año tributario 2026)                                                         |
+| Tasa SIS vigente             | 1,78% (desde agosto 2026)                                           | 1,49% (año tributario 2026)                                                         |
 
 Para el mecanismo obligatorio completo (retención, umbral exacto, exenciones), revisa [boleta de honorarios: retención y cobertura anual](/posts/boleta-honorarios-2026-retencion-cobertura/). Si tienes sueldo y boletas en el mismo año, revisa además [rentas mixtas: sueldo y honorarios](/posts/rentas-mixtas-sueldo-honorarios/), que cubre la tributación de esa combinación (Global Complementario), no la mecánica previsional.
 
