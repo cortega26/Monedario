@@ -1,0 +1,4 @@
+$ node scripts/check-correcciones.mjs
+[check-correcciones] OK. 20 entradas válidas en el registro.
+
+exit=0

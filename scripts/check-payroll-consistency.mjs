@@ -12,9 +12,9 @@
  * contra Previred en `check:afp-commissions`).
  *
  * NO CUBRE, y por qué:
- *   - SIS: el cluster usa 1,49% (boletas/SII), 1,62% (independientes desde
- *     abril 2026), 2,5% (componente CEV del empleador desde agosto 2026) y
- *     1,87% (dependiente, valor erróneo). Son **conceptos distintos por
+ *   - SIS: el cluster usa 1,49% (boletas/SII), 1,78% (dependientes e
+ *     independientes/voluntarios desde agosto de 2026) y 2,5% (componente SSP
+ *     SIS/CEV del empleador desde agosto de 2026). Son **conceptos distintos por
  *     régimen**, no un único número. Un registro plano de "SIS" crearía un
  *     nuevo error de fuente única; requiere modelar régimen y período.
  *   - Ventana de cambio de AFP: la regla distingue primer cambio, cambios
@@ -30,8 +30,7 @@
  *
  * Exit 0 = sin discrepancias en la cobertura declarada. Exit 1 = discrepancia.
  *
- * Estado: NO está en `check:ci` todavía. Debe estarlo cuando la Fase 4 corrija
- * el clúster; hoy falla a propósito (D2 sigue abierto).
+ * Estado: en `check:ci` desde la fase 4 (2026-10-28).
  */
 
 import { readFileSync, readdirSync } from "node:fs";

@@ -1,0 +1,3 @@
+Codigo del Trabajo: HTTP 200; bytes=1505290; t_nodes=856; text_chars=759100; saved=bcn-207436.json,bcn-207436-text.txt
+DL 3500: HTTP 200; bytes=1023391; t_nodes=299; text_chars=613450; saved=bcn-7147.json,bcn-7147-text.txt
+Ley 19728: HTTP 200; bytes=185196; t_nodes=115; text_chars=119128; saved=bcn-184979.json,bcn-184979-text.txt

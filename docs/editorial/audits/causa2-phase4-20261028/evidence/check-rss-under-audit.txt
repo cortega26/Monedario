@@ -1,0 +1,9 @@
+$ node scripts/rss-to-json.mjs --in dist/rss.xml --out docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json
+[rss-to-json] Saved 53 items to /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json
+exit=0
+
+$ node scripts/compare-rss.mjs docs/reports/rss_snapshot.json docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after.json
+[compare-rss] OK. baseline=52 current=53 removed=0 added=1
+[compare-rss] Added items (1) are allowed:
++ https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/
+exit=0

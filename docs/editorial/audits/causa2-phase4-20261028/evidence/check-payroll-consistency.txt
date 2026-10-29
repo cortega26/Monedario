@@ -1,0 +1,4 @@
+$ node scripts/check-payroll-consistency.mjs
+[payroll-consistency] 128 archivos, 7 AFP en el registro
+[payroll-consistency] OK. Comisiones de AFP coherentes con el registro.
+[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).

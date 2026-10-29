@@ -107,6 +107,9 @@ jobs:
       - name: "🧾 Check audit artifacts schema"
         run: pnpm run check:audit-artifacts
 
+      - name: "🧮 Check payroll consistency"
+        run: pnpm run check:payroll-consistency
+
       - name: "🔧 Check workers typecheck"
         run: pnpm run check:workers
 

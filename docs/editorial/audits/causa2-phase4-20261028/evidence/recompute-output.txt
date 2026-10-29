@@ -1,0 +1,23 @@
+D1 source snapshot imm=553553 effective=2026-05-01; BCN art.50 multiplier=4.75; result=2629376.75
+D2 article inputs gross_total=1500000; taxable=1350000; non_taxable_colacion=150000
+D2 registry Capital commission=1.44%; total=11.44%; derived_saving=10.00%
+D2 payroll rules worker AFC=0.600%; health=7.00%
+D2 rows AFP saving=135000.00; AFP fee=19440.00; health=94500.00; AFC worker=8100.000; contributions=257040.000
+D2 RLI=1092960.000; SII April bracket=943501.51..2096670.00; factor=0.04; rebate=37740.06
+D2 tax_exact=5978.34000; nearest peso=5978; in_4pct_bracket=True
+D2 net_from_total_gross=1236982.000; if every displayed row is summed including +colacion=1386982.000; divergence=150000.000
+D2 bracket sensitivity across registry fees 0.46%..1.45%: RLI=1092825.000..1106190.000; entire_range_in_April_4pct=True
+D3 indefinido worker=0.600%; employer=2.400%; CIC=1.6%; FCS=0.8%; total=3.000%; allocations_sum=2.4%
+D3 plazo-fijo worker=0%; employer=3.00%; CIC=2.8%; FCS=0.2%; total=3.00%; allocations_sum=3.0%
+D3 casa-particular worker=0%; employer=3.00%; CIC=2.2%; FCS=0.8%; total=3.00%; allocations_sum=3.0%
+D6 indefinite deductions min=18.060%; max=19.050%; house-particular min=17.46%; max=18.45%
+D7 registry commissions min=0.46% (Uno); max=1.45% (ProVida)
+D13 repo caps AFP/health=90 UF; AFC=135.2 UF; 7% health max=6.30 UF
+D14 health edge: imponible=89 UF; legal 7% capped at 90 UF => 6.23 UF
+D14 health edge: imponible=90 UF; legal 7% capped at 90 UF => 6.30 UF
+D14 health edge: imponible=100 UF; legal 7% capped at 90 UF => 6.30 UF
+D14 article example taxable=$1,350,000; UF snapshot=41226.39; example_base=32.74601535569813413204503232 UF; below_90UF=True; Fonasa_7%=$94500.00
+D13 written discounts on $1,000,000 gross: general=150000.00; employer-credit=300000.0; combined=450000.00
+D13 AFC CIC maximum years per source=11; worker AFC exemption from LIR is stated by Ley 19.728 art.53
+Cluster sueldo-imponible example: gross=1200000; stated mandatory deductions before tax=217200; derived RLI=982800; UTM snapshot=72151; within 4% tranche=974038.5..2164530; tax base overstatement=217200; tax overstatement at 4%=8688.00 before omitted AFP fee
+Cluster corrected RLI range using 10% saving + current AFP fee Uno..ProVida and PayrollRules health/AFC=971400.000..983280.000; RLI at Capital 1.44%=971520.000; tax-base overstatement vs gross=216720.000..228600.000

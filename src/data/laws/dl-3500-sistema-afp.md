@@ -7,7 +7,7 @@ effective: 1980-11-13
 lastAmended: 2025-07-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=7147
 description: "El DL 3.500 creó el sistema de AFP en Chile: define la cotización del 10%, la comisión, el APV y los multifondos. La Ley 21.735 agrega una cotización patronal del 7% desde 2025."
-lastVerified: 2026-05-25
+lastVerified: 2026-10-28
 updateTrigger: "Cambio en la tasa de cotización obligatoria, modificación de los fondos disponibles, variación de los beneficios tributarios del APV, o implementación de nuevas fases de la Ley 21.735."
 relatedArticles:
   - cuanto-descuenta-la-afp-de-tu-sueldo
@@ -28,11 +28,11 @@ El DL 3.500 establece el sistema de pensiones de capitalización individual: cad
 
 ## Respuesta rápida
 
-**Regla general:** como trabajador dependiente, cotizas el **10% de tu remuneración imponible** mensual a tu AFP, más la **comisión** de la AFP (varía entre 0,58% y 1,45% aproximadamente según AFP). Ese 10% + comisión sale de tu bolsillo y se muestra como descuento en tu liquidación.
+**Regla general:** como trabajador dependiente, cotizas el **10% de tu remuneración imponible** mensual a tu AFP, más la **comisión** de la AFP (varía entre 0,46% y 1,45% aproximadamente según AFP). Ese 10% + comisión sale de tu bolsillo y se muestra como descuento en tu liquidación.
 
 **Novedad (Ley 21.735):** desde julio de 2025, el empleador aporta un **7% adicional** de cargo propio a un nuevo Seguro Social. Del total de ese 7%, **4,5 puntos porcentuales** van a tu cuenta individual de capitalización y el resto al componente colectivo del Seguro Social. Este aporte es adicional y no sale de tu sueldo bruto.
 
-**Vigencia / fecha de corte:** verificado al **2026-05-25**, con la cotización patronal del 7% vigente desde julio de 2025 conforme a la Ley 21.735.
+**Vigencia / fecha de corte:** verificado al **2026-10-28**, con la cotización patronal del 7% vigente desde julio de 2025 conforme a la Ley 21.735.
 
 **Fuentes primarias críticas:** [BCN — DL 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147), [Superintendencia de Pensiones](https://www.spensiones.cl), [BCN — Ley 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060).
 
@@ -84,4 +84,4 @@ Tasas y comisiones vigentes: [Superintendencia de Pensiones](https://www.spensio
 
 ---
 
-_Última verificación: 25 de mayo de 2026. Esta ficha es educativa, no asesoría previsional._
+_Última verificación: 28 de octubre de 2026. Esta ficha es educativa, no asesoría previsional._

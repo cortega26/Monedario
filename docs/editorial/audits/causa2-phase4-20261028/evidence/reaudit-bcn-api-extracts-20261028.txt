@@ -1,0 +1,30 @@
+BCN LeyChile API fresh fetch evidence — 2026-10-28
+retrievedAt=2026-10-28T08:23:51-03:00
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+API: https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=<idNorma>
+
+HTTP 200 https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=7147
+Content-Type=application/json; charset=utf-8; Date=Wed, 28 Oct 2026 11:16:26 GMT
+bytes=1023391; sha256=172d8ccfe971ad0c75acccff66b14fc3ad9d4d8ddd622b1b478b4973264a27e9; full statute body not retained
+
+HTTP 200 https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=184979
+Content-Type=application/json; charset=utf-8; Date=Wed, 28 Oct 2026 11:16:27 GMT
+bytes=185196; sha256=06e1d3ec86f724a5d9c9128f1697bd7e2e53f94dee200e814d7e4afee672d78d; full statute body not retained
+
+HTTP 200 https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=207436
+Content-Type=application/json; charset=utf-8; Date=Wed, 28 Oct 2026 11:16:27 GMT
+bytes=1505290; sha256=1a2ae22a5333e60d2cc6b4ee22829c27d14ca641a992b6b40183f88889801dc0; full statute body not retained
+
+DL 3.500, article 160 — fresh API text confirms a 30-calendar-day decision window:
+Quote: "no formar parte del grupo licitado en el plazo de treinta días corridos".
+DL 3.500, article 165 — paraphrase: eligible workers may transfer to another AFP at any time under general rules.
+Quote: "en cualquier oportunidad, de acuerdo a las reglas generales".
+
+Law 19.728, article 5 — paraphrase: employee 0.6% is limited to indefinite contracts; fixed-term and house-particular employee rates are zero.
+Quote: "0,6% ... de cargo del trabajador con contrato de duración indefinida".
+
+Law 19.728, article 9 — CIC limit applies separately to each employment relationship.
+Quote: "máximo de once años en cada relación laboral".
+
+Labour Code, article 58 — paraphrase: the 30% employer-loan deduction requires direct payment to the lender or education provider; written deductions are subject to 15% and a combined 45% ceiling.
+Quote: "paga directamente la cuota del mutuo o crédito a la institución financiera".

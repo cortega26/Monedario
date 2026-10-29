@@ -1,0 +1,15 @@
+# Audit preflight — 2026-10-28
+
+Auditor declared before repository work:
+- Model: GPT-6 (OpenAI Codex family; runtime build/minor identifier not exposed)
+- Session: 01a180a1-0cc9-7a63-96b4-fabf82f9f4d4
+- Drafting model family from request: DeepSeek V4.1 Flash (opencode-go/deepseek-v4.1-flash)
+- Independence: distinct families (OpenAI GPT-6 vs DeepSeek)
+- Repository: /home/carlos/VS_Code_Projects/products/monedario
+- Branch: fix/causa2-phase4-cluster-remediation
+- HEAD: 7a001163179467efef5c14f3bfd1f59141f66aad
+- main: 32ac7dc76c06c71ac2de68533efdd417a43d825f
+- Expected prefixes: 7a001163 and 32ac7dc7 — match
+- Environment: Linux 7.0.0-38-generic x86_64; Node v24.19.0; pnpm 11.7.0; Python 3.13.12; America/Santiago.
+- Target worktree was clean before creating the requested audit directory.
+

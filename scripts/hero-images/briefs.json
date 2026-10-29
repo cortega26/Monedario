@@ -132,15 +132,15 @@
         "El bruto es el líquido"
       ],
       "alt": "",
-      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
+      "sourceContentHash": "bbbe8b02f7d6585c1c7fa170ea414b46a77bd779de215acb74f264a528381322",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       }
     },
     {
@@ -352,15 +352,15 @@
         "Genera derecho garantizado a PGU"
       ],
       "alt": "",
-      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
+      "sourceContentHash": "bc22d48937e10a0306c2a69ef804b8900d80a7a7244372439270f7bb462600c7",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       }
     },
     {
@@ -1112,15 +1112,15 @@
         "Empleo equivale a riqueza inmediata"
       ],
       "alt": "",
-      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
+      "sourceContentHash": "fc4cce9d311d86416dc59bdbd53805c30d891013d0c4fec594b79f5fe05fdd3f",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "image-edit",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       },
       "referenceImagePath": "scripts/hero-images/references/primer-empleo-original.avif",
       "referenceImageHash": "2a239bb71a8e74d7418aeb98e898e57b74502d02547294b5b646c158ffb34abc"
@@ -1424,15 +1424,15 @@
         "No gift-box, reward or bonus pictogram; only meal and transit allowance cues."
       ],
       "alt": "",
-      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
+      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-27",
+        "reviewedAt": "2026-10-28",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-27 (ronda 3 de compliance del PR #719): se propaga la excepción de casa particular al 0,6% de AFC y se completan los supuestos del art. 57. Cambios normativos y de fuentes; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
       }
     },
     {

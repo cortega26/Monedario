@@ -143,7 +143,7 @@
     },
     {
       "slug": "como-calcular-sueldo-liquido",
-      "sourceContentHash": "298dfffa310195aca83e11d10c49ed7b22f7843550f0fb5c22034e9a964fee8d",
+      "sourceContentHash": "bbbe8b02f7d6585c1c7fa170ea414b46a77bd779de215acb74f264a528381322",
       "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
       "tags": [
         "sueldo",
@@ -173,7 +173,7 @@
         "Por qué te subieron el sueldo y te bajó el líquido"
       ],
       "bodyExcerpt": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo. ## La diferencia entre sueldo bruto y sueldo líquido Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante. **Sueldo bruto** es lo que acordaste con tu empleador. **Sueldo líquido** es lo que realmente llega a tu cuenta. Entre uno y otro hay una serie de descuentos obligatorios que establece la ley — no los decide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: | Descuento | Porcentaje | Va a... | | --------------------------- | ------------------------- | ---------------------- | | AFP (cotización) | 10% | Tu cuenta de pensión | | AFP (comisión) | 0.46% – 1.45%",
-      "wordCount": 1837,
+      "wordCount": 2259,
       "sourceFile": "como-calcular-sueldo-liquido.md"
     },
     {
@@ -419,7 +419,7 @@
     },
     {
       "slug": "cotizacion-voluntaria-afp-independiente",
-      "sourceContentHash": "93a2b5c79879afa814acad24a18b5b977811c944f4521a2bcfae731893dedca5",
+      "sourceContentHash": "bc22d48937e10a0306c2a69ef804b8900d80a7a7244372439270f7bb462600c7",
       "title": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias",
       "tags": [
         "afiliacion-voluntaria",
@@ -433,9 +433,9 @@
       "cluster": "pensiones-afp",
       "sourcePath": "src/data/blog/cotizacion-voluntaria-afp-independiente.md",
       "heroImage": "/images/hero/cotizacion-voluntaria-afp-independiente.avif",
-      "summary": "Información vigente al 2026 09 17. El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que...",
+      "summary": "Información vigente al 2026 10 28. El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que...",
       "leadParagraphs": [
-        "> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.",
+        "> **Información vigente al 2026-10-28.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.",
         "Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente).",
         "La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores:"
       ],
@@ -449,8 +449,8 @@
         "Cotización de salud voluntaria (aparte de la AFP)",
         "¿Cotizar voluntariamente te da acceso a la Pensión Garantizada Universal (PGU)?"
       ],
-      "bodyExcerpt": "> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente). ## Antes de seguir: \"cotización voluntaria\" significa dos cosas distintas La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores: 1. **Afiliación voluntaria** (el tema de este artículo): el estatus de quien **no cotiza obligatoriamente** — no ejerce actividad remunerada, o es independiente sin boletas de honorarios — y decide cotizar igual, un 10% de un monto que elige. 2. **Cotizaci",
-      "wordCount": 1971,
+      "bodyExcerpt": "> **Información vigente al 2026-10-28.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente). ## Antes de seguir: \"cotización voluntaria\" significa dos cosas distintas La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores: 1. **Afiliación voluntaria** (el tema de este artículo): el estatus de quien **no cotiza obligatoriamente** — no ejerce actividad remunerada, o es independiente sin boletas de honorarios — y decide cotizar igual, un 10% de un monto que elige. 2. **Cotizaci",
+      "wordCount": 1983,
       "sourceFile": "cotizacion-voluntaria-afp-independiente.md"
     },
     {
@@ -1347,7 +1347,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
-      "sourceContentHash": "13ed25b5fa95e8e19523a0daad208665ba9fa2bf5a2c814927cadb512f969515",
+      "sourceContentHash": "fc4cce9d311d86416dc59bdbd53805c30d891013d0c4fec594b79f5fe05fdd3f",
       "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "tags": [
         "primer-empleo",
@@ -1363,7 +1363,7 @@
       "summary": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo...",
       "leadParagraphs": [
         "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.",
-        "> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
+        "> **Información vigente al 2026-10-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
         "Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre [descuentos de sueldo en Chile](/posts/descuentos-de-sueldo/) para entender de entrada qué parte del bruto no llega a tu cuenta."
       ],
       "headings": [
@@ -1376,8 +1376,8 @@
         "AFP: qué es, cómo te afilian y qué hacer si el empleador no lo hace",
         "Qué es la AFP y para qué sirve"
       ],
-      "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
-      "wordCount": 2184,
+      "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-10-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
+      "wordCount": 2386,
       "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {
@@ -1728,7 +1728,7 @@
     },
     {
       "slug": "sueldo-imponible-chile",
-      "sourceContentHash": "6417458d6b2125a20120041e84733709f4c6a1b7ee0c3f5f4f960434606e532e",
+      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1741,10 +1741,10 @@
       "cluster": "sueldo-remuneraciones",
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 10 19. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "summary": "Información vigente al 2026 10 28. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
       "leadParagraphs": [
-        "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
-        "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.",
+        "> **Información vigente al 2026-10-28.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
+        "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones).",
         "Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/). Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/)."
       ],
       "headings": [
@@ -1756,8 +1756,8 @@
         "APV y reducción de la base imponible",
         "Ejemplo numérico orientativo"
       ],
-      "bodyExcerpt": "> **Información vigente al 2026-10-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
-      "wordCount": 1259,
+      "bodyExcerpt": "> **Información vigente al 2026-10-28.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones). Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a",
+      "wordCount": 1376,
       "sourceFile": "sueldo-imponible-chile.md"
     },
     {

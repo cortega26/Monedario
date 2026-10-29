@@ -1,0 +1,8 @@
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/causa2-phase4-20261028/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=PASS)
+[check-audit-artifacts] OK docs/editorial/audits/visual-interest-compound-20260929/02-result.json (verdict=null)
+[check-audit-artifacts] 4 artefacto(s) válidos.
+
+exit=0

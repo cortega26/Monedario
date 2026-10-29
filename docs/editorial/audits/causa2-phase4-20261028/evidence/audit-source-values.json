@@ -1,0 +1,47 @@
+{
+  "retrievedAt": "2026-10-28",
+  "siiApril2026": {
+    "firstTaxable": "943501.51",
+    "secondBracketMax": "2096670.00",
+    "factor": "0.04",
+    "rebate": "37740.06",
+    "sourceUrl": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm",
+    "sourceLines": "281-290"
+  },
+  "afcAllocationPct": {
+    "indefinido": {
+      "worker": "0.6",
+      "employerCic": "1.6",
+      "employerFcs": "0.8"
+    },
+    "plazo-fijo": {
+      "worker": "0",
+      "employerCic": "2.8",
+      "employerFcs": "0.2"
+    },
+    "casa-particular": {
+      "worker": "0",
+      "employerCic": "2.2",
+      "employerFcs": "0.8"
+    },
+    "sourceUrl": "https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/",
+    "sourceLines": "139-156"
+  },
+  "writtenDeductionLimitsPct": {
+    "general": "15",
+    "employerLoan": "30",
+    "combined": "45",
+    "sourceUrl": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+    "source": "Código del Trabajo, art. 58"
+  },
+  "afcMaximumCicYears": {
+    "value": 11,
+    "sourceUrl": "https://www.bcn.cl/leychile/navegar?idNorma=184979",
+    "source": "Ley 19.728, art. 9"
+  },
+  "gratificationImmMultiple": {
+    "value": "4.75",
+    "sourceUrl": "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+    "source": "Código del Trabajo, art. 50"
+  }
+}

@@ -1,0 +1,86 @@
+Official primary-source extracts — retrieved 2026-10-28 (America/Santiago)
+
+BCN LeyChile API snapshots
+Command: python3 docs/editorial/audits/causa2-phase4-20261028/evidence/fetch_bcn_sources.py
+Raw output: evidence/bcn-fetch-output.txt
+Request headers: browser User-Agent; Referer=https://www.bcn.cl/leychile/navegar?idNorma=<id>
+JSON and extracted text saved as bcn-{207436,7147,184979}.json and bcn-{207436,7147,184979}-text.txt.
+
+Code / BCN ID 207436 / https://www.bcn.cl/leychile/navegar?idNorma=207436
+- Art. 50 literal: “cuatro y tres cuartos (4,75) ingresos mínimos mensuales.”
+- Art. 58 literal snippets: “hasta el 30% del total de la remuneración mensual”; “en conjunto, del 45%”.
+- Retrieval command/output: fetch_bcn_sources.py; HTTP 200; 1,505,290 bytes; 856 t nodes; 759,100 extracted text characters.
+- Art. 58 exact paragraph is preserved in evidence/bcn-clean-articles-2026-10-28.txt and raw API JSON.
+
+DL 3.500 / BCN ID 7147 / https://www.bcn.cl/leychile/navegar?idNorma=7147
+- Art. 17 was also checked in the raw extract for the 10% mandatory contribution and employer-paid dependent SIS; see evidence/bcn-clean-articles-2026-10-28.txt.
+- Arts. 160/164/165 extracts are preserved in evidence/bcn-clean-articles-2026-10-28.txt and raw API JSON.
+- Art. 160 literal snippet: “no formar parte del grupo licitado en el plazo de treinta días corridos”.
+- Art. 165 exact text is preserved in the clean extract and raw API JSON; it permits transfers “en cualquier oportunidad”.
+- Retrieval command/output: fetch_bcn_sources.py; HTTP 200; 1,023,391 bytes; 299 t nodes; 613,450 extracted text characters.
+
+Ley 19.728 / BCN ID 184979 / https://www.bcn.cl/leychile/navegar?idNorma=184979
+- Art. 5 literal snippets: “0,6% ... de cargo del trabajador con contrato de duración indefinida”; “excepción de los trabajadores de casa particular”.
+- Art. 9 literal snippet: “representen el 1,6% y 2,8% ... Cuenta Individual por Cesantía”. Its text also specifies the 2.2% house-particular CIC rate, the 11-year CIC limit per employment relationship, and continued employer FCS payments.
+- Retrieval command/output: fetch_bcn_sources.py; HTTP 200; 185,196 bytes; 115 t nodes; 119,128 extracted text characters.
+
+Dirección del Trabajo — IMM
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60141.html
+Retrieved: 2026-10-28; method: official page opened and lines 13, 18 read.
+Literal extract: “A contar del 01 de mayo de 2026 el Ingreso Mínimo Mensual es de: $553.553”. The page says this applies to workers over 18 and up to 65; last modified 22/06/2026.
+
+SII — Impuesto Único, April 2026 table
+URL: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
+Retrieved: 2026-10-28; method: official page opened at lines 281-290 (April 2026 section).
+Literal row: MENSUAL | desde $943.501,51 | hasta $2.096.670,00 | factor 0,04 | rebaja $37.740,06 | tasa efectiva máxima 2,20%.
+
+SII — taxable base
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3545.htm
+Retrieved: 2026-10-28; official page lines 11-14; updated 07/04/2026.
+Literal extract: “deduciendo de las remuneraciones brutas, las cotizaciones previsionales y de salud de cargo del trabajador, que le hayan sido retenidas por los respectivos empleadores.”
+
+Superintendencia de Pensiones — SIS
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html
+Retrieved: 2026-10-28; official page lines 8-14, 28-30.
+Literal fragments: “desde agosto de 2026 ... tasa vigente del SIS ... 1,78%”; “retención de impuestos ... año tributario 2026 ... 1,49%”. The page assigns employer financing and separately identifies dependent-worker coverage.
+
+Superintendencia de Pensiones — AFP system and commission schedule
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9897.html
+Retrieved: 2026-10-28; official page lines 7-9 and 17-26.
+Literal fragments: commission range “0,46% a un 1,45%”; “AFP Capital: 1,44%”; “AFP Uno: 0,46%”. It separately says mandatory individual saving is 10% and first-time system entrants must remain 24 months in the lowest-commission AFP, subject to fee-change exceptions.
+
+Superintendencia de Pensiones — transfer to another AFP
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9915.html
+Retrieved: 2026-10-28; official page lines 3 and 30-34.
+Literal fragments: “cuando lo estimen necesario y de manera voluntaria”; “período de 24 meses”; “si la AFP sube la comisión”; “otra que baja sus comisiones a un nivel menor”. Line 34 bounds the current first-affiliation award to 01/10/2025–30/09/2027 and names AFP Uno.
+
+Superintendencia de Pensiones — new-affiliate tender
+URL: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-10404.html
+Retrieved: 2026-10-28; official page lines 3-5 and 10-19.
+Literal extract: “durante 24 meses contados a partir del 1 de octubre de 2025”; the section is titled “Cronograma del Proceso de Licitación 2025-2027”.
+
+AFC — contract allocations and limits
+URL: https://www.afc.cl/empleadores/pagos-y-dudas-sobre-cotizaciones/cotizaciones-cuanto-y-como-se-paga/
+Retrieved: 2026-10-28; official page lines 139-156 and 167-169.
+Literal table fragments: “Cuenta Individual | 1,6% | 2,8% | 2,2%”; “Fondo de Cesantía Solidario | 0,8% | 0,2% | 0,8%”.
+Literal limits: “11 años por cada relación laboral”; “exentas del impuesto a la renta”.
+
+Superintendencia de Salud — cotizaciones
+URL: https://www.superdesalud.gob.cl/tax-materias-isapres/cotizaciones-de-salud-3465/
+Retrieved: 2026-10-28; official page lines 135-140.
+Literal extract: 7% legal health rate; the imponible has “tope mensual de UF 90”, so maximum legal health contribution is “UF 6,3 al mes”, from February 2026 remuneration.
+
+Superintendencia de Salud — Fonasa or Isapre
+URL: https://www.superdesalud.gob.cl/orientacion-en-salud/fonasa-o-isapre/
+Retrieved: 2026-10-28; official page lines 129, 134-145.
+Literal fragments: Isapre plans above the legal contribution require “un costo adicional”; the “copago a cancelar por cada prestación dependerá del plan”.
+
+Dirección del Trabajo — base for convened discounts
+URL: https://www.dt.gob.cl/portal/1628/w3-article-60214.html
+Retrieved: 2026-10-28; official page lines 11-19.
+Literal fragments: “monto bruto total de las remuneraciones”; “sin previa deducción de los descuentos obligatorios”; the question and answer state the 15% limit.
+
+Local repository evidence (not a public-availability claim)
+- Source records: src/config/afpCommissions.ts, src/domain/payroll/PayrollRules.ts, and src/infrastructure/economic/economic-parameters.snapshot.json at 7a001163.
+- Code-level excerpts and source values: evidence/recompute.py, evidence/audit-source-values.json, evidence/recompute-output.txt.
+- Change-history verification for the #719 correction entry: evidence/d16-719-full-diff.patch and evidence/d16-719-extract.txt.

@@ -1,0 +1,1112 @@
+Target-gate re-audit run — 2026-10-28
+HEAD: 3286ea59c2000ee37ef86324e1ec8a9c98d02eb0
+Node executable: /home/carlos/.nvm/versions/node/v22.20.0/bin/node
+Node: v22.20.0
+pnpm: 11.7.0
+Temporary output routing: routes/RSS checks write fresh output to evidence files.
+Pre-existing ignored output files were moved aside and will be restored byte-for-byte.
+
+
+$ node scripts/check-payroll-consistency.mjs
+command: pnpm run check:payroll-consistency
+$ node scripts/check-payroll-consistency.mjs
+[payroll-consistency] 128 archivos, 7 AFP en el registro
+[payroll-consistency] OK. Comisiones de AFP coherentes con el registro.
+[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).
+exit=0
+
+$ pnpm run check:audit-artifacts
+command: pnpm run check:audit-artifacts
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/causa2-phase4-20261028/02-result.json (verdict=FAIL)
+[check-audit-artifacts] OK docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=PASS)
+[check-audit-artifacts] OK docs/editorial/audits/visual-interest-compound-20260929/02-result.json (verdict=null)
+[check-audit-artifacts] 4 artefacto(s) válidos.
+exit=0
+
+$ pnpm run check:correcciones
+command: pnpm run check:correcciones
+$ node scripts/check-correcciones.mjs
+[check-correcciones] OK. 20 entradas válidas en el registro.
+exit=0
+
+$ pnpm run check:frontmatter
+command: pnpm run check:frontmatter
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+exit=0
+
+$ pnpm run check:legal-citations
+command: pnpm run check:legal-citations
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=65 registry=21
+exit=0
+
+$ EDITORIAL_ENFORCE=1 EDITORIAL_SCOPE=changed EDITORIAL_DIFF_BASE_REF=main pnpm run check:editorial
+command: env EDITORIAL_ENFORCE=1 EDITORIAL_SCOPE=changed EDITORIAL_DIFF_BASE_REF=main pnpm run check:editorial
+$ node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs && node scripts/check-prompt-injection-guardrails.mjs
+[check-editorial-structure] WARN. long_warning=2 (recommended max 155, hard max 200).
+- src/data/blog/bancos-y-fintech-chile.md: description length 160 exceeds recommended max 155 (non-blocking).
+- src/data/blog/finanzas-para-migrantes-chile.md: description length 175 exceeds recommended max 155 (non-blocking).
+[check-editorial-structure] WARN. cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 cluster_coverage_pct=100 cluster_with_value=54 validated=54 min_cluster_internal_links=1 (warning-first rollout).
+- src/data/blog/bancos-y-fintech-chile.md: has 0 intra-cluster internal links (min 1).
+- src/data/blog/finanzas-para-migrantes-chile.md: has 0 intra-cluster internal links (min 1).
+[check-editorial-structure] OK. validated=54 cluster_with_value=54 cluster_coverage_pct=100 cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 title_missing=0 title_meaningless=0 markdown_h1_present=0 title_slug_warning=0 internal_links_warning=0 skipped_internal_links=0 duplicate_titles=0 duplicate_slugs=0 missing=0 short=0 long_fail=0 long_warning=2 duplicates=0 min_h2=2 min_section_words=8 min_internal_links=1 min_cluster_internal_links=1
+[check-dialect] OK. validated=54 files skipped_by_marker=0
+[check-reader-facing-copy] scope=changed diff="origin/main...HEAD" scanned=4 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+[check-editorial-artifacts] mode=strict enforce=1 min_sources=1 allowlist_entries=0 scope=changed diff_range=origin/main...HEAD
+[check-editorial-artifacts] SUMMARY total_posts=4 ymyl_posts=4 compliant=4 non_compliant=0
+[check-editorial-artifacts] OK: strict mode passed.
+[check-prompt-injection-guardrails] OK: 4 guardrail group(s) validated.
+exit=0
+
+$ pnpm run build
+command: pnpm run build
+$ pnpm run test:edge-guard && pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e "require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\n')" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist
+$ node --test tests/scripts/edge-csp-monitor.test.mjs
+TAP version 13
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"drift","results":[{"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] Quick Action 429; retry once / 15000
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] Quick Action 429; retry once / 11000
+# [edge-csp-monitor] probe {"path":"/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] Quick Action 429; retry once /calculadoras/conversor-utm/ 11000
+# [edge-csp-monitor] Quick Action 429; retry once /calculadoras/sueldo-liquido/ 11000
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"inconclusive","results":[{"path":"/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# Subtest: accepts Astro HTML with the legitimate Cloudflare analytics beacon
+ok 1 - accepts Astro HTML with the legitimate Cloudflare analytics beacon
+  ---
+  duration_ms: 1.060247
+  type: 'test'
+  ...
+# Subtest: detects injected JSD bootstrap and challenge path
+ok 2 - detects injected JSD bootstrap and challenge path
+  ---
+  duration_ms: 0.283159
+  type: 'test'
+  ...
+# Subtest: detects Precursor-related dynamic script paths
+ok 3 - detects Precursor-related dynamic script paths
+  ---
+  duration_ms: 0.100897
+  type: 'test'
+  ...
+# Subtest: treats challenge pages and missing markup as inconclusive
+ok 4 - treats challenge pages and missing markup as inconclusive
+  ---
+  duration_ms: 0.149161
+  type: 'test'
+  ...
+# Subtest: drift wins over transport failure; failures are never healthy
+ok 5 - drift wins over transport failure; failures are never healthy
+  ---
+  duration_ms: 0.094983
+  type: 'test'
+  ...
+# Subtest: deduplicates alerts, reminds daily, and reports recovery once
+ok 6 - deduplicates alerts, reminds daily, and reports recovery once
+  ---
+  duration_ms: 0.233625
+  type: 'test'
+  ...
+# Subtest: shadow mode checks all pages without posting to GitHub
+ok 7 - shadow mode checks all pages without posting to GitHub
+  ---
+  duration_ms: 15.706956
+  type: 'test'
+  ...
+# Subtest: refuses to run without notification token
+ok 8 - refuses to run without notification token
+  ---
+  duration_ms: 0.341857
+  type: 'test'
+  ...
+# Subtest: active mode comments only on existing incident and never leaks token
+ok 9 - active mode comments only on existing incident and never leaks token
+  ---
+  duration_ms: 1.299172
+  type: 'test'
+  ...
+# Subtest: GitHub API 403 diagnoses read scope without exposing the token
+ok 10 - GitHub API 403 diagnoses read scope without exposing the token
+  ---
+  duration_ms: 1.731158
+  type: 'test'
+  ...
+# Subtest: GitHub API 403 identifies comment POST separately from successful GET
+ok 11 - GitHub API 403 identifies comment POST separately from successful GET
+  ---
+  duration_ms: 0.856685
+  type: 'test'
+  ...
+# Subtest: paces all three Quick Actions for Workers Free without real sleeps
+ok 12 - paces all three Quick Actions for Workers Free without real sleeps
+  ---
+  duration_ms: 0.479918
+  type: 'test'
+  ...
+# Subtest: retries a transient 429 once after Retry-After and still paces subsequent calls
+ok 13 - retries a transient 429 once after Retry-After and still paces subsequent calls
+  ---
+  duration_ms: 0.509725
+  type: 'test'
+  ...
+# Subtest: reports a persistent 429 as inconclusive, without unbounded retries
+ok 14 - reports a persistent 429 as inconclusive, without unbounded retries
+  ---
+  duration_ms: 0.41701
+  type: 'test'
+  ...
+# Subtest: scheduled handler awaits and propagates monitor failure instead of using waitUntil
+ok 15 - scheduled handler awaits and propagates monitor failure instead of using waitUntil
+  ---
+  duration_ms: 0.155367
+  type: 'test'
+  ...
+# Subtest: active clean baseline writes one confirmation comment, then remains silent
+ok 16 - active clean baseline writes one confirmation comment, then remains silent
+  ---
+  duration_ms: 1.278642
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 74.34099
+$ node scripts/check-hero-prompts.mjs
+[check-hero-prompts] Checked entries: 54; style: monedario-editorial-v5
+[check-hero-prompts] OK
+$ node scripts/check-image-curation.mjs
+[image-curation] Reviewed prompts, article fingerprints and asset bytes match.
+$ pnpm run images:convert && pnpm run og:jpegs && node scripts/check-images.mjs
+$ node scripts/png-to-avif.mjs --dir public/images/hero
+  No se encontraron archivos PNG en la ruta indicada.
+$ node scripts/generate-og-jpegs.mjs
+[image-delivery] 54 articles, 0 changed.
+[check:images] Directory /home/carlos/VS_Code_Projects/products/monedario/src/assets/images/blog not found, skipping asset budget scan.
+[check:images] ✅ All blog images pass format and size constraints. assets=0 inline=1
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=65 registry=21
+08:27:50 [content] Syncing content
+08:27:50 [content] Synced content
+08:27:50 [types] Generated 906ms
+08:27:50 [check] Getting diagnostics for Astro files in /home/carlos/VS_Code_Projects/products/monedario...
+Result (666 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+08:28:12 [vite] Re-optimizing dependencies because vite config has changed
+08:28:13 [content] Syncing content
+08:28:13 [content] Synced content
+08:28:13 [types] Generated 605ms
+08:28:13 [build] output: "static"
+08:28:13 [build] mode: "static"
+08:28:13 [build] directory: /home/carlos/VS_Code_Projects/products/monedario/dist/
+08:28:13 [build] Collecting build info...
+08:28:13 [build] ✓ Completed in 648ms.
+08:28:13 [build] Building static entrypoints...
+08:28:14 [vite] ✓ built in 1.39s
+08:28:15 [vite] ✓ built in 190ms
+08:28:15 [build] Rearranging server assets...
+
+ generating static routes
+08:28:15   ├─ /404.html (+14ms)
+08:28:15   ├─ /accessibilidad/index.html (+4ms)
+08:28:15   ├─ /acerca-de/index.html (+3ms)
+08:28:15   ├─ /api/indicadores-hoy.json (+8ms)
+08:28:15   ├─ /api/uf-historico-lookup.json (+21ms)
+08:28:15   ├─ /apoyar/index.html (+3ms)
+08:28:15   ├─ /archives/index.html (+22ms)
+08:28:15   ├─ /autor/index.html (+3ms)
+08:28:15   ├─ /buscar/index.html (+3ms)
+08:28:15   ├─ /calculadoras/actualizador-inflacion/index.html (+6ms)
+08:28:15   ├─ /calculadoras/apv/index.html (+13ms)
+08:28:15   ├─ /calculadoras/boleta-honorarios-liquido/index.html (+4ms)
+08:28:15   ├─ /calculadoras/comisiones-afp/index.html (+4ms)
+08:28:15   ├─ /calculadoras/conversor-uf/index.html (+4ms)
+08:28:15   ├─ /calculadoras/conversor-utm/index.html (+5ms)
+08:28:15   ├─ /calculadoras/credito-consumo/index.html (+4ms)
+08:28:15   ├─ /calculadoras/deposito-a-plazo/index.html (+4ms)
+08:28:15   ├─ /calculadoras/dividendo-hipotecario/index.html (+4ms)
+08:28:15   ├─ /calculadoras/finiquito-indemnizacion/index.html (+6ms)
+08:28:15   ├─ /calculadoras/gratificacion-legal/index.html (+4ms)
+08:28:15   ├─ /calculadoras/impuesto-segunda-categoria/index.html (+4ms)
+08:28:15   ├─ /calculadoras/interes-compuesto/index.html (+3ms)
+08:28:15   ├─ /calculadoras/iva/index.html (+3ms)
+08:28:15   ├─ /calculadoras/operacion-renta/index.html (+4ms)
+08:28:15   ├─ /calculadoras/prepago-credito/index.html (+4ms)
+08:28:15   ├─ /calculadoras/reajuste-arriendo/index.html (+5ms)
+08:28:15   ├─ /calculadoras/seguro-cesantia/index.html (+5ms)
+08:28:15   ├─ /calculadoras/simulador-jubilacion/index.html (+569ms)
+08:28:16   ├─ /calculadoras/simulador-renegociacion/index.html (+6ms)
+08:28:16   ├─ /calculadoras/sueldo-liquido/index.html (+4ms)
+08:28:16   ├─ /calculadoras/tarjeta-credito/index.html (+2ms)
+08:28:16   ├─ /calculadoras/index.html (+2ms)
+08:28:16   ├─ /calendario/index.html (+2ms)
+08:28:16   ├─ /como-usamos-los-datos/index.html (+2ms)
+08:28:16   ├─ /cookies/index.html (+2ms)
+08:28:16   ├─ /correcciones/index.html (+4ms)
+08:28:16   ├─ /glosario/afc/index.html (+2ms)
+08:28:16   ├─ /glosario/afp/index.html (+1ms)
+08:28:16   ├─ /glosario/apv/index.html (+3ms)
+08:28:16   ├─ /glosario/boleta-honorarios/index.html (+2ms)
+08:28:16   ├─ /glosario/cae/index.html (+1ms)
+08:28:16   ├─ /glosario/caec/index.html (+1ms)
+08:28:16   ├─ /glosario/cic/index.html (+1ms)
+08:28:16   ├─ /glosario/clave-unica/index.html (+1ms)
+08:28:16   ├─ /glosario/cmf/index.html (+1ms)
+08:28:16   ├─ /glosario/copago/index.html (+1ms)
+08:28:16   ├─ /glosario/corredor-bolsa/index.html (+1ms)
+08:28:16   ├─ /glosario/credito-aval-estado/index.html (+1ms)
+08:28:16   ├─ /glosario/credito-hipotecario/index.html (+1ms)
+08:28:16   ├─ /glosario/ctc/index.html (+1ms)
+08:28:16   ├─ /glosario/cuenta-2/index.html (+1ms)
+08:28:16   ├─ /glosario/cuenta-rut/index.html (+1ms)
+08:28:16   ├─ /glosario/custodia/index.html (+1ms)
+08:28:16   ├─ /glosario/dicom/index.html (+1ms)
+08:28:16   ├─ /glosario/dividendo-hipotecario/index.html (+1ms)
+08:28:16   ├─ /glosario/etf/index.html (+1ms)
+08:28:16   ├─ /glosario/finiquito/index.html (+1ms)
+08:28:16   ├─ /glosario/fonasa/index.html (+1ms)
+08:28:16   ├─ /glosario/fondo-emergencia/index.html (+1ms)
+08:28:16   ├─ /glosario/fondo-mutuo/index.html (+1ms)
+08:28:16   ├─ /glosario/fondo-solidario/index.html (+1ms)
+08:28:16   ├─ /glosario/ges/index.html (+1ms)
+08:28:16   ├─ /glosario/global-complementario/index.html (+1ms)
+08:28:16   ├─ /glosario/gratificacion/index.html (+1ms)
+08:28:16   ├─ /glosario/impuesto-unico/index.html (+1ms)
+08:28:16   ├─ /glosario/indemnizacion/index.html (+1ms)
+08:28:16   ├─ /glosario/inflacion/index.html (+1ms)
+08:28:16   ├─ /glosario/ipc/index.html (+1ms)
+08:28:16   ├─ /glosario/isapre/index.html (+3ms)
+08:28:16   ├─ /glosario/iva/index.html (+1ms)
+08:28:16   ├─ /glosario/liquidez/index.html (+1ms)
+08:28:16   ├─ /glosario/lpc/index.html (+1ms)
+08:28:16   ├─ /glosario/multifondo/index.html (+1ms)
+08:28:16   ├─ /glosario/operacion-renta/index.html (+1ms)
+08:28:16   ├─ /glosario/renta-imponible/index.html (+1ms)
+08:28:16   ├─ /glosario/renta-variable/index.html (+1ms)
+08:28:16   ├─ /glosario/rescate/index.html (+1ms)
+08:28:16   ├─ /glosario/sbif/index.html (+1ms)
+08:28:16   ├─ /glosario/seguro-cesantia/index.html (+1ms)
+08:28:16   ├─ /glosario/sernac/index.html (+1ms)
+08:28:16   ├─ /glosario/sii/index.html (+1ms)
+08:28:16   ├─ /glosario/spread/index.html (+1ms)
+08:28:16   ├─ /glosario/sueldo-bruto/index.html (+1ms)
+08:28:16   ├─ /glosario/tmc/index.html (+1ms)
+08:28:16   ├─ /glosario/tope-imponible/index.html (+1ms)
+08:28:16   ├─ /glosario/tpm/index.html (+1ms)
+08:28:16   ├─ /glosario/uf/index.html (+2ms)
+08:28:16   ├─ /glosario/uta/index.html (+1ms)
+08:28:16   ├─ /glosario/utm/index.html (+1ms)
+08:28:16   ├─ /glosario/volatilidad/index.html (+1ms)
+08:28:16   ├─ /glosario/index.html (+5ms)
+08:28:16   ├─ /guias/ahorro-e-inversion/index.html (+5ms)
+08:28:16   ├─ /guias/bancos-fintech/index.html (+2ms)
+08:28:16   ├─ /guias/deuda-credito/index.html (+5ms)
+08:28:16   ├─ /guias/empleo-ingresos/licencia-medica-wizard/index.html (+3ms)
+08:28:16   ├─ /guias/empleo-ingresos/index.html (+2ms)
+08:28:16   ├─ /guias/finanzas-migrantes/index.html (+1ms)
+08:28:16   ├─ /guias/impuestos-personas/operacion-renta/index.html (+2ms)
+08:28:16   ├─ /guias/impuestos-personas/index.html (+2ms)
+08:28:16   ├─ /guias/pensiones-afp/index.html (+3ms)
+08:28:16   ├─ /guias/presupuesto-control-financiero/index.html (+2ms)
+08:28:16   ├─ /guias/seguridad-financiera/fraude-cargo-no-reconocido/index.html (+2ms)
+08:28:16   ├─ /guias/seguridad-financiera/index.html (+2ms)
+08:28:16   ├─ /guias/sueldo-remuneraciones/index.html (+3ms)
+08:28:16   ├─ /guias/uf-costo-de-vida/indicadores-economicos/index.html (+2ms)
+08:28:16   ├─ /guias/uf-costo-de-vida/index.html (+2ms)
+08:28:16   ├─ /guias/index.html (+2ms)
+08:28:16   ├─ /leyes/codigo-del-trabajo/index.html (+2ms)
+08:28:16   ├─ /leyes/dfl-1-1998-impuesto-territorial/index.html (+1ms)
+08:28:16   ├─ /leyes/dl-3500-sistema-afp/index.html (+1ms)
+08:28:16   ├─ /leyes/dl-824-impuesto-renta/index.html (+1ms)
+08:28:16   ├─ /leyes/dl-830-codigo-tributario/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-18010-credito-dinero/index.html (+4ms)
+08:28:16   ├─ /leyes/ley-18469-fonasa/index.html (+2ms)
+08:28:16   ├─ /leyes/ley-18933-isapres/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-19496-proteccion-consumidor/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-19628-proteccion-datos/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-19728-seguro-cesantia/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-20009-tarjetas-fraude/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-20027-credito-aval-estado/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-20555-sernac-financiero/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-20575-datos-comerciales/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21130-modernizacion-bancaria/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21133-honorarios-retencion/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21236-portabilidad-financiera/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21521-fintech/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21561-reduccion-jornada/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21680-registro-deuda-consolidada/index.html (+1ms)
+08:28:16   ├─ /leyes/ley-21719-proteccion-datos-modernizacion/index.html (+1ms)
+08:28:16   ├─ /leyes/proyecto-reforma-previsional-2025/index.html (+3ms)
+08:28:16   ├─ /leyes/index.html (+3ms)
+08:28:16   ├─ /llms-full.txt (+8ms)
+08:28:16   ├─ /llms.txt (+1ms)
+08:28:16   ├─ /metodologia/index.html (+2ms)
+08:28:16   ├─ /og-image (+260ms)
+08:28:16   ├─ /og.jpg (+214ms)
+08:28:16   ├─ /og.png (+166ms)
+08:28:16   ├─ /posts/index.html (+4ms)
+08:28:16   ├─ /posts/2/index.html (+5ms)
+08:28:16   ├─ /posts/3/index.html (+3ms)
+08:28:16   ├─ /posts/4/index.html (+5ms)
+08:28:16   ├─ /posts/5/index.html (+3ms)
+08:28:16   ├─ /posts/6/index.html (+3ms)
+08:28:16   ├─ /posts/7/index.html (+6ms)
+08:28:16   ├─ /posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/index.html (+7ms)
+08:28:16   ├─ /posts/bancos-y-fintech-chile/index.html (+5ms)
+08:28:17   ├─ /posts/boleta-honorarios-2026-retencion-cobertura/index.html (+4ms)
+08:28:17   ├─ /posts/cae-costo-real-credito-chile/index.html (+7ms)
+08:28:17   ├─ /posts/como-calcular-sueldo-liquido/index.html (+4ms)
+08:28:17   ├─ /posts/como-cambiarse-de-afp/index.html (+3ms)
+08:28:17   ├─ /posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/index.html (+8ms)
+08:28:17   ├─ /posts/como-hacer-presupuesto-mensual-chile/index.html (+4ms)
+08:28:17   ├─ /posts/como-invertir-en-etfs-desde-chile/index.html (+4ms)
+08:28:17   ├─ /posts/como-leer-cartola-afp-chile/index.html (+4ms)
+08:28:17   ├─ /posts/como-salir-boletin-comercial-chile/index.html (+5ms)
+08:28:17   ├─ /posts/contribuciones-bienes-raices-chile/index.html (+5ms)
+08:28:17   ├─ /posts/cotizacion-voluntaria-afp-independiente/index.html (+4ms)
+08:28:17   ├─ /posts/credito-hipotecario-chile-guia-completa/index.html (+4ms)
+08:28:17   ├─ /posts/cuanto-descuenta-la-afp-de-tu-sueldo/index.html (+3ms)
+08:28:17   ├─ /posts/deposito-a-plazo-uf-vs-pesos/index.html (+4ms)
+08:28:17   ├─ /posts/descuentos-de-sueldo/index.html (+4ms)
+08:28:17   ├─ /posts/devolucion-impuestos-fechas-compensaciones/index.html (+3ms)
+08:28:17   ├─ /posts/donde-ver-si-estoy-en-dicom-gratis/index.html (+3ms)
+08:28:17   ├─ /posts/el-poder-del-interes-compuesto/index.html (+8ms)
+08:28:17   ├─ /posts/estafas-financieras-chile-vishing-smishing-marketplace/index.html (+3ms)
+08:28:17   ├─ /posts/finanzas-para-migrantes-chile/index.html (+3ms)
+08:28:17   ├─ /posts/finiquito-e-indemnizaciones-en-chile/index.html (+4ms)
+08:28:17   ├─ /posts/fonasa-vs-isapre-comparativa/index.html (+4ms)
+08:28:17   ├─ /posts/fondo-emergencia-chile/index.html (+4ms)
+08:28:17   ├─ /posts/fondos-afp-a-b-c-d-e/index.html (+5ms)
+08:28:17   ├─ /posts/fondos-mutuos-comisiones-rescate-impuestos/index.html (+4ms)
+08:28:17   ├─ /posts/fraude-tarjeta-que-hacer/index.html (+3ms)
+08:28:17   ├─ /posts/gratificacion-legal-chile/index.html (+4ms)
+08:28:17   ├─ /posts/impuesto-global-complementario-chile/index.html (+4ms)
+08:28:17   ├─ /posts/indemnizacion-anos-de-servicio-chile/index.html (+3ms)
+08:28:17   ├─ /posts/informe-deudas-cmf-vs-dicom/index.html (+2ms)
+08:28:17   ├─ /posts/interes-compuesto-nota-metodologica/index.html (+4ms)
+08:28:17   ├─ /posts/licencia-medica-desde-que-dia-pagan/index.html (+3ms)
+08:28:17   ├─ /posts/liquidacion-de-sueldo/index.html (+3ms)
+08:28:17   ├─ /posts/operacion-renta-centro/index.html (+4ms)
+08:28:17   ├─ /posts/operacion-renta-f22-checklist/index.html (+5ms)
+08:28:17   ├─ /posts/pgu-pension-garantizada-universal/index.html (+2ms)
+08:28:17   ├─ /posts/prepago-credito-cuando-conviene-chile/index.html (+3ms)
+08:28:17   ├─ /posts/primer-empleo-chile-guia-completa/index.html (+4ms)
+08:28:17   ├─ /posts/que-es-el-apv/index.html (+6ms)
+08:28:17   ├─ /posts/que-es-el-ipc-chile-como-se-calcula/index.html (+3ms)
+08:28:17   ├─ /posts/que-es-la-cuenta-2-afp/index.html (+4ms)
+08:28:17   ├─ /posts/que-es-la-uf/index.html (+4ms)
+08:28:17   ├─ /posts/reajuste-arriendo-uf-ipc-chile/index.html (+3ms)
+08:28:17   ├─ /posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/index.html (+5ms)
+08:28:17   ├─ /posts/renegociacion-superir/index.html (+4ms)
+08:28:17   ├─ /posts/rentas-mixtas-sueldo-honorarios/index.html (+4ms)
+08:28:17   ├─ /posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/index.html (+3ms)
+08:28:17   ├─ /posts/seguro-de-cesantia/index.html (+3ms)
+08:28:17   ├─ /posts/sueldo-imponible-chile/index.html (+3ms)
+08:28:17   ├─ /posts/suplantacion-identidad-creditos-no-reconocidos/index.html (+2ms)
+08:28:17   ├─ /posts/tarjeta-credito-costo-real-chile/index.html (+4ms)
+08:28:17   ├─ /posts/utm-chile-que-es-como-funciona/index.html (+7ms)
+08:28:17   ├─ /privacidad/index.html (+2ms)
+08:28:17   ├─ /privado/index.html (+2ms)
+08:28:17   ├─ /robots.txt (+1ms)
+08:28:17   ├─ /rss.xml (+19ms)
+08:28:17   ├─ /search/index.html (+1ms)
+08:28:17   ├─ /tags/adultos-mayores/index.html (+3ms)
+08:28:17   ├─ /tags/afc/index.html (+2ms)
+08:28:17   ├─ /tags/afiliacion-voluntaria/index.html (+1ms)
+08:28:17   ├─ /tags/afp/index.html (+2ms)
+08:28:17   ├─ /tags/afp/2/index.html (+2ms)
+08:28:17   ├─ /tags/ahorro/index.html (+4ms)
+08:28:17   ├─ /tags/amortizacion/index.html (+1ms)
+08:28:17   ├─ /tags/apv/index.html (+1ms)
+08:28:17   ├─ /tags/arriendo/index.html (+1ms)
+08:28:17   ├─ /tags/arriendos/index.html (+1ms)
+08:28:17   ├─ /tags/bancos/index.html (+1ms)
+08:28:17   ├─ /tags/bienes-raices/index.html (+1ms)
+08:28:17   ├─ /tags/boletas/index.html (+1ms)
+08:28:17   ├─ /tags/boletin-comercial/index.html (+2ms)
+08:28:17   ├─ /tags/bolsa/index.html (+2ms)
+08:28:17   ├─ /tags/cae/index.html (+2ms)
+08:28:17   ├─ /tags/cambio-afp/index.html (+2ms)
+08:28:17   ├─ /tags/cartola/index.html (+2ms)
+08:28:17   ├─ /tags/cesantia/index.html (+3ms)
+08:28:17   ├─ /tags/chile/index.html (+3ms)
+08:28:17   ├─ /tags/cmf/index.html (+3ms)
+08:28:17   ├─ /tags/cobertura/index.html (+1ms)
+08:28:17   ├─ /tags/codigo-del-trabajo/index.html (+1ms)
+08:28:17   ├─ /tags/comisiones/index.html (+1ms)
+08:28:17   ├─ /tags/consumo/index.html (+1ms)
+08:28:17   ├─ /tags/contrato/index.html (+1ms)
+08:28:17   ├─ /tags/contribuciones/index.html (+3ms)
+08:28:17   ├─ /tags/control-financiero/index.html (+2ms)
+08:28:17   ├─ /tags/corredoras/index.html (+1ms)
+08:28:17   ├─ /tags/costo-de-vida/index.html (+1ms)
+08:28:17   ├─ /tags/cotizaciones/index.html (+1ms)
+08:28:17   ├─ /tags/credito/index.html (+2ms)
+08:28:17   ├─ /tags/credito-hipotecario/index.html (+1ms)
+08:28:17   ├─ /tags/creditos/index.html (+1ms)
+08:28:17   ├─ /tags/cuenta-2/index.html (+1ms)
+08:28:17   ├─ /tags/cuenta-vista/index.html (+1ms)
+08:28:17   ├─ /tags/cuentarut/index.html (+1ms)
+08:28:17   ├─ /tags/declaracion-renta/index.html (+1ms)
+08:28:17   ├─ /tags/deposito-a-plazo/index.html (+1ms)
+08:28:17   ├─ /tags/derechos/index.html (+1ms)
+08:28:17   ├─ /tags/descuentos/index.html (+2ms)
+08:28:17   ├─ /tags/desempleo/index.html (+1ms)
+08:28:17   ├─ /tags/despido/index.html (+1ms)
+08:28:17   ├─ /tags/deuda/index.html (+2ms)
+08:28:17   ├─ /tags/deudas/index.html (+2ms)
+08:28:17   ├─ /tags/devolucion/index.html (+3ms)
+08:28:17   ├─ /tags/dicom/index.html (+2ms)
+08:28:17   ├─ /tags/dividendo/index.html (+1ms)
+08:28:17   ├─ /tags/educacion-financiera/index.html (+1ms)
+08:28:17   ├─ /tags/empleador/index.html (+1ms)
+08:28:17   ├─ /tags/empleo/index.html (+1ms)
+08:28:17   ├─ /tags/empleo-ingresos/index.html (+2ms)
+08:28:17   ├─ /tags/etf/index.html (+1ms)
+08:28:17   ├─ /tags/f22/index.html (+1ms)
+08:28:17   ├─ /tags/finanzas-personales/index.html (+2ms)
+08:28:17   ├─ /tags/finiquito/index.html (+1ms)
+08:28:17   ├─ /tags/fintech/index.html (+1ms)
+08:28:17   ├─ /tags/fonasa/index.html (+1ms)
+08:28:17   ├─ /tags/fondo-emergencia/index.html (+1ms)
+08:28:17   ├─ /tags/fondos/index.html (+1ms)
+08:28:17   ├─ /tags/fondos-generacionales/index.html (+1ms)
+08:28:17   ├─ /tags/fondos-mutuos/index.html (+1ms)
+08:28:17   ├─ /tags/fraude/index.html (+2ms)
+08:28:17   ├─ /tags/freelance/index.html (+1ms)
+08:28:17   ├─ /tags/gasto-hormiga/index.html (+1ms)
+08:28:17   ├─ /tags/gratificacion/index.html (+1ms)
+08:28:17   ├─ /tags/historial-crediticio/index.html (+3ms)
+08:28:17   ├─ /tags/honorarios/index.html (+2ms)
+08:28:17   ├─ /tags/igc/index.html (+1ms)
+08:28:17   ├─ /tags/impuesto-global-complementario/index.html (+1ms)
+08:28:17   ├─ /tags/impuesto-segunda-categoria/index.html (+1ms)
+08:28:17   ├─ /tags/impuesto-territorial/index.html (+1ms)
+08:28:17   ├─ /tags/impuestos/index.html (+3ms)
+08:28:17   ├─ /tags/impuestos/2/index.html (+2ms)
+08:28:17   ├─ /tags/indemnizacion/index.html (+2ms)
+08:28:17   ├─ /tags/independientes/index.html (+1ms)
+08:28:17   ├─ /tags/inflacion/index.html (+2ms)
+08:28:17   ├─ /tags/interes/index.html (+1ms)
+08:28:17   ├─ /tags/interes-compuesto/index.html (+1ms)
+08:28:17   ├─ /tags/inversion/index.html (+1ms)
+08:28:17   ├─ /tags/inversiones/index.html (+2ms)
+08:28:17   ├─ /tags/ipc/index.html (+2ms)
+08:28:17   ├─ /tags/ips/index.html (+1ms)
+08:28:17   ├─ /tags/isapre/index.html (+3ms)
+08:28:17   ├─ /tags/jubilacion/index.html (+2ms)
+08:28:17   ├─ /tags/ley-20009/index.html (+1ms)
+08:28:17   ├─ /tags/licencia-medica/index.html (+1ms)
+08:28:17   ├─ /tags/liquidacion/index.html (+2ms)
+08:28:17   ├─ /tags/liquidez/index.html (+1ms)
+08:28:17   ├─ /tags/migrantes/index.html (+1ms)
+08:28:17   ├─ /tags/nasdaq-100/index.html (+1ms)
+08:28:17   ├─ /tags/operacion-renta/index.html (+2ms)
+08:28:17   ├─ /tags/pension/index.html (+1ms)
+08:28:17   ├─ /tags/pensiones/index.html (+2ms)
+08:28:17   ├─ /tags/pgu/index.html (+1ms)
+08:28:17   ├─ /tags/plazo/index.html (+1ms)
+08:28:17   ├─ /tags/portabilidad/index.html (+1ms)
+08:28:17   ├─ /tags/prepago/index.html (+1ms)
+08:28:17   ├─ /tags/presupuesto/index.html (+2ms)
+08:28:17   ├─ /tags/prevision/index.html (+1ms)
+08:28:17   ├─ /tags/previsión/index.html (+1ms)
+08:28:17   ├─ /tags/primer-empleo/index.html (+1ms)
+08:28:17   ├─ /tags/primera-vivienda/index.html (+2ms)
+08:28:17   ├─ /tags/proteccion-social/index.html (+1ms)
+08:28:17   ├─ /tags/reforma-pensiones/index.html (+1ms)
+08:28:17   ├─ /tags/reforma-previsional/index.html (+1ms)
+08:28:17   ├─ /tags/remuneraciones/index.html (+1ms)
+08:28:17   ├─ /tags/renegociacion/index.html (+1ms)
+08:28:17   ├─ /tags/renta/index.html (+1ms)
+08:28:17   ├─ /tags/rentas-mixtas/index.html (+1ms)
+08:28:17   ├─ /tags/retencion/index.html (+1ms)
+08:28:17   ├─ /tags/riesgo/index.html (+1ms)
+08:28:17   ├─ /tags/rut/index.html (+1ms)
+08:28:17   ├─ /tags/salud/index.html (+1ms)
+08:28:17   ├─ /tags/seguridad-financiera/index.html (+2ms)
+08:28:17   ├─ /tags/seguridad-social/index.html (+1ms)
+08:28:17   ├─ /tags/sii/index.html (+2ms)
+08:28:17   ├─ /tags/sis/index.html (+1ms)
+08:28:17   ├─ /tags/smishing/index.html (+1ms)
+08:28:17   ├─ /tags/sobreendeudamiento/index.html (+1ms)
+08:28:17   ├─ /tags/subsidio/index.html (+1ms)
+08:28:17   ├─ /tags/sueldo/index.html (+2ms)
+08:28:17   ├─ /tags/sueldo-imponible/index.html (+2ms)
+08:28:17   ├─ /tags/superir/index.html (+1ms)
+08:28:17   ├─ /tags/suplantacion/index.html (+1ms)
+08:28:17   ├─ /tags/suseso/index.html (+1ms)
+08:28:17   ├─ /tags/tarjeta-credito/index.html (+1ms)
+08:28:17   ├─ /tags/tarjetas/index.html (+1ms)
+08:28:17   ├─ /tags/tgr/index.html (+1ms)
+08:28:17   ├─ /tags/tmc/index.html (+1ms)
+08:28:17   ├─ /tags/trabajo/index.html (+2ms)
+08:28:17   ├─ /tags/uf/index.html (+2ms)
+08:28:17   ├─ /tags/uta/index.html (+1ms)
+08:28:17   ├─ /tags/utm/index.html (+1ms)
+08:28:17   ├─ /tags/vishing/index.html (+1ms)
+08:28:17   ├─ /tags/vivienda/index.html (+1ms)
+08:28:17   ├─ /tags/index.html (+3ms)
+08:28:17   ├─ /terminos/index.html (+2ms)
+08:28:17   ├─ /uf-hoy/index.html (+3ms)
+08:28:17   ├─ /index.html (+6ms)
+08:28:17 ✓ Completed in 2.32s.
+
+08:28:17 [build] ✓ Completed in 3.94s.
+08:28:17 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+08:28:18 [inline-link-spacing] inline-link-spacing: normalized 189 static HTML page(s)
+08:28:18 [csp-hashes] csp-hashes: injected 20 sha256 hash(es) into script-src
+08:28:18 [sw-version] sw-version: cache stamped with version "mvs16hu1"
+08:28:18 [build] 334 page(s) built in 5.30s
+08:28:18 [build] Complete!
+$ node scripts/check-indexable-url-freeze.mjs
+[indexable-url-freeze] PASS approved=184 generated=186 approved_additions=2
+$ node scripts/check-toc-i18n.mjs
+[check-toc-i18n] OK: TOC i18n is consistent in source and build output.
+$ node scripts/check-editorial-guard.mjs
+[check-editorial-guard] OK: 54 blog files, 23 calculator files, and 42 page files validated.
+
+Running Pagefind v1.5.2 (Extended)
+Running from: "/home/carlos/VS_Code_Projects/products/monedario"
+Source:       "dist"
+Output:       "dist/pagefind"
+
+[Walking source directory]
+Found 334 files matching **/*.{html}
+
+[Parsing files]
+Found a data-pagefind-body element on the site.
+↳ Ignoring pages without this tag.
+
+[Reading languages]
+Discovered 1 language: es
+
+[Building search indexes]
+Total:
+  Indexed 1 language
+  Indexed 53 pages
+  Indexed 5075 words
+  Indexed 0 filters
+  Indexed 0 sorts
+
+Finished in 0.174 seconds
+$ node scripts/check-urls.mjs
+URL CHECK REPORT
+mode: local
+scanned_links: 9545
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=9545 internal_broken=0 external_failures=0
+[check-postbuild] OK. 24 checks passed over 334 HTML pages.
+exit=0
+
+$ pnpm run check:rss (after successful build)
+command: pnpm run check:rss
+$ node scripts/rss-to-json.mjs --in dist/rss.xml --out output/validation/rss_snapshot_after.json && pnpm run rss:compare
+[rss-to-json] Saved 53 items to /home/carlos/VS_Code_Projects/products/monedario/output/validation/rss_snapshot_after.json
+$ node scripts/compare-rss.mjs docs/reports/rss_snapshot.json output/validation/rss_snapshot_after.json
+[compare-rss] Added items (1) are allowed:
++ https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/
+[compare-rss] OK. baseline=52 current=53 removed=0 added=1
+exit=0
+
+$ pnpm run check:routes
+command: pnpm run check:routes
+$ node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare
+[snapshot-routes] Saved 54 routes to /home/carlos/VS_Code_Projects/products/monedario/output/validation/routes_snapshot_after.json
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+[compare-routes] before=53 after=54
+exit=0
+
+$ pnpm run check:no-postid-urls
+command: pnpm run check:no-postid-urls
+$ node scripts/check-no-postid-urls.mjs
+[check-no-postid-urls] OK. Scanned 283 source files, no forbidden post.id URL patterns found.
+exit=0
+
+$ pnpm run check:urls:ci
+command: pnpm run check:urls:ci
+$ URLCHECK_MODE=ci node scripts/check-urls.mjs
+URL CHECK REPORT
+mode: ci
+scanned_links: 9545
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=9545 internal_broken=0 external_failures=0
+exit=0
+
+$ pnpm run check:ci
+command: pnpm run check:ci
+$ pnpm run lint && pnpm run format:check && pnpm run test:coverage && pnpm run check:boundaries && pnpm run check:context && pnpm run check:policy-registry && pnpm run check:pnpm-release-age-excludes && pnpm run check:legal-constants && pnpm run check:docs && pnpm run check:audit-artifacts && pnpm run check:frontmatter && pnpm run check:legal-citations && pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:image-curation && pnpm run check:image-delivery && pnpm run check:risk-tiers && pnpm run check:correcciones && pnpm run check:payroll-consistency && pnpm run check:editorial && pnpm run check:editorial-timeliness && pnpm run check:no-postid-urls && pnpm run check:routes && pnpm run astro check && pnpm run check:workers && pnpm run check:economic-source-consistency && pnpm run check:catalog-drift && pnpm run check:article-registration && pnpm run check:official-host-registry && pnpm run check:homepage-surface-freshness && pnpm run check:small-details
+$ astro sync && eslint .
+08:28:29 [vite] Re-optimizing dependencies because vite config has changed
+08:28:30 [content] Syncing content
+08:28:30 [content] Synced content
+08:28:30 [types] Generated 1.68s
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ vitest run --coverage
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario
+      Coverage enabled with v8
+
+
+ Test Files  211 passed (211)
+      Tests  2038 passed | 1 skipped (2039)
+   Start at  08:28:48
+   Duration  13.04s (transform 22.75s, setup 0ms, import 36.43s, tests 54.28s, environment 2.44s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   90.34 |    83.62 |   96.04 |   91.54 |
+ ...tion/use-cases |   91.32 |    87.73 |     100 |   91.39 |
+  ...Comparison.ts |    87.5 |    81.08 |     100 |    87.5 | ...09,112,118,126
+  ...ndInterest.ts |      96 |    94.44 |     100 |   95.83 | 52
+  ...umerCredit.ts |    93.1 |    91.66 |     100 |   92.85 | 27,30
+  ...orariosNet.ts |    87.5 |    89.74 |     100 |   87.09 | 64,72,82,90
+  ...Adjustment.ts |   92.59 |       90 |     100 |   95.65 | 50
+  ...ayrollBase.ts |   88.23 |    88.88 |     100 |   88.23 | 62,71,77,86
+  ...teMortgage.ts |      98 |    93.33 |     100 |   97.95 | 74
+  ...eNetSalary.ts |   80.64 |    81.25 |     100 |      80 | 52,55,61,70,76,82
+  ...ommissions.ts |   86.36 |    81.25 |     100 |   86.36 | 29,32,37
+  ...eFiniquito.ts |   93.93 |    92.64 |     100 |   93.93 | 112,138,147,152
+  ...ntCoverage.ts |   93.75 |    88.23 |     100 |   93.33 | 75,81,87
+  ...storicalUf.ts |   96.77 |       95 |     100 |     100 | 48
+  ...storicalUf.ts |    92.3 |       90 |     100 |   95.23 | 45
+  ...itCardCost.ts |   95.65 |       95 |     100 |   95.65 | 32
+  ...Prepayment.ts |   83.33 |       84 |     100 |   83.33 | ...,49,86,104,145
+  ...egotiation.ts |   81.39 |    81.39 |     100 |      80 | ...72,75,78,83,86
+  ...acionRenta.ts |   85.71 |    83.33 |     100 |   85.71 | 53,56,59,68,77
+  ...Projection.ts |   88.46 |    75.92 |     100 |   88.15 | ...17,125,131,214
+ ...e-cases/shared |   97.22 |    94.44 |     100 |     100 |
+  ...ortization.ts |   95.45 |    91.66 |     100 |     100 | 29
+ src/contracts     |   98.18 |    98.14 |     100 |     100 |
+  ...ics-events.ts |   98.18 |    98.14 |     100 |     100 | 352
+ ...domain/content |   78.57 |    63.63 |     100 |   81.81 |
+  path.ts          |   78.57 |    63.63 |     100 |   81.81 | 16-18
+ ...omain/economic |   95.58 |    91.02 |     100 |   95.23 |
+  ...Parameters.ts |   92.85 |    88.88 |     100 |   92.68 | 82,86,90
+ ...domain/payroll |   89.28 |    80.95 |     100 |    92.3 |
+  PayrollRules.ts  |   89.28 |    80.95 |     100 |    92.3 | 160,176
+ ...privateFinance |   91.98 |     83.7 |     100 |   93.33 |
+  ...nancialCsv.ts |   91.98 |     83.7 |     100 |   93.33 | ...38,460-461,479
+ ...omain/taxation |    97.5 |    88.88 |     100 |   97.43 |
+  TaxEngine.ts     |   96.15 |    85.71 |     100 |      96 | 105
+ src/domain/wizard |   84.61 |    69.56 |     100 |     100 |
+  ...zardConfig.ts |   84.61 |    69.56 |     100 |     100 | ...19,31-50,54-63
+ src/i18n          |    90.9 |    76.92 |     100 |    90.9 |
+  ui.ts            |    90.9 |    76.92 |     100 |    90.9 | 32
+ ...cture/economic |   85.05 |    72.36 |      90 |   85.88 |
+  ...erProvider.ts |   85.05 |    72.36 |      90 |   85.88 | ...58-364,377-378
+ src/integrations  |   88.59 |    90.54 |    87.5 |   88.67 |
+  ...nk-spacing.ts |   82.19 |    90.32 |   66.66 |   81.53 | 71,142-159
+  sw-version.ts    |     100 |       75 |     100 |     100 | 9
+ src/utils         |   89.36 |    80.86 |   93.71 |   90.76 |
+  analytics.ts     |    92.3 |    79.31 |     100 |   97.22 | 84
+  articleView.ts   |   81.81 |    78.12 |     100 |   84.21 | 44-46
+  ...esultState.ts |   28.57 |    35.29 |   33.33 |   28.12 | 35-61,80-92
+  ...rScenarios.ts |   90.74 |    89.58 |     100 |   95.55 | 40,87
+  corrections.ts   |   93.47 |    70.58 |     100 |   95.12 | 120-121
+  dates.ts         |      80 |      100 |      80 |      80 | 53-54
+  ...cFreshness.ts |     100 |    95.83 |     100 |     100 | 21
+  ...erpolation.ts |   88.05 |    76.92 |      90 |   93.22 | 41,78-79,95
+  ...teOgImages.ts |   81.81 |      100 |      80 |   81.81 | 24-25
+  getPath.ts       |     100 |    94.44 |     100 |     100 | 11
+  getUniqueTags.ts |     100 |    83.33 |     100 |     100 | 47
+  homepage.ts      |   79.71 |    59.57 |   82.35 |      80 | ...,32-35,132-143
+  indicadores.ts   |      80 |     87.5 |   66.66 |      80 | 32,70-71
+  ...ssaryLinks.ts |   94.73 |    80.48 |     100 |   94.28 | 64-65,137,141
+  llmsTxt.ts       |     100 |       50 |     100 |     100 | 68
+  ...GoogleFont.ts |   84.21 |    44.44 |     100 |   84.21 | 54,62,72
+  metadataDate.ts  |   88.88 |    83.33 |     100 |   88.88 | 10
+  nextBestStep.ts  |     100 |    94.11 |     100 |     100 | 34
+  nextSteps.ts     |     100 |       50 |     100 |     100 | 22
+  pageLastmod.ts   |      90 |    83.33 |     100 |   88.88 | 13
+  postFilter.ts    |     100 |       75 |     100 |     100 | 10
+  userProfile.ts   |   91.48 |       84 |     100 |    97.5 | 71
+ ...-collector/src |   87.32 |    74.28 |   94.28 |   89.96 |
+  worker-v2.ts     |   87.32 |    74.28 |   94.28 |   89.96 | ...71,798,847-852
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 90.34% ( 2338/2588 )
+Branches     : 83.62% ( 1696/2028 )
+Functions    : 96.04% ( 437/455 )
+Lines        : 91.54% ( 2198/2401 )
+================================================================================
+$ node scripts/check-domain-boundaries.mjs
+Found 14 matching domain source files.
+Scanned 14 domain files from /home/carlos/VS_Code_Projects/products/monedario/src/domain
+Domain boundary check passed.
+$ node scripts/check-context.mjs
+[check-context] OK. validated=4 invariantIds=46 contractIds=29
+$ node scripts/check-policy-registry.mjs
+[check-policy-registry] Registry: docs/operations/POLICY_REGISTRY.json
+[check-policy-registry] Report: output/validation/policy-registry/report.json
+[check-policy-registry] Policies=28 ManifestGates=22 Entrypoints=7
+[check-policy-registry] OK
+$ node scripts/check-pnpm-release-age-excludes.mjs
+[check-pnpm-release-age-excludes] excludes=0 dead=0
+[check-pnpm-release-age-excludes] OK.
+$ node scripts/check-legal-constants.mjs
+[check-legal-constants] OK. 4 constantes verificadas en 16 mirrors.
+$ node scripts/check-docs-structure.mjs
+[check-docs-structure] OK. trackedMarkdown=1006 rootMarkdown=11 adrFiles=65
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/causa2-phase4-20261028/02-result.json (verdict=FAIL)
+[check-audit-artifacts] OK docs/editorial/audits/descuentos-de-sueldo-20261020/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=PASS)
+[check-audit-artifacts] OK docs/editorial/audits/visual-interest-compound-20260929/02-result.json (verdict=null)
+[check-audit-artifacts] 4 artefacto(s) válidos.
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=65 registry=21
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-hero-prompts.mjs
+[check-hero-prompts] Checked entries: 54; style: monedario-editorial-v5
+[check-hero-prompts] OK
+$ node scripts/check-image-curation.mjs
+[image-curation] Reviewed prompts, article fingerprints and asset bytes match.
+$ node scripts/hero-images/build-delivery.mjs --check
+[image-delivery] 54 articles, 0 changed (verified).
+$ node scripts/check-risk-tiers.mjs
+check-risk-tiers:r4-waiver licencia-medica-desde-que-dia-pagan: R4 sin officialSources+validAsOf (waiver hasta 2026-12-01)
+[check-risk-tiers] OK. posts=54 calculators=22 R1=0 R2=7 R3=19 R4=50 waivers=1 warnings=1
+$ node scripts/check-correcciones.mjs
+[check-correcciones] OK. 20 entradas válidas en el registro.
+$ node scripts/check-payroll-consistency.mjs
+[payroll-consistency] 128 archivos, 7 AFP en el registro
+[payroll-consistency] OK. Comisiones de AFP coherentes con el registro.
+[payroll-consistency] Cobertura: solo comisiones de AFP. SIS y ventana de cambio de AFP no están cubiertos (ver cabecera).
+$ node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs && node scripts/check-prompt-injection-guardrails.mjs
+[check-editorial-structure] WARN. long_warning=2 (recommended max 155, hard max 200).
+- src/data/blog/bancos-y-fintech-chile.md: description length 160 exceeds recommended max 155 (non-blocking).
+- src/data/blog/finanzas-para-migrantes-chile.md: description length 175 exceeds recommended max 155 (non-blocking).
+[check-editorial-structure] WARN. cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 cluster_coverage_pct=100 cluster_with_value=54 validated=54 min_cluster_internal_links=1 (warning-first rollout).
+- src/data/blog/bancos-y-fintech-chile.md: has 0 intra-cluster internal links (min 1).
+- src/data/blog/finanzas-para-migrantes-chile.md: has 0 intra-cluster internal links (min 1).
+[check-editorial-structure] OK. validated=54 cluster_with_value=54 cluster_coverage_pct=100 cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 title_missing=0 title_meaningless=0 markdown_h1_present=0 title_slug_warning=0 internal_links_warning=0 skipped_internal_links=0 duplicate_titles=0 duplicate_slugs=0 missing=0 short=0 long_fail=0 long_warning=2 duplicates=0 min_h2=2 min_section_words=8 min_internal_links=1 min_cluster_internal_links=1
+[check-dialect] OK. validated=54 files skipped_by_marker=0
+[check-reader-facing-copy] scope=all diff="-" scanned=96 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+[check-editorial-artifacts] mode=warn-only enforce=0 min_sources=1 allowlist_entries=0 scope=all
+[check-editorial-artifacts] SUMMARY total_posts=54 ymyl_posts=48 compliant=48 non_compliant=0
+[check-editorial-artifacts] WARN: Gate in warn-only mode. Set EDITORIAL_ENFORCE=1 to fail on violations.
+[check-prompt-injection-guardrails] OK: 4 guardrail group(s) validated.
+$ node scripts/check-editorial-timeliness.mjs
+[check-editorial-timeliness] published=54 stale=0 drift=0 missingValidAsOf=0 report=output/validation/editorial-timeliness/report.json
+[check-editorial-timeliness] note: stale=0 no certifica veracidad: indica solo que el artículo está dentro de su cadencia de revisión. La veracidad se sostiene con datasets volátiles, articleLead.officialSources, los gates legal-constants/legal-citations/economic-source-consistency/audit-artifacts y rondas de auditoría adversarial independientes; este gate no reemplaza la firma humana.
+[check-editorial-timeliness] OK.
+$ node scripts/check-no-postid-urls.mjs
+[check-no-postid-urls] OK. Scanned 283 source files, no forbidden post.id URL patterns found.
+$ node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare
+[snapshot-routes] No route changes. Kept existing snapshot at /home/carlos/VS_Code_Projects/products/monedario/output/validation/routes_snapshot_after.json
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+[compare-routes] before=53 after=54
+$ astro check
+08:29:11 [content] Syncing content
+08:29:11 [content] Synced content
+08:29:11 [types] Generated 513ms
+08:29:11 [check] Getting diagnostics for Astro files in /home/carlos/VS_Code_Projects/products/monedario...
+Result (666 files):
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck && pnpm run test:edge-guard
+$ npx tsc --noEmit -p workers/analytics-collector/tsconfig.json
+$ npx tsc --noEmit -p workers/economic-snapshot-refresh/tsconfig.json
+$ node --test tests/scripts/edge-csp-monitor.test.mjs
+TAP version 13
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"drift","results":[{"path":"/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/conversor-utm/","status":"drift","findings":["cloudflare-jsd-bootstrap"]},{"path":"/calculadoras/sueldo-liquido/","status":"drift","findings":["cloudflare-jsd-bootstrap"]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-16T09:15:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] Quick Action 429; retry once / 15000
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] Quick Action 429; retry once / 11000
+# [edge-csp-monitor] Quick Action 429; retry once /calculadoras/conversor-utm/ 11000
+# [edge-csp-monitor] probe {"path":"/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T19:00:00.000Z","status":"inconclusive","results":[{"path":"/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/conversor-utm/","status":"inconclusive","findings":["browser-http-429"]},{"path":"/calculadoras/sueldo-liquido/","status":"inconclusive","findings":["browser-http-429"]}]}
+# [edge-csp-monitor] Quick Action 429; retry once /calculadoras/sueldo-liquido/ 11000
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# [edge-csp-monitor] probe {"path":"/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]}
+# [edge-csp-monitor] probe {"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}
+# [edge-csp-monitor] {"timestamp":"2026-10-15T23:00:00.000Z","status":"ok","results":[{"path":"/","status":"ok","findings":[]},{"path":"/calculadoras/conversor-utm/","status":"ok","findings":[]},{"path":"/calculadoras/sueldo-liquido/","status":"ok","findings":[]}]}
+# Subtest: accepts Astro HTML with the legitimate Cloudflare analytics beacon
+ok 1 - accepts Astro HTML with the legitimate Cloudflare analytics beacon
+  ---
+  duration_ms: 1.151001
+  type: 'test'
+  ...
+# Subtest: detects injected JSD bootstrap and challenge path
+ok 2 - detects injected JSD bootstrap and challenge path
+  ---
+  duration_ms: 0.412801
+  type: 'test'
+  ...
+# Subtest: detects Precursor-related dynamic script paths
+ok 3 - detects Precursor-related dynamic script paths
+  ---
+  duration_ms: 0.108961
+  type: 'test'
+  ...
+# Subtest: treats challenge pages and missing markup as inconclusive
+ok 4 - treats challenge pages and missing markup as inconclusive
+  ---
+  duration_ms: 0.180348
+  type: 'test'
+  ...
+# Subtest: drift wins over transport failure; failures are never healthy
+ok 5 - drift wins over transport failure; failures are never healthy
+  ---
+  duration_ms: 0.101131
+  type: 'test'
+  ...
+# Subtest: deduplicates alerts, reminds daily, and reports recovery once
+ok 6 - deduplicates alerts, reminds daily, and reports recovery once
+  ---
+  duration_ms: 0.287957
+  type: 'test'
+  ...
+# Subtest: shadow mode checks all pages without posting to GitHub
+ok 7 - shadow mode checks all pages without posting to GitHub
+  ---
+  duration_ms: 14.68047
+  type: 'test'
+  ...
+# Subtest: refuses to run without notification token
+ok 8 - refuses to run without notification token
+  ---
+  duration_ms: 0.35338
+  type: 'test'
+  ...
+# Subtest: active mode comments only on existing incident and never leaks token
+ok 9 - active mode comments only on existing incident and never leaks token
+  ---
+  duration_ms: 1.373379
+  type: 'test'
+  ...
+# Subtest: GitHub API 403 diagnoses read scope without exposing the token
+ok 10 - GitHub API 403 diagnoses read scope without exposing the token
+  ---
+  duration_ms: 1.878818
+  type: 'test'
+  ...
+# Subtest: GitHub API 403 identifies comment POST separately from successful GET
+ok 11 - GitHub API 403 identifies comment POST separately from successful GET
+  ---
+  duration_ms: 0.926499
+  type: 'test'
+  ...
+# Subtest: paces all three Quick Actions for Workers Free without real sleeps
+ok 12 - paces all three Quick Actions for Workers Free without real sleeps
+  ---
+  duration_ms: 0.561729
+  type: 'test'
+  ...
+# Subtest: retries a transient 429 once after Retry-After and still paces subsequent calls
+ok 13 - retries a transient 429 once after Retry-After and still paces subsequent calls
+  ---
+  duration_ms: 0.531151
+  type: 'test'
+  ...
+# Subtest: reports a persistent 429 as inconclusive, without unbounded retries
+ok 14 - reports a persistent 429 as inconclusive, without unbounded retries
+  ---
+  duration_ms: 0.461201
+  type: 'test'
+  ...
+# Subtest: scheduled handler awaits and propagates monitor failure instead of using waitUntil
+ok 15 - scheduled handler awaits and propagates monitor failure instead of using waitUntil
+  ---
+  duration_ms: 0.159831
+  type: 'test'
+  ...
+# Subtest: active clean baseline writes one confirmation comment, then remains silent
+ok 16 - active clean baseline writes one confirmation comment, then remains silent
+  ---
+  duration_ms: 1.740437
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 75.832853
+$ node scripts/check-economic-source-consistency.mjs
+[check-economic-source-consistency] OK: 6 indicators aligned with ADR-20260516 (official issuer primary, mindicador.cl fallback).
+$ node scripts/check-catalog-drift.mjs
+[check-catalog-drift] OK. published=51 via_cluster=51 via_tags=0 hub_clusters=11
+$ node scripts/check-article-registration.mjs
+[check-article-registration] mode=warn-only published=54 registered_topics=48 drift=0 stale=0 blocking=0
+[check-article-registration] OK: sin drift ni entradas stale.
+$ node scripts/check-official-host-registry.mjs
+[check-official-host-registry] OK. hosts=39 suffixes=.gob.cl,.gov.cl (analytics + urlcheck derive from the canonical registry).
+$ node scripts/check-homepage-surface-freshness.mjs
+[check-homepage-surface-freshness] OK. No manual dates; 4 cluster-derived card date(s) resolve from published posts.
+$ node scripts/check-small-details.mjs
+[check-small-details] mode=warn-only calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:474 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+exit=0
+
+Fresh RSS evidence file: /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-rss_snapshot_after-20261028.json
+Fresh routes evidence file: /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-routes_snapshot_after-20261028.json
+failures=0
+previous route output preserved for restoration: yes
+previous RSS output preserved for restoration: yes; its content was not read as evidence

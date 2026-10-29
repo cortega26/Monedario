@@ -1,0 +1,986 @@
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:3: trailing whitespace.
++**Fecha:** 2026-10-28 (America/Santiago)
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:4: trailing whitespace.
++**Veredicto:** `CONDITIONAL`
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:5: trailing whitespace.
++**Checkout:** `fix/causa2-phase4-cluster-remediation` @ `3286ea59c2000ee37ef86324e1ec8a9c98d02eb0`
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:6: trailing whitespace.
++**Base:** `main@32ac7dc76c06c71ac2de68533efdd417a43d825f`
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:7: trailing whitespace.
++**Remediación de producto:** `a5b9dbf298362a225d3ff1e15a4a50d424def3b3`
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md:8: trailing whitespace.
++**Registro de auditoría:** `ca47a67b384a86e0b5936840ca1917b87468c0fe`
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-bcn-api-extracts-20261028.txt:31: new blank line at EOF.
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:22: trailing whitespace.
++File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:24: trailing whitespace.
++All files          |   90.34 |    83.62 |   96.04 |   91.54 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:25: trailing whitespace.
++ ...tion/use-cases |   91.32 |    87.73 |     100 |   91.39 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:26: trailing whitespace.
++  ...Comparison.ts |    87.5 |    81.08 |     100 |    87.5 | ...09,112,118,126
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:27: trailing whitespace.
++  ...ndInterest.ts |      96 |    94.44 |     100 |   95.83 | 52
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:28: trailing whitespace.
++  ...umerCredit.ts |    93.1 |    91.66 |     100 |   92.85 | 27,30
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:29: trailing whitespace.
++  ...orariosNet.ts |    87.5 |    89.74 |     100 |   87.09 | 64,72,82,90
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:30: trailing whitespace.
++  ...Adjustment.ts |   92.59 |       90 |     100 |   95.65 | 50
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:31: trailing whitespace.
++  ...ayrollBase.ts |   88.23 |    88.88 |     100 |   88.23 | 62,71,77,86
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:32: trailing whitespace.
++  ...teMortgage.ts |      98 |    93.33 |     100 |   97.95 | 74
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:33: trailing whitespace.
++  ...eNetSalary.ts |   80.64 |    81.25 |     100 |      80 | 52,55,61,70,76,82
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:34: trailing whitespace.
++  ...ommissions.ts |   86.36 |    81.25 |     100 |   86.36 | 29,32,37
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:35: trailing whitespace.
++  ...eFiniquito.ts |   93.93 |    92.64 |     100 |   93.93 | 112,138,147,152
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:36: trailing whitespace.
++  ...ntCoverage.ts |   93.75 |    88.23 |     100 |   93.33 | 75,81,87
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:37: trailing whitespace.
++  ...storicalUf.ts |   96.77 |       95 |     100 |     100 | 48
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:38: trailing whitespace.
++  ...storicalUf.ts |    92.3 |       90 |     100 |   95.23 | 45
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:39: trailing whitespace.
++  ...itCardCost.ts |   95.65 |       95 |     100 |   95.65 | 32
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:40: trailing whitespace.
++  ...Prepayment.ts |   83.33 |       84 |     100 |   83.33 | ...,49,86,104,145
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:41: trailing whitespace.
++  ...egotiation.ts |   81.39 |    81.39 |     100 |      80 | ...72,75,78,83,86
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:42: trailing whitespace.
++  ...acionRenta.ts |   85.71 |    83.33 |     100 |   85.71 | 53,56,59,68,77
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:43: trailing whitespace.
++  ...Projection.ts |   88.46 |    75.92 |     100 |   88.15 | ...17,125,131,214
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:44: trailing whitespace.
++ ...e-cases/shared |   97.22 |    94.44 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:45: trailing whitespace.
++  ...ortization.ts |   95.45 |    91.66 |     100 |     100 | 29
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:46: trailing whitespace.
++ src/contracts     |   98.18 |    98.14 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:47: trailing whitespace.
++  ...ics-events.ts |   98.18 |    98.14 |     100 |     100 | 352
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:48: trailing whitespace.
++ ...domain/content |   78.57 |    63.63 |     100 |   81.81 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:49: trailing whitespace.
++  path.ts          |   78.57 |    63.63 |     100 |   81.81 | 16-18
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:50: trailing whitespace.
++ ...omain/economic |   95.58 |    91.02 |     100 |   95.23 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:51: trailing whitespace.
++  ...Parameters.ts |   92.85 |    88.88 |     100 |   92.68 | 82,86,90
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:52: trailing whitespace.
++ ...domain/payroll |   89.28 |    80.95 |     100 |    92.3 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:53: trailing whitespace.
++  PayrollRules.ts  |   89.28 |    80.95 |     100 |    92.3 | 160,176
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:54: trailing whitespace.
++ ...privateFinance |   91.98 |     83.7 |     100 |   93.33 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:55: trailing whitespace.
++  ...nancialCsv.ts |   91.98 |     83.7 |     100 |   93.33 | ...38,460-461,479
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:56: trailing whitespace.
++ ...omain/taxation |    97.5 |    88.88 |     100 |   97.43 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:57: trailing whitespace.
++  TaxEngine.ts     |   96.15 |    85.71 |     100 |      96 | 105
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:58: trailing whitespace.
++ src/domain/wizard |   84.61 |    69.56 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:59: trailing whitespace.
++  ...zardConfig.ts |   84.61 |    69.56 |     100 |     100 | ...19,31-50,54-63
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:60: trailing whitespace.
++ src/i18n          |    90.9 |    76.92 |     100 |    90.9 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:61: trailing whitespace.
++  ui.ts            |    90.9 |    76.92 |     100 |    90.9 | 32
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:62: trailing whitespace.
++ ...cture/economic |   85.05 |    72.36 |      90 |   85.88 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:63: trailing whitespace.
++  ...erProvider.ts |   85.05 |    72.36 |      90 |   85.88 | ...58-364,377-378
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:64: trailing whitespace.
++ src/integrations  |   88.59 |    90.54 |    87.5 |   88.67 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:65: trailing whitespace.
++  ...nk-spacing.ts |   82.19 |    90.32 |   66.66 |   81.53 | 71,142-159
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:66: trailing whitespace.
++  sw-version.ts    |     100 |       75 |     100 |     100 | 9
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:67: trailing whitespace.
++ src/utils         |   89.36 |    80.86 |   93.71 |   90.76 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:68: trailing whitespace.
++  analytics.ts     |    92.3 |    79.31 |     100 |   97.22 | 84
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:69: trailing whitespace.
++  articleView.ts   |   81.81 |    78.12 |     100 |   84.21 | 44-46
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:70: trailing whitespace.
++  ...esultState.ts |   28.57 |    35.29 |   33.33 |   28.12 | 35-61,80-92
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:71: trailing whitespace.
++  ...rScenarios.ts |   90.74 |    89.58 |     100 |   95.55 | 40,87
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:72: trailing whitespace.
++  corrections.ts   |   93.47 |    70.58 |     100 |   95.12 | 120-121
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:73: trailing whitespace.
++  dates.ts         |      80 |      100 |      80 |      80 | 53-54
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:74: trailing whitespace.
++  ...cFreshness.ts |     100 |    95.83 |     100 |     100 | 21
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:75: trailing whitespace.
++  ...erpolation.ts |   88.05 |    76.92 |      90 |   93.22 | 41,78-79,95
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:76: trailing whitespace.
++  ...teOgImages.ts |   81.81 |      100 |      80 |   81.81 | 24-25
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:77: trailing whitespace.
++  getPath.ts       |     100 |    94.44 |     100 |     100 | 11
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:78: trailing whitespace.
++  getUniqueTags.ts |     100 |    83.33 |     100 |     100 | 47
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:79: trailing whitespace.
++  homepage.ts      |   79.71 |    59.57 |   82.35 |      80 | ...,32-35,132-143
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:80: trailing whitespace.
++  indicadores.ts   |      80 |     87.5 |   66.66 |      80 | 32,70-71
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:81: trailing whitespace.
++  ...ssaryLinks.ts |   94.73 |    80.48 |     100 |   94.28 | 64-65,137,141
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:82: trailing whitespace.
++  llmsTxt.ts       |     100 |       50 |     100 |     100 | 68
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:83: trailing whitespace.
++  ...GoogleFont.ts |   84.21 |    44.44 |     100 |   84.21 | 54,62,72
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:84: trailing whitespace.
++  metadataDate.ts  |   88.88 |    83.33 |     100 |   88.88 | 10
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:85: trailing whitespace.
++  nextBestStep.ts  |     100 |    94.11 |     100 |     100 | 34
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:86: trailing whitespace.
++  nextSteps.ts     |     100 |       50 |     100 |     100 | 22
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:87: trailing whitespace.
++  pageLastmod.ts   |      90 |    83.33 |     100 |   88.88 | 13
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:88: trailing whitespace.
++  postFilter.ts    |     100 |       75 |     100 |     100 | 10
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:89: trailing whitespace.
++  userProfile.ts   |   91.48 |       84 |     100 |    97.5 | 71
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:90: trailing whitespace.
++ ...-collector/src |   87.32 |    74.28 |   94.28 |   89.96 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:91: trailing whitespace.
++  worker-v2.ts     |   87.32 |    74.28 |   94.28 |   89.96 | ...71,798,847-852
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log:192: trailing whitespace.
++Result (666 files):
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:263: trailing whitespace.
++Result (666 files):
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:282: trailing whitespace.
++ generating static routes
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:283: trailing whitespace.
++08:28:15   ├─ /404.html (+14ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:284: trailing whitespace.
++08:28:15   ├─ /accessibilidad/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:285: trailing whitespace.
++08:28:15   ├─ /acerca-de/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:286: trailing whitespace.
++08:28:15   ├─ /api/indicadores-hoy.json (+8ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:287: trailing whitespace.
++08:28:15   ├─ /api/uf-historico-lookup.json (+21ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:288: trailing whitespace.
++08:28:15   ├─ /apoyar/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:289: trailing whitespace.
++08:28:15   ├─ /archives/index.html (+22ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:290: trailing whitespace.
++08:28:15   ├─ /autor/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:291: trailing whitespace.
++08:28:15   ├─ /buscar/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:292: trailing whitespace.
++08:28:15   ├─ /calculadoras/actualizador-inflacion/index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:293: trailing whitespace.
++08:28:15   ├─ /calculadoras/apv/index.html (+13ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:294: trailing whitespace.
++08:28:15   ├─ /calculadoras/boleta-honorarios-liquido/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:295: trailing whitespace.
++08:28:15   ├─ /calculadoras/comisiones-afp/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:296: trailing whitespace.
++08:28:15   ├─ /calculadoras/conversor-uf/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:297: trailing whitespace.
++08:28:15   ├─ /calculadoras/conversor-utm/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:298: trailing whitespace.
++08:28:15   ├─ /calculadoras/credito-consumo/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:299: trailing whitespace.
++08:28:15   ├─ /calculadoras/deposito-a-plazo/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:300: trailing whitespace.
++08:28:15   ├─ /calculadoras/dividendo-hipotecario/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:301: trailing whitespace.
++08:28:15   ├─ /calculadoras/finiquito-indemnizacion/index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:302: trailing whitespace.
++08:28:15   ├─ /calculadoras/gratificacion-legal/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:303: trailing whitespace.
++08:28:15   ├─ /calculadoras/impuesto-segunda-categoria/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:304: trailing whitespace.
++08:28:15   ├─ /calculadoras/interes-compuesto/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:305: trailing whitespace.
++08:28:15   ├─ /calculadoras/iva/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:306: trailing whitespace.
++08:28:15   ├─ /calculadoras/operacion-renta/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:307: trailing whitespace.
++08:28:15   ├─ /calculadoras/prepago-credito/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:308: trailing whitespace.
++08:28:15   ├─ /calculadoras/reajuste-arriendo/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:309: trailing whitespace.
++08:28:15   ├─ /calculadoras/seguro-cesantia/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:310: trailing whitespace.
++08:28:15   ├─ /calculadoras/simulador-jubilacion/index.html (+569ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:311: trailing whitespace.
++08:28:16   ├─ /calculadoras/simulador-renegociacion/index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:312: trailing whitespace.
++08:28:16   ├─ /calculadoras/sueldo-liquido/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:313: trailing whitespace.
++08:28:16   ├─ /calculadoras/tarjeta-credito/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:314: trailing whitespace.
++08:28:16   ├─ /calculadoras/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:315: trailing whitespace.
++08:28:16   ├─ /calendario/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:316: trailing whitespace.
++08:28:16   ├─ /como-usamos-los-datos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:317: trailing whitespace.
++08:28:16   ├─ /cookies/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:318: trailing whitespace.
++08:28:16   ├─ /correcciones/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:319: trailing whitespace.
++08:28:16   ├─ /glosario/afc/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:320: trailing whitespace.
++08:28:16   ├─ /glosario/afp/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:321: trailing whitespace.
++08:28:16   ├─ /glosario/apv/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:322: trailing whitespace.
++08:28:16   ├─ /glosario/boleta-honorarios/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:323: trailing whitespace.
++08:28:16   ├─ /glosario/cae/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:324: trailing whitespace.
++08:28:16   ├─ /glosario/caec/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:325: trailing whitespace.
++08:28:16   ├─ /glosario/cic/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:326: trailing whitespace.
++08:28:16   ├─ /glosario/clave-unica/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:327: trailing whitespace.
++08:28:16   ├─ /glosario/cmf/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:328: trailing whitespace.
++08:28:16   ├─ /glosario/copago/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:329: trailing whitespace.
++08:28:16   ├─ /glosario/corredor-bolsa/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:330: trailing whitespace.
++08:28:16   ├─ /glosario/credito-aval-estado/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:331: trailing whitespace.
++08:28:16   ├─ /glosario/credito-hipotecario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:332: trailing whitespace.
++08:28:16   ├─ /glosario/ctc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:333: trailing whitespace.
++08:28:16   ├─ /glosario/cuenta-2/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:334: trailing whitespace.
++08:28:16   ├─ /glosario/cuenta-rut/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:335: trailing whitespace.
++08:28:16   ├─ /glosario/custodia/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:336: trailing whitespace.
++08:28:16   ├─ /glosario/dicom/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:337: trailing whitespace.
++08:28:16   ├─ /glosario/dividendo-hipotecario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:338: trailing whitespace.
++08:28:16   ├─ /glosario/etf/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:339: trailing whitespace.
++08:28:16   ├─ /glosario/finiquito/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:340: trailing whitespace.
++08:28:16   ├─ /glosario/fonasa/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:341: trailing whitespace.
++08:28:16   ├─ /glosario/fondo-emergencia/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:342: trailing whitespace.
++08:28:16   ├─ /glosario/fondo-mutuo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:343: trailing whitespace.
++08:28:16   ├─ /glosario/fondo-solidario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:344: trailing whitespace.
++08:28:16   ├─ /glosario/ges/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:345: trailing whitespace.
++08:28:16   ├─ /glosario/global-complementario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:346: trailing whitespace.
++08:28:16   ├─ /glosario/gratificacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:347: trailing whitespace.
++08:28:16   ├─ /glosario/impuesto-unico/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:348: trailing whitespace.
++08:28:16   ├─ /glosario/indemnizacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:349: trailing whitespace.
++08:28:16   ├─ /glosario/inflacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:350: trailing whitespace.
++08:28:16   ├─ /glosario/ipc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:351: trailing whitespace.
++08:28:16   ├─ /glosario/isapre/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:352: trailing whitespace.
++08:28:16   ├─ /glosario/iva/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:353: trailing whitespace.
++08:28:16   ├─ /glosario/liquidez/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:354: trailing whitespace.
++08:28:16   ├─ /glosario/lpc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:355: trailing whitespace.
++08:28:16   ├─ /glosario/multifondo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:356: trailing whitespace.
++08:28:16   ├─ /glosario/operacion-renta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:357: trailing whitespace.
++08:28:16   ├─ /glosario/renta-imponible/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:358: trailing whitespace.
++08:28:16   ├─ /glosario/renta-variable/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:359: trailing whitespace.
++08:28:16   ├─ /glosario/rescate/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:360: trailing whitespace.
++08:28:16   ├─ /glosario/sbif/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:361: trailing whitespace.
++08:28:16   ├─ /glosario/seguro-cesantia/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:362: trailing whitespace.
++08:28:16   ├─ /glosario/sernac/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:363: trailing whitespace.
++08:28:16   ├─ /glosario/sii/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:364: trailing whitespace.
++08:28:16   ├─ /glosario/spread/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:365: trailing whitespace.
++08:28:16   ├─ /glosario/sueldo-bruto/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:366: trailing whitespace.
++08:28:16   ├─ /glosario/tmc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:367: trailing whitespace.
++08:28:16   ├─ /glosario/tope-imponible/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:368: trailing whitespace.
++08:28:16   ├─ /glosario/tpm/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:369: trailing whitespace.
++08:28:16   ├─ /glosario/uf/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:370: trailing whitespace.
++08:28:16   ├─ /glosario/uta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:371: trailing whitespace.
++08:28:16   ├─ /glosario/utm/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:372: trailing whitespace.
++08:28:16   ├─ /glosario/volatilidad/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:373: trailing whitespace.
++08:28:16   ├─ /glosario/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:374: trailing whitespace.
++08:28:16   ├─ /guias/ahorro-e-inversion/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:375: trailing whitespace.
++08:28:16   ├─ /guias/bancos-fintech/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:376: trailing whitespace.
++08:28:16   ├─ /guias/deuda-credito/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:377: trailing whitespace.
++08:28:16   ├─ /guias/empleo-ingresos/licencia-medica-wizard/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:378: trailing whitespace.
++08:28:16   ├─ /guias/empleo-ingresos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:379: trailing whitespace.
++08:28:16   ├─ /guias/finanzas-migrantes/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:380: trailing whitespace.
++08:28:16   ├─ /guias/impuestos-personas/operacion-renta/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:381: trailing whitespace.
++08:28:16   ├─ /guias/impuestos-personas/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:382: trailing whitespace.
++08:28:16   ├─ /guias/pensiones-afp/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:383: trailing whitespace.
++08:28:16   ├─ /guias/presupuesto-control-financiero/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:384: trailing whitespace.
++08:28:16   ├─ /guias/seguridad-financiera/fraude-cargo-no-reconocido/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:385: trailing whitespace.
++08:28:16   ├─ /guias/seguridad-financiera/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:386: trailing whitespace.
++08:28:16   ├─ /guias/sueldo-remuneraciones/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:387: trailing whitespace.
++08:28:16   ├─ /guias/uf-costo-de-vida/indicadores-economicos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:388: trailing whitespace.
++08:28:16   ├─ /guias/uf-costo-de-vida/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:389: trailing whitespace.
++08:28:16   ├─ /guias/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:390: trailing whitespace.
++08:28:16   ├─ /leyes/codigo-del-trabajo/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:391: trailing whitespace.
++08:28:16   ├─ /leyes/dfl-1-1998-impuesto-territorial/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:392: trailing whitespace.
++08:28:16   ├─ /leyes/dl-3500-sistema-afp/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:393: trailing whitespace.
++08:28:16   ├─ /leyes/dl-824-impuesto-renta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:394: trailing whitespace.
++08:28:16   ├─ /leyes/dl-830-codigo-tributario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:395: trailing whitespace.
++08:28:16   ├─ /leyes/ley-18010-credito-dinero/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:396: trailing whitespace.
++08:28:16   ├─ /leyes/ley-18469-fonasa/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:397: trailing whitespace.
++08:28:16   ├─ /leyes/ley-18933-isapres/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:398: trailing whitespace.
++08:28:16   ├─ /leyes/ley-19496-proteccion-consumidor/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:399: trailing whitespace.
++08:28:16   ├─ /leyes/ley-19628-proteccion-datos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:400: trailing whitespace.
++08:28:16   ├─ /leyes/ley-19728-seguro-cesantia/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:401: trailing whitespace.
++08:28:16   ├─ /leyes/ley-20009-tarjetas-fraude/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:402: trailing whitespace.
++08:28:16   ├─ /leyes/ley-20027-credito-aval-estado/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:403: trailing whitespace.
++08:28:16   ├─ /leyes/ley-20555-sernac-financiero/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:404: trailing whitespace.
++08:28:16   ├─ /leyes/ley-20575-datos-comerciales/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:405: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21130-modernizacion-bancaria/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:406: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21133-honorarios-retencion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:407: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21236-portabilidad-financiera/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:408: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21521-fintech/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:409: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21561-reduccion-jornada/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:410: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21680-registro-deuda-consolidada/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:411: trailing whitespace.
++08:28:16   ├─ /leyes/ley-21719-proteccion-datos-modernizacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:412: trailing whitespace.
++08:28:16   ├─ /leyes/proyecto-reforma-previsional-2025/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:413: trailing whitespace.
++08:28:16   ├─ /leyes/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:414: trailing whitespace.
++08:28:16   ├─ /llms-full.txt (+8ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:415: trailing whitespace.
++08:28:16   ├─ /llms.txt (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:416: trailing whitespace.
++08:28:16   ├─ /metodologia/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:417: trailing whitespace.
++08:28:16   ├─ /og-image (+260ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:418: trailing whitespace.
++08:28:16   ├─ /og.jpg (+214ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:419: trailing whitespace.
++08:28:16   ├─ /og.png (+166ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:420: trailing whitespace.
++08:28:16   ├─ /posts/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:421: trailing whitespace.
++08:28:16   ├─ /posts/2/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:422: trailing whitespace.
++08:28:16   ├─ /posts/3/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:423: trailing whitespace.
++08:28:16   ├─ /posts/4/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:424: trailing whitespace.
++08:28:16   ├─ /posts/5/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:425: trailing whitespace.
++08:28:16   ├─ /posts/6/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:426: trailing whitespace.
++08:28:16   ├─ /posts/7/index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:427: trailing whitespace.
++08:28:16   ├─ /posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/index.html (+7ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:428: trailing whitespace.
++08:28:16   ├─ /posts/bancos-y-fintech-chile/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:429: trailing whitespace.
++08:28:17   ├─ /posts/boleta-honorarios-2026-retencion-cobertura/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:430: trailing whitespace.
++08:28:17   ├─ /posts/cae-costo-real-credito-chile/index.html (+7ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:431: trailing whitespace.
++08:28:17   ├─ /posts/como-calcular-sueldo-liquido/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:432: trailing whitespace.
++08:28:17   ├─ /posts/como-cambiarse-de-afp/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:433: trailing whitespace.
++08:28:17   ├─ /posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/index.html (+8ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:434: trailing whitespace.
++08:28:17   ├─ /posts/como-hacer-presupuesto-mensual-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:435: trailing whitespace.
++08:28:17   ├─ /posts/como-invertir-en-etfs-desde-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:436: trailing whitespace.
++08:28:17   ├─ /posts/como-leer-cartola-afp-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:437: trailing whitespace.
++08:28:17   ├─ /posts/como-salir-boletin-comercial-chile/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:438: trailing whitespace.
++08:28:17   ├─ /posts/contribuciones-bienes-raices-chile/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:439: trailing whitespace.
++08:28:17   ├─ /posts/cotizacion-voluntaria-afp-independiente/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:440: trailing whitespace.
++08:28:17   ├─ /posts/credito-hipotecario-chile-guia-completa/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:441: trailing whitespace.
++08:28:17   ├─ /posts/cuanto-descuenta-la-afp-de-tu-sueldo/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:442: trailing whitespace.
++08:28:17   ├─ /posts/deposito-a-plazo-uf-vs-pesos/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:443: trailing whitespace.
++08:28:17   ├─ /posts/descuentos-de-sueldo/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:444: trailing whitespace.
++08:28:17   ├─ /posts/devolucion-impuestos-fechas-compensaciones/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:445: trailing whitespace.
++08:28:17   ├─ /posts/donde-ver-si-estoy-en-dicom-gratis/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:446: trailing whitespace.
++08:28:17   ├─ /posts/el-poder-del-interes-compuesto/index.html (+8ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:447: trailing whitespace.
++08:28:17   ├─ /posts/estafas-financieras-chile-vishing-smishing-marketplace/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:448: trailing whitespace.
++08:28:17   ├─ /posts/finanzas-para-migrantes-chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:449: trailing whitespace.
++08:28:17   ├─ /posts/finiquito-e-indemnizaciones-en-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:450: trailing whitespace.
++08:28:17   ├─ /posts/fonasa-vs-isapre-comparativa/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:451: trailing whitespace.
++08:28:17   ├─ /posts/fondo-emergencia-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:452: trailing whitespace.
++08:28:17   ├─ /posts/fondos-afp-a-b-c-d-e/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:453: trailing whitespace.
++08:28:17   ├─ /posts/fondos-mutuos-comisiones-rescate-impuestos/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:454: trailing whitespace.
++08:28:17   ├─ /posts/fraude-tarjeta-que-hacer/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:455: trailing whitespace.
++08:28:17   ├─ /posts/gratificacion-legal-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:456: trailing whitespace.
++08:28:17   ├─ /posts/impuesto-global-complementario-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:457: trailing whitespace.
++08:28:17   ├─ /posts/indemnizacion-anos-de-servicio-chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:458: trailing whitespace.
++08:28:17   ├─ /posts/informe-deudas-cmf-vs-dicom/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:459: trailing whitespace.
++08:28:17   ├─ /posts/interes-compuesto-nota-metodologica/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:460: trailing whitespace.
++08:28:17   ├─ /posts/licencia-medica-desde-que-dia-pagan/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:461: trailing whitespace.
++08:28:17   ├─ /posts/liquidacion-de-sueldo/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:462: trailing whitespace.
++08:28:17   ├─ /posts/operacion-renta-centro/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:463: trailing whitespace.
++08:28:17   ├─ /posts/operacion-renta-f22-checklist/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:464: trailing whitespace.
++08:28:17   ├─ /posts/pgu-pension-garantizada-universal/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:465: trailing whitespace.
++08:28:17   ├─ /posts/prepago-credito-cuando-conviene-chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:466: trailing whitespace.
++08:28:17   ├─ /posts/primer-empleo-chile-guia-completa/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:467: trailing whitespace.
++08:28:17   ├─ /posts/que-es-el-apv/index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:468: trailing whitespace.
++08:28:17   ├─ /posts/que-es-el-ipc-chile-como-se-calcula/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:469: trailing whitespace.
++08:28:17   ├─ /posts/que-es-la-cuenta-2-afp/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:470: trailing whitespace.
++08:28:17   ├─ /posts/que-es-la-uf/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:471: trailing whitespace.
++08:28:17   ├─ /posts/reajuste-arriendo-uf-ipc-chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:472: trailing whitespace.
++08:28:17   ├─ /posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/index.html (+5ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:473: trailing whitespace.
++08:28:17   ├─ /posts/renegociacion-superir/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:474: trailing whitespace.
++08:28:17   ├─ /posts/rentas-mixtas-sueldo-honorarios/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:475: trailing whitespace.
++08:28:17   ├─ /posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:476: trailing whitespace.
++08:28:17   ├─ /posts/seguro-de-cesantia/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:477: trailing whitespace.
++08:28:17   ├─ /posts/sueldo-imponible-chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:478: trailing whitespace.
++08:28:17   ├─ /posts/suplantacion-identidad-creditos-no-reconocidos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:479: trailing whitespace.
++08:28:17   ├─ /posts/tarjeta-credito-costo-real-chile/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:480: trailing whitespace.
++08:28:17   ├─ /posts/utm-chile-que-es-como-funciona/index.html (+7ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:481: trailing whitespace.
++08:28:17   ├─ /privacidad/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:482: trailing whitespace.
++08:28:17   ├─ /privado/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:483: trailing whitespace.
++08:28:17   ├─ /robots.txt (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:484: trailing whitespace.
++08:28:17   ├─ /rss.xml (+19ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:485: trailing whitespace.
++08:28:17   ├─ /search/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:486: trailing whitespace.
++08:28:17   ├─ /tags/adultos-mayores/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:487: trailing whitespace.
++08:28:17   ├─ /tags/afc/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:488: trailing whitespace.
++08:28:17   ├─ /tags/afiliacion-voluntaria/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:489: trailing whitespace.
++08:28:17   ├─ /tags/afp/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:490: trailing whitespace.
++08:28:17   ├─ /tags/afp/2/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:491: trailing whitespace.
++08:28:17   ├─ /tags/ahorro/index.html (+4ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:492: trailing whitespace.
++08:28:17   ├─ /tags/amortizacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:493: trailing whitespace.
++08:28:17   ├─ /tags/apv/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:494: trailing whitespace.
++08:28:17   ├─ /tags/arriendo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:495: trailing whitespace.
++08:28:17   ├─ /tags/arriendos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:496: trailing whitespace.
++08:28:17   ├─ /tags/bancos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:497: trailing whitespace.
++08:28:17   ├─ /tags/bienes-raices/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:498: trailing whitespace.
++08:28:17   ├─ /tags/boletas/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:499: trailing whitespace.
++08:28:17   ├─ /tags/boletin-comercial/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:500: trailing whitespace.
++08:28:17   ├─ /tags/bolsa/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:501: trailing whitespace.
++08:28:17   ├─ /tags/cae/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:502: trailing whitespace.
++08:28:17   ├─ /tags/cambio-afp/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:503: trailing whitespace.
++08:28:17   ├─ /tags/cartola/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:504: trailing whitespace.
++08:28:17   ├─ /tags/cesantia/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:505: trailing whitespace.
++08:28:17   ├─ /tags/chile/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:506: trailing whitespace.
++08:28:17   ├─ /tags/cmf/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:507: trailing whitespace.
++08:28:17   ├─ /tags/cobertura/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:508: trailing whitespace.
++08:28:17   ├─ /tags/codigo-del-trabajo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:509: trailing whitespace.
++08:28:17   ├─ /tags/comisiones/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:510: trailing whitespace.
++08:28:17   ├─ /tags/consumo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:511: trailing whitespace.
++08:28:17   ├─ /tags/contrato/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:512: trailing whitespace.
++08:28:17   ├─ /tags/contribuciones/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:513: trailing whitespace.
++08:28:17   ├─ /tags/control-financiero/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:514: trailing whitespace.
++08:28:17   ├─ /tags/corredoras/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:515: trailing whitespace.
++08:28:17   ├─ /tags/costo-de-vida/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:516: trailing whitespace.
++08:28:17   ├─ /tags/cotizaciones/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:517: trailing whitespace.
++08:28:17   ├─ /tags/credito/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:518: trailing whitespace.
++08:28:17   ├─ /tags/credito-hipotecario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:519: trailing whitespace.
++08:28:17   ├─ /tags/creditos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:520: trailing whitespace.
++08:28:17   ├─ /tags/cuenta-2/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:521: trailing whitespace.
++08:28:17   ├─ /tags/cuenta-vista/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:522: trailing whitespace.
++08:28:17   ├─ /tags/cuentarut/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:523: trailing whitespace.
++08:28:17   ├─ /tags/declaracion-renta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:524: trailing whitespace.
++08:28:17   ├─ /tags/deposito-a-plazo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:525: trailing whitespace.
++08:28:17   ├─ /tags/derechos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:526: trailing whitespace.
++08:28:17   ├─ /tags/descuentos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:527: trailing whitespace.
++08:28:17   ├─ /tags/desempleo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:528: trailing whitespace.
++08:28:17   ├─ /tags/despido/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:529: trailing whitespace.
++08:28:17   ├─ /tags/deuda/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:530: trailing whitespace.
++08:28:17   ├─ /tags/deudas/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:531: trailing whitespace.
++08:28:17   ├─ /tags/devolucion/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:532: trailing whitespace.
++08:28:17   ├─ /tags/dicom/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:533: trailing whitespace.
++08:28:17   ├─ /tags/dividendo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:534: trailing whitespace.
++08:28:17   ├─ /tags/educacion-financiera/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:535: trailing whitespace.
++08:28:17   ├─ /tags/empleador/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:536: trailing whitespace.
++08:28:17   ├─ /tags/empleo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:537: trailing whitespace.
++08:28:17   ├─ /tags/empleo-ingresos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:538: trailing whitespace.
++08:28:17   ├─ /tags/etf/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:539: trailing whitespace.
++08:28:17   ├─ /tags/f22/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:540: trailing whitespace.
++08:28:17   ├─ /tags/finanzas-personales/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:541: trailing whitespace.
++08:28:17   ├─ /tags/finiquito/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:542: trailing whitespace.
++08:28:17   ├─ /tags/fintech/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:543: trailing whitespace.
++08:28:17   ├─ /tags/fonasa/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:544: trailing whitespace.
++08:28:17   ├─ /tags/fondo-emergencia/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:545: trailing whitespace.
++08:28:17   ├─ /tags/fondos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:546: trailing whitespace.
++08:28:17   ├─ /tags/fondos-generacionales/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:547: trailing whitespace.
++08:28:17   ├─ /tags/fondos-mutuos/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:548: trailing whitespace.
++08:28:17   ├─ /tags/fraude/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:549: trailing whitespace.
++08:28:17   ├─ /tags/freelance/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:550: trailing whitespace.
++08:28:17   ├─ /tags/gasto-hormiga/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:551: trailing whitespace.
++08:28:17   ├─ /tags/gratificacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:552: trailing whitespace.
++08:28:17   ├─ /tags/historial-crediticio/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:553: trailing whitespace.
++08:28:17   ├─ /tags/honorarios/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:554: trailing whitespace.
++08:28:17   ├─ /tags/igc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:555: trailing whitespace.
++08:28:17   ├─ /tags/impuesto-global-complementario/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:556: trailing whitespace.
++08:28:17   ├─ /tags/impuesto-segunda-categoria/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:557: trailing whitespace.
++08:28:17   ├─ /tags/impuesto-territorial/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:558: trailing whitespace.
++08:28:17   ├─ /tags/impuestos/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:559: trailing whitespace.
++08:28:17   ├─ /tags/impuestos/2/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:560: trailing whitespace.
++08:28:17   ├─ /tags/indemnizacion/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:561: trailing whitespace.
++08:28:17   ├─ /tags/independientes/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:562: trailing whitespace.
++08:28:17   ├─ /tags/inflacion/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:563: trailing whitespace.
++08:28:17   ├─ /tags/interes/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:564: trailing whitespace.
++08:28:17   ├─ /tags/interes-compuesto/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:565: trailing whitespace.
++08:28:17   ├─ /tags/inversion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:566: trailing whitespace.
++08:28:17   ├─ /tags/inversiones/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:567: trailing whitespace.
++08:28:17   ├─ /tags/ipc/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:568: trailing whitespace.
++08:28:17   ├─ /tags/ips/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:569: trailing whitespace.
++08:28:17   ├─ /tags/isapre/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:570: trailing whitespace.
++08:28:17   ├─ /tags/jubilacion/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:571: trailing whitespace.
++08:28:17   ├─ /tags/ley-20009/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:572: trailing whitespace.
++08:28:17   ├─ /tags/licencia-medica/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:573: trailing whitespace.
++08:28:17   ├─ /tags/liquidacion/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:574: trailing whitespace.
++08:28:17   ├─ /tags/liquidez/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:575: trailing whitespace.
++08:28:17   ├─ /tags/migrantes/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:576: trailing whitespace.
++08:28:17   ├─ /tags/nasdaq-100/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:577: trailing whitespace.
++08:28:17   ├─ /tags/operacion-renta/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:578: trailing whitespace.
++08:28:17   ├─ /tags/pension/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:579: trailing whitespace.
++08:28:17   ├─ /tags/pensiones/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:580: trailing whitespace.
++08:28:17   ├─ /tags/pgu/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:581: trailing whitespace.
++08:28:17   ├─ /tags/plazo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:582: trailing whitespace.
++08:28:17   ├─ /tags/portabilidad/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:583: trailing whitespace.
++08:28:17   ├─ /tags/prepago/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:584: trailing whitespace.
++08:28:17   ├─ /tags/presupuesto/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:585: trailing whitespace.
++08:28:17   ├─ /tags/prevision/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:586: trailing whitespace.
++08:28:17   ├─ /tags/previsión/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:587: trailing whitespace.
++08:28:17   ├─ /tags/primer-empleo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:588: trailing whitespace.
++08:28:17   ├─ /tags/primera-vivienda/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:589: trailing whitespace.
++08:28:17   ├─ /tags/proteccion-social/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:590: trailing whitespace.
++08:28:17   ├─ /tags/reforma-pensiones/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:591: trailing whitespace.
++08:28:17   ├─ /tags/reforma-previsional/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:592: trailing whitespace.
++08:28:17   ├─ /tags/remuneraciones/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:593: trailing whitespace.
++08:28:17   ├─ /tags/renegociacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:594: trailing whitespace.
++08:28:17   ├─ /tags/renta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:595: trailing whitespace.
++08:28:17   ├─ /tags/rentas-mixtas/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:596: trailing whitespace.
++08:28:17   ├─ /tags/retencion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:597: trailing whitespace.
++08:28:17   ├─ /tags/riesgo/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:598: trailing whitespace.
++08:28:17   ├─ /tags/rut/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:599: trailing whitespace.
++08:28:17   ├─ /tags/salud/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:600: trailing whitespace.
++08:28:17   ├─ /tags/seguridad-financiera/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:601: trailing whitespace.
++08:28:17   ├─ /tags/seguridad-social/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:602: trailing whitespace.
++08:28:17   ├─ /tags/sii/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:603: trailing whitespace.
++08:28:17   ├─ /tags/sis/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:604: trailing whitespace.
++08:28:17   ├─ /tags/smishing/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:605: trailing whitespace.
++08:28:17   ├─ /tags/sobreendeudamiento/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:606: trailing whitespace.
++08:28:17   ├─ /tags/subsidio/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:607: trailing whitespace.
++08:28:17   ├─ /tags/sueldo/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:608: trailing whitespace.
++08:28:17   ├─ /tags/sueldo-imponible/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:609: trailing whitespace.
++08:28:17   ├─ /tags/superir/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:610: trailing whitespace.
++08:28:17   ├─ /tags/suplantacion/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:611: trailing whitespace.
++08:28:17   ├─ /tags/suseso/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:612: trailing whitespace.
++08:28:17   ├─ /tags/tarjeta-credito/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:613: trailing whitespace.
++08:28:17   ├─ /tags/tarjetas/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:614: trailing whitespace.
++08:28:17   ├─ /tags/tgr/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:615: trailing whitespace.
++08:28:17   ├─ /tags/tmc/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:616: trailing whitespace.
++08:28:17   ├─ /tags/trabajo/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:617: trailing whitespace.
++08:28:17   ├─ /tags/uf/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:618: trailing whitespace.
++08:28:17   ├─ /tags/uta/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:619: trailing whitespace.
++08:28:17   ├─ /tags/utm/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:620: trailing whitespace.
++08:28:17   ├─ /tags/vishing/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:621: trailing whitespace.
++08:28:17   ├─ /tags/vivienda/index.html (+1ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:622: trailing whitespace.
++08:28:17   ├─ /tags/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:623: trailing whitespace.
++08:28:17   ├─ /terminos/index.html (+2ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:624: trailing whitespace.
++08:28:17   ├─ /uf-hoy/index.html (+3ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:625: trailing whitespace.
++08:28:17   ├─ /index.html (+6ms)
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:658: trailing whitespace.
++Total:
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:765: trailing whitespace.
++File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:767: trailing whitespace.
++All files          |   90.34 |    83.62 |   96.04 |   91.54 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:768: trailing whitespace.
++ ...tion/use-cases |   91.32 |    87.73 |     100 |   91.39 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:769: trailing whitespace.
++  ...Comparison.ts |    87.5 |    81.08 |     100 |    87.5 | ...09,112,118,126
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:770: trailing whitespace.
++  ...ndInterest.ts |      96 |    94.44 |     100 |   95.83 | 52
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:771: trailing whitespace.
++  ...umerCredit.ts |    93.1 |    91.66 |     100 |   92.85 | 27,30
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:772: trailing whitespace.
++  ...orariosNet.ts |    87.5 |    89.74 |     100 |   87.09 | 64,72,82,90
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:773: trailing whitespace.
++  ...Adjustment.ts |   92.59 |       90 |     100 |   95.65 | 50
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:774: trailing whitespace.
++  ...ayrollBase.ts |   88.23 |    88.88 |     100 |   88.23 | 62,71,77,86
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:775: trailing whitespace.
++  ...teMortgage.ts |      98 |    93.33 |     100 |   97.95 | 74
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:776: trailing whitespace.
++  ...eNetSalary.ts |   80.64 |    81.25 |     100 |      80 | 52,55,61,70,76,82
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:777: trailing whitespace.
++  ...ommissions.ts |   86.36 |    81.25 |     100 |   86.36 | 29,32,37
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:778: trailing whitespace.
++  ...eFiniquito.ts |   93.93 |    92.64 |     100 |   93.93 | 112,138,147,152
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:779: trailing whitespace.
++  ...ntCoverage.ts |   93.75 |    88.23 |     100 |   93.33 | 75,81,87
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:780: trailing whitespace.
++  ...storicalUf.ts |   96.77 |       95 |     100 |     100 | 48
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:781: trailing whitespace.
++  ...storicalUf.ts |    92.3 |       90 |     100 |   95.23 | 45
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:782: trailing whitespace.
++  ...itCardCost.ts |   95.65 |       95 |     100 |   95.65 | 32
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:783: trailing whitespace.
++  ...Prepayment.ts |   83.33 |       84 |     100 |   83.33 | ...,49,86,104,145
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:784: trailing whitespace.
++  ...egotiation.ts |   81.39 |    81.39 |     100 |      80 | ...72,75,78,83,86
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:785: trailing whitespace.
++  ...acionRenta.ts |   85.71 |    83.33 |     100 |   85.71 | 53,56,59,68,77
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:786: trailing whitespace.
++  ...Projection.ts |   88.46 |    75.92 |     100 |   88.15 | ...17,125,131,214
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:787: trailing whitespace.
++ ...e-cases/shared |   97.22 |    94.44 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:788: trailing whitespace.
++  ...ortization.ts |   95.45 |    91.66 |     100 |     100 | 29
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:789: trailing whitespace.
++ src/contracts     |   98.18 |    98.14 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:790: trailing whitespace.
++  ...ics-events.ts |   98.18 |    98.14 |     100 |     100 | 352
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:791: trailing whitespace.
++ ...domain/content |   78.57 |    63.63 |     100 |   81.81 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:792: trailing whitespace.
++  path.ts          |   78.57 |    63.63 |     100 |   81.81 | 16-18
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:793: trailing whitespace.
++ ...omain/economic |   95.58 |    91.02 |     100 |   95.23 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:794: trailing whitespace.
++  ...Parameters.ts |   92.85 |    88.88 |     100 |   92.68 | 82,86,90
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:795: trailing whitespace.
++ ...domain/payroll |   89.28 |    80.95 |     100 |    92.3 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:796: trailing whitespace.
++  PayrollRules.ts  |   89.28 |    80.95 |     100 |    92.3 | 160,176
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:797: trailing whitespace.
++ ...privateFinance |   91.98 |     83.7 |     100 |   93.33 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:798: trailing whitespace.
++  ...nancialCsv.ts |   91.98 |     83.7 |     100 |   93.33 | ...38,460-461,479
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:799: trailing whitespace.
++ ...omain/taxation |    97.5 |    88.88 |     100 |   97.43 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:800: trailing whitespace.
++  TaxEngine.ts     |   96.15 |    85.71 |     100 |      96 | 105
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:801: trailing whitespace.
++ src/domain/wizard |   84.61 |    69.56 |     100 |     100 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:802: trailing whitespace.
++  ...zardConfig.ts |   84.61 |    69.56 |     100 |     100 | ...19,31-50,54-63
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:803: trailing whitespace.
++ src/i18n          |    90.9 |    76.92 |     100 |    90.9 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:804: trailing whitespace.
++  ui.ts            |    90.9 |    76.92 |     100 |    90.9 | 32
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:805: trailing whitespace.
++ ...cture/economic |   85.05 |    72.36 |      90 |   85.88 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:806: trailing whitespace.
++  ...erProvider.ts |   85.05 |    72.36 |      90 |   85.88 | ...58-364,377-378
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:807: trailing whitespace.
++ src/integrations  |   88.59 |    90.54 |    87.5 |   88.67 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:808: trailing whitespace.
++  ...nk-spacing.ts |   82.19 |    90.32 |   66.66 |   81.53 | 71,142-159
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:809: trailing whitespace.
++  sw-version.ts    |     100 |       75 |     100 |     100 | 9
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:810: trailing whitespace.
++ src/utils         |   89.36 |    80.86 |   93.71 |   90.76 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:811: trailing whitespace.
++  analytics.ts     |    92.3 |    79.31 |     100 |   97.22 | 84
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:812: trailing whitespace.
++  articleView.ts   |   81.81 |    78.12 |     100 |   84.21 | 44-46
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:813: trailing whitespace.
++  ...esultState.ts |   28.57 |    35.29 |   33.33 |   28.12 | 35-61,80-92
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:814: trailing whitespace.
++  ...rScenarios.ts |   90.74 |    89.58 |     100 |   95.55 | 40,87
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:815: trailing whitespace.
++  corrections.ts   |   93.47 |    70.58 |     100 |   95.12 | 120-121
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:816: trailing whitespace.
++  dates.ts         |      80 |      100 |      80 |      80 | 53-54
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:817: trailing whitespace.
++  ...cFreshness.ts |     100 |    95.83 |     100 |     100 | 21
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:818: trailing whitespace.
++  ...erpolation.ts |   88.05 |    76.92 |      90 |   93.22 | 41,78-79,95
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:819: trailing whitespace.
++  ...teOgImages.ts |   81.81 |      100 |      80 |   81.81 | 24-25
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:820: trailing whitespace.
++  getPath.ts       |     100 |    94.44 |     100 |     100 | 11
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:821: trailing whitespace.
++  getUniqueTags.ts |     100 |    83.33 |     100 |     100 | 47
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:822: trailing whitespace.
++  homepage.ts      |   79.71 |    59.57 |   82.35 |      80 | ...,32-35,132-143
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:823: trailing whitespace.
++  indicadores.ts   |      80 |     87.5 |   66.66 |      80 | 32,70-71
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:824: trailing whitespace.
++  ...ssaryLinks.ts |   94.73 |    80.48 |     100 |   94.28 | 64-65,137,141
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:825: trailing whitespace.
++  llmsTxt.ts       |     100 |       50 |     100 |     100 | 68
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:826: trailing whitespace.
++  ...GoogleFont.ts |   84.21 |    44.44 |     100 |   84.21 | 54,62,72
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:827: trailing whitespace.
++  metadataDate.ts  |   88.88 |    83.33 |     100 |   88.88 | 10
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:828: trailing whitespace.
++  nextBestStep.ts  |     100 |    94.11 |     100 |     100 | 34
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:829: trailing whitespace.
++  nextSteps.ts     |     100 |       50 |     100 |     100 | 22
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:830: trailing whitespace.
++  pageLastmod.ts   |      90 |    83.33 |     100 |   88.88 | 13
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:831: trailing whitespace.
++  postFilter.ts    |     100 |       75 |     100 |     100 | 10
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:832: trailing whitespace.
++  userProfile.ts   |   91.48 |       84 |     100 |    97.5 | 71
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:833: trailing whitespace.
++ ...-collector/src |   87.32 |    74.28 |   94.28 |   89.96 |
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:834: trailing whitespace.
++  worker-v2.ts     |   87.32 |    74.28 |   94.28 |   89.96 | ...71,798,847-852
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log:935: trailing whitespace.
++Result (666 files):
+exit=2

@@ -1,0 +1,34 @@
+$ git diff --stat 3286ea59..d9d4fbcf
+ .../audits/causa2-phase4-20261028/02-result.json   |  347 +++++-
+ .../causa2-phase4-20261028/04-delta-reaudit.md     |   64 ++
+ .../evidence/reaudit-bcn-api-extracts-20261028.txt |   31 +
+ .../evidence/reaudit-check-ci-final-20261028.log   |  280 +++++
+ .../evidence/reaudit-fetch-bcn-api-20261028.py     |  134 +++
+ .../reaudit-payroll-gate-mutation-20261028.txt     |   19 +
+ .../reaudit-primary-web-extracts-20261028.txt      |   48 +
+ .../evidence/reaudit-recompute-20261028.py         |  137 +++
+ .../evidence/reaudit-recompute-output-20261028.txt |   14 +
+ .../reaudit-routes_snapshot_after-20261028.json    |  222 ++++
+ .../reaudit-rss_snapshot_after-20261028.json       |  325 ++++++
+ .../reaudit-run-payroll-gate-mutation-20261028.py  |   66 ++
+ .../evidence/reaudit-run-target-gates-20261028.sh  |  124 +++
+ .../evidence/reaudit-static-checks-20261028.txt    |  136 +++
+ .../evidence/reaudit-target-gates-20261028.log     | 1112 ++++++++++++++++++++
+ 15 files changed, 3043 insertions(+), 16 deletions(-)
+
+$ git diff --name-status 3286ea59..d9d4fbcf
+M	docs/editorial/audits/causa2-phase4-20261028/02-result.json
+A	docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-bcn-api-extracts-20261028.txt
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-fetch-bcn-api-20261028.py
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-payroll-gate-mutation-20261028.txt
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-primary-web-extracts-20261028.txt
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-20261028.py
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-output-20261028.txt
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-routes_snapshot_after-20261028.json
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-rss_snapshot_after-20261028.json
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-run-payroll-gate-mutation-20261028.py
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-run-target-gates-20261028.sh
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-static-checks-20261028.txt
+A	docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log

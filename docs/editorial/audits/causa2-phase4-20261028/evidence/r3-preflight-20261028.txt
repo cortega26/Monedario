@@ -1,0 +1,98 @@
+R3 package preflight; date=2026-10-28
+
+$ git branch --show-current
+fix/causa2-phase4-cluster-remediation
+exit=0
+
+$ git rev-parse HEAD
+6f93938bb00011bd6fdc1413320a35882baf1aac
+exit=0
+
+$ git rev-parse main
+32ac7dc76c06c71ac2de68533efdd417a43d825f
+exit=0
+
+$ git rev-parse 3286ea59
+3286ea59c2000ee37ef86324e1ec8a9c98d02eb0
+exit=0
+
+$ git diff --stat 3286ea59..6f93938b
+ .../audits/causa2-phase4-20261028/02-result.json   |  379 ++++++-
+ .../causa2-phase4-20261028/04-delta-reaudit.md     |   64 ++
+ .../causa2-phase4-20261028/05-delta-reaudit-r2.md  |   23 +
+ .../check-audit-artifacts-final-20261028.txt       |    8 +
+ .../evidence/check-correcciones-final-20261028.txt |    4 +
+ .../evidence/check-frontmatter-final-20261028.txt  |   16 +
+ .../check-legal-citations-final-20261028.txt       |    4 +
+ .../evidence/final-diff-check-20261028.txt         |  986 +++++++++++++++++
+ .../evidence/final-diff-d9d4fbcf-20261028.txt      |   34 +
+ .../evidence/final-package-end-20261028.txt        |    4 +
+ .../evidence/final-package-preflight-20261028.txt  |   52 +
+ .../evidence/reaudit-bcn-api-extracts-20261028.txt |   30 +
+ .../evidence/reaudit-check-ci-final-20261028.log   |  280 +++++
+ .../evidence/reaudit-fetch-bcn-api-20261028.py     |  134 +++
+ .../reaudit-payroll-gate-mutation-20261028.txt     |   19 +
+ .../reaudit-primary-web-extracts-20261028.txt      |   48 +
+ .../evidence/reaudit-recompute-20261028.py         |  137 +++
+ .../evidence/reaudit-recompute-output-20261028.txt |   14 +
+ .../reaudit-routes_snapshot_after-20261028.json    |  222 ++++
+ .../reaudit-rss_snapshot_after-20261028.json       |  325 ++++++
+ .../reaudit-run-payroll-gate-mutation-20261028.py  |   66 ++
+ .../evidence/reaudit-run-target-gates-20261028.sh  |  124 +++
+ .../evidence/reaudit-static-checks-20261028.txt    |  136 +++
+ .../evidence/reaudit-target-gates-20261028.log     | 1112 ++++++++++++++++++++
+ .../evidence/rss-compare-final-20261028.txt        |    5 +
+ .../rss-snapshot-final-command-20261028.txt        |    2 +
+ .../evidence/rss_snapshot_after-final.json         |  325 ++++++
+ 27 files changed, 4537 insertions(+), 16 deletions(-)
+exit=0
+
+$ git diff --name-only 3286ea59..6f93938b
+docs/editorial/audits/causa2-phase4-20261028/02-result.json
+docs/editorial/audits/causa2-phase4-20261028/04-delta-reaudit.md
+docs/editorial/audits/causa2-phase4-20261028/05-delta-reaudit-r2.md
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-audit-artifacts-final-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-correcciones-final-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-frontmatter-final-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/check-legal-citations-final-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/final-diff-check-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/final-diff-d9d4fbcf-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/final-package-end-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/final-package-preflight-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-bcn-api-extracts-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-check-ci-final-20261028.log
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-fetch-bcn-api-20261028.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-payroll-gate-mutation-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-primary-web-extracts-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-20261028.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-recompute-output-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-routes_snapshot_after-20261028.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-rss_snapshot_after-20261028.json
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-run-payroll-gate-mutation-20261028.py
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-run-target-gates-20261028.sh
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-static-checks-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/reaudit-target-gates-20261028.log
+docs/editorial/audits/causa2-phase4-20261028/evidence/rss-compare-final-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/rss-snapshot-final-command-20261028.txt
+docs/editorial/audits/causa2-phase4-20261028/evidence/rss_snapshot_after-final.json
+exit=0
+
+out_of_scope_paths=none
+
+$ git diff --check 3286ea59..6f93938b
+
+exit=0
+
+$ git status --short
+
+exit=0
+
+$ test ! -e output/validation/rss_snapshot_after.json && echo absent
+absent
+exit=0
+
+runtime_identity
+model=GPT-6 (Codex)
+codex_cli=codex-cli 0.162.1
+session=01a1846c-19bb-72f2-8dae-122947fc347a
+thread=01a1846c-19bb-72f2-8dae-122947fc347a

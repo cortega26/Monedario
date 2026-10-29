@@ -1,0 +1,3 @@
+$ node scripts/check-hero-prompts.mjs
+[check-hero-prompts] Checked entries: 54; style: monedario-editorial-v5
+[check-hero-prompts] OK

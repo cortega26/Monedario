@@ -1,0 +1,3 @@
+$ test ! -e output/validation/rss_snapshot_after.json && echo absent
+absent
+exit=0

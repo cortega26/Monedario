@@ -23,7 +23,7 @@ articleLead:
   answer: "Tu primer empleo formal tiene cuatro pasos críticos en el primer mes: firmar el contrato revisado, verificar la primera liquidación, afiliar o confirmar AFP, y armar un presupuesto con el sueldo líquido real."
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Cómo auditar tu liquidación"
-  validAsOf: 2026-05-11
+  validAsOf: 2026-10-28
   officialSources:
     - label: "Dirección del Trabajo — contratos de trabajo"
       href: "https://www.dt.gob.cl/portal/1626/w3-propertyvalue-22777.html"
@@ -37,13 +37,13 @@ faqs:
   - q: "¿Qué pasa si mi empleador no me hace contrato en los primeros 15 días?"
     a: "Si el empleador no escritura el contrato en el plazo legal, se presume que son estipulaciones del contrato las que declare el trabajador. Eso te da argumentos legales importantes. Puedes denunciar la infracción ante la Dirección del Trabajo sin que esto termine la relación laboral."
   - q: "¿Puedo elegir mi AFP?"
-    a: "Sí. Si es tu primer trabajo formal, la AFP Chile Personas (antes AFP Modelo) te asignará una AFP de bajo costo por licitación. Tienes 12 meses para cambiarte a cualquier otra AFP sin restricciones. Después, el cambio se admite una vez cada 12 meses. Compara comisiones en la Superintendencia de Pensiones antes de decidir."
+    a: "Sí. Si es tu primera afiliación al sistema previsional obligatorio —lo habitual al empezar un primer empleo formal—, el sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 y hasta el 30 de septiembre de 2027) y debes permanecer en ella **24 meses**, salvo que suba su comisión o que otra AFP ofrezca una comisión menor. Pasado ese plazo puedes cambiarte; la ley no exige esperar 12 meses entre cambios. Compara comisiones en la Superintendencia de Pensiones antes de decidir."
   - q: "¿Qué cubre Fonasa de partida?"
     a: "Fonasa cubre atención ambulatoria y hospitalaria en la red pública (consultas, urgencias, exámenes) desde el primer día en que cotizas. El porcentaje de cobertura depende del tramo al que pertenezcas. Con la modalidad de libre elección puedes atenderte con médicos del convenio fuera de la red pública, pero el copago es mayor."
   - q: "¿Cuándo me pagan el primer sueldo?"
     a: "El contrato debe especificar la fecha de pago. Por ley, las remuneraciones deben pagarse por períodos no superiores a un mes. Si ingresas a mitad de mes, el primer pago puede ser proporcional. Confirma la fecha exacta en tu contrato antes de firmar y consulta si el primer mes se paga fraccionado."
   - q: "¿Cuánto termina descontándoseme del bruto?"
-    a: "En un contrato indefinido típico, los descuentos legales suman entre un 20 % y un 22 % del sueldo bruto: AP 10,5 %, salud (Fonasa) 7 %, seguro de cesantía 0,6 %. Los trabajadores de casa particular no pagan ese 0,6 %: su aporte al seguro de cesantía corre completo por cuenta del empleador. El SIS (Seguro de Invalidez y Sobrevivencia) lo paga el empleador, no tú. Usa la calculadora de sueldo líquido para ver el número exacto."
+    a: "En un contrato indefinido típico, los descuentos legales sobre la remuneración imponible son: 10 % de ahorro previsional, la comisión de tu AFP (entre 0,46 % y 1,45 %), 7 % de salud y 0,6 % de seguro de cesantía. Eso suma entre 18,06 % y 19,05 % del imponible; si además pagas impuesto único, el total puede llegar al 20–22 % o más según el tramo. Los trabajadores de casa particular no pagan ese 0,6 %: su aporte al seguro de cesantía corre completo por cuenta del empleador. El SIS (Seguro de Invalidez y Sobrevivencia) lo paga el empleador, no tú. Usa la calculadora de sueldo líquido para ver el número exacto."
   - q: "¿Debo firmar el contrato el primer día?"
     a: "No es obligatorio firmar el primer día, pero sí debes revisar el documento antes de hacerlo. Pide una copia en borrador, léela con calma y consulta dudas antes de estampar tu firma. Una vez firmado, las condiciones quedan vigentes hasta que se acuerde una modificación por escrito."
 reviewPolicy:
@@ -57,7 +57,7 @@ reviewPolicy:
 
 Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.
 
-> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Información vigente al 2026-10-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
 Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre [descuentos de sueldo en Chile](/posts/descuentos-de-sueldo/) para entender de entrada qué parte del bruto no llega a tu cuenta.
 
@@ -107,7 +107,7 @@ Una liquidación bien emitida tiene al menos cuatro bloques:
 
 **Haberes no imponibles:** colación, movilización y otros beneficios que no cotizan (dentro de los topes legales). Aparecen en el bruto pero no afectan el cálculo de AFP ni salud.
 
-**Descuentos legales:** AFP (~10,5 %), salud (7 %), seguro de cesantía (0,6 % trabajador, salvo en casa particular, donde no se descuenta). Estos son fijos e inamovibles — el empleador no puede eliminarlos ni reducirlos.
+**Descuentos legales:** AFP (10 % de ahorro previsional más la comisión de tu administradora, entre 0,46 % y 1,45 %), salud (7 %) y seguro de cesantía (0,6 % trabajador, salvo en casa particular, donde no se descuenta). Estos son fijos e inamovibles — el empleador no puede eliminarlos ni reducirlos.
 
 **Descuentos voluntarios o autorizados por ti:** créditos de consumo retenidos en nómina y otros pagos que pediste al empleador. Para cada uno debiste firmar una autorización. La cuota sindical —que también debe quien no está afiliado pero aceptó la extensión de beneficios, y quien se desafilió mientras sigue vigente el instrumento colectivo— y el crédito social de una caja de compensación son distintos: son descuentos obligatorios y no dependen de una autorización mensual; la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) explica por qué. Si aparece un descuento que no reconoces, pregunta antes de aceptar.
 
@@ -131,15 +131,15 @@ Ese dinero es tuyo. No es un impuesto — es ahorro obligatorio que acumulas par
 
 Además del 10 % para tu cuenta, la AFP cobra una **comisión** que varía entre el 0,46 % y el 1,45 % de tu remuneración imponible (datos vigentes a 2026). Esta comisión sí es un costo tuyo, por eso conviene comparar.
 
-El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** de aproximadamente 1,87 % de la remuneración, pero ese costo lo asume él, no tú.
+El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** equivalente al **1,78 % de la remuneración imponible** para trabajadores dependientes desde agosto de 2026, pero ese costo lo asume él, no tú. Para los independientes que cotizan mediante retención de impuestos, la tasa del año tributario 2026 es distinta (1,49 %): son regímenes separados y no conviene mezclarlos.
 
 ### Cómo funciona la afiliación en el primer trabajo
 
-Si es tu **primer empleo formal**, el proceso es automático:
+Si es tu **primera afiliación al sistema previsional obligatorio** —lo habitual al empezar tu primer empleo formal—, el proceso es automático:
 
 1. El empleador te inscribe en la AFC (seguro de cesantía) desde el primer día.
-2. La AFP Chile Personas (administradora de licitación para nuevos afiliados) te asigna una AFP en los primeros días — recibirás una carta o notificación electrónica.
-3. Tienes **12 meses** para cambiarte a otra AFP sin restricciones adicionales.
+2. El sistema te asigna la AFP de menor comisión (en la licitación vigente, AFP Uno, desde el 1 de octubre de 2025 hasta el 30 de septiembre de 2027) en los primeros días — recibirás una carta o notificación electrónica.
+3. Debes permanecer **24 meses** en esa AFP, salvo que suba su comisión o que otra ofrezca una comisión menor. Pasado ese plazo puedes cambiarte cuando quieras: no hay un límite de un cambio por año. Si más adelante te seleccionan en un traspaso masivo por licitación, tendrás 30 días para rechazarlo.
 
 **Qué hacer:** apenas recibas la notificación, compara las comisiones actuales de todas las AFP en el sitio de la Superintendencia de Pensiones. La diferencia entre la AFP más cara y la más barata puede representar varios millones de pesos en pensión acumulada.
 
@@ -188,10 +188,10 @@ Para comparar si más adelante conviene cambiarte a una isapre, lee la [guía co
 
 El **Seguro de Cesantía** es obligatorio para todo trabajador con contrato de trabajo vigente en Chile, con las exclusiones legales: aprendices, menores de 18 años y personas pensionadas, salvo las excepciones que fija la ley (Ley 19.728, art. 2). Lo administra la **AFC Chile (Administradora de Fondos de Cesantía)** y cubre dos fondos:
 
-- **Cuenta Individual de Cesantía (CIC):** dinero que solo es tuyo. Se financia con el **0,6 % de tu sueldo imponible** (aporte trabajador) más **2,4 % adicional del empleador** si tienes contrato indefinido. Total: 3 % mensual sobre imponible. En casa particular no hay aporte del trabajador: el 3 % completo lo paga el empleador.
-- **Fondo de Cesantía Solidario (FCS):** fondo colectivo. Solo el empleador aporta (0,8 % en contrato indefinido). Puede complementar tu CIC si cumples criterios de acceso.
+- **Cuenta Individual de Cesantía (CIC):** dinero que solo es tuyo. Con contrato indefinido se financia con el **0,6 % de tu sueldo imponible** (aporte trabajador) más **1,6 % del empleador**. Con contrato a plazo fijo u obra, solo aporta el empleador: **2,8 %**. En casa particular no hay aporte del trabajador: el empleador aporta **2,2 %**.
+- **Fondo de Cesantía Solidario (FCS):** fondo colectivo. Solo el empleador aporta: **0,8 %** en contrato indefinido y en casa particular, **0,2 %** en plazo fijo u obra. Puede complementar tu CIC si cumples criterios de acceso.
 
-Si tienes contrato a plazo fijo, solo cotiza el empleador (3 % al FCS) y tú recibes la CIC cuando termina el contrato.
+En todos los casos el aporte total es **3 % del imponible**: 0,6 % + 1,6 % + 0,8 % en indefinido; 2,8 % + 0,2 % en plazo fijo; 2,2 % + 0,8 % en casa particular ([Ley 19.728, arts. 5 y 9](https://www.bcn.cl/leychile/navegar?idNorma=184979)). Si tienes contrato a plazo fijo, tú no aportas y recibes la CIC cuando termina el contrato.
 
 ### Cuándo y cómo cobrar
 
@@ -217,14 +217,15 @@ Antes de diseñar cualquier presupuesto, tienes que saber exactamente cuánto ll
 
 Con un contrato indefinido, los descuentos legales típicos son:
 
-| Descuento                       | % sobre imponible                       |
-| ------------------------------- | --------------------------------------- |
-| AFP (ahorro previsional)        | 10,5 %                                  |
-| Salud (Fonasa)                  | 7,0 %                                   |
-| Seguro de cesantía (trabajador) | 0,6 % (0 % casa particular)             |
-| **Total descuentos legales**    | **~18,1 %** (17,5 % en casa particular) |
+| Descuento                       | % sobre imponible                                        |
+| ------------------------------- | -------------------------------------------------------- |
+| AFP (ahorro previsional)        | 10,0 %                                                   |
+| AFP (comisión)                  | 0,46 %–1,45 %                                            |
+| Salud (Fonasa)                  | 7,0 %                                                    |
+| Seguro de cesantía (trabajador) | 0,6 % (0 % casa particular)                              |
+| **Total descuentos legales**    | **18,06 %–19,05 %** (17,46 %–18,45 % en casa particular) |
 
-Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
+Además, si tu renta líquida imponible supera el tramo exento del impuesto a la renta (referencia ~$950.000 mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
 
 Usa la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) para obtener tu cifra exacta.
 
@@ -264,7 +265,7 @@ Las respuestas a las preguntas más comunes están en el bloque de FAQs al inici
 
 - **¿Cuándo firmar el contrato?** — Tienes hasta 15 días. No lo firmes sin leerlo.
 - **¿Qué pasa si no hay contrato escrito?** — Puedes declarar tus propias condiciones laborales en disputa.
-- **¿Puedes elegir AFP?** — Sí, dentro de los primeros 12 meses sin restricción.
+- **¿Puedes elegir AFP?** — Sí. La primera afiliación al sistema te deja 24 meses en la AFP de menor comisión, con las excepciones de alza de comisión o de una AFP más barata; después puedes cambiarte sin límite anual.
 - **¿Qué cubre Fonasa?** — Cobertura desde el primer día de cotización.
 - **¿Cuándo se paga el primer sueldo?** — Según el contrato; puede ser proporcional si ingresas a mitad de mes.
 

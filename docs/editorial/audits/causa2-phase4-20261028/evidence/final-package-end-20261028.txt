@@ -1,0 +1,4 @@
+AI_AUDIT_PROTOCOL v1 — final check at end of verification
+Date: 2026-10-28
+$ test ! -e output/validation/rss_snapshot_after.json && echo absent
+absent
