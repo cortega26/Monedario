@@ -22,4 +22,10 @@ Los cuatro checks mínimos pasan: `check:audit-artifacts`, `check:correcciones`,
 
 ## Veredicto
 
-**PASS.** No quedan defectos abiertos de producto ni de audit-package. Se conservan las pasadas `FAIL`, `CONDITIONAL` y R2 en el historial. `humanSignoff: null`; esta verificación no constituye firma humana ni aprobación de publicación.
+**PASS.** No quedan defectos abiertos de producto ni de audit-package. Se conservan las pasadas `FAIL`, `CONDITIONAL` y R2 en el historial. `humanSignoff: null` en el momento de esta verificación; no constituye firma humana ni aprobación de publicación.
+
+## Firma humana posterior
+
+- [X] **Firma del owner:** Carlos Ortega — 2026-10-29.
+- **Aprobación:** explícita en conversación: «Coloca la X donde va mi firma, lo apruebo explícitamente».
+- **Registro:** `humanSignoff` completado en `02-result.json`.

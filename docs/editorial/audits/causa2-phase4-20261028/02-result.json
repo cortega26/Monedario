@@ -920,8 +920,12 @@
     }
   ],
   "verdict": "PASS",
-  "verdictRationale": "La pasada final de paquete confirma que el delta desde producto 3286ea59 hasta 6f93938b solo contiene documentación/evidencia bajo docs/editorial/audits/causa2-phase4-20261028/; git diff --check termina con exit 0; el snapshot output/validation/rss_snapshot_after.json está ausente al inicio y al final; y check:audit-artifacts, check:correcciones, check:frontmatter y check:legal-citations pasan. Se preservan los estados históricos: las tres pasadas anteriores siguen en passes y los seis defectos de producto no se reauditaron. No hay defectos abiertos de producto ni de audit-package. humanSignoff permanece null.",
-  "humanSignoff": null,
+  "verdictRationale": "La pasada final de paquete confirma que el delta desde producto 3286ea59 hasta 6f93938b solo contiene documentación/evidencia bajo docs/editorial/audits/causa2-phase4-20261028/; git diff --check termina con exit 0; el snapshot output/validation/rss_snapshot_after.json está ausente al inicio y al final; y check:audit-artifacts, check:correcciones, check:frontmatter y check:legal-citations pasan. Se preservan los estados históricos: las tres pasadas anteriores siguen en passes y los seis defectos de producto no se reauditaron. No hay defectos abiertos de producto ni de audit-package. La firma humana se completó el 2026-10-29 (Carlos Ortega); el veredicto PASS se emitió antes de la firma.",
+  "humanSignoff": {
+    "reviewer": "Carlos Ortega",
+    "date": "2026-10-29",
+    "note": "Aprobación explícita del owner en conversación: «Coloca la X donde va mi firma, lo apruebo explícitamente» (2026-10-29)."
+  },
   "passes": [
     {
       "passId": "original-fail",
