@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T12:35:45Z",
+  "fetchedAt": "2026-10-29T12:37:24Z",
   "schemaVersion": 1,
   "source": "gsc-url-inspection",
   "week": "2026-W43",
@@ -9,14 +9,14 @@
   },
   "summary": {
     "total": 186,
-    "indexed": 171,
-    "notIndexed": 14,
+    "indexed": 172,
+    "notIndexed": 13,
     "other": 1,
     "indexedPct": 92,
     "byCoverage": {
-      "Submitted and indexed": 171,
-      "Crawled - currently not indexed": 14,
-      "URL is unknown to Google": 1
+      "Submitted and indexed": 172,
+      "Crawled - currently not indexed": 13,
+      "Discovered - currently not indexed": 1
     }
   },
   "errors": 0,
@@ -24,7 +24,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-25",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/",
       "verdict": "PASS"
@@ -64,7 +64,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-18",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/autor/",
       "verdict": "PASS"
@@ -80,7 +80,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-15",
+      "lastCrawl": "2026-10-22",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/actualizador-inflacion/",
       "verdict": "PASS"
@@ -88,7 +88,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-20",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/apv/",
       "verdict": "PASS"
@@ -96,7 +96,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-14",
+      "lastCrawl": "2026-10-29",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
       "verdict": "PASS"
@@ -112,7 +112,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-26",
+      "lastCrawl": "2026-10-29",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "verdict": "PASS"
@@ -120,7 +120,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-26",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-utm/",
       "verdict": "PASS"
@@ -128,7 +128,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-17",
+      "lastCrawl": "2026-10-25",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/credito-consumo/",
       "verdict": "PASS"
@@ -176,7 +176,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-12",
+      "lastCrawl": "2026-10-25",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/interes-compuesto/",
       "verdict": "PASS"
@@ -200,7 +200,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-24",
+      "lastCrawl": "2026-10-29",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/prepago-credito/",
       "verdict": "PASS"
@@ -216,7 +216,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-23",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/seguro-cesantia/",
       "verdict": "PASS"
@@ -224,7 +224,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-23",
+      "lastCrawl": "2026-10-29",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/simulador-jubilacion/",
       "verdict": "PASS"
@@ -232,7 +232,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-21",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/simulador-renegociacion/",
       "verdict": "PASS"
@@ -240,7 +240,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-25",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
       "verdict": "PASS"
@@ -248,7 +248,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-08",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/tarjeta-credito/",
       "verdict": "PASS"
@@ -488,7 +488,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-24",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/fondo-solidario/",
       "verdict": "PASS"
@@ -800,7 +800,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-08",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/pensiones-afp/",
       "verdict": "PASS"
@@ -856,7 +856,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-21",
+      "lastCrawl": "2026-10-24",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/leyes/",
       "verdict": "PASS"
@@ -1030,12 +1030,12 @@
       "verdict": "PASS"
     },
     {
-      "coverageState": "Crawled - currently not indexed",
+      "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-23",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/leyes/ley-21719-proteccion-datos-modernizacion/",
-      "verdict": "NEUTRAL"
+      "verdict": "PASS"
     },
     {
       "coverageState": "Submitted and indexed",
@@ -1072,7 +1072,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-20",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/bancos-y-fintech-chile/",
       "verdict": "PASS"
@@ -1104,7 +1104,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-16",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/como-cambiarse-de-afp/",
       "verdict": "PASS"
@@ -1184,7 +1184,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-29",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
       "verdict": "PASS"
@@ -1328,7 +1328,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-18",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/liquidacion-de-sueldo/",
       "verdict": "PASS"
@@ -1408,7 +1408,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-12",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
       "verdict": "PASS"
@@ -1424,7 +1424,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-09",
+      "lastCrawl": "2026-10-27",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/renegociacion-superir/",
       "verdict": "PASS"
@@ -1438,7 +1438,7 @@
       "verdict": "NEUTRAL"
     },
     {
-      "coverageState": "URL is unknown to Google",
+      "coverageState": "Discovered - currently not indexed",
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
       "lastCrawl": null,
       "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
@@ -1480,7 +1480,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-16",
+      "lastCrawl": "2026-10-24",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
       "verdict": "PASS"
@@ -1496,7 +1496,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-03",
+      "lastCrawl": "2026-10-28",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/terminos/",
       "verdict": "PASS"

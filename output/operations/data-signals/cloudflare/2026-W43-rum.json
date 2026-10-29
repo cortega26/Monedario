@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T12:36:03Z",
+  "fetchedAt": "2026-10-29T12:37:26Z",
   "schemaVersion": 1,
   "source": "cloudflare-rum",
   "week": "2026-W43",
@@ -253,12 +253,12 @@
     "discardedRoutes": 4,
     "discarded": [
       {
-        "path": "/glosario/",
+        "path": "/glosario/dicom/",
         "count": 10,
         "reason": "route_not_in_site_inventory"
       },
       {
-        "path": "/glosario/dicom/",
+        "path": "/glosario/",
         "count": 10,
         "reason": "route_not_in_site_inventory"
       },
