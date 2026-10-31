@@ -158,6 +158,7 @@ faltantes.
 | `wip/local-backup-20261020` | 1 | 1 | 2026-10-20 | wip: backup local tree before syncing main |
 
 Ninguna se borró: todas tienen al menos un commit cuyo patch no está en `main`.
+La poda por contenido del §11 revisó ese criterio y terminó eliminando las once.
 
 ---
 
@@ -190,8 +191,58 @@ para restaurar la evidencia y redactar este registro.
 ## 10. Límites
 
 - No se ejecutó `build` ni la suite E2E; la verificación fue de estado de git.
-- No se hizo `push` de este trabajo. Al 2026-10-31, `main` local está 3 commits
-  detrás de `origin/main` (refrescos automáticos del worker de snapshot).
+- El 2026-10-31 se rebasó sobre `origin/main` y se publicó
+  (`fd04a718..0f722803`). El worker de snapshot siguió avanzando `origin/main`
+  después de ese push.
 - El commit de este informe incluye solo los cuatro archivos de evidencia y este
   documento. El resto del working tree (trabajo UTM en curso) quedó intacto y
   fuera del commit.
+
+---
+
+## 11. Segunda pasada — 2026-10-31: poda por contenido
+
+La retención del 2026-10-29 se apoyó en `git cherry`, que compara **patch-ids**.
+Ese criterio sobreestima el trabajo vivo: un PR squash-mergeado o rebasado deja
+commits con patch-id distinto aunque su contenido ya esté en `main`.
+
+Esta pasada aplicó dos pruebas de contenido:
+
+1. `git merge-tree --write-tree main <rama>` contra el árbol de `main`. Si el
+   árbol resultante es idéntico, la rama no aporta nada.
+2. Para cada archivo que la rama modifica desde su merge-base, se comprobó si el
+   blob de la rama existió alguna vez en el historial de `main`
+   (`git log --find-object=<blob> main -- <ruta>`). Un blob ausente marca
+   contenido único y obliga a revisión manual.
+
+Resultado: **11 ramas eliminadas**. Cuatro exigieron revisión manual de sus
+blobs únicos y las cuatro resultaron superadas.
+
+| Rama | Tip | Archivos tocados | Blobs únicos | Evidencia |
+|---|---|---:|---:|---|
+| `chore/td-0107-0108-timeliness` | `8a19da73` | 13 | 0 | Todo el contenido existió en `main` |
+| `docs/audit-inbox-reconciliation-2026-10-20` | `99f9ed1b` | 5 | 0 | `merge-tree` idéntico a `main` |
+| `docs/f5-utm-reading-w39` | `ed058f8c` | 1 | 0 | `merge-tree` idéntico a `main` |
+| `feat/eeat-arquitectura-confianza` | `2bd2e500` | 7 | 2 | Solo formato previo a prettier 1.0.0; `/correcciones.astro` ya en `main` |
+| `feat/monedario-privado-mvp` | `9621ce78` | 11 | 0 | Funcionalidad en `main` vía #609 y #621 |
+| `fix/descuentos-de-sueldo-art58-2026-10-20` | `c02baa1e` | 92 | 0 | Paquete de auditoría completo en `main`; producto superado por #719 y #747 |
+| `fix/devolucion-reaudit-2026-10-02` | `b2fc3777` | 33 | 8 | Los 8 existen en `main` con contenido posterior (#705) |
+| `fix/plan-115-pass5-d23-d24` | `a2c952c0` | 6 | 0 | Todo el contenido existió en `main` |
+| `fix/uf-historico-refresh-2026-10-26` | `527ddc8b` | 4 | 0 | Todo el contenido existió en `main` |
+| `pr-687` | `82b39a52` | 14 | 5 | Snapshots del 2026-10-18; `main` tiene valores del 2026-10-19 en adelante |
+| `wip/local-backup-20261020` | `bcd59757` | 91 | 3 | Backup del 2026-10-20; `main` del 2026-10-29 |
+
+Worktrees eliminados en la misma pasada:
+
+| Worktree | Tamaño | Evidencia |
+|---|---:|---|
+| `…/monedario-private-mvp` | 1,2 GB | Funcionalidad en `main`; solo 3 archivos propios, superados por el tooling actual de `scripts/hero-images/` |
+| `/tmp/claude-1000/wt-descuentos` | 591 MB | 0 archivos ausentes de `main`; ruta temporal efímera |
+
+Se perdieron tres capturas sin trackear del 2026-10-01
+(`tmp-private-{desktop,mobile,results}.png`). Todo lo demás quedó en `main` o en
+el historial.
+
+**Estado final:** 1 rama (`main`), 1 worktree, `main` en `0f722803` más los
+refrescos del worker. Las ramas eliminadas siguen recuperables desde
+`git reflog` durante ~90 días.
