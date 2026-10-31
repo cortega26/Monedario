@@ -243,6 +243,10 @@ Se perdieron tres capturas sin trackear del 2026-10-01
 (`tmp-private-{desktop,mobile,results}.png`). Todo lo demás quedó en `main` o en
 el historial.
 
-**Estado final:** 1 rama (`main`), 1 worktree, `main` en `0f722803` más los
-refrescos del worker. Las ramas eliminadas siguen recuperables desde
-`git reflog` durante ~90 días.
+También se eliminó en `origin` la rama
+`copilot/check-codacy-sync-issues` (`8e15410c`, 2026-W19): era ancestro de
+`main`, sin commits propios y sin PR abierto.
+
+**Estado final:** 1 rama local (`main`), 1 rama remota (`origin/main`), 1
+worktree, `main` en `0f722803` más los refrescos del worker. Las ramas
+eliminadas siguen recuperables desde `git reflog` durante ~90 días.
