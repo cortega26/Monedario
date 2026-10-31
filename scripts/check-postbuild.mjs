@@ -352,6 +352,36 @@ export function readCanonicalFromHtml(html) {
   return null;
 }
 
+/** Open Graph image URL declared in the page head (not og:image:secure_url). */
+export function readOgImageFromHtml(html) {
+  for (const match of html.matchAll(/<meta\b[^>]*>/g)) {
+    const tag = match[0];
+    if (!/property=["']og:image["']/.test(tag)) continue;
+    const content = tag.match(/content=["']([^"']+)["']/)?.[1];
+    if (content) return content;
+  }
+  return null;
+}
+
+/**
+ * Map a same-origin absolute asset URL to its dist file. Returns null for
+ * external URLs, unparseable URLs, or paths that escape distDir.
+ */
+export function ogImageDistPath(ogImageUrl, canonicalUrl, distDir) {
+  let image;
+  let canonical;
+  try {
+    image = new URL(ogImageUrl);
+    canonical = canonicalUrl ? new URL(canonicalUrl) : null;
+  } catch {
+    return null;
+  }
+  if (!canonical || image.origin !== canonical.origin) return null;
+  const filePath = path.join(distDir, decodeURIComponent(image.pathname));
+  const root = path.normalize(distDir + path.sep);
+  return path.normalize(filePath).startsWith(root) ? filePath : null;
+}
+
 function normalizeUrlForCompare(url) {
   return url.replace(/\/+$/, "");
 }
@@ -526,6 +556,49 @@ const CHECKS = [
   },
   // csp-hashes-dist-consistency: waived by plan 081 (check 1 alone validates
   // the CSP posture; the 065 integration is covered by jsonld-no-script-breakout).
+  {
+    id: "post-og-image",
+    message:
+      "Every published post must ship its own og:image that exists in dist (ADR-20260930, #746).",
+    run(distDir) {
+      const postsDir = path.join(distDir, "posts");
+      if (!statSync(postsDir, { throwIfNoEntry: false })) return [];
+      const errors = [];
+      for (const file of listHtmlPages(postsDir)) {
+        if (!file.endsWith("/index.html")) continue;
+        const firstSegment = file.split("/")[0];
+        if (/^\d+$/.test(firstSegment)) continue; // paginated listing
+        const displayPath = `posts/${file}`;
+        const html = readFileSync(path.join(postsDir, file), "utf8");
+        const ogImage = readOgImageFromHtml(html);
+        if (!ogImage) {
+          errors.push(`${displayPath}:post-og-image missing og:image`);
+          continue;
+        }
+        const canonical = readCanonicalFromHtml(html);
+        const distPath = ogImageDistPath(ogImage, canonical, distDir);
+        if (distPath && !statSync(distPath, { throwIfNoEntry: false })) {
+          errors.push(
+            `${displayPath}:post-og-image og:image not in dist: ${ogImage}`
+          );
+        }
+        if (canonical) {
+          try {
+            const pathname = new URL(ogImage, canonical).pathname;
+            if (["/og-image", "/og.png", "/og.jpg"].includes(pathname)) {
+              errors.push(
+                `${displayPath}:post-og-image uses the site default ${ogImage}`
+              );
+            }
+          } catch {
+            // readOgImageFromHtml already reported the missing value; an
+            // unparseable URL is caught by the dist lookup above.
+          }
+        }
+      }
+      return errors;
+    },
+  },
   {
     id: "sitemap-pages-render-noindex-free",
     message: "Every sitemap page must exist in dist and must not render content=noindex.",

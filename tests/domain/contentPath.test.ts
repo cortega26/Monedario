@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  getCanonicalOgImagePathFromSlug,
   getCanonicalPathFromSlug,
   getSlugParamFromCanonicalSlug,
 } from "@/domain/content/path";
@@ -19,10 +18,7 @@ describe("content path helpers", () => {
     ).toBe("/posts/que-es-la-uf/");
   });
 
-  it("builds canonical OG image paths and slug params", () => {
-    expect(getCanonicalOgImagePathFromSlug("que-es-la-uf")).toBe(
-      "/posts/que-es-la-uf/index.png"
-    );
+  it("normalizes slug params", () => {
     expect(getSlugParamFromCanonicalSlug("/que-es-la-uf/")).toBe("que-es-la-uf");
   });
 });

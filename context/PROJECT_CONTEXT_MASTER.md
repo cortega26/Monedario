@@ -351,7 +351,6 @@ No hay snapshot del upstream dentro del repo para diff directo; por lo tanto est
 - `/calculadoras/tarjeta-credito/`
 - `/posts/` (paginado)
 - `/posts/:slug/` (11 slugs actuales)
-- `/posts/:slug/index.png` (solo posts sin `ogImage` y con `SITE.dynamicOgImage=true`)
 - `/tags/`
 - `/tags/:tag/` (36 tags actuales)
 - `/rss.xml`

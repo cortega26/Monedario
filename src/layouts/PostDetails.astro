@@ -10,10 +10,7 @@ import EditPost from "@/components/EditPost.astro";
 import ShareLinks from "@/components/ShareLinks.astro";
 import BackButton from "@/components/BackButton.astro";
 import BackToTopButton from "@/components/BackToTopButton.astro";
-import {
-  getCanonicalOgImagePathFromSlug,
-  getCanonicalPathFromSlug,
-} from "@/domain/content/path";
+import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { slugifyStr } from "@/utils/slugify";
 import { resolvePageTitle } from "@/utils/seoTitle";
 import { getReadingTime } from "@/utils/readingTime";
@@ -76,7 +73,7 @@ let ogImageUrl: string | undefined = editorialImage?.og;
 
 // Domains permitidos para OG images remotas.
 // Solo el propio sitio y CDNs controlados. Cualquier otro dominio se rechaza
-// y se cae al fallback (dynamic OG o default og.png).
+// y se cae al default og.png.
 const ALLOWED_OG_IMAGE_DOMAINS = new Set([new URL(SITE.website).hostname]);
 
 // Determine OG image source
@@ -105,10 +102,8 @@ if (!ogImageUrl && typeof initOgImage === "string") {
   ogImageUrl = initOgImage.src; // Local asset
 }
 
-// Use dynamic OG image if enabled and no remote|local ogImage
-if (!ogImageUrl && SITE.dynamicOgImage) {
-  ogImageUrl = getCanonicalOgImagePathFromSlug(article.slug);
-}
+// Per-post OG images are static assets from the editorial pipeline
+// (ADR-20260930). There is no dynamic /posts/<slug>/index.png endpoint.
 
 // Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
 const ogImage = ogImageUrl

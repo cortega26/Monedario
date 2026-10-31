@@ -24,9 +24,11 @@ import {
   findTrackingParamLocs,
   hasNoindex,
   hasNoindexFollow,
+  ogImageDistPath,
   parseScriptSrc,
   readCanonicalFromHtml,
   readH1FromHtml,
+  readOgImageFromHtml,
   readTitleFromHtml,
   sitemapUrlToDistPath,
 } from "../../scripts/check-postbuild.mjs";
@@ -365,6 +367,47 @@ describe("readCanonicalFromHtml", () => {
   });
 });
 
+describe("readOgImageFromHtml / ogImageDistPath", () => {
+  it("extracts og:image regardless of attribute order", () => {
+    expect(
+      readOgImageFromHtml(
+        '<meta property="og:image" content="https://monedario.cl/images/og/a.jpg">'
+      )
+    ).toBe("https://monedario.cl/images/og/a.jpg");
+    expect(
+      readOgImageFromHtml(
+        '<meta content="https://monedario.cl/images/og/a.jpg" property="og:image">'
+      )
+    ).toBe("https://monedario.cl/images/og/a.jpg");
+  });
+
+  it("ignores og:image:secure_url and missing tags", () => {
+    expect(
+      readOgImageFromHtml(
+        '<meta property="og:image:secure_url" content="https://monedario.cl/a.jpg">'
+      )
+    ).toBeNull();
+    expect(readOgImageFromHtml("<html></html>")).toBeNull();
+  });
+
+  it("maps same-origin URLs into dist and leaves external URLs alone", () => {
+    expect(
+      ogImageDistPath(
+        "https://monedario.cl/images/og/a.jpg",
+        "https://monedario.cl/posts/a/",
+        "/tmp/dist"
+      )
+    ).toBe("/tmp/dist/images/og/a.jpg");
+    expect(
+      ogImageDistPath(
+        "https://cdn.example.com/a.jpg",
+        "https://monedario.cl/posts/a/",
+        "/tmp/dist"
+      )
+    ).toBeNull();
+  });
+});
+
 describe("findBreadcrumbIssues", () => {
   const page = (breadcrumb: object) =>
     '<link rel="canonical" href="https://monedario.cl/posts/a/">' +
@@ -566,6 +609,8 @@ describe("findRawEconomicInterpolations", () => {
 
 describe("check-postbuild runner over a full mini-dist", () => {
   function writeValidMiniDist(root: string) {
+    const ogMeta =
+      '<meta property="og:image" content="https://monedario.cl/images/og/post.jpg">';
     const headers =
       '/*\nContent-Security-Policy: default-src \'self\'; script-src \'self\' \'sha256-abc=\'; style-src \'self\' \'unsafe-inline\'\n*/';
     writeFileSync(path.join(root, "_headers"), headers, "utf8");
@@ -582,6 +627,7 @@ describe("check-postbuild runner over a full mini-dist", () => {
       "posts/a/index.html",
       '<html><head><title>A | Monedario</title>' +
         '<link rel="canonical" href="https://monedario.cl/posts/a/">' +
+        ogMeta +
         '</head><body><p>ok</p>' +
         '<script type="application/ld+json">{"a":"x"}</script></body></html>'
     );
@@ -590,6 +636,7 @@ describe("check-postbuild runner over a full mini-dist", () => {
       "posts/b/index.html",
       '<html><head><title>B | Monedario</title>' +
         '<link rel="canonical" href="https://monedario.cl/posts/b/">' +
+        ogMeta +
         "</head><body><p>ok</p></body></html>"
     );
 
@@ -601,15 +648,19 @@ describe("check-postbuild runner over a full mini-dist", () => {
       writePage(
         root,
         `posts/${slug}/index.html`,
-        `<html><head><title>${seoTitle}</title></head><body><p>x</p></body></html>`
+        `<html><head><title>${seoTitle}</title>${ogMeta}</head><body><p>x</p></body></html>`
       );
     }
     writePage(
       root,
       "posts/deposito-a-plazo-uf-vs-pesos/index.html",
-      '<html><head><title>Depósito a plazo: UF vs pesos — qué conviene y cuándo | Monedario</title></head>' +
+      '<html><head><title>Depósito a plazo: UF vs pesos — qué conviene y cuándo | Monedario</title>' +
+        ogMeta +
+        "</head>" +
         '<body><h1>Depósito a plazo: UF vs pesos — qué conviene y cuándo</h1><p>x</p></body></html>'
     );
+
+    writePage(root, "images/og/post.jpg", "jpg");
 
     writePage(
       root,
@@ -660,6 +711,21 @@ describe("check-postbuild runner over a full mini-dist", () => {
     expect(r.stderr).toContain("unsafe-inline");
     expect(r.stderr).toContain("spacing-sanity");
     expect(r.stderr).toContain("jsonld-no-script-breakout");
+  });
+
+  it("fails when a post has no per-post og:image", () => {
+    const root = buildDist();
+    writeValidMiniDist(root);
+    writePage(
+      root,
+      "posts/a/index.html",
+      '<html><head><title>A | Monedario</title>' +
+        '<link rel="canonical" href="https://monedario.cl/posts/a/">' +
+        "</head><body><p>ok</p></body></html>"
+    );
+    const r = run(root);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("post-og-image");
   });
 
   it("fails when llms-full.txt exposes raw interpolation syntax", () => {

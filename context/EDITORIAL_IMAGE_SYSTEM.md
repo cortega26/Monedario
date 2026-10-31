@@ -163,6 +163,9 @@ Cada AVIF final debe pesar como máximo 81.920 bytes. Conservar la relación 40:
 no aplicar por norma un recorte 16:9 que los componentes no usan. Los originales
 y los JPEG sociales tienen funciones distintas del AVIF de entrega.
 
+No existe un endpoint dinámico de OG por post (`/posts/<slug>/index.png`): la
+imagen social es siempre un asset estático del manifiesto o `/images/og/`.
+
 El frontmatter mantiene `heroImage: /images/hero/<slug>.avif`. La entrega
 usa la fuente WebP lossless de una revisión `accepted` en
 `asset-reviews.json`, validando su hash y el del canónico; una discrepancia bloquea

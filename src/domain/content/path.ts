@@ -18,11 +18,6 @@ export function getCanonicalPathFromSlug(
   return `${normalizedBase}${localPath}`;
 }
 
-export function getCanonicalOgImagePathFromSlug(slug: string): string {
-  const canonicalPath = getCanonicalPathFromSlug(slug);
-  return `${canonicalPath}index.png`;
-}
-
 export function getSlugParamFromCanonicalSlug(slug: string): string {
   return slug.replace(/^\/+|\/+$/g, "");
 }
