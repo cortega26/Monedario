@@ -1,0 +1,221 @@
+{
+  "fetchedAt": "2026-11-02T15:05:20Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W44",
+  "window": {
+    "from": "2026-10-26",
+    "to": "2026-11-01"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 360,
+      "inpP75Ms": 136,
+      "lcpP75Ms": 1272,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 170,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 1080,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 110,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 864,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 924,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 70,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 1002,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 492,
+      "path": "/calculadoras/sueldo-liquido/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 328,
+      "lcpP75Ms": 2184,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 104,
+      "lcpP75Ms": 996,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 1748,
+      "path": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 500,
+      "path": "/calculadoras/actualizador-inflacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 184,
+      "lcpP75Ms": 1124,
+      "path": "/calculadoras/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 32,
+      "lcpP75Ms": 1024,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 72,
+      "lcpP75Ms": 288,
+      "path": "/calculadoras/reajuste-arriendo/"
+    },
+    {
+      "clsP75": 0.011,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1744,
+      "path": "/posts/cotizacion-voluntaria-afp-independiente/"
+    },
+    {
+      "clsP75": 1,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 744,
+      "path": "/posts/cae-costo-real-credito-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 312,
+      "path": "/metodologia/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 997,
+      "path": "/calculadoras/simulador-jubilacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 468,
+      "path": "/posts/informe-deudas-cmf-vs-dicom/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 820,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/calculadoras/comisiones-afp/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 724,
+      "path": "/posts/credito-hipotecario-chile-guia-completa/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1396,
+      "path": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 996,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 792,
+      "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1124,
+      "path": "/calculadoras/simulador-renegociacion/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 30,
+    "keptRoutes": 26,
+    "discardedRoutes": 4,
+    "discarded": [
+      {
+        "path": "/leyes/ley-21561-reduccion-jornada/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/ley-19496-proteccion-consumidor/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/proyecto-reforma-previsional-2025/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}
