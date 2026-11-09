@@ -1,0 +1,60 @@
+{
+  "fetchedAt": "2026-11-09T15:28:25Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W45",
+  "window": {
+    "from": "2026-11-02",
+    "to": "2026-11-08"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 300,
+      "inpP75Ms": 72,
+      "lcpP75Ms": 949,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 100,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 1632,
+      "path": "/"
+    },
+    {
+      "clsP75": 0,
+      "count": 100,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 964,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": null,
+      "count": 100,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 704,
+      "path": "/calculadoras/reajuste-arriendo/"
+    },
+    {
+      "clsP75": null,
+      "count": 100,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 3100,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 100,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 836,
+      "path": "/calculadoras/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 6,
+    "keptRoutes": 6,
+    "discardedRoutes": 0,
+    "discarded": []
+  }
+}
