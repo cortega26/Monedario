@@ -10,7 +10,10 @@
  * Uso:
  *   node scripts/fetch-economic-history.mjs [--desde=2000] [--hasta=2026]
  *
- * Por defecto: desde 2000, hasta el año actual.
+ * Por defecto: desde 2000, hasta el año actual. Los años cerrados ya publicados
+ * no se vuelven a pedir a mindicador.cl (solo el año en curso y el anterior);
+ * --full-refetch fuerza la descarga completa. Cada año se reintenta 3 veces y,
+ * si sigue fallando, se conservan las entradas ya publicadas.
  * El script es re-ejecutable; sobreescribe los archivos de salida.
  */
 
@@ -23,8 +26,11 @@ import {
   parseBcchIpcObservations,
 } from "./economic-history-ipc.mjs";
 import {
+  entriesForYear,
   findChangedValues,
   mergeSeriesByDate,
+  shouldRefetchYear,
+  withRetry,
 } from "./economic-history-guards.mjs";
 import {
   findUfPlausibilityViolations,
@@ -38,6 +44,8 @@ const OUT_DIR = join(ROOT, "src/data/economic-history");
 const BASE_URL = "https://mindicador.cl/api";
 const TIMEOUT_MS = 15_000;
 const DELAY_MS = 300; // pausa entre requests para no saturar la API
+const FETCH_ATTEMPTS = 3;
+const FETCH_RETRY_BASE_MS = 3_000;
 
 // Extensión oficial del IPC: mindicador.cl dejó de publicar la serie después
 // de dic-2025 (TD-0112), así que los meses faltantes se completan con la serie
@@ -77,6 +85,9 @@ const args = Object.fromEntries(
 const currentYear = new Date().getUTCFullYear();
 const FROM_YEAR = parseInt(args.desde ?? "2000", 10);
 const TO_YEAR   = parseInt(args.hasta ?? String(currentYear), 10);
+// Por defecto solo se re-piden el año en curso y el anterior; el histórico
+// cerrado se toma de lo ya publicado. --full-refetch descarga todo de nuevo.
+const FULL_REFETCH = args["full-refetch"] === true;
 // --solo=ipc,uf permite refrescar una o más series sin reescribir el resto.
 const SOLO = args.solo
   ? String(args.solo)
@@ -147,6 +158,18 @@ async function fetchJson(url) {
   const res = await fetch(url, { signal: AbortSignal.timeout(TIMEOUT_MS) });
   if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
   return res.json();
+}
+
+/** Serie ya publicada en disco (o null si no existe o no se puede leer). */
+function readPreviousSerie(indicador) {
+  const filePath = join(OUT_DIR, `${indicador}-historico.json`);
+  if (!existsSync(filePath)) return null;
+  try {
+    const previous = JSON.parse(readFileSync(filePath, "utf8"));
+    return Array.isArray(previous?.serie) ? previous.serie : null;
+  } catch {
+    return null;
+  }
 }
 
 /** Normaliza fecha ISO completa a YYYY-MM-DD. */
@@ -233,14 +256,43 @@ async function fetchBcchUfSerie(firstDateIso, lastDateIso) {
 async function ingestIndicador(indicador, granularidad, nota) {
   console.log(`\n[${indicador.toUpperCase()}] Ingesta ${FROM_YEAR}–${TO_YEAR}...`);
   const allEntries = [];
+  const previousSerie = readPreviousSerie(indicador);
 
   for (let year = FROM_YEAR; year <= TO_YEAR; year++) {
+    if (
+      !shouldRefetchYear({
+        year,
+        currentYear,
+        previousSerie,
+        full: FULL_REFETCH,
+      })
+    ) {
+      // Histórico cerrado y ya publicado: no se vuelve a pedir (--full-refetch
+      // fuerza la descarga completa).
+      allEntries.push(...entriesForYear(previousSerie, year));
+      continue;
+    }
     try {
-      const entries = await fetchYearSerie(indicador, year);
+      // mindicador.cl falla de forma intermitente (timeouts, HTTP 500): se
+      // reintenta antes de rendirse con ese año.
+      const entries = await withRetry(() => fetchYearSerie(indicador, year), {
+        attempts: FETCH_ATTEMPTS,
+        baseDelayMs: FETCH_RETRY_BASE_MS,
+      });
       console.log(`  ${year}: ${entries.length} entradas`);
       allEntries.push(...entries);
     } catch (err) {
-      console.warn(`  ${year}: error — ${err.message} (omitido)`);
+      // Respaldo: lo ya publicado para ese año. Omitirlo dejaba un hueco que
+      // otra fuente (BCCh, base distinta) rellenaba cambiando valores
+      // publicados, y el guard de revisión abortaba la ingesta completa.
+      const kept = entriesForYear(previousSerie, year);
+      console.warn(
+        `  ${year}: error — ${err.message} ` +
+          (kept.length > 0
+            ? `(se conservan ${kept.length} entradas ya publicadas)`
+            : "(omitido)")
+      );
+      allEntries.push(...kept);
     }
     if (year < TO_YEAR) await sleep(DELAY_MS);
   }
