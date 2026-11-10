@@ -9,8 +9,17 @@ readonly label=monedario-ci-isolated
 readonly image=monedario-ci-isolated:2.338.0-a11y
 readonly network=monedario-ci-isolated
 name="monedario-ci-isolated-$(date -u +%s)-$$"
+runner_id=""
 
-cleanup() { docker rm --force "$name" >/dev/null 2>&1 || true; }
+cleanup() {
+  docker rm --force "$name" >/dev/null 2>&1 || true
+  # JIT registrations are ephemeral, but a killed container can leave a stale
+  # online/busy entry behind. Best-effort removal keeps the label clean.
+  if [[ -n "${runner_id:-}" ]]; then
+    gh api --method DELETE "repos/$repository/actions/runners/$runner_id" \
+      >/dev/null 2>&1 || true
+  fi
+}
 trap cleanup EXIT
 trap 'exit 143' TERM INT
 
@@ -47,5 +56,10 @@ fi
 
 # JIT identity belongs only to Monedario; it is valid for exactly one job.
 # Never pass a PAT to the untrusted container.
-jit_config="$(gh api --method POST "repos/$repository/actions/runners/generate-jitconfig"   -f "name=$name" -F runner_group_id=1 -f "labels[]=$label" -f work_folder=_work   --jq .encoded_jit_config)"
+jit_response="$(gh api --method POST "repos/$repository/actions/runners/generate-jitconfig"   -f "name=$name" -F runner_group_id=1 -f "labels[]=$label" -f work_folder=_work   --jq '[.runner.id, .encoded_jit_config] | @tsv')"
+IFS=$'\t' read -r runner_id jit_config <<< "$jit_response"
+if [[ ! "$runner_id" =~ ^[0-9]+$ || -z "$jit_config" ]]; then
+  echo "Invalid JIT registration response" >&2
+  exit 1
+fi
 printf '%s\n' "$jit_config" | docker run "${args[@]}" "$image"
