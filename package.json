@@ -46,6 +46,7 @@
     "check:prompt-injection-guardrails": "node scripts/check-prompt-injection-guardrails.mjs",
     "check:editorial-timeliness": "node scripts/check-editorial-timeliness.mjs",
     "check:economic-source-consistency": "node scripts/check-economic-source-consistency.mjs",
+    "check:deploy-health": "node scripts/check-deploy-health.mjs",
     "check:economic-snapshot-freshness": "node scripts/check-economic-snapshot-freshness.mjs",
     "check:catalog-drift": "node scripts/check-catalog-drift.mjs",
     "check:article-registration": "node scripts/check-article-registration.mjs",

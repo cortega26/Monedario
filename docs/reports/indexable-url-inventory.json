@@ -3,7 +3,7 @@
   "strategy": "UTILITY_LED_VALIDATION_2026Q3",
   "approvedAt": "2026-08-02",
   "source": "dist/sitemap-0.xml after clean baseline build",
-  "count": 184,
+  "count": 185,
   "urls": [
     "https://monedario.cl/",
     "https://monedario.cl/accessibilidad/",
@@ -146,6 +146,7 @@
     "https://monedario.cl/posts/como-leer-cartola-afp-chile/",
     "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
     "https://monedario.cl/posts/contribuciones-bienes-raices-chile/",
+    "https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/",
     "https://monedario.cl/posts/credito-hipotecario-chile-guia-completa/",
     "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
     "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",

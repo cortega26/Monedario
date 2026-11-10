@@ -10,8 +10,12 @@ name: Refresh IPC history
 # - Cualquier fallo (secretos BCCh ausentes, red, serie rezagada respecto del
 #   snapshot) abre/actualiza un issue `data-freshness` que se cierra solo
 #   cuando el workflow vuelve a estar verde.
-# - `check:economic-snapshot-freshness` corre SIEMPRE después de la ingesta:
-#   un fallo de la extensión BCCh no puede quedar como no-op silencioso.
+# - `check:economic-snapshot-freshness` corre SIEMPRE, pero DESPUÉS de abrir el
+#   PR: es un gate global (mira también la UF) y antes de abrir el PR creaba un
+#   deadlock — el IPC no abría su PR porque la UF estaba vieja y la UF no abría
+#   el suyo porque el IPC estaba viejo (2026-11-10). Sigue poniendo el run en
+#   rojo y abriendo el issue; solo deja de impedir que el dato nuevo llegue a
+#   revisión.
 
 on:
   schedule:
@@ -59,11 +63,6 @@ jobs:
           BCCH_PASSWORD: ${{ secrets.BCCH_PASSWORD }}
         run: pnpm run fetch:economic-history --solo=ipc
 
-      - name: "🕰️ Economic snapshot freshness (always after ingestion)"
-        id: freshness
-        if: always()
-        run: pnpm run check:economic-snapshot-freshness
-
       - name: "📬 Create pull request"
         id: create-pr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -88,6 +87,11 @@ jobs:
           labels: data-freshness
           add-paths: |
             src/data/economic-history/ipc-historico.json
+
+      - name: "🕰️ Economic snapshot freshness (after the PR is opened)"
+        id: freshness
+        if: always()
+        run: pnpm run check:economic-snapshot-freshness
 
       - name: "📝 Build IPC freshness issue payload"
         if: always()
