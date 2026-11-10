@@ -1,0 +1,96 @@
+name: Deploy health
+
+# El 2026-11-02 venció una excepción del URL-freeze y los builds de producción
+# de Cloudflare Pages fallaron durante 8 días: el repositorio tenía datos
+# frescos (el Worker de snapshot seguía haciendo commits) pero el sitio en vivo
+# mostraba UF y dólar de hace una semana, y nadie se enteró.
+#
+# Este chequeo mira el sitio PUBLICADO (no el repositorio) y las excepciones de
+# gobernanza por vencer, y mantiene un único issue abierto mientras haya un
+# problema. Se cierra solo cuando todo vuelve a estar en orden.
+
+on:
+  schedule:
+    - cron: "37 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-health
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    name: Published site and freeze exceptions
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+    timeout-minutes: 5
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "🩺 Check published site and exceptions"
+        id: health
+        continue-on-error: true
+        run: |
+          set +e
+          node scripts/check-deploy-health.mjs | tee health.md
+          exit "${PIPESTATUS[0]}"
+
+      - name: "📝 Build issue payload"
+        id: payload
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            core.setOutput("title", "🚨 Despliegue del sitio desactualizado o excepción de freeze por vencer");
+            core.setOutput("labels_json", JSON.stringify(["automation", "ci"]));
+
+            if ("${{ steps.health.outcome }}" !== "failure") {
+              core.setOutput("desired_state", "closed");
+              core.setOutput("body", "Sitio publicado al día y sin excepciones por vencer; issue cerrado automáticamente.");
+              return;
+            }
+
+            const findings = fs.existsSync("health.md")
+              ? fs.readFileSync("health.md", "utf8").trim()
+              : "(sin detalle: el chequeo no produjo salida)";
+            core.setOutput("desired_state", "open");
+            core.setOutput(
+              "body",
+              [
+                "## El sitio publicado o la gobernanza del URL-freeze necesitan atención",
+                "",
+                findings,
+                "",
+                "### Qué hacer",
+                "",
+                "1. Si el sitio está desactualizado: abrir el último deploy de producción de Cloudflare Pages (proyecto `monedario`) y leer el log del build; `pnpm run build` localmente reproduce el fallo.",
+                "2. Si hay una excepción vencida o por vencer: renovarla (decisión del owner) o promover la URL a `docs/reports/indexable-url-inventory.json` y `docs/reports/routes_snapshot_before.json`, retirando la excepción.",
+                "",
+                `**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ].join("\n")
+            );
+
+      - name: "📝 Sync issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.payload.outputs.title }}
+          body: ${{ steps.payload.outputs.body }}
+          labels-json: ${{ steps.payload.outputs.labels_json }}
+          desired-state: ${{ steps.payload.outputs.desired_state }}
+
+      - name: "✅ Fail the run when the health check found problems"
+        if: steps.health.outcome == 'failure'
+        run: exit 1
