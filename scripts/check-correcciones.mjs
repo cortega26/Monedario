@@ -7,7 +7,8 @@
  * - `dateEnd` (opcional) es una fecha válida posterior o igual a `date`;
  * - las entradas están ordenadas por fecha descendente (canon del directorio);
  * - cada `pages[].href` es interna con `/` final y apunta a una ruta que
- *   existe en el repo (página Astro, post del blog o índice de sección).
+ *   existe en el repo (página Astro estática, ficha dinámica del glosario,
+ *   post del blog o índice de sección).
  *
  * Toda corrección material a contenido publicado debe registrarse aquí
  * (ver mandato en `AGENTS.md`). Las erratas y cambios de estilo están
@@ -40,6 +41,33 @@ function resolveInternalHref(href) {
   const normalized = href.replace(/^\/+|\/+$/g, "");
   if (normalized === "") return null;
   const segments = normalized.split("/");
+
+  if (
+    segments[0] === "glosario" &&
+    segments.length === 2 &&
+    KEBAB_ID.test(segments[1])
+  ) {
+    const dynamicRoute = path.join(
+      REPO_ROOT,
+      "src",
+      "pages",
+      "glosario",
+      "[slug].astro"
+    );
+    if (!existsSync(dynamicRoute)) return null;
+
+    const glossaryEntryCandidates = ["md", "mdx"].map(extension =>
+      path.join(
+        REPO_ROOT,
+        "src",
+        "data",
+        "glossary",
+        segments[1] + "." + extension
+      )
+    );
+    return glossaryEntryCandidates.find(candidate => existsSync(candidate)) ?? null;
+  }
+
   const candidates =
     segments[0] === "posts"
       ? [
