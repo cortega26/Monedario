@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-06-25T19:08:01.350Z",
-  "total": 53,
+  "total": 54,
   "routes": [
     {
       "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
@@ -49,6 +49,10 @@
     {
       "file": "contribuciones-bienes-raices-chile.md",
       "route": "/posts/contribuciones-bienes-raices-chile/"
+    },
+    {
+      "file": "cotizacion-voluntaria-afp-independiente.md",
+      "route": "/posts/cotizacion-voluntaria-afp-independiente/"
     },
     {
       "file": "credito-hipotecario-chile-guia-completa.md",
