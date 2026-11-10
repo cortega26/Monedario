@@ -13,7 +13,9 @@ La **Unidad Tributaria Mensual (UTM)** es una medida económica chilena. Al igua
 
 ## ¿Cómo se calcula?
 
-La UTM se reajusta todos los meses de acuerdo a la variación del **Índice de Precios al Consumidor (IPC)** del mes anterior. Es decir, si el IPC fue positivo (inflación), la UTM subirá al mes siguiente.
+El [artículo cuarto transitorio del Código Tributario (DL 830)](https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11) dispone que la UTM «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del **Índice de Precios al Consumidor (IPC)** de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. La norma no señala un día específico del mes.
+
+El reajuste según el IPC también lo describen el [Diccionario básico tributario contable del SII](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html) y [SII Educa](https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html). El valor de cada mes lo publica el SII en su [tabla oficial UTM–UTA–IPC](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm).
 
 ## ¿Para qué se utiliza?
 

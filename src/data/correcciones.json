@@ -1,6 +1,36 @@
 {
   "corrections": [
     {
+      "id": "utm-reajuste-mensual-copy",
+      "date": "2026-10-29",
+      "title": "UTM: retiro de una regla de reajuste no respaldada (primer día hábil e IPC del mes anterior)",
+      "pages": [
+        {
+          "href": "/posts/utm-chile-que-es-como-funciona/",
+          "label": "UTM en Chile: qué es, cómo funciona y para qué sirve"
+        },
+        {
+          "href": "/calculadoras/conversor-utm/",
+          "label": "Conversor UTM a pesos"
+        },
+        {
+          "href": "/glosario/utm/",
+          "label": "Glosario: UTM"
+        }
+      ],
+      "wrong": [
+        "La guía y el conversor afirmaban que la UTM cambia el primer día hábil de cada mes. Además, la guía, el conversor y el glosario indicaban que su reajuste usa el IPC del mes inmediatamente anterior. Las fuentes oficiales consultadas no respaldan esa regla exacta.",
+        "La guía mostraba la leyenda 'Información vigente al 2026-04-09' junto a ejemplos de septiembre de 2026 rotulados como valor vigente."
+      ],
+      "fixed": [
+        "Las tres páginas describen solo lo que respalda el SII: la UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes. No se indica un día de vigencia ni el mes exacto del IPC asociado.",
+        "La guía indica su fecha de revisión (2026-10-29) y rotula los montos de septiembre de 2026 como ejemplos históricos; esos montos, las fórmulas y los cálculos no cambiaron."
+      ],
+      "affected": "Lectores que consultan cuándo cambia la UTM o qué IPC considera, en la guía de la UTM, el conversor UTM a pesos y el glosario.",
+      "sources": "SII, Diccionario básico tributario contable, entrada UTM (https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html); SII Educa, Tipos de impuestos en Chile (https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html); SII, UTM–UTA–IPC 2026 (https://www.sii.cl/valores_y_fechas/utm/utm2026.htm).",
+      "prevention": "No publicar una regla de calendario o de rezago del IPC sin una fuente oficial que la formule explícitamente; separar la fecha de revisión de la fecha de los ejemplos."
+    },
+    {
       "id": "causa2-phase4-tasas-bases-cluster",
       "date": "2026-10-28",
       "title": "Tasas de nómina, bases y topes: corrección del clúster de sueldo y primer empleo",

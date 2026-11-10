@@ -10,3 +10,10 @@ Spec: docs/backlog/PLAN-renovacion-visual-editorial-2026-09-29.md
 - [x] Entrega por hash, OG, alt y responsive integrada.
 - [x] Medición sin nuevos identificadores y documentación actualizada.
 - [x] Tests/build/rutas/RSS y revisión independiente completados.
+
+## Corrección UTM (temporal; retirar al cerrar)
+
+- [ ] Corregir resolución de rutas dinámicas del glosario con prueba y ADR.
+- [ ] Completar MathAudit del diff y registrar separación de funciones.
+- [ ] Ejecutar ComplianceAgent en sesión Claude Code limpia; no firmar gates.
+- [ ] Ejecutar gates locales, revisar diff adversarial y actualizar plan.

@@ -124,7 +124,7 @@ const calculatorNextStepItems = [
 const conversorUtmFaqs = [
   {
     question: "¿Cuánto vale 1 UTM en pesos chilenos hoy?",
-    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta el primer día de cada mes según la variación del IPC, así que conviene confirmar el valor vigente antes de usarlo en una multa, un impuesto o un trámite.`,
+    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes, así que conviene confirmar el valor vigente antes de usarlo en una multa, un impuesto o un trámite.`,
   },
   {
     question:
@@ -135,7 +135,7 @@ const conversorUtmFaqs = [
   {
     question: "¿Por qué el valor de la UTM cambia todos los meses?",
     answer:
-      "Porque la UTM es una unidad reajustable: el SII la actualiza cada mes según la inflación (IPC) del mes anterior medida por el INE. Por eso un monto expresado en UTM conserva su valor real en el tiempo, aunque su equivalente en pesos suba mes a mes.",
+      "Porque la UTM es una unidad reajustable: se reajusta mensualmente de acuerdo con la inflación medida por el IPC, y el SII publica su valor para cada mes. Por eso un monto expresado en UTM conserva su valor real en el tiempo, aunque su equivalente en pesos cambie con cada reajuste mensual.",
   },
   {
     question: "¿Qué diferencia hay entre UTM, UTA y UF?",
@@ -328,8 +328,8 @@ const conversorUtmFaqs = [
       <p>
         La <strong>Unidad Tributaria Mensual (UTM)</strong> es la unidad que usa
         el Estado chileno para fijar multas, tramos de impuestos y aranceles de
-        trámites. Cambia el primer día hábil de cada mes según el IPC del mes
-        anterior, publicado por el INE.
+        trámites. Se reajusta mensualmente de acuerdo con el IPC y el SII
+        publica su valor para cada mes.
       </p>
       <ul>
         <li>
@@ -348,9 +348,8 @@ const conversorUtmFaqs = [
         </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ El valor de la UTM cambia el primer día hábil de cada mes. Este
-        conversor usa la última actualización disponible. Para el dato oficial
-        vigente consulta el{" "}
+        ⚠️ El valor de la UTM cambia cada mes. Este conversor usa la última
+        actualización disponible. Para el dato oficial vigente consulta el{" "}
         <a
           href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
           target="_blank"
@@ -403,12 +402,22 @@ const conversorUtmFaqs = [
     <ShareCalculatorResult />
     <MethodologyBlock
       example={utmWorkedExample.example}
-      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
+      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta mensualmente de acuerdo con el IPC (SII, Diccionario básico tributario contable; SII Educa) y el SII publica su valor para cada mes. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
       sources={[
         {
           name: "SII — Valores UTM vigentes",
           url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
           date: utmLastUpdated,
+        },
+        {
+          name: "SII — Diccionario básico tributario contable (UTM)",
+          url: "https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html",
+          date: "2026-10-29",
+        },
+        {
+          name: "SII Educa — Tipos de impuestos en Chile (reajuste mensual de la UTM)",
+          url: "https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html",
+          date: "2026-10-29",
         },
         {
           name: "mindicador.cl — transporte de respaldo del snapshot",

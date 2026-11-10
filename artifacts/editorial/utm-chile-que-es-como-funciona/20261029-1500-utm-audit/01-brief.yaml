@@ -1,0 +1,14 @@
+slug: utm-chile-que-es-como-funciona
+query_anchor: "utm chile que es como funciona"
+ymyl: true
+requires_calculation: true
+regulatory_sensitivity: alta
+target_audience: "Personas en Chile que necesitan entender la UTM y convertir multas, impuestos o trámites expresados en UTM a pesos."
+cut_off_date: 2026-10-29
+benchmarkSet: N/A
+patternHypothesis: "No se usa benchmark externo; la corrección se rige por fuentes oficiales SII e INE."
+localDelta: "Corregir la regla temporal con el artículo cuarto transitorio del DL 830: la variación del IPC del segundo mes anterior al mes de actualización; no afirmar un día exacto. Mostrar el valor SII de octubre de 2026 ($72.151) como vigente al corte, con septiembre ($71.721) solo como ejemplo histórico."
+nonCopyBoundaries:
+  - "No se adapta texto, claims, estructura, URL ni CTA de competidores."
+ownerTarget: "Artículo existente utm-chile-que-es-como-funciona; calculadora /calculadoras/conversor-utm/; glosario /glosario/utm/."
+successSignal: "Las tres superficies citan y explican correctamente la regla legal M−2, muestran el valor SII de octubre de 2026 con corte explícito, conservan como históricos los ejemplos de septiembre y registran la corrección sin alterar rutas ni cálculos."

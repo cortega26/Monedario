@@ -1829,7 +1829,7 @@
     },
     {
       "slug": "utm-chile-que-es-como-funciona",
-      "sourceContentHash": "fc5f109cf3cfe150f8f49c217aa900d8258d224993f2cc07b35c1bea4caa8321",
+      "sourceContentHash": "c016d7c0f8686e2957869cb58098d6d0a9db8f18135a704645bb42ec21a363e5",
       "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
       "tags": [
         "utm",
@@ -1843,10 +1843,10 @@
       "cluster": "uf-costo-de-vida",
       "sourcePath": "src/data/blog/utm-chile-que-es-como-funciona.md",
       "heroImage": "/images/hero/utm-chile-que-es-como-funciona.avif",
-      "summary": "La UTM (Unidad Tributaria Mensual) es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. Respuesta rápida Qué es: Unidad de medida del valor monetario que el Estado usa para expresar...",
+      "summary": "La UTM (Unidad Tributaria Mensual) es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Se reajusta cada mes según la variación del IPC del segundo mes anterior. Respuesta rápida Qué es: Unidad de medida del valor monetar...",
       "leadParagraphs": [
-        "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.",
-        "> **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (septiembre 2026):** $71.721 > > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) > > **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.",
+        "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Se reajusta cada mes según la variación del IPC del segundo mes anterior.",
+        "> **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta mensualmente con la variación del IPC del segundo mes anterior (art. cuarto transitorio del DL 830); el SII publica el valor de cada mes. > > **Valor de ejemplo (histórico, septiembre 2026):** $71.721 > > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) > > **Vigencia:** Este valor corresponde a septiembre 2026 y no es el valor actual. La UTM cambia cada mes — verifica siempre el valor del mes que necesitas en SII.cl.",
         "Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el [conversor UTM a pesos](/calculadoras/conversor-utm/)."
       ],
       "headings": [
@@ -1859,8 +1859,8 @@
         "La UTM vs la UF — ¿cuál es la diferencia?",
         "Usos prácticos de la UTM"
       ],
-      "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (septiembre 2026):** $71.721 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el . > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y ",
-      "wordCount": 1741,
+      "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Se reajusta cada mes según la variación del IPC del segundo mes anterior. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta mensualmente con la variación del IPC del segundo mes anterior (art. cuarto transitorio del DL 830); el SII publica el valor de cada mes. > > **Valor de ejemplo (histórico, septiembre 2026):** $71.721 > > **Fuente oficial:** > > **Vigencia:** Este valor corresponde a septiembre 2026 y no es el valor actual. La UTM cambia cada mes — verifica siempre el valor del mes que necesitas en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el . > **Alcance de la revisión del 2026-10-29.** Esta revisión ",
+      "wordCount": 1952,
       "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]

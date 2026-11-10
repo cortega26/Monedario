@@ -4,7 +4,7 @@ description: "Qué es la UTM en Chile, cómo se reajusta mensualmente según el 
 slug: utm-chile-que-es-como-funciona
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-09-18T12:00:00Z
+updatedDate: 2026-10-29T12:00:00Z
 tags:
   - utm
   - uta
@@ -27,17 +27,23 @@ volatileData:
   - id: "economic.ipc.monthly_variation"
     sync: reference
 articleLead:
-  answer: "La UTM es la unidad de medida que el Estado chileno usa para expresar multas, impuestos y aranceles de trámites. Se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior."
+  answer: "La UTM es la unidad de medida que el Estado chileno usa para expresar multas, impuestos y aranceles de trámites. Según el artículo cuarto transitorio del DL 830, se reajusta cada mes con la variación del IPC del segundo mes anterior (la UTM de octubre usa el IPC de agosto). El SII publica su valor para cada mes: en octubre de 2026 es $72.151."
   calculatorHref: "/calculadoras/conversor-utm/"
   calculatorLabel: "Convertir UTM a pesos"
   nextStepHref: "/calculadoras/impuesto-segunda-categoria/"
   nextStepLabel: "Calcular impuesto de segunda categoría"
-  validAsOf: 2026-09-18
+  validAsOf: 2026-10-29
   officialSources:
     - label: "SII — UTM, UTA e IPC 2026"
       href: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
+    - label: "BCN — Código Tributario (DL 830), artículo cuarto transitorio"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11"
     - label: "SII — Impuesto Único de Segunda Categoría 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
+    - label: "SII — Diccionario básico tributario contable (UTM)"
+      href: "https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html"
+    - label: "SII Educa — Tipos de impuestos en Chile"
+      href: "https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html"
   covers:
     - "Qué es la UTM y la UTA"
     - "Cómo se reajusta la UTM cada mes por el IPC"
@@ -49,7 +55,7 @@ articleLead:
     - "No sustituye asesoría tributaria para casos específicos."
 faqs:
   - q: "¿Cuánto vale la UTM hoy?"
-    a: "El valor de la UTM cambia el primer día hábil de cada mes. Puedes ver el valor vigente en la tabla oficial del SII: sii.cl/valores_y_fechas/utm/utm2026.htm. El valor indicado en este artículo ($71.721) corresponde a septiembre 2026."
+    a: "Al 2026-10-29, fecha de esta revisión, la UTM vigente es la de octubre de 2026: $72.151, según la tabla oficial del SII (sii.cl/valores_y_fechas/utm/utm2026.htm). El valor de $71.721 que aparece en los ejemplos de este artículo corresponde a septiembre de 2026 y es histórico. Para otro mes, revisa la fila correspondiente en la tabla del SII."
   - q: "¿Cuál es la diferencia entre UTM y UTA?"
     a: "La UTM es mensual y es el valor base. La UTA equivale a 12 veces la UTM del mes de diciembre del año correspondiente y se usa para calcular los tramos anuales del Impuesto Global Complementario."
   - q: "¿Cuál es la diferencia entre UTM y UF?"
@@ -57,7 +63,7 @@ faqs:
   - q: "¿Las multas de tránsito se cobran en UTM?"
     a: "Sí. La Ley de Tránsito N°18.290 expresa muchas sanciones en UTM. El monto en pesos se calcula multiplicando las UTM de la multa por el valor de la UTM vigente al momento del pago."
   - q: "¿Cómo afecta el IPC a la UTM?"
-    a: "La UTM se reajusta cada mes según la variación del IPC del mes anterior. Si el IPC fue positivo (inflación), la UTM sube; si fue negativo (deflación), puede bajar o mantenerse."
+    a: "El artículo cuarto transitorio del DL 830 dispone que la UTM «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del IPC de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. El SII publica el valor resultante de cada mes en sii.cl/valores_y_fechas/utm/utm2026.htm."
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
@@ -67,23 +73,23 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.
+La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Se reajusta cada mes según la variación del IPC del segundo mes anterior.
 
 > **Respuesta rápida**
 >
 > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable.
 >
-> **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior.
+> **Cómo cambia:** Se reajusta mensualmente con la variación del IPC del segundo mes anterior (art. cuarto transitorio del DL 830); el SII publica el valor de cada mes.
 >
-> **Valor vigente (septiembre 2026):** $71.721
+> **Valor de ejemplo (histórico, septiembre 2026):** $71.721
 >
 > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm)
 >
-> **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.
+> **Vigencia:** Este valor corresponde a septiembre 2026 y no es el valor actual. La UTM cambia cada mes — verifica siempre el valor del mes que necesitas en SII.cl.
 
 Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el [conversor UTM a pesos](/calculadoras/conversor-utm/).
 
-> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Alcance de la revisión del 2026-10-29.** Esta revisión cubre la regla de reajuste de la UTM y el valor de la UTM de octubre de 2026 ($72.151). Los demás ejemplos tributarios de este artículo conservan el período que indica cada uno y no se actualizaron ni se volvieron a auditar en esta revisión. Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
 Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/).
 
@@ -93,25 +99,25 @@ Si quieres ver este frente completo junto con UF, reajustes y herramientas, entr
 
 La **Unidad Tributaria Mensual (UTM)** es una unidad de medida del valor monetario definida por el Estado chileno que sirve como denominador común para expresar multas, obligaciones tributarias y aranceles de trámites públicos.
 
-No es una moneda ni un tipo de cambio. Es una **unidad de cuenta reajustable**: un número de referencia que sube o baja con la inflación, de modo que una obligación de "3 UTM" mantiene el mismo valor real aunque los precios del país cambien.
+No es una moneda ni un tipo de cambio. Es una **unidad de cuenta reajustable**: un número de referencia que se reajusta mensualmente de acuerdo con el IPC y cuyo valor para cada mes publica el SII, de modo que una obligación de "3 UTM" mantiene el mismo valor real aunque los precios del país cambien.
 
-La regula y publica el **SII (Servicio de Impuestos Internos)**, que actualiza su valor el primer día hábil de cada mes.
+La regula y publica el **SII (Servicio de Impuestos Internos)**, que publica su valor cada mes. El SII explica que la UTM se actualiza según el Índice de Precios al Consumidor (IPC) ([Diccionario básico tributario contable](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html)) y que ese reajuste es mensual ([SII Educa](https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html)).
 
 Para ver la definición formal del término, consulta el [glosario UTM](/glosario/utm/).
 
 ### Cómo se reajusta la UTM
 
-La UTM cambia al comienzo de cada mes según la variación del **IPC (Índice de Precios al Consumidor)** del mes anterior. La relación es directa:
+El [artículo cuarto transitorio del Código Tributario (DL 830)](https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11) dispone que la UTM:
 
-- Si el IPC del mes pasado fue positivo (inflación), la UTM sube al mes siguiente.
-- Si el IPC fue negativo (deflación), la UTM puede bajar.
-- Si el IPC fue 0%, la variación es mínima o nula.
+> «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad».
+
+En palabras simples: para la UTM de un mes (M) se usa la variación del **IPC (Índice de Precios al Consumidor)** del segundo mes anterior (M−2). Por ejemplo, la UTM de octubre se reajusta con la variación del IPC de agosto. La norma fija **qué mes de IPC** se usa; no señala un día específico del mes. El valor resultante de cada mes es el que publica el SII en su [tabla mensual](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm): en octubre de 2026, $72.151.
 
 El IPC lo calcula y publica el **INE (Instituto Nacional de Estadísticas)** mensualmente. Si quieres entender cómo el INE mide la inflación y por qué afecta deudas y reajustes, revisa [qué es el IPC en Chile y cómo se calcula](/posts/que-es-el-ipc-chile-como-se-calcula/).
 
 ### Base legal
 
-La UTM está definida en el **Código Tributario** (DL 830/1974). Es la unidad de referencia estándar para relaciones monetarias entre personas y el Estado chileno.
+La UTM está definida en el **Código Tributario** (DL 830/1974); su reajuste mensual lo regula el artículo cuarto transitorio de ese cuerpo legal. Es la unidad de referencia estándar para relaciones monetarias entre personas y el Estado chileno.
 
 ---
 
@@ -123,7 +129,7 @@ La UTM tiene una derivada anual: la **UTA (Unidad Tributaria Anual)**. Son dos c
 | -------------- | ------------------------------ | ---------------------------------------- |
 | Período        | Mensual                        | Anual                                    |
 | Definición     | Valor base mensual             | 12 × UTM de diciembre                    |
-| Actualización  | Primer día hábil de cada mes   | Una vez al año (fija por año calendario) |
+| Actualización  | Mensual, según el IPC          | Una vez al año (fija por año calendario) |
 | Uso principal  | Multas, cotizaciones, trámites | Tramos del Impuesto a la Renta anual     |
 
 ### ¿Cómo se calcula la UTA?
@@ -144,13 +150,13 @@ Para el concepto completo de UTA y sus usos tributarios, consulta el [glosario U
 
 La duda más frecuente es confundir la UTM con la UF. Aunque ambas siguen la inflación, tienen propósitos y frecuencias completamente distintas:
 
-| Característica              | UTM                                  | UF                                        |
-| --------------------------- | ------------------------------------ | ----------------------------------------- |
-| Frecuencia de actualización | Mensual (1 vez por mes)              | Diaria (cada día)                         |
-| Quién la define             | SII (Servicio de Impuestos Internos) | Banco Central de Chile                    |
-| Ámbito principal            | Estado: multas, impuestos, trámites  | Privado: hipotecas, arriendos, créditos   |
-| Sigue la inflación          | Sí (IPC del mes anterior)            | Sí (IPC mensual, distribuido diariamente) |
-| Efecto directo sobre ti     | En pagos al Estado                   | En contratos privados indexados           |
+| Característica              | UTM                                                                                         | UF                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| Frecuencia de actualización | Mensual (1 vez por mes)                                                                     | Diaria (cada día)                         |
+| Quién la define             | SII (Servicio de Impuestos Internos)                                                        | Banco Central de Chile                    |
+| Ámbito principal            | Estado: multas, impuestos, trámites                                                         | Privado: hipotecas, arriendos, créditos   |
+| Mecanismo de reajuste       | Mensual, con la variación del IPC del segundo mes anterior (art. cuarto transitorio DL 830) | Sí (IPC mensual, distribuido diariamente) |
+| Efecto directo sobre ti     | En pagos al Estado                                                                          | En contratos privados indexados           |
 
 **Regla para recordar:** Si la obligación es **con el Estado** → UTM. Si es **con un banco o arrendador privado** → UF.
 
@@ -230,18 +236,18 @@ El SII expresa multas por incumplimientos tributarios —retrasos en declaracion
 
 El valor oficial de la UTM lo publica mensualmente el SII:
 
-1. **SII.cl (fuente oficial):** [sii.cl/valores_y_fechas/utm/utm2026.htm](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) — tabla con UTM, UTA e IPC mensual para el año en curso. El SII publica el nuevo valor el primer día hábil de cada mes.
+1. **SII.cl (fuente oficial):** [sii.cl/valores_y_fechas/utm/utm2026.htm](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) — tabla con UTM, UTA e IPC mensual para el año en curso, con el valor de cada mes.
 
 2. **Banco Central de Chile:** [si3.bcentral.cl](https://si3.bcentral.cl/Siete/) — series históricas disponibles.
 
-> **Dado que el valor de la UTM cambia el primer día hábil de cada mes, el valor mencionado en este artículo ($71.721, vigente en septiembre 2026) puede no coincidir con el valor actual.** Antes de usar la UTM en cualquier cálculo real —multa, impuesto, arancel— verifica siempre el valor vigente directamente en SII.cl.
+> **Dado que el valor de la UTM cambia cada mes, el valor de los ejemplos de este artículo ($71.721, correspondiente a septiembre 2026) no es el vigente.** Al 2026-10-29, la UTM de octubre de 2026 es $72.151. Antes de usar la UTM en cualquier cálculo real —multa, impuesto, arancel— verifica siempre el valor del mes correspondiente directamente en SII.cl.
 
 ---
 
 ## Resumen: lo que debes recordar
 
-- La UTM es la **unidad del Estado**: multas, impuestos, trámites. Cambia **el primer día hábil de cada mes**.
-- Refleja el IPC del mes anterior — sube con inflación, puede bajar con deflación.
+- La UTM es la **unidad del Estado**: multas, impuestos, trámites. Se reajusta **cada mes**.
+- Se reajusta con la variación del IPC del segundo mes anterior (art. cuarto transitorio del DL 830) y el SII publica su valor para cada mes.
 - La **UTA = 12 × UTM de diciembre**, se usa para los tramos anuales del impuesto a la renta.
 - La UF es para el **sector privado** (arriendos, hipotecas) y cambia **cada día**; la UTM es para el **Estado** y cambia cada **mes**.
 - Valor oficial de la UTM este mes: siempre en [SII.cl](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm).
@@ -251,6 +257,9 @@ El valor oficial de la UTM lo publica mensualmente el SII:
 ## Fuentes
 
 - SII, tabla UTM-UTA-IPC 2026: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+- BCN, Código Tributario (DL 830), artículo cuarto transitorio, versión del 2025-07-11: https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11
+- SII, Diccionario básico tributario contable, entrada UTM: https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html
+- SII Educa, Tipos de impuestos en Chile (reajuste mensual de la UTM): https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html
 - SII, Impuesto Único de Segunda Categoría 2026: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
 - SII, datos informativos AT 2026 (personas naturales): https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html
 - Banco Central de Chile, series estadísticas: https://si3.bcentral.cl/Siete/
