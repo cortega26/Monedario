@@ -2,7 +2,10 @@ import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { checkIndexableUrlFreeze } from "../../scripts/check-indexable-url-freeze.mjs";
+import {
+  checkIndexableUrlFreeze,
+  findExpiringExceptions,
+} from "../../scripts/check-indexable-url-freeze.mjs";
 
 function fixture(urls = ["https://monedario.cl/"]) {
   const root = mkdtempSync(path.join(tmpdir(), "monedario-url-freeze-"));
@@ -98,5 +101,105 @@ describe("indexable URL freeze", () => {
     expect(result.errors).toContain(
       "noindex page is present in sitemap: https://monedario.cl/"
     );
+  });
+
+  describe("expired and expiring exceptions", () => {
+    const exception = (expiresAt: string) => ({
+      url: "https://monedario.cl/nueva/",
+      problem: "fixture",
+      evidence: "fixture",
+      hypothesis: "fixture",
+      cost: "low",
+      maintenance: "low",
+      metric: "fixture",
+      threshold: "fixture",
+      decision: "APPROVED",
+      approvedBy: "fixture",
+      approvedAt: "2026-09-17",
+      expiresAt,
+    });
+    const withException = (expiresAt: string) => {
+      const files = fixture([
+        "https://monedario.cl/",
+        "https://monedario.cl/nueva/",
+      ]);
+      writeFileSync(
+        files.exceptionsFile,
+        JSON.stringify({ exceptions: [exception(expiresAt)] })
+      );
+      return files;
+    };
+    const now = new Date("2026-11-10T12:00:00Z");
+
+    it("fails an expired exception in CI (strict mode)", () => {
+      const result = checkIndexableUrlFreeze({
+        ...withException("2026-11-02"),
+        now,
+      });
+      expect(result.status).toBe("FAIL");
+      expect(result.errors.join(" ")).toContain("expired or invalid exception");
+    });
+
+    it("downgrades an expired exception to a warning on the deploy build", () => {
+      const result = checkIndexableUrlFreeze({
+        ...withException("2026-11-02"),
+        now,
+        tolerateExpired: true,
+      });
+      expect(result.status).toBe("PASS");
+      expect(result.warnings.join(" ")).toContain("expired on 2026-11-02");
+    });
+
+    it("still fails an unapproved URL on the deploy build", () => {
+      const files = fixture([
+        "https://monedario.cl/",
+        "https://monedario.cl/otra/",
+      ]);
+      const result = checkIndexableUrlFreeze({
+        ...files,
+        now,
+        tolerateExpired: true,
+      });
+      expect(result.status).toBe("FAIL");
+    });
+
+    it("warns, without failing, when an exception is about to expire", () => {
+      const result = checkIndexableUrlFreeze({
+        ...withException("2026-11-20"),
+        now,
+      });
+      expect(result.status).toBe("PASS");
+      expect(result.warnings.join(" ")).toContain("expires in 9 day(s)");
+    });
+
+    it("stays silent while the expiry is far away", () => {
+      const result = checkIndexableUrlFreeze({
+        ...withException("2027-09-29"),
+        now,
+      });
+      expect(result.status).toBe("PASS");
+      expect(result.warnings).toEqual([]);
+    });
+
+    it("findExpiringExceptions lists expired and soon-to-expire entries only", () => {
+      const doc = {
+        exceptions: [
+          { ...exception("2026-11-02"), url: "https://monedario.cl/a/" },
+          { ...exception("2026-11-15"), url: "https://monedario.cl/b/" },
+          { ...exception("2027-09-29"), url: "https://monedario.cl/c/" },
+          {
+            ...exception("2026-11-01"),
+            url: "https://monedario.cl/d/",
+            decision: "DENIED",
+          },
+        ],
+      };
+      expect(
+        findExpiringExceptions(doc, now, 14).map(e => [e.url, e.daysLeft])
+      ).toEqual([
+        ["https://monedario.cl/a/", -9],
+        ["https://monedario.cl/b/", 4],
+      ]);
+    });
   });
 });
