@@ -155,8 +155,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.1(prettier-plugin-astro@1.1.2(prettier@3.9.10))(prettier@3.9.10)
       sitemap:
-        specifier: ^9.0.1
-        version: 9.0.1
+        specifier: ^10.0.0
+        version: 10.0.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -4424,6 +4424,11 @@ packages:
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+
+  sitemap@10.0.0:
+    resolution: {integrity: sha512-KSjl4H4KBEnGX5KXgzInPAycdOFhwLar0EmksDcYn6NqW2O+zLiMGeV2THE6tpuv3LCVdv+6xsSo2SWLGaBDKw==}
+    engines: {node: '>=22.22.1', npm: '>=10.8.2'}
+    hasBin: true
 
   sitemap@9.0.1:
     resolution: {integrity: sha512-S6hzjGJSG3d6if0YoF5kTyeRJvia6FSTBroE5fQ0bu1QNxyJqhhinfUsXi9fH3MgtXODWvwo2BDyQSnhPQ88uQ==}
@@ -9870,6 +9875,12 @@ snapshots:
   signal-exit@3.0.7: {}
 
   sisteransi@1.0.5: {}
+
+  sitemap@10.0.0:
+    dependencies:
+      '@types/node': 26.6.5
+      '@types/sax': 1.2.7
+      sax: 1.6.1
 
   sitemap@9.0.1:
     dependencies:
