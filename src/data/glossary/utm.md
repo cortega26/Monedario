@@ -1,6 +1,6 @@
 ---
 term: "Unidad Tributaria Mensual (UTM)"
-shortDefinition: "Unidad económica reajustable mensualmente por inflación, usada para fijar multas, impuestos y beneficios fiscales."
+shortDefinition: "Unidad económica que se reajusta mensualmente de acuerdo con el IPC, usada para fijar multas, impuestos y beneficios fiscales."
 relatedTerms: ["ipc", "uf", "sii", "inflacion"]
 relatedCalculators:
   - href: /calculadoras/conversor-utm/

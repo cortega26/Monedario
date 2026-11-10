@@ -74,3 +74,54 @@ Fórmulas, cálculos, $71.721, $834.504, $69.542, tramos ISC, $11.265.804, $417.
 - El tipo del campo `date` en `sources` de `MethodologyBlock` no se verificó; se usó string literal.
 - `docs/backlog/README.md` ya aparecía modificado antes de esta sesión; no lo toqué.
 - No se marcaron gates ni se editó 05/06/07. Sin autocertificación de cumplimiento.
+
+## Pasada de corrección 2026-11-10 (DraftAgent) — respuesta a 06-compliance (FAIL)
+
+Rol: DraftAgent. Claude Code, sesión nueva, `5781f981-67ac-4656-beba-a357f2001bc9` (ID registrado para trazabilidad de separación de funciones). Esta sesión no redactó el borrador original ni ejecutó MathAudit ni ComplianceAgent sobre esta pieza, y no lo hará. Fecha de consulta de todas las fuentes de abajo: 2026-11-10.
+
+Nota de estado: 06-compliance.md (2026-10-29) es anterior a la remediación posterior (referencia al DL 830 y valor de octubre) y a esta pasada; evaluó un texto que ya no existe. No se editó 05, 06 ni 07 y no se marcó ninguna puerta.
+
+### Evidencia recuperada (texto literal, URL y fecha de consulta 2026-11-10)
+
+- **BCN, DL 830, art. cuarto transitorio** (`https://www.bcn.cl/leychile/consulta/obtxml?opt=7&idNorma=6374&idVersion=2025-07-11`): «A partir del mes de Abril de 1975, el monto de la unidad tributaria se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad.»
+- **SII, Diccionario básico tributario contable** (`https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html`): «Unidad Tributaria Mensual (UTM): Unidad definida en Chile que corresponde a un monto de dinero expresado en pesos y determinado por ley, el cual se actualiza en forma permanente por el Índice de Precios al Consumidor (IPC) y se utiliza como medida tributaria.»
+- **SII Educa** (`https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html`): «La Unidad Tributaria Mensual (UTM) es una unidad económica que se utiliza para fines tributarios y se reajusta mensualmente de acuerdo al IPC.»
+- **SII, tabla UTM–UTA–IPC 2026** (`https://www.sii.cl/valores_y_fechas/utm/utm2026.htm`): UTM de septiembre $71.721 (IPC de agosto 0,6 %), octubre $72.151, noviembre $72.440, diciembre $72.802. La razón octubre/septiembre (72.151 / 71.721 = 1,0060) coincide con el IPC de agosto de 0,6 %.
+- **SII, tabla UTM–UTA–IPC 2025** (`https://www.sii.cl/valores_y_fechas/utm/utm2025.htm`): UTM de diciembre de 2025 $69.542; UTA $834.504.
+- **SII, Impuesto Único de Segunda Categoría 2026** (`https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm`): la tabla mensual vigente en la página (UTM de diciembre, $72.802) tiene tramos de 13,5; 30; 50; 70; 90; 120 y 310 UTM (982.827; 2.184.060; 3.640.100; 5.096.140; 6.552.180; 8.736.240; 22.568.620) y tasas 4 %; 8 %; 13,5 %; 23 %; 30,4 %; 35 % y 40 %.
+- **Banco Central de Chile, metodología de la UF** (`https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf`): «el valor de la UF se reajusta a partir del día diez de cada mes y hasta el día nueve del mes siguiente, en forma diaria, de acuerdo a la variación experimentada por el Índice de Precios al Consumidor (IPC)».
+
+### Verificación aritmética de los montos preexistentes (insumo para el MathAudit independiente)
+
+| Monto en el artículo | Cálculo | Resultado |
+|---|---|---|
+| UTA $834.504 | 12 × $69.542 (UTM dic 2025); coincide con la tabla SII 2025 | OK |
+| 13,5 UTA $11.265.804 | 13,5 × $834.504 | OK |
+| APV 6 UTM $417.252 | 6 × $69.542 | OK |
+| Umbral 13,5 UTM sept 2026 $968.233 | 13,5 × $71.721 = 968.233,5 (truncado en el texto) | OK, aproximado |
+| Tramos sept 2026: 2.151.630; 3.586.050; 5.020.470; 6.454.890; 8.606.520; 22.233.510 | 30; 50; 70; 90; 120; 310 × $71.721 | OK |
+| Tasas 4 / 8 / 13,5 / 23 / 30,4 / 35 / 40 % | coinciden con la tabla SII vigente | OK |
+| Múltiplos de UTM de los tramos | coinciden con la tabla SII vigente (÷ 72.802) | OK |
+
+Salvedad: la página del SII muestra solo el mes vigente de la tabla del impuesto, no septiembre; los montos de septiembre de la guía son múltiplos verificados × la UTM de septiembre verificada, no una copia de una fila del SII.
+
+### Disposición de los defectos de 06-compliance
+
+| # | Sev. | Disposición en esta pasada |
+|---|---|---|
+| 1 | BLOQUEANTE | **No resuelto (requiere re-auditoría).** Separación de funciones Research/MathAudit y IDs de sesión de Research, brief/outline, MathAudit y pasada residual: no recuperables desde esta sesión. Solo se registra el ID de esta pasada. |
+| 2 | BLOQUEANTE | **Evidencia aportada**: textos literales de SII Diccionario, SII Educa y del DL 830 (arriba). La guía, el glosario y el conversor citan la norma; falta que el dossier 02 y el MathAudit independiente la incorporen. |
+| 3 | BLOQUEANTE | **No resuelto (requiere re-auditoría).** Corresponde a una instancia independiente agregar a 05 la fila de la regla con su fuente literal. |
+| 4 | MAYOR | **Corregido.** La FAQ «¿Cuánto vale la UTM hoy?» da la UTM de noviembre de 2026 ($72.440) con URL y fecha de consulta; el cuerpo muestra el valor del mes vigente con `[[utm \| clp]]` (snapshot, UTM con proveniencia SII) para que no se desactualice. Septiembre queda solo como ejemplo de cálculo. |
+| 5 | MAYOR | **Verificado** (tabla anterior) y alcance explicitado: el aviso «Alcance de la revisión del 2026-11-10» dice qué se verificó y que los ejemplos conservan su período. Pendiente la certificación independiente en 05. |
+| 6 | MAYOR | **Corregido.** `validAsOf` = 2026-11-10 = fecha del valor citado (UTM de noviembre) y de la consulta de fuentes; los ejemplos de septiembre están rotulados históricos. Se retiró el valor fijo del `articleLead.answer` (referencia al valor del mes vigente más abajo). |
+| 7 | MENOR | **Corregido.** «siguen la inflación» → «se reajustan según el IPC, con mecanismos distintos»; la fila de la UF describe su mecanismo con la fuente del Banco Central (día 10 al 9, diario, según el IPC); glosario: «reajustable mensualmente por inflación» → «se reajusta mensualmente de acuerdo con el IPC». |
+| 8 | MAYOR | **Corregido.** La entrada `utm-reajuste-mensual-copy` de `correcciones.json` cubre ahora las afirmaciones direccionales retiradas («sube o baja», «puede bajar o mantenerse», «suba mes a mes»), la contradicción del «mes anterior» con el DL 830 y la regla vigente. Verificado contra la versión de `main`. |
+| 9 | BLOQUEANTE | **Parcialmente atendido; requiere nueva revisión.** Esta pasada ejecutó `check:correcciones`, build completo y tests (resultados en el PR) y deja el diff completo en el PR; la revisión de ComplianceAgent con acceso a ellos sigue pendiente. |
+| 10 | MENOR | **Corregido.** Se añadió a `limits` la línea de que el artículo no fija el día del mes en que cambia el valor y que el SII publica el valor de cada mes; el cuerpo ya lo decía junto a la regla del DL 830. |
+
+### Lo que sigue (no se hace en esta sesión)
+
+1. MathAuditAgent independiente (sesión distinta de Research/brief): auditar el diff de esta pasada, la regla del DL 830 con su cita literal y la tabla de verificación anterior; registrar IDs de sesión.
+2. ComplianceAgent en sesión limpia con acceso al diff completo, `check:correcciones` y el build.
+3. HumanEditor: sign-off de `07-publish-packet.md`.

@@ -2,8 +2,8 @@
   "corrections": [
     {
       "id": "utm-reajuste-mensual-copy",
-      "date": "2026-10-29",
-      "title": "UTM: retiro de una regla de reajuste no respaldada (primer día hábil e IPC del mes anterior)",
+      "date": "2026-11-10",
+      "title": "UTM: corrección de la regla de reajuste (no es el primer día hábil ni el IPC del mes anterior)",
       "pages": [
         {
           "href": "/posts/utm-chile-que-es-como-funciona/",
@@ -19,16 +19,18 @@
         }
       ],
       "wrong": [
-        "La guía y el conversor afirmaban que la UTM cambia el primer día hábil de cada mes. Además, la guía, el conversor y el glosario indicaban que su reajuste usa el IPC del mes inmediatamente anterior. Las fuentes oficiales consultadas no respaldan esa regla exacta.",
+        "La guía y el conversor afirmaban que la UTM cambia el primer día hábil de cada mes, regla que ninguna fuente oficial respalda. Además, la guía, el conversor y el glosario indicaban que su reajuste usa el IPC del mes inmediatamente anterior, lo que contradice el artículo cuarto transitorio del DL 830 (segundo mes anterior).",
+        "La guía y el glosario describían la UTM con expresiones direccionales no respaldadas: que «sube o baja con la inflación» y que, si el IPC es positivo la UTM sube y si es negativo «puede bajar o mantenerse». El conversor decía que su equivalente en pesos «suba mes a mes».",
         "La guía mostraba la leyenda 'Información vigente al 2026-04-09' junto a ejemplos de septiembre de 2026 rotulados como valor vigente."
       ],
       "fixed": [
-        "Las tres páginas describen solo lo que respalda el SII: la UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes. No se indica un día de vigencia ni el mes exacto del IPC asociado.",
-        "La guía indica su fecha de revisión (2026-10-29) y rotula los montos de septiembre de 2026 como ejemplos históricos; esos montos, las fórmulas y los cálculos no cambiaron."
+        "Las tres páginas describen la regla que fija la ley: según el artículo cuarto transitorio del Código Tributario (DL 830), la UTM se reajusta mensualmente de acuerdo con la variación del IPC del segundo mes anterior (por ejemplo, la UTM de octubre usa el IPC de agosto); el SII publica su valor para cada mes. La norma no fija un día del mes y las páginas no lo afirman.",
+        "Se retiraron las expresiones direccionales; la UTM se describe como una unidad que se reajusta de acuerdo con el IPC. La fila de la UF en la comparación describe su propio mecanismo (reajuste diario del día 10 al día 9 según el IPC, Banco Central).",
+        "La guía indica su fecha de revisión (2026-11-10), muestra el valor de la UTM del mes vigente con fecha de consulta y rotula los montos de septiembre de 2026 como ejemplos históricos; esos montos, las fórmulas y los cálculos no cambiaron."
       ],
       "affected": "Lectores que consultan cuándo cambia la UTM o qué IPC considera, en la guía de la UTM, el conversor UTM a pesos y el glosario.",
-      "sources": "SII, Diccionario básico tributario contable, entrada UTM (https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html); SII Educa, Tipos de impuestos en Chile (https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html); SII, UTM–UTA–IPC 2026 (https://www.sii.cl/valores_y_fechas/utm/utm2026.htm).",
-      "prevention": "No publicar una regla de calendario o de rezago del IPC sin una fuente oficial que la formule explícitamente; separar la fecha de revisión de la fecha de los ejemplos."
+      "sources": "BCN, Código Tributario (DL 830), artículo cuarto transitorio (https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11); SII, Diccionario básico tributario contable, entrada UTM (https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html); SII Educa, Tipos de impuestos en Chile (https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html); SII, UTM–UTA–IPC 2026 (https://www.sii.cl/valores_y_fechas/utm/utm2026.htm); Banco Central de Chile, metodología de la UF (https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf).",
+      "prevention": "No publicar una regla de calendario o de rezago del IPC sin citar la norma o la fuente oficial que la formula explícitamente; no escribir en texto fijo un valor «vigente» o «de hoy» que cambia cada mes (usar el valor dinámico o fecharlo); separar la fecha de revisión de la fecha de los ejemplos."
     },
     {
       "id": "causa2-phase4-tasas-bases-cluster",

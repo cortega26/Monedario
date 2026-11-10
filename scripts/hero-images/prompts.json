@@ -2663,13 +2663,13 @@
       "targetImagePath": "/images/hero/utm-chile-que-es-como-funciona.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "c016d7c0f8686e2957869cb58098d6d0a9db8f18135a704645bb42ec21a363e5",
-      "briefHash": "9ec516766c809bbea772ffb4610f3b0eccf092256d763d1f7f69337374cf7f01",
+      "sourceContentHash": "136b9e1df8b53ecef76fff1c2ce5147710fab3332860b29a19b3f31c68e88936",
+      "briefHash": "5432f6b0b1802b924d818bf923623320cfc438e88d9b4521b553a6cd5e154da1",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-10",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-11-10 (corrección del copy de reajuste de la UTM): se retira la regla no respaldada del primer día hábil y del IPC del mes anterior y se reemplaza por la formulación mensual con fuente SII. El mensaje visual de la portada (el mes importa al interpretar una unidad reajustable) no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL ni firma de publicación."
+        "method": "Revalidación 2026-11-10 (corrección del copy de reajuste de la UTM): se retira la regla no respaldada del primer día hábil y del IPC del mes anterior y se reemplaza por la regla del DL 830 con fuente SII y BCN. El mensaje visual de la portada (el mes importa al interpretar una unidad reajustable) no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL ni firma de publicación."
       },
       "template": "C",
       "promptTrack": "C",
