@@ -107,7 +107,7 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
 
   it("pinea Wrangler a una versión exacta que pasó la API real", () => {
     const version = packageJson.devDependencies?.wrangler ?? "";
-    expect(version).toBe("4.149.0");
+    expect(version).toBe("4.153.0");
 
     expect(pnpmLock).toContain(`specifier: ${version}`);
     expect(pnpmLock).toContain(`version: ${version}(`);
@@ -117,7 +117,7 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
     expect(workspaceConfig.overrides?.undici).toBeUndefined();
     expect(workspaceConfig.overrides?.["undici@>=8 <9"]).toBe("8.11.2");
 
-    expect(pnpmLock).toContain("undici@7.29.1:");
+    expect(pnpmLock).toContain("undici@7.30.1:");
     expect(pnpmLock).toContain("undici@8.11.2:");
     expect(pnpmLock).not.toContain("undici@8.11.0:");
   });
