@@ -1,0 +1,28 @@
+{
+  "fetchedAt": "2026-11-09T15:06:08Z",
+  "schemaVersion": 1,
+  "source": "gsc",
+  "week": "2026-W45",
+  "window": {
+    "from": "2026-11-02",
+    "to": "2026-11-08"
+  },
+  "data": [
+    {
+      "contents": [
+        {
+          "indexed": 0,
+          "submitted": 186,
+          "type": "web"
+        }
+      ],
+      "errors": "0",
+      "isPending": false,
+      "isSitemapsIndex": true,
+      "lastDownloaded": "2026-11-01",
+      "lastSubmitted": "2026-03-08",
+      "path": "https://monedario.cl/sitemap-index.xml",
+      "warnings": "0"
+    }
+  ]
+}
