@@ -124,7 +124,7 @@ const calculatorNextStepItems = [
 const conversorUtmFaqs = [
   {
     question: "¿Cuánto vale 1 UTM en pesos chilenos hoy?",
-    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes, así que conviene confirmar el valor vigente antes de usarlo en una multa, un impuesto o un trámite.`,
+    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes, así que conviene confirmar el valor vigente antes de usarlo en una multa o un impuesto.`,
   },
   {
     question:
@@ -140,7 +140,7 @@ const conversorUtmFaqs = [
   {
     question: "¿Qué diferencia hay entre UTM, UTA y UF?",
     answer:
-      "La UTM (Unidad Tributaria Mensual) se usa para multas e impuestos, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
+      "La UTM (Unidad Tributaria Mensual) se usa para multas e impuestos, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM del último mes del año comercial multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
   },
   {
     question: "¿Cuánto es 10 UTM en pesos chilenos?",
@@ -333,10 +333,9 @@ const conversorUtmFaqs = [
       </p>
       <ul>
         <li>
-          <strong>Multas de tránsito:</strong> el artículo 201 de la Ley de
-          Tránsito N°18.290 fija las multas en escalas de UTM. Para saber qué
-          valor de la UTM se aplica a tu pago, consulta al juzgado de policía
-          local.
+          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290 fija
+          las multas en escalas de UTM. Para saber qué valor de la UTM se aplica
+          a tu pago, consulta al juzgado de policía local.
         </li>
         <li>
           <strong>Impuesto a la renta:</strong> el tramo exento del Impuesto de
@@ -399,7 +398,7 @@ const conversorUtmFaqs = [
     <ShareCalculatorResult />
     <MethodologyBlock
       example={utmWorkedExample.example}
-      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta mensualmente de acuerdo con el IPC (SII, Diccionario básico tributario contable; SII Educa) y el SII publica su valor para cada mes. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
+      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta mensualmente de acuerdo con el IPC (SII, Diccionario básico tributario contable; SII Educa) y el SII publica su valor para cada mes. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en multas o impuestos.`}
       sources={[
         {
           name: "SII — Valores UTM vigentes",

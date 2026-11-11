@@ -172,3 +172,19 @@ Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni
 | ERROR 47: la entrada `utm-guia-ejemplos-tributarios` | Corregido | Su `fixed` y `wrong` ahora coinciden con el texto (sin afirmación sobre el pago de multas; APV con el depósito anual; aranceles retirados). |
 
 Pendiente para ComplianceAgent (sin cambios): frase sin fuente del glosario sobre una «métrica prorrateada diaria» de la UTM; enlace BCN `idVersion=2025-07-11` (el auditor la confirmó en la página indexada con `idParte=`; el endpoint XML que usé yo devolvió contenido vacío para él).
+
+## Cuarta pasada de corrección 2026-11-10 (DraftAgent) — respuesta al MathAudit 3 (FAIL)
+
+Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni evalué compliance. El MathAudit 3 (commit `5671d6b1`, sin modificar) auditó `8dcb68bf` en un worktree limpio y no pudo determinar si su conversación es nueva o la misma de las rondas 1 y 2.
+
+**Corrección de un registro anterior de este draft:** la tercera pasada decía que la guía incluía la alternativa del saldo remanente del giro del APV; no la incluía (hallazgo 49). Se agrega ahora, y también a la entrada del registro. Esa misma pasada decía haber retirado todas las menciones de «trámites»; quedaban dos usos genéricos en el conversor, que se retiran ahora.
+
+| Hallazgo | Estado | Qué se hizo |
+|---|---|---|
+| ERROR 30, 44, 47: giro del 15 % sin la alternativa del saldo | Corregido | Guía y registro: «el 15 % del retiro, o el saldo remanente de la cuenta si éste fuese inferior» (art. 20 O DL 3.500, texto literal de la BCN versión 2025-09-01). |
+| ERROR 39: «montos, fórmulas y cálculos no cambiaron» | Corregido | La entrada ya no afirma que no hubo cambios y remite a la entrada `utm-guia-ejemplos-tributarios`. |
+| ERROR 46: UTA «× 12» universal | Corregido | Guía (tabla, FAQ, cuerpo, resumen), glosario y FAQ del conversor: UTM del último mes del año comercial × 12, o × el número de meses del año comercial si son menos de doce (SII, Diccionario). El resumen ya no dice «diciembre» sin calificar. |
+| ERROR 49: draft y registro inconsistentes | Corregido | Ver el aviso de arriba; los dos usos de «trámites» del conversor se retiraron. |
+| ERROR 50: numeración art. 201 de la Ley de Tránsito | Mitigado, no resuelto | El auditor afirma que en el texto refundido (DFL 1/2007) la escala está en el art. 204. No pude verificarlo: el texto que recupero en la BCN (`idNorma=29708`, 2026-11-10) la numera como art. 201. Para no afirmar un número que no verifiqué, se quitó el número de artículo del cuerpo, las FAQ, el glosario, el conversor y el registro; la lista de fuentes dice que en el texto de la BCN consultado es el art. 201 y que el refundido puede numerarla distinto. Pendiente que ComplianceAgent o el HumanEditor confirmen la numeración vigente. |
+| TODO:SOURCE 48: «métrica prorrateada diaria» del glosario | Afirmación retirada | Sin fuente, se eliminó la viñeta y se renombró la sección «UTA e Índice Diario» a «UTA». |
+| TODO:SOURCE 51: «redondeada al peso» como regla general | Afirmación retirada | Se quitó de la guía y del registro; queda «con un rezago de dos meses». |
