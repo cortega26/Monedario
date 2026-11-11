@@ -23,7 +23,6 @@ Mientras la UF es el estándar en el sector financiero y asegurador privado, la 
 
 - **Multas de Tránsito y Condenas:** La Ley de Tránsito N°18.290 fija sus multas en escalas de UTM (art. 201: por ejemplo, de 1,5 a 3 UTM para las infracciones gravísimas).
 - **Tramos de Impuestos:** El Impuesto Global Complementario (IGC) y el de Segunda Categoría (sueldos) definen sus tramos de exención y cobro en UTM o Unidades Tributarias Anuales (UTA).
-- **Trámites del Estado:** Algunos aranceles y derechos de trámites públicos se expresan en UTM; cada institución fija los suyos.
 
 ## UTA e Índice Diario
 

@@ -155,3 +155,20 @@ Misma sesión DraftAgent de la pasada anterior (`5781f981-67ac-4656-beba-a357f20
 - Glosario, sección «UTA e Índice Diario»: «Ocasionalmente se ve referenciada su métrica prorrateada diaria por el SII» no tiene fuente y no figura en el MathAudit 1. Candidata a retirarse.
 - La guía sigue enlazando la versión BCN `idVersion=2025-07-11` con la página de navegación, que a veces muestra una pantalla de espera; la cita literal se verificó por el endpoint XML.
 - No se tocó `sueldo-imponible-chile` ni los artículos con la ventana de revisión vencida.
+
+## Tercera pasada de corrección 2026-11-10 (DraftAgent) — respuesta al MathAudit 2 (FAIL)
+
+Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni evalué compliance. El MathAudit 2 (commit `4f1025c3`, sin modificar) auditó el commit `e888b3a8` en un worktree limpio; el auditor declara que lo hizo en la misma conversación que el MathAudit 1 (independiente de Research, brief y redacción, pero no una conversación nueva).
+
+| Hallazgo | Estado | Qué se hizo |
+|---|---|---|
+| ERROR 17: columna UTA mensual «solo referencial» | Corregido | Se retiró «referencial»: la tabla del SII muestra una UTA para cada mes (UTM × 12) y la del AT 2026 es la de diciembre de 2025. |
+| ERROR 29: límites enteros vs. centavos | Corregido | La tabla conserva los centavos del SII ($968.233,50; $968.233,51 – $2.151.630,00; etc.) y se eliminó la nota de redondeo. |
+| ERROR 30 y 44: bono APV «se paga al pensionarse» | Corregido | Texto del art. 20 O (BCN, versión 2025-09-01): el derecho se tiene al pensionarse, pero la bonificación se deposita anualmente en una cuenta individual especial, con la misma rentabilidad y comisiones, y por cada retiro se gira a la Tesorería el 15 % del retiro (o el saldo remanente si es menor). Tope de 6 UTM y límite de diez veces las cotizaciones obligatorias, sin cambios. |
+| TODO:SOURCE 36: valor de la UTM aplicable al pago de una multa | Corregido | Se reescribió el párrafo inicial de la guía: el monto resulta de multiplicar las UTM por el valor de la UTM «que se aplique a tu pago». No queda ninguna afirmación sobre «valor vigente en ese momento». |
+| TODO:SOURCE 37: aranceles y derechos «en UTM» | Afirmaciones retiradas | Sin fuente primaria recuperada para ningún arancel, se eliminó la sección «Aranceles y trámites del Estado», la viñeta del glosario y la del conversor, y las menciones genéricas de «aranceles de trámites» / «trámites» en la descripción, el lead, la respuesta rápida, las FAQ, las tablas y el resumen. Los usos que quedan están respaldados: multas (Ley 18.290, art. 201) y tramos de impuestos (SII). |
+| ERROR 39: entrada `utm-reajuste-mensual-copy` | Corregido | La entrada dice ahora que la guía y el glosario describen M−2 y que el conversor solo habla de reajuste mensual según el IPC; precisa que ya ninguna página afirma un día de cambio dentro del mes y que el glosario dice que el valor de cada mes rige durante ese mes calendario. |
+| ERROR 46: año comercial vs. año tributario de la UTA | Corregido | UTA = UTM del último mes del año comercial × 12 (SII); los tramos del IGC de un año tributario usan la UTA del año comercial anterior (AT 2026 → diciembre de 2025). Se corrigió también la fila «Definición» de la tabla UTM/UTA y la FAQ UTM vs. UTA. |
+| ERROR 47: la entrada `utm-guia-ejemplos-tributarios` | Corregido | Su `fixed` y `wrong` ahora coinciden con el texto (sin afirmación sobre el pago de multas; APV con el depósito anual; aranceles retirados). |
+
+Pendiente para ComplianceAgent (sin cambios): frase sin fuente del glosario sobre una «métrica prorrateada diaria» de la UTM; enlace BCN `idVersion=2025-07-11` (el auditor la confirmó en la página indexada con `idParte=`; el endpoint XML que usé yo devolvió contenido vacío para él).
