@@ -60,11 +60,11 @@ faqs:
   - q: "¿Cuál es la diferencia entre UTM y UTA?"
     a: "La UTM es mensual y es el valor base. La UTA equivale a la UTM del último mes del año comercial multiplicada por doce (o por el número de meses del año comercial, si son menos de doce) y se usa para calcular los tramos anuales del Impuesto Global Complementario."
   - q: "¿Cuál es la diferencia entre UTM y UF?"
-    a: "La UF se actualiza diariamente y la usa principalmente el sector privado en hipotecas, arriendos y créditos. La UTM cambia mensualmente y es el estándar para obligaciones con el Estado: multas e impuestos."
+    a: "La UF se actualiza diariamente y la usa principalmente el sector privado en hipotecas, arriendos y créditos. La UTM cambia mensualmente y aparece en las multas y en los tramos de impuestos."
   - q: "¿Las multas de tránsito se cobran en UTM?"
     a: "Sí. El artículo 204 del texto refundido de la Ley de Tránsito (N°18.290) fija las multas en escalas de UTM: 1,5 a 3 UTM (gravísimas), 1 a 1,5 (graves), 0,5 a 1 (menos graves) y 0,2 a 0,5 (leves); algunas infracciones tienen multas propias. El monto en pesos resulta de multiplicar las UTM por el valor de la UTM; para saber qué valor se aplica a tu pago, consulta al juzgado de policía local."
   - q: "¿Cómo afecta el IPC a la UTM?"
-    a: "El artículo cuarto transitorio del DL 830 dispone que la UTM «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del IPC de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. El SII publica el valor resultante de cada mes en sii.cl/valores_y_fechas/utm/utm2026.htm."
+    a: "El artículo cuarto transitorio del DL 830 dispone que la UTM «se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del IPC de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. El SII publica el valor resultante de cada mes en sii.cl/valores_y_fechas/utm/utm2026.htm."
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
@@ -114,7 +114,7 @@ Para ver la definición formal del término, consulta el [glosario UTM](/glosari
 
 El [artículo cuarto transitorio del Código Tributario (DL 830)](https://www.bcn.cl/leychile/navegar?idNorma=6374) dispone que la UTM:
 
-> «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad».
+> «se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad».
 
 En palabras simples: para la UTM de un mes (M) se usa la variación del **IPC (Índice de Precios al Consumidor)** del segundo mes anterior (M−2). Por ejemplo, la UTM de octubre se reajusta con la variación del IPC de agosto. La norma fija **qué mes de IPC** se usa; no señala un día específico del mes. El valor resultante de cada mes es el que publica el SII en su [tabla mensual](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm): en octubre de 2026, $72.151.
 
@@ -159,11 +159,11 @@ La duda más frecuente es confundir la UTM con la UF. Aunque ambas se reajustan 
 | --------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Frecuencia de actualización | Mensual (1 vez por mes)                                                                     | Diaria (cada día)                                                                         |
 | Quién la define             | La ley (DL 830); el SII publica su valor                                                    | Banco Central de Chile                                                                    |
-| Ámbito principal            | Estado: multas e impuestos                                                                  | Privado: hipotecas, arriendos, créditos                                                   |
+| Ámbito principal            | Multas e impuestos                                                                          | Privado: hipotecas, arriendos, créditos                                                   |
 | Mecanismo de reajuste       | Mensual, con la variación del IPC del segundo mes anterior (art. cuarto transitorio DL 830) | Diario: del 10 de cada mes al 9 del siguiente, según la variación del IPC (Banco Central) |
-| Efecto directo sobre ti     | En pagos al Estado                                                                          | En contratos privados indexados                                                           |
+| Efecto directo sobre ti     | En multas e impuestos                                                                       | En contratos privados indexados                                                           |
 
-**Regla para recordar:** Si la obligación es **con el Estado** → UTM. Si es **con un banco o arrendador privado** → UF.
+**Para recordar:** la UTM aparece en las multas y en los tramos de impuestos; la UF, en contratos privados como hipotecas, arriendos y créditos.
 
 Para entender en detalle cómo funciona la UF y cómo afecta tu arriendo o dividendo hipotecario, revisa [UF en simple: qué es y cómo te afecta](/posts/que-es-la-uf/). Si necesitas convertir montos en UF, usa el [conversor UF a pesos chilenos](/calculadoras/conversor-uf/).
 

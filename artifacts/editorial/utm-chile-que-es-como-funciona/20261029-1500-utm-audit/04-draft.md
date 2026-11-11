@@ -6,6 +6,8 @@ Role: DraftAgent (Claude Code, sesión nueva, separada del auditor)
 - Run id: `20261029-1500-utm-audit`
 - Slug: `utm-chile-que-es-como-funciona`
 - Plan: `docs/backlog/PLAN-utm-reajuste-copy-correction-2026-10-29.md`
+
+> **Nota de lectura (añadida en la sexta pasada).** Este archivo es un registro histórico por pasadas. Las secciones anteriores a la «Quinta pasada» describen estados que ya fueron superados (por ejemplo, la tabla de septiembre «aproximada» de la primera pasada o afirmaciones que una pasada posterior corrigió) y **no son evidencia del texto actual**. La evidencia del estado final es el texto del commit auditado más las tablas de disposición de las pasadas quinta y sexta.
 - Base: `d7418fc2d6cea9d7d4dfeab99c37e9f947d1f6ae` (sin commit)
 
 ## Archivos modificados
@@ -214,3 +216,21 @@ Verificaciones propias de esta pasada (2026-11-10, BCN y SII recuperados por mí
 | 13 | MENOR | Corregido | Base legal: art. 8 N.º 10 del Código Tributario (definición de unidad tributaria, de UTA y regla de sanciones); la definición de UTA del glosario y la guía lo citan además del SII. |
 
 Fuera de alcance (anotado por ComplianceAgent, no tocado): `sueldo-imponible-chile` con `expectedValue` de UTM desfasado y seis artículos con la ventana de revisión vencida.
+
+## Sexta pasada de corrección 2026-11-10 (DraftAgent) — respuesta al MathAudit 4 (FAIL, 64 filas)
+
+Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni evalué compliance. El MathAudit 4 (commit `9b1206b8`, sin modificar) auditó `0ff3c4e1` en una conversación nueva; el entorno no le dio un ID verificable.
+
+| Fila | Estado | Qué se hizo |
+|---|---|---|
+| ERROR 39 y 54: `utm-reajuste-mensual-copy.fixed[0]` decía que el glosario indica que el valor «rige durante todo el mes calendario» (frase ya retirada) y `fixed[2]` prometía «fecha de consulta» que el marcador dinámico no tiene | Corregido | `fixed[0]`: el glosario dice que la UTM «tiene un valor para cada mes, que publica el SII». `fixed[2]`: «dato dinámico del snapshot de Monedario». |
+| ERROR 53: línea visible de la UTA del conversor | Corregido | Ya no dice «según la definición del SII»: «12 × UTM de {período}, cierre de un año comercial de doce meses», que es lo que calcula el valor mostrado. El FAQ del conversor conserva la excepción de los años cortos. |
+| ERROR 59: «con el Estado → UTM; con un banco o arrendador → UF» | Corregido | Generalización absoluta retirada en la guía (FAQ, tabla comparativa, «Para recordar») y en el glosario («estándar en las relaciones monetarias con el Estado»): la UTM «aparece en las multas y en los tramos de impuestos»; la UF, en contratos privados. |
+| ERROR 60: cita del art. cuarto transitorio con elipsis que cambia el sentido | Corregido | Cita completa en guía (recuadro y FAQ) y glosario: «se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». |
+| ERROR 61: `fixed[3]` omite el año comercial corto | Corregido | La entrada incluye «o por el número de meses del año comercial si son menos de doce». |
+| ERROR 64: `prevention` afirmaba que una auditoría independiente revisó «todas» las cifras | Corregido | Se eliminó esa promesa. |
+| ERROR 40, 49, 62: afirmaciones históricas del draft presentadas como evidencia | Corregido | Nota de lectura al inicio: las pasadas anteriores a la quinta son registro histórico, no evidencia del texto actual. |
+| TODO:SOURCE 2 y 58: versión vigente del DL 830 | Evidencia aportada | Recuperé `consulta/obtxml?opt=7&idNorma=6374` el 2026-11-10: `fechaVersion="2026-10-17"`; el art. cuarto transitorio y el art. 8 N.º 10 coinciden con la versión 2025-07-11 (texto literal en la pasada quinta). Límite de acceso del auditor, no discrepancia de contenido. |
+| TODO:SOURCE 52: DL 3.500 vigente | **No cerrado** | Recuperé el art. 20 O de la versión 2025-09-01 de la BCN. Al intentar la versión vigente, la BCN devolvió una pantalla de espera (3 intentos); no pude comparar. El texto no afirma «versión vigente» del DL 3.500. Pendiente de confirmación humana. |
+| TODO:SOURCE 11: valor dinámico vigente | Evidencia aportada | En el HTML generado de la guía aparece $72.440, igual al snapshot y a la tabla SII de noviembre. El auditor no tenía render ni snapshot en su alcance. |
+| TODO:SOURCE 55: atribuciones históricas de `wrong` | Evidencia aportada | Verificadas contra las versiones de `main` (frases «sube o baja», «puede bajar o mantenerse», «la UTM subirá», «suba mes a mes», «primer día hábil», «mes anterior»); el auditor no tenía acceso a versiones anteriores. |
