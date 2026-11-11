@@ -73,7 +73,7 @@ const conversorUtmTitle = `Valor UTM hoy: $${utmDisplay} — Convertir UTM a pes
 const conversorUtmDescription = `Valor UTM hoy: $${utmDisplay} (${utmDateDisplay}). Convierte 1, 2, 5, 10, 20, 50 o 100 UTM a pesos chilenos al valor oficial del SII, con tabla de referencia.`;
 const utmRefs = [
   { label: "1 UTM", utm: 1 },
-  { label: "2 UTM (multa de tránsito común)", utm: 2 },
+  { label: "2 UTM (ejemplo)", utm: 2 },
   { label: "5 UTM", utm: 5 },
   { label: "10 UTM", utm: 10 },
   { label: "13,5 UTM (tope exención 2ª categoría)", utm: 13.5 },
@@ -124,23 +124,23 @@ const calculatorNextStepItems = [
 const conversorUtmFaqs = [
   {
     question: "¿Cuánto vale 1 UTM en pesos chilenos hoy?",
-    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta el primer día de cada mes según la variación del IPC, así que conviene confirmar el valor vigente antes de usarlo en una multa, un impuesto o un trámite.`,
+    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta mensualmente de acuerdo con el IPC y el SII publica su valor para cada mes, así que conviene confirmar el valor vigente antes de usarlo en una multa o un impuesto.`,
   },
   {
     question:
-      "¿Cómo convierto un monto en UTM (una multa o un trámite) a pesos?",
+      "¿Cómo convierto un monto en UTM (por ejemplo, una multa) a pesos?",
     answer:
-      "Ingresa la cantidad de UTM en la calculadora y se multiplica automáticamente por el valor vigente del mes. Por ejemplo, una multa de 10 UTM o un derecho de 5 UTM se convierten al instante a pesos. También puedes hacer la conversión inversa: escribir el monto en pesos y ver a cuántas UTM equivale.",
+      "Ingresa la cantidad de UTM en la calculadora y se multiplica automáticamente por el valor vigente del mes. Por ejemplo, una multa de 10 UTM o un monto de 5 UTM se convierten al instante a pesos. También puedes hacer la conversión inversa: escribir el monto en pesos y ver a cuántas UTM equivale.",
   },
   {
     question: "¿Por qué el valor de la UTM cambia todos los meses?",
     answer:
-      "Porque la UTM es una unidad reajustable: el SII la actualiza cada mes según la inflación (IPC) del mes anterior medida por el INE. Por eso un monto expresado en UTM conserva su valor real en el tiempo, aunque su equivalente en pesos suba mes a mes.",
+      "Porque la UTM es una unidad reajustable: se reajusta mensualmente de acuerdo con la inflación medida por el IPC, y el SII publica su valor para cada mes. Por eso un monto expresado en UTM se ajusta con la inflación en vez de quedar fijo en pesos, aunque su equivalente en pesos cambie con cada reajuste mensual.",
   },
   {
     question: "¿Qué diferencia hay entre UTM, UTA y UF?",
     answer:
-      "La UTM (Unidad Tributaria Mensual) se usa para multas, impuestos y trámites, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
+      "La UTM (Unidad Tributaria Mensual) se usa para multas e impuestos, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM del último mes del año comercial multiplicada por 12 (o por el número de meses del año comercial, si son menos de doce) y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
   },
   {
     question: "¿Cuánto es 10 UTM en pesos chilenos?",
@@ -316,7 +316,7 @@ const conversorUtmFaqs = [
           {utaDisplay ? (
             <p class="mt-1 text-xs text-muted">
               UTA de referencia anual: {utaDisplay} (12 × UTM de{" "}
-              {utaPeriodLabel}, cierre del año comercial).
+              {utaPeriodLabel}, cierre de un año comercial de doce meses).
             </p>
           ) : null}
         </div>
@@ -327,30 +327,25 @@ const conversorUtmFaqs = [
       <h2>¿Qué es la UTM y para qué sirve?</h2>
       <p>
         La <strong>Unidad Tributaria Mensual (UTM)</strong> es la unidad que usa
-        el Estado chileno para fijar multas, tramos de impuestos y aranceles de
-        trámites. Cambia el primer día hábil de cada mes según el IPC del mes
-        anterior, publicado por el INE.
+        el Estado chileno para fijar multas y tramos de impuestos. Se reajusta
+        mensualmente de acuerdo con el IPC y el SII publica su valor para cada
+        mes.
       </p>
       <ul>
         <li>
-          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290
-          expresa las sanciones en UTM. El monto en pesos depende de la UTM
-          vigente al momento del pago.
+          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290 fija
+          las multas en escalas de UTM. Para saber qué valor de la UTM se aplica
+          a tu pago, consulta al juzgado de policía local.
         </li>
         <li>
           <strong>Impuesto a la renta:</strong> el tramo exento del Impuesto de
           Segunda Categoría equivale a 13,5 UTM mensuales. La tabla completa se
           reajusta cada mes con la UTM.
         </li>
-        <li>
-          <strong>Trámites y aranceles:</strong> costos notariales, consulares y
-          del Conservador de Bienes Raíces se expresan en UTM.
-        </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ El valor de la UTM cambia el primer día hábil de cada mes. Este
-        conversor usa la última actualización disponible. Para el dato oficial
-        vigente consulta el{" "}
+        ⚠️ El valor de la UTM cambia cada mes. Este conversor usa la última
+        actualización disponible. Para el dato oficial vigente consulta el{" "}
         <a
           href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
           target="_blank"
@@ -403,12 +398,22 @@ const conversorUtmFaqs = [
     <ShareCalculatorResult />
     <MethodologyBlock
       example={utmWorkedExample.example}
-      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
+      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta mensualmente de acuerdo con el IPC (SII, Diccionario básico tributario contable; SII Educa) y el SII publica su valor para cada mes. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en multas o impuestos.`}
       sources={[
         {
           name: "SII — Valores UTM vigentes",
           url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
           date: utmLastUpdated,
+        },
+        {
+          name: "SII — Diccionario básico tributario contable (UTM)",
+          url: "https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html",
+          date: "2026-11-10",
+        },
+        {
+          name: "SII Educa — Tipos de impuestos en Chile (reajuste mensual de la UTM)",
+          url: "https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html",
+          date: "2026-11-10",
         },
         {
           name: "mindicador.cl — transporte de respaldo del snapshot",

@@ -2663,13 +2663,13 @@
       "targetImagePath": "/images/hero/utm-chile-que-es-como-funciona.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "fc5f109cf3cfe150f8f49c217aa900d8258d224993f2cc07b35c1bea4caa8321",
-      "briefHash": "6d0153347dbf7b2b6e2fb719599122f47ffa106f264c340f014acc4c10f179e9",
+      "sourceContentHash": "270ce6c1083f5e6d39aa215cf982b41f7d10cd2970779421268bfe862b141a45",
+      "briefHash": "7ea09106ce4513637666762a450a76c1f7357dc942a43531cb328ff22047fa68",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-01",
+        "reviewedAt": "2026-11-10",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit. Visual revision after rejected raster inspection: simplified the authorized visual message to remove misleading symbols; editorial source and promise preserved. This remains illustration curation, not financial compliance or human publication signoff."
+        "method": "Revalidación 2026-11-10 (corrección del copy de reajuste de la UTM): se retira la regla no respaldada del primer día hábil y del IPC del mes anterior y se reemplaza por la regla del DL 830 con fuente SII y BCN. El mensaje visual de la portada (el mes importa al interpretar una unidad reajustable) no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL ni firma de publicación."
       },
       "template": "C",
       "promptTrack": "C",

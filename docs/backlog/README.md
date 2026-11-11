@@ -86,6 +86,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Audit of the Small Details | `PLAN-audit-small-details-2026-05-22.md` | Programa activo de auditoria y backlog `ASD-###`; primera pasada audit-only completa |
 | ~~Trigger manual del export de analytics~~ | `PLAN-analytics-export-manual-trigger-2026-06-30.md` | **Cerrado 2026-07-07** — endpoint manual `GET /api/analytics/export?secret=&week=` implementado, desplegado y verificado contra R2 para W26/W27 |
 | CTR UTM/UF (tráfico P0) | `PLAN-growth-utm-ctr-2026-09-16.md` | F1 desplegado; lectura primaria F5 vence 2026-09-30; FOCO hasta 2026-11-02, sin URLs nuevas |
+| Corrección de explicación UTM (YMYL) | `PLAN-utm-reajuste-copy-correction-2026-10-29.md` | Revisión local; resolver del gate debe aceptar la ficha dinámica del glosario; sin URL nueva ni publicación |
 | Panel post-resultado (funnel) | `PLAN-result-panel-conversion-2026-09-16.md` | F1+F2 desplegados; F4 dos semanas comparables desde 2026-09-16; piloto UTM, no ampliar sin umbral |
 | Refresco y consolidación contenido | `PLAN-content-refresh-consolidation-2026-09-16.md` | Piloto packet FIRMADO (publish); lote 1 artículo 2 en compliance CONDITIONAL; lotes 2–5 encolables tras firma |
 | Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | En acumulación de evidencia (F1); paquete de decisión listo (`DECISION-monetization-2026-11-02.md`, kit B2B y ADR borrador), sin implementar |
