@@ -73,7 +73,7 @@ const conversorUtmTitle = `Valor UTM hoy: $${utmDisplay} — Convertir UTM a pes
 const conversorUtmDescription = `Valor UTM hoy: $${utmDisplay} (${utmDateDisplay}). Convierte 1, 2, 5, 10, 20, 50 o 100 UTM a pesos chilenos al valor oficial del SII, con tabla de referencia.`;
 const utmRefs = [
   { label: "1 UTM", utm: 1 },
-  { label: "2 UTM (multa de tránsito común)", utm: 2 },
+  { label: "2 UTM (ejemplo)", utm: 2 },
   { label: "5 UTM", utm: 5 },
   { label: "10 UTM", utm: 10 },
   { label: "13,5 UTM (tope exención 2ª categoría)", utm: 13.5 },
@@ -130,7 +130,7 @@ const conversorUtmFaqs = [
     question:
       "¿Cómo convierto un monto en UTM (por ejemplo, una multa) a pesos?",
     answer:
-      "Ingresa la cantidad de UTM en la calculadora y se multiplica automáticamente por el valor vigente del mes. Por ejemplo, una multa de 10 UTM o un derecho de 5 UTM se convierten al instante a pesos. También puedes hacer la conversión inversa: escribir el monto en pesos y ver a cuántas UTM equivale.",
+      "Ingresa la cantidad de UTM en la calculadora y se multiplica automáticamente por el valor vigente del mes. Por ejemplo, una multa de 10 UTM o un monto de 5 UTM se convierten al instante a pesos. También puedes hacer la conversión inversa: escribir el monto en pesos y ver a cuántas UTM equivale.",
   },
   {
     question: "¿Por qué el valor de la UTM cambia todos los meses?",
@@ -140,7 +140,7 @@ const conversorUtmFaqs = [
   {
     question: "¿Qué diferencia hay entre UTM, UTA y UF?",
     answer:
-      "La UTM (Unidad Tributaria Mensual) se usa para multas e impuestos, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM del último mes del año comercial multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
+      "La UTM (Unidad Tributaria Mensual) se usa para multas e impuestos, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM del último mes del año comercial multiplicada por 12 (o por el número de meses del año comercial, si son menos de doce) y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
   },
   {
     question: "¿Cuánto es 10 UTM en pesos chilenos?",
@@ -316,7 +316,8 @@ const conversorUtmFaqs = [
           {utaDisplay ? (
             <p class="mt-1 text-xs text-muted">
               UTA de referencia anual: {utaDisplay} (12 × UTM de{" "}
-              {utaPeriodLabel}, cierre del año comercial).
+              {utaPeriodLabel}, cierre del año comercial, según la definición
+              del SII).
             </p>
           ) : null}
         </div>

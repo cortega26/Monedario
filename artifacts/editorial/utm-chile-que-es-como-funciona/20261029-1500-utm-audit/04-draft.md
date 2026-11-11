@@ -188,3 +188,29 @@ Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni
 | ERROR 50: numeración art. 201 de la Ley de Tránsito | Mitigado, no resuelto | El auditor afirma que en el texto refundido (DFL 1/2007) la escala está en el art. 204. No pude verificarlo: el texto que recupero en la BCN (`idNorma=29708`, 2026-11-10) la numera como art. 201. Para no afirmar un número que no verifiqué, se quitó el número de artículo del cuerpo, las FAQ, el glosario, el conversor y el registro; la lista de fuentes dice que en el texto de la BCN consultado es el art. 201 y que el refundido puede numerarla distinto. Pendiente que ComplianceAgent o el HumanEditor confirmen la numeración vigente. |
 | TODO:SOURCE 48: «métrica prorrateada diaria» del glosario | Afirmación retirada | Sin fuente, se eliminó la viñeta y se renombró la sección «UTA e Índice Diario» a «UTA». |
 | TODO:SOURCE 51: «redondeada al peso» como regla general | Afirmación retirada | Se quitó de la guía y del registro; queda «con un rezago de dos meses». |
+
+## Quinta pasada de corrección 2026-11-10 (DraftAgent) — respuesta al ComplianceAgent 2 (FAIL, 8,20/10)
+
+Misma sesión DraftAgent (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni evalué compliance. El informe `06-compliance.md` (commit `a290f6d8`, sin modificar) evaluó `9df66c6f` con la sesión `2eafee49-faae-4b5a-8e7d-1b91f20967c7`; declara que el hook de claude-mem inyectó títulos de observaciones y el estado de trabajo de las pasadas de corrección en su contexto (no usados como evidencia). Decide el HumanEditor si eso cumple el requisito de cero exposición.
+
+**Corrección de un registro anterior de este draft:** la cuarta pasada decía haber añadido la excepción de los años comerciales cortos al FAQ del conversor y al resumen de la guía; no estaba. Ahora sí (hallazgo 7), igual que en la línea visible de la UTA del conversor.
+
+Verificaciones propias de esta pasada (2026-11-10, BCN y SII recuperados por mí): DFL 1/2007 (`idNorma=1007469`), art. 204: escala 1,5–3 / 1–1,5 / 0,5–1 / 0,2–0,5 UTM, anotada «LEY Nº18.290 Art. 201»; Código Tributario art. 8 N.º 10 (definición de «unidad tributaria» y «unidad tributaria anual», regla de sanciones y redondeo) y art. 97 N.º 1 (multa de una UTM a una UTA); versión vigente del DL 830 `fechaVersion="2026-10-17"`, con el art. cuarto transitorio y el art. 8 N.º 10 idénticos a la versión 2025-07-11; `renta/2026/personas_naturales.html` contiene $11.265.804 y $417.252.
+
+| # | Sev. | Estado | Qué se hizo |
+|---|---|---|---|
+| 1 | BLOQUEANTE | **Sin resolver (requiere otra sesión)** | Falta el MathAudit ronda 4 sobre el HEAD de esta pasada, en conversación nueva con ID anotado. Debe re-evaluar las filas 30, 39, 44, 46–51 y los puntos de esta pasada. |
+| 2 | MAYOR | Corregido | La guía y la entrada del registro citan «DFL 1/2007 (texto refundido), art. 204» con enlace a `idNorma=1007469` y fecha de consulta; se eliminó el aviso de duda; el glosario y la FAQ de multas dicen «art. 204 del texto refundido»; `idNorma 1007469` registrado en el gate de citas legales. |
+| 3 | MAYOR | Corregido | La FAQ «¿Cuánto vale la UTM hoy?» ya no fija un valor: remite a la tabla del SII y al valor dinámico de la «Respuesta rápida». «UTA anual vigente» → «UTA del año tributario 2026». No hay valor fijo «de hoy» en el frontmatter, por lo que no se agregó `expectedValue`. |
+| 4 | MAYOR | **No tocado (Bucket A/B)** | `02-dossier.md`, `sources.yaml`, `01-brief.yaml` y `metadata.yaml` siguen en el corte 2026-10-29 y sin las fuentes de las pasadas posteriores; los actualiza ResearchAgent o el dueño del brief, o el HumanEditor documenta la desviación. |
+| 5 | MAYOR | Corregido | (a) «Multas tributarias»: cita art. 97 N.º 1 con su texto y la regla de sanciones del art. 8 N.º 10. (b) IGC: se eliminó el deferral de los tramos; queda el umbral con su fuente y una nota. Los tramos del IGC no se incorporan al artículo: decisión de alcance, a confirmar por el HumanEditor. (c) Los enlaces apuntan a `renta/2026/personas_naturales.html`. |
+| 6 | MAYOR | **Humano** | Mapa de identidad con IDs de sesión en `07-publish-packet.md`. |
+| 7 | MENOR | Corregido | Excepción de los años comerciales cortos en el FAQ del conversor, en el resumen de la guía y «según la definición del SII» en la línea visible de la UTA del conversor. |
+| 8 | MENOR | Corregido | `fixed[3]` coincide con el glosario; se registra el retiro de «cotizaciones»; `wrong[1]` distingue lo que decía cada página («sube o baja», «la UTM subirá», «suba mes a mes»). |
+| 9 | MENOR | Corregido | Los enlaces al DL 830 apuntan a `idNorma=6374` sin `idVersion`, con fecha de consulta y la versión vigente del 2026-10-17. |
+| 10 | MENOR | Corregido | La «Respuesta rápida» añade «Vigencia de la regla» con la fecha de consulta y la versión de la norma. |
+| 11 | MENOR | Corregido | Glosario: «tiene un valor para cada mes, que publica el SII»; conversor: «2 UTM (ejemplo)» y «un monto de 5 UTM». |
+| 12 | MENOR | Corregido | El aviso dice «Fecha de corte de la información: 2026-11-10. Cubre…» y ya no afirma que la revisión «verificó» nada. |
+| 13 | MENOR | Corregido | Base legal: art. 8 N.º 10 del Código Tributario (definición de unidad tributaria, de UTA y regla de sanciones); la definición de UTA del glosario y la guía lo citan además del SII. |
+
+Fuera de alcance (anotado por ComplianceAgent, no tocado): `sueldo-imponible-chile` con `expectedValue` de UTM desfasado y seis artículos con la ventana de revisión vencida.
