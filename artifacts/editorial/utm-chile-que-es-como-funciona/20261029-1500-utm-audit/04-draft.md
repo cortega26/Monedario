@@ -125,3 +125,33 @@ Salvedad: la página del SII muestra solo el mes vigente de la tabla del impuest
 1. MathAuditAgent independiente (sesión distinta de Research/brief): auditar el diff de esta pasada, la regla del DL 830 con su cita literal y la tabla de verificación anterior; registrar IDs de sesión.
 2. ComplianceAgent en sesión limpia con acceso al diff completo, `check:correcciones` y el build.
 3. HumanEditor: sign-off de `07-publish-packet.md`.
+
+## Segunda pasada de corrección 2026-11-10 (DraftAgent) — respuesta al MathAudit 1 (FAIL)
+
+Misma sesión DraftAgent de la pasada anterior (`5781f981-67ac-4656-beba-a357f2001bc9`). No audité ni evalué compliance de esta pieza.
+
+**Aviso de alcance del MathAudit 1.** El informe `05-math-audit.md` (commit `7c71dca9`, guardado sin modificar) auditó el checkout local `2911b184` más archivos sin commit, es decir, el texto anterior a la primera pasada de hoy. Por eso tres de sus ocho ERROR describen texto que ya no existe en esta rama: la FAQ «hoy» con el valor de octubre, el marcador `[[utm | clp]]` «inexistente» y la entrada de correcciones desfasada. Hace falta un MathAudit 2 sobre el commit final de esta rama.
+
+### Disposición de los 8 ERROR y 5 TODO:SOURCE
+
+| Hallazgo | Estado | Qué se hizo |
+|---|---|---|
+| ERROR FAQ «hoy» responde octubre | Ya corregido (pasada 1) | FAQ con la UTM de noviembre ($72.440), URL y fecha de consulta. |
+| ERROR UTA «una vez al año» / columna mensual «no sirve para el IGC» | Corregido | Tabla: «12 × la UTM del último mes del año comercial»; la columna mensual del SII se describe como referencial y los tramos del IGC se expresan en la UTA que fija el SII para el año tributario. |
+| ERROR glosario «comercializada por 12 meses» | Corregido | «multiplicada por doce» con cita del Diccionario del SII. |
+| ERROR umbral «bruto/mes» | Corregido | Se expresa sobre la renta líquida imponible y se aclara que no es la remuneración bruta; también en la frase de retención. |
+| ERROR APV «15% del ahorro anual» | Corregido | Redactado con el art. 20 O del DL 3.500 (texto literal recuperado de la BCN, versión 2025-09-01): bonificación al pensionarse, 15 % de lo ahorrado que se destine a adelantar o incrementar la pensión, tope anual de 6 UTM (UTM al 31 de diciembre del año del ahorro) y aportes del año de hasta diez veces las cotizaciones obligatorias. |
+| ERROR «mismo valor real» | Corregido | Guía y conversor: «se ajusta con la inflación» con rezago de dos meses y redondeo al peso. |
+| ERROR «SII regula/define la UTM» | Corregido | La ley (DL 830) establece el reajuste y el SII publica el valor; también la fila «Quién la define» de la comparación con la UF. |
+| ERROR entrada de correcciones desfasada | Corregido | La entrada `utm-reajuste-mensual-copy` ya se había ampliado (pasada 1); se añade `utm-guia-ejemplos-tributarios` con los cambios de significado de esta pasada. |
+| TODO:SOURCE versión BCN 2025-07-11 | Evidencia aportada | El enlace de navegación de la BCN mostró una pantalla de espera al auditor; la versión 2025-07-11 se recuperó el 2026-11-10 por el endpoint `consulta/obtxml?opt=7&idNorma=6374&idVersion=2025-07-11` y contiene el texto literal citado. Falta que el MathAudit 2 la confirme. |
+| TODO:SOURCE límites en pesos enteros vs. centavos | Corregido | El umbral se da como $968.233,50 y la nota de la tabla dice que los límites están redondeados a pesos enteros. |
+| TODO:SOURCE Ley 18.290 | Evidencia aportada | Texto literal del art. 201 (BCN, `idNorma=29708`, 2026-11-10): escala 1,5–3 (gravísimas), 1–1,5 (graves), 0,5–1 (menos graves) y 0,2–0,5 UTM (leves). Se citan la escala y la fuente; se retiró la afirmación sobre el valor «al momento del pago». |
+| TODO:SOURCE aranceles consulares, notariales, CBR y pasaportes | Afirmación retirada | Sin fuente primaria recuperada: se eliminó la tabla y las menciones específicas; queda una frase genérica que remite a cada institución. |
+| TODO:SOURCE «2 a 5 UTM» del glosario | Corregido | Reemplazado por la escala del art. 201. |
+
+### Observaciones que NO corregí (para ComplianceAgent)
+
+- Glosario, sección «UTA e Índice Diario»: «Ocasionalmente se ve referenciada su métrica prorrateada diaria por el SII» no tiene fuente y no figura en el MathAudit 1. Candidata a retirarse.
+- La guía sigue enlazando la versión BCN `idVersion=2025-07-11` con la página de navegación, que a veces muestra una pantalla de espera; la cita literal se verificó por el endpoint XML.
+- No se tocó `sueldo-imponible-chile` ni los artículos con la ventana de revisión vencida.

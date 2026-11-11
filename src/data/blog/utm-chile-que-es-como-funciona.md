@@ -62,7 +62,7 @@ faqs:
   - q: "¿Cuál es la diferencia entre UTM y UF?"
     a: "La UF se actualiza diariamente y la usa principalmente el sector privado en hipotecas, arriendos y créditos. La UTM cambia mensualmente y es el estándar para obligaciones con el Estado: multas, impuestos y trámites."
   - q: "¿Las multas de tránsito se cobran en UTM?"
-    a: "Sí. La Ley de Tránsito N°18.290 expresa muchas sanciones en UTM. El monto en pesos se calcula multiplicando las UTM de la multa por el valor de la UTM vigente al momento del pago."
+    a: "Sí. El artículo 201 de la Ley de Tránsito N°18.290 fija las multas en escalas de UTM: 1,5 a 3 UTM (gravísimas), 1 a 1,5 (graves), 0,5 a 1 (menos graves) y 0,2 a 0,5 (leves); algunas infracciones tienen multas propias. El monto en pesos resulta de multiplicar las UTM por el valor de la UTM; para saber qué valor se aplica a tu pago, consulta al juzgado de policía local."
   - q: "¿Cómo afecta el IPC a la UTM?"
     a: "El artículo cuarto transitorio del DL 830 dispone que la UTM «se reajustará mensualmente […] en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del IPC de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. El SII publica el valor resultante de cada mes en sii.cl/valores_y_fechas/utm/utm2026.htm."
 reviewPolicy:
@@ -102,9 +102,9 @@ Si quieres ver este frente completo junto con UF, reajustes y herramientas, entr
 
 La **Unidad Tributaria Mensual (UTM)** es una unidad de medida del valor monetario definida por el Estado chileno que sirve como denominador común para expresar multas, obligaciones tributarias y aranceles de trámites públicos.
 
-No es una moneda ni un tipo de cambio. Es una **unidad de cuenta reajustable**: un número de referencia que se reajusta mensualmente de acuerdo con el IPC y cuyo valor para cada mes publica el SII, de modo que una obligación de "3 UTM" mantiene el mismo valor real aunque los precios del país cambien.
+No es una moneda ni un tipo de cambio. Es una **unidad de cuenta reajustable**: un número de referencia que se reajusta mensualmente de acuerdo con el IPC y cuyo valor para cada mes publica el SII, de modo que una obligación de "3 UTM" se ajusta con la inflación (con un rezago de dos meses y redondeada al peso) en vez de quedar fija en pesos.
 
-La regula y publica el **SII (Servicio de Impuestos Internos)**, que publica su valor cada mes. El SII explica que la UTM se actualiza según el Índice de Precios al Consumidor (IPC) ([Diccionario básico tributario contable](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html)) y que ese reajuste es mensual ([SII Educa](https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html)).
+Su reajuste lo establece la ley (artículo cuarto transitorio del DL 830) y el **SII (Servicio de Impuestos Internos)** publica su valor cada mes. El SII explica que la UTM se actualiza según el Índice de Precios al Consumidor (IPC) ([Diccionario básico tributario contable](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html)) y que ese reajuste es mensual ([SII Educa](https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html)).
 
 Para ver la definición formal del término, consulta el [glosario UTM](/glosario/utm/).
 
@@ -128,12 +128,12 @@ La UTM está definida en el **Código Tributario** (DL 830/1974); su reajuste me
 
 La UTM tiene una derivada anual: la **UTA (Unidad Tributaria Anual)**. Son dos caras del mismo sistema:
 
-| Característica | UTM                            | UTA                                      |
-| -------------- | ------------------------------ | ---------------------------------------- |
-| Período        | Mensual                        | Anual                                    |
-| Definición     | Valor base mensual             | 12 × UTM de diciembre                    |
-| Actualización  | Mensual, según el IPC          | Una vez al año (fija por año calendario) |
-| Uso principal  | Multas, cotizaciones, trámites | Tramos del Impuesto a la Renta anual     |
+| Característica | UTM                            | UTA                                          |
+| -------------- | ------------------------------ | -------------------------------------------- |
+| Período        | Mensual                        | Anual                                        |
+| Definición     | Valor base mensual             | 12 × UTM de diciembre                        |
+| Actualización  | Mensual, según el IPC          | 12 × la UTM del último mes del año comercial |
+| Uso principal  | Multas, cotizaciones, trámites | Tramos del Impuesto a la Renta anual         |
 
 ### ¿Cómo se calcula la UTA?
 
@@ -141,7 +141,7 @@ La UTA de un año equivale a **12 veces la UTM del mes de diciembre** de ese añ
 
 **Ejemplo orientativo** _(solo referencia — verifica siempre el valor vigente en SII.cl)_:
 
-- UTA anual vigente (año tributario 2026): $834.504 (= 12 × $69.542, con la UTM de diciembre de 2025). La columna "UTA" mensual de la tabla SII (UTM del mes × 12) es solo referencial y no sirve para el IGC.
+- UTA anual vigente (año tributario 2026): $834.504 (= 12 × $69.542, con la UTM de diciembre de 2025). La tabla del SII también muestra una columna "UTA" mensual (UTM del mes × 12), que es solo referencial; los tramos del IGC se expresan en la UTA que fija el SII para el año tributario.
 
 > **Nota:** Los tramos anuales del IGC usan la UTA del año tributario correspondiente, según la tabla oficial del SII. Consulta los valores exactos para tu declaración en [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html).
 
@@ -156,7 +156,7 @@ La duda más frecuente es confundir la UTM con la UF. Aunque ambas se reajustan 
 | Característica              | UTM                                                                                         | UF                                                                                        |
 | --------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Frecuencia de actualización | Mensual (1 vez por mes)                                                                     | Diaria (cada día)                                                                         |
-| Quién la define             | SII (Servicio de Impuestos Internos)                                                        | Banco Central de Chile                                                                    |
+| Quién la define             | La ley (DL 830); el SII publica su valor                                                    | Banco Central de Chile                                                                    |
 | Ámbito principal            | Estado: multas, impuestos, trámites                                                         | Privado: hipotecas, arriendos, créditos                                                   |
 | Mecanismo de reajuste       | Mensual, con la variación del IPC del segundo mes anterior (art. cuarto transitorio DL 830) | Diario: del 10 de cada mes al 9 del siguiente, según la variación del IPC (Banco Central) |
 | Efecto directo sobre ti     | En pagos al Estado                                                                          | En contratos privados indexados                                                           |
@@ -171,9 +171,9 @@ Para entender en detalle cómo funciona la UF y cómo afecta tu arriendo o divid
 
 ### Multas de tránsito y sanciones legales
 
-La **Ley de Tránsito N°18.290** expresa la mayoría de sus multas en UTM. Cuando pagas una multa, el monto en pesos se calcula multiplicando las UTM de la sanción por el valor vigente **al momento del pago**, no al momento de la infracción.
+El **artículo 201 de la Ley de Tránsito N°18.290** fija las multas en escalas de UTM: 1,5 a 3 UTM para las infracciones gravísimas, 1 a 1,5 para las graves, 0,5 a 1 para las menos graves y 0,2 a 0,5 para las leves (algunas infracciones tienen multas propias). El monto en pesos resulta de multiplicar las UTM de la sanción por el valor de la UTM; para saber qué valor se aplica a tu pago, consulta al juzgado de policía local.
 
-**Ejemplo orientativo** _(solo referencia — el monto exacto depende de la infracción y del UTM vigente al pago)_:
+**Ejemplo orientativo** _(solo conversiones de ejemplo, no son tramos de la ley — el monto exacto depende de la infracción y del valor de la UTM que se aplique)_:
 
 | Multa (en UTM) | Equivalente aprox. en pesos (UTM septiembre 2026: $71.721) |
 | -------------- | ---------------------------------------------------------- |
@@ -181,7 +181,7 @@ La **Ley de Tránsito N°18.290** expresa la mayoría de sus multas en UTM. Cuan
 | 2 UTM          | ~$143.442                                                  |
 | 5 UTM          | ~$358.605                                                  |
 
-> **Importante:** El valor exacto en pesos depende de la UTM **del mes en que efectúas el pago**. Si la multa vence en un mes distinto al de la infracción, el monto en pesos puede variar. Verifica siempre el UTM vigente en SII.cl antes de pagar.
+> **Importante:** El valor en pesos depende del valor de la UTM que se aplique a tu caso, que puede variar de un mes a otro. Confirma el monto exacto con el juzgado de policía local o la municipalidad antes de pagar.
 
 ### Tramos del Impuesto a la Renta
 
@@ -189,7 +189,7 @@ El Estado usa UTM (para cálculo mensual) y UTA (para cálculo anual) para fijar
 
 **Impuesto Único de Segunda Categoría (Art. 43 N°1 LIR — sueldos y pensiones):**
 
-El umbral de exención es de **13,5 UTM mensuales**. Para septiembre 2026 (UTM = $71.721), el umbral de exención equivale a **$968.233 bruto/mes aproximado**.
+La **renta líquida imponible** mensual está exenta hasta **13,5 UTM**. Para septiembre 2026 (UTM = $71.721) eso equivale a **$968.233,50** (aquí redondeado a pesos enteros). La renta líquida imponible es la remuneración después de descontar las cotizaciones previsionales y de salud obligatorias; no es la remuneración bruta.
 
 | Tramo mensual — orientativo, septiembre 2026 | Tasa marginal |
 | -------------------------------------------- | ------------- |
@@ -202,9 +202,9 @@ El umbral de exención es de **13,5 UTM mensuales**. Para septiembre 2026 (UTM =
 | $8.606.521 – $22.233.510                     | 35%           |
 | Más de $22.233.510                           | 40%           |
 
-> **Tabla orientativa — datos de septiembre 2026.** Los tramos en pesos cambian cada mes con la UTM. Fuente: [SII — Impuesto Único 2da Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica siempre la tabla vigente del mes correspondiente.
+> **Tabla orientativa — datos de septiembre 2026.** Los tramos en pesos cambian cada mes con la UTM, y aquí los límites están redondeados a pesos enteros (el SII los publica con centavos). Fuente: [SII — Impuesto Único 2da Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica siempre la tabla vigente del mes correspondiente.
 
-Si tu remuneración bruta mensual supera el umbral, tu empleador aplica retención mensual según los tramos progresivos hasta el 40%. Para calcular tu retención, usa la [calculadora de Impuesto de Segunda Categoría](/calculadoras/impuesto-segunda-categoria/).
+Si tu renta líquida imponible mensual supera el umbral, tu empleador aplica retención mensual según los tramos progresivos hasta el 40%. Para calcular tu retención, usa la [calculadora de Impuesto de Segunda Categoría](/calculadoras/impuesto-segunda-categoria/).
 
 **Impuesto Global Complementario (IGC — anual):**
 
@@ -212,22 +212,13 @@ El IGC usa la UTA para definir los tramos anuales. El umbral estándar de exenci
 
 ### APV Régimen A — bono estatal
 
-Si tienes APV (Ahorro Previsional Voluntario) en el Régimen A, el Estado bonifica con el 15% del ahorro anual. El monto máximo del bono está limitado en UTM: **6 UTM anuales de subsidio máximo** según el art. 20 letra O) del D.L. N° 3.500.
+Si acoges tu APV (Ahorro Previsional Voluntario) al Régimen A (art. 20 L letra a del D.L. N° 3.500), al momento de pensionarte el Estado paga una bonificación equivalente al **15% de lo ahorrado** que destines a adelantar o incrementar tu pensión (art. 20 O). En cada año calendario la bonificación no puede superar **6 UTM**, según la UTM vigente al 31 de diciembre del año en que ahorraste, y solo cubre aportes del año que no superen diez veces tus cotizaciones obligatorias de ese mismo año.
 
 **Ejemplo orientativo** (referencia para el período de escritura): 6 × $69.542 (UTM de diciembre de 2025) = $417.252 máximo _(orientativo — verifica en [tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html))_.
 
 ### Aranceles y trámites del Estado
 
-Muchos costos de servicios estatales se expresan en UTM:
-
-| Tipo de trámite                              | Referencia                                       |
-| -------------------------------------------- | ------------------------------------------------ |
-| Aranceles consulares                         | Expresados en UTM según arancel consular vigente |
-| Aranceles CBR (Conservador de Bienes Raíces) | Según arancel vigente en UTM                     |
-| Aranceles notariales                         | Según arancel notarial vigente                   |
-| Algunos procedimientos judiciales            | Según tabla procesal vigente                     |
-
-> **Tabla orientativa** — los aranceles específicos los fija cada institución. Verifica los montos actuales directamente con el organismo correspondiente.
+Algunos aranceles y derechos de trámites públicos se expresan en UTM. Cada institución fija los suyos y en qué unidad los expresa, por lo que este artículo no los lista: verifica el monto y la unidad directamente con el organismo correspondiente.
 
 ### Multas tributarias del SII
 
@@ -265,6 +256,8 @@ El valor oficial de la UTM lo publica mensualmente el SII:
 - SII Educa, Tipos de impuestos en Chile (reajuste mensual de la UTM): https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html
 - SII, Impuesto Único de Segunda Categoría 2026: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
 - SII, datos informativos AT 2026 (personas naturales): https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html
+- BCN, Ley de Tránsito N°18.290, artículo 201 (escala de multas en UTM): https://www.bcn.cl/leychile/navegar?idNorma=29708
+- BCN, D.L. N° 3.500, artículo 20 O (bonificación del Régimen A): https://www.bcn.cl/leychile/navegar?idNorma=7147
 - Banco Central de Chile, series estadísticas: https://si3.bcentral.cl/Siete/
 - Banco Central de Chile, metodología de la UF (reajuste diario del día 10 al día 9 según el IPC): https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf
 - INE, publicaciones IPC: https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor

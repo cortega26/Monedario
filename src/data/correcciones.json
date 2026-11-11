@@ -33,6 +33,42 @@
       "prevention": "No publicar una regla de calendario o de rezago del IPC sin citar la norma o la fuente oficial que la formula explícitamente; no escribir en texto fijo un valor «vigente» o «de hoy» que cambia cada mes (usar el valor dinámico o fecharlo); separar la fecha de revisión de la fecha de los ejemplos."
     },
     {
+      "id": "utm-guia-ejemplos-tributarios",
+      "date": "2026-11-10",
+      "title": "UTM: base del impuesto de segunda categoría, bono del APV y otras afirmaciones imprecisas de la guía, el glosario y el conversor",
+      "pages": [
+        {
+          "href": "/posts/utm-chile-que-es-como-funciona/",
+          "label": "UTM en Chile: qué es, cómo funciona y para qué sirve"
+        },
+        {
+          "href": "/calculadoras/conversor-utm/",
+          "label": "Conversor UTM a pesos"
+        },
+        {
+          "href": "/glosario/utm/",
+          "label": "Glosario: UTM"
+        }
+      ],
+      "wrong": [
+        "La guía expresaba el umbral exento del Impuesto de Segunda Categoría como «bruto/mes» y decía que el empleador retiene si la remuneración bruta lo supera; la tabla del SII se aplica a la renta líquida imponible.",
+        "La guía afirmaba que el APV del Régimen A recibe «el 15% del ahorro anual» sin condiciones. El artículo 20 O del DL 3.500 lo limita a lo ahorrado que se destine a adelantar o incrementar la pensión, se paga al pensionarse, tiene un tope anual de 6 UTM (UTM al 31 de diciembre del año del ahorro) y solo cubre aportes del año que no superen diez veces las cotizaciones obligatorias de ese año.",
+        "La guía atribuía al SII la regulación de la UTM (el reajuste lo establece la ley) y afirmaba que una obligación en UTM «mantiene el mismo valor real»; el conversor repetía una garantía equivalente. La guía decía además que la UTA es fija durante todo el año y que la columna mensual del SII no sirve para el IGC.",
+        "El glosario definía la UTA como la UTM «comercializada por 12 meses» (debe decir multiplicada por doce) y daba como ejemplo «una multa de 2 a 5 UTM» sin norma que lo respalde.",
+        "La guía, el glosario y el conversor afirmaban sin fuente que los aranceles consulares, notariales, del Conservador de Bienes Raíces y de pasaportes se expresan en UTM, y que el valor aplicable a una multa de tránsito es el vigente al momento del pago."
+      ],
+      "fixed": [
+        "El umbral se expresa sobre la renta líquida imponible (13,5 UTM; $968.233,50 con la UTM de septiembre de 2026) y se aclara que no es la remuneración bruta.",
+        "El APV del Régimen A se describe con las condiciones y el tope del artículo 20 O del DL 3.500.",
+        "La ley (DL 830) establece el reajuste y el SII publica el valor; el texto ya no promete que la UTM conserve su valor real, sino que se ajusta con la inflación con rezago de dos meses y redondeada al peso. La UTA se describe como 12 veces la UTM del último mes del año comercial y la columna mensual del SII como referencial.",
+        "El glosario define la UTA como la UTM del último mes del año comercial multiplicada por doce y cita el artículo 201 de la Ley de Tránsito (escala de 0,2 a 3 UTM) en lugar de un rango sin respaldo.",
+        "Se retiraron las afirmaciones sobre aranceles específicos y sobre el valor aplicable al pago de una multa; el texto remite a cada institución y al juzgado de policía local."
+      ],
+      "affected": "Lectores que usan la guía de la UTM, el glosario o el conversor para estimar su impuesto a las rentas del trabajo, el bono del APV, una multa de tránsito o el valor de la UTA.",
+      "sources": "BCN, DL 3.500, artículo 20 O (https://www.bcn.cl/leychile/navegar?idNorma=7147); BCN, Ley de Tránsito N°18.290, artículo 201 (https://www.bcn.cl/leychile/navegar?idNorma=29708); BCN, Código Tributario (DL 830), artículo cuarto transitorio (https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11); SII, Impuesto Único de Segunda Categoría 2026 (https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm); SII, Diccionario básico tributario contable (https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html).",
+      "prevention": "Una auditoría matemática independiente revisó todas las cifras y afirmaciones normativas de la guía. Cada beneficio o umbral debe citar el artículo con sus condiciones y la base sobre la que se calcula; no atribuir a un organismo una competencia que es de la ley; no afirmar garantías de valor real."
+    },
+    {
       "id": "causa2-phase4-tasas-bases-cluster",
       "date": "2026-10-28",
       "title": "Tasas de nómina, bases y topes: corrección del clúster de sueldo y primer empleo",

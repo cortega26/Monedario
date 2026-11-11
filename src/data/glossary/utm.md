@@ -21,15 +21,15 @@ El reajuste según el IPC también lo describen el [Diccionario básico tributar
 
 Mientras la UF es el estándar en el sector financiero y asegurador privado, la UTM es el estándar en las **relaciones monetarias con el Estado chileno**. Se utiliza principalmente para:
 
-- **Multas de Tránsito y Condenas:** Las deudas se fijan en UTM (ej. "una multa de 2 a 5 UTM").
+- **Multas de Tránsito y Condenas:** La Ley de Tránsito N°18.290 fija sus multas en escalas de UTM (art. 201: por ejemplo, de 1,5 a 3 UTM para las infracciones gravísimas).
 - **Tramos de Impuestos:** El Impuesto Global Complementario (IGC) y el de Segunda Categoría (sueldos) definen sus tramos de exención y cobro en UTM o Unidades Tributarias Anuales (UTA).
-- **Trámites del Estado:** Costos de legalizaciones, pasaportes o aranceles aduaneros suelen tener a la UTM como referencia.
+- **Trámites del Estado:** Algunos aranceles y derechos de trámites públicos se expresan en UTM; cada institución fija los suyos.
 
 ## UTA e Índice Diario
 
 La UTM tiene derivadas:
 
-- **Unidad Tributaria Anual (UTA):** Equivale a la UTM vigente el último mes del año fiscal comercializada por 12 meses.
+- **Unidad Tributaria Anual (UTA):** Equivale a la UTM vigente en el último mes del año comercial respectivo, multiplicada por doce (SII, Diccionario básico tributario contable).
 - Ocasionalmente se ve referenciada su métrica prorrateada diaria por el Servicio de Impuestos Internos.
 
 **Artículo relacionado:** [UTM en Chile: qué es, cómo funciona y para qué sirve](/posts/utm-chile-que-es-como-funciona/) →
