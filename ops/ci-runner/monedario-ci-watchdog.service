@@ -1,0 +1,11 @@
+[Unit]
+Description=Monedario isolated CI runner liveness watchdog
+After=monedario-isolated-ci.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash %h/.local/share/monedario/isolated-ci-runner/watchdog.sh --apply
+Environment=XDG_RUNTIME_DIR=%t
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+NoNewPrivileges=yes
+UMask=0077

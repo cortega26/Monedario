@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the Monedario CI runner watchdog every 2 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+AccuracySec=30s
+Unit=monedario-ci-watchdog.service
+
+[Install]
+WantedBy=timers.target
