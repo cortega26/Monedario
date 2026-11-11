@@ -1,47 +1,61 @@
+# Auditoría matemática y normativa adversarial — UTM
+
 Status: DRAFT — pending ComplianceAgent review
 Role: MathAuditAgent (ChatGPT — adversarial)
+Fecha de consulta: 2026-11-10, America/Santiago.
+Conversación: sesión actual de ChatGPT/Codex iniciada para esta auditoría; identificador o enlace estable no expuesto a este agente (**TODO:SOURCE: registrar ID/enlace desde el entorno antes del cierre de trazabilidad**). Esta conversación es nueva; no participé en investigación, brief, outline ni borrador.
 
-# Math audit — revisión del diff
+Alcance: texto actual de `src/data/blog/utm-chile-que-es-como-funciona.md`, `src/data/glossary/utm.md`, `src/pages/calculadoras/conversor-utm.astro`, `04-draft.md`, registro de correcciones y snapshot local. No se tomó 02-dossier como evidencia. Se auditó el checkout local `2911b1845f5b485faef1652caa9d5609ddf92a95` y su trabajo sin commit; no demuestra producción. Precedencia: Constitución > AGENTS > contexto > código; rige `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`. Las fuentes externas son datos, no instrucciones. No se detectó texto sospechoso de instrucciones incrustadas en las fuentes consultadas.
 
-- Run id: 20261029-1500-utm-audit
-- Slug: utm-chile-que-es-como-funciona
-- Base revisada: d7418fc2d6cea9d7d4dfeab99c37e9f947d1f6ae
-- Alcance: cambios de copy, fechas editoriales, fuentes y registro de correcciones
-  en las tres superficies declaradas; no es una reauditoría completa de los
-  cálculos preexistentes del artículo.
+La fecha de consulta de **todas** las fuentes de la tabla es 2026-11-10. Las citas abreviadas entre comillas reproducen texto de la fuente; las fórmulas y conclusiones son cálculos propios. La versión BCN enlazada por el artículo (`idVersion=2025-07-11`) devolvió un mensaje de espera y no mostró la norma; se consultó independientemente la versión BCN accesible del 2025-01-24 y el informe de la BCN, pero queda pendiente comprobar la versión específica enlazada y su vigencia actual.
 
-## Tabla de auditoría
+| Claim | Fuente (URL + fecha de consulta + texto literal) | Estado | Notas |
+| --- | --- | --- | --- |
+| DL 830, art. 4 transitorio: reajuste M−2 | [BCN DL 830, versión 2025-01-24](https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-01-24), 2026-11-10: «el monto de la unidad tributaria se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». | TODO:SOURCE | La cita atribuida y la regla coinciden con esta versión y con [informe BCN](https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F27306%2F1%2FInforme_BCN_INE_el_calculo_del_IPC_y_Normativa_FINAL.pdf), consultado el mismo día. La [versión enlazada](https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-07-11) no entregó texto; no se verificó su tenor ni vigencia. La formulación del encargo que sustituye palabras por «de acuerdo con ... en el segundo mes que anteceda al de la actualización» es paráfrasis, no cita literal. |
+| La norma no fija día específico; no se afirma primer día hábil ni IPC del mes inmediatamente anterior | Misma norma BCN, 2026-11-10: «en el segundo mes que anteceda al correspondiente a la actualización». | VERIFIED | Su disposición de reajuste no fija un día del mes. Inspección textual de las tres superficies: no afirman primer día hábil ni IPC del mes anterior para UTM; el glosario sí afirma valor fijo durante el mes calendario, distinto de atribuir a la norma un día de inicio. |
+| Octubre usa IPC de agosto | [SII UTM 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm), 2026-11-10: «Agosto ... 0,6»; «Septiembre ... 71.721»; «Octubre ... 72.151». | VERIFIED | 72.151/71.721 − 1 = 0,599545%: compatible con 0,6% y redondeo al peso; 71.721 × 1,006 = 72.151,326. |
+| Septiembre 2026: UTM $71.721 | SII UTM 2026, 2026-11-10: «Septiembre ... 71.721». | VERIFIED | Ejemplos rotulados históricos. |
+| Octubre 2026: UTM $72.151 | SII UTM 2026, 2026-11-10: «Octubre ... 72.151». | VERIFIED | Valor correcto para octubre y para la revisión 2026-10-29; `validAsOf` coincide con esa fecha. |
+| Noviembre 2026: UTM $72.440 | SII UTM 2026, 2026-11-10: «Noviembre ... 72.440». | VERIFIED | Es el valor del mes de consulta; el SII también muestra diciembre publicado, que no debe confundirse con noviembre vigente. |
+| FAQ de guía «¿Cuánto vale la UTM hoy?» responde octubre | SII UTM 2026, 2026-11-10: «Noviembre ... 72.440». | ERROR | La respuesta fecha explícitamente 2026-10-29, pero la pregunta dice «hoy» y entrega $72.151, no $72.440 del 2026-11-10. Existe riesgo de respuesta obsoleta en FAQ y datos estructurados; el fechado no resuelve la contradicción de «hoy». |
+| Lead y cuerpo: octubre $72.151 | SII UTM 2026, 2026-11-10: «Octubre ... 72.151». | VERIFIED | Identifican octubre y `validAsOf` 2026-10-29; el texto del cuerpo tiene fecha de mes, no presenta ese importe como noviembre. |
+| Aviso septiembre «no es el vigente» y aviso de octubre | SII UTM 2026, 2026-11-10: «Septiembre ... 71.721»; «Noviembre ... 72.440». | VERIFIED | Septiembre no está vigente en la fecha de consulta; el importe de octubre va acompañado del 2026-10-29. Requiere mantenimiento para otros meses. |
+| Conversor: «hoy»/«vigente», fecha y conversiones dinámicas | SII UTM 2026, 2026-11-10: «Noviembre ... 72.440». Snapshot local `src/infrastructure/economic/economic-parameters.snapshot.json`: `utm: 72440`, `indicatorUpdatedAt.utm: 2026-11-01`. | VERIFIED | En modo snapshot local para noviembre: 1=$72.440, 2=$144.880, 5=$362.200, 10=$724.400, 13,5=$977.940, 20=$1.448.800, 30=$2.173.200, 50=$3.622.000 y 100=$7.244.000. Depende de build/proveedor y control de frescura; no se verificó runtime público ni modo live. |
+| Marcador `[[utm \| clp]]` y conflicto fijo/dinámico | SII UTM 2026, 2026-11-10: «Noviembre ... 72.440»; snapshot local: `utm: 72440`. | VERIFIED | No existe ese marcador literal en las tres superficies actuales. El conversor interpola el snapshot; la guía contiene $72.151, correctamente identificado como octubre en lead/cuerpo, pero el contexto «hoy» de la FAQ es un ERROR separado. |
+| 1 UTM de septiembre = $71.721 | SII UTM 2026, 2026-11-10: «Septiembre ... 71.721». | VERIFIED | 1 × 71.721 = 71.721. |
+| 2 UTM de septiembre = $143.442 | SII UTM 2026, 2026-11-10: «Septiembre ... 71.721». | VERIFIED | 2 × 71.721 = 143.442. |
+| 5 UTM de septiembre = $358.605 | SII UTM 2026, 2026-11-10: «Septiembre ... 71.721». | VERIFIED | 5 × 71.721 = 358.605. |
+| UTM diciembre 2025 = $69.542 | [SII UTM 2025](https://www.sii.cl/valores_y_fechas/utm/utm2025.htm), 2026-11-10: «Diciembre ... 69.542 ... 834.504». | VERIFIED | Valor histórico. |
+| UTA = 12 × UTM diciembre; AT 2026 $834.504 | [SII diccionario](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html), 2026-11-10: «último mes del año comercial respectivo, multiplicada por doce»; SII UTM 2025: «Diciembre ... 69.542 ... 834.504». | VERIFIED | 69.542 × 12 = 834.504 para año comercial completo; definición admite número de meses del año comercial. |
+| UTA solo se actualiza una vez al año; columna mensual del SII es solo referencial y no sirve para IGC | SII UTM 2025, 2026-11-10: «Noviembre ... 834.504» y «Diciembre ... 834.504»; «UTA = Unidad Tributaria Anual (UTM x 12)». | ERROR | La tabla SII da UTA distinta por mes; no es correcto afirmar en general que UTA es fija todo el año o que la columna mensual no sirve para IGC: la UTA de diciembre de esa columna es la base aplicable al IGC anual del año comercial. El valor anual específico AT 2026 sí es correcto. |
+| Glosario: UTA «comercializada por 12 meses» | SII diccionario, 2026-11-10: «multiplicada por doce». | ERROR | «Comercializada» no significa multiplicada; deja incorrecta/ininteligible la definición matemática. |
+| Umbral IGC AT 2026: 13,5 UTA = $11.265.804 | [SII personas naturales AT 2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html), 2026-11-10: «13,5 UTA del mes dic. de 2025 ... $11.265.804». | VERIFIED | 834.504 × 13,5 = 11.265.804. Aplicable al año tributario indicado, no un valor general vigente para cualquier año. |
+| IUSC exento hasta 13,5 UTM septiembre, $968.233 aprox. | [SII IUSC 2026, septiembre](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm), 2026-11-10: «Monto de la renta líquida imponible ... $ 968.233,50 ... Exento». | VERIFIED | 71.721 × 13,5 = $968.233,50. $968.233 es aproximación por truncamiento y no debe usarse como límite exacto. La fuente sí muestra septiembre, además de meses posteriores. |
+| Umbral IUSC expresado como «bruto/mes»; retención si bruto supera umbral | SII IUSC septiembre, 2026-11-10: «Monto de la renta líquida imponible». | ERROR | La base es renta líquida imponible, no remuneración bruta; superar el umbral bruto no implica necesariamente impuesto después de descuentos legales. |
+| Tramo hasta 30 UTM: $2.151.630, 4% | SII IUSC septiembre, 2026-11-10: «$ 968.233,51 ... $ 2.151.630,00 ... 0,04». | VERIFIED | 30 × 71.721 = 2.151.630; límites del texto son orientativos en pesos enteros. |
+| Tramo hasta 50 UTM: $3.586.050, 8% | SII IUSC septiembre, 2026-11-10: «$ 2.151.630,01 ... $ 3.586.050,00 ... 0,08». | VERIFIED | 50 × 71.721 = 3.586.050. |
+| Tramo hasta 70 UTM: $5.020.470, 13,5% | SII IUSC septiembre, 2026-11-10: «$ 3.586.050,01 ... $ 5.020.470,00 ... 0,135». | VERIFIED | 70 × 71.721 = 5.020.470. |
+| Tramo hasta 90 UTM: $6.454.890, 23% | SII IUSC septiembre, 2026-11-10: «$ 5.020.470,01 ... $ 6.454.890,00 ... 0,23». | VERIFIED | 90 × 71.721 = 6.454.890. |
+| Tramo hasta 120 UTM: $8.606.520, 30,4% | SII IUSC septiembre, 2026-11-10: «$ 6.454.890,01 ... $ 8.606.520,00 ... 0,304». | VERIFIED | 120 × 71.721 = 8.606.520. |
+| Tramo hasta 310 UTM: $22.233.510, 35% | SII IUSC septiembre, 2026-11-10: «$ 8.606.520,01 ... $ 22.233.510,00 ... 0,35». | VERIFIED | 310 × 71.721 = 22.233.510. |
+| Sobre 310 UTM: 40% marginal | SII IUSC septiembre, 2026-11-10: «$ 22.233.510,01 ... Y MÁS ... 0,4». | VERIFIED | Es factor marginal, no tasa efectiva sobre toda la renta. |
+| Límites enteros de tabla en vez de centavos SII | SII IUSC septiembre, 2026-11-10: «$ 968.233,50» y «$ 968.233,51». | TODO:SOURCE | Redondeos y rangos orientativos son válidos para rentas expresadas exclusivamente en pesos enteros; la tabla no declara esa restricción y omite centavos entre extremos. Requiere explicitar precisión o reproducir límites oficiales. |
+| APV A: bonificación 15% del ahorro anual | [BCN DL 3500 art. 20 O](https://www.bcn.cl/leychile/navegar?idNorma=7147&idVersion=2025-09-01), 2026-11-10: «quince por ciento de lo ahorrado ... que aquél destine a adelantar o incrementar su pensión». | ERROR | La guía afirma el 15% sin condiciones; omite destino previsional, límite sobre ahorro elegible de 10 veces las cotizaciones obligatorias y efectos de retiros. No todo ahorro anual recibe necesariamente ese bono. |
+| APV: tope 6 UTM, diciembre 2025 = $417.252 | SII personas naturales AT 2026, 2026-11-10: «6 UTM dic. de 2025 ... $417.252»; BCN DL 3500: «vigente el 31 de diciembre del año en que se efectuó el ahorro». | VERIFIED | 6 × 69.542 = 417.252 para ahorro 2025/AT 2026; no es tope universal vigente. |
+| UF se reajusta diariamente según IPC | [Banco Central, metodología UF](https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf), 2026-11-10: «a partir del día diez de cada mes y hasta el día nueve del mes siguiente, en forma diaria»; «tasa promedio geométrica». | VERIFIED | IPC del mes calendario inmediatamente anterior al período de cálculo; no implica que el valor numérico tenga necesariamente que variar cada día si IPC es cero. |
+| UTM «mantiene el mismo valor real aunque los precios ... cambien» | BCN DL 830 citado arriba y SII UTM 2026, 2026-11-10: «Agosto ... 0,6»; «Septiembre ... 0,4». | ERROR | La indexación usa IPC con rezago M−2 y redondeo; no garantiza conservación exacta del poder adquisitivo en cada momento. El conversor repite una garantía absoluta equivalente. |
+| Diccionario SII atribuido al reajuste por IPC | SII diccionario, 2026-11-10: «se actualiza en forma permanente por el Índice de Precios al Consumidor (IPC)». | VERIFIED | Texto actual de guía y glosario parafrasea; no presenta esta oración entre comillas como cita literal. |
+| SII Educa atribuido al reajuste mensual | [SII Educa](https://www.sii.cl/siieduca/aprende-con-nosotros/tipos-de-impuestos-en-chile.html), 2026-11-10: «se reajusta mensualmente de acuerdo al IPC». | VERIFIED | Paráfrasis fiel; texto actual no atribuye cita literal. |
+| Ley 18.290: multas en UTM, valor al pagar | [Municipalidad de Viña del Mar](https://www.munivina.cl/juzgados-de-policia-local/jpl-informacion-sobre-infracciones-y-valor-de-multas/), 2026-11-10: «La Ley 18290, Ley de Tránsito, tipifica las infracciones, su calificación y valores». | TODO:SOURCE | Respalda escalas de infracciones en UTM; no se recuperó regla primaria suficiente para afirmar sin excepciones valor al pagar y «no al momento de infracción». Revisar sentencia, clase de multa y modalidad de pago. |
+| Aranceles consulares, notariales, CBR y pasaportes «en UTM» | [SII diccionario](https://www.sii.cl/ayudas/ayudas_por_servicios/4669-u.html), 2026-11-10: «se utiliza como medida tributaria». | TODO:SOURCE | Fuente genérica no demuestra cada arancel ni que «suelen» expresarse en UTM. El conversor lo afirma sin matices; verificar arancel oficial de cada organismo. |
+| Atribución «SII regula/define UTM» | BCN DL 830 art. 4 transitorio, 2026-11-10: «el monto de la unidad tributaria se reajustará mensualmente». | ERROR | La guía asigna al SII la regulación/definición; la regla está establecida por ley. Publicar los valores no equivale a definir o regular la unidad. |
+| `utm-reajuste-mensual-copy` describe corrección y fuentes | [BCN DL 830](https://www.bcn.cl/leychile/navegar?idNorma=6374&idVersion=2025-01-24), 2026-11-10: «en el segundo mes que anteceda»; diff local de las tres superficies y `src/data/correcciones.json`. | ERROR | `fixed` dice que no se indica mes exacto de IPC, pero guía y glosario explicitan M−2 y ejemplo agosto/octubre. No menciona retiro de frases direccionales positivas/negativas ni incorpora DL 830 en `sources`; tampoco menciona el nuevo valor octubre en FAQ/lead. Es registro de un estado anterior. |
+| Borrador `04-draft.md`: cifras `TODO:SOURCE` | Inspección literal local de `04-draft.md`, 2026-11-10: ninguna coincidencia `TODO:SOURCE`. | VERIFIED | Ninguna cifra marcada con ese literal en el borrador actual; ello no convierte cifras en verificadas. |
+| Referencias genéricas a infracciones «2 a 5 UTM» | [Municipalidad de Viña del Mar, infracciones](https://www.munivina.cl/juzgados-de-policia-local/jpl-informacion-sobre-infracciones-y-valor-de-multas/), 2026-11-10: «La Ley 18290 ... tipifica las infracciones, su calificación y valores». | TODO:SOURCE | Glosario dice «ej.» sin identificar infracción ni norma que establezca ese rango. No se verificó un supuesto específico. |
+| IPC calculado y publicado mensualmente por INE | [INE, IPC](https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor), 2026-11-10; SII UTM 2026: «Variación mensual ... publicada oficialmente por el INE». | VERIFIED | La atribución y periodicidad están respaldadas por la nota de tabla SII. |
 
-| Claim | Source in 02-dossier | Status | Notes |
-|---|---|---|---|
-| El ejemplo de UTM para septiembre de 2026 es $71.721. | SII, UTM–UTA–IPC 2026, fila septiembre: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm | VERIFIED | La tabla publica UTM $71.721 para septiembre. El texto ahora lo identifica como histórico y no como valor vigente. |
-| La tabla del SII publica un valor UTM por mes. | SII, UTM–UTA–IPC 2026, filas mensuales: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm | VERIFIED | El valor mensual de cada fila coincide con el límite de copy elegido. |
-| La revisión editorial tiene fecha 2026-10-29. | Metadata del run y diff contra la base | VERIFIED | Es fecha de revisión, no una fecha de vigencia normativa. Guía: updatedDate y validAsOf; conversor: fecha de consulta de nuevas fuentes. |
-| Los valores, fórmulas, tasas y resultados numéricos preexistentes no cambiaron en el diff. | Diff contra d7418fc2d6cea9d7d4dfeab99c37e9f947d1f6ae | VERIFIED | El único monto numérico visible que cambia de contexto es $71.721: permanece igual y ahora se rotula como ejemplo histórico. No se modificaron tablas de cálculo, constantes ni resultados. |
-| La pasada residual de autoría no introdujo cifras ni cálculos nuevos. | Diff posterior de guía y conversor; 04-draft.md, sección “Pasada residual” | VERIFIED | Las dos frases reemplazadas solo describen el reajuste mensual y la variación del equivalente en pesos; no hay nueva operación aritmética. |
+## Resumen y veredicto
 
-## Resumen
+Total auditado: **42** filas; **VERIFIED: 29; TODO:SOURCE: 5; ERROR: 8**. La trazabilidad de la sesión también queda pendiente de ID/enlace, fuera del recuento de claims. Cada estado corresponde a una fila; se agrupan únicamente repeticiones del mismo claim en las tres superficies.
 
-- Claims revisados en el alcance del diff: 5
-- VERIFIED: 5
-- TODO:SOURCE: 0
-- ERROR: 0
-
-## Límites y hallazgos fuera de la revisión aritmética
-
-- Este resultado verifica el delta de esta corrección; no certifica nuevamente
-  todos los ejemplos históricos y cálculos que ya existían en la guía.
-- No se afirma día hábil/calendario ni relación exacta entre el mes de IPC y
-  el mes de UTM.
-- La fuente SII Educa respalda el reajuste mensual según IPC; la tabla anual
-  respalda los valores por mes. La circular SII N.º 39 se mantiene como
-  contexto y no se usa para deducir una fórmula.
-- Después de la pasada residual de DraftAgent, una búsqueda de las tres
-  superficies no encontró afirmaciones que digan que la UTM sube o baja según
-  la inflación. El resultado de ComplianceAgent sigue pendiente.
-
-## Veredicto
-
-PASS — dentro del alcance declarado del diff, no hay errores aritméticos ni
-cambios numéricos sin fuente. El resultado no reemplaza la revisión de
-ComplianceAgent ni la aprobación humana de publicación.
+**Veredicto: FAIL.** Los errores de actualidad, base imponible, UTA, APV, garantía de valor real, atribución regulatoria y registro de correcciones impiden considerar el texto listo. Además deben resolverse las fuentes pendientes y comprobar la versión BCN enlazada. Este informe no altera el FAIL de Compliance ni constituye autorización de publicación; revisión independiente ComplianceAgent y decisión humana siguen pendientes.
