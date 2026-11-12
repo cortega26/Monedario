@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T15:28:13Z",
+  "fetchedAt": "2026-11-12T14:57:41Z",
   "schemaVersion": 1,
   "source": "gsc-url-inspection",
   "week": "2026-W45",
@@ -16,7 +16,8 @@
     "byCoverage": {
       "Submitted and indexed": 173,
       "Crawled - currently not indexed": 11,
-      "Discovered - currently not indexed": 2
+      "URL is unknown to Google": 1,
+      "Discovered - currently not indexed": 1
     }
   },
   "errors": 0,
@@ -24,7 +25,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-11-03",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/",
       "verdict": "PASS"
@@ -96,7 +97,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-29",
+      "lastCrawl": "2026-11-10",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
       "verdict": "PASS"
@@ -112,7 +113,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-11-09",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "verdict": "PASS"
@@ -120,7 +121,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-11-08",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-utm/",
       "verdict": "PASS"
@@ -176,7 +177,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-25",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/interes-compuesto/",
       "verdict": "PASS"
@@ -192,7 +193,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-29",
+      "lastCrawl": "2026-11-05",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/operacion-renta/",
       "verdict": "PASS"
@@ -248,7 +249,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-27",
+      "lastCrawl": "2026-11-10",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/tarjeta-credito/",
       "verdict": "PASS"
@@ -384,7 +385,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-13",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/credito-aval-estado/",
       "verdict": "PASS"
@@ -600,7 +601,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-24",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/renta-imponible/",
       "verdict": "PASS"
@@ -1088,7 +1089,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-20",
+      "lastCrawl": "2026-11-10",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/cae-costo-real-credito-chile/",
       "verdict": "PASS"
@@ -1118,7 +1119,7 @@
       "verdict": "PASS"
     },
     {
-      "coverageState": "Discovered - currently not indexed",
+      "coverageState": "URL is unknown to Google",
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
       "lastCrawl": null,
       "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
@@ -1408,7 +1409,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-10-27",
+      "lastCrawl": "2026-11-11",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
       "verdict": "PASS"
@@ -1480,7 +1481,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-11-03",
+      "lastCrawl": "2026-11-10",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
       "verdict": "PASS"
