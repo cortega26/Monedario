@@ -2,7 +2,7 @@
   "fuente": "INE (IPC mensual) vía mindicador.cl; extensión vía Banco Central de Chile (G073.IPC.VAR.2023.M, base 2023=100)",
   "indicador": "ipc",
   "granularidad": "mensual",
-  "actualizadoEl": "2026-11-11",
+  "actualizadoEl": "2026-11-12",
   "desdeFecha": "2000-01-01",
   "hastaFecha": "2026-10-01",
   "totalEntradas": 322,
