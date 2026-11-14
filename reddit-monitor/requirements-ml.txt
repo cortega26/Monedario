@@ -37,4 +37,4 @@ spacy==3.8.7
 # usan las APIs afectadas, no se activa pathsec.ENFORCE ni se aceptan rutas de
 # modelo de terceros (uso local, sin entrada no confiable). remove-when: exista
 # release con el parche.
-nltk==3.10.3
+nltk==3.10.4
