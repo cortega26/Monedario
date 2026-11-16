@@ -1,0 +1,33 @@
+{
+  "fetchedAt": "2026-11-16T14:43:04Z",
+  "schemaVersion": 1,
+  "source": "gsc",
+  "week": "2026-W46",
+  "window": {
+    "from": "2026-11-09",
+    "to": "2026-11-15"
+  },
+  "data": [
+    {
+      "clicks": 446,
+      "ctr": 0.0029,
+      "impressions": 155314,
+      "key": "MOBILE",
+      "position": 8.33
+    },
+    {
+      "clicks": 230,
+      "ctr": 0.0027,
+      "impressions": 84849,
+      "key": "DESKTOP",
+      "position": 9.35
+    },
+    {
+      "clicks": 2,
+      "ctr": 0.0038,
+      "impressions": 522,
+      "key": "TABLET",
+      "position": 8.14
+    }
+  ]
+}
