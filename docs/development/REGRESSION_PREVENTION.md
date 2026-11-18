@@ -58,6 +58,16 @@ A regression is any change that degrades previously valid behavior in contracts,
 - Compliant behavior: "Baseline run shows 2 pre-existing failures in `FinancialUseCases.regression.test.ts`; logged as TD-0030; out of scope for this PR."
 - Violation: Treating a pre-existing failure as a regression introduced by the current PR, or silently ignoring it without a backlog entry.
 
+## Rule 5.6 - Data-pipeline incidents require a detector and a handler-level regression test
+- Rationale: The 2026-11-18 economic snapshot incident repeated a "fixed" failure because the previous fix added a detector for a different failure mode (site deploy) and the Worker code had never been redeployed. A fix that does not name the failure mode and add a detector for it can silently regress.
+- Enforcement: Every data-pipeline incident fix must include:
+  1. a row in the failure-mode matrix of `docs/operations/runbooks/economic-data-freshness.md`;
+  2. a detector with an explicit threshold and owning workflow;
+  3. a regression test that fails without the fix, exercising the real handler/script (not a reimplementation of its logic);
+  4. for Cloudflare Worker changes, a deploy step and the `worker-deploy-drift` check.
+- Compliant behavior: "Added aggregator-outage test (fails with `TimeoutError` without the fallback), tightened `capturedAt` to 2 days, added the 36 h heartbeat and the deploy-drift workflow."
+- Violation: Closing a data-freshness incident with only a manual backfill or a looser threshold.
+
 ## Assumptions (explicit)
 
 - A1: As of 2026-02-28, numeric line/function coverage gate is not configured in CI (`@vitest/coverage-v8` missing). This protocol therefore enforces change-impact coverage thresholds until a numeric coverage gate is added by ADR.
