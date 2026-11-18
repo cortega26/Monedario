@@ -20,7 +20,7 @@ it. A new incident must add a row here, a detector, and a regression test.
 
 | # | Failure mode | Detector | Threshold | Where |
 | --- | --- | --- | --- | --- |
-| 1 | Worker never runs (cron gone) | snapshot `capturedAt` heartbeat | 36 h | `scripts/check-deploy-health.mjs`, `deploy-health.yml` |
+| 1 | Worker never runs (cron gone) | snapshot `capturedAt` heartbeat | 36 h | `workers/deploy-health` + `deploy-health.yml` |
 | 2 | Worker runs but the aggregator is down | carry-forward path + `source: snapshot.carry-forward` | immediate | Worker `index.ts`, `payloadFromSnapshot` |
 | 3 | Worker commits but the official override fails | `*.override.failed` log + `provenance` | per run | Worker logs (`wrangler tail`) |
 | 4 | Worker commits but Pages fails | site dates vs today | UF 3 d / USD 4 d | `check-deploy-health` |
@@ -63,6 +63,20 @@ soporta esa protección en repos privados (requiere Pro/Team). El gate humano es
 la confirmación explícita del workflow. Si el repo pasa a Pro, activar
 required reviewers en `Settings → Environments → production` sin cambiar el
 workflow.
+
+## Deploy health Worker (`/status`)
+
+The checks run in `workers/deploy-health` every 6 h and are exposed at
+`https://monedario-deploy-health.carlosortega77.workers.dev/status`. The GitHub
+workflow only curls that endpoint and syncs the tracking issue.
+
+```bash
+pnpm run worker:deploy-health:deploy
+curl -sS https://monedario-deploy-health.carlosortega77.workers.dev/status | jq .
+```
+
+If the account subdomain changes, set the repository variable
+`DEPLOY_HEALTH_STATUS_URL`; the workflow falls back to the URL above.
 
 ## Runbook: "the site shows yesterday's value"
 

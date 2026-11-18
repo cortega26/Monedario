@@ -32,13 +32,13 @@ other job.
 Workers run in V8 isolates: 128 MB memory, 30 s CPU (scheduled), no filesystem,
 no `child_process`, no Docker. Only stateless jobs fit.
 
-1. **Deploy health** (best first candidate): fetch the published site, the raw
-   snapshot, and `docs/governance/url-freeze-exceptions.json` from
-   `raw.githubusercontent.com`; evaluate the same rules; upsert the issue via
-   the GitHub API. Removes a 5‑minute job from the runner and runs every 6 h
-   independently of CI. The current script uses `readFileSync`; the Worker
-   version must fetch the JSON and reimplement the two evaluators (or share a
-   small pure module).
+1. **Deploy health — done (2026-11-18).** `workers/deploy-health` fetches the
+   published site, the raw snapshot and `docs/governance/url-freeze-exceptions.json`;
+   the pure evaluators live in `scripts/lib/deploy-health-evaluators.mjs` and are
+   shared with the Node diagnostic. The Worker exposes `GET /status` and a 6 h
+   cron. The GitHub workflow is now a ~20 s curl + issue sync (no pnpm, no
+   full checkout), so the checks keep running even when the runner is busy.
+   Deploy: `pnpm run worker:deploy-health:deploy`.
 2. **Status aggregator**: a cron Worker that writes `{ lastSnapshotCommit,
    lastDeploy, lastChecks }` to KV and exposes `GET /status`. Feeds a status
    page or an uptime monitor.
@@ -112,7 +112,7 @@ in a quiet window; the launcher refuses to start if the image is missing.
 1. (done) Typecheck in the first job, snapshot contract test, deploy workflow.
 2. Provision the Oracle runner with a `heavy` label; route a11y + external URL
    check first (they are the biggest queue offenders and are non-blocking).
-3. Rewrite `deploy-health` as a Cloudflare Worker cron; delete the GHA copy.
+3. (done) Deploy-health Worker + lightweight issue-sync workflow.
 4. Add the status aggregator + uptime probes.
 5. Evaluate GitHub Pro: 1 GB storage and hosted minutes would remove the
    self-hosted artifact/quota pressure and enable required-reviewer
