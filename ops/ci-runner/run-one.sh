@@ -65,6 +65,34 @@ if [[ "$#" -gt 0 && "$1" == "--verify" ]]; then
   exit
 fi
 
+# A service restart can kill the launcher before its EXIT trap removes the
+# previous container, leaving an idle registration that still points to the old
+# image (observed during the 2026-11-18 warm-image switch: four runners online
+# for two slots). Clean only this slot's idle/offline registrations before
+# registering the new JIT. Busy runners (a real job) are never touched.
+cleanup_stale_slot() {
+  local prefix_regex id name status busy
+  if [[ "$slot" == "0" ]]; then
+    prefix_regex="^monedario-ci-isolated-[0-9]{10}-[0-9]+$"
+  else
+    prefix_regex="^monedario-ci-isolated-${slot}-[0-9]{10}-[0-9]+$"
+  fi
+  gh api "repos/$repository/actions/runners" --paginate \
+    --jq '.runners[] | [.id,.name,.status,(.busy|tostring)] | @tsv' 2>/dev/null |
+    while IFS=$'\t' read -r id name status busy; do
+      [[ "$id" =~ ^[0-9]+$ ]] || continue
+      [[ "$name" =~ $prefix_regex ]] || continue
+      if [[ "$status" == "online" && "$busy" == "true" ]]; then
+        continue
+      fi
+      echo "Cleaning stale slot runner: $name ($status busy=$busy)" >&2
+      gh api --method DELETE "repos/$repository/actions/runners/$id" \
+        >/dev/null 2>&1 || true
+      docker rm --force "$name" >/dev/null 2>&1 || true
+    done
+}
+cleanup_stale_slot || true
+
 # JIT identity belongs only to Monedario; it is valid for exactly one job.
 # Never pass a PAT to the untrusted container.
 jit_response="$(gh api --method POST "repos/$repository/actions/runners/generate-jitconfig"   -f "name=$name" -F runner_group_id=1 -f "labels[]=$label" -f work_folder=_work   --jq '[.runner.id, .encoded_jit_config] | @tsv')"

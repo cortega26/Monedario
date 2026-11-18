@@ -61,6 +61,13 @@ gh api repos/cortega26/Monedario/actions/runners --jq \
 systemctl --user status monedario-isolated-ci.service monedario-isolated-ci-2.service --no-pager
 ```
 
+On startup, `run-one.sh` deletes **idle/offline** registrations that match its
+own slot (slot 0: no slot segment; slot N: `-N-`) and their containers before
+registering the new JIT. A service restart can kill the launcher before its EXIT
+trap runs (observed with the warm-image switch: four runners online for two
+slots); this cleanup prevents the orphan from taking jobs with the previous
+image. Busy runners are never touched.
+
 ## Liveness watchdog (#745)
 
 Each slot is a **one-job disposable runner** (slot 0 primary, slot 2 secondary).
