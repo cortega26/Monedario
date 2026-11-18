@@ -39,6 +39,10 @@ export interface PrevIndicatorEntry {
   fecha: string;
 }
 
+export type SnapshotSource =
+  | "mindicador.cl/api"
+  | "snapshot.carry-forward";
+
 export interface EconomicSnapshot {
   uf: number;
   utm: number;
@@ -66,7 +70,13 @@ export interface EconomicSnapshot {
   };
   lastUpdated: string;
   capturedAt: string;
-  source: "mindicador.cl/api";
+  /**
+   * `mindicador.cl/api` on a normal run; `snapshot.carry-forward` when the
+   * aggregator was unreachable and the base payload had to be rebuilt from the
+   * last committed snapshot (daily values still come from the BCCh/SII/INE
+   * overrides). A later clean run flips it back.
+   */
+  source: SnapshotSource;
   provenance?: {
     utm: {
       primarySource: "SII";
@@ -449,6 +459,54 @@ export function mergePrev(
 
 export function serializeSnapshot(snapshot: EconomicSnapshot): string {
   return `${JSON.stringify(snapshot, null, 2)}\n`;
+}
+
+/**
+ * Rebuilds a mindicador-shaped payload from the last committed snapshot.
+ *
+ * Used only when the base fetch fails (aggregator outage). The authoritative
+ * overrides (BCCh UF/USD, SII UTM, INE IPC) still replace the daily/monthly
+ * values; the rest is carried forward instead of aborting the whole refresh.
+ * Throws on an unreadable snapshot so a corrupt file is never masked.
+ */
+export function payloadFromSnapshot(
+  currentJson: string
+): MindicadorApiResponse {
+  const snapshot = JSON.parse(currentJson) as Partial<EconomicSnapshot>;
+  const at = snapshot.indicatorUpdatedAt ?? {};
+  const indicator = (
+    value: unknown,
+    date: unknown
+  ): MindicadorIndicator | undefined =>
+    typeof value === "number"
+      ? { valor: value, fecha: typeof date === "string" ? date : undefined }
+      : undefined;
+
+  return {
+    uf: indicator(snapshot.uf, at.uf),
+    utm: indicator(snapshot.utm, at.utm),
+    ipc: indicator(snapshot.ipc, at.ipc),
+    tmc: indicator(snapshot.tmc, at.tmc),
+    dolar: indicator(snapshot.dolar, at.dolar),
+  };
+}
+
+/**
+ * Runs the base aggregator fetch; when it fails, rebuilds the payload from the
+ * last committed snapshot and reports the degradation instead of aborting the
+ * whole refresh. The authoritative overrides still run afterwards.
+ */
+export async function withMindicadorFallback(
+  fetchApi: () => Promise<MindicadorApiResponse>,
+  currentJson: string,
+  onFallback: (error: unknown) => void
+): Promise<MindicadorApiResponse> {
+  try {
+    return await fetchApi();
+  } catch (error) {
+    onFallback(error);
+    return payloadFromSnapshot(currentJson);
+  }
 }
 
 /**

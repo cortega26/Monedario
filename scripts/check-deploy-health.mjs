@@ -9,7 +9,10 @@
 // Controles (cualquier problema => exit 1 y un resumen en Markdown por stdout):
 //   1. Sitio en vivo: la fecha de "UF al …" y "Dólar al …" de la portada no
 //      puede rezagarse más de los umbrales respecto de hoy (hora de Santiago).
-//   2. Excepciones del URL-freeze vencidas o por vencer (14 días).
+//   2. Heartbeat del Worker: capturedAt del snapshot de main no puede superar
+//      SNAPSHOT_MAX_AGE_HOURS (detecta el refresh caído aunque la portada aún
+//      muestre fechas aceptables).
+//   3. Excepciones del URL-freeze vencidas o por vencer (14 días).
 //
 // Variables de entorno (para pruebas): DEPLOY_HEALTH_SITE_URL,
 // DEPLOY_HEALTH_NOW (ISO).
@@ -29,6 +32,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 export const UF_MAX_LAG_DAYS = 3;
 // El dólar no tiene valor en fines de semana ni feriados (puentes de 4 días).
 export const DOLAR_MAX_LAG_DAYS = 6;
+// El Worker commitea cuando cambia la UF (diaria), así que capturedAt del
+// snapshot de main es un heartbeat diario. 36 h toleran una publicación tardía
+// y detectan un día completo perdido en la siguiente corrida del health check.
+export const SNAPSHOT_MAX_AGE_HOURS = 36;
+export const SNAPSHOT_URL =
+  "https://raw.githubusercontent.com/cortega26/Monedario/main/src/infrastructure/economic/economic-parameters.snapshot.json";
 
 function chileToday(now) {
   const parts = new Intl.DateTimeFormat("en-CA", {
@@ -86,6 +95,29 @@ export function evaluateLiveFreshness({ html, now = new Date() }) {
   return problems;
 }
 
+/**
+ * Heartbeat del Worker de snapshot: el archivo de `main` debe haberse
+ * refrescado dentro de SNAPSHOT_MAX_AGE_HOURS. Detecta un Worker caído aunque
+ * la portada todavía muestre fechas aceptables.
+ * @returns {string[]} problemas; vacío si el snapshot está fresco.
+ */
+export function evaluateSnapshotHeartbeat({ snapshot, now = new Date() }) {
+  const capturedAt = snapshot?.capturedAt;
+  const ts = Date.parse(capturedAt ?? "");
+  if (Number.isNaN(ts)) {
+    return [
+      "El snapshot económico de main no tiene un capturedAt válido; no se puede verificar el heartbeat del Worker.",
+    ];
+  }
+  const ageHours = (now.getTime() - ts) / 3_600_000;
+  if (ageHours > SNAPSHOT_MAX_AGE_HOURS) {
+    return [
+      `El snapshot económico no se refresca desde ${capturedAt} (${ageHours.toFixed(1)} h, max ${SNAPSHOT_MAX_AGE_HOURS} h); el Worker de refresh está caído o fallando.`,
+    ];
+  }
+  return [];
+}
+
 export function evaluateExceptionExpiry({ document, now = new Date() }) {
   return findExpiringExceptions(document, now, EXPIRY_WARNING_DAYS).map(e =>
     e.daysLeft < 0
@@ -116,6 +148,28 @@ async function main() {
   } catch (error) {
     problems.push(
       `No se pudo consultar ${site}: ${error instanceof Error ? error.message : String(error)}`
+    );
+  }
+
+  const snapshotUrl =
+    process.env.DEPLOY_HEALTH_SNAPSHOT_URL || SNAPSHOT_URL;
+  try {
+    const res = await fetch(`${snapshotUrl}?deploy-health=${now.getTime()}`, {
+      signal: AbortSignal.timeout(30_000),
+      headers: { "Cache-Control": "no-cache" },
+    });
+    if (!res.ok) {
+      problems.push(
+        `El snapshot económico de main respondió HTTP ${res.status}.`
+      );
+    } else {
+      problems.push(
+        ...evaluateSnapshotHeartbeat({ snapshot: await res.json(), now })
+      );
+    }
+  } catch (error) {
+    problems.push(
+      `No se pudo consultar el snapshot económico de main: ${error instanceof Error ? error.message : String(error)}`
     );
   }
 

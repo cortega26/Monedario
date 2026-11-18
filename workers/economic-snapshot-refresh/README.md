@@ -10,6 +10,14 @@ Refreshes `src/infrastructure/economic/economic-parameters.snapshot.json` on a d
 4. Compares with the current file on `main`, ignoring only the observation instants (`capturedAt` and `provenance.utm.verifiedAt`, which change on every run). Indicator vigencia dates, values, provenance status/source, and any other data field still trigger a commit. On a no-op the file keeps its last-write time even though the Worker re-verified the data.
 5. If different, commits the new content to `main` via the GitHub Contents API as `monedario-snapshot-bot`. Cloudflare Pages auto-deploys on push.
 6. If identical, exits silently (no empty commits).
+7. **Carry-forward when the aggregator is down.** If `mindicador.cl` cannot be
+   reached, the base payload is rebuilt from the last committed snapshot
+   (`payloadFromSnapshot`) instead of aborting the run. The authoritative
+   overrides (BCCh UF/USD, SII UTM, INE IPC) still apply, so the daily values
+   keep updating during a mindicador outage. The commit records
+   `source: "snapshot.carry-forward"`; the next clean run flips it back to
+   `mindicador.cl/api`. See the 2026-11-18 amendment of
+   `ADR-20260516-economic-snapshot-cloudflare-worker`.
 
 ## Data sources
 
