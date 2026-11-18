@@ -56,6 +56,20 @@ describe("Monedario disposable CI boundary", () => {
     );
   });
 
+  it("cleans stale idle runners for its slot before registering", () => {
+    expect(source).toContain("cleanup_stale_slot");
+    expect(source).toContain(
+      'prefix_regex="^monedario-ci-isolated-[0-9]{10}-[0-9]+$"'
+    );
+    expect(source).toContain(
+      'prefix_regex="^monedario-ci-isolated-${slot}-[0-9]{10}-[0-9]+$"'
+    );
+    expect(source).toContain("Cleaning stale slot runner");
+    expect(source.indexOf("cleanup_stale_slot || true")).toBeLessThan(
+      source.indexOf("actions/runners/generate-jitconfig")
+    );
+  });
+
   it("removes its own JIT registration on exit", () => {
     expect(source).toContain('runner_id=""');
     expect(source).toContain(
