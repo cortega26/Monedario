@@ -12,6 +12,13 @@ overrides:
   qs: '>=6.16.0'
   fast-uri: '>=3.1.6'
   esbuild: '>=0.28.1'
+  # Astro bundlea `shiki` 4.3.1. `@shikijs/transformers` (devDependency directa)
+  # se pina exacto a esa misma versión en package.json: si avanza por su cuenta,
+  # pnpm resuelve dos copias de `@shikijs/types` y `astro check` falla con
+  # TS2322 en `astro.config.ts` (el ShikiTransformer de una copia no es
+  # asignable al de la otra). Al subir Astro hay que subir este pin y el de
+  # `@shikijs/transformers` juntos; lo exige
+  # `tests/static-analysis/shiki-single-type-identity.e2e.test.ts`.
   shiki: 4.3.1
   # Activo (intencional desde #305): los rangos viejos de js-yaml se fuerzan a
   # v4 (API unificada) mientras el root usa v5. No eliminar sin re-evaluar.

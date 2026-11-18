@@ -27,6 +27,18 @@ updates:
           - "patch"
     # Auto-rebase disabled: each rebase triggers full CI (~80 min per PR).
     # Manual rebase via @dependabot rebase comment still works.
+    ignore:
+      # Debe seguir exactamente al `shiki` que bundlea Astro (override `shiki`
+      # en pnpm-workspace.yaml). Un bump aislado resuelve dos copias de
+      # `@shikijs/types` y rompe `astro check` con TS2322. Al subir Astro,
+      # subir el override y este pin juntos (guard:
+      # tests/static-analysis/shiki-single-type-identity.e2e.test.ts).
+      - dependency-name: "@shikijs/transformers"
+      # Pin exacto validado contra la API real de Cloudflare. El bump es manual
+      # (dry-run en deploy-analytics-collector.yml) para no romper el contrato
+      # del test analytics-collector-workflow. Recordatorio mensual:
+      # docs/operations/ops-schedule.json.
+      - dependency-name: "wrangler"
 
   - package-ecosystem: "github-actions"
     directory: "/"

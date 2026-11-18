@@ -181,3 +181,26 @@ Monedario-only IDs** by exact name/id after ensuring no job is active. Never del
   timeout (TD-0113). Blocking jobs now use 30 minutes (#734); a recurrence
   should be diagnosed as a timeout, not as a runner wedge.
 - Not yet verified: the exact Cloudflare preview build error.
+
+## Tmpfs budget inside the job container
+
+The launcher mounts three memory-backed volumes and caps the container at 8 GB:
+
+| Mount | Size | Notes |
+| --- | --- | --- |
+| `/runner` (`RUNNER_TEMP`, workspace, tool caches) | 5 GiB | the only volume with room for dependency stores |
+| `/home/runner` | 512 MiB | **default target of most tool caches** |
+| `/tmp` | 512 MiB | os.tmpdir() for Node/Python tooling |
+
+Because tmpfs is charged to the container memory limit, raising these sizes is
+not free. The supported pattern is to relocate caches onto `/runner`:
+
+- pnpm: `bootstrap-pnpm` sets `store-dir=${RUNNER_TEMP}/pnpm-store`.
+- uv: `bootstrap-python` exports `UV_CACHE_DIR=${RUNNER_TEMP}/uv-cache`
+  (2026-11-18; previously `~/.cache/uv`, which failed with
+  `No space left on device (os error 28)` while extracting wheels).
+- npm global prefix: `${RUNNER_TEMP}/pnpm`.
+
+When a job dies with `os error 28` / `ENOSPC`, check the failing path first: if
+it starts with `/home/runner` or `/tmp`, the fix is a cache relocation, not a
+bigger tmpfs. Use `df -h` inside the container while the job runs to confirm.
