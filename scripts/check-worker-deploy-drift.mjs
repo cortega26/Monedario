@@ -14,9 +14,9 @@
 
 import { readFileSync } from "node:fs";
 
-// Un deploy puede tardar minutos en hacerse tras el merge; 24 h evita ruido por
-// una corrida nocturna y sigue detectando el drift al día siguiente.
-export const TOLERANCE_HOURS = 24;
+// Un deploy puede tardar horas en hacerse tras el merge; 12 h evita ruido por
+// una corrida nocturna. Con el chequeo cada 6 h, el drift se detecta en <= 18 h.
+export const TOLERANCE_HOURS = 12;
 
 /**
  * @param {{

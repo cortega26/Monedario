@@ -24,7 +24,7 @@ it. A new incident must add a row here, a detector, and a regression test.
 | 2 | Worker runs but the aggregator is down | carry-forward path + `source: snapshot.carry-forward` | immediate | Worker `index.ts`, `payloadFromSnapshot` |
 | 3 | Worker commits but the official override fails | `*.override.failed` log + `provenance` | per run | Worker logs (`wrangler tail`) |
 | 4 | Worker commits but Pages fails | site dates vs today | UF 3 d / USD 4 d | `check-deploy-health` |
-| 5 | **Code merged but Worker not deployed** | last commit vs last `wrangler deploy` | 24 h | `check-worker-deploy-drift.mjs`, `worker-deploy-drift.yml` |
+| 5 | **Code merged but Worker not deployed** | last commit vs last `wrangler deploy` | 12 h (checked every 6 h) | `check-worker-deploy-drift.mjs`, `worker-deploy-drift.yml` |
 | 6 | Snapshot stale in the repo | `capturedAt` / indicator dates | 2 d / UF 3 d / USD 4 d | `check-economic-snapshot-freshness.mjs` |
 | 7 | Wrong data (not stale) | source consistency + legal/economic gates | per gate | `check:economic-source-consistency`, etc. |
 

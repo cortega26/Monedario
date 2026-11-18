@@ -47,7 +47,7 @@ describe("worker deploy drift", () => {
     expect(
       evaluateDeployDrift({
         deployments: [deploy("2026-11-18T19:23:15.000Z")],
-        lastCommitAt: "2026-11-19T12:00:00.000Z",
+        lastCommitAt: "2026-11-19T06:00:00.000Z",
         toleranceHours: TOLERANCE_HOURS,
       })
     ).toEqual([]);
