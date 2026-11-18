@@ -88,7 +88,7 @@
     "worker:analytics:tail": "wrangler tail --config workers/analytics-collector/wrangler.toml",
     "worker:analytics:typecheck": "npx tsc --noEmit -p workers/analytics-collector/tsconfig.json",
     "worker:economic-snapshot:typecheck": "npx tsc --noEmit -p workers/economic-snapshot-refresh/tsconfig.json",
-    "check:workers": "pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck && pnpm run test:edge-guard",
+    "check:workers": "pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck && pnpm run worker:deploy-health:typecheck && pnpm run test:edge-guard",
     "worker:economic-snapshot:dev": "wrangler dev workers/economic-snapshot-refresh/wrangler.toml --test-scheduled",
     "worker:economic-snapshot:deploy": "wrangler deploy --config workers/economic-snapshot-refresh/wrangler.toml",
     "worker:economic-snapshot:tail": "wrangler tail --config workers/economic-snapshot-refresh/wrangler.toml",
@@ -132,7 +132,11 @@
     "growth:collect:competitors": "node scripts/collect-competitor-sitemaps.mjs",
     "growth:collect:bing": "node scripts/collect-bing-queries.mjs",
     "doctor": "node scripts/doctor.mjs",
-    "test:edge-guard": "node --test tests/scripts/edge-csp-monitor.test.mjs"
+    "test:edge-guard": "node --test tests/scripts/edge-csp-monitor.test.mjs",
+    "worker:deploy-health:dev": "wrangler dev workers/deploy-health/wrangler.toml --test-scheduled",
+    "worker:deploy-health:deploy": "wrangler deploy --config workers/deploy-health/wrangler.toml",
+    "worker:deploy-health:tail": "wrangler tail --config workers/deploy-health/wrangler.toml",
+    "worker:deploy-health:typecheck": "npx tsc --noEmit -p workers/deploy-health/tsconfig.json"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.5",

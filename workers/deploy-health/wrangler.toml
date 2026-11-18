@@ -1,0 +1,16 @@
+name = "monedario-deploy-health"
+main = "src/index.ts"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+[triggers]
+# Every 6 hours; the GitHub workflow only synchronizes the issue from /status.
+crons = ["17 */6 * * *"]
+
+[vars]
+SITE_URL = "https://monedario.cl/"
+SNAPSHOT_URL = "https://raw.githubusercontent.com/cortega26/Monedario/main/src/infrastructure/economic/economic-parameters.snapshot.json"
+EXCEPTIONS_URL = "https://raw.githubusercontent.com/cortega26/Monedario/main/docs/governance/url-freeze-exceptions.json"
+
+[observability]
+enabled = true

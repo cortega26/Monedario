@@ -54,37 +54,12 @@ function containsNoindex(html) {
   });
 }
 
-// Días de antelación con que una excepción próxima a vencer se señala como
-// advertencia (no bloquea). El 2026-11-02 una excepción venció sin aviso y
-// dejó 8 días sin desplegar el sitio.
-export const EXPIRY_WARNING_DAYS = 14;
+import {
+  EXPIRY_WARNING_DAYS,
+  findExpiringExceptions,
+} from "./lib/deploy-health-evaluators.mjs";
 
-/**
- * Excepciones APPROVED que vencen en los próximos `withinDays` días (o ya
- * vencieron). Puro: lo usa el gate y el chequeo diario de salud del deploy.
- *
- * @param {{exceptions?: Array<{url: string, decision?: string, expiresAt?: string}>}} document
- * @param {Date} now
- * @param {number} withinDays
- * @returns {Array<{url: string, expiresAt: string, daysLeft: number}>}
- */
-export function findExpiringExceptions(
-  document,
-  now = new Date(),
-  withinDays = EXPIRY_WARNING_DAYS
-) {
-  const expiring = [];
-  for (const entry of document?.exceptions ?? []) {
-    if (entry.decision !== "APPROVED") continue;
-    const expires = Date.parse(entry.expiresAt);
-    if (!Number.isFinite(expires)) continue;
-    const daysLeft = Math.floor((expires - now.getTime()) / 86_400_000);
-    if (daysLeft <= withinDays) {
-      expiring.push({ url: entry.url, expiresAt: entry.expiresAt, daysLeft });
-    }
-  }
-  return expiring.sort((a, b) => a.daysLeft - b.daysLeft);
-}
+export { EXPIRY_WARNING_DAYS, findExpiringExceptions };
 
 /**
  * `tolerateExpired` es solo para el build de la plataforma de despliegue
