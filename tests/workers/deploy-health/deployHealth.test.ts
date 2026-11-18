@@ -4,8 +4,7 @@ import { runChecks, type Env } from "../../../workers/deploy-health/src/index";
 const NOW = new Date("2026-11-18T20:00:00Z");
 const ENV: Env = {
   SITE_URL: "https://site.test/",
-  SNAPSHOT_URL: "https://snapshot.test/snapshot.json",
-  EXCEPTIONS_URL: "https://exceptions.test/exceptions.json",
+  HEALTH_URL: "https://health.test/api/deploy-health.json",
 };
 
 const site = (uf: string, dolar: string) =>
@@ -14,10 +13,8 @@ const site = (uf: string, dolar: string) =>
 type MockOptions = {
   siteHtml?: string;
   siteStatus?: number;
-  snapshot?: unknown;
-  snapshotStatus?: number;
-  exceptions?: unknown;
-  exceptionsStatus?: number;
+  health?: unknown;
+  healthStatus?: number;
 };
 
 function mockFetch(options: MockOptions = {}) {
@@ -30,18 +27,12 @@ function mockFetch(options: MockOptions = {}) {
           status: options.siteStatus ?? 200,
         });
       }
-      if (url.startsWith(ENV.SNAPSHOT_URL ?? "")) {
+      if (url.startsWith(ENV.HEALTH_URL)) {
         return new Response(
           JSON.stringify(
-            options.snapshot ?? { capturedAt: "2026-11-18T10:15:00Z" }
+            options.health ?? { capturedAt: "2026-11-18T10:15:00Z" }
           ),
-          { status: options.snapshotStatus ?? 200 }
-        );
-      }
-      if (url.startsWith(ENV.EXCEPTIONS_URL)) {
-        return new Response(
-          JSON.stringify(options.exceptions ?? { exceptions: [] }),
-          { status: options.exceptionsStatus ?? 200 }
+          { status: options.healthStatus ?? 200 }
         );
       }
       throw new Error(`unexpected fetch ${url}`);
@@ -54,7 +45,7 @@ afterEach(() => {
 });
 
 describe("deploy-health worker", () => {
-  it("passes when site, snapshot and exceptions are healthy", async () => {
+  it("passes when the site and snapshot heartbeat are healthy", async () => {
     mockFetch();
     await expect(runChecks(ENV, NOW)).resolves.toEqual({
       ok: true,
@@ -72,39 +63,20 @@ describe("deploy-health worker", () => {
   });
 
   it("flags a stale snapshot heartbeat", async () => {
-    mockFetch({ snapshot: { capturedAt: "2026-11-16T10:15:00Z" } });
+    mockFetch({ health: { capturedAt: "2026-11-16T10:15:00Z" } });
     const status = await runChecks(ENV, NOW);
     expect(status.ok).toBe(false);
     expect(status.problems).toHaveLength(1);
     expect(status.problems[0]).toContain("no se refresca desde");
   });
 
-  it("flags an exception close to expiry", async () => {
-    mockFetch({
-      exceptions: {
-        exceptions: [
-          {
-            url: "https://example.test/x",
-            decision: "APPROVED",
-            expiresAt: "2026-11-20T00:00:00Z",
-          },
-        ],
-      },
-    });
-    const status = await runChecks(ENV, NOW);
-    expect(status.ok).toBe(false);
-    expect(status.problems).toHaveLength(1);
-    expect(status.problems[0]).toContain("vence en 1 día");
-  });
-
   it("reports HTTP errors for each source", async () => {
-    mockFetch({ siteStatus: 500, snapshotStatus: 404, exceptionsStatus: 503 });
+    mockFetch({ siteStatus: 500, healthStatus: 404 });
     const status = await runChecks(ENV, NOW);
     expect(status.ok).toBe(false);
-    expect(status.problems).toHaveLength(3);
+    expect(status.problems).toHaveLength(2);
     expect(status.problems.join("\n")).toContain("HTTP 500");
     expect(status.problems.join("\n")).toContain("HTTP 404");
-    expect(status.problems.join("\n")).toContain("HTTP 503");
   });
 
   it("reports network failures without throwing", async () => {
@@ -116,7 +88,7 @@ describe("deploy-health worker", () => {
     );
     const status = await runChecks(ENV, NOW);
     expect(status.ok).toBe(false);
-    expect(status.problems).toHaveLength(3);
+    expect(status.problems).toHaveLength(2);
     expect(status.problems.join("\n")).toContain("network down");
   });
 });

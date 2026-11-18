@@ -3,14 +3,13 @@ main = "src/index.ts"
 compatibility_date = "2026-01-15"
 workers_dev = true
 
-[triggers]
-# Every 6 hours; the GitHub workflow only synchronizes the issue from /status.
-crons = ["17 */6 * * *"]
+# No cron trigger: Workers Free caps the account at 5 cron triggers and they
+# are already in use. The `deploy-health` GitHub workflow runs every 6 h and
+# calls GET /status, which executes the checks on demand.
 
 [vars]
 SITE_URL = "https://monedario.cl/"
-SNAPSHOT_URL = "https://raw.githubusercontent.com/cortega26/Monedario/main/src/infrastructure/economic/economic-parameters.snapshot.json"
-EXCEPTIONS_URL = "https://raw.githubusercontent.com/cortega26/Monedario/main/docs/governance/url-freeze-exceptions.json"
+HEALTH_URL = "https://monedario.cl/api/deploy-health.json"
 
 [observability]
 enabled = true
