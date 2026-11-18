@@ -1,119 +1,137 @@
-# CI offloading plan (Cloudflare + Oracle VM)
+# Economic data freshness — SLO, failure modes and runbook
 
-Status: proposed; the repo-side enablers are in `main`, the host-side work is
-pending (Oracle VM shape and Cloudflare Worker rewrite).
+Scope: the daily UF / USD observado / UTM values shown on the site, from the
+Cloudflare Worker commit to the published page.
 
-## Current topology
+## SLO
 
-| Surface | Runs where | Notes |
-| --- | --- | --- |
-| Blocking gates (lint, tests, typecheck, build) | i5 host, one isolated runner | serialized, warm local disk, 16 threads |
-| Non-blocking audits (a11y, external URL check, reports) | same single slot | they queue behind blocking jobs and can hit the 15‑min timeout |
-| Production build | Cloudflare Pages | independent of CI; deploy on push |
-| Snapshot refresh | Cloudflare Worker + cron | already offloaded |
-| Scheduled reports | self-hosted runner | checkout + pnpm install per run |
-
-The single serialized slot is the bottleneck: a 15‑minute a11y run blocks every
-other job.
-
-## Decision matrix
-
-| Workload | Cloudflare Worker | Oracle VM (self-hosted runner) | Keep on i5 |
-| --- | --- | --- | --- |
-| Stateless HTTP/cron check (< 30 s CPU, no filesystem) | **yes** | possible but wasteful | no |
-| Needs repo checkout + pnpm install | no | **yes** | yes (warm caches) |
-| Needs Chromium/Playwright | no | **yes** (native arch) | yes |
-| Security binaries (Trivy/Gitleaks/Opengrep) | no | **yes** | yes |
-| Heavy build (Astro) | no | possible | **yes** (local disk, fastest) |
-| GitHub issue/PR writes | yes (token) | yes | yes |
-
-## Cloudflare candidates
-
-Workers run in V8 isolates: 128 MB memory, 30 s CPU (scheduled), no filesystem,
-no `child_process`, no Docker. Only stateless jobs fit.
-
-1. **Deploy health — done (2026-11-18).** `workers/deploy-health` fetches the
-   published site, the raw snapshot and `docs/governance/url-freeze-exceptions.json`;
-   the pure evaluators live in `scripts/lib/deploy-health-evaluators.mjs` and are
-   shared with the Node diagnostic. The Worker exposes `GET /status` and a 6 h
-   cron. The GitHub workflow is now a ~20 s curl + issue sync (no pnpm, no
-   full checkout), so the checks keep running even when the runner is busy.
-   Deploy: `pnpm run worker:deploy-health:deploy`.
-2. **Status aggregator**: a cron Worker that writes `{ lastSnapshotCommit,
-   lastDeploy, lastChecks }` to KV and exposes `GET /status`. Feeds a status
-   page or an uptime monitor.
-3. **Uptime/HEAD probes** for a small URL set (home, `/uf-hoy/`, one
-   calculator, `/api/indicadores-hoy.json`) with KV history.
-4. **IndexNow** ping from the deployed sitemap.
-
-Do **not** move: the 9.5k-link URL check (network/CPU), the Astro build,
-Playwright, or the security scans.
-
-## Oracle VM candidates
-
-The VM is a natural **second runner**, not a replacement:
-
-- Add a distinct label (e.g. `monedario-ci-heavy`) and route only non-blocking
-  jobs: `a11y-audit`, `external-url-check-pr`, `external-url-audit`, and the
-  report-only audits.
-- Keep blocking gates on the i5: it has the warm caches and the local disk.
-- Reuse the same isolation model (`ops/ci-runner/run-one.sh`): JIT registration,
-  `--read-only`, cap-drop, no host mounts, tmpfs work volume.
-
-Two host shapes change the plan:
-
-| Shape | Feasible work |
+| Stage | Target |
 | --- | --- |
-| Ampere A1 (arm64, 4 OCPU / 24 GB) | Second runner for most jobs; needs an **arm64** runner image (the current `pcp-ci-isolated` base is x86) and arm64 Playwright browsers. |
-| AMD micro (x86, 1/8 OCPU / 1 GB) | Too small for builds/tests; only a lightweight cron runner or a Cloudflare-like status probe. |
+| Snapshot commit | Every day by **12:00 America/Santiago** (3 crons: 10:15/14:15/18:15 UTC) |
+| Cloudflare Pages deploy | ≤ 10 min after the snapshot commit |
+| Degraded mode (aggregator down) | UF/USD still refresh from the BCCh; `source` records `snapshot.carry-forward` |
+| Detection of a dead Worker | ≤ 36 h (snapshot heartbeat) |
+| Detection of a stale site | ≤ 3 days for UF, ≤ 4 days for USD (weekend-tolerant) |
 
-The network matters more than the CPU: the i5 restores caches at ~0.5 MB/s. If
-the Oracle VM has better egress, route the dependency-heavy jobs there and keep
-only the build on the i5.
+## Failure-mode matrix
 
-## Routing enabler
+Each failure mode has **one** detector with a threshold tight enough to catch
+it. A new incident must add a row here, a detector, and a regression test.
 
-`ci.yml` already uses
-`runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}` for every job. To
-split traffic without editing every workflow:
+| # | Failure mode | Detector | Threshold | Where |
+| --- | --- | --- | --- | --- |
+| 1 | Worker never runs (cron gone) | snapshot `capturedAt` heartbeat | 36 h | `workers/deploy-health` + `deploy-health.yml` |
+| 2 | Worker runs but the aggregator is down | carry-forward path + `source: snapshot.carry-forward` | immediate | Worker `index.ts`, `payloadFromSnapshot` |
+| 3 | Worker commits but the official override fails | `*.override.failed` log + `provenance` | per run | Worker logs (`wrangler tail`) |
+| 4 | Worker commits but Pages fails | site dates vs today | UF 3 d / USD 4 d | `check-deploy-health` |
+| 5 | **Code merged but Worker not deployed** | last commit vs last `wrangler deploy` | 12 h (checked every 6 h) | `check-worker-deploy-drift.mjs`, `worker-deploy-drift.yml` |
+| 6 | Snapshot stale in the repo | `capturedAt` / indicator dates | 2 d / UF 3 d / USD 4 d | `check-economic-snapshot-freshness.mjs` |
+| 7 | Wrong data (not stale) | source consistency + legal/economic gates | per gate | `check:economic-source-consistency`, etc. |
 
-1. Add repository variable `ACTIONS_RUNNER_LABEL_HEAVY`.
-2. Route the heavy/non-blocking jobs with
-   `runs-on: ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY || vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}`.
-3. Extend `tests/static-analysis/actions-runner-portability.e2e.test.ts` with an
-   explicit allowlist of jobs that may use the heavy expression.
-4. If the variable is unset, the jobs stay on the primary runner: no outage.
+## Why the 2026-11-18 incident was not prevented by the 2026-11-10 fix
 
-## Warm caches in the runner image
+`ADR-20261110-deploy-health-and-ingestion-resilience` fixed three things:
+the URL-freeze exception that blocked Pages builds, the missing BCCh secrets,
+and the historical UF/IPC **ingestion** resilience. It also added
+`deploy-health`, which watches the **published site**.
 
-The image is `monedario-ci-isolated:2.338.0-a11y`, derived from the external
-`pcp-ci-isolated:2.338.0` (no node/pnpm/uv). A warm-cache image needs a
-multi-stage build:
+The 2026-11-18 failure was a different mode:
 
-```dockerfile
-# build from the repo root: docker build -f ops/ci-runner/Dockerfile -t monedario-ci-isolated:2.338.0-a11y .
-FROM node:22-bookworm-slim AS pnpm-store
-WORKDIR /repo
-RUN corepack enable
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-RUN corepack pnpm fetch --frozen-lockfile
-# store at /root/.local/share/pnpm/store/v*/files
+- The **snapshot Worker** (not the historical ingestion) hard-depended on
+  `mindicador.cl` and aborted on timeout.
+- The Worker had **not been redeployed since August**, so the September fixes
+  were never live.
+- `deploy-health` tolerated 6 days for USD and the weekly CI 10 days, so a
+  1-day miss was invisible.
 
-FROM pcp-ci-isolated:2.338.0
-COPY --from=pnpm-store /root/.local/share/pnpm /opt/pnpm-store
+In short: the previous fix added a detector for "repo fresh, site stale". The
+new failure was "repo stale because the Worker could not fetch". The matrix
+above exists so every mode has its own detector.
+
+## Deploy del Worker
+
+Hay dos caminos equivalentes:
+
+1. **Workflow (recomendado):** `Actions → Deploy economic snapshot worker →
+   Run workflow`, input `confirm=deploy`. Hace typecheck, dry-run, deploy y
+   verifica que el deployment de código sea reciente. Queda registrado en el
+   environment `production`.
+2. **Local:** `pnpm run worker:economic-snapshot:deploy`.
+
+El environment `production` hoy **no tiene required reviewers**: GitHub Free no
+soporta esa protección en repos privados (requiere Pro/Team). El gate humano es
+la confirmación explícita del workflow. Si el repo pasa a Pro, activar
+required reviewers en `Settings → Environments → production` sin cambiar el
+workflow.
+
+## Deploy health Worker (`/status`)
+
+The Worker checks the published site and `/api/deploy-health.json` (snapshot
+heartbeat) and exposes `/status` at
+`https://monedario-deploy-health.carlosortega77.workers.dev/status`. The GitHub
+workflow calls it every 6 h and adds the private URL-freeze exceptions with its
+`GITHUB_TOKEN`, then syncs the tracking issue. The Worker has no cron because
+the account is at the Workers Free 5-cron limit.
+
+```bash
+pnpm run worker:deploy-health:deploy
+curl -sS https://monedario-deploy-health.carlosortega77.workers.dev/status | jq .
 ```
 
-`bootstrap-pnpm` already seeds `RUNNER_TEMP/pnpm-store` from `/opt/pnpm-store`
-when present (no-op otherwise). Pin the base image by digest and rebuild only
-in a quiet window; the launcher refuses to start if the image is missing.
+If the account subdomain changes, set the repository variable
+`DEPLOY_HEALTH_STATUS_URL`; the workflow falls back to the URL above.
 
-## Suggested sequence
+## Runbook: "the site shows yesterday's value"
 
-1. (done) Typecheck in the first job, snapshot contract test, deploy workflow.
-2. Provision the Oracle runner with a `heavy` label; route a11y + external URL
-   check first (they are the biggest queue offenders and are non-blocking).
-3. (done) Deploy-health Worker + lightweight issue-sync workflow.
-4. Add the status aggregator + uptime probes.
-5. Evaluate GitHub Pro: 1 GB storage and hosted minutes would remove the
-   self-hosted artifact/quota pressure and enable required-reviewer
-   environments (GitHub Free does not support them on private repos).
+1. **Is the repo stale too?**
+   ```bash
+   curl -s https://raw.githubusercontent.com/cortega26/Monedario/main/src/infrastructure/economic/economic-parameters.snapshot.json \
+     | jq '{uf, dolar, lastUpdated, capturedAt, source}'
+   ```
+   - `source: snapshot.carry-forward` → the aggregator is down; UF/USD should
+     still be current from the BCCh. Check the official value below.
+   - `capturedAt` old → go to step 3.
+2. **Does the official source have a newer value?**
+   - UF: <https://www.sii.cl/valores_y_fechas/uf/uf2026.htm>
+   - USD/UF diarios: <https://si3.bcentral.cl/indicadoressiete/secure/IndicadoresDiarios.aspx>
+3. **Is the Worker running?**
+   ```bash
+   pnpm exec wrangler tail monedario-economic-snapshot-refresh --format pretty
+   # or inspect the last deployment
+   pnpm exec wrangler deployments list --config workers/economic-snapshot-refresh/wrangler.toml
+   ```
+   - `refresh.failed` + `TimeoutError` → aggregator/network; the fallback should
+     have prevented it (check the deployed version).
+   - No invocations → triggers missing; redeploy.
+4. **Is the deployed code current?**
+   ```bash
+   pnpm exec wrangler deployments list --config workers/economic-snapshot-refresh/wrangler.toml
+   git log -1 --format=%cI -- workers/economic-snapshot-refresh
+   ```
+   If the last `triggered_by=deployment` is older than the last commit:
+   `pnpm run worker:economic-snapshot:deploy`.
+5. **Is Pages deploying?**
+   `pnpm exec wrangler pages deployment list --project-name monedario` → latest
+   Production for `main` must be `Active`; otherwise read the build log.
+
+## Guardrails added after 2026-11-18
+
+- `withMindicadorFallback` + `payloadFromSnapshot`: an aggregator outage no
+  longer freezes the snapshot; BCCh/SII/INE overrides still apply.
+- `aggregatorOutage.test.ts`: handler-level regression test that fails without
+  the fallback (it reproduces the `TimeoutError`).
+- `check-worker-deploy-drift.mjs` + `worker-deploy-drift.yml`: daily check that
+  the deployed Worker includes the last commit; ignores secret-change
+  deployments.
+- Tighter thresholds: snapshot `capturedAt` ≤ 2 d, UF ≤ 3 d, USD ≤ 4 d; site
+  heartbeat 36 h.
+
+## Rule for future incidents
+
+A fix is not complete until it adds:
+
+1. a row in the failure-mode matrix,
+2. a detector with an explicit threshold and an owning workflow,
+3. a regression test that **fails without the fix** (prefer the real handler,
+   not a reimplementation),
+4. for Worker changes, a deploy step and the drift check above.

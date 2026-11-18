@@ -5,11 +5,11 @@ name: Deploy health
 # frescos (el Worker de snapshot seguía haciendo commits) pero el sitio en vivo
 # mostraba UF y dólar de hace una semana, y nadie se enteró.
 #
-# Los chequeos (sitio publicado, heartbeat del snapshot y excepciones del
-# URL-freeze) corren en el Worker `monedario-deploy-health` cada 6 h y se
-# exponen en `/status`. Este workflow ya NO instala el workspace: solo consulta
-# ese endpoint (curl) y sincroniza un único issue con el `GITHUB_TOKEN` del
-# repositorio. Sin PAT adicional.
+# El Worker `monedario-deploy-health` comprueba el sitio publicado y el
+# heartbeat del snapshot (artefacto público `/api/deploy-health.json`). Este
+# workflow lo consulta (curl), añade las excepciones del URL-freeze —datos
+# privados— con el `GITHUB_TOKEN` del repositorio y sincroniza un único issue.
+# No instala el workspace: de ~5 min a ~20 s. Sin PAT adicional.
 
 on:
   schedule:
@@ -26,7 +26,7 @@ permissions:
 
 jobs:
   health:
-    name: Published site and freeze exceptions (via Worker)
+    name: Published site, snapshot heartbeat and freeze exceptions
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     timeout-minutes: 5
     env:
@@ -43,22 +43,101 @@ jobs:
           sparse-checkout-cone-mode: false
 
       - name: "🩺 Fetch worker status"
-        id: health
+        id: worker
         continue-on-error: true
         run: |
           set +e
-          code="$(curl -sS --max-time 60 -o status.json \
+          code="$(curl -sS --max-time 60 -o worker-status.json \
             -w '%{http_code}' "${STATUS_URL}?ts=$(date +%s)")"
           if [ "$code" != "200" ]; then
             printf '{"ok":false,"checkedAt":"%s","problems":["El Worker de deploy-health respondió HTTP %s."]}\n' \
-              "$(date -u +%FT%TZ)" "$code" > status.json
+              "$(date -u +%FT%TZ)" "$code" > worker-status.json
             exit 1
           fi
+
+      - name: "🩺 Merge URL-freeze exceptions"
+        id: health
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
           python3 - <<'PY'
-          import json, sys
-          with open("status.json", encoding="utf-8") as handle:
-              status = json.load(handle)
-          sys.exit(0 if status.get("ok") else 1)
+          import base64
+          import datetime
+          import json
+          import os
+          import urllib.request
+
+          problems = []
+          worker_checked = None
+          try:
+              with open("worker-status.json", encoding="utf-8") as handle:
+                  worker = json.load(handle)
+              problems.extend(worker.get("problems") or [])
+              worker_checked = worker.get("checkedAt")
+          except Exception:
+              problems.append("El Worker de deploy-health no devolvió un estado legible.")
+
+          token = os.environ.get("GITHUB_TOKEN", "")
+          repo = os.environ.get("GITHUB_REPOSITORY", "cortega26/Monedario")
+          url = f"https://api.github.com/repos/{repo}/contents/docs/governance/url-freeze-exceptions.json"
+          try:
+              request = urllib.request.Request(
+                  url,
+                  headers={
+                      "Authorization": f"Bearer {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "monedario-deploy-health",
+                  },
+              )
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  payload = json.load(response)
+              document = json.loads(base64.b64decode(payload["content"]))
+              now = datetime.datetime.now(datetime.timezone.utc)
+              for entry in document.get("exceptions", []):
+                  if entry.get("decision") != "APPROVED":
+                      continue
+                  raw = entry.get("expiresAt")
+                  if not raw:
+                      continue
+                  try:
+                      expiry = datetime.datetime.fromisoformat(
+                          str(raw).replace("Z", "+00:00")
+                      )
+                  except ValueError:
+                      continue
+                  if expiry.tzinfo is None:
+                      expiry = expiry.replace(tzinfo=datetime.timezone.utc)
+                  days = int((expiry - now).total_seconds() // 86400)
+                  if days > 14:
+                      continue
+                  target = entry.get("url", "?")
+                  if days < 0:
+                      problems.append(
+                          f"La excepción de URL-freeze de {target} venció el {raw}: "
+                          "bloquea el CI y puede bloquear el deploy. Renuévala o "
+                          "promueve la URL al inventario aprobado."
+                      )
+                  else:
+                      problems.append(
+                          f"La excepción de URL-freeze de {target} vence en {days} "
+                          f"día(s) ({raw}). Renuévala o promueve la URL al inventario "
+                          "aprobado antes de esa fecha."
+                      )
+          except Exception as error:
+              problems.append(f"No se pudo consultar el registro de excepciones: {error}")
+
+          status = {
+              "ok": not problems,
+              "checkedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "workerCheckedAt": worker_checked,
+              "problems": problems,
+          }
+          with open("status.json", "w", encoding="utf-8") as handle:
+              json.dump(status, handle, ensure_ascii=False, indent=2)
+              handle.write("\n")
+          raise SystemExit(0 if status["ok"] else 1)
           PY
 
       - name: "📝 Build issue payload"
@@ -89,7 +168,7 @@ jobs:
 
             const problems = Array.isArray(status?.problems) && status.problems.length > 0
               ? status.problems
-              : ["(sin detalle: el Worker no devolvió un estado legible)"];
+              : ["(sin detalle: el chequeo no produjo un estado legible)"];
             const findings = problems.map(problem => `- ${problem}`).join("\n");
             core.setOutput("desired_state", "open");
             core.setOutput(
@@ -99,7 +178,7 @@ jobs:
                 "",
                 findings,
                 "",
-                `**Worker checked at:** ${status?.checkedAt ?? "?"}`,
+                `**Worker checked at:** ${status?.workerCheckedAt ?? status?.checkedAt ?? "?"}`,
                 "",
                 "### Qué hacer",
                 "",

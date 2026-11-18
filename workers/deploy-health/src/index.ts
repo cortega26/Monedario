@@ -1,6 +1,4 @@
 import {
-  SNAPSHOT_URL,
-  evaluateExceptionExpiry,
   evaluateLiveFreshness,
   evaluateSnapshotHeartbeat,
 } from "../../../scripts/lib/deploy-health-evaluators.mjs";
@@ -8,8 +6,7 @@ import {
 /** Keep in sync with the `[vars]` block in `wrangler.toml`. */
 export interface Env {
   SITE_URL: string;
-  SNAPSHOT_URL?: string;
-  EXCEPTIONS_URL: string;
+  HEALTH_URL: string;
 }
 
 export interface HealthStatus {
@@ -19,8 +16,8 @@ export interface HealthStatus {
 }
 
 const TIMEOUT_MS = 30_000;
-const DEFAULT_EXCEPTIONS_URL =
-  "https://raw.githubusercontent.com/cortega26/Monedario/main/docs/governance/url-freeze-exceptions.json";
+const DEFAULT_HEALTH_URL =
+  "https://monedario.cl/api/deploy-health.json";
 
 function describe(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
@@ -35,8 +32,13 @@ async function fetchFresh(url: string, now: Date): Promise<Response> {
 }
 
 /**
- * Runs the three external checks and returns a JSON-serializable status.
- * The Node script `scripts/check-deploy-health.mjs` uses the same evaluators.
+ * Runs the public checks and returns a JSON-serializable status.
+ *
+ * The snapshot heartbeat and the site dates come from the published site: the
+ * repository is private, so a Worker cannot read `raw.githubusercontent.com`
+ * without a token. `/api/deploy-health.json` is generated at build time from
+ * the committed snapshot and is public by design. The URL-freeze exceptions are
+ * private governance data and stay in the GitHub workflow.
  */
 export async function runChecks(
   env: Env,
@@ -44,8 +46,7 @@ export async function runChecks(
 ): Promise<HealthStatus> {
   const problems: string[] = [];
   const siteUrl = env.SITE_URL;
-  const snapshotUrl = env.SNAPSHOT_URL || SNAPSHOT_URL;
-  const exceptionsUrl = env.EXCEPTIONS_URL || DEFAULT_EXCEPTIONS_URL;
+  const healthUrl = env.HEALTH_URL || DEFAULT_HEALTH_URL;
 
   try {
     const response = await fetchFresh(siteUrl, now);
@@ -61,10 +62,10 @@ export async function runChecks(
   }
 
   try {
-    const response = await fetchFresh(snapshotUrl, now);
+    const response = await fetchFresh(healthUrl, now);
     if (!response.ok) {
       problems.push(
-        `El snapshot económico de main respondió HTTP ${response.status}.`
+        `El artefacto de salud publicado respondió HTTP ${response.status}.`
       );
     } else {
       problems.push(
@@ -73,24 +74,7 @@ export async function runChecks(
     }
   } catch (error) {
     problems.push(
-      `No se pudo consultar el snapshot económico de main: ${describe(error)}`
-    );
-  }
-
-  try {
-    const response = await fetchFresh(exceptionsUrl, now);
-    if (!response.ok) {
-      problems.push(
-        `El registro de excepciones del URL-freeze respondió HTTP ${response.status}.`
-      );
-    } else {
-      problems.push(
-        ...evaluateExceptionExpiry({ document: await response.json(), now })
-      );
-    }
-  } catch (error) {
-    problems.push(
-      `No se pudo consultar el registro de excepciones: ${describe(error)}`
+      `No se pudo consultar el artefacto de salud publicado: ${describe(error)}`
     );
   }
 
@@ -120,8 +104,8 @@ export default {
     );
   },
 
-  // Public, read-only status. It exposes only public site/snapshot dates and
-  // the check messages; the issue synchronization lives in the GitHub workflow.
+  // Public, read-only status. It exposes only public site dates and the
+  // snapshot heartbeat; the issue synchronization lives in the GitHub workflow.
   async fetch(request: Request, env: Env): Promise<Response> {
     if (new URL(request.url).pathname !== "/status") {
       return new Response("Not Found", { status: 404 });
