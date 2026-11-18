@@ -244,3 +244,57 @@ with no variable set, every job resolves to `ubuntu-latest`.
   `monedario-actions-runner:2.335.1` removed.
 - Verified: `gh api repos/cortega26/Monedario/actions/runners` → `[]`;
   `gh variable list` no longer lists `ACTIONS_RUNNER_LABEL`.
+
+## Storage quota (artifacts + GitHub Packages)
+
+This is a **different quota** from the hosted-minute bridge above: on GitHub
+Free, artifact storage is 500 MB **per account** and is pooled with GitHub
+Packages storage. Cache storage is separate (10 GB per repository) and does not
+consume it.
+
+Symptom, repeated at the end of otherwise successful report-only runs:
+
+```
+Failed to CreateArtifact: Artifact storage quota has been hit.
+Unable to upload any new artifacts. Usage is recalculated every 6-12 hours.
+```
+
+This repository's own artifacts are tiny (~349 KB across 67 artifacts), so when
+this fires the consumption is almost always a **package** owned by the account
+(container images pushed to GHCR, release assets, or another repository's
+artifacts).
+
+Inspect what this repository holds:
+
+```bash
+gh api repos/cortega26/Monedario/actions/artifacts --paginate \
+  --jq '[.artifacts[]] | {count: length, mb: (([.[].size_in_bytes] | add) / 1048576)}'
+```
+
+Inspect account-level packages (needs the `read:packages` scope, which the
+current token does not have):
+
+```bash
+gh auth refresh -h github.com -s read:packages
+gh api user/packages?package_type=container --paginate \
+  --jq '.[] | "\(.name)\t\(.visibility)"'
+gh api "user/packages/container/<name>/versions" --paginate \
+  --jq '.[] | "\(.id)\t\(.metadata.container.tags|join(","))"'
+# delete a specific version only after confirming it is unused:
+# gh api -X DELETE "user/packages/container/<name>/versions/<version_id>"
+```
+
+Operational rules:
+
+- Report-only workflows treat artifact upload as **best-effort**
+  (`ADR-20261118-ci-artifact-degradation-policy`). A run whose only red step is
+  the upload is not a workflow failure; the report is still in the workspace and
+  in the tracking issue.
+- Do **not** delete artifacts blindly to "fix" this. The repository total is
+  under 1 MB; deleting them frees nothing measurable and breaks links from open
+  issues/PRs.
+- `weekly-search-ops` states the upload outcome in its weekly issue, so a
+  missing bundle is visible instead of silently referenced.
+- When the quota is restored in a sustained way, remove the
+  `continue-on-error` from the diagnostic uploads (reversion condition in the
+  ADR).

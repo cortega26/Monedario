@@ -250,6 +250,20 @@
       "detail": "Rotar un tema por día (AIO/citas, oficial/EMD, indexación, CWV, decay, features). Usar los cupos gratuitos de Keywords Everywhere, Semrush, SerpDino, Spyglass y GSC; registrar en docs/operations/FREE_DATA_RESEARCH_LOG.md y dejar máximo una acción.",
       "cadence": "daily",
       "owner": "carlos"
+    },
+    {
+      "id": "shiki-transformers-pin",
+      "title": "Revisar pin de @shikijs/transformers vs el shiki de Astro",
+      "detail": "El pin exacto de @shikijs/transformers debe ser igual al override `shiki` de pnpm-workspace.yaml. Si Astro subió de shiki, subir ambos y correr `pnpm run astro check` + tests/static-analysis/shiki-single-type-identity.e2e.test.ts. Dependabot lo ignora a propósito.",
+      "cadence": "monthly",
+      "owner": "carlos"
+    },
+    {
+      "id": "wrangler-manual-bump",
+      "title": "Bump manual de wrangler (pin exacto) + dry-run de deploy",
+      "detail": "wrangler está ignorado por Dependabot porque el pin exacto es el contrato de tests/static-analysis/analytics-collector-workflow.e2e.test.ts. Actualizar package.json + lock, correr el test y el dry-run de deploy-analytics-collector.yml antes de mergear.",
+      "cadence": "monthly",
+      "owner": "carlos"
     }
   ]
 }

@@ -46,6 +46,8 @@ jobs:
 
       - name: "📤 Upload dead-code report"
         if: always()
+        # Diagnóstico: la cuota de storage es de cuenta y no debe tumbar el reporte.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: self-heal-deadcode-log

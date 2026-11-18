@@ -99,13 +99,19 @@ jobs:
               ;;
           esac
 
-      - name: "🔒 Assert the series advanced (heartbeat)"
+      - name: "🔒 Assert the series reaches the publication horizon (heartbeat)"
         id: advance
         # Un ingestor que devuelve la misma serie sale con código 0, no produce
         # diff y cerraría su propio issue como verde. Esta aserción lo convierte
-        # en rojo.
+        # en rojo — pero midiendo el horizonte, no un avance semanal estricto:
+        # la UF se publica ~14 días por anticipación, así que una serie que ya
+        # está por delante de hoy + 10 días no tiene por qué moverse cada
+        # semana (falso positivo del 2026-11-16: serie hasta 2026-12-09).
+        # El rojo real es que el final de la serie se quede corto, señal de que
+        # el emisor dejó de publicar o la ingesta se rompió.
         env:
           BEFORE: ${{ steps.baseline.outputs.before }}
+          UF_MIN_HORIZON_DAYS: ${{ vars.UF_MIN_HORIZON_DAYS || '10' }}
         run: |
           set -euo pipefail
           AFTER=$(node -e "const s=require('./src/data/economic-history/uf-historico.json');process.stdout.write(String((s.serie??[]).at(-1)?.fecha??''))")
@@ -114,10 +120,17 @@ jobs:
             echo "::error::La serie ingerida no tiene última fecha."
             exit 1
           fi
-          if [ -n "$BEFORE" ] && [ ! "$AFTER" \> "$BEFORE" ]; then
-            echo "::error::La serie no avanzó (antes ${BEFORE}, ahora ${AFTER}). La fuente no publicó días nuevos o la ingesta está rota."
+          if [ -n "$BEFORE" ] && [[ "$AFTER" < "$BEFORE" ]]; then
+            echo "::error::La serie retrocedió (antes ${BEFORE}, ahora ${AFTER}). Revisar la ingesta antes de mergear."
             exit 1
           fi
+          HORIZON="$(date -u -d "+${UF_MIN_HORIZON_DAYS} days" +%F)"
+          echo "Horizonte mínimo requerido: ${HORIZON} (hoy + ${UF_MIN_HORIZON_DAYS} días)"
+          if [[ "$AFTER" < "$HORIZON" ]]; then
+            echo "::error::La serie UF termina en ${AFTER}, por detrás del horizonte ${HORIZON}. El emisor no publicó días nuevos o la ingesta está rota."
+            exit 1
+          fi
+          echo "OK: la serie cubre el horizonte de publicación."
 
       - name: "📬 Create pull request"
         id: create-pr

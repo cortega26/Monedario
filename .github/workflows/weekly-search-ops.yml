@@ -112,6 +112,10 @@ jobs:
         run: node scripts/build-weekly-search-report.mjs --input "output/operations/weekly-search-performance/${{ steps.week.outputs.label }}"
 
       - name: "📤 Upload weekly bundle"
+        id: upload_bundle
+        # Diagnóstico/transporte: la cuota de storage es de cuenta y no debe
+        # tumbar el reporte. El issue de abajo registra si el bundle no subió.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: weekly-search-ops-${{ steps.week.outputs.label }}
@@ -126,13 +130,19 @@ jobs:
           SCORECARD_READY: ${{ steps.exports.outputs.scorecard_ready }}
           GSC_SOURCE: ${{ steps.exports.outputs.gsc_source }}
           ANALYTICS_STATUS: ${{ steps.exports.outputs.analytics_status }}
+          UPLOAD_OUTCOME: ${{ steps.upload_bundle.outcome }}
         run: |
           set -euo pipefail
 
           title="Weekly search ops: $WEEK_LABEL"
           scorecard_generated="no"
+          upload_line="Artifact uploaded as \`weekly-search-ops-$WEEK_LABEL\`."
           status_line="The required exports were not available in the workflow workspace. Complete the bundle and rerun the script or workflow."
           analytics_line="First-party analytics export is missing. Treat this as a collection/export incident: investigate it and record the outcome; do not defer review based on traffic volume or interpret absence as zero events."
+
+          if [[ "$UPLOAD_OUTCOME" != "success" ]]; then
+            upload_line="**Artifact upload failed** (storage quota). The bundle exists only in the workflow workspace; rerun this workflow after the quota is restored."
+          fi
 
           if [[ "$SCORECARD_READY" == "true" ]]; then
             scorecard_generated="yes"
@@ -161,6 +171,7 @@ jobs:
               "- Bundle path: \`output/operations/weekly-search-performance/$WEEK_LABEL/\`" \
               "- Scorecard generated: \`$scorecard_generated\`" \
               "- Workflow artifact: \`weekly-search-ops-$WEEK_LABEL\`" \
+              "- Upload status: $upload_line" \
               "- Analytics status: \`$ANALYTICS_STATUS\`" \
               "" \
               "### Checklist" \

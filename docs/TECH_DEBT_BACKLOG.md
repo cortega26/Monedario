@@ -2609,7 +2609,54 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   - [x] Los jobs bloqueantes dejan de expirar por timeout (mitigación).
   - [ ] El bootstrap baja de ~5 min en el runner self-hosted.
   - [ ] `timeout-minutes` vuelve a un valor ajustado a la duración real.
+- **Nota 2026-11-18:** reincidencia en el run 43966940380 (PR #780,
+  `Code standards & build`). `pnpm install --frozen-lockfile` tardó 6m17s con
+  `reused 0`, requests de 20–96 s y `Tarball download average speed 22 KiB/s`,
+  y terminó en `TimeoutError: The operation was aborted due to timeout`. La
+  causa inmediata es un **cache miss total**: `actions/setup-node` con
+  `cache: pnpm` llama `restoreCache(paths, primaryKey)` **sin `restore-keys`**,
+  así que cualquier cambio de `pnpm-lock.yaml` (el caso de todo PR de
+  Dependabot) reinstala ~950 paquetes en frío por un enlace lento. La palanca
+  correcta no es un cache con `restore-keys` (restaurar ~250 MB a 0,5 MB/s
+  puede ser igual de lento) sino **hornear un pnpm store tibio en la imagen del
+  runner**; afecta a todos los jobs, no solo al install.
 - **Owner:** Sin asignar
 - **Estado:** Abierto (mitigado)
 - **Fecha de creación:** 2026-10-27
-- **Última actualización:** 2026-10-27
+- **Última actualización:** 2026-11-18
+
+## TD-0114 — Consumo externo de la cuota de storage de GitHub Actions
+
+- **ID:** TD-0114
+- **Título corto:** Identificar qué consume los 500 MB de artifacts + Packages
+- **Descripción:** Desde 2026-11-16 los workflows programados de reporte fallan
+  en el último step con `Failed to CreateArtifact: Artifact storage quota has
+  been hit`. La cuota de GitHub Free (500 MB) es de cuenta y se comparte entre
+  artifacts y GitHub Packages; los artifacts de este repositorio suman ~349 KB
+  (67 artifacts), así que el consumo está fuera del repo (imágenes GHCR de otros
+  proyectos del owner, releases o artifacts de otro repositorio).
+- **Evidencia:** `gh api repos/cortega26/Monedario/actions/artifacts --paginate`
+  → 67 artifacts / 349 KB. Runs afectados: 44307968390 (self-heal), 44143138266
+  (repo-doctor), 44140820990 (guardrail-drift-audit), 43935974568
+  (editorial-timeliness), 43930249007 (weekly-search-ops), 43943416677
+  (growth-opportunities).
+- **Impacto:** Los reportes no se pueden descargar como artifact. Mitigado:
+  uploads diagnósticos con `continue-on-error` y el issue como superficie real
+  (`ADR-20261118-ci-artifact-degradation-policy`).
+- **Riesgo:** bajo (diagnóstico).
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S (con `read:packages`)
+- **Propuesta de solución:** `gh auth refresh -h github.com -s read:packages`,
+  listar `user/packages?package_type=container`, identificar imágenes huérfanas
+  o de proyectos retirados y borrar versiones concretas (nunca el paquete
+  entero sin confirmar). Documentado en
+  `docs/operations/runbooks/actions-quota-bridge.md`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] El consumo identificado está documentado con nombre y tamaño.
+  - [ ] Un run programado de `repo-doctor` sube su artifact sin error.
+  - [ ] Se retiran los `continue-on-error` de los uploads diagnósticos.
+- **Owner:** Carlos Ortega (billing/paquetes de la cuenta)
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-11-18
+- **Última actualización:** 2026-11-18

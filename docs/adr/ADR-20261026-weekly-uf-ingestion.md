@@ -192,3 +192,40 @@ que los usuarios vean una serie incompleta.
   workflow reutilizable con matriz de indicadores tras 2 ciclos verdes.
 - Registrar en `docs/operations/ops-schedule.json` la revisión semanal del
   issue `data-freshness` si el owner quiere visibilidad en el calendario único.
+
+## Amendment 2026-11-18 — heartbeat por horizonte, no por avance semanal
+
+El control 2 de la sección *Decision* ("el workflow falla si la última fecha
+ingerida no avanzó respecto de `HEAD`") produjo un falso positivo estructural.
+El 2026-11-16 el run programado falló con:
+
+```
+La serie no avanzó (antes 2026-12-09, ahora 2026-12-09).
+```
+
+La serie ya estaba 23 días por delante de la fecha de corrida: el BCCh publica
+la UF con varias semanas de anticipación, así que una semana sin fechas nuevas
+es el comportamiento normal del emisor, no una ingesta rota. Un heartbeat que
+exige movimiento semanal marca rojo permanente mientras la fuente esté
+adelantada.
+
+**Decisión:** la aserción mide el **horizonte de publicación**, no el
+movimiento:
+
+- falla si la última fecha **retrocede** respecto de `HEAD` (regresión de
+  datos);
+- falla si la última fecha queda **por detrás de `hoy + UF_MIN_HORIZON_DAYS`**
+  (por defecto 10 días, configurable como variable de repositorio);
+- si la serie ya cubre el horizonte, no exige fechas nuevas.
+
+**Ventana residual aceptada:** con el lead observado (~23 días) y un horizonte
+de 10 días, una ingesta congelada tarda ~13 días en ponerse roja. Es comparable
+al umbral de 14 días de `check-economic-snapshot-freshness` y elimina el rojo
+permanente. Si se necesita detección exacta (sin depender del lead del emisor),
+el follow-up es persistir `ultimoAvanceEl` en el histórico y fallar cuando
+`hoy - ultimoAvanceEl > 14`; requiere cambio de esquema del JSON y no se hace
+en este bugfix.
+
+**Verificación:** tabla de casos con reloj fijo — serie `hoy+23` → verde;
+`hoy+2` → rojo; `hoy-1` (retroceso) → rojo; serie idéntica dentro del horizonte
+→ verde.
