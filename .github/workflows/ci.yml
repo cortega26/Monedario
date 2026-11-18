@@ -83,6 +83,12 @@ jobs:
       - name: "📝 Checking code format"
         run: pnpm run format:check
 
+      - name: "🔬 Typecheck (astro check)"
+        # Catch TS errors in the first job. The build job also runs this, but a
+        # green tests job with a red build costs an extra CI cycle (2026-11-18:
+        # a test fixture had a type error that only the build job surfaced).
+        run: pnpm run astro check
+
       - name: "🧪 Run tests"
         run: pnpm run test:coverage
 

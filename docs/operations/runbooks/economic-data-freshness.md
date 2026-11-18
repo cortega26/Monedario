@@ -48,6 +48,22 @@ In short: the previous fix added a detector for "repo fresh, site stale". The
 new failure was "repo stale because the Worker could not fetch". The matrix
 above exists so every mode has its own detector.
 
+## Deploy del Worker
+
+Hay dos caminos equivalentes:
+
+1. **Workflow (recomendado):** `Actions → Deploy economic snapshot worker →
+   Run workflow`, input `confirm=deploy`. Hace typecheck, dry-run, deploy y
+   verifica que el deployment de código sea reciente. Queda registrado en el
+   environment `production`.
+2. **Local:** `pnpm run worker:economic-snapshot:deploy`.
+
+El environment `production` hoy **no tiene required reviewers**: GitHub Free no
+soporta esa protección en repos privados (requiere Pro/Team). El gate humano es
+la confirmación explícita del workflow. Si el repo pasa a Pro, activar
+required reviewers en `Settings → Environments → production` sin cambiar el
+workflow.
+
 ## Runbook: "the site shows yesterday's value"
 
 1. **Is the repo stale too?**

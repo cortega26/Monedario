@@ -1,0 +1,96 @@
+name: Deploy economic snapshot worker
+
+# Deploy reproducible del Worker de snapshot económico.
+#
+# Por qué manual: el repo no tiene un production environment con required
+# reviewers (GitHub Free no soporta esa protección en repos privados; requiere
+# Pro/Team). El gate humano es el workflow_dispatch con confirmación explícita,
+# y el resultado queda auditado en el historial de deployments del environment
+# `production`. El chequeo `worker-deploy-drift` avisa si el deploy se olvida.
+#
+# Requisitos:
+#   CLOUDFLARE_API_TOKEN   Workers Scripts:Edit
+#   CLOUDFLARE_ACCOUNT_ID  variable de repositorio (ya configurada)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Escribe "deploy" para confirmar el despliegue a producción'
+        required: true
+        type: string
+
+concurrency:
+  group: deploy-economic-snapshot
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Desplegar y verificar el Worker
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+    environment: production
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - name: "✋ Confirmar despliegue"
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.confirm }}" != "deploy" ]; then
+            echo "::error::Escribe 'deploy' para confirmar el despliegue."
+            exit 1
+          fi
+
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "🔧 Typecheck worker"
+        run: pnpm run check:workers
+
+      - name: "🧪 Wrangler dry run"
+        run: |
+          pnpm exec wrangler deploy --dry-run \
+            --config workers/economic-snapshot-refresh/wrangler.toml \
+            --outdir "$RUNNER_TEMP/worker-bundle"
+
+      - name: "🚀 Deploy"
+        run: pnpm run worker:economic-snapshot:deploy
+
+      - name: "✅ Verify the code deployment is recent"
+        run: |
+          set -euo pipefail
+          latest="$(pnpm exec wrangler deployments list \
+            --config workers/economic-snapshot-refresh/wrangler.toml \
+            --json | jq -r '[.[] | select(.annotations["workers/triggered_by"] == "deployment")] | max_by(.created_on) | .created_on')"
+          echo "Último deploy de código: ${latest}"
+          if [ -z "${latest}" ] || [ "${latest}" = "null" ]; then
+            echo "::error::No se encontró un deploy de código del Worker."
+            exit 1
+          fi
+          latest_ts="$(date -u -d "${latest}" +%s)"
+          now_ts="$(date -u +%s)"
+          if [ "$((now_ts - latest_ts))" -gt 600 ]; then
+            echo "::error::El último deploy de código no es reciente (${latest})."
+            exit 1
+          fi
+
+      - name: "🧾 Deployment record"
+        run: |
+          {
+            echo "### Deploy del Worker de snapshot"
+            echo "- Commit: \`${{ github.sha }}\`"
+            echo "- Ejecutado por: \`${{ github.actor }}\`"
+            echo "- Verificación de drift: workflow \`worker-deploy-drift\`"
+          } >> "$GITHUB_STEP_SUMMARY"

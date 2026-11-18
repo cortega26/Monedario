@@ -90,7 +90,7 @@ jobs:
                 "",
                 "### Qué hacer",
                 "",
-                "1. `pnpm run worker:economic-snapshot:deploy`",
+                "1. `Actions → Deploy economic snapshot worker` (input `confirm=deploy`) o `pnpm run worker:economic-snapshot:deploy`.",
                 "2. Verificar que la última entrada `workers/triggered_by=deployment` sea posterior al último commit de `workers/economic-snapshot-refresh/`.",
                 "3. Confirmar con el próximo cron (10:15/14:15/18:15 UTC) o con un trigger manual.",
                 "",
