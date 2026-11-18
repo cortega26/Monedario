@@ -134,6 +134,27 @@ gh api "repos/cortega26/Monedario/actions/runs?status=queued&per_page=20" --jq \
   jobs** (a queued run with no jobs can never execute; `gh run view <id>` shows
   the job list).
 
+## Warm pnpm store (TD-0113)
+
+The image bakes the repo's pnpm store at `/opt/pnpm-store` (823 MB, layout
+`v11`). `bootstrap-pnpm` copies it to `RUNNER_TEMP/pnpm-store`, so a lockfile
+change only downloads the diff instead of ~950 packages. Build and test it under
+a separate tag first:
+
+```bash
+docker build -f ops/ci-runner/Dockerfile -t monedario-ci-isolated:2.338.0-a11y-warm .
+MONEDARIO_CI_IMAGE=monedario-ci-isolated:2.338.0-a11y-warm bash ops/ci-runner/run-one.sh --verify
+```
+
+Switch in a quiet window (the running containers keep the old image):
+
+```bash
+docker tag monedario-ci-isolated:2.338.0-a11y-warm monedario-ci-isolated:2.338.0-a11y
+# or set Environment=MONEDARIO_CI_IMAGE=... in the slot services and restart them
+```
+
+The build context is the repository root (the builder reads `pnpm-lock.yaml`).
+
 ## Chromium dependencies for the a11y job
 
 The base `pcp-ci-isolated` image does not include the shared libraries Chromium
@@ -143,7 +164,7 @@ the browser but it crashes at launch with `browserType.launch`.
 Build the derived image **before** installing or restarting the launcher:
 
 ```bash
-docker build -t monedario-ci-isolated:2.338.0-a11y ops/ci-runner
+docker build -f ops/ci-runner/Dockerfile -t monedario-ci-isolated:2.338.0-a11y .
 docker run --rm -v "$HOME/.cache/ms-playwright/chromium-1243/chrome-linux64:/chrome:ro" \
   --entrypoint sh monedario-ci-isolated:2.338.0-a11y -lc \
   'ldd /chrome/chrome | grep "not found" | sort -u'

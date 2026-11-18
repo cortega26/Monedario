@@ -6,7 +6,7 @@ set -Eeuo pipefail
 
 readonly repository=cortega26/Monedario
 readonly label=monedario-ci-isolated
-readonly image=monedario-ci-isolated:2.338.0-a11y
+readonly image="${MONEDARIO_CI_IMAGE:-monedario-ci-isolated:2.338.0-a11y}"
 readonly network=monedario-ci-isolated
 # Slot 0 keeps the legacy single-service runner name. Slot N (>=2) is encoded in
 # the name so the host watchdog can map a stale lease to its systemd service.
