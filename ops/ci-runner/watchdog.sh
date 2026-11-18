@@ -18,7 +18,8 @@ set -Eeuo pipefail
 readonly repository="${WATCHDOG_REPOSITORY:-cortega26/Monedario}"
 readonly label="${WATCHDOG_LABEL:-monedario-ci-isolated}"
 readonly runner_prefix="${label}-"
-readonly service="${WATCHDOG_SERVICE:-monedario-isolated-ci.service}"
+readonly primary_service="${WATCHDOG_SERVICE:-monedario-isolated-ci.service}"
+readonly secondary_service="${WATCHDOG_SECONDARY_SERVICE:-monedario-isolated-ci-2.service}"
 readonly state_dir="${WATCHDOG_STATE_DIR:-${XDG_STATE_HOME:-$HOME/.local/state}/monedario/ci-watchdog}"
 readonly log_file="${WATCHDOG_LOG:-$state_dir/watchdog.jsonl}"
 readonly stale_busy_seconds="${WATCHDOG_STALE_BUSY_SECONDS:-180}"
@@ -126,6 +127,17 @@ remove_container() {
   docker rm --force "$name" >/dev/null 2>&1 || true
 }
 
+# Maps a runner to its systemd service. Slot 0 (legacy) has no slot segment;
+# slot N (>=2) is encoded as monedario-ci-isolated-<N>-<epoch>-<pid>.
+service_for_runner() {
+  local name="$1"
+  if [[ "$name" =~ ^monedario-ci-isolated-([1-9][0-9]*)- ]]; then
+    printf 'monedario-isolated-ci-%s.service\n' "${BASH_REMATCH[1]}"
+  else
+    printf '%s\n' "$primary_service"
+  fi
+}
+
 rotate_log
 
 # The label variable is the operational switch. If it is unset or points
@@ -176,8 +188,11 @@ if [[ -n "$oldest_queued" ]]; then
     printf '%s' "$now")"
 fi
 
-service_state="$(systemctl --user is-active "$service" 2>/dev/null || true)"
-[[ -n "$service_state" ]] || service_state="unknown"
+primary_state="$(systemctl --user is-active "$primary_service" 2>/dev/null || true)"
+secondary_state="$(systemctl --user is-active "$secondary_service" 2>/dev/null || true)"
+[[ -n "$primary_state" ]] || primary_state="unknown"
+[[ -n "$secondary_state" ]] || secondary_state="unknown"
+service_state="primary=${primary_state},secondary=${secondary_state}"
 
 online_idle=0
 online_busy=0
@@ -267,13 +282,17 @@ if ((online_busy > 0 && in_progress == 0)); then
       delete_runner "$id" "$name" || true
     done
     if ((online_idle == 0)); then
-      if systemctl --user restart "$service" >/dev/null 2>&1; then
-        log_event warn recovered_stale_busy \
-          "runners=$signature action=restart_service"
-      else
-        log_event error restart_failed "runners=$signature"
-        unrecovered=1
-      fi
+      for entry in "${stale_busy[@]}"; do
+        name="${entry#*$'\t'}"
+        svc="$(service_for_runner "$name")"
+        if systemctl --user restart "$svc" >/dev/null 2>&1; then
+          log_event warn recovered_stale_busy \
+            "runners=$signature action=restart_service service=$svc"
+        else
+          log_event error restart_failed "runners=$signature service=$svc"
+          unrecovered=1
+        fi
+      done
     else
       log_event warn recovered_stale_busy \
         "runners=$signature action=deleted_registration"
@@ -297,14 +316,20 @@ if ((queued_count > 0 && in_progress == 0 && online_idle == 0 &&
     log_event warn would_restart_no_runner \
       "queued=$queued_count age=${age}s service=$service_state"
   else
-    if systemctl --user restart "$service" >/dev/null 2>&1; then
-      log_event warn recovered_no_runner \
-        "queued=$queued_count action=restart_service"
-      recovered=1
-    else
-      log_event error restart_failed "queued=$queued_count"
-      unrecovered=1
+    services=("$primary_service")
+    if systemctl --user cat "$secondary_service" >/dev/null 2>&1; then
+      services+=("$secondary_service")
     fi
+    for svc in "${services[@]}"; do
+      if systemctl --user restart "$svc" >/dev/null 2>&1; then
+        log_event warn recovered_no_runner \
+          "queued=$queued_count action=restart_service service=$svc"
+        recovered=1
+      else
+        log_event error restart_failed "queued=$queued_count service=$svc"
+        unrecovered=1
+      fi
+    done
     rm -f "$state_dir/no-runner.since"
   fi
 else

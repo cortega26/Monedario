@@ -1,0 +1,19 @@
+[Unit]
+Description=Monedario isolated disposable GitHub Actions runner (slot 2, not pcp-local)
+StartLimitIntervalSec=300
+StartLimitBurst=20
+
+[Service]
+Type=simple
+ExecStart=/bin/bash %h/.local/share/monedario/isolated-ci-runner/run-one.sh
+Environment=MONEDARIO_CI_SLOT=2
+Environment=XDG_RUNTIME_DIR=%t
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Restart=always
+RestartSec=10
+TimeoutStopSec=30
+NoNewPrivileges=yes
+UMask=0077
+
+[Install]
+WantedBy=default.target

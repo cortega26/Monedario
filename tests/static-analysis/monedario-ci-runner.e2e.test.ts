@@ -6,6 +6,10 @@ import { describe, expect, it } from "vitest";
 const root = process.cwd();
 const path = resolve(root, "ops/ci-runner/run-one.sh");
 const servicePath = resolve(root, "ops/ci-runner/monedario-isolated-ci.service");
+const secondaryServicePath = resolve(
+  root,
+  "ops/ci-runner/monedario-isolated-ci-2.service"
+);
 const watchdogPath = resolve(root, "ops/ci-runner/watchdog.sh");
 const watchdogServicePath = resolve(
   root,
@@ -17,6 +21,7 @@ const watchdogTimerPath = resolve(
 );
 const source = readFileSync(path, "utf8");
 const service = readFileSync(servicePath, "utf8");
+const secondaryService = readFileSync(secondaryServicePath, "utf8");
 const watchdog = readFileSync(watchdogPath, "utf8");
 const watchdogService = readFileSync(watchdogServicePath, "utf8");
 const watchdogTimer = readFileSync(watchdogTimerPath, "utf8");
@@ -59,6 +64,19 @@ describe("Monedario disposable CI boundary", () => {
     expect(source).toContain("--tmpfs /runner:");
     expect(source).not.toMatch(/--(?:volume|mount|privileged)\b/);
     expect(source).not.toContain("/var/run/docker.sock");
+  });
+
+  it("runs a second slot with its own systemd service", () => {
+    expect(source).toContain('readonly slot="${MONEDARIO_CI_SLOT:-0}"');
+    expect(source).toContain(
+      'name="monedario-ci-isolated-${slot}-$(date -u +%s)-$$"'
+    );
+    expect(secondaryService).toContain("Environment=MONEDARIO_CI_SLOT=2");
+    expect(secondaryService).toContain("Restart=always");
+    expect(secondaryService).toContain(
+      ".local/share/monedario/isolated-ci-runner/run-one.sh"
+    );
+    expect(secondaryService).not.toContain("portfolio-control-plane");
   });
 
   it("uses an independently managed service without stopping PCP", () => {

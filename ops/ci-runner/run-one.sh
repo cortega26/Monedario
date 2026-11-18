@@ -8,7 +8,18 @@ readonly repository=cortega26/Monedario
 readonly label=monedario-ci-isolated
 readonly image=monedario-ci-isolated:2.338.0-a11y
 readonly network=monedario-ci-isolated
-name="monedario-ci-isolated-$(date -u +%s)-$$"
+# Slot 0 keeps the legacy single-service runner name. Slot N (>=2) is encoded in
+# the name so the host watchdog can map a stale lease to its systemd service.
+readonly slot="${MONEDARIO_CI_SLOT:-0}"
+if [[ ! "$slot" =~ ^[0-9]+$ ]]; then
+  echo "Invalid MONEDARIO_CI_SLOT: ${slot}" >&2
+  exit 2
+fi
+if [[ "$slot" == "0" ]]; then
+  name="monedario-ci-isolated-$(date -u +%s)-$$"
+else
+  name="monedario-ci-isolated-${slot}-$(date -u +%s)-$$"
+fi
 runner_id=""
 
 cleanup() {
