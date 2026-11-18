@@ -28,7 +28,7 @@ const mindicadorSchema = z.object({
   dolar: mindicadorIndicator.optional(),
 });
 
-interface EconomicSnapshotPayload {
+export interface EconomicSnapshotPayload {
   uf: number;
   utm: number;
   uta?: number;
@@ -187,18 +187,13 @@ function resolveSnapshotFilePath(): string {
   return resolve(MODULE_DIR, SNAPSHOT_FILE_NAME);
 }
 
-function loadSnapshotEconomicParameters(): EconomicParameters {
-  const snapshotPath = resolveSnapshotFilePath();
-
-  // Validate that the resolved path is indeed our expected snapshot file
-  if (!snapshotPath.endsWith(SNAPSHOT_FILE_NAME)) {
-    throw new Error(`Security breach: invalid snapshot path ${snapshotPath}`);
-  }
-
-  const payload = JSON.parse(
-    readFileSync(snapshotPath, "utf-8")
-  ) as EconomicSnapshotPayload;
-
+/**
+ * Pure parser for the committed snapshot. Exported so the Worker output can be
+ * validated against the app contract in CI (see the snapshot contract test).
+ */
+export function parseSnapshotEconomicParameters(
+  payload: EconomicSnapshotPayload
+): EconomicParameters {
   const snapshotParameters: EconomicParameters = {
     uf: Number(payload.uf),
     utm: Number(payload.utm),
@@ -232,6 +227,21 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
   };
 
   return assertEconomicParameters(snapshotParameters);
+}
+
+function loadSnapshotEconomicParameters(): EconomicParameters {
+  const snapshotPath = resolveSnapshotFilePath();
+
+  // Validate that the resolved path is indeed our expected snapshot file
+  if (!snapshotPath.endsWith(SNAPSHOT_FILE_NAME)) {
+    throw new Error(`Security breach: invalid snapshot path ${snapshotPath}`);
+  }
+
+  const payload = JSON.parse(
+    readFileSync(snapshotPath, "utf-8")
+  ) as EconomicSnapshotPayload;
+
+  return parseSnapshotEconomicParameters(payload);
 }
 
 async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {

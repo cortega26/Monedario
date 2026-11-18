@@ -18,7 +18,13 @@ runs:
     # `uv sync` dies with "No space left on device (os error 28)".
     - name: Point uv cache at the job workspace
       shell: bash
-      run: echo "UV_CACHE_DIR=${RUNNER_TEMP}/uv-cache" >> "$GITHUB_ENV"
+      run: |
+        echo "UV_CACHE_DIR=${RUNNER_TEMP}/uv-cache" >> "$GITHUB_ENV"
+        # Optional warm cache baked into the runner image; no-op if absent.
+        if [ -d /opt/uv-cache ]; then
+          mkdir -p "${RUNNER_TEMP}/uv-cache"
+          cp -a /opt/uv-cache/. "${RUNNER_TEMP}/uv-cache/"
+        fi
 
     - name: Install uv
       shell: bash
