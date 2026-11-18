@@ -55,9 +55,12 @@ vi.mock(
 );
 
 import worker from "../../../workers/economic-snapshot-refresh/src/index";
-import { serializeSnapshot } from "../../../workers/economic-snapshot-refresh/src/buildSnapshot";
+import {
+  serializeSnapshot,
+  type EconomicSnapshot,
+} from "../../../workers/economic-snapshot-refresh/src/buildSnapshot";
 
-const PREVIOUS_SNAPSHOT = {
+const PREVIOUS_SNAPSHOT: EconomicSnapshot = {
   uf: 41350.42,
   utm: 72440,
   uta: 834504,
@@ -85,6 +88,11 @@ const PREVIOUS_SNAPSHOT = {
       status: "fallback",
       verifiedAt: "2026-11-17T10:15:29.487Z",
     },
+    uta: {
+      status: "primary",
+      referenceYear: 2025,
+      referenceDate: "2025-12-01",
+    },
   },
   prev: {
     uf: { valor: 41343.55, fecha: "2026-11-16" },
@@ -107,13 +115,15 @@ const ENV = {
   BCCH_PASSWORD: "password",
 };
 
+type ScheduledArgs = Parameters<typeof worker.scheduled>;
+
 async function runScheduled(): Promise<void> {
   const pending: Array<Promise<void>> = [];
-  await worker.scheduled({} as ScheduledEvent, ENV, {
+  await worker.scheduled({} as ScheduledArgs[0], ENV, {
     waitUntil: (promise: Promise<void>) => {
       pending.push(promise);
     },
-  } as ExecutionContext);
+  } as ScheduledArgs[2]);
   await Promise.all(pending);
 }
 
