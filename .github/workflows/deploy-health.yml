@@ -5,9 +5,11 @@ name: Deploy health
 # frescos (el Worker de snapshot seguía haciendo commits) pero el sitio en vivo
 # mostraba UF y dólar de hace una semana, y nadie se enteró.
 #
-# Este chequeo mira el sitio PUBLICADO (no el repositorio) y las excepciones de
-# gobernanza por vencer, y mantiene un único issue abierto mientras haya un
-# problema. Se cierra solo cuando todo vuelve a estar en orden.
+# Los chequeos (sitio publicado, heartbeat del snapshot y excepciones del
+# URL-freeze) corren en el Worker `monedario-deploy-health` cada 6 h y se
+# exponen en `/status`. Este workflow ya NO instala el workspace: solo consulta
+# ese endpoint (curl) y sincroniza un único issue con el `GITHUB_TOKEN` del
+# repositorio. Sin PAT adicional.
 
 on:
   schedule:
@@ -24,26 +26,40 @@ permissions:
 
 jobs:
   health:
-    name: Published site and freeze exceptions
+    name: Published site and freeze exceptions (via Worker)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
     timeout-minutes: 5
+    env:
+      STATUS_URL: ${{ vars.DEPLOY_HEALTH_STATUS_URL || 'https://monedario-deploy-health.carlosortega77.workers.dev/status' }}
 
     steps:
-      - name: "☁️ Checkout repository"
+      # The local issue action lives in the repo; a sparse checkout keeps this
+      # job to a few seconds instead of the old pnpm bootstrap.
+      - name: "☁️ Checkout the local issue action"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: "📦 Bootstrap pnpm workspace"
-        uses: ./.github/actions/bootstrap-pnpm
         with:
-          node-version: 22
+          fetch-depth: 1
+          sparse-checkout: .github/actions/upsert-issue-by-title
+          sparse-checkout-cone-mode: false
 
-      - name: "🩺 Check published site and exceptions"
+      - name: "🩺 Fetch worker status"
         id: health
         continue-on-error: true
         run: |
           set +e
-          node scripts/check-deploy-health.mjs | tee health.md
-          exit "${PIPESTATUS[0]}"
+          code="$(curl -sS --max-time 60 -o status.json \
+            -w '%{http_code}' "${STATUS_URL}?ts=$(date +%s)")"
+          if [ "$code" != "200" ]; then
+            printf '{"ok":false,"checkedAt":"%s","problems":["El Worker de deploy-health respondió HTTP %s."]}\n' \
+              "$(date -u +%FT%TZ)" "$code" > status.json
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json, sys
+          with open("status.json", encoding="utf-8") as handle:
+              status = json.load(handle)
+          sys.exit(0 if status.get("ok") else 1)
+          PY
 
       - name: "📝 Build issue payload"
         id: payload
@@ -55,15 +71,26 @@ jobs:
             core.setOutput("title", "🚨 Despliegue del sitio desactualizado o excepción de freeze por vencer");
             core.setOutput("labels_json", JSON.stringify(["automation", "ci"]));
 
-            if ("${{ steps.health.outcome }}" !== "failure") {
+            let status = null;
+            try {
+              status = JSON.parse(fs.readFileSync("status.json", "utf8"));
+            } catch (_) {}
+
+            const healthy =
+              "${{ steps.health.outcome }}" !== "failure" && status?.ok === true;
+            if (healthy) {
               core.setOutput("desired_state", "closed");
-              core.setOutput("body", "Sitio publicado al día y sin excepciones por vencer; issue cerrado automáticamente.");
+              core.setOutput(
+                "body",
+                "Sitio publicado al día, snapshot fresco y sin excepciones por vencer; issue cerrado automáticamente."
+              );
               return;
             }
 
-            const findings = fs.existsSync("health.md")
-              ? fs.readFileSync("health.md", "utf8").trim()
-              : "(sin detalle: el chequeo no produjo salida)";
+            const problems = Array.isArray(status?.problems) && status.problems.length > 0
+              ? status.problems
+              : ["(sin detalle: el Worker no devolvió un estado legible)"];
+            const findings = problems.map(problem => `- ${problem}`).join("\n");
             core.setOutput("desired_state", "open");
             core.setOutput(
               "body",
@@ -72,10 +99,13 @@ jobs:
                 "",
                 findings,
                 "",
+                `**Worker checked at:** ${status?.checkedAt ?? "?"}`,
+                "",
                 "### Qué hacer",
                 "",
                 "1. Si el sitio está desactualizado: abrir el último deploy de producción de Cloudflare Pages (proyecto `monedario`) y leer el log del build; `pnpm run build` localmente reproduce el fallo.",
-                "2. Si hay una excepción vencida o por vencer: renovarla (decisión del owner) o promover la URL a `docs/reports/indexable-url-inventory.json` y `docs/reports/routes_snapshot_before.json`, retirando la excepción.",
+                "2. Si el snapshot no se refresca: revisar el Worker `monedario-economic-snapshot-refresh` y el issue de drift de deploy.",
+                "3. Si hay una excepción vencida o por vencer: renovarla (decisión del owner) o promover la URL a `docs/reports/indexable-url-inventory.json` y `docs/reports/routes_snapshot_before.json`, retirando la excepción.",
                 "",
                 `**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
               ].join("\n")
