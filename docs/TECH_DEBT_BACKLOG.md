@@ -2624,9 +2624,13 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   pnpm store en `/opt/pnpm-store` (823 MB, layout `v11`) mediante un stage
   `node:22-bookworm-slim` con `pnpm fetch --frozen-lockfile`; `bootstrap-pnpm` lo
   siembra en `RUNNER_TEMP/pnpm-store`. La imagen `...-a11y-warm` (2.69 GB) se
-  construyó y `run-one.sh --verify` pasa. Falta medir el bootstrap en un PR de
-  dependencias y cambiar el tag en los servicios; no cerrar hasta que baje de
-  ~5 min.
+  construyó y `run-one.sh --verify` pasa. **Medido el 2026-11-18** (run
+  44421641814, workflow_dispatch de main): `bootstrap-pnpm` copió el store y el
+  install terminó con `reused 932, downloaded 0, Done in 13s` (antes ~6 min y
+  timeout). La imagen warm es el tag por defecto en los dos slots. Los
+  contenedores huérfanos del restart se limpiaron; el tag viejo
+  (`sha256:46f72...`) sigue disponible para rollback. Pendiente: bajar
+  `timeout-minutes` y confirmar el diff en un PR de dependencias (#779).
 - **Owner:** Sin asignar
 - **Estado:** Abierto (mitigado)
 - **Fecha de creación:** 2026-10-27
