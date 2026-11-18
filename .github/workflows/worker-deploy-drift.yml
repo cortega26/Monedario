@@ -1,0 +1,113 @@
+name: Worker deploy drift
+
+# Detecta el modo de fallo del 2026-11-18: un cambio del Worker de snapshot se
+# mergeó a `main` en septiembre, pero el Worker desplegado siguió siendo el de
+# agosto. Los gates del repo no pueden ver esa brecha: el código era correcto y
+# el snapshot seguía fallando con la versión vieja.
+#
+# El deploy es manual por diseño (no hay production environment protegido), así
+# que este chequeo diario mantiene un único issue abierto mientras el código de
+# `main` sea más nuevo que el último `wrangler deploy` de código. Un cambio de
+# secreto NO cuenta como deploy de código.
+
+on:
+  schedule:
+    # Cada 6 h: con 12 h de tolerancia, el drift se detecta en <= 18 h.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: worker-deploy-drift
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    name: Verificar que el Worker desplegado incluya main
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "📋 List deployed worker versions"
+        run: |
+          set -euo pipefail
+          pnpm exec wrangler deployments list \
+            --config workers/economic-snapshot-refresh/wrangler.toml \
+            --json > "$RUNNER_TEMP/worker-deployments.json"
+
+      - name: "🔎 Check deploy drift"
+        id: drift
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          node scripts/check-worker-deploy-drift.mjs \
+            --deployments "$RUNNER_TEMP/worker-deployments.json" \
+            --path workers/economic-snapshot-refresh | tee drift.md
+          exit "${PIPESTATUS[0]}"
+
+      - name: "📝 Build issue payload"
+        id: payload
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require("fs");
+            core.setOutput("title", "🚨 Worker de snapshot económico sin desplegar");
+            core.setOutput("labels_json", JSON.stringify(["automation", "ci", "data-freshness"]));
+
+            if ("${{ steps.drift.outcome }}" !== "failure") {
+              core.setOutput("desired_state", "closed");
+              core.setOutput("body", "Worker al día: el deploy incluye el último commit. Issue cerrado automáticamente.");
+              return;
+            }
+
+            const findings = fs.existsSync("drift.md")
+              ? fs.readFileSync("drift.md", "utf8").trim()
+              : "(sin detalle: el chequeo no produjo salida)";
+            core.setOutput("desired_state", "open");
+            core.setOutput(
+              "body",
+              [
+                "## El Worker desplegado no incluye el último commit de `main`",
+                "",
+                findings,
+                "",
+                "### Qué hacer",
+                "",
+                "1. `pnpm run worker:economic-snapshot:deploy`",
+                "2. Verificar que la última entrada `workers/triggered_by=deployment` sea posterior al último commit de `workers/economic-snapshot-refresh/`.",
+                "3. Confirmar con el próximo cron (10:15/14:15/18:15 UTC) o con un trigger manual.",
+                "",
+                `**Run:** ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ].join("\n")
+            );
+
+      - name: "📝 Sync issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.payload.outputs.title }}
+          body: ${{ steps.payload.outputs.body }}
+          labels-json: ${{ steps.payload.outputs.labels_json }}
+          desired-state: ${{ steps.payload.outputs.desired_state }}
+
+      - name: "✅ Fail the run when there is drift"
+        if: steps.drift.outcome == 'failure'
+        run: exit 1
