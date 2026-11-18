@@ -3,6 +3,9 @@
 **Status: ACTIVE on the `i5-12600K` since 2026-10-19.** The repository
 variable routes jobs to the `monedario-ci-isolated` label. A host-side liveness
 watchdog was added on 2026-10-31 for the stale-lease failure tracked in #745.
+A **second disposable slot** (`monedario-isolated-ci-2.service`, slot 2) was
+added on 2026-11-18 to stop non-blocking a11y/URL jobs from queueing behind the
+blocking build. Each slot still runs exactly one job at a time.
 
 The 2026-09-04 `monedario-local-bridge` was retired and its image/registration volume removed. This version uses **one-job JIT containers** and reuses the tested `pcp-ci-isolated:2.338.0` image from `cortega26/portfolio-control-plane`, without sharing the persistent `pcp-local` identity. No VM or Fintual production resource is needed.
 
@@ -26,13 +29,23 @@ bash ops/ci-runner/run-one.sh --verify
 install -Dm700 ops/ci-runner/run-one.sh "$HOME/.local/share/monedario/isolated-ci-runner/run-one.sh"
 install -Dm700 ops/ci-runner/watchdog.sh "$HOME/.local/share/monedario/isolated-ci-runner/watchdog.sh"
 install -Dm600 ops/ci-runner/monedario-isolated-ci.service "$HOME/.config/systemd/user/monedario-isolated-ci.service"
+install -Dm600 ops/ci-runner/monedario-isolated-ci-2.service "$HOME/.config/systemd/user/monedario-isolated-ci-2.service"
 install -Dm600 ops/ci-runner/monedario-ci-watchdog.service "$HOME/.config/systemd/user/monedario-ci-watchdog.service"
 install -Dm600 ops/ci-runner/monedario-ci-watchdog.timer "$HOME/.config/systemd/user/monedario-ci-watchdog.timer"
 systemctl --user daemon-reload
 systemctl --user enable monedario-isolated-ci.service
+systemctl --user enable --now monedario-isolated-ci-2.service
 systemctl --user enable --now monedario-ci-watchdog.timer
-systemctl --user restart monedario-isolated-ci.service
 ```
+
+The secondary slot can be started without touching the primary: the new
+`run-one.sh` is read for the next job, so the primary keeps its current job.
+Only restart the primary if you also want to pick up the unit's explicit
+`MONEDARIO_CI_SLOT=0` (the launcher defaults to slot 0, so it is optional).
+
+Capacity: two slots at 3 CPU / 8 GiB each fit the `i5-12600K` (16 threads,
+63 GiB). Do not add a third slot without measuring; the host also runs the PCP
+runners and the resident.
 
 Restarting `monedario-isolated-ci.service` kills any job that is currently
 running. Do the installation in a quiet window, or stop the service first and
@@ -45,13 +58,14 @@ Confirm the target is online and carries **only** the dedicated label:
 ```bash
 gh api repos/cortega26/Monedario/actions/runners --jq \
   '.runners[] | select(.name | startswith("monedario-ci-isolated-")) | {name,status,busy,labels:[.labels[].name]}'
-systemctl --user status monedario-isolated-ci.service --no-pager
+systemctl --user status monedario-isolated-ci.service monedario-isolated-ci-2.service --no-pager
 ```
 
 ## Liveness watchdog (#745)
 
-The runner is a **single disposable slot**. Each job gets a new JIT identity and
-a new container name; that churn is expected, not a restart loop. The failure
+Each slot is a **one-job disposable runner** (slot 0 primary, slot 2 secondary).
+Every job gets a new JIT identity and a new container name; that churn is
+expected, not a restart loop. The failure
 mode in #745 is different: a container killed mid-job (or a runner whose
 listener died) can leave a registration that GitHub still reports as
 `online`/`busy` while `GET /actions/runs?status=in_progress` returns zero.
@@ -62,8 +76,8 @@ checks four things:
 
 | Signal | Condition | Action with `--apply` |
 | --- | --- | --- |
-| Stale lease | A `monedario-ci-isolated-*` runner is `online` + `busy` and no run is `in_progress` for 3 min | Removes the exact registration, removes its container, and restarts the service when no idle slot remains |
-| Dead service | Jobs are queued, no Monedario runner is online, and the service is inactive/failed for 2 min | `systemctl --user restart monedario-isolated-ci.service` |
+| Stale lease | A `monedario-ci-isolated-*` runner is `online` + `busy` and no run is `in_progress` for 3 min | Removes the exact registration, removes its container, and restarts the **owning slot** when no idle slot remains (`monedario-isolated-ci-2.service` for a `...-2-...` runner) |
+| Dead service | Jobs are queued, no Monedario runner is online, and the slots are inactive/failed for 2 min | `systemctl --user restart` each installed slot |
 | Offline clutter | A `monedario-ci-isolated-*` registration is `offline` for 5 min | Deletes the exact registration |
 | Queue with an idle runner | Jobs are queued, no run is `in_progress`, an idle runner exists, and the oldest queue entry is older than 10 min | Reports `queue_unassigned` and exits non-zero; does not restart (a label mismatch or a zombie run is not fixed by a restart) |
 
@@ -94,9 +108,10 @@ next successful run clears the failed state.
 
 ### Diagnosing a queue: slow vs wedged
 
-The runner executes one job at a time (ADR-20261019). A queue of five jobs while
-one 20-minute job runs is **slow, not wedged**: `in_progress` is greater than
-zero and the runner is legitimately busy. The old 15-minute cancellations were
+Each slot executes one job at a time (ADR-20261019); with two slots, up to two
+jobs run concurrently. A queue of five jobs while two 20-minute jobs run is
+**slow, not wedged**: `in_progress` is greater than zero and the slots are
+legitimately busy. The old 15-minute cancellations were
 TD-0113 (bootstrap cost); blocking jobs now have a 30-minute timeout (#734).
 
 Use these three queries together:
@@ -160,6 +175,7 @@ Always delete the repository variable first (future runs return to hosted runner
 gh variable delete ACTIONS_RUNNER_LABEL --repo cortega26/Monedario
 systemctl --user disable --now monedario-ci-watchdog.timer
 systemctl --user disable --now monedario-isolated-ci.service
+systemctl --user disable --now monedario-isolated-ci-2.service
 ```
 
 Disabling the watchdog timer is part of the rollback: the script exits early

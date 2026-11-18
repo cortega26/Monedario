@@ -205,6 +205,35 @@ describe("Monedario CI liveness watchdog", () => {
     expect(calls(harness)).toContain(
       "systemctl --user restart monedario-isolated-ci.service"
     );
+    expect(calls(harness)).toContain(
+      "systemctl --user restart monedario-isolated-ci-2.service"
+    );
+  });
+
+  it("restarts only the slot service that owns a stale lease", () => {
+    const harness = makeHarness();
+    const result = runWatchdog(
+      harness,
+      {
+        FAKE_RUNNERS:
+          "43\tmonedario-ci-isolated-2-1793459303-999\tonline\ttrue",
+        FAKE_IN_PROGRESS: "0",
+        FAKE_QUEUED_DATES: "",
+      },
+      ["--apply"]
+    );
+
+    expect(result.status, result.stderr).toBe(0);
+    const observed = calls(harness);
+    expect(observed).toContain(
+      "gh api --method DELETE repos/cortega26/Monedario/actions/runners/43"
+    );
+    expect(observed).toContain(
+      "systemctl --user restart monedario-isolated-ci-2.service"
+    );
+    expect(observed).not.toContain(
+      "systemctl --user restart monedario-isolated-ci.service"
+    );
   });
 
   it("reports a queue that an idle runner is not picking up", () => {
