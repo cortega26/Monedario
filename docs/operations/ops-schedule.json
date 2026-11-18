@@ -271,6 +271,13 @@
       "detail": "El deploy es manual (`pnpm run worker:economic-snapshot:deploy`). Comparar la última versión desplegada (`wrangler deployments list`) con el último commit que tocó `workers/economic-snapshot-refresh/`; si hay drift, desplegar. En 2026-11 el Worker estuvo 3 meses atrás y perdió los fixes de septiembre.",
       "cadence": "monthly",
       "owner": "carlos"
+    },
+    {
+      "id": "editorial-timeliness-queue",
+      "title": "Revisar cola de timeliness editorial (issue #757)",
+      "detail": "Revisar los artículos fuera de SLA del issue #757, empezando por los más vencidos; actualizar reviewDate solo tras la revisión real (YMYL, firma humana). No mover fechas sin revisar; correr check:editorial-timeliness y check:economic-source-consistency antes del PR.",
+      "cadence": "weekly",
+      "owner": "carlos"
     }
   ]
 }
