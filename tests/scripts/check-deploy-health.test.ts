@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   evaluateExceptionExpiry,
   evaluateLiveFreshness,
+  evaluateSnapshotHeartbeat,
   parseSiteDates,
+  SNAPSHOT_MAX_AGE_HOURS,
 } from "../../scripts/check-deploy-health.mjs";
 
 const page = (uf: string, dolar: string) =>
@@ -54,6 +56,35 @@ describe("deploy health: live site freshness", () => {
         now: new Date("2026-11-11T01:00:00Z"),
       })
     ).toEqual([]);
+  });
+});
+
+describe("deploy health: worker heartbeat", () => {
+  const now = new Date("2026-11-18T20:00:00Z");
+
+  it("accepts a snapshot refreshed within the window", () => {
+    expect(
+      evaluateSnapshotHeartbeat({
+        snapshot: { capturedAt: "2026-11-18T10:15:29.487Z" },
+        now,
+      })
+    ).toEqual([]);
+  });
+
+  it("flags a snapshot that missed a full day", () => {
+    const problems = evaluateSnapshotHeartbeat({
+      snapshot: { capturedAt: "2026-11-16T10:15:29.487Z" },
+      now,
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain("no se refresca desde 2026-11-16");
+    expect(SNAPSHOT_MAX_AGE_HOURS).toBe(36);
+  });
+
+  it("reports a missing capturedAt instead of passing silently", () => {
+    const problems = evaluateSnapshotHeartbeat({ snapshot: {}, now });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain("capturedAt");
   });
 });
 

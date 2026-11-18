@@ -192,3 +192,41 @@ Para un sitio static sin presión de carga, la opción simple (`max-age=300` sin
 - Migración a SSR/ISR donde el HTML se genere por request.
 - Snapshot expuesto como endpoint público (API móvil, terceros) — ahí sí necesitarías `s-maxage` + purge automático.
 - Datos sub-minuto.
+
+## Amendment 2026-11-18 — carry-forward cuando el agregador está caído
+
+El Worker dependía de `mindicador.cl` para el payload base: `buildSnapshot`
+hacía `await deps.fetchApi()` sin protección. El 2026-11-18 mindicador respondió
+**HTTP 522** durante todo el día; los tres crons fallaron con
+`TimeoutError` (12 s) y **no se commiteó ningún snapshot**, así que el sitio
+siguió mostrando la UF y el dólar del 17-NOV aunque el BCCh ya publicaba los
+valores del 18-NOV.
+
+**Decisión:** si el fetch base falla, el Worker reconstruye el payload desde el
+snapshot ya commiteado (`payloadFromSnapshot`) y sigue adelante. Los overrides
+autoritativos se aplican igual (BCCh UF/USD, SII UTM, INE IPC); solo los campos
+que mindicador aporta (TMC y los valores de respaldo) se arrastran. El snapshot
+resultante registra `source: "snapshot.carry-forward"` para que la degradación
+sea visible y la siguiente corrida limpia lo revierta a `mindicador.cl/api`.
+
+Consecuencias:
+
+- Una caída del agregador deja de congelar todos los indicadores: UF y dólar
+  siguen actualizándose desde el emisor oficial.
+- El archivo puede arrastrar TMC hasta que mindicador vuelva (valor mensual,
+  bajo riesgo).
+- El commit de carry-forward cambia `source`; no genera commits repetidos
+  porque `capturedAt` se ignora en el diff.
+
+**Alarmas asociadas** (mismo cambio):
+
+- `check-economic-snapshot-freshness`: `capturedAt` ≤ 2 días, UF ≤ 3 días,
+  dólar ≤ 4 días (antes 7/10/10).
+- `check-deploy-health`: nuevo heartbeat del snapshot de `main`
+  (`SNAPSHOT_MAX_AGE_HOURS = 36`), independiente de las fechas de la portada.
+  Detecta un Worker caído aunque el sitio aún muestre fechas aceptables.
+
+**Verificación:** tests de `payloadFromSnapshot` y `withMindicadorFallback`
+(passthrough, fallback y overrides aplicados sobre el payload arrastrado),
+`check:workers`, `wrangler deploy --dry-run` y los tests de ambos scripts de
+alarmas.

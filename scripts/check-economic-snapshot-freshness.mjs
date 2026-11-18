@@ -45,12 +45,15 @@ const UF_INGEST_MAX_AGE_DAYS = 10;
 // que entre 21:00 y 24:00 de Santiago la fecha UTC ya es la del día siguiente.
 const UF_INGEST_TZ_SLACK_DAYS = 1;
 
-// Generous thresholds (days). The point is to catch a DEAD pipeline, not to
-// chase every publication lag. UF/dólar are ~daily; UTM is monthly.
-const CAPTURE_MAX_DAYS = 7; // critical pipeline: surface failure within one week
+// Thresholds are tight enough to catch a missed day, with the weekend slack the
+// source needs: UF is published daily (3 days tolerates a late publication),
+// the USD observado only exists on business days (4 days covers a Fri→Mon
+// bridge). The Worker commits when the UF changes, so capturedAt is a daily
+// heartbeat; a 2-day age means at least one full day was lost.
+const CAPTURE_MAX_DAYS = 2; // critical pipeline: surface a missed day immediately
 const INDICATOR_MAX_DAYS = {
-  uf: 10,
-  dolar: 10,
+  uf: 3,
+  dolar: 4,
 };
 const UTM_MONTH_BOUNDARY_GRACE_DAYS = 7;
 

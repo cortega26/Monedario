@@ -4,6 +4,7 @@ import {
   createMindicadorFetchers,
   mergePrev,
   serializeSnapshot,
+  withMindicadorFallback,
   type IndicatorOverride,
 } from "./buildSnapshot";
 import { getCurrentFile, putFile, type GitHubContentsConfig } from "./githubClient";
@@ -224,8 +225,25 @@ async function runRefresh(env: Env): Promise<void> {
     };
   };
 
+  // Read the current snapshot BEFORE building: it is both the diff baseline
+  // and the carry-forward payload when the aggregator is unreachable.
+  const current = await getCurrentFile(config);
+  let mindicadorDegraded = false;
+
+  const fetchApiForBuild = () =>
+    withMindicadorFallback(fetchers.fetchApi, current.content, err => {
+      // The aggregator being down must not freeze every indicator. The
+      // authoritative overrides (BCCh UF/USD, SII UTM, INE IPC) still apply;
+      // only the fields mindicador owns are carried forward.
+      mindicadorDegraded = true;
+      log("warn", "mindicador.fallback", {
+        message: err instanceof Error ? err.message : String(err),
+        fallback: "carry-forward from the last committed snapshot",
+      });
+    });
+
   const rawSnapshot = await buildSnapshot({
-    fetchApi: fetchers.fetchApi,
+    fetchApi: fetchApiForBuild,
     fetchDecemberUtm: fetchers.fetchDecemberUtm,
     fetchIpcOverride,
     fetchUfOverride: makeBcchOverride("uf", BCCH_SERIES.UF),
@@ -258,9 +276,11 @@ async function runRefresh(env: Env): Promise<void> {
     now: () => new Date(),
   });
 
-  const current = await getCurrentFile(config);
   assertPlausibleDelta(current.content, rawSnapshot);
-  const snapshot = mergePrev(current.content, rawSnapshot);
+  const merged = mergePrev(current.content, rawSnapshot);
+  const snapshot = mindicadorDegraded
+    ? { ...merged, source: "snapshot.carry-forward" as const }
+    : merged;
   const serialized = serializeSnapshot(snapshot);
 
   if (snapshotsEqual(current.content, serialized)) {

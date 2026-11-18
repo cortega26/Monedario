@@ -5,7 +5,9 @@ import {
   fetchDecemberUtmWithSiiFallback,
   getUtaReferenceYear,
   mergePrev,
+  payloadFromSnapshot,
   serializeSnapshot,
+  withMindicadorFallback,
   type EconomicSnapshot,
   type MindicadorApiResponse,
 } from "../../../workers/economic-snapshot-refresh/src/buildSnapshot";
@@ -531,5 +533,106 @@ describe("no fabricated indicator dates (plan 064)", () => {
     const snapshot = await buildSnapshot(makeDeps({ api: noDates, now, decemberUtm: null }));
     expect(snapshot.lastUpdated).toBe("2026-05-16");
     expect(snapshot.indicatorUpdatedAt).toEqual({});
+  });
+});
+
+describe("payloadFromSnapshot", () => {
+  const committed: EconomicSnapshot = {
+    uf: 41350.42,
+    utm: 72440,
+    uta: 834504,
+    ipc: 0.5,
+    tmc: 3.49,
+    dolar: 1001.17,
+    imm: 553553,
+    immEffectiveDate: "2026-05-01",
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
+    indicatorUpdatedAt: {
+      uf: "2026-11-17",
+      utm: "2026-11-01",
+      uta: "2025-12-01",
+      ipc: "2026-10-01",
+      tmc: "2026-01-01",
+      dolar: "2026-11-17",
+    },
+    lastUpdated: "2026-11-17",
+    capturedAt: "2026-11-17T10:15:29.487Z",
+    source: "mindicador.cl/api",
+  };
+
+  it("maps the committed snapshot to a mindicador-shaped payload", () => {
+    expect(payloadFromSnapshot(serializeSnapshot(committed))).toEqual({
+      uf: { valor: 41350.42, fecha: "2026-11-17" },
+      utm: { valor: 72440, fecha: "2026-11-01" },
+      ipc: { valor: 0.5, fecha: "2026-10-01" },
+      tmc: { valor: 3.49, fecha: "2026-01-01" },
+      dolar: { valor: 1001.17, fecha: "2026-11-17" },
+    });
+  });
+
+  it("throws on an unreadable snapshot instead of masking it", () => {
+    expect(() => payloadFromSnapshot("not json")).toThrow();
+  });
+
+  it("still applies the authoritative overrides on a carried-forward payload", async () => {
+    const carried = payloadFromSnapshot(serializeSnapshot(committed));
+    const snapshot = await buildSnapshot({
+      fetchApi: async () => carried,
+      fetchDecemberUtm: async () => 69542,
+      now: () => new Date("2026-11-18T10:15:00.000Z"),
+      fetchUfOverride: async () => ({ value: 41357.3, dateIso: "2026-11-18" }),
+      fetchUsdOverride: async () => ({ value: 996.68, dateIso: "2026-11-18" }),
+    });
+
+    expect(snapshot.uf).toBe(41357.3);
+    expect(snapshot.dolar).toBe(996.68);
+    expect(snapshot.indicatorUpdatedAt.uf).toBe("2026-11-18");
+    expect(snapshot.indicatorUpdatedAt.dolar).toBe("2026-11-18");
+    expect(snapshot.source).toBe("mindicador.cl/api");
+  });
+});
+
+describe("withMindicadorFallback", () => {
+  const committedJson = serializeSnapshot({
+    uf: 41350.42,
+    utm: 72440,
+    uta: 834504,
+    ipc: 0.5,
+    tmc: 3.49,
+    dolar: 1001.17,
+    imm: 553553,
+    immEffectiveDate: "2026-05-01",
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
+    indicatorUpdatedAt: { uf: "2026-11-17", dolar: "2026-11-17" },
+    lastUpdated: "2026-11-17",
+    capturedAt: "2026-11-17T10:15:29.487Z",
+    source: "mindicador.cl/api",
+  });
+
+  it("passes the aggregator payload through on success", async () => {
+    const onFallback = vi.fn();
+    const payload = { uf: { valor: 1, fecha: "2026-11-18" } };
+
+    await expect(
+      withMindicadorFallback(async () => payload, committedJson, onFallback)
+    ).resolves.toBe(payload);
+    expect(onFallback).not.toHaveBeenCalled();
+  });
+
+  it("carries the committed snapshot forward on failure", async () => {
+    const onFallback = vi.fn();
+    const payload = await withMindicadorFallback(
+      async () => {
+        throw new Error("The operation was aborted due to timeout");
+      },
+      committedJson,
+      onFallback
+    );
+
+    expect(onFallback).toHaveBeenCalledOnce();
+    expect(payload.uf).toEqual({ valor: 41350.42, fecha: "2026-11-17" });
+    expect(payload.dolar).toEqual({ valor: 1001.17, fecha: "2026-11-17" });
   });
 });

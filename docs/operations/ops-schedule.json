@@ -264,6 +264,13 @@
       "detail": "wrangler está ignorado por Dependabot porque el pin exacto es el contrato de tests/static-analysis/analytics-collector-workflow.e2e.test.ts. Actualizar package.json + lock, correr el test y el dry-run de deploy-analytics-collector.yml antes de mergear.",
       "cadence": "monthly",
       "owner": "carlos"
+    },
+    {
+      "id": "economic-worker-deploy",
+      "title": "Verificar que el Worker de snapshot económico esté al día",
+      "detail": "El deploy es manual (`pnpm run worker:economic-snapshot:deploy`). Comparar la última versión desplegada (`wrangler deployments list`) con el último commit que tocó `workers/economic-snapshot-refresh/`; si hay drift, desplegar. En 2026-11 el Worker estuvo 3 meses atrás y perdió los fixes de septiembre.",
+      "cadence": "monthly",
+      "owner": "carlos"
     }
   ]
 }
