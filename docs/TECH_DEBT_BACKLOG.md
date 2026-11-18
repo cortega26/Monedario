@@ -2620,6 +2620,13 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   correcta no es un cache con `restore-keys` (restaurar ~250 MB a 0,5 MB/s
   puede ser igual de lento) sino **hornear un pnpm store tibio en la imagen del
   runner**; afecta a todos los jobs, no solo al install.
+- **Nota 2026-11-18 (imagen tibia):** `ops/ci-runner/Dockerfile` ahora hornea el
+  pnpm store en `/opt/pnpm-store` (823 MB, layout `v11`) mediante un stage
+  `node:22-bookworm-slim` con `pnpm fetch --frozen-lockfile`; `bootstrap-pnpm` lo
+  siembra en `RUNNER_TEMP/pnpm-store`. La imagen `...-a11y-warm` (2.69 GB) se
+  construyó y `run-one.sh --verify` pasa. Falta medir el bootstrap en un PR de
+  dependencias y cambiar el tag en los servicios; no cerrar hasta que baje de
+  ~5 min.
 - **Owner:** Sin asignar
 - **Estado:** Abierto (mitigado)
 - **Fecha de creación:** 2026-10-27

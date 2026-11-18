@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 const root = process.cwd();
 const path = resolve(root, "ops/ci-runner/run-one.sh");
+const dockerfilePath = resolve(root, "ops/ci-runner/Dockerfile");
 const servicePath = resolve(root, "ops/ci-runner/monedario-isolated-ci.service");
 const secondaryServicePath = resolve(
   root,
@@ -20,6 +21,7 @@ const watchdogTimerPath = resolve(
   "ops/ci-runner/monedario-ci-watchdog.timer"
 );
 const source = readFileSync(path, "utf8");
+const dockerfile = readFileSync(dockerfilePath, "utf8");
 const service = readFileSync(servicePath, "utf8");
 const secondaryService = readFileSync(secondaryServicePath, "utf8");
 const watchdog = readFileSync(watchdogPath, "utf8");
@@ -38,10 +40,20 @@ describe("Monedario disposable CI boundary", () => {
   it("registers JIT for Monedario only, not the trusted PCP runner", () => {
     expect(source).toContain("readonly repository=cortega26/Monedario");
     expect(source).toContain("readonly label=monedario-ci-isolated");
-    expect(source).toContain("readonly image=monedario-ci-isolated:2.338.0-a11y");
+    expect(source).toContain(
+      'readonly image="${MONEDARIO_CI_IMAGE:-monedario-ci-isolated:2.338.0-a11y}"'
+    );
     expect(source).toContain("generate-jitconfig");
     expect(source).toContain("pcp-i5-12600K");
     expect(source).not.toContain("readonly repository=cortega26/portfolio-control-plane");
+  });
+
+  it("bakes a warm pnpm store for lockfile-change installs", () => {
+    expect(dockerfile).toContain("AS pnpm-store");
+    expect(dockerfile).toContain("corepack pnpm fetch --frozen-lockfile");
+    expect(dockerfile).toContain(
+      "COPY --from=pnpm-store /pnpm-store /opt/pnpm-store"
+    );
   });
 
   it("removes its own JIT registration on exit", () => {
