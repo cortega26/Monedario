@@ -17,19 +17,22 @@ Authority: `.github/workflows/security-scans.yml`, `.gitleaks.toml`.
 Schedule: miércoles 05:30 UTC. Dispatch manual:
 `gh workflow run "Security Scans"` (o Actions → Run workflow).
 
-## Limitación conocida: CodeQL / code scanning no disponible
+## CodeQL / code scanning (repo público desde 2026-11-18)
 
-En repo privado sin GitHub Advanced Security (plan Free/User), `code scanning`
-responde 403 (`Code scanning is not enabled`): el workflow dinámico de CodeQL
-que GitHub sugiere no puede habilitarse. El SAST del repositorio es **Opengrep
-semanal**, no CodeQL por PR.
+Mientras el repo fue privado, `code scanning` respondía 403 (`Code scanning is
+not enabled`) porque GitHub Advanced Security no estaba disponible en el plan
+Free/User. Con el repositorio público, code scanning y CodeQL sí están
+disponibles sin GHAS. La configuración actual sigue siendo **Opengrep semanal**
++ `gitleaks-pr` bloqueante; si se habilita CodeQL, actualizar esta sección y la
+matriz de cobertura.
 
 Además, para no consumir minutos de Actions, en PRs **solo** corre el escaneo
 de secrets del diff (`gitleaks-pr`, bloqueante); el resto es semanal o manual.
-Consecuencia: una vulnerabilidad introducida en un PR puede esperar hasta el
-siguiente miércoles (o un dispatch manual) para ser vista por
-SAST/Trivy/pip-audit. Mitigación: revisión de código + gates del repo +
-`gitleaks-pr` bloqueante + Dependabot.
+Con el repo público los minutos de GitHub-hosted son gratuitos, así que evaluar
+mover Opengrep/Trivy/pip-audit a PRs. Consecuencia actual: una vulnerabilidad
+introducida en un PR puede esperar hasta el siguiente miércoles (o un dispatch
+manual). Mitigación: revisión de código + gates del repo + `gitleaks-pr`
+bloqueante + Dependabot.
 
 ## Cómo correr cada scan localmente
 
