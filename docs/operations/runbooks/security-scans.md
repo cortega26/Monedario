@@ -26,6 +26,16 @@ disponibles sin GHAS. La configuración actual sigue siendo **Opengrep semanal**
 + `gitleaks-pr` bloqueante; si se habilita CodeQL, actualizar esta sección y la
 matriz de cobertura.
 
+### Auditoría de historia completa (2026-11-18)
+
+Al pasar el repositorio a público se corrió una vez
+`gitleaks detect --source . --log-opts="--all"`: 324 coincidencias, todas
+`AIDA…` (identificadores de usuario IAM de AWS) dentro de reportes históricos de
+Lighthouse en `.lighthouseci/` y `artifacts/`, ya eliminados y en `.gitignore`.
+No se encontraron claves `AKIA…`/`ASIA…` ni credenciales activas. Repetir esta
+auditoría antes de un rewrite de historia o si se vuelve a exponer un artefacto
+generado.
+
 Además, para no consumir minutos de Actions, en PRs **solo** corre el escaneo
 de secrets del diff (`gitleaks-pr`, bloqueante); el resto es semanal o manual.
 Con el repo público los minutos de GitHub-hosted son gratuitos, así que evaluar
