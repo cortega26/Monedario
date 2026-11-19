@@ -58,11 +58,11 @@ Hay dos caminos equivalentes:
    environment `production`.
 2. **Local:** `pnpm run worker:economic-snapshot:deploy`.
 
-El environment `production` hoy **no tiene required reviewers**: GitHub Free no
-soporta esa protección en repos privados (requiere Pro/Team). El gate humano es
-la confirmación explícita del workflow. Si el repo pasa a Pro, activar
-required reviewers en `Settings → Environments → production` sin cambiar el
-workflow.
+El environment `production` hoy **no tiene required reviewers**. Desde que el
+repositorio es público (2026-11-18), GitHub Free sí permite required reviewers
+en environments de repos públicos; el gate actual sigue siendo la confirmación
+explícita del workflow. Si se quiere una segunda firma, activar required
+reviewers en `Settings → Environments → production` sin cambiar el workflow.
 
 ## Deploy health Worker (`/status`)
 

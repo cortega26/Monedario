@@ -34,11 +34,13 @@ async function fetchFresh(url: string, now: Date): Promise<Response> {
 /**
  * Runs the public checks and returns a JSON-serializable status.
  *
- * The snapshot heartbeat and the site dates come from the published site: the
- * repository is private, so a Worker cannot read `raw.githubusercontent.com`
- * without a token. `/api/deploy-health.json` is generated at build time from
- * the committed snapshot and is public by design. The URL-freeze exceptions are
- * private governance data and stay in the GitHub workflow.
+ * The snapshot heartbeat and the site dates come from the published site:
+ * `/api/deploy-health.json` is generated at build time from the committed
+ * snapshot and reflects what was actually deployed. The repository is public
+ * since 2026-11-18, but reading `raw.githubusercontent.com` would bypass the
+ * build and couple the check to GitHub's raw host; the published artifact is
+ * the right source. The URL-freeze exceptions are governance data and stay in
+ * the GitHub workflow.
  */
 export async function runChecks(
   env: Env,

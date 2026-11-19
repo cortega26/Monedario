@@ -2484,6 +2484,10 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Criterios de cierre (checklist verificable):**
   - [ ] Code scanning activo y produciendo alertas, **o**
   - [x] Decisión documentada (nota del owner) de aceptar cobertura SAST semanal con Opengrep: runbook `docs/operations/runbooks/security-scans.md` (cobertura real por disparador, limitación CodeQL/GHAS 403, mitigaciones, cómo correr cada scan) + comentario del workflow corregido. Revisión de la decisión cada 6 meses.
+- **Nota 2026-11-18:** el repositorio pasó a público; `code scanning`/CodeQL
+  están disponibles sin GHAS (la API ya responde `state: configured`). La
+  decisión de mantener Opengrep semanal sigue vigente hasta evaluar CodeQL por
+  PR; revisar en la próxima ventana de seguridad.
 - **Owner:** Carlos Ortega
 - **Estado:** Cerrado (2026-09-30)
 - **Fecha de creación:** 2026-09-25
