@@ -53,8 +53,8 @@ Workers run in V8 isolates: 128 MB memory, 30 s CPU (scheduled), no filesystem,
 no `child_process`, no Docker. Only stateless jobs fit.
 
 1. **Deploy health — done (2026-11-18).** `workers/deploy-health` fetches the
-   published site, the public `/api/deploy-health.json` artifact and the URL-freeze
-   exceptions; the pure evaluators live in
+   published site, the public `/api/deploy-health.json` artifact and the
+   URL-freeze exceptions; the pure evaluators live in
    `scripts/lib/deploy-health-evaluators.mjs` and are shared with the Node
    diagnostic. The Worker exposes `GET /status` and runs on demand (no cron:
    the account is at the Workers Free 5-trigger limit). The GitHub workflow is
@@ -103,8 +103,11 @@ only the build on the i5.
 split traffic without editing every workflow:
 
 1. Add repository variable `ACTIONS_RUNNER_LABEL_HEAVY`.
-2. Route the heavy/non-blocking jobs with
-   `runs-on: ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY || vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}`.
+2. Route the heavy/non-blocking jobs with:
+
+   ```yaml
+   runs-on: ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY || vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+   ```
 3. Extend `tests/static-analysis/actions-runner-portability.e2e.test.ts` with an
    explicit allowlist of jobs that may use the heavy expression.
 4. If the variable is unset, the jobs stay on the primary runner: no outage.
