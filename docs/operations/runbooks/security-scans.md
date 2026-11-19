@@ -22,9 +22,9 @@ Schedule: miércoles 05:30 UTC. Dispatch manual:
 Mientras el repo fue privado, `code scanning` respondía 403 (`Code scanning is
 not enabled`) porque GitHub Advanced Security no estaba disponible en el plan
 Free/User. Con el repositorio público, code scanning y CodeQL sí están
-disponibles sin GHAS. La configuración actual sigue siendo **Opengrep semanal**
-+ `gitleaks-pr` bloqueante; si se habilita CodeQL, actualizar esta sección y la
-matriz de cobertura.
+disponibles sin GHAS. La configuración actual sigue siendo **Opengrep
+semanal** más `gitleaks-pr` bloqueante; si se habilita CodeQL, actualizar esta
+sección y la matriz de cobertura.
 
 ### Auditoría de historia completa (2026-11-18)
 

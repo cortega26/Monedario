@@ -110,6 +110,7 @@ split traffic without editing every workflow:
      ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY ||
      vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
    ```
+
 3. Extend `tests/static-analysis/actions-runner-portability.e2e.test.ts` with an
    explicit allowlist of jobs that may use the heavy expression.
 4. If the variable is unset, the jobs stay on the primary runner: no outage.
