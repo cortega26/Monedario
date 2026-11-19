@@ -106,7 +106,9 @@ split traffic without editing every workflow:
 2. Route the heavy/non-blocking jobs with:
 
    ```yaml
-   runs-on: ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY || vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
+   runs-on: >-
+     ${{ vars.ACTIONS_RUNNER_LABEL_HEAVY ||
+     vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04' }}
    ```
 3. Extend `tests/static-analysis/actions-runner-portability.e2e.test.ts` with an
    explicit allowlist of jobs that may use the heavy expression.
@@ -122,7 +124,9 @@ same label); the watchdog maps each lease to its systemd slot.
 `pcp-ci-isolated:2.338.0`, plus a `node:22-bookworm-slim` builder stage:
 
 ```dockerfile
-# build from the repo root: docker build -f ops/ci-runner/Dockerfile -t monedario-ci-isolated:2.338.0-a11y .
+# build from the repo root:
+#   docker build -f ops/ci-runner/Dockerfile \
+#     -t monedario-ci-isolated:2.338.0-a11y .
 FROM node:22-bookworm-slim AS pnpm-store
 WORKDIR /repo
 RUN corepack enable
