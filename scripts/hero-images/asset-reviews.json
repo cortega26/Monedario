@@ -1076,7 +1076,7 @@
     "contribuciones-bienes-raices-chile": {
       "slug": "contribuciones-bienes-raices-chile",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "65cc2ac8fb831c101ad4856baf05b5a495dc4c7d9a39034799c28f80becc288c",
+      "sourceContentHash": "210b6e591669edd790a59fbee844389c3cc43345a7f4e14bdf9fdb45a30c5733",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender el impuesto territorial y consultar el pago aplicable a una propiedad.\nEditorial promise: Distinguir avalúo fiscal, cuotas y posibles exenciones.\nVisual message: La vivienda y su obligación tributaria se revisan con documentos y calendario.\nScene: A small paper house rests on a neutral property assessment sheet. Beside it, four simple unnumbered calendar tabs sit in a neat fan and one payment notice lies open. Warm light separates the home silhouette from the tax document without warning colors dominating.\nEssential elements: Vivienda; Documento de avalúo; Cuotas en calendario.\nAvoid these interpretations: El impuesto se calcula siempre sobre precio de venta; Toda vivienda paga lo mismo; Todas las exenciones son automáticas.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "03221684ca2581b8e7e9bd779d60616bb5372b0f383fd1495d925cd140c8916e",
       "source": {
@@ -1100,10 +1100,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-10-12",
-        "reviewedBy": "agent/visual-curation",
-        "method": "Built-in imagegen; inspection of image against the reviewed article brief and at 300 px. Not a YMYL compliance or human publication signoff.",
-        "note": "Situación y gesto concuerdan con el brief; imagen legible en miniatura y sin texto/datos fabricados ni promesas financieras engañosas."
+        "reviewedAt": "2026-11-20",
+        "reviewedBy": "agent/source-review",
+        "method": "Alineación de fuente tras las correcciones editoriales 2026-11; sin regeneración ni nueva revisión visual. La revisión visual anterior sigue vigente. No es cumplimiento YMYL ni firma humana de publicación.",
+        "note": "La escena visual no cambia; se actualiza el fingerprint del artículo."
       }
     },
     "descuentos-de-sueldo": {
