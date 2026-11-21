@@ -1411,13 +1411,13 @@
       "targetImagePath": "/images/hero/gratificacion-legal-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "56333374647d50b87c62714a74062b9aba8a83deb8e2f8c905974e4c006483fc",
-      "briefHash": "5ca779ff04cfe77e2c623bad7ec147985bf547b1d59e9c476290eac74fc97cea",
+      "sourceContentHash": "3e699a07f6efeeddbf3a81b50e215f56962868cf6cd68f3321bc5e13a3000d7e",
+      "briefHash": "04b5faa6f294cf45853fdf12f8c146849567abdd025fb982c856d27134454664",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11 (requisitos del art. 47 y oportunidad de pago); el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",

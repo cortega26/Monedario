@@ -65,7 +65,7 @@
     {
       "id": "gratificacion-25-utilidades-base",
       "date": "2026-11-20",
-      "title": "Gratificación del 25 %: requiere utilidades y se calcula sobre remuneraciones devengadas",
+      "title": "Gratificación legal: requisitos del artículo 47, base devengada y pago anual en abril",
       "pages": [
         {
           "href": "/posts/gratificacion-legal-chile/",
@@ -73,16 +73,20 @@
         }
       ],
       "wrong": [
+        "La guía afirmaba que todo trabajador de un establecimiento comercial, industrial, minero o agrícola tenía derecho a gratificación, sin las cuatro condiciones simultáneas del artículo 47 —en particular, las utilidades líquidas—.",
         "La guía afirmaba que la modalidad del 25 % se paga aunque la empresa tenga pérdidas.",
-        "La guía llamaba 'remuneraciones imponibles' a la base del 25 % y usaba el IMM vigente sin anclar el tope al 31 de diciembre del año respectivo."
+        "La guía llamaba 'remuneraciones imponibles' a la base del 25 % y usaba el IMM vigente sin anclar el tope al 31 de diciembre del año respectivo.",
+        "La guía decía que la ley permite pagar la gratificación dentro del ejercicio correspondiente o el siguiente (art. 48 CT), sin precisar que el pago anual corresponde a abril del año siguiente y que el pago mensual es un anticipo acordado."
       ],
       "fixed": [
+        "La DT exige cuatro condiciones simultáneas para gratificar: establecimiento minero, industrial, comercial, agrícola o de cualquier otro tipo —o cooperativa—; fines de lucro, salvo cooperativas; obligación de llevar contabilidad; y utilidades líquidas en el ejercicio. Cumplidas y a falta de pacto, el empleador elige entre el 30 % y el 25 %.",
         "La DT exige utilidades líquidas entre los requisitos de la obligación de gratificar. Si hubo pérdidas, los anticipos pueden recuperarse al finiquito, salvo que estén convenidos en el contrato, caso en que el empleador no puede suspenderlos unilateralmente.",
-        "La base del 25 % son las remuneraciones mensuales devengadas; el tope de 4,75 IMM se calcula con el IMM vigente al 31 de diciembre del año respectivo."
+        "La base del 25 % son las remuneraciones mensuales devengadas; el tope de 4,75 IMM se calcula con el IMM vigente al 31 de diciembre del año respectivo.",
+        "La gratificación es un beneficio anual que se paga en abril del año siguiente al cierre del ejercicio; el pago mensual es un anticipo acordado, no una obligación legal, que se reajusta por IPC y se liquida en abril (DT 60164)."
       ],
-      "affected": "Trabajadores que creen que la gratificación del 25 % es incondicional y empleadores que provisionan anticipos sin revisar el resultado del ejercicio.",
-      "sources": "DT, requisitos de la obligación (https://www.dt.gob.cl/portal/1628/w3-article-60150.html); DT, anticipos y pérdidas (https://www.dt.gob.cl/portal/1628/w3-article-60172.html); DT, anticipos convenidos (https://www.dt.gob.cl/portal/1628/w3-article-60171.html); DT, base y tope (https://www.dt.gob.cl/portal/1628/w3-article-60162.html).",
-      "prevention": "Verificar la doctrina de la DT sobre pérdidas y anticipos antes de afirmar que un beneficio es incondicional; anclar el tope a la fecha legal."
+      "affected": "Trabajadores que creen que la gratificación del 25 % es incondicional o que todo trabajador de un establecimiento tiene derecho, y empleadores que provisionan anticipos sin revisar el resultado del ejercicio ni la oportunidad de pago.",
+      "sources": "DT, requisitos de la obligación (https://www.dt.gob.cl/portal/1628/w3-article-60150.html); DT, oportunidad de pago y anticipos (https://www.dt.gob.cl/portal/1628/w3-article-60164.html); DT, anticipos y pérdidas (https://www.dt.gob.cl/portal/1628/w3-article-60172.html); DT, anticipos convenidos (https://www.dt.gob.cl/portal/1628/w3-article-60171.html); DT, base y tope (https://www.dt.gob.cl/portal/1628/w3-article-60162.html); DT, reparto del 30 % (https://www.dt.gob.cl/portal/1628/w3-article-60160.html); DT, proporcionalidad y concepto de mes (https://www.dt.gob.cl/portal/1628/w3-article-60158.html).",
+      "prevention": "Verificar los requisitos copulativos del artículo 47 y la oportunidad de pago en la doctrina de la DT antes de afirmar que un beneficio es incondicional; anclar el tope y los anticipos a la fecha legal."
     },
     {
       "id": "utm-reajuste-mensual-copy",

@@ -66,11 +66,14 @@ La gratificación legal es la parte de las remuneraciones que el empleador debe 
 
 **Quiénes tienen derecho:**
 
-Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el Código del Trabajo (artículos 47 y 50).
+La [Dirección del Trabajo (DT 60150)](https://www.dt.gob.cl/portal/1628/w3-article-60150.html) exige **cuatro condiciones simultáneas** para que nazca la obligación de gratificar:
 
-**Quiénes pueden quedar fuera:**
+1. Que se trate de un establecimiento minero, industrial, comercial o agrícola —o de cualquier otro— o de una cooperativa.
+2. Que el establecimiento o empresa persiga fines de lucro, salvo las cooperativas.
+3. Que esté obligado a llevar libros de contabilidad.
+4. Que obtenga utilidades líquidas en el período anual respectivo.
 
-Las personas jurídicas sin fines de lucro y algunos regímenes especiales establecidos por ley pueden estar excluidos o sujetos a reglas distintas. Si tienes dudas sobre tu tipo de empleador, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
+El tipo de contrato —indefinido o a plazo fijo— no altera el derecho. Cumplidas las cuatro condiciones y si no hay pacto en el contrato, el empleador elige entre repartir el 30 % de las utilidades (art. 47) o pagar el 25 % de lo devengado por remuneraciones mensuales con tope de 4,75 IMM (art. 50). Las entidades sin fines de lucro quedan fuera porque no persiguen utilidades; algunos regímenes especiales pueden tener reglas distintas. Si tienes dudas sobre tu tipo de empleador, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
 
 ## Las dos modalidades: 25 % de remuneraciones vs 30 % de utilidades
 
@@ -78,7 +81,7 @@ El Código del Trabajo establece dos formas de calcular y pagar la gratificació
 
 **Modalidad 1 — 30 % de utilidades netas (art. 47 CT)**
 
-Cuando la empresa obtuvo utilidades líquidas en el ejercicio, **debe distribuir** el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones (art. 47 CT: "tendrán la obligación de gratificar anualmente"). Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
+Cuando la empresa obtuvo utilidades líquidas en el ejercicio, **debe distribuir** el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones (art. 47 CT: "tendrán la obligación de gratificar anualmente"). Para repartir ese 30 %, la DT indica que se incluye en el cálculo a trabajadores que no tienen derecho —contratados por 30 días o menos, con gratificación convenida, con gratificación del art. 50, etc.— y luego se prorratea ([DT 60160](https://www.dt.gob.cl/portal/1628/w3-article-60160.html)). Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
 
 **Modalidad 2 — 25 % de remuneraciones mensuales devengadas con tope IMM (art. 50 CT)**
 
@@ -116,11 +119,11 @@ Para entender cómo se integra la gratificación al total de tu sueldo, consulta
 
 ## ¿Cuándo y cómo se paga? Mensual, anual y proporcional
 
-**Provisión mensual:** la práctica más extendida es que las empresas provisionen la gratificación en cada liquidación mensual — aparece como "Gratificación" o "Prov. Gratificación" en los haberes.
+**Provisión o anticipo mensual:** muchas empresas pagan la gratificación en cuotas mensuales, que aparecen como "Gratificación" o "Prov. Gratificación" en los haberes. Ese pago mensual es un **anticipo acordado**, no una obligación legal, y se liquida en abril.
 
-**Pago anual:** la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente (artículo 48 CT).
+**Pago anual en abril:** la gratificación es un beneficio anual y se paga en **abril del año siguiente** al cierre del ejercicio en que hubo utilidades ([DT 60164](https://www.dt.gob.cl/portal/1628/w3-article-60164.html)). Los anticipos se reajustan por IPC y se liquidan en abril: allí se determina si lo pagado cubre la gratificación que corresponde y, si falta una diferencia, se paga a más tardar ese mes.
 
-**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT).
+**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT). Para estos efectos, "mes" es un período de días consecutivos —por ejemplo, del 15 al 15—, no el mes calendario, y no se computan los días que no alcanzan a completar un mes ([DT 60158](https://www.dt.gob.cl/portal/1628/w3-article-60158.html)).
 
 Para aprender a leer la [línea de gratificación en tu comprobante de sueldo](/posts/liquidacion-de-sueldo/), revisa la guía de liquidación.
 
