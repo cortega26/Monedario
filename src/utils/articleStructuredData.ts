@@ -1,7 +1,7 @@
 import { SITE } from "@/config";
 
 /** Nombre con el que se firman los artículos del equipo editorial. */
-export const TEAM_AUTHOR_NAME = "Equipo Monedario";
+const TEAM_AUTHOR_NAME = "Equipo Monedario";
 
 export interface AuthorEntity {
   "@type": "Person" | "Organization";
