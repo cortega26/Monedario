@@ -255,6 +255,6 @@ Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-11-
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830), Ley 21.133 y Ley 21.850 — BCN
 - Circular SII N° 39 de 2022 y Ley N° 21.420 — régimen tributario del art. 107 LIR sobre ganancias de capital
 
-**Última revisión editorial:** Carlos Ortega — 2026-08-03
+**Última revisión editorial:** Carlos Ortega — 2026-11-20
 
 Si tienes dudas sobre el [Impuesto Global Complementario](/posts/impuesto-global-complementario-chile/) o cómo afecta tu declaración, esa guía complementa el proceso de Operación Renta. Para el paso a paso del Formulario 22, revisa el [checklist F22](/posts/operacion-renta-f22-checklist/).

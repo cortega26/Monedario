@@ -1001,7 +1001,7 @@
         "La devolución está garantizada"
       ],
       "alt": "",
-      "sourceContentHash": "aca269dafee4eafa47aaf77af6c9773220ee288cca8ef7b4e9b81dc4dfbb19dd",
+      "sourceContentHash": "e49d3e3165095af43b1cfe1f2495a4402bc61769d5eaefa38a3dda023946982b",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
@@ -1009,7 +1009,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura de la firma editorial (2026-11-20); el mensaje y la escena visual no cambian. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
