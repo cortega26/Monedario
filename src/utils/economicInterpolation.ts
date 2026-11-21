@@ -21,7 +21,7 @@ const SNAPSHOT_PATH = resolve(
 );
 
 // [[expr | format]] — e.g. [[utm * 13.5 | clp]]
-export const ECONOMIC_EXPR_RE = /\[\[([^\]|]+?)\|([^\]]+?)\]\]/g;
+const ECONOMIC_EXPR_RE = /\[\[([^\]|]+?)\|([^\]]+?)\]\]/g;
 
 export type EconomicVars = { utm: number; uf: number; uta: number };
 

@@ -74,7 +74,7 @@ export function effectiveDate(correction: Correction): string {
   return correction.dateEnd ?? correction.date;
 }
 
-export function monthKey(correction: Correction): string {
+function monthKey(correction: Correction): string {
   const { month, year } = parseIsoDate(correction.date);
   return `${year}-${String(month).padStart(2, "0")}`;
 }

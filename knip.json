@@ -9,9 +9,7 @@
   "ignore": [
     "src/dev-pages/**",
     "src/scripts/**",
-    "src/tools/**",
-    "src/components/InversionReadinessChecklist.astro",
-    "src/components/IndicadorEconomico.astro"
+    "src/tools/**"
   ],
   "rules": {
     "files": "error",

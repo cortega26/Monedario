@@ -88,10 +88,6 @@ export function indexabilityFor(pathname: string): Indexability {
   return INDEXABLE;
 }
 
-export function isIndexable(pathname: string): boolean {
-  return indexabilityFor(pathname).indexable;
-}
-
 export function isInSitemap(pathname: string): boolean {
   return indexabilityFor(pathname).inSitemap;
 }
