@@ -7,7 +7,10 @@ misma sesión: `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`.
 ## Estado del registro
 
 - Registro real: `src/data/correcciones.json` (**22 entradas** al 2026-11-20).
-- Ninguna de las cuatro correcciones de este handoff está registrada.
+- Ninguna de las ocho correcciones con entrada propuesta en
+  `proposed-corrections.json` está registrada.
+- Las cuatro entradas de `contribuciones-bienes-raices-chile` se agregaron el
+  2026-11-20; el artículo no se editó.
 - `proposed-corrections.json` (este directorio) es una **propuesta**, no el
   registro. Copiar cada objeto a `.corrections` **solo cuando el arreglo del
   artículo esté publicado en el mismo PR**.
@@ -25,6 +28,10 @@ misma sesión: `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`.
 | 5 | `sueldo-imponible-chile` | Pin UTM 72.151 → **72.440** | Sin entrada (metadato) | Media |
 | 6 | `boleta-honorarios-2026-retencion-cobertura` | Cuatro precisiones | Sin entrada (sin error) | Media |
 | 7 | `impuesto-global-complementario-chile` | Sin error; AT 2027 | Sin entrada (sin error) | Baja |
+| 8 | `contribuciones-bienes-raices-chile` | Tasas 1,23 % y 0,4 % mal atribuidas al Decreto 437/2022; falta la sobretasa del 100 % | `contribuciones-tasas-origen-sobretasa` | Alta |
+| 9 | `contribuciones-bienes-raices-chile` | Adultos mayores: 65+ para todos; mujeres 60+; faltan umbrales y la exención 2027 | `contribuciones-adulto-mayor-umbrales` | Alta |
+| 10 | `contribuciones-bienes-raices-chile` | DFL-2: «tasas diferenciadas» en vez de exenciones | `contribuciones-dfl2-exenciones` | Media |
+| 11 | `contribuciones-bienes-raices-chile` | F22: contribuciones como gasto, no como crédito | `contribuciones-f22-credito-no-gasto` | Alta |
 
 ## Qué cambiar en cada artículo
 
@@ -49,6 +56,13 @@ directorio. Resumen de ubicaciones:
   umbral $2.767.765; exenciones 55/50 y régimen distinto a AFP.
 - **IGC:** sin cambios de fondo; actualizar `validAsOf` y dejar la próxima
   revisión después de la UTA de diciembre 2026.
+- **Contribuciones:** en la tabla de tasas, separar el Decreto 437/2022
+  (0,893 % y 1,042 %) de los decretos 102/2024 (0,4 % agrícola) y 213/2025
+  (1,23 % sitios no edificados) y agregar la sobretasa del 100 %; en «Adultos
+  mayores», corregir la edad (hombres 65+, mujeres 60+), publicar los umbrales
+  y agregar la exención de la Ley 21.850 con su plazo; en «DFL-2», reemplazar
+  «tasas diferenciadas» por las exenciones de los arts. 14 y 15; en «F22»,
+  explicar que las contribuciones son crédito y no gasto.
 
 ## Checklist por artículo
 
