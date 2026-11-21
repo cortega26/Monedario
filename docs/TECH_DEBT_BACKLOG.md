@@ -50,7 +50,7 @@ _Actualizado 2026-09-30 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 ### Estado de avance (2026-09-30)
 
 - **Completados/cerrados:** 112 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096`/`TD-0103`/`TD-0108` (2026-09-30).
-- **Abiertos:** `TD-0113` (2026-10-27) — bootstrap de CI agota el timeout de los jobs bloqueantes en el runner self-hosted.
+- **Abiertos:** ninguno de CI; `TD-0113` se cerró el 2026-11-21 al retirarse el runner self-hosted.
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2635,10 +2635,16 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   contenedores huérfanos del restart se limpiaron; el tag viejo
   (`sha256:46f72...`) sigue disponible para rollback. Pendiente: bajar
   `timeout-minutes` y confirmar el diff en un PR de dependencias (#779).
+- **Nota 2026-11-21 (cierre):** el runner self-hosted se retiró al pasar el
+  repositorio a público; todos los workflows usan GitHub-hosted
+  `ubuntu-24.04` (`ACTIONS_RUNNER_LABEL=ubuntu-24.04`). El store tibio y el
+  bootstrap optimizado dejan de usarse; el runner hosted hace un install en
+  frío cubierto por los minutos gratuitos de repo público. Reabrir solo si se
+  reinstala un runner self-hosted.
 - **Owner:** Sin asignar
-- **Estado:** Abierto (mitigado)
+- **Estado:** Cerrado (retirado; 2026-11-21)
 - **Fecha de creación:** 2026-10-27
-- **Última actualización:** 2026-11-18
+- **Última actualización:** 2026-11-21
 
 ## TD-0114 — Consumo externo de la cuota de storage de GitHub Actions
 
