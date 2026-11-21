@@ -74,15 +74,15 @@
         "Porcentaje fijo válido para cualquier año"
       ],
       "alt": "",
-      "sourceContentHash": "430530ab0b673a255c10d42d2b72189d1671ea8fccf23fd0ad8ce307fe880d10",
+      "sourceContentHash": "ebe5dab6aa620fce928461eb90711f3971371c143ded717f7c77e6d4e3774d75",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -257,7 +257,7 @@
       "readerNeed": "Comprobar saldo, movimientos y cotizaciones en la cartola previsional.",
       "editorialPromise": "Ayudar a localizar inconsistencias y respaldarlas antes de reclamar.",
       "visualMessage": "Cruzar documentos permite detectar lo que falta.",
-      "scene": "Overhead close-up of hands aligning a quarterly account statement with a smaller payslip. One finger points to a single gap in a row of unlettered monthly marks, while the other document is held steady. The statement is the dominant object, with no floating chart or celebratory check badge.",
+      "scene": "Overhead close-up of hands aligning a four-monthly (cuatrimestral) account statement with a smaller payslip. One finger points to a single gap in a row of unlettered monthly marks, while the other document is held steady. The statement is the dominant object, with no floating chart or celebratory check badge.",
       "requiredElements": [
         "Cartola dominante",
         "Liquidación para contraste",
@@ -268,15 +268,15 @@
         "Toda variación del saldo es un error"
       ],
       "alt": "",
-      "sourceContentHash": "94422cdabe1e4c772272e09e342d6401adb45c810a2a8b08b784848f520b0f4e",
+      "sourceContentHash": "df2d9e5b40dd245d2457d6d26e943efbdd755c8ff1b7d6ade49e685027e95446",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -803,15 +803,15 @@
         "No minus sign, deduction mark, plus sign, arrow, gift box or bonus imagery."
       ],
       "alt": "",
-      "sourceContentHash": "c5056c90d0e06e360d83acb9f69cc9421cc20b93ce860cb1d86ec8d5dca7a6a5",
+      "sourceContentHash": "56333374647d50b87c62714a74062b9aba8a83deb8e2f8c905974e4c006483fc",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-19",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -831,15 +831,15 @@
         "Cubre cada régimen especial de ganancias"
       ],
       "alt": "",
-      "sourceContentHash": "f795fdb1d09a56368c49721cbaee995366d67dc0806a66f351f797516a1fb437",
+      "sourceContentHash": "2cdc6ba2b43a14595efe348b51d64e0ecc84622023e5a5e17d7b6864a3ff8b56",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "C",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1001,15 +1001,15 @@
         "La devolución está garantizada"
       ],
       "alt": "",
-      "sourceContentHash": "bf3caf19c7e856f15e8133b1113a95a67ea0991dcf77de4d35b353d4e577353e",
+      "sourceContentHash": "0afe3ad9d5f7c57c984c4045483af93434b76fac1e7dc9f2a6daa1a9f22f887d",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1057,14 +1057,14 @@
         "Es un descuento AFP o liquidación salarial"
       ],
       "alt": "",
-      "sourceContentHash": "8a24e08e7202214e6322289a4a3b4794e3058d4df1fa3651655974b9490c7f91",
+      "sourceContentHash": "e9c872fbf12a368fb9c7cbe27b90645152f6bbc074b0d4e1440efea727785622",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-29",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1424,15 +1424,15 @@
         "No gift-box, reward or bonus pictogram; only meal and transit allowance cues."
       ],
       "alt": "",
-      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
+      "sourceContentHash": "59209b7d89a0b1a609589eeb03328658ef6e3b36bec20acd9c7787b8727496a8",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
       "review": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-28",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {

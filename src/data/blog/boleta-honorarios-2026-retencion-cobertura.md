@@ -19,12 +19,12 @@ featured: false
 draft: false
 heroImage: /images/hero/boleta-honorarios-2026-retencion-cobertura.avif
 articleLead:
-  answer: "En 2026 la boleta de honorarios se parte en dos preguntas distintas: cuánto te retienen y cuánto te llega líquido hoy, versus qué cotización y cobertura anual se regularizan después en Operación Renta."
+  answer: "En 2026 la boleta de honorarios se parte en dos preguntas distintas: cuánto te retienen y cuánto te llega líquido hoy, versus qué cotización y cobertura anual se regularizan después en Operación Renta. La cotización que se regulariza en la Operación Renta 2026 otorga cobertura desde el 1 de julio de 2026 hasta el 30 de junio de 2027."
   calculatorHref: "/calculadoras/boleta-honorarios-liquido/"
   calculatorLabel: "Calcular líquido por boleta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-08-12
+  validAsOf: 2026-11-20
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"
@@ -50,7 +50,7 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.boleta-honorarios-2026-retencion-cobertura
   computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+updatedDate: 2026-11-20T00:00:00Z
 ---
 
 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.
@@ -89,19 +89,35 @@ Si además quieres revisar tu declaración anual completa, parte por el [simulad
 
 ## Escenarios por perfil
 
-| Perfil                                                        | ¿Retención mensual 2026?       | ¿Cotiza en Operación Renta 2026?                          | Efecto típico                                                                                |
-| ------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Independiente con boletas regulares y monto anual sobre 5 IMM | Sí, 15,25%                     | Sí                                                        | Menor líquido mensual, pero acceso a cobertura anual según reglas vigentes.                  |
-| Independiente con boletas anuales bajo 5 IMM                  | Sí, 15,25% al emitir           | Puede quedar eximido de cotización obligatoria en OR 2026 | Mantiene retención mensual, pero la obligación previsional anual cambia según tope y normas. |
-| Pensionado (salvo invalidez parcial)                          | Sí, 15,25% al emitir           | Puede estar eximido por norma específica                  | Revisar condición previsional antes de asumir cobertura nueva.                               |
-| Trabajador intermitente a honorarios                          | Sí, 15,25% en meses con boleta | Depende del total anual y reglas de cobertura             | Puede tener meses sin ingresos, pero evaluación anual igual aplica.                          |
+| Perfil                                                                    | ¿Retención mensual 2026?       | ¿Cotiza en Operación Renta 2026?                          | Efecto típico                                                                                |
+| ------------------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Independiente con boletas regulares, monto anual igual o superior a 5 IMM | Sí, 15,25%                     | Sí                                                        | Menor líquido mensual, pero acceso a cobertura anual según reglas vigentes.                  |
+| Independiente con boletas anuales menores que 5 IMM                       | Sí, 15,25% al emitir           | Puede quedar eximido de cotización obligatoria en OR 2026 | Mantiene retención mensual, pero la obligación previsional anual cambia según tope y normas. |
+| Pensionado (salvo invalidez parcial)                                      | Sí, 15,25% al emitir           | Puede estar eximido por norma específica                  | Revisar condición previsional antes de asumir cobertura nueva.                               |
+| Trabajador intermitente a honorarios                                      | Sí, 15,25% en meses con boleta | Depende del total anual y reglas de cobertura             | Puede tener meses sin ingresos, pero evaluación anual igual aplica.                          |
+
+### Cobertura de la Operación Renta 2026
+
+La cotización que se regulariza en la Operación Renta 2026 —sobre las rentas por boletas de 2025— otorga cobertura **desde el 1 de julio de 2026 hasta el 30 de junio de 2027**.
+
+El umbral de cotización es un bruto anual de 2025 **igual o superior a 5 IMM**, equivalente a **$2.767.765** (5 × $553.553, IMM 2026), según ChileAtiende. Un bruto anual **menor** a ese monto queda eximido de la cotización obligatoria, sin perjuicio de la retención mensual.
+
+### Quién queda eximido de cotizar
+
+Además de la exención por monto y de los pensionados (salvo invalidez parcial), la ficha oficial considera exentos:
+
+- hombres que al **1 de enero de 2018** tenían **55 años o más**;
+- mujeres que al **1 de enero de 2018** tenían **50 años o más**;
+- personas afiliadas a un **régimen previsional distinto al de las AFP**.
+
+Estas exenciones afectan la cotización anual, no la retención de 15,25 % que se aplica al emitir cada boleta.
 
 ## Si te pasa X, haz Y
 
 - Si **solo quieres calcular líquido de una boleta**: aplica 15,25% de retención y resta.
-- Si **quieres saber cobertura anual**: mira tu total anual de boletas y resultado de Operación Renta.
-- Si **emitiste poco y dudas si cotizas**: contrasta tu bruto anual con el umbral de 5 IMM del año base.
-- Si **eres pensionado o estás en régimen distinto a AFP**: valida si estás eximido antes de proyectar cobertura.
+- Si **quieres saber cobertura anual**: mira tu total anual de boletas y resultado de Operación Renta; la cobertura de la OR 2026 va del 01-07-2026 al 30-06-2027.
+- Si **emitiste poco y dudas si cotizas**: contrasta tu bruto anual de 2025 con el umbral de 5 IMM ($2.767.765); si es menor, quedas eximido por monto.
+- Si **eres pensionado, tienes 55 años o más (hombres) o 50 años o más (mujeres) al 01-01-2018, o estás en un régimen distinto a AFP**: valida si estás eximido antes de proyectar cobertura.
 - Si **tu duda es cuándo depositan tu devolución**: revisa la guía de [fechas y compensaciones de devolución de impuestos](/posts/devolucion-impuestos-fechas-compensaciones/).
 - Si **también tienes sueldo de empleador**: revisa la guía de [rentas mixtas (sueldo + honorarios)](/posts/rentas-mixtas-sueldo-honorarios/) para entender cómo se declaran juntos.
 - Si **quieres entender el impuesto que aplica a tu renta total anual**: lee sobre el [Impuesto Global Complementario](/posts/impuesto-global-complementario-chile/).
@@ -110,7 +126,7 @@ Si además quieres revisar tu declaración anual completa, parte por el [simulad
 
 1. Creer que retención y cotización anual son exactamente lo mismo.
 2. Proyectar cobertura solo por una boleta, sin mirar total anual.
-3. Ignorar exenciones por perfil (edad de corte, pensionado, régimen distinto AFP).
+3. Ignorar exenciones por perfil (hombres de 55+ y mujeres de 50+ al 01-01-2018, pensionado, régimen distinto a AFP).
 4. Pensar que la retención 2025 sigue igual en 2026.
 5. Confundir líquido mensual con resultado final de declaración anual.
 6. No verificar institución previsional afiliada al cierre del año base.
@@ -141,7 +157,14 @@ No. La retención se aplica al emitir cada boleta; la cotización se regulariza 
 <details>
 <summary>¿Qué pasa si boleteé menos de 5 ingresos mínimos mensuales?</summary>
 
-Para OR 2026 (rentas 2025), puedes quedar eximido de cotización obligatoria de pensión/salud, pero la retención al emitir boletas se mantiene.
+Para OR 2026 (rentas 2025), si tu bruto anual fue **menor** a 5 IMM —**$2.767.765**— puedes quedar eximido de la cotización obligatoria de pensión/salud, pero la retención al emitir boletas se mantiene. La cobertura de la OR 2026 va del **01-07-2026 al 30-06-2027**.
+
+</details>
+
+<details>
+<summary>¿Quiénes además están eximidos de cotizar?</summary>
+
+Hombres que al 1 de enero de 2018 tenían 55 años o más, mujeres que a esa fecha tenían 50 años o más, y personas afiliadas a un régimen previsional distinto al de las AFP, además de los pensionados (salvo invalidez parcial).
 
 </details>
 
@@ -155,11 +178,11 @@ No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual
 ## Fuentes y referencias primarias
 
 - SII, retención 2026 de boletas (15,25%) y progresión a 2028: https://www.sii.cl/noticias/2025/261225noti01smn.htm
-- ChileAtiende, cotización de trabajadores que emiten boletas (OR 2026, umbral 5 IMM, coberturas y exenciones): <https://www.chileatiende.gob.cl/fichas/12016-cotizacion-de-trabajadores-que-emiten-boletas-de-honorarios>
+- ChileAtiende, cotización de trabajadores que emiten boletas (OR 2026, umbral 5 IMM, ventana de cobertura y exenciones): <https://www.chileatiende.gob.cl/fichas/12016-cotizacion-de-trabajadores-que-emiten-boletas-de-honorarios>
 - Ley N° 21.133 (BCN): <https://www.bcn.cl/leychile/navegar?idNorma=1128420>
 - SII, Operación Renta Personas (flujo anual de declaración): https://www.sii.cl/destacados/renta/2025/index_personas2025.html
 
 ## Información de vigencia
 
-- Revisado el: 2026-05-11.
+- Revisado el: 2026-11-20.
 - Puede quedar desactualizado cuando: cambios en porcentaje de retención, ajustes a cobertura anual o modificaciones legales/publicación de nuevas instrucciones SII.

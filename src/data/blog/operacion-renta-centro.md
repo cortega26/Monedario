@@ -5,7 +5,7 @@ description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe decl
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
-updatedDate: 2026-09-29T00:00:00Z
+updatedDate: 2026-11-20T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -24,7 +24,7 @@ heroImage: /images/hero/operacion-renta-centro.avif
 articleAdvisory: "Esta guía es informativa y no constituye asesoría tributaria. Verifica siempre los plazos y montos vigentes en sii.cl antes de actuar."
 articleLead:
   answer: "Debes declarar el Formulario 22 en 2026 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Si trabajaste todo el año con un solo empleador y sin otros ingresos, generalmente estás exento porque tu empleador ya realizó las retenciones."
-  validAsOf: 2026-08-03
+  validAsOf: 2026-11-20
   officialSources:
     - label: "SII — Operación Renta"
       href: "https://www.sii.cl/"
@@ -39,7 +39,9 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
+> **Campaña 2026 cerrada.** El plazo para declarar por internet venció el **8 de mayo de 2026**. Esta guía queda como archivo consultable de esa campaña: los plazos y calendarios que aparecen abajo son históricos, no accionables. La próxima Operación Renta corresponde a las rentas de 2026 y su calendario se informa en 2027. Si necesitas regularizar una declaración atrasada, revisa las instrucciones vigentes en [sii.cl](https://www.sii.cl/).
+
+Esta guía responde preguntas frecuentes sobre la campaña 2026, ya cerrada. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
 
 ## Respuesta rápida: ¿debo declarar la renta en 2026?
 
@@ -47,7 +49,7 @@ Esta guía responde preguntas frecuentes sobre la campaña. Para la información
 >
 > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática.
 >
-> **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025). El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año.
+> **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025), ya cerrada. El plazo de declaración por internet fue el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año.
 >
 > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).
 
@@ -55,7 +57,7 @@ Esta guía responde preguntas frecuentes sobre la campaña. Para la información
 
 ## ¿Quién DEBE declarar el Formulario 22?
 
-La obligación de declarar depende del tipo de ingresos que tuviste durante 2025. Si te encuentras en cualquiera de los siguientes casos, debes presentar el Formulario 22 antes del **8 de mayo de 2026**.
+La obligación de declarar depende del tipo de ingresos que tuviste durante 2025. Si te encuentras en cualquiera de los siguientes casos, correspondía presentar el Formulario 22 antes del **8 de mayo de 2026** (plazo ya vencido).
 
 ### Trabajadores con dos o más empleadores
 
@@ -77,7 +79,7 @@ Si arrendaste una propiedad en 2025 y los ingresos superaron los límites de exe
 
 Si vendiste acciones, fondos mutuos, fondos de inversión, bienes raíces u otros activos en 2025 con ganancia, podrías estar obligado a declarar dependiendo del monto y el tipo de activo.
 
-**Acciones y cuotas de fondos que califican bajo el Art. 107 LIR:** cuando la operación de venta o rescate cumple los requisitos que la ley exige para ese tipo de valor (incluidas las condiciones de cómo se adquirió y cómo se enajena, y no solo la presencia bursátil o composición de cartera del instrumento), esta ganancia **no está exenta**. Desde el 2 de septiembre de 2022 paga un impuesto único del 10% sobre el mayor valor, según la Ley N° 21.420 (Circular SII N° 39 de 2022), que eliminó la exención que existía hasta entonces. La excepción son los inversionistas institucionales, que conservan la calidad de ingreso no renta. _(Nota de vigencia: el Congreso aprobó el 4 de agosto de 2026 un proyecto de ley —Boletín 18.216-05— que restituiría esta exención desde el 1 de enero de 2027; a la fecha de esta actualización el proyecto está en control de constitucionalidad ante el Tribunal Constitucional y no es ley vigente. No apliques la exención a ventas realizadas en 2025.)_
+**Acciones y cuotas de fondos que califican bajo el Art. 107 LIR:** cuando la operación de venta o rescate cumple los requisitos que la ley exige para ese tipo de valor (incluidas las condiciones de cómo se adquirió y cómo se enajena, y no solo la presencia bursátil o composición de cartera del instrumento), esta ganancia **no está exenta**. Desde el 2 de septiembre de 2022 paga un impuesto único del 10% sobre el mayor valor, según la Ley N° 21.420 (Circular SII N° 39 de 2022), que eliminó la exención que existía hasta entonces. La excepción son los inversionistas institucionales, que conservan la calidad de ingreso no renta. _(Nota de vigencia: la **Ley 21.850**, publicada en el Diario Oficial el 17-10-2026, restituye esta exención para las ventas realizadas desde el 1 de enero de 2027. Las ventas de 2025 y 2026 siguen afectas al 10 %.)_
 
 **Otros fondos mutuos y de inversión:** no todos los fondos quedan fuera del art. 107 LIR ni todos quedan dentro — depende de si cumplen los requisitos de presencia bursátil o de composición de cartera que la ley exige para ese tipo de fondo. Si tu fondo no los cumple, el mayor valor tributa con reglas propias que no son las del art. 107 (no asumas la tasa del 10% por defecto). No hay una regla única aplicable a "fondos mutuos" en general: verifica en el reglamento interno del fondo o en sii.cl si tu instrumento específico califica bajo el art. 107 y, si no, qué régimen le corresponde.
 
@@ -103,9 +105,9 @@ Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de
 
 ---
 
-## Plazos Operación Renta 2026
+## Plazos de la campaña 2026 (históricos)
 
-El SII abre el portal de Operación Renta generalmente en los últimos días de marzo o primeros días de abril. Los plazos para 2026 son:
+El SII abre el portal de Operación Renta generalmente en los últimos días de marzo o primeros días de abril. Los plazos de la campaña 2026 fueron:
 
 | Hito                                             | Fecha                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ |
@@ -242,13 +244,13 @@ Para la mayoría de trabajadores dependientes o independientes con ingresos simp
 
 ## Información vigente para Operación Renta 2026
 
-Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-08-09 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
+Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-11-20 con la corrección del estado de la Ley 21.850 y el aviso de campaña cerrada. Los umbrales, plazos y tasas de la campaña 2026 fueron contrastados contra publicaciones oficiales del SII y TGR. Para las ventas de acciones y fondos del art. 107 LIR, las operaciones de 2025 y 2026 siguen afectas al 10 %.
 
 **Fuentes primarias:**
 
 - Servicio de Impuestos Internos: [sii.cl](https://www.sii.cl)
 - Tesorería General de la República: [tgr.cl](https://pagos.tgr.cl)
-- Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
+- Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830), Ley 21.133 y Ley 21.850 — BCN
 - Circular SII N° 39 de 2022 y Ley N° 21.420 — régimen tributario del art. 107 LIR sobre ganancias de capital
 
 **Última revisión editorial:** Carlos Ortega — 2026-08-03

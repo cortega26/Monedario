@@ -111,13 +111,13 @@
       "targetImagePath": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "430530ab0b673a255c10d42d2b72189d1671ea8fccf23fd0ad8ce307fe880d10",
-      "briefHash": "cbc2670ce3357b2d59e761797b823e9845530451b391f436011d045bc05dd119",
+      "sourceContentHash": "ebe5dab6aa620fce928461eb90711f3971371c143ded717f7c77e6d4e3774d75",
+      "briefHash": "3a02bff7b24ebe9543d4128f82ce22c919a0b5d24f9489662a34fadd587a9679",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -461,13 +461,13 @@
       "targetImagePath": "/images/hero/como-leer-cartola-afp-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "94422cdabe1e4c772272e09e342d6401adb45c810a2a8b08b784848f520b0f4e",
-      "briefHash": "a4b65ba4f90ed62ee63eed3d5187dc68131a0d7ea274458f98bdeb283f924873",
+      "sourceContentHash": "df2d9e5b40dd245d2457d6d26e943efbdd755c8ff1b7d6ade49e685027e95446",
+      "briefHash": "c23dc32af4d0ea9488c17871d857ca9a87104022e22936bd90541a62a349dc99",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -496,8 +496,8 @@
         "quality": "curated",
         "size": "1200x630"
       },
-      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comprobar saldo, movimientos y cotizaciones en la cartola previsional.\nEditorial promise: Ayudar a localizar inconsistencias y respaldarlas antes de reclamar.\nVisual message: Cruzar documentos permite detectar lo que falta.\nScene: Overhead close-up of hands aligning a quarterly account statement with a smaller payslip. One finger points to a single gap in a row of unlettered monthly marks, while the other document is held steady. The statement is the dominant object, with no floating chart or celebratory check badge.\nEssential elements: Cartola dominante; Liquidación para contraste; Vacío que requiere revisión.\nAvoid these interpretations: Un espacio vacío prueba por sí solo incumplimiento; Toda variación del saldo es un error.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
-      "promptHash": "2f91cdb01a1e160b072462197f64f11b5abce2cc0847dc096f3642ea02c9f45f",
+      "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Comprobar saldo, movimientos y cotizaciones en la cartola previsional.\nEditorial promise: Ayudar a localizar inconsistencias y respaldarlas antes de reclamar.\nVisual message: Cruzar documentos permite detectar lo que falta.\nScene: Overhead close-up of hands aligning a four-monthly (cuatrimestral) account statement with a smaller payslip. One finger points to a single gap in a row of unlettered monthly marks, while the other document is held steady. The statement is the dominant object, with no floating chart or celebratory check badge.\nEssential elements: Cartola dominante; Liquidación para contraste; Vacío que requiere revisión.\nAvoid these interpretations: Un espacio vacío prueba por sí solo incumplimiento; Toda variación del saldo es un error.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
+      "promptHash": "f4c9f988357df89936c506bed9028644c3306c9becdc87f12256bfbbc7d9d21d",
       "selectors": {
         "ruleId": "explicit-reviewed-brief",
         "category": "prevision",
@@ -1411,13 +1411,13 @@
       "targetImagePath": "/images/hero/gratificacion-legal-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "c5056c90d0e06e360d83acb9f69cc9421cc20b93ce860cb1d86ec8d5dca7a6a5",
-      "briefHash": "295e26b39af6db98712d13bc9a17c2f0e554235c62ff361787e762fe07925d0b",
+      "sourceContentHash": "56333374647d50b87c62714a74062b9aba8a83deb8e2f8c905974e4c006483fc",
+      "briefHash": "5ca779ff04cfe77e2c623bad7ec147985bf547b1d59e9c476290eac74fc97cea",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-19",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Image-edit brief reviewed on 2026-10-13 and revalidated on 2026-10-19 against the current article content. The edit instruction remains valid; no new image generation is required. This is visual source alignment, not a YMYL audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1461,13 +1461,13 @@
       "targetImagePath": "/images/hero/impuesto-global-complementario-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "f795fdb1d09a56368c49721cbaee995366d67dc0806a66f351f797516a1fb437",
-      "briefHash": "c6886fb260849192ca82eafab5da32afe810afcfdc5d53ad5f5b428ea1734430",
+      "sourceContentHash": "2cdc6ba2b43a14595efe348b51d64e0ecc84622023e5a5e17d7b6864a3ff8b56",
+      "briefHash": "f600b483d644ca201e511e52f32ec81184eae51a0e8f9246a2976d6c49854691",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "C",
       "promptTrack": "C",
@@ -1761,13 +1761,13 @@
       "targetImagePath": "/images/hero/operacion-renta-centro.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "bf3caf19c7e856f15e8133b1113a95a67ea0991dcf77de4d35b353d4e577353e",
-      "briefHash": "6e7422cb38646e193057152bc05baadeb8845f77d32d1ff71f22923a23a0fc39",
+      "sourceContentHash": "0afe3ad9d5f7c57c984c4045483af93434b76fac1e7dc9f2a6daa1a9f22f887d",
+      "briefHash": "ca4c336228c77cab379a4c93e36ee98a6c5e8de6dc547b474b89c23b82c87030",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -1861,13 +1861,13 @@
       "targetImagePath": "/images/hero/pgu-pension-garantizada-universal.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "8a24e08e7202214e6322289a4a3b4794e3058d4df1fa3651655974b9490c7f91",
-      "briefHash": "ea153784d0bf10ee69bac0118338b9ef500cdfe6c90f2429b6129af0664a4600",
+      "sourceContentHash": "e9c872fbf12a368fb9c7cbe27b90645152f6bbc074b0d4e1440efea727785622",
+      "briefHash": "4fc2fe71c775930b14967f0f4b455c4975a790e09c6e650c853f26c594d882ce",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-29",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Full article read by root; visual brief synthesis by prompt-pipeline. This is visual source alignment, not YMYL compliance."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -2513,13 +2513,13 @@
       "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "826ecf90203b60daf3165f37574289aec8c471a61cebfb84f70357ef62e594c2",
-      "briefHash": "b4cf15cc34fd19261b5e567849f9ae9e396c71f90d362221bc4e248fe899278b",
+      "sourceContentHash": "59209b7d89a0b1a609589eeb03328658ef6e3b36bec20acd9c7787b8727496a8",
+      "briefHash": "4aac33d83d471696540a40293354f5e8b2549624364335e3a82156d30fedab3e",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-10-28",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Revalidación 2026-10-28 (fase 4 de causa 2, tras auditoría): se corrigen SIS, AFP, base del IUSC y AFC; el mensaje visual de la portada no cambia y no se regenera la imagen. Alineación visual, no auditoría YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",

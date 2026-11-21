@@ -24,7 +24,7 @@ articleLead:
   answer: "La remuneración imponible es la base de las cotizaciones previsionales (AFP, salud, AFC). El Impuesto de Segunda Categoría se calcula sobre la renta líquida imponible: esa base menos las cotizaciones obligatorias. No es lo mismo que el sueldo bruto: algunos componentes como la asignación de colación o movilización están excluidos."
   nextStepHref: "/posts/como-calcular-sueldo-liquido/"
   nextStepLabel: "Calcular tu sueldo líquido completo"
-  validAsOf: 2026-10-28
+  validAsOf: 2026-11-20
   officialSources:
     - label: "BCN — Código del Trabajo, art. 41"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
@@ -44,7 +44,7 @@ articleLead:
 volatileData:
   - id: economic.utm.value
     sync: strict
-    expectedValue: 72151
+    expectedValue: 72440
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
@@ -57,7 +57,7 @@ reviewPolicy:
 updatedDate: 2026-11-08T00:00:00Z
 ---
 
-> **Información vigente al 2026-10-28.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
+> **Información vigente al 2026-11-20.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones).
 
