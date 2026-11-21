@@ -24,7 +24,7 @@ articleLead:
   answer: "El IGC es el impuesto anual que grava la totalidad de tus rentas del año: suma sueldo, honorarios, dividendos y arriendos para determinar tu tramo real. Los trabajadores con solo sueldo lo pagan indirectamente vía ISC; quienes tienen rentas mixtas deben liquidarlo en el F22."
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Completar el F22"
-  validAsOf: 2026-08-19
+  validAsOf: 2026-11-20
   officialSources:
     - label: "SII — Datos informativos AT 2026 (IGC)"
       href: "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
@@ -55,7 +55,9 @@ reviewPolicy:
 updatedDate: 2026-10-04T00:00:00Z
 ---
 
-> **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
+<!-- markdownlint-disable MD013 -->
+
+> **Información vigente al 2026-11-20.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
 
 Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.
 

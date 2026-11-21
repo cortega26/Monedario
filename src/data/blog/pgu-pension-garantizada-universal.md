@@ -21,10 +21,10 @@ topicRole: owner
 canonicalTopic: pgu-pension-garantizada
 articleAdvisory: "Contenido educativo. El monto de la PGU se reajusta periódicamente por ley. Verifica el monto vigente en el IPS antes de tomar decisiones basadas en esta guía."
 articleLead:
-  answer: "$231.732 mensuales (65–81 años), $250.275 mensuales (82 años o más, desde febrero 2026), según ChileAtiende. Montos sujetos a reajuste periódico — verifica el valor vigente en el IPS antes de solicitar."
+  answer: "$231.732 mensuales (65–74 años), $250.275 mensuales (75 años o más, con la Reforma de Pensiones), según ChileAtiende. Montos sujetos a reajuste periódico — verifica el valor vigente en el IPS antes de solicitar."
   nextStepHref: "https://www.ips.gob.cl/"
   nextStepLabel: "Tramitar en el IPS"
-  validAsOf: 2026-08-03
+  validAsOf: 2026-11-20
   officialSources:
     - label: "IPS — Pensión Garantizada Universal"
       href: "https://www.ips.gob.cl/"
@@ -50,7 +50,9 @@ reviewPolicy:
   computedAt: "2026-07-01"
 ---
 
-> **Información vigente al 2026-08-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.
+<!-- markdownlint-disable MD013 -->
+
+> **Información vigente al 2026-11-20.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.
 
 Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso.
 
@@ -58,7 +60,7 @@ Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías
 
 La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ("Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
 
-El monto vigente al 2026-08-03 es **$231.732 mensuales** (65–81 años) y **$250.275 mensuales** (82 años o más, desde febrero 2026), según ChileAtiende — ver la sección [¿Cuánto se paga?](#cuánto-se-paga-monto-y-calendario-de-ajuste) más abajo. El monto se reajusta por decreto; verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
+El monto vigente al 2026-11-20 es **$231.732 mensuales** (65–74 años) y **$250.275 mensuales** (75 años o más, con la Reforma de Pensiones), según ChileAtiende — ver la sección [¿Cuánto se paga?](#cuánto-se-paga-monto-y-calendario-de-ajuste) más abajo. El monto se reajusta por decreto; verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
 
 Para entender el contexto de cambios al sistema previsional que afectan a la PGU, revisa la guía de [reforma previsional vigente](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
 
@@ -77,7 +79,7 @@ El Ministerio de Desarrollo Social determina este criterio. En la práctica, la 
 
 ## ¿Cuánto se paga? Monto y calendario de ajuste
 
-El monto vigente de la PGU es **$231.732 mensuales** para personas de 65 a 81 años. Desde febrero 2026, personas de **82 años o más** acceden al monto ampliado de **$250.275 mensuales** (fuente: ChileAtiende). El monto se reajusta periódicamente por ley — verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
+El monto vigente de la PGU es **$231.732 mensuales** para personas de 65 a 74 años. Con la Reforma de Pensiones, personas de **75 años o más** acceden al monto ampliado de **$250.275 mensuales** (fuente: ChileAtiende). El monto se reajusta periódicamente por ley — verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
 
 El pago es mensual y se deposita en la cuenta que registres al tramitar. Los reajustes se informan con anticipación por el IPS y el Ministerio del Trabajo.
 
@@ -106,8 +108,8 @@ Si ya tienes pensión AFP, la PGU no se suma de manera íntegra. Existe un mecan
 Los umbrales vigentes (Superintendencia de Pensiones) son:
 
 - Pensión base **hasta $789.139**: corresponde PGU completa de **$231.732**.
-- Pensión base entre **$789.139 y $1.252.602**: corresponde un monto variable de PGU. El IPS calcula el aporte aplicable a tu caso.
-- Pensión base **desde $1.252.602**: no corresponde PGU.
+- Pensión base **desde $789.140 hasta $1.252.602**: corresponde un monto variable de PGU. El IPS calcula el aporte aplicable a tu caso.
+- Pensión base **desde $1.252.603**: no corresponde PGU.
 
 Si tu pensión AFP es muy baja o no tienes pensión AFP, recibes la PGU completa. Si tienes pensión AFP alta, la PGU se reduce o puede no corresponder. Para conocer el monto exacto en tu situación, consulta directamente al [IPS](https://www.ips.gob.cl/) o a la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 

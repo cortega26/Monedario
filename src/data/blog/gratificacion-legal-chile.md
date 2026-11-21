@@ -21,10 +21,10 @@ topicRole: owner
 canonicalTopic: gratificacion-legal-calculo-tope
 articleAdvisory: "Contenido educativo basado en el Código del Trabajo. Las cifras del IMM se actualizan periódicamente; verifica el valor vigente antes de hacer cualquier cálculo."
 articleLead:
-  answer: "La gratificación legal es la participación obligatoria que el empleador debe pagar a los trabajadores. La modalidad más común es el 25% de las remuneraciones imponibles anuales, con un tope máximo de 4,75 veces el Ingreso Mínimo Mensual (IMM) vigente."
+  answer: "La gratificación legal es la participación obligatoria que el empleador debe pagar a los trabajadores cuando el ejercicio deja utilidades líquidas. La modalidad más común es el 25% de las remuneraciones mensuales devengadas en el año, con un tope de 4,75 veces el Ingreso Mínimo Mensual (IMM) vigente al 31 de diciembre del año respectivo."
   nextStepHref: "/posts/como-calcular-sueldo-liquido/"
   nextStepLabel: "Calcular tu sueldo líquido completo"
-  validAsOf: 2026-08-03
+  validAsOf: 2026-11-20
   officialSources:
     - label: "BCN — Código del Trabajo, arts. 47–52"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
@@ -53,24 +53,29 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.gratificacion-legal-chile
   computedAt: "2026-10-04"
-updatedDate: 2026-10-04T00:00:00Z
+updatedDate: 2026-11-20T00:00:00Z
 ---
 
-> **Información vigente al 2026-08-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.
+<!-- markdownlint-disable MD013 MD036 -->
+
+> **Información vigente al 2026-11-20 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y hay una línea que dice "gratificación". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es "eso lo decide la empresa". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene.
 
 ## ¿Qué es la gratificación legal y a quiénes aplica?
 
-La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas.
+La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). La modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones mensuales devengadas en el año, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM) vigentes al 31 de diciembre del año respectivo. Esta modalidad también supone utilidades líquidas en el ejercicio; lo que cambia es la forma de pago: el empleador puede pagarla como anticipo mensual y, si el año cierra con pérdidas, recuperar lo anticipado al finiquito, salvo que el anticipo esté convenido en el contrato.
 
 **Quiénes tienen derecho:**
 
-Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el Código del Trabajo (artículos 47 y 50).
+La [Dirección del Trabajo (DT 60150)](https://www.dt.gob.cl/portal/1628/w3-article-60150.html) exige **cuatro condiciones simultáneas** para que nazca la obligación de gratificar:
 
-**Quiénes pueden quedar fuera:**
+1. Que se trate de un establecimiento minero, industrial, comercial o agrícola —o de cualquier otro— o de una cooperativa.
+2. Que el establecimiento o empresa persiga fines de lucro, salvo las cooperativas.
+3. Que esté obligado a llevar libros de contabilidad.
+4. Que obtenga utilidades líquidas en el período anual respectivo.
 
-Las personas jurídicas sin fines de lucro y algunos regímenes especiales establecidos por ley pueden estar excluidos o sujetos a reglas distintas. Si tienes dudas sobre tu tipo de empleador, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
+El tipo de contrato —indefinido o a plazo fijo— no altera el derecho. Cumplidas las cuatro condiciones y si no hay pacto en el contrato, el empleador elige entre repartir el 30 % de las utilidades (art. 47) o pagar el 25 % de lo devengado por remuneraciones mensuales con tope de 4,75 IMM (art. 50). Las entidades sin fines de lucro quedan fuera porque no persiguen utilidades; algunos regímenes especiales pueden tener reglas distintas. Si tienes dudas sobre tu tipo de empleador, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
 
 ## Las dos modalidades: 25 % de remuneraciones vs 30 % de utilidades
 
@@ -78,34 +83,34 @@ El Código del Trabajo establece dos formas de calcular y pagar la gratificació
 
 **Modalidad 1 — 30 % de utilidades netas (art. 47 CT)**
 
-Cuando la empresa obtuvo utilidades líquidas en el ejercicio, **debe distribuir** el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones (art. 47 CT: "tendrán la obligación de gratificar anualmente"). Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
+Cuando la empresa obtuvo utilidades líquidas en el ejercicio, **debe distribuir** el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones (art. 47 CT: "tendrán la obligación de gratificar anualmente"). Para repartir ese 30 %, la DT indica que se incluye en el cálculo a trabajadores que no tienen derecho —contratados por 30 días o menos, con gratificación convenida, con gratificación del art. 50, etc.— y luego se prorratea ([DT 60160](https://www.dt.gob.cl/portal/1628/w3-article-60160.html)). Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
 
-**Modalidad 2 — 25 % de remuneraciones imponibles con tope IMM (art. 50 CT)**
+**Modalidad 2 — 25 % de remuneraciones mensuales devengadas con tope IMM (art. 50 CT)**
 
-El empleador paga el 25% de las remuneraciones imponibles que el trabajador devengó durante el año, con un tope máximo de **4,75 veces el Ingreso Mínimo Mensual (IMM) vigente**. Esta modalidad subsiste aunque la empresa haya tenido pérdidas.
+El empleador paga el 25% de las remuneraciones mensuales que el trabajador devengó durante el año, con un tope máximo de **4,75 veces el Ingreso Mínimo Mensual (IMM) vigente al 31 de diciembre del año respectivo**. La modalidad también requiere utilidades líquidas: si la empresa cierra con pérdidas, no nace la obligación de gratificar y los anticipos pagados pueden recuperarse al finiquito. Excepción: si el anticipo está convenido en el contrato, el empleador no puede suspenderlo unilateralmente.
 
-Esta es la modalidad más utilizada en Chile porque el monto es predecible, no depende de las utilidades y se puede provisionar mensualmente en la liquidación de sueldo.
+Esta es la modalidad más utilizada en Chile porque el monto es predecible y se puede provisionar mensualmente en la liquidación de sueldo, siempre que el ejercicio cierre con utilidades.
 
 ## Cómo calcular: fórmula, tope máximo y ejemplo
 
 ### La fórmula base (modalidad 25 %)
 
 ```
-Gratificación bruta anual = Suma de remuneraciones imponibles del año × 0,25
-Tope anual                 = IMM mensual vigente × 4,75
+Gratificación bruta anual = Suma de remuneraciones mensuales devengadas del año × 0,25
+Tope anual                 = IMM vigente al 31 de diciembre del año respectivo × 4,75
 Gratificación efectiva     = el menor entre (gratificación bruta) y (tope anual)
 ```
 
-> **Nota:** el valor del IMM vigente debe verificarse en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. El tope cambia cada vez que se actualiza el IMM (actualmente fijado por la Ley 21.830, que reajustó de forma retroactiva desde el 01-05-2026 el monto establecido inicialmente por la Ley 21.751, Ministerio del Trabajo).
+> **Nota:** el valor del IMM vigente debe verificarse en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. El tope se calcula con el IMM vigente al 31 de diciembre del año que se liquida, no con el IMM del mes de pago. El tope cambia cada vez que se actualiza el IMM (actualmente fijado por la Ley 21.830, que reajustó de forma retroactiva desde el 01-05-2026 el monto establecido inicialmente por la Ley 21.751, Ministerio del Trabajo).
 
 ### Ejemplo numérico
 
-Trabajador con sueldo imponible mensual de **$800.000**, año completo:
+Trabajador con remuneraciones mensuales de **$800.000**, año completo:
 
-- Remuneraciones imponibles anuales: $800.000 × 12 = **$9.600.000**
+- Remuneraciones mensuales devengadas en el año: $800.000 × 12 = **$9.600.000**
 - Gratificación bruta (25 %): $9.600.000 × 0,25 = **$2.400.000**
-- IMM vigente (Ley 21.830, Mintrab, retroactivo al 01-05-2026): **$553.553**
-- Tope legal: $553.553 × 4,75 = **$2.629.377**
+- IMM de referencia (Ley 21.830, Mintrab, retroactivo al 01-05-2026): **$553.553** — para cerrar 2026 se usa el IMM vigente al 31-12-2026
+- Tope legal con ese IMM: $553.553 × 4,75 = **$2.629.377**
 - Gratificación efectiva: min($2.400.000, $2.629.377) = **$2.400.000** (la bruta es menor al tope, se paga la bruta completa)
 
 En este ejemplo la gratificación bruta anual no supera el tope, por lo que se paga la gratificación bruta completa. Si se provisiona mensualmente: $2.400.000 ÷ 12 = **$200.000 por mes**. El tope mensual de referencia (útil cuando el sueldo es alto) es $2.629.377 ÷ 12 = **$219.115 por mes**.
@@ -116,17 +121,17 @@ Para entender cómo se integra la gratificación al total de tu sueldo, consulta
 
 ## ¿Cuándo y cómo se paga? Mensual, anual y proporcional
 
-**Provisión mensual:** la práctica más extendida es que las empresas provisionen la gratificación en cada liquidación mensual — aparece como "Gratificación" o "Prov. Gratificación" en los haberes.
+**Provisión o anticipo mensual:** muchas empresas pagan la gratificación en cuotas mensuales, que aparecen como "Gratificación" o "Prov. Gratificación" en los haberes. Ese pago mensual es un **anticipo acordado**, no una obligación legal, y se liquida en abril.
 
-**Pago anual:** la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente (artículo 48 CT).
+**Pago anual en abril:** la gratificación es un beneficio anual y se paga en **abril del año siguiente** al cierre del ejercicio en que hubo utilidades ([DT 60164](https://www.dt.gob.cl/portal/1628/w3-article-60164.html)). Los anticipos se reajustan por IPC y se liquidan en abril: allí se determina si lo pagado cubre la gratificación que corresponde y, si falta una diferencia, se paga a más tardar ese mes.
 
-**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT).
+**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT). Para estos efectos, "mes" es un período de días consecutivos —por ejemplo, del 15 al 15—, no el mes calendario, y no se computan los días que no alcanzan a completar un mes ([DT 60158](https://www.dt.gob.cl/portal/1628/w3-article-60158.html)).
 
 Para aprender a leer la [línea de gratificación en tu comprobante de sueldo](/posts/liquidacion-de-sueldo/), revisa la guía de liquidación.
 
 ## ¿Qué pasa si la empresa no tuvo utilidades?
 
-Si el empleador usa la **modalidad 25 %**, la obligación **subsiste aunque la empresa haya tenido pérdidas**. Esta modalidad no depende del resultado del ejercicio.
+Si el empleador usa la **modalidad 25 %**, la obligación también exige utilidades líquidas en el ejercicio. La diferencia con la modalidad del 30 % es operativa: el 25 % suele pagarse como anticipo mensual y, si el año cierra con pérdidas, el empleador puede recuperar lo anticipado al finiquito. Si el anticipo está convenido en el contrato, no puede suspenderlo ni descontarlo unilateralmente.
 
 Si el empleador usa la **modalidad 30 % de utilidades** y no hay utilidades, no hay obligación de pago por esa vía.
 
@@ -148,4 +153,4 @@ Habitualmente como "Gratificación" o "Provisión Gratificación" en el bloque d
 
 ---
 
-> **Fecha de corte: 2026-08-03.** El Ingreso Mínimo Mensual (IMM) se actualiza por ley (actualmente Ley 21.830, retroactiva al 01-05-2026, que reajustó el monto fijado inicialmente por la Ley 21.751, Ministerio del Trabajo). IMM vigente a la fecha de corte: **$553.553**; tope anual de gratificación: **$2.629.377**. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).
+> **Fecha de corte: 2026-11-20.** El Ingreso Mínimo Mensual (IMM) se actualiza por ley (actualmente Ley 21.830, retroactiva al 01-05-2026, que reajustó el monto fijado inicialmente por la Ley 21.751, Ministerio del Trabajo). IMM de referencia a la fecha de corte: **$553.553**; con ese valor, el tope anual de 4,75 IMM es **$2.629.377**. Para liquidaciones de 2026, el tope se calcula con el IMM vigente al 31-12-2026. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).
