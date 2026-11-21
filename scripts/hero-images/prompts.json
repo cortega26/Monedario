@@ -1761,13 +1761,13 @@
       "targetImagePath": "/images/hero/operacion-renta-centro.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "aca269dafee4eafa47aaf77af6c9773220ee288cca8ef7b4e9b81dc4dfbb19dd",
-      "briefHash": "e0e093e30b43a4dfb27d2520d5f60079996a73bec13234f5440a4d190270446f",
+      "sourceContentHash": "e49d3e3165095af43b1cfe1f2495a4402bc61769d5eaefa38a3dda023946982b",
+      "briefHash": "caf600794c406b4ad998fc52735d2a6bb66e523a7f99a4a3c13388be3c065129",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura de la firma editorial (2026-11-20); el mensaje y la escena visual no cambian. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "A",
       "promptTrack": "A",
