@@ -132,6 +132,13 @@ jobs:
           fi
           echo "OK: la serie cubre el horizonte de publicación."
 
+      - name: "🕰️ Economic snapshot freshness (before the PR action)"
+        id: freshness
+        if: always()
+        # Run before create-pull-request: that action checks out main again,
+        # so a check after it would read the stale committed file.
+        run: pnpm run check:economic-snapshot-freshness
+
       - name: "📬 Create pull request"
         id: create-pr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
@@ -160,11 +167,6 @@ jobs:
             src/data/economic-history/uf-historico.json
             src/data/economic-history/uf-rango.json
             src/data/economic-history/uf-mensual.json
-
-      - name: "🕰️ Economic snapshot freshness (after the PR is opened)"
-        id: freshness
-        if: always()
-        run: pnpm run check:economic-snapshot-freshness
 
       - name: "📝 Build UF freshness issue payload"
         if: always()
