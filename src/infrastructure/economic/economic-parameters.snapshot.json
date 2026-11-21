@@ -1,5 +1,5 @@
 {
-  "uf": 41371.05,
+  "uf": 41377.93,
   "utm": 72440,
   "uta": 834504,
   "ipc": 0.5,
@@ -14,21 +14,21 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "indicatorUpdatedAt": {
-    "uf": "2026-11-20",
+    "uf": "2026-11-21",
     "utm": "2026-11-01",
     "uta": "2025-12-01",
     "ipc": "2026-10-01",
     "dolar": "2026-11-20"
   },
-  "lastUpdated": "2026-11-20",
-  "capturedAt": "2026-11-20T18:15:21.989Z",
-  "source": "snapshot.carry-forward",
+  "lastUpdated": "2026-11-21",
+  "capturedAt": "2026-11-21T10:15:30.029Z",
+  "source": "mindicador.cl/api",
   "provenance": {
     "utm": {
       "primarySource": "SII",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "status": "primary",
-      "verifiedAt": "2026-11-20T18:15:21.989Z"
+      "verifiedAt": "2026-11-21T10:15:30.029Z"
     },
     "uta": {
       "status": "primary",
@@ -38,8 +38,8 @@
   },
   "prev": {
     "uf": {
-      "valor": 41364.17,
-      "fecha": "2026-11-19"
+      "valor": 41371.05,
+      "fecha": "2026-11-20"
     },
     "utm": {
       "valor": 72151,
