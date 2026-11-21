@@ -164,13 +164,6 @@ Para OR 2026 (rentas 2025), si tu bruto anual fue **menor** a 5 IMM —**$2.767.
 </details>
 
 <details>
-<summary>¿Quiénes además están eximidos de cotizar?</summary>
-
-Hombres que al 1 de enero de 2018 tenían 55 años o más, mujeres que a esa fecha tenían 50 años o más, y personas afiliadas a un régimen previsional distinto al de las AFP, además de los pensionados (salvo invalidez parcial).
-
-</details>
-
-<details>
 <summary>¿La base de cotización es el 100% de lo boleteado?</summary>
 
 No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual de boletas.

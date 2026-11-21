@@ -75,7 +75,7 @@
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",
-      "sourceContentHash": "7d315a2416dbf64fbf5c1f49d9d0cc0adcfcc2fdd9761a2b8f15b81a3cd19ce1",
+      "sourceContentHash": "9b160aef994a88747ece05ccb6439658726e955287c31f280edb5259b9ff8409",
       "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
       "tags": [
         "boletas",
@@ -104,7 +104,7 @@
         "Fuentes y referencias primarias"
       ],
       "bodyExcerpt": "Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso. ## Qué hacer ahora (5 minutos) Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la ** **, cuyo cronograma hasta 2028 es: | Año | Retención sobre bruto boleteado | | -------- | ------------------------------- | | 2025 | 14,5% | | **2026** | **15,25%** ← vigente | | 2027 | 16,0% | | 2028 | 17,0% | El porcentaje de 2028 es el nivel de régimen permanente. Fuente: . Ejemplo simple oficial (SII) con la tasa 2026: - Boleta por $100.000. - Retención 15,25% = $15.250. - Líquido recibido = **$84.750**. 1. Calcula tu líquido por boleta con retención 2026: 15,25%. 2. Separa esa retención mensual de la cotización anual de Operación Renta. 3. Revisa tu total anual boleteado para estimar si cotizas o quedas eximido por umbral. 4. Confirma tu afiliación previsional/sal",
-      "wordCount": 1098,
+      "wordCount": 1050,
       "sourceFile": "boleta-honorarios-2026-retencion-cobertura.md"
     },
     {

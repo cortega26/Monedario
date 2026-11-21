@@ -74,7 +74,7 @@
         "Porcentaje fijo válido para cualquier año"
       ],
       "alt": "",
-      "sourceContentHash": "7d315a2416dbf64fbf5c1f49d9d0cc0adcfcc2fdd9761a2b8f15b81a3cd19ce1",
+      "sourceContentHash": "9b160aef994a88747ece05ccb6439658726e955287c31f280edb5259b9ff8409",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -82,7 +82,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11 (se retira una FAQ duplicada para el límite de 5); el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
