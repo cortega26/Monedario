@@ -100,7 +100,9 @@ def notify_desktop(title: str, message: str) -> bool:
     try:
         subprocess.run(["notify-send", "-a", "Monedario", title, message], check=False, timeout=10)
         return True
-    except (OSError, subprocess.SubprocessError):
+    except OSError:
+        return False
+    except subprocess.SubprocessError:
         return False
 
 
@@ -119,7 +121,11 @@ def notify_ntfy(title: str, message: str) -> bool:
     try:
         with urllib.request.urlopen(request, timeout=10):
             return True
-    except (urllib.error.URLError, OSError, ValueError):
+    except urllib.error.URLError:
+        return False
+    except OSError:
+        return False
+    except ValueError:
         return False
 
 
