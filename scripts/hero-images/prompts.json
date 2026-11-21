@@ -111,13 +111,13 @@
       "targetImagePath": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "ebe5dab6aa620fce928461eb90711f3971371c143ded717f7c77e6d4e3774d75",
-      "briefHash": "3a02bff7b24ebe9543d4128f82ce22c919a0b5d24f9489662a34fadd587a9679",
+      "sourceContentHash": "7d315a2416dbf64fbf5c1f49d9d0cc0adcfcc2fdd9761a2b8f15b81a3cd19ce1",
+      "briefHash": "2f9c906fa775cdd8fd368bd1817ed9e4010690d80648aa6c2b7f1024472e96ca",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -461,13 +461,13 @@
       "targetImagePath": "/images/hero/como-leer-cartola-afp-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "df2d9e5b40dd245d2457d6d26e943efbdd755c8ff1b7d6ade49e685027e95446",
-      "briefHash": "c23dc32af4d0ea9488c17871d857ca9a87104022e22936bd90541a62a349dc99",
+      "sourceContentHash": "939674a627bd059abe186f2d55a06adf887319314c314b44ad757f6dff7fe830",
+      "briefHash": "937664e4ee149fa62ceffa62d6eadd287e7fab0dbe50d747cea60121451e8ef1",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1411,13 +1411,13 @@
       "targetImagePath": "/images/hero/gratificacion-legal-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "3e699a07f6efeeddbf3a81b50e215f56962868cf6cd68f3321bc5e13a3000d7e",
-      "briefHash": "04b5faa6f294cf45853fdf12f8c146849567abdd025fb982c856d27134454664",
+      "sourceContentHash": "2262ce529c3c77ad56876a2b0ad7cd18839c9567174e29bf7551a8921fd3cfa0",
+      "briefHash": "54e862f3e8a1c95ee127e66fa170751211bc2f02345264335274002e899c3bb1",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11 (requisitos del art. 47 y oportunidad de pago); el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",
@@ -1461,13 +1461,13 @@
       "targetImagePath": "/images/hero/impuesto-global-complementario-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "2cdc6ba2b43a14595efe348b51d64e0ecc84622023e5a5e17d7b6864a3ff8b56",
-      "briefHash": "f600b483d644ca201e511e52f32ec81184eae51a0e8f9246a2976d6c49854691",
+      "sourceContentHash": "dbea72e002d3999d97dcebd4d7d33a944e02d641916fa082de114edb59197692",
+      "briefHash": "380885f859ca1df47d1202ac3390426172009685b5ddf7d99cd52ba5514438a3",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "C",
       "promptTrack": "C",
@@ -1761,13 +1761,13 @@
       "targetImagePath": "/images/hero/operacion-renta-centro.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "0afe3ad9d5f7c57c984c4045483af93434b76fac1e7dc9f2a6daa1a9f22f887d",
-      "briefHash": "ca4c336228c77cab379a4c93e36ee98a6c5e8de6dc547b474b89c23b82c87030",
+      "sourceContentHash": "aca269dafee4eafa47aaf77af6c9773220ee288cca8ef7b4e9b81dc4dfbb19dd",
+      "briefHash": "e0e093e30b43a4dfb27d2520d5f60079996a73bec13234f5440a4d190270446f",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -1861,13 +1861,13 @@
       "targetImagePath": "/images/hero/pgu-pension-garantizada-universal.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "e9c872fbf12a368fb9c7cbe27b90645152f6bbc074b0d4e1440efea727785622",
-      "briefHash": "4fc2fe71c775930b14967f0f4b455c4975a790e09c6e650c853f26c594d882ce",
+      "sourceContentHash": "a5ce7c2927852a582b227686b44cc9d2dc5d9a1eaa28a5bbd4cce350ba5b2125",
+      "briefHash": "7d0935801406b984fd7a3da918d9c52b4926289e51b9ed4f3073f9afc2f11c41",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "A",
       "promptTrack": "A",
@@ -2513,13 +2513,13 @@
       "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "59209b7d89a0b1a609589eeb03328658ef6e3b36bec20acd9c7787b8727496a8",
-      "briefHash": "4aac33d83d471696540a40293354f5e8b2549624364335e3a82156d30fedab3e",
+      "sourceContentHash": "8cae92f24af63f14f35bb9ebafc552984b02ec33e2fb52d8529ec9ff156efc94",
+      "briefHash": "1d13d13e686007240524fb2adc3db63ddd78c48a2eb1bec65ce7502a38dcd638",
       "briefReview": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "B",
       "promptTrack": "B",

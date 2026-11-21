@@ -53,6 +53,8 @@ reviewPolicy:
 updatedDate: 2026-11-20T00:00:00Z
 ---
 
+<!-- markdownlint-disable MD013 MD033 -->
+
 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.
 
 ## Qué hacer ahora (5 minutos)

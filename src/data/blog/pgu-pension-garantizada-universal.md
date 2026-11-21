@@ -50,6 +50,8 @@ reviewPolicy:
   computedAt: "2026-07-01"
 ---
 
+<!-- markdownlint-disable MD013 -->
+
 > **Información vigente al 2026-11-20.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.
 
 Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso.

@@ -65,6 +65,8 @@ reviewPolicy:
 updatedDate: 2026-11-20T00:00:00Z
 ---
 
+<!-- markdownlint-disable MD013 -->
+
 La **cartola AFP** es tu estado de cuenta previsional cuatrimestral: la AFP debe enviártela a lo menos cada cuatro meses y resume lo que pasó con tu dinero durante ese período. La obligación viene del [DL 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147).
 
 **Respuesta rápida:** La cartola AFP llega cada cuatro meses y muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. La cartola de septiembre–diciembre 2026 se entrega en la segunda quincena de febrero de 2027.

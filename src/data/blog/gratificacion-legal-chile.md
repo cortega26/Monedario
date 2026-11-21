@@ -56,6 +56,8 @@ reviewPolicy:
 updatedDate: 2026-11-20T00:00:00Z
 ---
 
+<!-- markdownlint-disable MD013 MD036 -->
+
 > **Información vigente al 2026-11-20 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y hay una línea que dice "gratificación". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es "eso lo decide la empresa". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene.

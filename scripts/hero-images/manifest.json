@@ -75,7 +75,7 @@
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",
-      "sourceContentHash": "ebe5dab6aa620fce928461eb90711f3971371c143ded717f7c77e6d4e3774d75",
+      "sourceContentHash": "7d315a2416dbf64fbf5c1f49d9d0cc0adcfcc2fdd9761a2b8f15b81a3cd19ce1",
       "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
       "tags": [
         "boletas",
@@ -87,11 +87,11 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/boleta-honorarios-2026-retencion-cobertura.md",
       "heroImage": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
-      "summary": "Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre...",
+      "summary": "<! markdownlint disable MD013 MD033 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 MD033 -->",
         "Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.",
-        "Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la **[Ley N° 21.133](/leyes/ley-21133-honorarios-retencion/)**, cuyo cronograma hasta 2028 es:",
-        "El porcentaje de 2028 es el nivel de régimen permanente. Fuente: [SII — Aumento gradual de retención](https://www.sii.cl/destacados/boletas_honorarios/aumento_gradual.html)."
+        "Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la **[Ley N° 21.133](/leyes/ley-21133-honorarios-retencion/)**, cuyo cronograma hasta 2028 es:"
       ],
       "headings": [
         "Qué hacer ahora (5 minutos)",
@@ -317,7 +317,7 @@
     },
     {
       "slug": "como-leer-cartola-afp-chile",
-      "sourceContentHash": "df2d9e5b40dd245d2457d6d26e943efbdd755c8ff1b7d6ade49e685027e95446",
+      "sourceContentHash": "939674a627bd059abe186f2d55a06adf887319314c314b44ad757f6dff7fe830",
       "title": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores",
       "tags": [
         "afp",
@@ -329,11 +329,11 @@
       "cluster": "pensiones-afp",
       "sourcePath": "src/data/blog/como-leer-cartola-afp-chile.md",
       "heroImage": "/images/hero/como-leer-cartola-afp-chile.avif",
-      "summary": "La cartola AFP es tu estado de cuenta previsional cuatrimestral: la AFP debe enviártela a lo menos cada cuatro meses y resume lo que pasó con tu dinero durante ese período. La obligación viene del . Respuesta rápida: La cartola AFP llega cada cuatro meses y muestra tu saldo por t...",
+      "summary": "<! markdownlint disable MD013 La cartola AFP es tu estado de cuenta previsional cuatrimestral: la AFP debe enviártela a lo menos cada cuatro meses y resume lo que pasó con tu dinero durante ese período. La obligación viene del . Respuesta rápida: La cartola AFP llega cada cuatro...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 -->",
         "La **cartola AFP** es tu estado de cuenta previsional cuatrimestral: la AFP debe enviártela a lo menos cada cuatro meses y resume lo que pasó con tu dinero durante ese período. La obligación viene del [DL 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147).",
-        "**Respuesta rápida:** La cartola AFP llega cada cuatro meses y muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. La cartola de septiembre–diciembre 2026 se entrega en la segunda quincena de febrero de 2027. **Vigencia:** 2026-11-20. **Fuente:** [Superintendencia de Pensiones — Cartola cuatrimestral](https://www.spensiones.cl/portal/institucional/594/w3-article-3007.html).",
-        "Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu [AFP](/glosario/afp/). Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores."
+        "**Respuesta rápida:** La cartola AFP llega cada cuatro meses y muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. La cartola de septiembre–diciembre 2026 se entrega en la segunda quincena de febrero de 2027. **Vigencia:** 2026-11-20. **Fuente:** [Superintendencia de Pensiones — Cartola cuatrimestral](https://www.spensiones.cl/portal/institucional/594/w3-article-3007.html)."
       ],
       "headings": [
         "Las secciones de tu cartola AFP",
@@ -974,7 +974,7 @@
     },
     {
       "slug": "gratificacion-legal-chile",
-      "sourceContentHash": "3e699a07f6efeeddbf3a81b50e215f56962868cf6cd68f3321bc5e13a3000d7e",
+      "sourceContentHash": "2262ce529c3c77ad56876a2b0ad7cd18839c9567174e29bf7551a8921fd3cfa0",
       "title": "Gratificación legal en Chile: cómo calcularla y cuál es el tope",
       "tags": [
         "gratificacion",
@@ -987,11 +987,11 @@
       "cluster": "sueldo-remuneraciones",
       "sourcePath": "src/data/blog/gratificacion-legal-chile.md",
       "heroImage": "/images/hero/gratificacion-legal-chile.avif",
-      "summary": "Información vigente al 2026 11 20 según el Código del Trabajo y el IMM vigente a esa fecha. El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo. Revisas tu liquidación...",
+      "summary": "<! markdownlint disable MD013 MD036 Información vigente al 2026 11 20 según el Código del Trabajo y el IMM vigente a esa fecha. El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualqu...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 MD036 -->",
         "> **Información vigente al 2026-11-20 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.",
-        "Revisas tu liquidación y hay una línea que dice \"gratificación\". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es \"eso lo decide la empresa\". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene.",
-        "La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). La modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones mensuales devengadas en el año, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM) vigentes al 31 de diciembre del año respectivo. Esta modalidad también supone utilidades líquidas en el ejercicio; lo que cambia es la forma de pago: el empleador puede pagarla como anticipo mensual y, si el año cierra con pérdidas, recuperar lo anticipado al finiquito, salvo que el anticipo esté convenido en el contrato."
+        "Revisas tu liquidación y hay una línea que dice \"gratificación\". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es \"eso lo decide la empresa\". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene."
       ],
       "headings": [
         "¿Qué es la gratificación legal y a quiénes aplica?",
@@ -1009,7 +1009,7 @@
     },
     {
       "slug": "impuesto-global-complementario-chile",
-      "sourceContentHash": "2cdc6ba2b43a14595efe348b51d64e0ecc84622023e5a5e17d7b6864a3ff8b56",
+      "sourceContentHash": "dbea72e002d3999d97dcebd4d7d33a944e02d641916fa082de114edb59197692",
       "title": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga",
       "tags": [
         "igc",
@@ -1022,11 +1022,11 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
       "heroImage": "/images/hero/impuesto-global-complementario-chile.avif",
-      "summary": "Información vigente al 2026 11 20. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
+      "summary": "<! markdownlint disable MD013 Información vigente al 2026 11 20. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además e...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 -->",
         "> **Información vigente al 2026-11-20.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.",
-        "Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.",
-        "El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=6368)."
+        "Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22."
       ],
       "headings": [
         "¿Qué es el Impuesto Global Complementario?",
@@ -1213,7 +1213,7 @@
     },
     {
       "slug": "operacion-renta-centro",
-      "sourceContentHash": "0afe3ad9d5f7c57c984c4045483af93434b76fac1e7dc9f2a6daa1a9f22f887d",
+      "sourceContentHash": "aca269dafee4eafa47aaf77af6c9773220ee288cca8ef7b4e9b81dc4dfbb19dd",
       "title": "Operación Renta 2026: orientación inicial y preguntas frecuentes",
       "tags": [
         "impuestos",
@@ -1226,11 +1226,11 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/operacion-renta-centro.md",
       "heroImage": "/images/hero/operacion-renta-centro.avif",
-      "summary": "Campaña 2026 cerrada. El plazo para declarar por internet venció el 8 de mayo de 2026 . Esta guía queda como archivo consultable de esa campaña: los plazos y calendarios que aparecen abajo son históricos, no accionables. La próxima Operación Renta corresponde a las rentas de 2026...",
+      "summary": "<! markdownlint disable MD013 Campaña 2026 cerrada. El plazo para declarar por internet venció el 8 de mayo de 2026 . Esta guía queda como archivo consultable de esa campaña: los plazos y calendarios que aparecen abajo son históricos, no accionables. La próxima Operación Renta co...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 -->",
         "> **Campaña 2026 cerrada.** El plazo para declarar por internet venció el **8 de mayo de 2026**. Esta guía queda como archivo consultable de esa campaña: los plazos y calendarios que aparecen abajo son históricos, no accionables. La próxima Operación Renta corresponde a las rentas de 2026 y su calendario se informa en 2027. Si necesitas regularizar una declaración atrasada, revisa las instrucciones vigentes en [sii.cl](https://www.sii.cl/).",
-        "Esta guía responde preguntas frecuentes sobre la campaña 2026, ya cerrada. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).",
-        "> **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025), ya cerrada. El plazo de declaración por internet fue el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl)."
+        "Esta guía responde preguntas frecuentes sobre la campaña 2026, ya cerrada. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/)."
       ],
       "headings": [
         "Respuesta rápida: ¿debo declarar la renta en 2026?",
@@ -1282,7 +1282,7 @@
     },
     {
       "slug": "pgu-pension-garantizada-universal",
-      "sourceContentHash": "e9c872fbf12a368fb9c7cbe27b90645152f6bbc074b0d4e1440efea727785622",
+      "sourceContentHash": "a5ce7c2927852a582b227686b44cc9d2dc5d9a1eaa28a5bbd4cce350ba5b2125",
       "title": "PGU en Chile: requisitos, monto vigente y cómo tramitarla",
       "tags": [
         "pgu",
@@ -1295,11 +1295,11 @@
       "cluster": "pensiones-afp",
       "sourcePath": "src/data/blog/pgu-pension-garantizada-universal.md",
       "heroImage": "/images/hero/pgu-pension-garantizada-universal.avif",
-      "summary": "Información vigente al 2026 11 20. El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el o antes de tomar cualquier decisión. Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la red...",
+      "summary": "<! markdownlint disable MD013 Información vigente al 2026 11 20. El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el o antes de tomar cualquier decisión. Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibir...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 -->",
         "> **Información vigente al 2026-11-20.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.",
-        "Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso.",
-        "La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) (\"Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica\", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no."
+        "Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso."
       ],
       "headings": [
         "¿Qué es la PGU?",
@@ -1729,7 +1729,7 @@
     },
     {
       "slug": "sueldo-imponible-chile",
-      "sourceContentHash": "59209b7d89a0b1a609589eeb03328658ef6e3b36bec20acd9c7787b8727496a8",
+      "sourceContentHash": "8cae92f24af63f14f35bb9ebafc552984b02ec33e2fb52d8529ec9ff156efc94",
       "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
       "tags": [
         "sueldo-imponible",
@@ -1742,11 +1742,11 @@
       "cluster": "sueldo-remuneraciones",
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 11 20. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "summary": "<! markdownlint disable MD013 Información vigente al 2026 11 20. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo...",
       "leadParagraphs": [
+        "<!-- markdownlint-disable MD013 -->",
         "> **Información vigente al 2026-11-20.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
-        "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones).",
-        "Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/). Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/)."
+        "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones)."
       ],
       "headings": [
         "¿Qué es el sueldo imponible? Definición legal",

@@ -74,7 +74,7 @@
         "Porcentaje fijo válido para cualquier año"
       ],
       "alt": "",
-      "sourceContentHash": "ebe5dab6aa620fce928461eb90711f3971371c143ded717f7c77e6d4e3774d75",
+      "sourceContentHash": "7d315a2416dbf64fbf5c1f49d9d0cc0adcfcc2fdd9761a2b8f15b81a3cd19ce1",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -82,7 +82,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -268,7 +268,7 @@
         "Toda variación del saldo es un error"
       ],
       "alt": "",
-      "sourceContentHash": "df2d9e5b40dd245d2457d6d26e943efbdd755c8ff1b7d6ade49e685027e95446",
+      "sourceContentHash": "939674a627bd059abe186f2d55a06adf887319314c314b44ad757f6dff7fe830",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -276,7 +276,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -803,7 +803,7 @@
         "No minus sign, deduction mark, plus sign, arrow, gift box or bonus imagery."
       ],
       "alt": "",
-      "sourceContentHash": "3e699a07f6efeeddbf3a81b50e215f56962868cf6cd68f3321bc5e13a3000d7e",
+      "sourceContentHash": "2262ce529c3c77ad56876a2b0ad7cd18839c9567174e29bf7551a8921fd3cfa0",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -811,7 +811,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11 (requisitos del art. 47 y oportunidad de pago); el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -831,7 +831,7 @@
         "Cubre cada régimen especial de ganancias"
       ],
       "alt": "",
-      "sourceContentHash": "2cdc6ba2b43a14595efe348b51d64e0ecc84622023e5a5e17d7b6864a3ff8b56",
+      "sourceContentHash": "dbea72e002d3999d97dcebd4d7d33a944e02d641916fa082de114edb59197692",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "C",
       "generationMethod": "imagegen",
@@ -839,7 +839,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1001,7 +1001,7 @@
         "La devolución está garantizada"
       ],
       "alt": "",
-      "sourceContentHash": "0afe3ad9d5f7c57c984c4045483af93434b76fac1e7dc9f2a6daa1a9f22f887d",
+      "sourceContentHash": "aca269dafee4eafa47aaf77af6c9773220ee288cca8ef7b4e9b81dc4dfbb19dd",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "generationMethod": "imagegen",
@@ -1009,7 +1009,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1057,14 +1057,14 @@
         "Es un descuento AFP o liquidación salarial"
       ],
       "alt": "",
-      "sourceContentHash": "e9c872fbf12a368fb9c7cbe27b90645152f6bbc074b0d4e1440efea727785622",
+      "sourceContentHash": "a5ce7c2927852a582b227686b44cc9d2dc5d9a1eaa28a5bbd4cce350ba5b2125",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "A",
       "review": {
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {
@@ -1424,7 +1424,7 @@
         "No gift-box, reward or bonus pictogram; only meal and transit allowance cues."
       ],
       "alt": "",
-      "sourceContentHash": "59209b7d89a0b1a609589eeb03328658ef6e3b36bec20acd9c7787b8727496a8",
+      "sourceContentHash": "8cae92f24af63f14f35bb9ebafc552984b02ec33e2fb52d8529ec9ff156efc94",
       "styleVersion": "monedario-editorial-v5",
       "promptTrack": "B",
       "generationMethod": "imagegen",
@@ -1432,7 +1432,7 @@
         "status": "reviewed",
         "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
       }
     },
     {

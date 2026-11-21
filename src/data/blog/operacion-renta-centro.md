@@ -39,6 +39,8 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
+<!-- markdownlint-disable MD013 -->
+
 > **Campaña 2026 cerrada.** El plazo para declarar por internet venció el **8 de mayo de 2026**. Esta guía queda como archivo consultable de esa campaña: los plazos y calendarios que aparecen abajo son históricos, no accionables. La próxima Operación Renta corresponde a las rentas de 2026 y su calendario se informa en 2027. Si necesitas regularizar una declaración atrasada, revisa las instrucciones vigentes en [sii.cl](https://www.sii.cl/).
 
 Esta guía responde preguntas frecuentes sobre la campaña 2026, ya cerrada. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).

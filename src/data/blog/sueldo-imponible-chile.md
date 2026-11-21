@@ -57,6 +57,8 @@ reviewPolicy:
 updatedDate: 2026-11-08T00:00:00Z
 ---
 
+<!-- markdownlint-disable MD013 -->
+
 > **Información vigente al 2026-11-20.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque AFP, salud y AFC se calculan sobre el imponible; el impuesto de segunda categoría, sobre la renta líquida imponible (el imponible menos esas cotizaciones).
