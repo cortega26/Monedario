@@ -1,13 +1,40 @@
 # Monedario — isolated GitHub Actions bridge (October 2026)
 
-**Status: ACTIVE on the `i5-12600K` since 2026-10-19.** The repository
-variable routes jobs to the `monedario-ci-isolated` label. A host-side liveness
-watchdog was added on 2026-10-31 for the stale-lease failure tracked in #745.
-A **second disposable slot** (`monedario-isolated-ci-2.service`, slot 2) was
-added on 2026-11-18 to stop non-blocking a11y/URL jobs from queueing behind the
-blocking build. Each slot still runs exactly one job at a time.
+**Status: RETIRED on 2026-11-21.** The repository is public and every workflow
+now runs on GitHub-hosted `ubuntu-24.04` (`ACTIONS_RUNNER_LABEL=ubuntu-24.04`).
+The two self-hosted slots were stopped, disabled and deregistered, and their
+containers removed. Public-repo hosted minutes are free and untrusted PRs no
+longer execute on the host. This runbook is kept for reference and rollback;
+see "Retirement (2026-11-21)" below.
+
+**Historical (2026-10-19 to 2026-11-21).** The repository variable routed jobs
+to the `monedario-ci-isolated` label. A host-side liveness watchdog was added on
+2026-10-31 for the stale-lease failure tracked in #745. A **second disposable
+slot** (`monedario-isolated-ci-2.service`, slot 2) was added on 2026-11-18 to
+stop non-blocking a11y/URL jobs from queueing behind the blocking build. Each
+slot ran exactly one job at a time.
 
 The 2026-09-04 `monedario-local-bridge` was retired and its image/registration volume removed. This version uses **one-job JIT containers** and reuses the tested `pcp-ci-isolated:2.338.0` image from `cortega26/portfolio-control-plane`, without sharing the persistent `pcp-local` identity. No VM or Fintual production resource is needed.
+
+## Retirement (2026-11-21)
+
+The public repository moved every workflow to GitHub-hosted runners. The
+steps used were:
+
+```bash
+gh variable set ACTIONS_RUNNER_LABEL --repo cortega26/Monedario \
+  --body ubuntu-24.04
+systemctl --user stop monedario-isolated-ci.service monedario-isolated-ci-2.service
+systemctl --user disable monedario-isolated-ci.service monedario-isolated-ci-2.service
+docker rm -f <monedario-ci-isolated containers>
+gh api repos/cortega26/Monedario/actions/runners --jq '.runners[]'
+# delete the Monedario-only idle/offline runner IDs
+```
+
+The "Rollback" section below is the hosted-fallback retirement path. To restore
+the bridge, set `ACTIONS_RUNNER_LABEL` back to `monedario-ci-isolated`,
+enable/start both services, and keep the warm image
+`monedario-ci-isolated:2.338.0-a11y`.
 
 ## Safety prerequisites (PC only)
 
@@ -197,7 +224,11 @@ Existing workflows use `runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-24.04'
 
 ## Rollback
 
-Always delete the repository variable first (future runs return to hosted runners):
+> **2026-11-21:** this section is now the retirement path (hosted fallback).
+> To restore the bridge, set `ACTIONS_RUNNER_LABEL=monedario-ci-isolated` and
+> enable/start the two services.
+
+Always delete or repoint the repository variable first (future runs use hosted runners):
 
 ```bash
 gh variable delete ACTIONS_RUNNER_LABEL --repo cortega26/Monedario

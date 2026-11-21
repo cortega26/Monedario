@@ -14,7 +14,8 @@ The repository is now public. Decisions since the proposal:
 | Oracle VM as a Monedario runner | **Rejected.** `pogo-lab-prod-a1` is a 2 OCPU / 12 GB production host shared with Pogo-lab and the Fintual executor; no Docker/node, and the 2026-11-18 storage cleanup left no headroom for CI. It stays out of Monedario CI. |
 | Deploy-health Worker | **Live, no cron.** `/status` runs on demand; the account is at the Workers Free 5-trigger limit, so `deploy-health.yml` calls it every 6 h. It reads the public `/api/deploy-health.json` artifact, not `raw.githubusercontent.com`. |
 | Warm pnpm store | **Done.** The runner image bakes an 823 MB store at `/opt/pnpm-store`; a lockfile-change install measured `reused 932, downloaded 0, Done in 13s` (was ~6 min). |
-| Public repository | **Since 2026-11-18.** GitHub-hosted standard runners and artifact storage are free for public repos; the self-hosted slots remain for capacity and local caches. Re-evaluate hosted runners in the next capacity review. |
+| Public repository | **Since 2026-11-18.** GitHub-hosted standard runners and artifact storage are free for public repos. |
+| Self-hosted runners | **Retired 2026-11-21.** The two slots were stopped, disabled and deregistered; `ACTIONS_RUNNER_LABEL=ubuntu-24.04` routes every workflow to GitHub-hosted runners. Keeping untrusted public PRs off the self-hosted host was the deciding factor. Rollback: set the variable back to `monedario-ci-isolated`, enable/start the two services, and rebuild the warm image if needed. |
 | Remaining Cloudflare candidates | Status aggregator, uptime/HEAD probes, IndexNow ping. |
 
 The original proposal's "single serialized slot" premise no longer holds; the

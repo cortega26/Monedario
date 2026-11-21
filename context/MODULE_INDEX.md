@@ -60,9 +60,9 @@ Last updated: 2026-07-16
   - `scripts/build-weekly-search-report.mjs` for scorecard generation
   - `scripts/data-signals/fetch-analytics-export.mjs` for aggregate first-party JSON
   - `docs/adr/ADR-20260716-weekly-search-ops-at-current-scale.md` for the time-bounded July cadence decision
-- Temporary Actions runner bridge:
+- Retired Actions runner bridge (2026-11-21):
   - `docs/adr/ADR-20260716-temporary-self-hosted-actions-bridge.md`
-  - `ACTIONS_RUNNER_LABEL` selects the incident runner; unset falls back to `ubuntu-latest`
+  - `ACTIONS_RUNNER_LABEL=ubuntu-24.04`; the self-hosted slots are retired
 - Deprecated redirect URL guard:
   - `tests/e2e/redirect-links.e2e.test.ts`
   - protects `src/` from reintroducing known redirecting official-source URLs
