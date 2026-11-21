@@ -82,5 +82,92 @@
     "affected": "Trabajadores que creen que la gratificación del 25 % es incondicional y empleadores que provisionan anticipos sin revisar el resultado del ejercicio.",
     "sources": "DT, requisitos de la obligación (https://www.dt.gob.cl/portal/1628/w3-article-60150.html); DT, anticipos y pérdidas (https://www.dt.gob.cl/portal/1628/w3-article-60172.html); DT, anticipos convenidos (https://www.dt.gob.cl/portal/1628/w3-article-60171.html); DT, base y tope (https://www.dt.gob.cl/portal/1628/w3-article-60162.html).",
     "prevention": "Verificar la doctrina de la DT sobre pérdidas y anticipos antes de afirmar que un beneficio es incondicional; anclar el tope a la fecha legal."
+  },
+  {
+    "id": "contribuciones-tasas-origen-sobretasa",
+    "date": "2026-11-20",
+    "title": "Contribuciones: la tasa de 1,23 % y la de 0,4 % no vienen del Decreto 437/2022",
+    "pages": [
+      {
+        "href": "/posts/contribuciones-bienes-raices-chile/",
+        "label": "Contribuciones de bienes raíces en Chile"
+      }
+    ],
+    "wrong": [
+      "La guía atribuía toda la tabla de tasas al Decreto Supremo N°437 de 2022, incluida la tasa de 1,23 % para sitios no edificados y la de 0,4 % para agrícolas.",
+      "La guía presentaba la tasa de 1,23 % como la carga anual de los sitios no edificados, sin advertir la sobretasa del 100 % que la duplica en áreas urbanas."
+    ],
+    "fixed": [
+      "El Decreto 437/2022 solo fija las tasas no agrícolas: 0,893 % para la parte habitacional bajo el umbral y 1,042 % para el resto y para la no habitacional. La tasa de 1,23 % para sitios no edificados fue fijada por el Decreto 213/2025 (DO 29-03-2025), vigente para el reavalúo de sitios no edificados 2025; la de 0,4 % para agrícolas, por el Decreto 102/2024 (DO 07-03-2024), vigente para el reavalúo agrícola 2024. Ambas siguen vigentes en 2026.",
+      "A los sitios no edificados, propiedades abandonadas y pozos lastreros ubicados en áreas urbanas se les aplica además una sobretasa del 100 % de la tasa vigente (art. 8° de la Ley 17.235), salvo en áreas de expansión urbana y rurales; la carga efectiva es 2,46 %."
+    ],
+    "affected": "Propietarios de sitios no edificados o predios agrícolas que calculan sus contribuciones con la tasa o la norma citada en la guía.",
+    "sources": "SII, Decreto Supremo N°437/2022 (https://www.sii.cl/destacados/reavaluo/2022/ds437_25032022.pdf); SII, Decreto 213/2025 (https://www.sii.cl/destacados/reavaluo/2025/fija_nuevas_tasas_del_impuesto_territorial.pdf); BCN, Decreto 102/2024 (https://www.bcn.cl/leychile/navegar?idNorma=1201529); SII, Reavalúos vigentes (https://www.sii.cl/destacados/reavaluo/); SII, Sobretasa a sitios no edificados (https://www.sii.cl/ayudas/ayudas_por_servicios/2242-sobretasa_sitios-2468.html); SII, FAQ tasa agrícola 0,4 % (https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_8778.htm).",
+    "prevention": "No atribuir una tabla de tasas a un solo decreto: verificar el decreto de cada serie y su período de vigencia; distinguir la tasa base de las sobretasas que la afectan."
+  },
+  {
+    "id": "contribuciones-adulto-mayor-umbrales",
+    "date": "2026-11-20",
+    "title": "Beneficio para personas mayores: mujeres desde los 60, umbrales 2026 y nueva exención desde 2027",
+    "pages": [
+      {
+        "href": "/posts/contribuciones-bienes-raices-chile/",
+        "label": "Contribuciones de bienes raíces en Chile"
+      }
+    ],
+    "wrong": [
+      "La guía decía que el beneficio era para «propietarios de 65 años o más», sin distinguir que las mujeres acceden desde los 60 años.",
+      "La guía remitía al SII sin publicar el umbral de avalúo, la condición socioeconómica ni el porcentaje de rebaja.",
+      "La guía no mencionaba la exención del 100 % para la vivienda principal de personas de 65 o más, creada por la Ley 21.850 y vigente desde 2027, cuya solicitud vence el 31-12-2026."
+    ],
+    "fixed": [
+      "El Beneficio Persona Mayor (Ley 20.732) exige 65 años o más en hombres y 60 años o más en mujeres, cumplidos al 31-12 del año anterior. La rebaja es de 100 % si el ingreso anual no supera $11.265.804 y de 50 % si supera ese monto y no excede $25.035.120 (valores al 31-12-2025), sobre las cuotas de septiembre y noviembre de 2026 y abril y junio de 2027.",
+      "El avalúo fiscal de la vivienda no debe superar $234.328.604 y la suma de avalúos de todas las propiedades del contribuyente no debe superar $313.048.370, ambos al 01-07-2026; la propiedad debe ser no agrícola, destinada a habitación y estar inscrita a nombre del beneficiario.",
+      "Desde el 01-01-2027, la Ley 21.850 (art. 10) agrega una exención del 100 % del impuesto territorial para la vivienda principal de personas de 65 o más, con solicitud hasta el 31-12-2026 y requisitos de copropiedad y pago al día."
+    ],
+    "affected": "Mujeres de 60 a 64 años y personas de 65 o más que no conocen el umbral ni la nueva exención que deben solicitar antes del 31-12-2026.",
+    "sources": "SII, Beneficio Persona Mayor (https://www.sii.cl/destacados/avaluaciones/bam/); SII, Requisitos (https://www.sii.cl/destacados/avaluaciones/bam/requisitos.html); BCN, Ley 20.732 (https://www.bcn.cl/leychile/navegar?idNorma=1060038); BCN, Ley 21.850, art. 10 (https://www.bcn.cl/leychile/navegar?idNorma=1229250); SII, Exención de contribuciones para la vivienda principal de personas de 65 años o más (https://www.sii.cl/destacados/ley_reconstruccion/medidas_tributarias/impuesto_territorial/).",
+    "prevention": "Verificar la edad por sexo y los umbrales reajustados semestralmente en la ficha del SII; distinguir la rebaja vigente de la exención que rige desde 2027 y su plazo de solicitud."
+  },
+  {
+    "id": "contribuciones-dfl2-exenciones",
+    "date": "2026-11-20",
+    "title": "DFL-2: exenciones tributarias, no «tasas diferenciadas»",
+    "pages": [
+      {
+        "href": "/posts/contribuciones-bienes-raices-chile/",
+        "label": "Contribuciones de bienes raíces en Chile"
+      }
+    ],
+    "wrong": [
+      "La guía afirmaba que las viviendas acogidas al DFL-2 acceden a «beneficios tributarios, incluyendo tasas diferenciadas». El DFL-2 no fija tasas diferenciadas: otorga exenciones."
+    ],
+    "fixed": [
+      "El DFL-2 (Decreto 1101) mantiene los requisitos de 140 m² de superficie edificada por unidad, uso habitacional, personas naturales y máximo dos viviendas. Sus beneficios son una exención de los impuestos fiscales que gravan la propiedad raíz por 10, 15 o 20 años según la superficie (70/100/140 m²), excepto la parte municipal del impuesto territorial (art. 14), y una exención de las rentas de arriendo en el Impuesto de Primera Categoría, Global Complementario y Adicional (art. 15)."
+    ],
+    "affected": "Propietarios de viviendas económicas que creen que el DFL-2 les aplica una tasa distinta y no una exención, o que desconocen los requisitos y límites.",
+    "sources": "BCN, Decreto 1101 (DFL-2), arts. 1, 14 y 15 (https://www.bcn.cl/leychile/navegar?idNorma=16842); SII, Guía Práctica de Declaración de Renta 2026, p. 43 (https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf).",
+    "prevention": "Verificar si el beneficio es una exención, un crédito o una tasa diferenciada; citar el artículo que lo establece y sus límites."
+  },
+  {
+    "id": "contribuciones-f22-credito-no-gasto",
+    "date": "2026-11-20",
+    "title": "Contribuciones en el F22: crédito contra el impuesto, no gasto deducible del arriendo",
+    "pages": [
+      {
+        "href": "/posts/contribuciones-bienes-raices-chile/",
+        "label": "Contribuciones de bienes raíces en Chile"
+      }
+    ],
+    "wrong": [
+      "La guía afirmaba que, para quienes arriendan el bien raíz, las contribuciones «pueden ser consideradas gasto tributario» al declarar la renta de arrendamiento en el F22."
+    ],
+    "fixed": [
+      "Para las rentas de arrendamiento, las contribuciones no se deducen como gasto. La persona natural que no declara renta efectiva con contabilidad completa tributa sobre la renta efectiva acreditada por el contrato «sin deducción alguna» (art. 20 N°1 letra b de la LIR) y solo puede rebajar los intereses del crédito hipotecario informados en la DJ 1898 (SII FAQ 001.140.8486).",
+      "Las contribuciones pagadas se imputan como crédito al Impuesto Global Complementario, hasta el monto neto de ese impuesto (art. 56 N°5 de la LIR; SII FAQ 001.140.2087). En una empresa de Primera Categoría con contabilidad que arrienda bienes raíces, las contribuciones se agregan como gasto rechazado y se usan como crédito al IDPC (SII FAQ 001.140.4028)."
+    ],
+    "affected": "Arrendadores personas naturales que declaran el arriendo en el F22 y creen que pueden rebajar las contribuciones como gasto, y empresas que las deducen en lugar de usarlas como crédito.",
+    "sources": "BCN, Ley sobre Impuesto a la Renta, arts. 20 N°1 letra b) y 56 N°5 (https://www.bcn.cl/leychile/navegar?idNorma=6368); SII, FAQ 001.140.2087 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2087.htm); SII, FAQ 001.140.8486 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8486.htm); SII, FAQ 001.140.4028 (https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_4028.htm); SII, Guía Práctica de Declaración de Renta 2026 (https://www.sii.cl/servicios_online/renta/guia_practica_renta_2026.pdf).",
+    "prevention": "No confundir un gasto deducible con un crédito tributario; verificar en la LIR y en las FAQ del SII el tratamiento de cada impuesto pagado antes de afirmar que reduce la base."
   }
 ]
