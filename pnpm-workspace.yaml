@@ -3,6 +3,10 @@ allowBuilds:
   sharp: true
   workerd: true
 overrides:
+  # Astro 7.4.7's @astrojs/check resolves @emnapi/runtime 2.0.0-beta.2,
+  # which crashes `astro check` (deleteEnv is not a function). Pin the
+  # stable 1.11.3 used by the current lockfile until upstream fixes it.
+  '@emnapi/runtime': 1.11.3
   # Mantener separadas las líneas mayores de undici: Miniflare/Wrangler usa
   # 7.x; los consumidores 8.x se fijan después de la regresión HTTP/2 de
   # 8.11.0 (nodejs/undici#5858; workers-sdk#15811).
