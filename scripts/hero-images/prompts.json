@@ -561,13 +561,13 @@
       "targetImagePath": "/images/hero/contribuciones-bienes-raices-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "65cc2ac8fb831c101ad4856baf05b5a495dc4c7d9a39034799c28f80becc288c",
-      "briefHash": "2e93087c17b2b928265ad034db1147bd75de59133c396ac53715d9c2f7ed7f14",
+      "sourceContentHash": "210b6e591669edd790a59fbee844389c3cc43345a7f4e14bdf9fdb45a30c5733",
+      "briefHash": "0b9deedc780ec00ec2b9404da618e5c3113f638289a077a5d792f45f075efee8",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-09-30",
+        "reviewedAt": "2026-11-20",
         "reviewedBy": "agent/source-review",
-        "method": "Visual brief synthesized from structured extraction spanning the complete body: every heading, paragraph opening, table row and caution, cross-checked with description/articleLead. This is visual source alignment, not a financial or YMYL compliance audit."
+        "method": "Relectura completa tras las correcciones editoriales 2026-11 (tasas, personas mayores, DFL-2 y F22); el mensaje visual no cambia. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "C",
       "promptTrack": "C",

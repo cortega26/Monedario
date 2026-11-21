@@ -2,7 +2,7 @@
 title: "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones"
 seoTitle: "Contribuciones de Bienes Raíces en Chile | Monedario"
 author: "Equipo Monedario"
-description: "Cómo calcular contribuciones de bienes raíces, cuándo pagar las cuotas, exenciones para primera vivienda o adultos mayores y deducción en el F22."
+description: "Cómo calcular contribuciones de bienes raíces, cuándo pagar las cuotas, exenciones para primera vivienda o personas mayores y cómo se imputan en el F22."
 slug: contribuciones-bienes-raices-chile
 pubDate: 2026-05-03T12:00:00-04:00
 tags:
@@ -21,10 +21,10 @@ topicRole: owner
 canonicalTopic: contribuciones-bienes-raices-tramite
 articleAdvisory: "Contenido educativo. Las tasas, montos de exención y fechas de vencimiento se actualizan periódicamente; verifica en el SII y TGR antes de pagar o reclamar."
 articleLead:
-  answer: "Las contribuciones de bienes raíces son un impuesto territorial anual sobre el avalúo fiscal de tu propiedad, calculado a tasas vigentes de 0,893%–1,042% para propiedades habitacionales y 1,042% para no habitacionales (Decreto 437 de Hacienda, reavalúo 2022). Se pagan en 4 cuotas al año. Existen exenciones para primera vivienda (los primeros $61.711.570 de avalúo están exentos, monto reajustado semestralmente) y adultos mayores según el avalúo de la propiedad."
+  answer: "Las contribuciones de bienes raíces son un impuesto territorial anual sobre el avalúo fiscal de tu propiedad. Las tasas no agrícolas son 0,893%–1,042% (Decreto 437/2022); los sitios no edificados pagan 1,23% (Decreto 213/2025) y, en áreas urbanas, una sobretasa del 100% (2,46% efectivo); los predios agrícolas, 0,4% (Decreto 102/2024). Se pagan en 4 cuotas al año. Hay exención de los primeros $61.711.570 de avalúo habitacional y rebajas para personas mayores (mujeres desde 60 y hombres desde 65) según ingreso y avalúo, más una exención total para la vivienda principal de 65+ desde 2027."
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Declarar contribuciones en el F22"
-  validAsOf: 2026-08-03
+  validAsOf: 2026-11-20
   officialSources:
     - label: "SII — Contribuciones de bienes raíces"
       href: "https://www.sii.cl/"
@@ -35,11 +35,11 @@ articleLead:
     - label: "BCN — DFL-1/1998, Ley sobre Impuesto Territorial (Art. 2 y 7)"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=128563"
   covers:
-    - "Tasas vigentes por tipo de propiedad (habitacional 0,893%–1,042%, no habitacional 1,042%) según el reavalúo 2022, y cómo se calcula el monto."
+    - "Tasas vigentes por tipo de propiedad (no agrícola 0,893%–1,042%, sitios no edificados 1,23% más sobretasa y agrícola 0,4%) y cómo se calcula el monto."
     - "Qué es el avalúo fiscal y cómo consultar el monto de tus contribuciones en el SII."
     - "El calendario de 4 cuotas anuales y los canales de pago."
-    - "Exenciones para primera vivienda, DFL-2 y adultos mayores."
-    - "Cuándo son deducibles en el F22 (solo para arrendadores)."
+    - "Exenciones para primera vivienda, DFL-2 y personas mayores, con los umbrales 2026 y la exención desde 2027."
+    - "Cómo se imputan las contribuciones en el F22: crédito al impuesto, no gasto del arriendo."
   limits:
     - "No es una tasadora de propiedades ni calcula avalúos de mercado."
     - "Las tasas y exenciones se actualizan; verifica los valores vigentes en el SII."
@@ -53,7 +53,9 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-> **Información vigente al 2026-08-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://pagos.tgr.cl/) antes de realizar cualquier pago o trámite.
+<!-- markdownlint-disable MD013 -->
+
+> **Información vigente al 2026-11-20.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://pagos.tgr.cl/) antes de realizar cualquier pago o trámite.
 
 Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica.
 
@@ -67,15 +69,17 @@ La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor oficia
 
 > **Contribuciones anuales** = Avalúo fiscal × Tasa anual correspondiente
 
-Las tasas varían según el tipo de bien raíz, fijadas por [Decreto Supremo N°437 de Hacienda (25.03.2022)](https://www.sii.cl/destacados/reavaluo/2022/4326-4341.html) para el período del reavalúo 2022. La [Ley N°21.806 (5 de febrero de 2026)](https://www.sii.cl/noticias/2026/060226noti01pcr.htm) postergó el próximo reavalúo de bienes raíces no agrícolas hasta 2027, por lo que los valores base del reavalúo 2022 siguen vigentes hasta el 31 de diciembre de 2026 — durante este período el SII solo actualiza los montos según la variación del IPC. El monto de avalúo que separa el tramo habitacional inferior del superior se reajusta semestralmente según esa variación (cada 1 de enero y 1 de julio):
+Las tasas varían según el tipo de bien raíz. Las no agrícolas las fija el [Decreto Supremo N°437 de Hacienda (25.03.2022)](https://www.sii.cl/destacados/reavaluo/2022/4326-4341.html) para el reavalúo 2022; la de **1,23 %** para sitios no edificados, el [Decreto 213/2025](https://www.sii.cl/destacados/reavaluo/2025/fija_nuevas_tasas_del_impuesto_territorial.pdf) (reavalúo de sitios no edificados 2025); y la de **0,4 %** agrícola, el [Decreto 102/2024](https://www.bcn.cl/leychile/navegar?idNorma=1201529) (reavalúo agrícola 2024). La [Ley N°21.806 (5 de febrero de 2026)](https://www.sii.cl/noticias/2026/060226noti01pcr.htm) postergó el próximo reavalúo de bienes raíces no agrícolas hasta 2027, por lo que los valores base del reavalúo 2022 siguen vigentes hasta el 31 de diciembre de 2026 — durante este período el SII solo actualiza los montos según la variación del IPC. El monto de avalúo que separa el tramo habitacional inferior del superior se reajusta semestralmente según esa variación (cada 1 de enero y 1 de julio):
 
-| Tipo de bien raíz                                                 | Tasa anual vigente |
-| ----------------------------------------------------------------- | ------------------ |
-| No agrícola habitacional — tramo inferior (avalúo ≤ $220.398.431) | **0,893%**         |
-| No agrícola habitacional — tramo superior (avalúo > $220.398.431) | **1,042%**         |
-| No agrícola no habitacional (comercial, industrial, oficinas)     | **1,042%**         |
-| Sitios no edificados, propiedades abandonadas y pozos lastreros   | **1,23%**          |
-| Agrícola                                                          | **0,4%**           |
+| Tipo de bien raíz                                                               | Tasa anual vigente              |
+| ------------------------------------------------------------------------------- | ------------------------------- |
+| No agrícola habitacional — tramo inferior (avalúo ≤ $220.398.431)               | **0,893%**                      |
+| No agrícola habitacional — tramo superior (avalúo > $220.398.431)               | **1,042%**                      |
+| No agrícola no habitacional (comercial, industrial, oficinas)                   | **1,042%**                      |
+| Sitios no edificados, propiedades abandonadas y pozos lastreros (áreas urbanas) | **1,23%** (2,46% con sobretasa) |
+| Agrícola                                                                        | **0,4%**                        |
+
+A los sitios no edificados, propiedades abandonadas y pozos lastreros ubicados en **áreas urbanas** se les aplica además una **sobretasa del 100 %** de la tasa vigente (artículo 8° de la Ley 17.235), salvo en áreas de expansión urbana y rurales. Con la tasa de 1,23 %, la carga efectiva es **2,46 %** ([SII — sobretasa a sitios no edificados](https://www.sii.cl/ayudas/ayudas_por_servicios/2242-sobretasa_sitios-2468.html)).
 
 La tasa habitacional se divide en dos tramos: el umbral de $220.398.431 (vigente desde el 01.07.2026, según la [tabla de reajustes y exenciones del SII](https://www.sii.cl/ayudas/ayudas_por_servicios/2242-reajustes_exenciones-2468.html)) separa el tramo inferior del superior. Este monto se reajusta cada semestre — consulta el monto exacto para tu propiedad ingresando tu RUT o rol en el portal del [SII](https://www.sii.cl/).
 
@@ -100,13 +104,27 @@ Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos el **30 de
 
 Los predios no agrícolas destinados a la habitación tienen un **monto de avalúo exento** de $61.711.570 (vigente desde el 01.07.2026, conforme al Art. 2° de la [Ley sobre Impuesto Territorial DFL-1/1998](https://www.bcn.cl/leychile/navegar?idNorma=128563); el monto se reajusta semestralmente según la [tabla de reajustes y exenciones del SII](https://www.sii.cl/ayudas/ayudas_por_servicios/2242-reajustes_exenciones-2468.html)). Esto significa que los primeros $61.711.570 del avalúo fiscal no pagan contribuciones. Si el avalúo es inferior a ese monto, la propiedad está completamente exenta. El SII aplica la exención automáticamente si tiene los datos actualizados. Si crees tener derecho y no aparece aplicada, inicia el trámite en el SII.
 
-### Adultos mayores (65 años o más)
+### Personas mayores (mujeres desde 60 años, hombres desde 65)
 
-Propietarios de 65 años o más con propiedad de avalúo bajo cierto umbral pueden solicitar una reducción de contribuciones. Las condiciones exactas (avalúo máximo, situación socioeconómica) se verifican directamente en el [SII](https://www.sii.cl/).
+El **Beneficio Persona Mayor** ([Ley 20.732](https://www.bcn.cl/leychile/navegar?idNorma=1060038)) reduce las contribuciones de la vivienda según edad, ingreso y avalúo:
+
+- **Edad:** 65 años o más en hombres y 60 años o más en mujeres, cumplidos al 31 de diciembre del año anterior.
+- **Rebaja:** 100 % si el ingreso anual no supera **$11.265.804**; 50 % si supera ese monto y no excede **$25.035.120** (valores al 31-12-2025).
+- **Avalúo:** la vivienda no debe superar **$234.328.604** y la suma de avalúos de todas tus propiedades, **$313.048.370** (al 01-07-2026).
+- **Requisitos:** propiedad no agrícola, destinada a habitación e inscrita a nombre del beneficiario.
+
+La rebaja se aplica a las cuotas de **septiembre y noviembre de 2026** y de **abril y junio de 2027**. Verifica los requisitos y el estado de tu solicitud en el [SII](https://www.sii.cl/destacados/avaluaciones/bam/requisitos.html).
+
+**Nuevo desde 2027:** la [Ley 21.850 (art. 10)](https://www.bcn.cl/leychile/navegar?idNorma=1229250) incorpora una **exención del 100 %** del impuesto territorial para la **vivienda principal** de personas de 65 años o más. La solicitud debe presentarse **hasta el 31-12-2026** en el [SII](https://www.sii.cl/destacados/ley_reconstruccion/medidas_tributarias/impuesto_territorial/), cumpliendo los requisitos de copropiedad y pago al día que publica ese organismo.
 
 ### DFL-2 — Vivienda económica
 
-Las propiedades acogidas al régimen conocido popularmente como DFL-2 o vivienda económica, actualmente regido por el [Decreto 1101](https://www.bcn.cl/leychile/navegar?i=16842), acceden a beneficios tributarios, incluyendo tasas diferenciadas. El beneficio tiene restricciones: **superficie edificada máxima de 140 m²**, uso habitacional, restringido a **personas naturales** y a un máximo de **dos propiedades** por beneficiario. Verifica si tu propiedad está acogida a este régimen en el [SII](https://www.sii.cl/).
+Las propiedades acogidas al régimen conocido popularmente como DFL-2 o vivienda económica, actualmente regido por el [Decreto 1101](https://www.bcn.cl/leychile/navegar?i=16842), acceden a **exenciones**, no a tasas diferenciadas:
+
+- **Artículo 14:** exime de los impuestos fiscales que gravan la propiedad raíz por **10, 15 o 20 años** según la superficie edificada (70, 100 o 140 m²), excepto la parte municipal del impuesto territorial.
+- **Artículo 15:** exime las **rentas de arriendo** del Impuesto de Primera Categoría, Global Complementario y Adicional.
+
+El beneficio tiene restricciones: **superficie edificada máxima de 140 m²**, uso habitacional, restringido a **personas naturales** y a un máximo de **dos propiedades** por beneficiario. Verifica si tu propiedad está acogida a este régimen en el [SII](https://www.sii.cl/).
 
 ## ¿Qué pasa si no pagas?
 
@@ -116,10 +134,10 @@ La deuda de contribuciones genera intereses y reajuste fiscal desde la fecha de 
 
 Si crees que el SII sobrevaluó tu propiedad, tienes derecho a reclamar el avalúo. El proceso se inicia en el SII dentro del plazo que define cada proceso de reevaluación masiva. Requiere presentar antecedentes técnicos que justifiquen un valor inferior. El reclamo tiene plazos estrictos — consulta en el SII si hay un período de reevaluación vigente para tu propiedad.
 
-## Contribuciones y F22: cuándo son gasto deducible
+## Contribuciones y F22: crédito al impuesto, no gasto del arriendo
 
-Para propietarios que arriendan el bien raíz, las contribuciones pueden ser consideradas gasto tributario al declarar la renta de arrendamiento en el F22. Las condiciones exactas dependen de las instrucciones SII vigentes para el año tributario correspondiente — verifica en el [SII](https://www.sii.cl/) o con un contador la aplicación específica a tu caso.
+Para quien arrienda el bien raíz, las contribuciones **no son un gasto deducible** del arriendo. La persona natural que no declara renta efectiva con contabilidad completa tributa sobre la renta efectiva acreditada por el contrato **«sin deducción alguna»** (art. 20 N°1 letra b de la [Ley sobre Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=6368)); solo puede rebajar los **intereses del crédito hipotecario** informados en la DJ 1898 ([SII FAQ 001.140.8486](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8486.htm)).
 
-Si habitas tu propiedad como vivienda principal, las contribuciones habitualmente no son gasto deducible en el F22 — consulta las instrucciones SII del año tributario correspondiente o a un contador para tu situación específica.
+Las contribuciones pagadas se imputan como **crédito al Impuesto Global Complementario**, hasta el monto neto de ese impuesto (art. 56 N°5 LIR; [SII FAQ 001.140.2087](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2087.htm)). En una empresa de Primera Categoría con contabilidad que arrienda bienes raíces, se agregan como **gasto rechazado** y se usan como **crédito al IDPC** ([SII FAQ 001.140.4028](https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_4028.htm)).
 
-Para el proceso de Operación Renta, revisa la [guía del F22](/posts/operacion-renta-f22-checklist/).
+Si habitas tu propiedad como vivienda principal, tampoco son gasto deducible; el crédito al IGC aplica en las mismas condiciones. Para el proceso de Operación Renta, revisa la [guía del F22](/posts/operacion-renta-f22-checklist/).

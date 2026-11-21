@@ -185,6 +185,21 @@ export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
     label:
       "Ley 20.720 — Reorganización y liquidación de empresas y personas; procedimiento concursal de renegociación (art. 260)",
   },
+  {
+    idNorma: "1201529",
+    label:
+      "Decreto 102/2024 — Fija tasas del impuesto territorial para el reavalúo agrícola 2024",
+  },
+  {
+    idNorma: "1060038",
+    label:
+      "Ley 20.732 — Beneficio tributario para propietarios de bienes raíces (personas mayores)",
+  },
+  {
+    idNorma: "1229250",
+    label:
+      "Ley 21.850 — Ley de Reconstrucción Nacional (exención de contribuciones para la vivienda principal de personas de 65 o más)",
+  },
 ];
 
 export function getHistoryUrl(historyPageId) {
