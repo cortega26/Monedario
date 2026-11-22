@@ -72,7 +72,7 @@ const calculatorNextStepItems = [
 const ufToClp = (ufAmount: number) =>
   "$" + Math.round(ufAmount * economicParameters.uf).toLocaleString("es-CL");
 const ufTitle = `Valor UF hoy: $${ufDisplay} — Convertir UF a pesos | Monedario`;
-const ufDescription = `Valor UF hoy: $${ufDisplay} (${ufDateDisplay}). Convierte 1, 10, 50, 100, 500, 600 o 1.000 UF a pesos chilenos al valor oficial del Banco Central, con tabla de referencia.`;
+const ufDescription = `Valor UF hoy: $${ufDisplay} (${ufDateDisplay}). Convierte 1, 10, 50, 100, 500 o 1.000 UF a pesos al valor oficial del Banco Central, con tabla.`;
 const ufRefs = [
   { label: "1 UF", uf: 1 },
   { label: "10 UF", uf: 10 },

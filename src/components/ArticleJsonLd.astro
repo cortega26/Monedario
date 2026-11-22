@@ -31,6 +31,16 @@ const { title, description, pubDate, updatedDate, author, reviewPolicy } =
 
 const reviewFields = buildReview(reviewPolicy);
 
+// Fuentes oficiales declaradas en el frontmatter. Se emiten como citation /
+// isBasedOn para reforzar E-E-A-T y la trazabilidad que usan los answer engines.
+const officialSources = [
+  ...new Set(
+    (post.data.articleLead?.officialSources ?? [])
+      .map(source => source.href)
+      .filter((href): href is string => Boolean(href))
+  ),
+];
+
 const AUTHOR_URL = new URL("/autor/", Astro.site ?? Astro.url.origin).href;
 const AUTHOR_IMAGE_URL = new URL(
   SITE.authorImage,
@@ -80,6 +90,9 @@ const articleSchema = {
     "@type": "WebPage",
     "@id": canonicalUrl,
   },
+  ...(officialSources.length > 0
+    ? { citation: officialSources, isBasedOn: officialSources }
+    : {}),
   speakable: {
     "@type": "SpeakableSpecification",
     cssSelector: ["h1", "#article"],

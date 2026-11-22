@@ -105,6 +105,29 @@ const sourceLabel =
       ? "Datos del último período oficial"
       : "Valores de referencia aproximados";
 
+const datasetSchema = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: "Indicadores económicos de Chile: UF, UTM, dólar, IPC y TMC",
+  description:
+    "Serie de indicadores económicos chilenos con valor, fecha de actualización, fuente oficial y contexto práctico.",
+  url: `${SITE_BASE}/guias/uf-costo-de-vida/indicadores-economicos/`,
+  creator: {
+    "@type": "Organization",
+    name: "Monedario",
+    url: SITE_BASE,
+  },
+  isAccessibleForFree: true,
+  license: "https://creativecommons.org/licenses/by-nc/4.0/",
+  temporalCoverage: "2026",
+  variableMeasured: items.map(item => ({
+    "@type": "PropertyValue",
+    name: item.nombre,
+    unitText: item.unidad,
+    description: item.impacto,
+  })),
+};
+
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -129,6 +152,11 @@ const itemListSchema = {
     is:inline
     type="application/ld+json"
     set:html={serializeJsonLd(itemListSchema)}
+  ></script>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={serializeJsonLd(datasetSchema)}
   ></script>
   <Header />
   <Breadcrumb />
@@ -210,7 +238,7 @@ const itemListSchema = {
             href={getPath("/calculadoras/conversor-uf/")}
             class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
           >
-            Usar conversor →
+            Convertir UF a pesos →
           </a>
         </article>
 
@@ -227,7 +255,7 @@ const itemListSchema = {
             href={getPath("/calculadoras/conversor-utm/")}
             class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
           >
-            Usar conversor →
+            Convertir UTM a pesos →
           </a>
         </article>
 
