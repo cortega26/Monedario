@@ -66,11 +66,13 @@ faqs:
   - q: "¿Cómo afecta el IPC a la UTM?"
     a: "El artículo cuarto transitorio del DL 830 dispone que la UTM «se reajustará mensualmente de acuerdo con el porcentaje de variación que experimente el índice de precios al consumidor en el segundo mes que anteceda al correspondiente a la actualización de dicha unidad». Es decir, la UTM de un mes usa la variación del IPC de dos meses antes: la UTM de octubre se reajusta con el IPC de agosto. El SII publica el valor resultante de cada mes en sii.cl/valores_y_fechas/utm/utm2026.htm."
 reviewPolicy:
-  cadenceLabel: semiannual
-  maxDays: 180
-  dataTriggers: []
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers:
+    - economic.utm.value
   derivationFactors:
     - registry:categoryPolicies.general
+    - template:utm
   computedAt: "2026-05-06"
 ---
 
