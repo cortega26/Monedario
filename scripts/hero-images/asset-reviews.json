@@ -1471,7 +1471,7 @@
     "impuesto-global-complementario-chile": {
       "slug": "impuesto-global-complementario-chile",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "dbea72e002d3999d97dcebd4d7d33a944e02d641916fa082de114edb59197692",
+      "sourceContentHash": "daf27d38014b9d3943e2c30ed743ba6bcd22e8f3f39a73d72d1a712e0ec29b55",
       "prompt": "Create an original editorial illustration for Monedario, a Chilean personal-finance publication. The cover should help a reader recognize their situation, with clarity, warmth and professional restraint.\nStyle: simple confident shapes, natural human proportions where people appear, expressive but understated gestures, moderate depth through overlap and soft shadows. Simplified facial features and a subtle paper texture are welcome. Avoid glossy stock-finance or generic app-marketing aesthetics.\nPalette: deep navy #16324f and teal #0d9488, warm paper #f5f1e8, with a restrained terracotta #c77b55 accent and natural skin tones. Keep the light background calm; do not paint every surface the category color.\nReader situation: Entender cómo se reúnen rentas y créditos al cierre anual.\nEditorial promise: Explicar el IGC y su relación con retenciones sin simular reglas especiales fuera del alcance.\nVisual message: Fuentes distintas se revisan juntas en la declaración anual.\nScene: Several distinct unlettered income slips converge toward one open annual tax folder. A separate row of smaller credit slips sits alongside the folder rather than disappearing into it. The layout is calm and architectural, with a single broad calendar page in the background and no equation, percentage or guaranteed refund arrow.\nEssential elements: Varias rentas; Carpeta anual; Créditos separados.\nAvoid these interpretations: Todos pagan la misma tasa; Retenciones siempre cubren el impuesto final; Cubre cada régimen especial de ganancias.\nComposition: one clear focal action, purposeful asymmetry, distinguishable silhouettes and generous breathing room. Keep the essential subject inside the central 85% for responsive crops. The situation must remain recognizable at a 300-pixel card width. People belong only when they contribute to the scene; do not add a decorative avatar.\nDo not render text, letters, numbers, logos, watermarks, official seals, fabricated financial data or pseudo-legible interfaces. Documents can use simple unlettered marks. Do not use decorative golden coins, guaranteed-gain arrows, trophies or distress caricatures. No black framing bars.\nCanvas: 1200x630 pixels, landscape, edge-to-edge illustration. This is an editorial cover, not a data chart; numerical explanations will be rendered separately from verified data.",
       "promptHash": "4af44f3a575e6bfebadecfa352a663cc87b8ad2ec45bceb6c3c5f1ab50c26246",
       "source": {
@@ -1495,10 +1495,10 @@
       },
       "review": {
         "status": "accepted",
-        "reviewedAt": "2026-11-20",
+        "reviewedAt": "2026-11-22",
         "reviewedBy": "agent/source-review",
-        "method": "Alineación de fuente tras las correcciones editoriales 2026-11; sin regeneración ni nueva revisión visual. La revisión visual anterior sigue vigente. No es cumplimiento YMYL ni firma humana de publicación.",
-        "note": "La escena visual no cambia; se actualiza el fingerprint del artículo."
+        "method": "Alineación de fuente tras el cambio de SEO title/description (tabla IGC 2026); sin regeneración ni nueva revisión visual. La revisión visual anterior sigue vigente. No es cumplimiento YMYL ni firma humana de publicación.",
+        "note": "La escena visual no cambia; se actualiza el fingerprint por el metadata SEO."
       }
     },
     "informe-deudas-cmf-vs-dicom": {

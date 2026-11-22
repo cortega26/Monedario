@@ -1,8 +1,8 @@
 ---
 title: "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga"
-seoTitle: "Impuesto Global Complementario en Chile | Monedario"
+seoTitle: "Tabla IGC 2026: tramos y tasas | Monedario"
 author: "Equipo Monedario"
-description: "Qué es el IGC, quiénes deben pagarlo, qué rentas suma, cuáles son los tramos vigentes en UTA y qué créditos permiten reducirlo: ISC, honorarios y APV."
+description: "Tabla IGC 2026: tramos en UTA, quiénes pagan, qué rentas suma y qué créditos (ISC, honorarios, APV) reducen el impuesto."
 slug: impuesto-global-complementario-chile
 pubDate: 2026-05-03T12:00:00-04:00
 tags:

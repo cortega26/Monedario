@@ -1461,13 +1461,13 @@
       "targetImagePath": "/images/hero/impuesto-global-complementario-chile.avif",
       "generationMethod": "imagegen",
       "styleVersion": "monedario-editorial-v5",
-      "sourceContentHash": "dbea72e002d3999d97dcebd4d7d33a944e02d641916fa082de114edb59197692",
-      "briefHash": "380885f859ca1df47d1202ac3390426172009685b5ddf7d99cd52ba5514438a3",
+      "sourceContentHash": "daf27d38014b9d3943e2c30ed743ba6bcd22e8f3f39a73d72d1a712e0ec29b55",
+      "briefHash": "7beaec5b683ee47601062f971211f26d8674100dbf063f91a588163a6cd0c641",
       "briefReview": {
         "status": "reviewed",
-        "reviewedAt": "2026-11-20",
+        "reviewedAt": "2026-11-22",
         "reviewedBy": "agent/source-review",
-        "method": "Relectura completa tras las correcciones editoriales 2026-11; se agrega el disable inline de markdownlint tras el frontmatter, que no altera el mensaje visual. Alineación de fuente visual, no cumplimiento YMYL."
+        "method": "Relectura tras el cambio de SEO title/description (tabla IGC 2026); el mensaje y la escena visual no cambian. Alineación de fuente visual, no cumplimiento YMYL."
       },
       "template": "C",
       "promptTrack": "C",
