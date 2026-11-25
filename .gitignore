@@ -111,9 +111,6 @@ docs/backlog/*
 !docs/editorial/artifacts/**
 
 
-#Ignore vscode AI rules
-.github/instructions/codacy.instructions.md
-
 # Python coverage
 coverage-html/
 .coverage
