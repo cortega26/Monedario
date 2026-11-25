@@ -44,6 +44,7 @@ jobs:
               "- [ ] **llms-full.txt** — ¿el saneado de MDX (`bodyToPlainMarkdown`) sigue cubriendo los componentes usados en los artículos?",
               "- [ ] **Alcance e instrucciones** — ¿`buildLlmsScope` / `buildLlmsInstructions` (en `src/utils/llmsTxt.ts`) reflejan la cobertura y los límites YMYL actuales?",
               "- [ ] **Vigencia** — ¿los artículos con cifras datadas siguen marcados con el aviso ⚠️?",
+              "- [ ] **Diagnóstico claude-seo** — ejecuta `/seo agentic` sobre la home y `/seo geo` sobre 2–3 calculadoras (opcional, bajo demanda; ver `docs/operations/runbooks/claude-seo-usage.md`). Sus resultados son heurísticos: tratarlos como hallazgos, no como cambios.",
               "",
               "Cuando termines la revisión (haya o no cambios), cierra este issue.",
               "",
