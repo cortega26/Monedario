@@ -21,6 +21,14 @@ cómo llega y qué restricciones aplican.
   `competitorPages` obtenidas de sitemaps públicos de competidores
   (`pnpm run growth:collect:competitors`). Sin volumen ni dificultad: sirve
   para descubrir gaps de cobertura, no para priorizar por demanda.
+- **Vía libre, SERP (manual, desde 2026-11-25):** `pnpm run growth:collect:serp`
+  captura el SERP de Google Chile para una lista corta de consultas
+  (`src/config/serp-watchlist.json`) con el plan gratuito de SerpApi (250
+  búsquedas al mes; tope propio de 60). Escribe `serpFeatures` (volumen y CTR
+  propios desde GSC, funciones del SERP) con
+  `freeSources: ["serpapi-google-cl"]`, que consume el detector
+  `serp_feature_risk`. Solo uso manual/local, nunca desde CI. Detalle,
+  viabilidad y criterio de salida: `runbooks/serp-snapshot.md`.
 - Si el owner habilita Semrush y/o Ahrefs, el **control-plane** (operador
   automatizado del portafolio) es el canal preferido: recolecta y entrega el
   archivo semanal normalizado. Monedario no llama a las APIs pagadas desde

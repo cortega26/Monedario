@@ -131,6 +131,7 @@
     "growth:detect": "node scripts/detect-seo-opportunities.mjs",
     "growth:collect:competitors": "node scripts/collect-competitor-sitemaps.mjs",
     "growth:collect:bing": "node scripts/collect-bing-queries.mjs",
+    "growth:collect:serp": "node scripts/collect-serp-snapshot.mjs",
     "doctor": "node scripts/doctor.mjs",
     "test:edge-guard": "node --test tests/scripts/edge-csp-monitor.test.mjs",
     "worker:deploy-health:dev": "wrangler dev workers/deploy-health/wrangler.toml --test-scheduled",

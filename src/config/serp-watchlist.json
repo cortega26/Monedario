@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "notes": "Consultas objetivo para scripts/collect-serp-snapshot.mjs (uso manual, cupo gratuito de SerpApi). Cada captura cuesta 1 búsqueda: mantener la lista corta. tier 1 = semanal, tier 2 = mensual. Elegidas de GSC W46 (impresiones altas con CTR bajo) más un control con buen CTR. Fuente de decisión: docs/operations/runbooks/serp-snapshot.md.",
+  "ourDomain": "monedario.cl",
+  "market": {
+    "gl": "cl",
+    "hl": "es",
+    "google_domain": "google.cl",
+    "location": "Chile"
+  },
+  "cadenceDays": { "1": 7, "2": 30 },
+  "queries": [
+    {
+      "query": "valor utm",
+      "page": "/calculadoras/conversor-utm/",
+      "tier": 1,
+      "why": "15.938 impr. y CTR 0,36 % en pos. 7,1 (GSC W46)"
+    },
+    {
+      "query": "utm hoy",
+      "page": "/calculadoras/conversor-utm/",
+      "tier": 1,
+      "why": "14.740 impr., la de mayor CTR del cluster UTM (0,81 %)"
+    },
+    {
+      "query": "valor utm hoy",
+      "page": "/calculadoras/conversor-utm/",
+      "tier": 1,
+      "why": "11.860 impr., CTR 0,44 %; consulta del experimento UTM"
+    },
+    {
+      "query": "utm a peso chileno",
+      "page": "/calculadoras/conversor-utm/",
+      "tier": 2,
+      "why": "3.599 impr., CTR 0,08 %: variante de conversión"
+    },
+    {
+      "query": "uf hoy",
+      "page": "/calculadoras/conversor-uf/",
+      "tier": 1,
+      "why": "11.155 impr., 1 clic (CTR 0,01 %) en pos. 9,6: la mayor brecha del sitio"
+    },
+    {
+      "query": "10 uf a pesos chilenos",
+      "page": "/calculadoras/conversor-uf/",
+      "tier": 2,
+      "why": "1.042 impr., 0 clics: intención de conversión"
+    },
+    {
+      "query": "calculadora uf a pesos",
+      "page": "/calculadoras/conversor-uf/",
+      "tier": 2,
+      "why": "494 impr., 0 clics: intención de herramienta"
+    },
+    {
+      "query": "calculadora ipc",
+      "page": "/calculadoras/actualizador-inflacion/",
+      "tier": 1,
+      "why": "377 impr., CTR 0 % en pos. 6,6; experimento CTR A2"
+    },
+    {
+      "query": "calculadora de ipc",
+      "page": "/calculadoras/actualizador-inflacion/",
+      "tier": 2,
+      "why": "151 impr., CTR 0 %; variante del experimento A2"
+    },
+    {
+      "query": "calculadora inflacion chile",
+      "page": "/calculadoras/actualizador-inflacion/",
+      "tier": 1,
+      "why": "CTR 2,52 % en pos. 3,6: referencia de cuando la intención calza"
+    },
+    {
+      "query": "calcular seguro de cesantia",
+      "page": "/calculadoras/seguro-cesantia/",
+      "tier": 2,
+      "why": "Control: CTR 8,82 % en pos. 4,3; sirve para comparar un SERP que sí rinde"
+    }
+  ]
+}
