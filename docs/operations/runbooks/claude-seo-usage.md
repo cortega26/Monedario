@@ -47,7 +47,7 @@ Definir cómo se usa el plugin [claude-seo](https://github.com/AgriciDaniel/clau
 - Configuración local en `~/.config/claude-seo/` con permisos 0600: `google-api.json` (`service_account_path`, `default_property`) y la clave de la service account.
 - Propiedad GSC: `sc-domain:monedario.cl` (la misma de `scripts/data-signals/gsc-inspect.mjs`). Scope: `webmasters.readonly`, que cubre Search Analytics, Sitemaps y URL Inspection.
 - La clave de la service account sale de `GOOGLE_APPLICATION_CREDENTIALS_JSON` (`.env.local`). Nunca se copia al repo ni a CI.
-- Pendiente (humano): API key de GCP con PageSpeed Insights y CrUX habilitadas. Sin ella, PSI devuelve 429 por cuota anónima.
+- API key de GCP `claude-seo-local` (proyecto `monedario-494500`), restringida a PageSpeed Insights y Chrome UX Report, guardada como `api_key` en `google-api.json`. Sin ella, PSI devuelve 429 por cuota anónima. Para rotarla: crear una nueva con las mismas restricciones, reemplazar el campo y borrar la anterior en la consola.
 - Para auditar `astro preview` local: `CLAUDE_SEO_LOCAL_TARGETS=localhost:4321`.
 
 ## Higiene de salidas
@@ -73,7 +73,8 @@ En páginas con valores diarios o mensuales (UTM, UF, dólar), `/seo drift compa
 | Drift `conversor-utm` | 0 críticos, 3 advertencias, 1 informativo; todos atribuibles al cambio mensual de la UTM |
 | Valor UTM noviembre 2026 | Producción = tabla SII ($72.440) |
 | GSC vía plugin | Autentica con la service account; lista `sitemap-index.xml` (186 URLs enviadas, 0 errores) |
-| `/seo agentic` en la home | Sin P0 en falla; Agent-UX 100/100; Content-Signal y Markdown ausentes (informativos) |
+| `/seo agentic` en la home | Sin P0 en falla; Lighthouse Agentic Browsing 3/3 (móvil y escritorio); Agent-UX 100/100; Content-Signal y Markdown ausentes (informativos) |
+| CrUX del origen (25 semanas) | Móvil: LCP p75 1.156 ms, INP 112 ms, CLS 0. Escritorio: LCP 1.105 ms, INP 60 ms, CLS 0. Todo dentro de "bueno" |
 | Hallazgo para triage | `data-signals.yml` falló en el paso "Commit data signals" los días 12, 19 y 23 de noviembre: `main` rechaza el push directo (GH006, requiere PR) |
 
 ## Revisión de continuidad
