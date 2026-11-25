@@ -20,7 +20,7 @@ Definir cómo se usa el plugin [claude-seo](https://github.com/AgriciDaniel/clau
 | `/seo google` (GSC, URL Inspection, CrUX) | Contraste de datos GSC frescos; CWV de campo | Requiere credenciales (ver abajo) |
 | `/seo agentic <url>` | Revisión mensual GEO (junto con `geo-files-review`) | El puntaje Lighthouse X/N necesita API key de PSI |
 | `/seo geo <url>` | Revisión mensual GEO; reemplaza al CLI ad hoc `geo-opt` | Audita la página renderizada, no los `.md` fuente |
-| `/seo sxo <url> <keyword>` | Contexto SERP en revisiones de experimentos CTR | Solo lectura; la búsqueda web es US-only (ver limitaciones) |
+| `/seo sxo <url> <keyword>` | Contexto SERP en revisiones de experimentos CTR | Solo lectura. Su búsqueda web es US-only: para es-CL, generar antes el brief con `pnpm run growth:collect:serp` y pasárselo como evidencia (ver `serp-snapshot.md`) |
 | `/seo page` / `/seo technical` | Revisión puntual de una URL | Sustituye a las skills genéricas `seo`, `web-quality-audit` y `marketing:seo-audit` para análisis de una página |
 | `/seo audit` | Solo puntual y con justificación | Lanza hasta 17 agentes: es lo más caro en tokens |
 
@@ -62,7 +62,7 @@ En páginas con valores diarios o mensuales (UTM, UF, dólar), `/seo drift compa
 
 ## Limitaciones conocidas
 
-- `WebSearch` es US-only: el contexto SERP de `/seo sxo` no es el de Google Chile. No sustituye una revisión SERP manual en es-CL.
+- `WebSearch` es US-only: el contexto SERP de `/seo sxo` no es el de Google Chile. Para es-CL se usa el brief de `growth:collect:serp` (google.cl, `gl=cl`, `hl=es`); sin él, `/seo sxo` solo da contexto orientativo.
 - Sin API key de PSI no hay fracción Lighthouse Agentic Browsing.
 - El ledger de actualizaciones de Google del plugin (`seo_updates.py`) puede estar desactualizado: el reporte indica `stale`.
 
