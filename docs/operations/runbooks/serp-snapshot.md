@@ -97,8 +97,12 @@ ops/serp/install.sh                 # usa ~/VS_Code_Projects/products/monedario-
 ops/serp/install.sh --repo RUTA     # otro worktree
 ops/serp/install.sh --status        # timer y última corrida
 ops/serp/install.sh --uninstall     # desactiva y borra lo instalado (los datos no se tocan)
-journalctl --user -u monedario-serp-snapshot.service -n 50   # registro de las corridas
+systemctl --user status monedario-serp-snapshot.service      # resultado de la última ejecución del servicio
+cat ~/VS_Code_Projects/products/monedario-ops/output/external-intelligence/serp/last-run.log   # salida de la última corrida
+tail ~/VS_Code_Projects/products/monedario-ops/output/external-intelligence/serp/runs.log      # historial (estado, código, capturas)
 ```
+
+Nota: `journalctl --user -u monedario-serp-snapshot.service` solo muestra "Starting/Finished"; la salida del script está en `last-run.log` (o, sin filtrar por unidad, con `journalctl --user --since today | grep serp`).
 
 El instalador rechaza el worktree si tiene cambios, si el colector no soporta `--auto` o si falta la clave. Instala `run.sh` en `~/.local/share/monedario/serp/`, las unidades en `~/.config/systemd/user/` y la ruta del worktree en `~/.config/monedario/serp.env`.
 
