@@ -1,0 +1,12 @@
+[Unit]
+Description=Monedario SERP Chile snapshot (lunes, jueves y cierre de ciclo)
+
+[Service]
+Type=oneshot
+EnvironmentFile=-%h/.config/monedario/serp.env
+ExecStart=/bin/bash %h/.local/share/monedario/serp/run.sh
+Environment=XDG_RUNTIME_DIR=%t
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+TimeoutStartSec=30min
+NoNewPrivileges=yes
+UMask=0077

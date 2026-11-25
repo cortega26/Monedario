@@ -9,6 +9,7 @@ import {
   buildSerpFeatureRows,
   addDays,
   cacheKey,
+  compareDevices,
   countRunDays,
   discoverCandidates,
   domainOf,
@@ -29,6 +30,7 @@ import {
   nextRunDay,
   normalizeSerp,
   parseArgs,
+  planMobile,
   planRun,
   prioritize,
   projectMonthlySpend,
@@ -723,5 +725,126 @@ describe("tamaño del lote por corrida", () => {
     expect(result.runsLeft).toBeNull();
     expect(result.mode).toBe("routine");
     expect(result.perRun).toBe(25);
+  });
+});
+
+describe("pasada móvil", () => {
+  const bands = [[3, 0.08], [5, 0.05], [10, 0.025], [15, 0.012]];
+  const now = new Date("2026-11-30T15:00:00Z").getTime();
+  const DAY = 86_400_000;
+
+  it("la clave de caché de escritorio no cambia y la móvil es distinta", () => {
+    const desktop = cacheKey("uf hoy", market);
+    expect(cacheKey("uf hoy", market, "desktop")).toBe(desktop);
+    expect(cacheKey("uf hoy", market, "mobile")).not.toBe(desktop);
+  });
+
+  it("envía device solo cuando no es escritorio", async () => {
+    const fetchImpl = vi.fn().mockResolvedValue({ ok: true, json: async () => rawResponse });
+    await fetchSerp("uf hoy", "K", market, { fetchImpl });
+    expect(String(fetchImpl.mock.calls[0][0])).not.toContain("device=");
+    await fetchSerp("uf hoy", "K", market, { fetchImpl, device: "mobile" });
+    expect(String(fetchImpl.mock.calls[1][0])).toContain("device=mobile");
+  });
+
+  it("marca el dispositivo en la captura normalizada", () => {
+    expect(normalizeSerp(rawResponse, { query: "x", retrievedAt: "t" }).device).toBe("desktop");
+    expect(normalizeSerp(rawResponse, { query: "x", retrievedAt: "t", device: "mobile" }).device).toBe("mobile");
+  });
+
+  it("compara móvil y escritorio: funciones, posición y top 3", () => {
+    const desktop = normalizeSerp(rawResponse, { query: "utm hoy", retrievedAt: "t" });
+    const mobileRaw = {
+      ...rawResponse,
+      ai_overview: undefined,
+      knowledge_graph: {},
+      organic_results: [
+        { position: 1, link: "https://www.sii.cl/a", title: "SII" },
+        { position: 2, link: "https://otro.cl/x", title: "Otro" },
+        { position: 3, link: "https://tercero.cl/y", title: "Tercero" },
+        { position: 4, link: "https://monedario.cl/calculadoras/conversor-utm/", title: "M" },
+      ],
+    };
+    const mobile = normalizeSerp(mobileRaw, { query: "utm hoy", retrievedAt: "t", device: "mobile" });
+    const diff = compareDevices(desktop, mobile);
+    expect(diff.onlyMobile).toEqual(["knowledge_graph"]);
+    expect(diff.onlyDesktop).toContain("ai_overview");
+    expect(diff.desktopPosition).toBe(3);
+    expect(diff.mobilePosition).toBe(4);
+    expect(diff.positionDelta).toBe(1);
+    expect(diff.top3Changed).toBe(true);
+    expect(diff.enteredOrLeftTop10).toBe(false);
+  });
+
+  it("detecta cuando aparecemos solo en uno de los dos", () => {
+    const desktop = normalizeSerp(rawResponse, { query: "x", retrievedAt: "t" });
+    const mobile = normalizeSerp({ organic_results: [] }, { query: "x", retrievedAt: "t", device: "mobile" });
+    expect(compareDevices(desktop, mobile).enteredOrLeftTop10).toBe(true);
+    expect(compareDevices(desktop, mobile).positionDelta).toBeNull();
+  });
+
+  const entries = [
+    { query: "clave uno", tier: 1 },
+    { query: "clave dos", tier: 2 },
+    { query: "variante", tier: 3 },
+    { query: "fijada", tier: 3, pinned: true },
+    { query: "poco volumen", tier: 1 },
+    { query: "reciente", tier: 1 },
+  ];
+  const gsc = new Map([
+    ["clave uno", { impressions: 50000, ctr: 0.003, position: 7 }],
+    ["clave dos", { impressions: 4000, ctr: 0.003, position: 7 }],
+    ["variante", { impressions: 90000, ctr: 0.001, position: 7 }],
+    ["fijada", { impressions: 10, ctr: 0, position: 7 }],
+    ["poco volumen", { impressions: 30, ctr: 0, position: 7 }],
+    ["reciente", { impressions: 9000, ctr: 0.001, position: 7 }],
+  ]);
+  const lastMobile = new Map([["reciente", new Date(now - 2 * DAY).toISOString()]]);
+  const plan = (slots: number, gapDays = 7) =>
+    planMobile({ entries, lastMobile, gscByQuery: gsc, now, gapDays, minImpressions: 100, slots, bands });
+
+  it("solo incluye consultas clave y respeta separación y volumen", () => {
+    const queries = plan(10).map((e: { query: string }) => e.query);
+    expect(queries).toEqual(expect.arrayContaining(["clave uno", "clave dos", "fijada"]));
+    expect(queries).not.toContain("variante"); // tier 3 sin fijar
+    expect(queries).not.toContain("poco volumen");
+    expect(queries).not.toContain("reciente"); // capturada en móvil hace 2 días
+  });
+
+  it("ordena por valor y respeta el cupo", () => {
+    expect(plan(1).map((e: { query: string }) => e.query)).toEqual(["clave uno"]);
+    expect(plan(0)).toHaveLength(0);
+  });
+
+  it("el día de cierre (separación de 1 día) también repite lo reciente", () => {
+    const stale = new Map([["reciente", new Date(now - 2 * DAY).toISOString()]]);
+    const queries = planMobile({ entries, lastMobile: stale, gscByQuery: gsc, now, gapDays: 1, minImpressions: 100, slots: 10, bands }).map((e: { query: string }) => e.query);
+    expect(queries).toContain("reciente");
+  });
+
+  it("el brief compara móvil con escritorio cuando hay capturas móviles", () => {
+    const desktop = normalizeSerp(rawResponse, { query: "utm hoy", retrievedAt: "t" });
+    const mobile = normalizeSerp(rawResponse, { query: "utm hoy", retrievedAt: "t", device: "mobile" });
+    const brief = renderBrief([desktop], {
+      week: "2026-W48",
+      gscByQuery: new Map(),
+      budget: { used: 1, cap: 220, planLimit: 250 },
+      mobile: new Map([[querySlug("utm hoy"), mobile]]),
+    });
+    expect(brief).toContain("## Móvil frente a escritorio");
+    expect(brief).toContain("| utm hoy |");
+    const without = renderBrief([desktop], {
+      week: "2026-W48",
+      gscByQuery: new Map(),
+      budget: { used: 1, cap: 220, planLimit: 250 },
+    });
+    expect(without).not.toContain("## Móvil frente a escritorio");
+  });
+
+  it("interpreta --mobile y --no-mobile", () => {
+    expect(parseArgs(["node", "x", "--mobile"]).mobile).toBe(0);
+    expect(parseArgs(["node", "x", "--mobile", "5"]).mobile).toBe(5);
+    expect(parseArgs(["node", "x"]).mobile).toBeNull();
+    expect(parseArgs(["node", "x", "--no-mobile"]).noMobile).toBe(true);
   });
 });

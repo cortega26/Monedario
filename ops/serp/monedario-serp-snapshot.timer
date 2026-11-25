@@ -1,0 +1,15 @@
+[Unit]
+Description=Revisión diaria del colector SERP de Monedario (el colector decide si hoy toca)
+
+[Timer]
+# Corre todos los días: el colector solo captura lunes, jueves y el día anterior
+# a la renovación del plan, y se niega los demás. Persistent=true recupera una
+# corrida perdida por tener el equipo apagado a esa hora (el mismo día).
+OnCalendar=*-*-* 10:30:00
+Persistent=true
+RandomizedDelaySec=300
+AccuracySec=1min
+Unit=monedario-serp-snapshot.service
+
+[Install]
+WantedBy=timers.target

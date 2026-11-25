@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "notes": "Consultas objetivo para scripts/collect-serp-snapshot.mjs (uso manual, cupo gratuito de SerpApi: 250/mes, ciclo del 25 al 25). Ritmo: lunes y jueves (los días de data-signals) con `--auto --run`, y cierre del ciclo el día anterior a la renovación, cuando se barre el cupo restante. El lote sale del saldo real y la lista se ordena por valor esperado (historial); una parte va a descubrimiento. cadenceDays = separación mínima entre capturas de una misma consulta por tier (1 = 3 días, 2 = 9, 3 = 27). Las variantes casi duplicadas (comparten 7-9 de 10 resultados, medido el 2026-11-25) van en tier 3. `pinned` = no se omite por bajo volumen. Decisión y criterio de salida: docs/operations/runbooks/serp-snapshot.md.",
+  "version": 5,
+  "notes": "Consultas objetivo para scripts/collect-serp-snapshot.mjs (ejecución local, cupo gratuito de SerpApi: 250/mes, ciclo del 25 al 25). Ritmo: lunes y jueves (los días de data-signals) con `--auto --run`, y cierre del ciclo el día anterior a la renovación, cuando se barre el cupo restante. El lote sale del saldo real y la lista se ordena por valor esperado (historial); una parte va a descubrimiento. cadenceDays = separación mínima entre capturas de una misma consulta por tier (1 = 3 días, 2 = 9, 3 = 27). Las variantes casi duplicadas (comparten 7-9 de 10 resultados, medido el 2026-11-25) van en tier 3. `pinned` = no se omite por bajo volumen. Decisión y criterio de salida: docs/operations/runbooks/serp-snapshot.md. Excedente móvil: con el cupo que sobra de cada corrida se repiten las consultas clave (tier 1 y 2) con device=mobile, con separación mínima propia (`mobile.gapDays`).",
   "ourDomain": "monedario.cl",
   "market": {
     "gl": "cl",
@@ -110,5 +110,10 @@
     "cacheTtlDays": 2,
     "closeMargin": 5,
     "gscWeeks": 4
+  },
+  "mobile": {
+    "enabled": true,
+    "gapDays": 7,
+    "maxPerRun": 10
   }
 }

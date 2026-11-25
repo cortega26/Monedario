@@ -27,7 +27,9 @@ cómo llega y qué restricciones aplican.
   cierre del ciclo, con lote adaptativo (`--auto --run`). Escribe
   `serpFeatures` (volumen y CTR propios desde GSC en ventana de 28 días,
   funciones del SERP) con `freeSources: ["serpapi-google-cl"]`, que consume el
-  detector `serp_feature_risk`. Solo uso manual/local, nunca desde CI. Detalle,
+  detector `serp_feature_risk`. Con el excedente repite las consultas clave en
+  móvil. Ejecución **local** (manual o con el timer `systemd --user` de
+  `ops/serp/`), nunca desde CI. Detalle,
   viabilidad y criterio de salida: `runbooks/serp-snapshot.md`.
 - Si el owner habilita Semrush y/o Ahrefs, el **control-plane** (operador
   automatizado del portafolio) es el canal preferido: recolecta y entrega el
