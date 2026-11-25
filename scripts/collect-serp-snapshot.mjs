@@ -3,7 +3,7 @@
 /**
  * collect-serp-snapshot
  *
- * Growth Engine (fuente libre, uso manual): captura el SERP de Google Chile
+ * Growth Engine (fuente libre, ejecución local): captura el SERP de Google Chile
  * (google.cl, gl=cl, hl=es) y lo normaliza. Responde lo que GSC no puede: qué
  * hay en la página de resultados (AI Overview, cuadro de respuesta, "otras
  * preguntas", quién ocupa el top 10) y por qué una consulta con buena posición
@@ -22,9 +22,13 @@
  *     volatilidad (historial) × antigüedad.
  *   - `--discover`: barrido acotado de las consultas de GSC con más clics
  *     perdidos que aún no se conocen, para ver dónde manda una función del SERP.
+ *   - Excedente móvil: con el cupo que sobra de cada corrida se repiten las
+ *     consultas clave con `device=mobile` (donde está la mayor parte del
+ *     tráfico) y el brief compara móvil contra escritorio.
  *
  * Reglas (ver docs/operations/runbooks/serp-snapshot.md):
- *   - Solo manual/local. Se omite en CI (EXTERNAL-INTELLIGENCE-CONTRACT).
+ *   - Solo local: a mano o con el timer `systemd --user` de ops/serp/. Se omite
+ *     en CI (EXTERNAL-INTELLIGENCE-CONTRACT).
  *   - Por defecto solo imprime el plan y el presupuesto; gasta cupo con --run.
  *   - Los datos son `internal-only` y viven en output/external-intelligence/
  *     (gitignoreado). La clave nunca se imprime ni se escribe en la salida.
@@ -39,6 +43,8 @@
  *   node scripts/collect-serp-snapshot.mjs --run --query "uf hoy"
  *   node scripts/collect-serp-snapshot.mjs --run --force      # ignora cadencia/caché
  *   node scripts/collect-serp-snapshot.mjs --discover [N]     # plan del barrido
+ *   node scripts/collect-serp-snapshot.mjs --run --mobile [N] # consultas clave en móvil
+ *   node scripts/collect-serp-snapshot.mjs --auto --run --no-mobile
  *   node scripts/collect-serp-snapshot.mjs --auto --run --any-day   # fuera de lunes/jueves
  *   node scripts/collect-serp-snapshot.mjs --report           # reconstruye salidas
  *
@@ -124,17 +130,18 @@ export function querySlug(query) {
     .slice(0, 80);
 }
 
-export function cacheKey(query, market) {
+export function cacheKey(query, market, device = "desktop") {
+  const parts = [
+    normQuery(query),
+    market.gl,
+    market.hl,
+    market.google_domain,
+    market.location,
+  ];
+  // El hash de escritorio se mantiene idéntico: no invalida la caché previa.
+  if (device !== "desktop") parts.push(device);
   return createHash("sha1")
-    .update(
-      [
-        normQuery(query),
-        market.gl,
-        market.hl,
-        market.google_domain,
-        market.location,
-      ].join("|")
-    )
+    .update(parts.join("|"))
     .digest("hex")
     .slice(0, 16);
 }
@@ -499,6 +506,67 @@ export function runBudget({
   };
 }
 
+/**
+ * Diferencias entre el SERP de escritorio y el móvil de una consulta: función
+ * que aparece solo en uno, cambio de nuestra posición y del top 3.
+ */
+export function compareDevices(desktop, mobile) {
+  const d = new Set(desktop.features);
+  const m = new Set(mobile.features);
+  const dPos = desktop.ours?.position ?? null;
+  const mPos = mobile.ours?.position ?? null;
+  const dTop = desktop.organic.slice(0, 3).map(row => row.domain);
+  const mTop = mobile.organic.slice(0, 3).map(row => row.domain);
+  return {
+    onlyMobile: [...m].filter(f => !d.has(f)),
+    onlyDesktop: [...d].filter(f => !m.has(f)),
+    desktopPosition: dPos,
+    mobilePosition: mPos,
+    positionDelta: dPos !== null && mPos !== null ? mPos - dPos : null,
+    enteredOrLeftTop10: (dPos === null) !== (mPos === null),
+    top3Changed: dTop.some(domain => !mTop.includes(domain)),
+  };
+}
+
+/**
+ * Pasada móvil con el excedente de la corrida: consultas clave (tier 1 y 2, o
+ * fijadas) ordenadas por valor esperado, con su propia separación mínima desde
+ * la última captura móvil. Nunca incluye las descubiertas ni las de tier 3.
+ */
+export function planMobile({
+  entries,
+  lastMobile,
+  gscByQuery,
+  now,
+  gapDays,
+  minImpressions,
+  slots,
+  bands,
+}) {
+  const scored = [];
+  for (const entry of entries) {
+    if ((entry.tier ?? 2) > 2 && !entry.pinned) continue;
+    const last = lastMobile.get(querySlug(entry.query));
+    const ageDays = last ? (now - new Date(last).getTime()) / DAY_MS : null;
+    if (ageDays !== null && ageDays < gapDays) continue;
+    const gsc = gscByQuery.get(normQuery(entry.query));
+    if (!entry.pinned && gsc && gsc.impressions < minImpressions) continue;
+    const score = queryScore({
+      impressions: gsc?.impressions ?? null,
+      ctr: gsc?.ctr ?? null,
+      position: gsc?.position ?? null,
+      volatility: 0.5,
+      ageDays,
+      minGapDays: gapDays,
+      bands,
+    });
+    scored.push({ ...entry, impressions: gsc?.impressions ?? null, score });
+  }
+  return scored
+    .sort((a, b) => b.score - a.score || a.query.localeCompare(b.query))
+    .slice(0, Math.max(0, slots));
+}
+
 export function tokenSimilarity(a, b) {
   const setA = new Set(tokenize(a));
   const setB = new Set(tokenize(b));
@@ -567,7 +635,7 @@ export function discoverCandidates(rows, options) {
  */
 export function normalizeSerp(
   raw,
-  { query, retrievedAt, ourDomain = "monedario.cl" }
+  { query, retrievedAt, ourDomain = "monedario.cl", device = "desktop" }
 ) {
   const organic = (raw?.organic_results ?? [])
     .slice(0, 10)
@@ -605,6 +673,7 @@ export function normalizeSerp(
   return {
     query,
     retrievedAt,
+    device,
     market: { gl: "cl", hl: "es", google_domain: "google.cl" },
     totalResults: raw?.search_information?.total_results ?? null,
     features,
@@ -763,11 +832,11 @@ function providerLine(provider) {
 
 /**
  * @param {any[]} snapshots
- * @param {{ week: string, gscByQuery: Map<string, any>, budget: any, gscWeek?: string | null, provider?: any }} options
+ * @param {{ week: string, gscByQuery: Map<string, any>, budget: any, gscWeek?: string | null, provider?: any, mobile?: Map<string, any> }} options
  */
 export function renderBrief(
   snapshots,
-  { week, gscByQuery, budget, gscWeek, provider }
+  { week, gscByQuery, budget, gscWeek, provider, mobile }
 ) {
   const lines = [
     `# SERP Chile — brief ${week}`,
@@ -790,6 +859,28 @@ export function renderBrief(
     );
   }
   lines.push("");
+  const comparisons = snapshots.flatMap(snap => {
+    const mobileSnap = mobile?.get(querySlug(snap.query));
+    return mobileSnap
+      ? [{ snap, mobileSnap, diff: compareDevices(snap, mobileSnap) }]
+      : [];
+  });
+  if (comparisons.length) {
+    lines.push(
+      "## Móvil frente a escritorio",
+      "",
+      "| Consulta | Pos. escritorio | Pos. móvil | Solo en móvil | Solo en escritorio | Top 3 distinto |",
+      "|---|---:|---:|---|---|---|"
+    );
+    for (const { snap, diff } of comparisons) {
+      lines.push(
+        `| ${snap.query} | ${diff.desktopPosition ?? "fuera"} | ${diff.mobilePosition ?? "fuera"} | ` +
+          `${diff.onlyMobile.join(", ") || "—"} | ${diff.onlyDesktop.join(", ") || "—"} | ` +
+          `${diff.top3Changed ? "sí" : "no"} |`
+      );
+    }
+    lines.push("");
+  }
   for (const snap of snapshots) {
     lines.push(`## ${snap.query}`, "");
     lines.push(`- Capturado: ${snap.retrievedAt}`);
@@ -874,7 +965,7 @@ export async function fetchSerp(
   query,
   apiKey,
   market,
-  { fetchImpl = fetch, timeoutMs = 30_000 } = {}
+  { fetchImpl = fetch, timeoutMs = 30_000, device = "desktop" } = {}
 ) {
   const search = new URLSearchParams({
     engine: "google",
@@ -885,6 +976,8 @@ export async function fetchSerp(
     location: market.location,
     api_key: apiKey,
   });
+  // Escritorio es el valor por defecto del proveedor: solo se envía si cambia.
+  if (device !== "desktop") search.set("device", device);
   const response = await fetchImpl(`${SERPAPI_ENDPOINT}?${search}`, {
     headers: { accept: "application/json" },
     signal: AbortSignal.timeout(timeoutMs),
@@ -977,6 +1070,8 @@ export function parseArgs(argv) {
     report: false,
     auto: false,
     anyDay: false,
+    mobile: null,
+    noMobile: false,
     discover: null,
     queries: [],
     week: null,
@@ -986,6 +1081,16 @@ export function parseArgs(argv) {
     if (flag === "--run") args.run = true;
     else if (flag === "--auto") args.auto = true;
     else if (flag === "--any-day") args.anyDay = true;
+    else if (flag === "--no-mobile") args.noMobile = true;
+    else if (flag === "--mobile") {
+      const next = argv[i + 1];
+      if (next && /^\d+$/.test(next)) {
+        args.mobile = Number(next);
+        i += 1;
+      } else {
+        args.mobile = 0; // 0 = lo que permita la separación mínima
+      }
+    }
     else if (flag === "--force") args.force = true;
     else if (flag === "--report") args.report = true;
     else if (flag === "--discover") {
@@ -1007,7 +1112,7 @@ async function main() {
   const args = parseArgs(process.argv);
   if (isCiEnvironment()) {
     console.warn(
-      "[serp] entorno de CI detectado; colector omitido (uso solo manual)"
+      "[serp] entorno de CI detectado; colector omitido (solo ejecución local)"
     );
     return;
   }
@@ -1028,6 +1133,9 @@ async function main() {
     weekdays: watchlist.schedule?.weekdays ?? RUN_WEEKDAYS,
     closeMargin: watchlist.schedule?.closeMargin ?? CLOSE_MARGIN,
     gscWeeks: watchlist.schedule?.gscWeeks ?? 4,
+    mobileEnabled: watchlist.mobile?.enabled ?? true,
+    mobileGapDays: watchlist.mobile?.gapDays ?? 7,
+    maxMobilePerRun: watchlist.mobile?.maxPerRun ?? 10,
     maxPerRun: watchlist.schedule?.maxPerRun ?? 30,
     discoverShare: watchlist.schedule?.discoverShare ?? 0.4,
     cacheTtlDays: watchlist.schedule?.cacheTtlDays ?? CACHE_TTL_DAYS,
@@ -1053,6 +1161,7 @@ async function main() {
   const normalizedDir = path.join(serpDir, "normalized");
   const discoveredDir = path.join(serpDir, "discovered");
   const historyDir = path.join(serpDir, "history");
+  const mobileDir = path.join(serpDir, "mobile");
   const rawDir = path.join(serpDir, "raw");
   const ledgerFile = path.join(serpDir, "ledger.json");
   const now = Date.now();
@@ -1267,6 +1376,49 @@ async function main() {
     }
   }
 
+  // Pasada móvil: usa el excedente de la corrida con las consultas clave.
+  const lastMobile = new Map();
+  for (const snap of readDir(mobileDir)) {
+    if (snap.retrievedAt)
+      lastMobile.set(querySlug(snap.query), snap.retrievedAt);
+  }
+  let mobilePlan = [];
+  if (
+    !args.noMobile &&
+    settings.mobileEnabled &&
+    (autoPlan || args.mobile !== null)
+  ) {
+    const closing = autoPlan?.sizing.mode === "close";
+    let mobileSlots;
+    if (args.mobile !== null) {
+      mobileSlots = args.mobile || watchlist.queries.length;
+    } else {
+      const surplus = Math.max(
+        0,
+        autoPlan.sizing.perRun - due.length - discoverPlan.length
+      );
+      mobileSlots = closing
+        ? surplus
+        : Math.min(surplus, settings.maxMobilePerRun);
+    }
+    mobilePlan = planMobile({
+      entries: watchlist.queries,
+      lastMobile,
+      gscByQuery,
+      now,
+      gapDays: closing ? 1 : settings.mobileGapDays,
+      minImpressions: settings.minImpressions,
+      slots: mobileSlots,
+      bands,
+    });
+    console.log(
+      `[serp] móvil: ${mobilePlan.length} consultas clave con el excedente (${mobileSlots} cupos)`
+    );
+    for (const entry of mobilePlan) {
+      console.log(`  [móvil] ${entry.query}  valor ${entry.score}`);
+    }
+  }
+
   if (!args.run && !args.report) {
     console.log("[serp] plan solamente. Usa --run para gastar cupo.");
     return;
@@ -1274,14 +1426,15 @@ async function main() {
 
   const state = { stop: false };
 
-  async function capture(entry, { kind, dir, room }) {
+  async function capture(entry, { kind, dir, room, device = "desktop" }) {
     if (state.stop) return null;
     if (room() <= 0) {
       console.warn("[serp] sin cupo disponible; se detiene la captura");
       state.stop = true;
       return null;
     }
-    const key = cacheKey(entry.query, market);
+    const key = cacheKey(entry.query, market, device);
+    const label = device === "desktop" ? "" : ` (${device})`;
     const cacheFile = path.join(rawDir, `${key}.json`);
     const cached =
       !args.force && existsSync(cacheFile) ? readJson(cacheFile, null) : null;
@@ -1294,10 +1447,10 @@ async function main() {
     if (fresh) {
       raw = cached.response;
       retrievedAt = cached.cachedAt;
-      console.log(`[serp] caché: ${entry.query}`);
+      console.log(`[serp] caché: ${entry.query}${label}`);
     } else {
       try {
-        raw = await fetchSerp(entry.query, apiKey, market);
+        raw = await fetchSerp(entry.query, apiKey, market, { device });
       } catch (error) {
         console.warn(`[serp] error en «${entry.query}»: ${error.message}`);
         if (isFatalProviderStatus(error.status)) {
@@ -1313,25 +1466,29 @@ async function main() {
       ledger = recordCall(ledger, { query: entry.query, at: retrievedAt, kind });
       writeJson(ledgerFile, ledger);
       if (typeof providerLeft === "number") providerLeft -= 1;
-      console.log(`[serp] capturado: ${entry.query}`);
+      console.log(`[serp] capturado: ${entry.query}${label}`);
     }
     const snapshot = normalizeSerp(raw, {
       query: entry.query,
       retrievedAt,
       ourDomain: watchlist.ourDomain,
+      device,
     });
     writeJson(path.join(dir, `${querySlug(entry.query)}.json`), snapshot);
     if (!fresh) {
       // Historial: base de la volatilidad y del puntaje de próximas corridas.
       appendHistory(
-        path.join(historyDir, `${querySlug(entry.query)}.jsonl`),
+        path.join(
+          historyDir,
+          `${querySlug(entry.query)}${device === "desktop" ? "" : `.${device}`}.jsonl`
+        ),
         historyRecord(snapshot)
       );
     }
     return snapshot;
   }
 
-  if (args.run && (due.length || discoverPlan.length)) {
+  if (args.run && (due.length || discoverPlan.length || mobilePlan.length)) {
     if (!apiKey) {
       console.warn("[serp] sin SERPAPI_API_KEY; colector omitido");
       return;
@@ -1363,6 +1520,14 @@ async function main() {
         });
       }
     }
+    for (const entry of mobilePlan) {
+      await capture(entry, {
+        kind: "mobile",
+        dir: mobileDir,
+        device: "mobile",
+        room: () => budget().remaining,
+      });
+    }
   }
 
   // Reconstruye salida agregada con lo último disponible.
@@ -1384,7 +1549,7 @@ async function main() {
     retrievedAt: new Date(now).toISOString(),
     license: "internal-only",
     scale: {
-      volume: "gsc_weekly_impressions",
+      volume: "gsc_impressions_28d",
       difficulty: "not_available_free_source",
     },
     serpFeatures: buildSerpFeatureRows([...snapshots, ...discovered], gscByQuery),
@@ -1398,6 +1563,9 @@ async function main() {
       briefFile,
       renderBrief(snapshots, {
         week,
+        mobile: new Map(
+          readDir(mobileDir).map(snap => [querySlug(snap.query), snap])
+        ),
         gscByQuery,
         budget: finalBudget,
         gscWeek,
