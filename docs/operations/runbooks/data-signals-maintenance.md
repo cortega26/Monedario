@@ -35,6 +35,22 @@ Los tokens tienen vida útil de **6 meses**. Fechas de rotación aproximadas:
 |---|---|
 | `GOOGLE_APPLICATION_CREDENTIALS_JSON` | 6 meses desde aprovisionamiento |
 | `CLOUDFLARE_ANALYTICS_TOKEN` | 6 meses desde aprovisionamiento |
+| `DATA_SIGNALS_PUSH_TOKEN` (secret del Environment `data-signals`) | **90 días**: creado 2026-11-25, vence ~2027-02-23. Renovar antes de esa fecha |
+
+### Renovar `DATA_SIGNALS_PUSH_TOKEN`
+
+`main` exige PR y el `GITHUB_TOKEN` no puede saltarse esa regla, así que el paso "Commit data signals" empuja con un PAT fine-grained del owner (solo `cortega26/Monedario`, permiso **Contents: Read and write**). Si el PAT vence, el workflow falla con `GH006` o `Bad credentials` en ese paso, igual que en los runs del 12, 19 y 23 de noviembre de 2026.
+
+1. Crear un PAT nuevo en <https://github.com/settings/personal-access-tokens/new> con los mismos permisos.
+2. Guardarlo sin mostrarlo en pantalla:
+
+```bash
+read -rs -p "PAT: " T; echo; printf %s "$T" | gh secret set DATA_SIGNALS_PUSH_TOKEN --env data-signals; unset T
+```
+
+3. Borrar el PAT anterior en GitHub y lanzar `workflow_dispatch` para comprobar.
+
+El Environment `data-signals` solo admite la rama `main`, de modo que el secret no está disponible para workflows de ramas de PR.
 
 ### Cómo actualizar secretos y variables en GHA
 

@@ -32,6 +32,12 @@ jobs:
     # prior 10min budget every scheduled run since 2026-07-03 was killed mid-run,
     # discarding GSC/Cloudflare/analytics output that had already succeeded too.
     timeout-minutes: 30
+    # `main` exige PR y el GITHUB_TOKEN no puede saltarse esa regla (GH006 en los
+    # runs del 12, 19 y 23 de noviembre de 2026). El commit de datos se empuja con
+    # un PAT fine-grained del owner (Contents: read/write, solo este repo) guardado
+    # como secret del Environment `data-signals`, restringido a la rama `main`.
+    # Vence cada 90 días: ver docs/operations/runbooks/data-signals-maintenance.md.
+    environment: data-signals
     env:
       GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
       CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
@@ -42,6 +48,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
+          # El token queda persistido en la config de git para el `git push` del
+          # paso "Commit data signals" (el resto del job no ejecuta código de terceros).
+          token: ${{ secrets.DATA_SIGNALS_PUSH_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
