@@ -36,7 +36,8 @@ jobs:
     # runs del 12, 19 y 23 de noviembre de 2026). El commit de datos se empuja con
     # un PAT fine-grained del owner (Contents: read/write, solo este repo) guardado
     # como secret del Environment `data-signals`, restringido a la rama `main`.
-    # Vence cada 90 días: ver docs/operations/runbooks/data-signals-maintenance.md.
+    # Sin expiración (decisión del owner): rotar cada 6 meses o ante sospecha de
+    # filtración. Ver docs/operations/runbooks/data-signals-maintenance.md.
     environment: data-signals
     env:
       GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}

@@ -35,11 +35,13 @@ Los tokens tienen vida útil de **6 meses**. Fechas de rotación aproximadas:
 |---|---|
 | `GOOGLE_APPLICATION_CREDENTIALS_JSON` | 6 meses desde aprovisionamiento |
 | `CLOUDFLARE_ANALYTICS_TOKEN` | 6 meses desde aprovisionamiento |
-| `DATA_SIGNALS_PUSH_TOKEN` (secret del Environment `data-signals`) | **90 días**: creado 2026-11-25, vence ~2027-02-23. Renovar antes de esa fecha |
+| `DATA_SIGNALS_PUSH_TOKEN` (secret del Environment `data-signals`) | **Sin expiración** (decisión del owner, 2026-11-25). Rotación preventiva cada 6 meses: revisar hacia ~2027-05-25, o antes ante cualquier sospecha de filtración |
 
 ### Renovar `DATA_SIGNALS_PUSH_TOKEN`
 
-`main` exige PR y el `GITHUB_TOKEN` no puede saltarse esa regla, así que el paso "Commit data signals" empuja con un PAT fine-grained del owner (solo `cortega26/Monedario`, permiso **Contents: Read and write**). Si el PAT vence, el workflow falla con `GH006` o `Bad credentials` en ese paso, igual que en los runs del 12, 19 y 23 de noviembre de 2026.
+`main` exige PR y el `GITHUB_TOKEN` no puede saltarse esa regla, así que el paso "Commit data signals" empuja con un PAT fine-grained del owner (solo `cortega26/Monedario`, permiso **Contents: Read and write**). Si el PAT se revoca o vence, el workflow falla con `GH006` o `Bad credentials` en ese paso, igual que en los runs del 12, 19 y 23 de noviembre de 2026.
+
+El PAT se creó **sin expiración**. Como permite saltarse la protección de `main` (el owner es admin y `enforce_admins` está en false), un token que no caduca amplía la ventana de exposición si se filtra. Controles compensatorios vigentes: permiso único Contents: read/write, un solo repositorio, secret guardado en un Environment restringido a la rama `main`. Por eso se mantiene la rotación preventiva cada 6 meses y se revisa la fecha de último uso del token en <https://github.com/settings/personal-access-tokens>.
 
 1. Crear un PAT nuevo en <https://github.com/settings/personal-access-tokens/new> con los mismos permisos.
 2. Guardarlo sin mostrarlo en pantalla:
