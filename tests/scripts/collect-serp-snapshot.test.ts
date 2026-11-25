@@ -158,7 +158,9 @@ describe("normalizeSerp", () => {
       position: 3,
       url: "https://www.monedario.cl/calculadoras/conversor-utm/",
     });
-    expect(snap.officialInTop10.map(o => o.domain)).toEqual([
+    expect(
+      snap.officialInTop10.map((o: { domain: string }) => o.domain)
+    ).toEqual([
       "sii.cl",
       "ine.gob.cl",
     ]);
